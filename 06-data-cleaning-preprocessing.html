@@ -1,0 +1,772 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>对大数据进行预处理 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="数据清洗之推特数据" href="06-data-cleaning-tweets.html" />
+    <link rel="prev" title="第四章 数据清洗" href="06-data-cleaning-intro.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     对大数据进行预处理
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-tweets.html">
+     数据清洗之推特数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-occupy-central-news.html">
+     对占中新闻进行数据清洗
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-music-list.html">
+     清洗音乐列表🎵
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-pandas.html">
+     使用Pandas进行数据清洗
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/06-data-cleaning-preprocessing.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/ebook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/ebook/issues/new?title=Issue%20on%20page%20%2F06-data-cleaning-preprocessing.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/ebook/master?urlpath=tree/docs/06-data-cleaning-preprocessing.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#byte-bait">
+   字节（Byte /bait/）
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chunk">
+   按照Chunk读取数据并进行处理
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pandasget-chunk">
+   用Pandas的get_chunk功能来处理亿级数据
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>对大数据进行预处理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>以占领华尔街推特数据为例</p>
+<p><img alt="image.png" src="_images/author.png" /></p>
+<div class="section" id="byte-bait">
+<h2>字节（Byte /bait/）<a class="headerlink" href="#byte-bait" title="Permalink to this headline">¶</a></h2>
+<p>计算机信息技术用于计量存储容量的一种计量单位，通常情况下一字节等于有八位， [1]  也表示一些计算机编程语言中的数据类型和语言字符。</p>
+<ul class="simple">
+<li><p>1B（byte，字节）= 8 bit；</p></li>
+<li><p>1KB=1000B；1MB=1000KB=1000×1000B。其中1000=10^3。</p></li>
+<li><p>1KB（kilobyte，千字节）=1000B= 10^3 B；</p></li>
+<li><p>1MB（Megabyte，兆字节，百万字节，简称“兆”）=1000KB= 10^6 B；</p></li>
+<li><p>1GB（Gigabyte，吉字节，十亿字节，又称“千兆”）=1000MB= 10^9 B；</p></li>
+</ul>
+</div>
+<div class="section" id="chunk">
+<h2>按照Chunk读取数据并进行处理<a class="headerlink" href="#chunk" title="Permalink to this headline">¶</a></h2>
+<p>Lazy Method for Reading Big File in Python?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bigfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/datalab/bigdata/cjc/ows-raw.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">chunkSize</span> <span class="o">=</span> <span class="mi">1000000</span>
+<span class="n">chunk</span> <span class="o">=</span> <span class="n">bigfile</span><span class="o">.</span><span class="n">readlines</span><span class="p">(</span><span class="n">chunkSize</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">))</span>
+<span class="c1"># with open(&quot;../data/ows_tweets_sample.txt&quot;, &#39;w&#39;) as f:</span>
+<span class="c1">#     for i in chunk:</span>
+<span class="c1">#         f.write(i)  </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2754
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>bigfile.readlines<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span><span class="o">%</span><span class="k">5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># https://stackoverflow.com/questions/519633/lazy-method-for-reading-big-file-in-python?lq=1</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="n">bigfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/datalab/bigdata/cjc/ows-raw.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">chunkSize</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">8</span>
+<span class="n">chunk</span> <span class="o">=</span> <span class="n">bigfile</span><span class="o">.</span><span class="n">readlines</span><span class="p">(</span><span class="n">chunkSize</span><span class="p">)</span>
+<span class="n">num_chunk</span><span class="p">,</span> <span class="n">num_lines</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">chunk</span><span class="p">:</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">((</span><span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">chunk</span><span class="p">),</span> 
+                       <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
+    <span class="c1">#do sth.</span>
+    <span class="n">num_lines</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">lines</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">num_chunk</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">num_chunk</span><span class="p">,</span> <span class="n">num_lines</span><span class="p">)</span>
+    <span class="n">num_chunk</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">chunk</span> <span class="o">=</span> <span class="n">bigfile</span><span class="o">.</span><span class="n">readlines</span><span class="p">(</span><span class="n">chunkSize</span><span class="p">)</span> <span class="c1"># read another chunk</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 262665
+5 1574666
+10 2880857
+15 4189419
+20 5492578
+25 6602141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_lines</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6602141
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pandasget-chunk">
+<h2>用Pandas的get_chunk功能来处理亿级数据<a class="headerlink" href="#pandasget-chunk" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>只有在超过5TB数据量的规模下，Hadoop才是一个合理的技术选择。</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/datalab/bigdata/cjc/ows-raw.txt&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">reader</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">f</span><span class="p">,</span>  <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>  <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="n">iterator</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">error_bad_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1">#跳过报错行</span>
+<span class="n">chunkSize</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">chunk</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_chunk</span><span class="p">(</span><span class="n">chunkSize</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+
+<span class="c1">#pd.read_table?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chunk</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Twitter ID</th>
+      <th>Text</th>
+      <th>Profile Image URL</th>
+      <th>Day</th>
+      <th>Hour</th>
+      <th>Minute</th>
+      <th>Created At</th>
+      <th>Geo</th>
+      <th>From User</th>
+      <th>From User ID</th>
+      <th>Language</th>
+      <th>To User</th>
+      <th>To User ID</th>
+      <th>Source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>121813144174727168</td>
+      <td>RT @AnonKitsu: ALERT!!!!!!!!!!COPS ARE KETTLIN...</td>
+      <td>http://a2.twimg.com/profile_images/1539375713/...</td>
+      <td>2011-10-06</td>
+      <td>5</td>
+      <td>4</td>
+      <td>2011-10-06 05:04:51</td>
+      <td>N;</td>
+      <td>Anonops_Cop</td>
+      <td>401240477</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://twitter.com/&amp;quot;&amp;gt;...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>121813146137657344</td>
+      <td>@jamiekilstein @allisonkilkenny Interesting in...</td>
+      <td>http://a2.twimg.com/profile_images/1574715503/...</td>
+      <td>2011-10-06</td>
+      <td>5</td>
+      <td>4</td>
+      <td>2011-10-06 05:04:51</td>
+      <td>N;</td>
+      <td>KittyHybrid</td>
+      <td>34532053</td>
+      <td>en</td>
+      <td>jamiekilstein</td>
+      <td>2149053</td>
+      <td>&amp;lt;a href=&amp;quot;http://twitter.com/&amp;quot;&amp;gt;...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>121813150000619521</td>
+      <td>@Seductivpancake Right! Those guys have a vict...</td>
+      <td>http://a1.twimg.com/profile_images/1241412831/...</td>
+      <td>2011-10-06</td>
+      <td>5</td>
+      <td>4</td>
+      <td>2011-10-06 05:04:52</td>
+      <td>N;</td>
+      <td>nerdsherpa</td>
+      <td>95067344</td>
+      <td>en</td>
+      <td>Seductivpancake</td>
+      <td>19695580</td>
+      <td>&amp;lt;a href=&amp;quot;http://www.echofon.com/&amp;quot;...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>121813150701072385</td>
+      <td>RT @bembel &amp;quot;Occupy Wall Street&amp;quot; als ...</td>
+      <td>http://a0.twimg.com/profile_images/1106399092/...</td>
+      <td>2011-10-06</td>
+      <td>5</td>
+      <td>4</td>
+      <td>2011-10-06 05:04:52</td>
+      <td>N;</td>
+      <td>hamudistan</td>
+      <td>35862923</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://levelupstudio.com&amp;quot...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>121813163778899968</td>
+      <td>#ows White shirt= Brown shirt.</td>
+      <td>http://a2.twimg.com/profile_images/1568117871/...</td>
+      <td>2011-10-06</td>
+      <td>5</td>
+      <td>4</td>
+      <td>2011-10-06 05:04:56</td>
+      <td>N;</td>
+      <td>kl_knox</td>
+      <td>419580636</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://twitter.com/&amp;quot;&amp;gt;...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/datalab/bigdata/cjc/ows-raw.txt&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">reader</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">f</span><span class="p">,</span>  <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>  <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> 
+                       <span class="n">iterator</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">error_bad_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1">#跳过报错行</span>
+<span class="n">chunkSize</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">loop</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="c1">#data = []</span>
+<span class="n">num_chunk</span><span class="p">,</span> <span class="n">num_lines</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">loop</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">chunk</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_chunk</span><span class="p">(</span><span class="n">chunkSize</span><span class="p">)</span>
+        <span class="c1"># dat = data_cleaning_funtion(chunk) # do sth.</span>
+        <span class="n">num_lines</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">num_chunk</span><span class="p">,</span> <span class="n">num_lines</span><span class="p">)</span>
+        <span class="n">num_chunk</span> <span class="o">+=</span><span class="mi">1</span>
+        <span class="c1">#data.append(dat) </span>
+    <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Iteration is stopped.&quot;</span><span class="p">)</span>
+<span class="c1">#df = pd.concat(data, ignore_index=True)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 100000
+1 200000
+2 300000
+3 400000
+4 500000
+5 600000
+6 700000
+7 800000
+8 900000
+9 1000000
+10 1100000
+11 1200000
+12 1300000
+13 1400000
+14 1500000
+15 1600000
+16 1700000
+17 1800000
+18 1900000
+19 2000000
+20 2100000
+21 2200000
+22 2300000
+23 2400000
+24 2500000
+25 2600000
+26 2700000
+27 2800000
+28 2900000
+29 3000000
+30 3100000
+31 3200000
+32 3300000
+33 3400000
+34 3500000
+35 3600000
+36 3700000
+37 3800000
+38 3900000
+39 4000000
+40 4100000
+41 4200000
+42 4300000
+43 4400000
+44 4500000
+45 4600000
+46 4700000
+47 4800000
+48 4900000
+49 5000000
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 5051743: expected 14 fields, saw 15\n&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50 5100000
+51 5200000
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 5254718: expected 14 fields, saw 15\n&#39;
+b&#39;Skipping line 5281095: expected 14 fields, saw 15\n&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>52 5300000
+53 5400000
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 5481759: expected 14 fields, saw 15\nSkipping line 5482014: expected 14 fields, saw 15\nSkipping line 5482532: expected 14 fields, saw 15\n&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>54 5500000
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 5516605: expected 14 fields, saw 15\n&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55 5600000
+56 5700000
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 5709055: expected 14 fields, saw 15\n&#39;
+b&#39;Skipping line 5796658: expected 14 fields, saw 15\n&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>57 5800000
+58 5900000
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 5927412: expected 14 fields, saw 15\nSkipping line 5927419: expected 14 fields, saw 15\nSkipping line 5927421: expected 14 fields, saw 15\nSkipping line 5927451: expected 14 fields, saw 15\nSkipping line 5927478: expected 14 fields, saw 15\n&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>59 6000000
+60 6100000
+61 6200000
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 6229621: expected 14 fields, saw 16\nSkipping line 6245861: expected 14 fields, saw 17\n&#39;
+b&#39;Skipping line 6278728: expected 14 fields, saw 15\n&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>62 6300000
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 6350262: expected 14 fields, saw 15\n&#39;
+b&#39;Skipping line 6387321: expected 14 fields, saw 15\nSkipping line 6388879: expected 14 fields, saw 15\n&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>63 6400000
+64 6500000
+65 6600000
+66 6602120
+Iteration is stopped.
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="image.png" src="_images/end.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="06-data-cleaning-intro.html" title="previous page">第四章 数据清洗</a>
+    <a class='right-next' id="next-link" href="06-data-cleaning-tweets.html" title="next page">数据清洗之推特数据</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

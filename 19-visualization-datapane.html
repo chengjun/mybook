@@ -1,0 +1,545 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>使用Datapane制作数据报告 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="使用Datashader可视化地理信息" href="19-visualization-datashader.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-with-pyecharts.html">
+     使用PyEcharts进行可视化
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-maps-using-folium.html">
+     使用folium做地图可视化
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-datashader.html">
+     使用Datashader可视化地理信息
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     使用Datapane制作数据报告
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/19-visualization-datapane.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/ebook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/ebook/issues/new?title=Issue%20on%20page%20%2F19-visualization-datapane.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/ebook/master?urlpath=tree/docs/19-visualization-datapane.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="datapane">
+<h1>使用Datapane制作数据报告<a class="headerlink" href="#datapane" title="Permalink to this headline">¶</a></h1>
+<p>Using Datapane to build shareable reports</p>
+<p><img alt="image.png" src="_images/datapane.png" /></p>
+<p>https://github.com/datapane/datapane/</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">datapane</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting datapane
+  Downloading datapane-0.8.1-py3-none-any.whl (1.4 MB)
+     |████████████████████████████████| 1.4 MB 75 kB/s eta 0:00:015
+?25hCollecting altair&lt;5.0.0,&gt;=4.0.0
+  Downloading altair-4.1.0-py3-none-any.whl (727 kB)
+     |████████████████████████████████| 727 kB 27 kB/s eta 0:00:01
+?25hCollecting furl&lt;3.0.0,&gt;=2.1.0
+  Downloading furl-2.1.0-py2.py3-none-any.whl (20 kB)
+Requirement already satisfied: matplotlib&lt;4.0.0,&gt;=3.1.0 in /opt/anaconda3/lib/python3.7/site-packages (from datapane) (3.1.3)
+Collecting importlib_resources&lt;4.0.0,&gt;=3.0.0
+  Downloading importlib_resources-3.0.0-py2.py3-none-any.whl (23 kB)
+Requirement already satisfied: jinja2&lt;3.0.0,&gt;=2.11.1 in /opt/anaconda3/lib/python3.7/site-packages (from datapane) (2.11.1)
+Requirement already satisfied: toolz&lt;0.11.0,&gt;=0.10.0 in /opt/anaconda3/lib/python3.7/site-packages (from datapane) (0.10.0)
+Requirement already satisfied: click&lt;8.0.0,&gt;=7.0.0 in /opt/anaconda3/lib/python3.7/site-packages (from datapane) (7.0)
+Requirement already satisfied: tabulate&lt;0.9.0,&gt;=0.8.7 in /opt/anaconda3/lib/python3.7/site-packages (from datapane) (0.8.7)
+Collecting click-spinner&lt;0.2.0,&gt;=0.1.8
+  Downloading click_spinner-0.1.10-py2.py3-none-any.whl (4.0 kB)
+Collecting pyarrow&lt;0.18.0,&gt;=0.17.0
+  Downloading pyarrow-0.17.1-cp37-cp37m-macosx_10_9_intel.whl (42.0 MB)
+     |████████████████████████████████| 42.0 MB 51 kB/s eta 0:00:013
+?25hCollecting dacite&lt;2.0.0,&gt;=1.2.0
+  Downloading dacite-1.5.1-py3-none-any.whl (12 kB)
+Collecting stringcase&lt;2.0.0,&gt;=1.2.0
+  Downloading stringcase-1.2.0.tar.gz (3.0 kB)
+Collecting colorlog&lt;5.0.0,&gt;=4.1.0
+  Downloading colorlog-4.4.0-py2.py3-none-any.whl (14 kB)
+Collecting plotly&lt;5.0.0,&gt;=4.8.1
+  Downloading plotly-4.11.0-py2.py3-none-any.whl (13.1 MB)
+     |████████████████████████████████| 13.1 MB 47 kB/s eta 0:00:01
+?25hRequirement already satisfied: ruamel.yaml&lt;0.17.0,&gt;=0.16.5 in /opt/anaconda3/lib/python3.7/site-packages (from datapane) (0.16.10)
+Requirement already satisfied: numpy&lt;2.0.0,&gt;=1.18.0 in /opt/anaconda3/lib/python3.7/site-packages (from datapane) (1.18.1)
+Requirement already satisfied: jsonschema&lt;4.0.0,&gt;=3.2.0 in /opt/anaconda3/lib/python3.7/site-packages (from datapane) (3.2.0)
+Requirement already satisfied: requests&lt;3.0.0,&gt;=2.20.0 in /opt/anaconda3/lib/python3.7/site-packages (from datapane) (2.24.0)
+Collecting bokeh&lt;3.0.0,&gt;=2.0.0
+  Downloading bokeh-2.2.3.tar.gz (8.8 MB)
+     |████████████████████████████████| 8.8 MB 17 kB/s eta 0:00:018
+?25hRequirement already satisfied: pandas&lt;2.0.0,&gt;=1.0.1 in /opt/anaconda3/lib/python3.7/site-packages (from datapane) (1.0.1)
+Collecting validators&lt;0.19.0,&gt;=0.18.0
+  Downloading validators-0.18.1-py3-none-any.whl (19 kB)
+Collecting packaging&lt;21.0,&gt;=20.3
+  Downloading packaging-20.4-py2.py3-none-any.whl (37 kB)
+Collecting requests-toolbelt&lt;0.10.0,&gt;=0.9.1
+  Downloading requests_toolbelt-0.9.1-py2.py3-none-any.whl (54 kB)
+     |████████████████████████████████| 54 kB 45 kB/s eta 0:00:01
+?25hCollecting folium&lt;0.12.0,&gt;=0.11.0
+  Downloading folium-0.11.0-py2.py3-none-any.whl (93 kB)
+     |████████████████████████████████| 93 kB 74 kB/s eta 0:00:01
+?25hCollecting nbconvert&lt;6.1.0,&gt;=6.0.0
+  Downloading nbconvert-6.0.7-py3-none-any.whl (552 kB)
+     |████████████████████████████████| 552 kB 43 kB/s eta 0:00:013
+?25hCollecting flit-core&lt;2.4.0,&gt;=2.3.0
+  Downloading flit_core-2.3.0-py2.py3-none-any.whl (40 kB)
+     |████████████████████████████████| 40 kB 49 kB/s eta 0:00:01
+?25hRequirement already satisfied: PyYAML&lt;6.0.0,&gt;=5.1.0 in /opt/anaconda3/lib/python3.7/site-packages (from datapane) (5.3)
+Collecting lxml&lt;5.0.0,&gt;=4.5.2
+  Downloading lxml-4.6.1-cp37-cp37m-macosx_10_9_x86_64.whl (4.5 MB)
+     |████████████████████████████████| 4.5 MB 16 kB/s eta 0:00:01
+?25hCollecting munch&lt;3.0.0,&gt;=2.5.0
+  Downloading munch-2.5.0-py2.py3-none-any.whl (10 kB)
+Requirement already satisfied: entrypoints in /opt/anaconda3/lib/python3.7/site-packages (from altair&lt;5.0.0,&gt;=4.0.0-&gt;datapane) (0.3)
+Collecting orderedmultidict&gt;=1.0.1
+  Downloading orderedmultidict-1.0.1-py2.py3-none-any.whl (11 kB)
+Requirement already satisfied: six&gt;=1.8.0 in /opt/anaconda3/lib/python3.7/site-packages (from furl&lt;3.0.0,&gt;=2.1.0-&gt;datapane) (1.14.0)
+Requirement already satisfied: cycler&gt;=0.10 in /opt/anaconda3/lib/python3.7/site-packages (from matplotlib&lt;4.0.0,&gt;=3.1.0-&gt;datapane) (0.10.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /opt/anaconda3/lib/python3.7/site-packages (from matplotlib&lt;4.0.0,&gt;=3.1.0-&gt;datapane) (1.1.0)
+Requirement already satisfied: python-dateutil&gt;=2.1 in /opt/anaconda3/lib/python3.7/site-packages (from matplotlib&lt;4.0.0,&gt;=3.1.0-&gt;datapane) (2.8.1)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in /opt/anaconda3/lib/python3.7/site-packages (from matplotlib&lt;4.0.0,&gt;=3.1.0-&gt;datapane) (2.4.6)
+Requirement already satisfied: zipp&gt;=0.4; python_version &lt; &quot;3.8&quot; in /opt/anaconda3/lib/python3.7/site-packages (from importlib_resources&lt;4.0.0,&gt;=3.0.0-&gt;datapane) (2.2.0)
+Requirement already satisfied: MarkupSafe&gt;=0.23 in /opt/anaconda3/lib/python3.7/site-packages (from jinja2&lt;3.0.0,&gt;=2.11.1-&gt;datapane) (1.1.1)
+Collecting retrying&gt;=1.3.3
+  Using cached retrying-1.3.3.tar.gz (10 kB)
+Requirement already satisfied: ruamel.yaml.clib&gt;=0.1.2; platform_python_implementation == &quot;CPython&quot; and python_version &lt; &quot;3.9&quot; in /opt/anaconda3/lib/python3.7/site-packages (from ruamel.yaml&lt;0.17.0,&gt;=0.16.5-&gt;datapane) (0.2.0)
+Requirement already satisfied: pyrsistent&gt;=0.14.0 in /opt/anaconda3/lib/python3.7/site-packages (from jsonschema&lt;4.0.0,&gt;=3.2.0-&gt;datapane) (0.15.7)
+Requirement already satisfied: attrs&gt;=17.4.0 in /opt/anaconda3/lib/python3.7/site-packages (from jsonschema&lt;4.0.0,&gt;=3.2.0-&gt;datapane) (19.3.0)
+Requirement already satisfied: setuptools in /opt/anaconda3/lib/python3.7/site-packages (from jsonschema&lt;4.0.0,&gt;=3.2.0-&gt;datapane) (46.0.0.post20200309)
+Requirement already satisfied: importlib-metadata; python_version &lt; &quot;3.8&quot; in /opt/anaconda3/lib/python3.7/site-packages (from jsonschema&lt;4.0.0,&gt;=3.2.0-&gt;datapane) (1.7.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /opt/anaconda3/lib/python3.7/site-packages (from requests&lt;3.0.0,&gt;=2.20.0-&gt;datapane) (2019.11.28)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,&lt;1.26,&gt;=1.21.1 in /opt/anaconda3/lib/python3.7/site-packages (from requests&lt;3.0.0,&gt;=2.20.0-&gt;datapane) (1.25.8)
+Requirement already satisfied: idna&lt;3,&gt;=2.5 in /opt/anaconda3/lib/python3.7/site-packages (from requests&lt;3.0.0,&gt;=2.20.0-&gt;datapane) (2.8)
+Requirement already satisfied: chardet&lt;4,&gt;=3.0.2 in /opt/anaconda3/lib/python3.7/site-packages (from requests&lt;3.0.0,&gt;=2.20.0-&gt;datapane) (3.0.4)
+Collecting pillow&gt;=7.1.0
+  Downloading Pillow-8.0.0-cp37-cp37m-macosx_10_10_x86_64.whl (2.2 MB)
+     |████████████████████████████████| 2.2 MB 26 kB/s eta 0:00:01
+?25hRequirement already satisfied: tornado&gt;=5.1 in /opt/anaconda3/lib/python3.7/site-packages (from bokeh&lt;3.0.0,&gt;=2.0.0-&gt;datapane) (6.0.3)
+Requirement already satisfied: typing_extensions&gt;=3.7.4 in /opt/anaconda3/lib/python3.7/site-packages (from bokeh&lt;3.0.0,&gt;=2.0.0-&gt;datapane) (3.7.4.2)
+Requirement already satisfied: pytz&gt;=2017.2 in /opt/anaconda3/lib/python3.7/site-packages (from pandas&lt;2.0.0,&gt;=1.0.1-&gt;datapane) (2019.3)
+Requirement already satisfied: decorator&gt;=3.4.0 in /opt/anaconda3/lib/python3.7/site-packages (from validators&lt;0.19.0,&gt;=0.18.0-&gt;datapane) (4.4.1)
+Collecting branca&gt;=0.3.0
+  Downloading branca-0.4.1-py3-none-any.whl (24 kB)
+Collecting nbclient&lt;0.6.0,&gt;=0.5.0
+  Downloading nbclient-0.5.1-py3-none-any.whl (65 kB)
+     |████████████████████████████████| 65 kB 19 kB/s eta 0:00:01
+?25hRequirement already satisfied: pandocfilters&gt;=1.4.1 in /opt/anaconda3/lib/python3.7/site-packages (from nbconvert&lt;6.1.0,&gt;=6.0.0-&gt;datapane) (1.4.2)
+Requirement already satisfied: mistune&lt;2,&gt;=0.8.1 in /opt/anaconda3/lib/python3.7/site-packages (from nbconvert&lt;6.1.0,&gt;=6.0.0-&gt;datapane) (0.8.4)
+Requirement already satisfied: jupyter-core in /opt/anaconda3/lib/python3.7/site-packages (from nbconvert&lt;6.1.0,&gt;=6.0.0-&gt;datapane) (4.6.1)
+Collecting jupyterlab-pygments
+  Downloading jupyterlab_pygments-0.1.2-py2.py3-none-any.whl (4.6 kB)
+Requirement already satisfied: bleach in /opt/anaconda3/lib/python3.7/site-packages (from nbconvert&lt;6.1.0,&gt;=6.0.0-&gt;datapane) (3.1.0)
+Requirement already satisfied: testpath in /opt/anaconda3/lib/python3.7/site-packages (from nbconvert&lt;6.1.0,&gt;=6.0.0-&gt;datapane) (0.4.4)
+Requirement already satisfied: traitlets&gt;=4.2 in /opt/anaconda3/lib/python3.7/site-packages (from nbconvert&lt;6.1.0,&gt;=6.0.0-&gt;datapane) (4.3.3)
+Requirement already satisfied: pygments&gt;=2.4.1 in /opt/anaconda3/lib/python3.7/site-packages (from nbconvert&lt;6.1.0,&gt;=6.0.0-&gt;datapane) (2.5.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: defusedxml in /opt/anaconda3/lib/python3.7/site-packages (from nbconvert&lt;6.1.0,&gt;=6.0.0-&gt;datapane) (0.6.0)
+Requirement already satisfied: nbformat&gt;=4.4 in /opt/anaconda3/lib/python3.7/site-packages (from nbconvert&lt;6.1.0,&gt;=6.0.0-&gt;datapane) (5.0.4)
+Collecting pytoml
+  Downloading pytoml-0.1.21-py2.py3-none-any.whl (8.5 kB)
+Collecting async-generator
+  Downloading async_generator-1.10-py3-none-any.whl (18 kB)
+Collecting nest-asyncio
+  Downloading nest_asyncio-1.4.1-py3-none-any.whl (5.2 kB)
+Collecting jupyter-client&gt;=6.1.5
+  Downloading jupyter_client-6.1.7-py3-none-any.whl (108 kB)
+     |████████████████████████████████| 108 kB 21 kB/s eta 0:00:01
+?25hRequirement already satisfied: webencodings in /opt/anaconda3/lib/python3.7/site-packages (from bleach-&gt;nbconvert&lt;6.1.0,&gt;=6.0.0-&gt;datapane) (0.5.1)
+Requirement already satisfied: ipython-genutils in /opt/anaconda3/lib/python3.7/site-packages (from traitlets&gt;=4.2-&gt;nbconvert&lt;6.1.0,&gt;=6.0.0-&gt;datapane) (0.2.0)
+Requirement already satisfied: pyzmq&gt;=13 in /opt/anaconda3/lib/python3.7/site-packages (from jupyter-client&gt;=6.1.5-&gt;nbclient&lt;0.6.0,&gt;=0.5.0-&gt;nbconvert&lt;6.1.0,&gt;=6.0.0-&gt;datapane) (18.1.1)
+Building wheels for collected packages: stringcase, bokeh, retrying
+  Building wheel for stringcase (setup.py) ... ?25ldone
+?25h  Created wheel for stringcase: filename=stringcase-1.2.0-py3-none-any.whl size=3576 sha256=08e1013b473f0dc75a5bbc1983375e2e08f9276bc0603783f889a940193710f9
+  Stored in directory: /Users/datalab/Library/Caches/pip/wheels/86/ab/a3/a8fa7e0a07e80f547e03468c03827f8257f7339327986faed1
+  Building wheel for bokeh (setup.py) ... ?25ldone
+?25h  Created wheel for bokeh: filename=bokeh-2.2.3-py3-none-any.whl size=9296309 sha256=1ac68c5ef988ad5effacf1d280c614b9e134c63c08dcee3364fed555443c9436
+  Stored in directory: /Users/datalab/Library/Caches/pip/wheels/0c/6a/ac/5de7ec1983d76fa1243106008b70df211dceb5ed643ad15699
+  Building wheel for retrying (setup.py) ... ?25ldone
+?25h  Created wheel for retrying: filename=retrying-1.3.3-py3-none-any.whl size=11430 sha256=a0ca1b4655bf4181dcee100929261a5e39118513b42636d02352e828ad76564a
+  Stored in directory: /Users/datalab/Library/Caches/pip/wheels/f9/8d/8d/f6af3f7f9eea3553bc2fe6d53e4b287dad18b06a861ac56ddf
+Successfully built stringcase bokeh retrying
+<span class=" -Color -Color-Red">ERROR: spyder 4.0.1 requires pyqt5&lt;5.13; python_version &gt;= &quot;3&quot;, which is not installed.</span>
+<span class=" -Color -Color-Red">ERROR: spyder 4.0.1 requires pyqtwebengine&lt;5.13; python_version &gt;= &quot;3&quot;, which is not installed.</span>
+<span class=" -Color -Color-Red">ERROR: pytest-astropy 0.8.0 requires pytest-cov&gt;=2.0, which is not installed.</span>
+<span class=" -Color -Color-Red">ERROR: pytest-astropy 0.8.0 requires pytest-filter-subpackage&gt;=0.1, which is not installed.</span>
+<span class=" -Color -Color-Red">ERROR: datapane 0.8.1 has requirement ruamel.yaml&lt;0.17.0,&gt;=0.16.5, but you&#39;ll have ruamel-yaml 0.15.87 which is incompatible.</span>
+Installing collected packages: altair, orderedmultidict, furl, importlib-resources, click-spinner, pyarrow, dacite, stringcase, colorlog, retrying, plotly, pillow, packaging, bokeh, validators, requests-toolbelt, branca, folium, async-generator, nest-asyncio, jupyter-client, nbclient, jupyterlab-pygments, nbconvert, pytoml, flit-core, lxml, munch, datapane
+  Attempting uninstall: pyarrow
+    Found existing installation: pyarrow 0.12.1
+    Uninstalling pyarrow-0.12.1:
+      Successfully uninstalled pyarrow-0.12.1
+  Attempting uninstall: pillow
+    Found existing installation: Pillow 7.0.0
+    Uninstalling Pillow-7.0.0:
+      Successfully uninstalled Pillow-7.0.0
+  Attempting uninstall: packaging
+    Found existing installation: packaging 20.1
+    Uninstalling packaging-20.1:
+      Successfully uninstalled packaging-20.1
+  Attempting uninstall: bokeh
+    Found existing installation: bokeh 1.4.0
+    Uninstalling bokeh-1.4.0:
+      Successfully uninstalled bokeh-1.4.0
+  Attempting uninstall: jupyter-client
+    Found existing installation: jupyter-client 5.3.4
+    Uninstalling jupyter-client-5.3.4:
+      Successfully uninstalled jupyter-client-5.3.4
+  Attempting uninstall: nbconvert
+    Found existing installation: nbconvert 5.6.1
+    Uninstalling nbconvert-5.6.1:
+      Successfully uninstalled nbconvert-5.6.1
+  Attempting uninstall: lxml
+    Found existing installation: lxml 4.5.0
+    Uninstalling lxml-4.5.0:
+      Successfully uninstalled lxml-4.5.0
+Successfully installed altair-4.1.0 async-generator-1.10 bokeh-2.2.3 branca-0.4.1 click-spinner-0.1.10 colorlog-4.4.0 dacite-1.5.1 datapane-0.8.1 flit-core-2.3.0 folium-0.11.0 furl-2.1.0 importlib-resources-3.0.0 jupyter-client-6.1.7 jupyterlab-pygments-0.1.2 lxml-4.6.1 munch-2.5.0 nbclient-0.5.1 nbconvert-6.0.7 nest-asyncio-1.4.1 orderedmultidict-1.0.1 packaging-20.4 pillow-8.0.0 plotly-4.11.0 pyarrow-0.17.1 pytoml-0.1.21 requests-toolbelt-0.9.1 retrying-1.3.3 stringcase-1.2.0 validators-0.18.1
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">import</span> <span class="nn">datapane</span> <span class="k">as</span> <span class="nn">dp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://query1.finance.yahoo.com/v7/finance/download/GOOG?period2=1585222905&amp;interval=1mo&amp;events=history&#39;</span><span class="p">)</span>
+
+<span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Date:T&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Open&#39;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">mark_line</span><span class="p">()</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">dp</span><span class="o">.</span><span class="n">Report</span><span class="p">(</span><span class="n">dp</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="n">dp</span><span class="o">.</span><span class="n">Plot</span><span class="p">(</span><span class="n">chart</span><span class="p">))</span>
+<span class="n">r</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;report.html&#39;</span><span class="p">,</span> <span class="nb">open</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="19-visualization-datashader.html" title="previous page">使用Datashader可视化地理信息</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

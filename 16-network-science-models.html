@@ -1,0 +1,879 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>网络科学模型 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="使用NetworkX分析网络" href="17-networkx.html" />
+    <link rel="prev" title="第十章 网络科学简介" href="15-network-science-intro.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     网络科学模型
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="17-networkx.html">
+     使用NetworkX分析网络
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-02-network-diffusion.html">
+     Simulating Network Diffusion With NDlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-03-network-epidemics.html">
+     Epidemics on Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-04-seir-hcd-model.html">
+     SEIR-HCD Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">
+     天涯论坛的回帖网络分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">
+     可视化Facebook社交网络
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/16-network-science-models.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/ebook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/ebook/issues/new?title=Issue%20on%20page%20%2F16-network-science-models.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/ebook/master?urlpath=tree/docs/16-network-science-models.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-random-network-model">
+   The random network model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#erdos-renyi-model-1960">
+     Erdös-Rényi model (1960)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#g-n-l-model">
+     G(N, L) Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#g-n-p-model">
+     G(N, p) Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#to-construct-a-random-network">
+     To construct a random network:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#binomial-distribution-mean-and-variance">
+     BINOMIAL DISTRIBUTION: MEAN AND VARIANCE
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-summary">
+     In summary
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#degree-distribution">
+     Degree Distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#poisson-distribution">
+     POISSON DISTRIBUTION
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-small-world-phenomenon">
+   The small world phenomenon 小世界现象
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     随机网络的直径
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#six-degrees-experimental-confirmation">
+     SIX DEGREES: EXPERIMENTAL CONFIRMATION
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     大的聚集系数与小的网络直径如何并存？
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     邻居彼此认识吗？
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     局部聚集系数
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ws-1998">
+   WS模型 （1998）
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     In summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ba-1999">
+   BA模型 （1999）
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scaling-free">
+     Scaling-Free
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     无标度的意义
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#continuum-mean-field">
+     连续平均场”Continuum Mean-Field”
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     模型设定
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     度的增长/时间依赖性
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     积分结果
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     累积概率分布
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     均匀分布的性质
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   参考文献
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>网络科学模型<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><img alt="image.png" src="_images/network3.png" /></p>
+<p>The power of network science, the beauty of network visualization. <strong>Network Science</strong>, a textbook for network science, is freely available under the Creative Commons license. http://networksciencebook.com/</p>
+<a class="reference internal image-reference" href="_images/cocktail.png"><img alt="_images/cocktail.png" src="_images/cocktail.png" style="width: 500px;" /></a>
+<div class="section" id="the-random-network-model">
+<h2>The random network model<a class="headerlink" href="#the-random-network-model" title="Permalink to this headline">¶</a></h2>
+<p>随机网络模型</p>
+<div class="section" id="erdos-renyi-model-1960">
+<h3>Erdös-Rényi model (1960)<a class="headerlink" href="#erdos-renyi-model-1960" title="Permalink to this headline">¶</a></h3>
+<p>Definition: A random graph is a graph of N nodes where each pair of nodes is connected by probability p.</p>
+</div>
+<div class="section" id="g-n-l-model">
+<h3>G(N, L) Model<a class="headerlink" href="#g-n-l-model" title="Permalink to this headline">¶</a></h3>
+<p>N lableled nodes are connected with L randomly placed links. Erdös-Rényi(1959)</p>
+</div>
+<div class="section" id="g-n-p-model">
+<h3>G(N, p) Model<a class="headerlink" href="#g-n-p-model" title="Permalink to this headline">¶</a></h3>
+<p>Each pair of N labeled nodes is connected with probability p. Gilbert (1959)</p>
+</div>
+<div class="section" id="to-construct-a-random-network">
+<h3>To construct a random network:<a class="headerlink" href="#to-construct-a-random-network" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><ol class="simple">
+<li><p>Start with <span class="math notranslate nohighlight">\(N\)</span> isolated nodes.</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>Select a node pair and generate a random number between 0 and 1.
+If the number exceeds <span class="math notranslate nohighlight">\(p\)</span>, connect the selected node pair with a link,
+otherwise leave them disconnected.</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>Repeat step (2) for each of the <span class="math notranslate nohighlight">\(\frac{N(N-1)}{2}\)</span> node pairs.</p></li>
+</ol>
+</li>
+</ul>
+<p>The probability that a random network has exactly <span class="math notranslate nohighlight">\(L\)</span> links and <span class="math notranslate nohighlight">\(N\)</span> nodes:</p>
+<div class="math notranslate nohighlight">
+\[p_L = C_{\frac{N(N-1)}{2}}^L p^L (1-p)^{\frac{N(N-1)}{2} -L}\]</div>
+</div>
+<div class="section" id="binomial-distribution-mean-and-variance">
+<h3>BINOMIAL DISTRIBUTION: MEAN AND VARIANCE<a class="headerlink" href="#binomial-distribution-mean-and-variance" title="Permalink to this headline">¶</a></h3>
+<p><strong>二项分布</strong>即重复n次独立的**伯努利试验*</p>
+<p>If we toss a fair coin N times, tails and heads occur with the same probability p = 1/2. The binomial distribution provides the probability <span class="math notranslate nohighlight">\(p_x\)</span> that we obtain exactly x heads in a sequence of N throws. In general, the binomial distribution describes the number of successes in N independent experiments with two possible outcomes, in which the probability of one outcome is p, and of the other is 1-p.</p>
+<div class="math notranslate nohighlight">
+\[ p_x = \sum_{x}^N p^x (1-p)^{N-x}\]</div>
+<p>The mean of the distribution (first moment) is</p>
+<div class="math notranslate nohighlight">
+\[&lt;x&gt; = \sum_{x = 0}^N xp_x = Np\]</div>
+<p><span class="math notranslate nohighlight">\(P_L\)</span>is a binomial distribution, the <strong>expected</strong> number of links in a random graph is</p>
+<div class="math notranslate nohighlight">
+\[ &lt;L&gt; = \sum_{L = 0}^{\frac{N(N-1)}{2}} L p_L =  \frac{N(N-1)}{2} p\]</div>
+<div class="math notranslate nohighlight">
+\[L_{max} = \frac{N(N-1)}{2}\]</div>
+<p><strong>The average degree</strong> of a random network is :</p>
+<div class="math notranslate nohighlight">
+\[&lt;k&gt; = \frac{2&lt;L&gt;}{N} = (N-1)p\]</div>
+<div class="math notranslate nohighlight">
+\[k_{max} = N-1\]</div>
+</div>
+<div class="section" id="in-summary">
+<h3>In summary<a class="headerlink" href="#in-summary" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>the number of links in a random network varies between realizations.</p></li>
+<li><p>Its expected value is determined by <strong>N</strong> and <strong>p</strong>.</p></li>
+<li><p>If we increase p a random network becomes denser:</p>
+<ul>
+<li><p>The average number of links increase <strong>linearly</strong> from <L> = 0 to Lmax</p></li>
+<li><p>and the average degree of a node increases from <k> = 0 to <k> = N-1.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="degree-distribution">
+<h3>Degree Distribution<a class="headerlink" href="#degree-distribution" title="Permalink to this headline">¶</a></h3>
+<p>In a given realization of a random network some nodes gain numerous links, while others acquire only a few or no links. These differences are captured by the degree distribution, <span class="math notranslate nohighlight">\(p_k\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(p_k\)</span> is the probability that a randomly chosen node has degree <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>In a random network the probability that <strong>node i</strong> has exactly <strong><span class="math notranslate nohighlight">\(k\)</span></strong> links is the product of three terms:</p>
+<p><span class="math notranslate nohighlight">\(k_{max} = N-1\)</span>, 节点i的边的最大数量是N-1</p>
+<ul class="simple">
+<li><p>The probability of node i having k links, or <strong><span class="math notranslate nohighlight">\(p^k\)</span></strong>.</p></li>
+<li><p>The probability that the remaining (N-1-k) links are missing, or <span class="math notranslate nohighlight">\((1-p)^{N-1-k}\)</span></p></li>
+<li><p>The number of ways we can select <span class="math notranslate nohighlight">\(k\)</span> links from <span class="math notranslate nohighlight">\(N- 1\)</span> potential links a node can have, or <span class="math notranslate nohighlight">\(C_{N-1}^k\)</span></p></li>
+</ul>
+<p>Consequently the degree distribution of a random network is:</p>
+<p><span class="math notranslate nohighlight">\(p_k = C_{N-1}^k p^k (1-p)^{N-1-k}\)</span></p>
+<p>which follows <strong>the binomial distribution</strong>. The shape of this distribution depends on the system size <span class="math notranslate nohighlight">\(N\)</span> and the
+probability <span class="math notranslate nohighlight">\(p\)</span>.</p>
+</div>
+<div class="section" id="poisson-distribution">
+<h3>POISSON DISTRIBUTION<a class="headerlink" href="#poisson-distribution" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Most real networks are <strong>sparse</strong>, meaning that for them <span class="math notranslate nohighlight">\(&lt;k&gt;\)</span> ≪ N.</p></li>
+<li><p>the degree distribution is well approximated by the Poisson distribution</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(p_k = e^{-&lt;k&gt;} \frac{&lt;k&gt;^k}{k!}\)</span></p>
+<p>大于平均度的节点数量随着度的增加指数下降</p>
+<div><img src="images/network4.png" width=1200></div><a class="reference internal image-reference" href="_images/er_evolution.png"><img alt="_images/er_evolution.png" src="_images/er_evolution.png" style="width: 1000px;" /></a>
+<p><strong>The evolution of random networks</strong>
+The relative size of the giant component in function of the average degree <span class="math notranslate nohighlight">\(&lt;k&gt;\)</span> in the Erdős-Rényi model. The figure illustrates the phase tranisition at <span class="math notranslate nohighlight">\(&lt;k&gt; = 1\)</span>, responsible for the emergence of a giant component with
+nonzero <span class="math notranslate nohighlight">\(N_G\)</span>. <strong>REAL NETWORKS ARE SUPERCRITICAL</strong></p>
+</div>
+</div>
+<div class="section" id="the-small-world-phenomenon">
+<h2>The small world phenomenon 小世界现象<a class="headerlink" href="#the-small-world-phenomenon" title="Permalink to this headline">¶</a></h2>
+<p>also known as <strong>six degrees of separation</strong>,
+has long fascinated the general public. It states that if you choose any two
+individuals anywhere on Earth, you will find a path of at most six acquaintances
+between them.</p>
+<ul class="simple">
+<li><p>What does short (or small) mean, i.e. short compared to what?</p></li>
+<li><p>How do we explain the existence of these short distances?</p></li>
+</ul>
+<p>Consider a random network with average degree <span class="math notranslate nohighlight">\(&lt;k&gt;\)</span>.</p>
+<p>A node i in this network has on average:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(&lt;k&gt;\)</span> nodes at distance one (d=1).</p></li>
+<li><p><span class="math notranslate nohighlight">\(&lt;k&gt;^2\)</span> nodes at distance two (d=2).</p></li>
+<li><p><span class="math notranslate nohighlight">\(&lt;k&gt;^3\)</span> nodes at distance three (d =3).</p></li>
+<li><p>…</p></li>
+<li><p><span class="math notranslate nohighlight">\(&lt;k&gt;^d\)</span> nodes at distance d.</p></li>
+</ul>
+<p><img alt="" src="_images/homework.jpg" /></p>
+<p>从For循环的角度理解</p>
+<ul class="simple">
+<li><p>从这个节点i走一步，到达他/她的<span class="math notranslate nohighlight">\(&lt;k&gt;\)</span>个朋友</p></li>
+<li><p>从节点i走两步，先到他/她的<span class="math notranslate nohighlight">\(&lt;k&gt;\)</span>个朋友，再到每个朋友的<span class="math notranslate nohighlight">\(&lt;k&gt;\)</span>个朋友。</p></li>
+<li><p>。。。</p></li>
+</ul>
+<p>for <span class="math notranslate nohighlight">\(&lt;k&gt; ≈ 1,000\)</span>, which is the estimated number of acquaintences an individual has, we expect <span class="math notranslate nohighlight">\(10^6\)</span> individuals at distance two and about a billion, i.e. almost the whole earth’s population, at distance three from us.</p>
+<p>从一个开始的节点出发走d步，共有节点数量：</p>
+<p><span class="math notranslate nohighlight">\(N(d) = 1 + &lt;k&gt; + &lt;k&gt;^2 + &lt;k&gt;^3 + ...+ &lt;k&gt;^d  = \frac{&lt;k&gt;^{d+1}-1}{&lt;k&gt;-1}\)</span></p>
+<div class="section" id="id2">
+<h3>随机网络的直径<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>The expected number of nodes up to distance d from our starting node is <span class="math notranslate nohighlight">\(N(d)\)</span></p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(N(d)\)</span>比N小，当<span class="math notranslate nohighlight">\(d = d_{max}\)</span>的时候： <span class="math notranslate nohighlight">\(N(d_{max}) \sim N\)</span></p>
+</div></blockquote>
+<p>我们知道： <span class="math notranslate nohighlight">\(N(d) = 1 + &lt;k&gt; + &lt;k&gt;^2 + &lt;k&gt;^3 + ...+ &lt;k&gt;^d  = \frac{&lt;k&gt;^{d+1}-1}{&lt;k&gt;-1}\)</span></p>
+<p>若<span class="math notranslate nohighlight">\(&lt;k&gt;\)</span> 远大于1，那么: <span class="math notranslate nohighlight">\(N(d_{max}) = &lt;k&gt;^{d_{max}} \sim N \)</span>，</p>
+<p>因此，<span class="math notranslate nohighlight">\(d_{max} = \frac{ln N}{ln &lt;k&gt;}\)</span> The diameter depends logarithmically on the system size.</p>
+<div class="math notranslate nohighlight">
+\[d_{max} = \frac{ln N}{ln &lt;k&gt;}\]</div>
+<p>The diameter depends logarithmically on the system size.</p>
+<p>The <span class="math notranslate nohighlight">\(\frac{1}{ln &lt;k&gt;}\)</span> term implies that the denser the network, the smaller is the distance between the nodes.</p>
+<p>Let us illustrate the implications of (3.19) for social networks. Using <span class="math notranslate nohighlight">\(N ≈ 7 ×10^9\)</span> and <span class="math notranslate nohighlight">\(&lt;k&gt; ≈ 10^3\)</span>, we obtain</p>
+<div class="math notranslate nohighlight">
+\[d_{max} = \frac{ln 7 ×10^9}{ln 10^3} = 3.28\]</div>
+<p>I. de Sola Pool and M. Kochen. Contacts and Influence. Social Networks, 1: 5-51, 1978.</p>
+</div>
+<div class="section" id="six-degrees-experimental-confirmation">
+<h3>SIX DEGREES: EXPERIMENTAL CONFIRMATION<a class="headerlink" href="#six-degrees-experimental-confirmation" title="Permalink to this headline">¶</a></h3>
+<p>The first empirical study of the small world phenomena took place in 1967</p>
+<ul class="simple">
+<li><p><strong>Stanley Milgram</strong>, building on the work of Pool and Kochen, designed an experiment to measure the distances in social networks.</p></li>
+<li><p>Milgram chose a stock broker in Boston and a divinity student in Sharon, Massachusetts as targets.</p></li>
+<li><p>He then randomly selected residents of Wichita and Omaha, sending them a letter containing a short summary of the study’s purpose, a photograph, the name, address and information about the target person.</p></li>
+<li><p>They were asked to forward the letter to a friend, relative or acquantance who is most likely to know the target person.</p></li>
+</ul>
+<p>He found that the median number of intermediates was 5.2,</p>
+<p>Using Facebook’s social graph of May 2011, consisting of 721 million active users and 68 billion symmetric friendship links, researchers found an <strong>average distance 4.74</strong> between the users.</p>
+<ul class="simple">
+<li><p>Therefore, the study detected only ‘four degrees of separation’, closer to the prediction of than to Milgram’s six degrees.</p></li>
+</ul>
+<p>L. Backstrom, P. Boldi, M. Rosa, J. Ugander, and S. Vigna. Four degrees of separation. In ACM Web Science 2012: Conference Proceedings, pages 45−54. ACM Press, 2012.</p>
+<div><img src="images/network5.png" width=1000></div></div>
+<div class="section" id="id3">
+<h3>大的聚集系数与小的网络直径如何并存？<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>1D: For a one-dimensional lattice (a line of length N) the diameter and the average path length scale linearly with <span class="math notranslate nohighlight">\(N: dmax\sim&lt;d&gt; \sim N\)</span>.</p></li>
+<li><p>2D: For a square lattice <span class="math notranslate nohighlight">\(dmax \sim &lt;d&gt; \sim N^{1/2}\)</span>.</p></li>
+<li><p>3D: For a cubic lattice <span class="math notranslate nohighlight">\(dmax \sim &lt;d&gt; \sim N^{1/3}\)</span>.</p></li>
+<li><p>dD: In general, for a d-dimensional lattice <span class="math notranslate nohighlight">\(dmax \sim &lt;d&gt; \sim N^{1/d}\)</span>.</p></li>
+</ul>
+<p>In lattices the path lengths are significantly longer than in a random network.</p>
+<div><img src = 'images/network6.png' width = 800px></div>
+</div>
+<div class="section" id="id4">
+<h3>邻居彼此认识吗？<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Local clustering coefficient</p>
+<p>We need to estimate the expected number of links <span class="math notranslate nohighlight">\(L_i\)</span> between the node’s <span class="math notranslate nohighlight">\(k_i\)</span> neighbors.</p>
+<p>In a random network the probability that two of i’s neighbors link to each other is <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>As there are <span class="math notranslate nohighlight">\(\frac{k_i(k_i - 1)}{2}\)</span> possible links between the <span class="math notranslate nohighlight">\(k_i\)</span> neighbors of node i, the expected value of <span class="math notranslate nohighlight">\(L_i\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[&lt;L&gt; = p\frac{k_i(k_i - 1)}{2}\]</div>
+</div>
+<div class="section" id="id5">
+<h3>局部聚集系数<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[&lt;C_i&gt; = \frac{&lt;L&gt;}{\frac{1}{2} k_i(k_i - 1)} = p = \frac{&lt;k&gt;}{N}\]</div>
+<ul class="simple">
+<li><p>For fixed <span class="math notranslate nohighlight">\(&lt;k&gt;\)</span>, the larger the network, the smaller is a node’s clustering coefficient.</p></li>
+<li><p>The local clustering coefficient of a node is <strong>independent</strong> of the node’s degree.</p></li>
+</ul>
+<div><img src = 'images/network7.png' width = 1000px></div>
+</div>
+</div>
+<div class="section" id="ws-1998">
+<h2>WS模型 （1998）<a class="headerlink" href="#ws-1998" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Small World Property</strong> In real networks the average distance between two nodes depends lithmically on N</p></li>
+<li><p><strong>High Clustering</strong> The average clustering coefficient of real networks is much higher than expected for a random network of similar N and L</p>
+<ul>
+<li><p>a regular lattice has high clustering but lacks the small-world phenomenon.</p></li>
+<li><p>and a random network has low clustering, but displays the small-world property.</p></li>
+</ul>
+</li>
+</ul>
+<p>Numerical simulations indicate that for a range of rewiring parameters the model’s average path length is low but the clustering coefficient is high.</p>
+<p>D. J. Watts and S. H. Strogatz. Collective dynamics of ‘small-world’ networks. Nature, 393: 409–10, 1998.</p>
+<ul class="simple">
+<li><p>The dependence of the average path length <span class="math notranslate nohighlight">\(d(p)\)</span> and clustering coefficient <span class="math notranslate nohighlight">\(&lt;C(p)&gt;\)</span> on the <strong>rewiring parameter <span class="math notranslate nohighlight">\(p\)</span></strong>.</p></li>
+<li><p>Note that <span class="math notranslate nohighlight">\(d(p)\)</span> and <span class="math notranslate nohighlight">\(&lt;C(p)&gt;\)</span> have been normalized by <span class="math notranslate nohighlight">\(d(0)\)</span> and <span class="math notranslate nohighlight">\(&lt;C(0)&gt;\)</span> obtained for a regular lattice.</p></li>
+<li><p>The rapid drop in <span class="math notranslate nohighlight">\(d(p)\)</span> signals the onset of the small-world phenomenon.</p>
+<ul>
+<li><p>During this drop, <span class="math notranslate nohighlight">\(&lt;C(p)&gt;\)</span> remains high.</p></li>
+<li><p>Hence in the range <span class="math notranslate nohighlight">\(0.001&lt;p&lt;0.1\)</span> short path lengths and high clustering co-exist in the network.</p></li>
+</ul>
+</li>
+</ul>
+<p>D. J. Watts and S. H. Strogatz. Collective dynamics of ‘small-world’ networks. Nature, 393: 409–10, 1998.</p>
+<a class="reference internal image-reference" href="_images/ws.png"><img alt="_images/ws.png" src="_images/ws.png" style="width: 500px;" /></a>
+<div class="section" id="id6">
+<h3>In summary<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>we find that the random network model does not capture the clustering of real networks.</p></li>
+<li><p>Instead real networks have a <strong>much higher clustering coefficient</strong> than expected for a random network of similar N and L.</p></li>
+<li><p>An extension of the random network model proposed by Watts and Strogatz [1998] addresses the coexistence of high <C> and the small world property.</p></li>
+<li><p>It fails to explain, however, <strong>why high-degree nodes have a smaller clustering coefficient than low-degree nodes</strong>.</p></li>
+</ul>
+<div><img src = 'images/network8.png' width = 1000px></div>
+<p>REAL NETWORKS ARE NOT POISSON</p>
+</div>
+</div>
+<div class="section" id="ba-1999">
+<h2>BA模型 （1999）<a class="headerlink" href="#ba-1999" title="Permalink to this headline">¶</a></h2>
+<p>Barabasi (1999) Emergence of scaling in random networks.Science-509-12</p>
+<div class="section" id="scaling-free">
+<h3>Scaling-Free<a class="headerlink" href="#scaling-free" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/ba.png"><img alt="_images/ba.png" src="_images/ba.png" style="width: 800px;" /></a>
+<p>The Preferential Attachment Model</p>
+</div>
+<div class="section" id="id7">
+<h3>无标度的意义<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>度分布的n阶矩被定义为：</p>
+<p><span class="math notranslate nohighlight">\( &lt;k^n&gt; = \sum_{k_{min}}^{k_{max}}k^np_k = \int_{k_{min}}^{k_{max}}k^np_kdk \)</span> （1）</p>
+<p>低阶矩具有明确的统计意义：</p>
+<ul class="simple">
+<li><p>n = 1的时候，一阶矩是<span class="math notranslate nohighlight">\(&lt;k^{}&gt;\)</span>，即平均度。</p></li>
+<li><p>n = 2的时候，二阶矩是<span class="math notranslate nohighlight">\(&lt;k^2&gt;\)</span>，可以帮助计算方差 <span class="math notranslate nohighlight">\( \delta^2 = &lt;k^2&gt; - &lt;k^{}&gt;^{2} \)</span>，测量了度的离散程度（the spread in the degrees）。</p></li>
+<li><p>n = 3的时候，三阶矩是<span class="math notranslate nohighlight">\(&lt;k^3&gt;\)</span>, 决定了度分布的偏度（skewness），测量了<span class="math notranslate nohighlight">\(p_k\)</span>围绕着<span class="math notranslate nohighlight">\(&lt;k&gt;\)</span>的对称性。</p></li>
+</ul>
+<p>对于无标度网络而言，满足幂律分布：</p>
+<p><span class="math notranslate nohighlight">\(p(k) = Ck^{-\gamma}\)</span> （2）</p>
+<p>由公式（1）和（2）可以得到：</p>
+<p><span class="math notranslate nohighlight">\( &lt;k^n&gt; = \int_{k_{min}}^{k_{max}}k^np_kdk = C \frac{k_{max}^{n- \gamma +1} - k_{min}^{n - \gamma +1}}{n - \gamma + 1} \)</span> （3）</p>
+<p>可以使用wolframalpha的积分计算器积分来进行简单验证，例如x^(n-r)dx从10到100积分 网页链接：http://www.wolframalpha.com/input/?i=integrate+x%5E%28n-r%29+dx+from+10+to+100</p>
+<p>显然：</p>
+<ul class="simple">
+<li><p>当<span class="math notranslate nohighlight">\(n - \gamma +1 &lt;= 0\)</span>时，随着<span class="math notranslate nohighlight">\(k_{max}\)</span>增加，<span class="math notranslate nohighlight">\(k_{max}^{n- \gamma +1} \rightarrow 0\)</span>。所有满足<span class="math notranslate nohighlight">\(n &lt;= \gamma -1\)</span>的n阶矩都是有限的。</p></li>
+<li><p>当<span class="math notranslate nohighlight">\(n - \gamma +1 &gt;0 \)</span>时，随着<span class="math notranslate nohighlight">\(k_{max}增加，\)</span><span class="math notranslate nohighlight">\(k_{max}^{n- \gamma +1} \rightarrow \infty\)</span>。所有满足<span class="math notranslate nohighlight">\(n &gt; \gamma -1\)</span>的n阶矩都是无极限的。</p></li>
+</ul>
+<p>对于无标度网络而言，一般幂参数<span class="math notranslate nohighlight">\(2 &lt; \gamma &lt; 3\)</span>，所以：</p>
+<ul class="simple">
+<li><p>对于n = 1的情况，即一阶矩平均度<span class="math notranslate nohighlight">\(&lt;k^{}&gt;\)</span>是有限的。</p></li>
+<li><p>但对于n &gt;= 2的情况，即<span class="math notranslate nohighlight">\(k^2\)</span>或<span class="math notranslate nohighlight">\(k^3\)</span>是无极限的。二阶和高阶矩无穷大是“无标度”的来源</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/scale_free.png"><img alt="_images/scale_free.png" src="_images/scale_free.png" style="width: 500px;" /></a>
+<blockquote>
+<div><p>在网络中随机抽取一个节点的度可以显著的不同于平均度<span class="math notranslate nohighlight">\(&lt;k&gt;\)</span></p>
+</div></blockquote>
+<p>上图最为直接的描绘出了这种特点，即与正态分布等相比，<code class="docutils literal notranslate"><span class="pre">无标度网络下降的慢</span></code>。</p>
+<ul class="simple">
+<li><p>对于任何指数类型的分布，如泊松分布或高斯分布，随机选取一个节点的度在平均度附近，因此平均度就是这些网络的<code class="docutils literal notranslate"><span class="pre">尺度</span></code>。</p></li>
+<li><p>对于一个幂律分布而言，因为二阶矩发散，在网络中随机抽取一个节点的度可以显著的不同于平均度<span class="math notranslate nohighlight">\(&lt;k^{}&gt;\)</span>， 因此平均度不再是网络的尺度，称之为无标度。</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/scalefree.png"><img alt="_images/scalefree.png" src="_images/scalefree.png" style="width: 500px;" /></a>
+<p>对于不同的网络，平均度与标准差的取值</p>
+</div>
+<div class="section" id="continuum-mean-field">
+<h3>连续平均场”Continuum Mean-Field”<a class="headerlink" href="#continuum-mean-field" title="Permalink to this headline">¶</a></h3>
+<p>“Mean-Field”: many -&gt; one</p>
+<blockquote>
+<div><p>The complex interaction between a large number of components can be simplified into <strong>a single averaged effect</strong> of all the other individuals on any given one.</p>
+</div></blockquote>
+<p>“Continuum”: discrete -&gt; Continuous</p>
+<p>A discrete variables that is “smooth enough”, i.e. increase by one unit in each period, such as time steps [1], spatial jumps [2-3], and population, can be viewed as a continuous geometric structure.</p>
+<p>Any measure on this structure, like degree [1], number of unique locations visited [2], and distance [3], can be described by differential equations.</p>
+</div>
+<div class="section" id="id8">
+<h3>模型设定<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>初始状态有<span class="math notranslate nohighlight">\(m_0\)</span>个节点</p></li>
+<li><ol class="simple">
+<li><p>增长原则：每次加入一个节点i （加入时间记为<span class="math notranslate nohighlight">\(t_i\)</span>）, 每个节点的加入带来m条边，2m个度的增加
+<strong>其中老节点分到的度数是m，新加入的那一个节点分到的度数为m.</strong> 那么到时间t的时候，网络的总节点数是<span class="math notranslate nohighlight">\(m_0 + t\)</span>，网络的总度数为<span class="math notranslate nohighlight">\(2mt\)</span>。</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>优先链接原则：每一次从m条边中占有一条边的概率正比于节点的度<span class="math notranslate nohighlight">\(k_i\)</span>
+<strong>那么显然，加入的越早（<span class="math notranslate nohighlight">\(t_i\)</span>越小）越容易获得更多的链接数。</strong> 从时间0开始，每一个时间步系统中的节点度<span class="math notranslate nohighlight">\(k_i\)</span>是不断增加的。</p></li>
+</ol>
+</li>
+</ul>
+<a class="reference internal image-reference" href="_images/ba_geometric.png"><img alt="_images/ba_geometric.png" src="_images/ba_geometric.png" style="width: 600px;" /></a>
+</div>
+<div class="section" id="id9">
+<h3>度的增长/时间依赖性<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(k_i\)</span>在一个时间步获得一个度的概率表示为<span class="math notranslate nohighlight">\(\prod (k_i) \)</span>， 那么有：</p>
+<div class="math notranslate nohighlight">
+\[\prod (k_i)  = \frac{k_i}{\sum k_i} =  \frac{k_i}{2mt}\]</div>
+<p>也就是说，在时间点t,节点i获得一个度的概率（能力）是节点i的度占网络总度数的比值。一个时间步，<span class="math notranslate nohighlight">\(k_i\)</span>随t的变化率可以表达为：
+$<span class="math notranslate nohighlight">\(\frac{\partial k_i}{\partial t} = \Delta k \prod (k_i) = m \frac{k_i}{2mt} = \frac{k_i}{2t}\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial k_i}{k_i} = \frac{\partial t}{2t}\]</div>
+<div class="math notranslate nohighlight">
+\[\int \frac{1}{k_i} d k_i = \int \frac{1}{2t} dt\]</div>
+<div class="math notranslate nohighlight">
+\[\int \frac{1}{k_i} d k_i = \int \frac{1}{2t} dt\]</div>
+<p><img alt="image.png" src="_images/network9.png" /></p>
+<p>https://www.wolframalpha.com/input/?i=integrate+1%2F%282x%29+dx+</p>
+<p>积分结果</p>
+<div class="math notranslate nohighlight">
+\[k_i = C (2t) ^ {0.5}   （公式1）\]</div>
+</div>
+<div class="section" id="id10">
+<h3>积分结果<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[k_i = C (2t) ^ {0.5}   （公式1）\]</div>
+<p>此时，根据模型的初始条件，每个新加入节点获得的度是m：</p>
+<p><span class="math notranslate nohighlight">\(k_i(t_i) = m \)</span>  代入公式（1）</p>
+<p>可以得到<span class="math notranslate nohighlight">\(C =\frac{m}{(2t_i)^{0.5}}\)</span> 公式（2）</p>
+<p>代入公式（1），得到：</p>
+<p><span class="math notranslate nohighlight">\(k_i = m (\frac{t}{t_i})^{0.5}\)</span>  公式（3）</p>
+<p>对于一个节点i，其加入网络的时间<span class="math notranslate nohighlight">\(t_i\)</span>是固定的，我们可以观察其度<span class="math notranslate nohighlight">\(k_i\)</span>随着时间的幂律关系。</p>
+</div>
+<div class="section" id="id11">
+<h3>累积概率分布<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>当我们思考一个累积概率分布的时候，我们想要的是<span class="math notranslate nohighlight">\(k_i(t) &lt; k\)</span>的概率：<span class="math notranslate nohighlight">\(P(k_i(t) &lt; k) \)</span></p>
+<p>由公式<span class="math notranslate nohighlight">\(k_i = m (\frac{t}{t_i})^{0.5}\)</span>  公式（3），可以知道：</p>
+<p><span class="math notranslate nohighlight">\(P(k_i(t) &lt; k)  = P( m (\frac{t}{t_i})^{0.5}  &lt; k ) = P(  t_i &gt; \frac{m^2 t}{k^2}  ) = 1 - P(t_i \leqslant \frac{m^2 t}{k^2} )\)</span>（4）</p>
+<p>在初始状态<span class="math notranslate nohighlight">\( t = 0\)</span>, 有<span class="math notranslate nohighlight">\(m_0\)</span>个节点，那么<span class="math notranslate nohighlight">\(t_{m_0} = 0\)</span></p>
+<p>假设我们将节点加入的时间步是均匀的，那么<span class="math notranslate nohighlight">\(t_i\)</span>的概率是一个常数：</p>
+<p><span class="math notranslate nohighlight">\(P(t_i) = \frac{1}{m_0 + t}\)</span> 公式（5）</p>
+</div>
+<div class="section" id="id12">
+<h3>均匀分布的性质<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>设连续型随机变量X的概率密度函数为 <span class="math notranslate nohighlight">\(f(x)=1/(b-a)，a≤x≤b \)</span>, 则称随机变量X服从[a,b]上的均匀分布，记为X~U[a,b]。若[x1,x2]是[a,b]的任一子区间，则 <span class="math notranslate nohighlight">\(P{x_1≤x≤x_2}=(x_2-x_1) \frac{1}{b-a}\)</span></p></li>
+</ul>
+<p>根据均匀分布的性质，将公式（5）代入公式（4）得到：</p>
+<p><span class="math notranslate nohighlight">\(P(k_i(t) &lt; k)  = 1-  \frac{m^2 t}{k^2} P(t_i)  =  1 - \frac{m^2 t}{k^2 (m_0 + t)} \)</span>  公式（6）</p>
+<p>对累积概率函数求微分，就可以到达概率密度函数:</p>
+<p><span class="math notranslate nohighlight">\(P( k ) = \frac{\partial P(k_i(t) &lt; k)}{\partial k} = \frac{2m^2 t}{m_0 + t} \frac{1}{k^3}\)</span>  公式（7）</p>
+<p>也就是说：<span class="math notranslate nohighlight">\(\gamma = 3\)</span>, 与m无关。</p>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>参考文献<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Barabasi 2016 Network Science. Cambridge  http://networksciencebook.com/</p></li>
+<li><p>Barabasi (1999) Emergence of scaling in random networks.Science-509-12.pdf</p></li>
+<li><p>Barabasi (1999) Mean-field theory for scale-free random networks. PA.pdf</p></li>
+<li><p>Albert &amp; Barabasi (2002) Statistical mechanics of complex networks. RMP.pdf</p></li>
+<li><p>Principle of Locality I: Hacking the Continuum Mean-Field Technique in Network Modeling http://www.jianshu.com/p/97f674267d3e</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="15-network-science-intro.html" title="previous page">第十章 网络科学简介</a>
+    <a class='right-next' id="next-link" href="17-networkx.html" title="next page">使用NetworkX分析网络</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

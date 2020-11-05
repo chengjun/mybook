@@ -1,0 +1,1163 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Linear Regression &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Statistical Modeling with Python" href="08-06-statsmodels.html" />
+    <link rel="prev" title="Introduction to Gradient Descent" href="08-05-gradient-descent.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-02-linear-algebra.html">
+     Linear algebra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-03-distributions.html">
+     Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-03-probability.html">
+     Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-04-hypothesis-inference.html">
+     Statistical Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-05-gradient-descent.html">
+     Introduction to Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-06-statsmodels.html">
+     Statistical Modeling with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-07-analyzing-titanic-dataset.html">
+     Logistic Regression of Titanic Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-07-covid19-pew-survey.html">
+     Analysing the Pew Survey Data of COVID19
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-08-covid19-grangercausality.html">
+     社交媒体可以预测新冠疫情吗？
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/08-06-regression.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/ebook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/ebook/issues/new?title=Issue%20on%20page%20%2F08-06-regression.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/ebook/master?urlpath=tree/docs/08-06-regression.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-model">
+   The Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#least-squares-fit">
+   Least Squares Fit
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     均方误差的几何意义：欧式距离
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-matrix-method">
+   The Matrix Method
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regression-with-statsmodels">
+   Regression with Statsmodels
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regression-towards-mediocrity">
+   Regression towards mediocrity
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="linear-regression">
+<h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h1>
+<p><img alt="image.png" src="_images/author.png" /></p>
+<div class="section" id="the-model">
+<h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[y_i = \beta x_i + \alpha + \epsilon_i\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y_i\)</span> is the number of minutes user i spends on the site daily,</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span> is the number of friends user i has</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> is the constant when x = 0.</p></li>
+<li><p><span class="math notranslate nohighlight">\(ε_i\)</span> is a (hopefully small) error term representing the fact that there are other factors not accounted for by this simple model.</p></li>
+</ul>
+</div>
+<div class="section" id="least-squares-fit">
+<h2>Least Squares Fit<a class="headerlink" href="#least-squares-fit" title="Permalink to this headline">¶</a></h2>
+<p>最小二乘法</p>
+<div class="math notranslate nohighlight">
+\[ y_i = X_i^T w\]</div>
+<p>The constant could be represent by 1 in X</p>
+<p>The squared error could be written as:</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{i = 1}^m (y_i -X_i^T w)^2 \]</div>
+<p>If we know <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>, then we can make predictions.</p>
+<p>Since we know the actual output <span class="math notranslate nohighlight">\(y_i\)</span> we can compute the error for each pair.</p>
+<p>Since the negative errors cancel out with the positive ones, we use squared errors.</p>
+<p>The least squares solution is to choose the <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> that make <strong>sum_of_squared_errors</strong> as small as possible.</p>
+<div class="math notranslate nohighlight">
+\[ y_i = \alpha + \beta x_i + \varepsilon_i \]</div>
+<div class="math notranslate nohighlight">
+\[ \hat\varepsilon_i =y_i-a -\beta x_i \]</div>
+<div class="math notranslate nohighlight">
+\[ \text{Find }\min_{\alpha,\, \beta} Q(\alpha, \beta), \quad \text{for } Q(\alpha, \beta) = \sum_{i=1}^n\hat\varepsilon_i^{\,2} = \sum_{i=1}^n (y_i -\alpha - \beta x_i)^2\ \]</div>
+<div class="section" id="id1">
+<h3>均方误差的几何意义：欧式距离<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>最小二乘法就是试图找到一条直线，是所有样本到直线的<strong>欧氏距离</strong>之和最小。</p>
+<p><img alt="image.png" src="_images/least_squares.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span> 
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matplotlib</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">available</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;seaborn-dark&#39;,
+ &#39;seaborn-darkgrid&#39;,
+ &#39;seaborn-ticks&#39;,
+ &#39;fivethirtyeight&#39;,
+ &#39;seaborn-whitegrid&#39;,
+ &#39;classic&#39;,
+ &#39;_classic_test&#39;,
+ &#39;fast&#39;,
+ &#39;seaborn-talk&#39;,
+ &#39;seaborn-dark-palette&#39;,
+ &#39;seaborn-bright&#39;,
+ &#39;seaborn-pastel&#39;,
+ &#39;grayscale&#39;,
+ &#39;seaborn-notebook&#39;,
+ &#39;ggplot&#39;,
+ &#39;seaborn-colorblind&#39;,
+ &#39;seaborn-muted&#39;,
+ &#39;seaborn&#39;,
+ &#39;Solarize_Light2&#39;,
+ &#39;seaborn-paper&#39;,
+ &#39;bmh&#39;,
+ &#39;tableau-colorblind10&#39;,
+ &#39;seaborn-white&#39;,
+ &#39;dark_background&#39;,
+ &#39;seaborn-poster&#39;,
+ &#39;seaborn-deep&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_friends_good</span> <span class="o">=</span> <span class="p">[</span><span class="mi">49</span><span class="p">,</span><span class="mi">41</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">daily_minutes_good</span> <span class="o">=</span> <span class="p">[</span><span class="mf">68.77</span><span class="p">,</span><span class="mf">51.25</span><span class="p">,</span><span class="mf">52.08</span><span class="p">,</span><span class="mf">38.36</span><span class="p">,</span><span class="mf">44.54</span><span class="p">,</span><span class="mf">57.13</span><span class="p">,</span><span class="mf">51.4</span><span class="p">,</span><span class="mf">41.42</span><span class="p">,</span><span class="mf">31.22</span><span class="p">,</span><span class="mf">34.76</span><span class="p">,</span><span class="mf">54.01</span><span class="p">,</span><span class="mf">38.79</span><span class="p">,</span><span class="mf">47.59</span><span class="p">,</span><span class="mf">49.1</span><span class="p">,</span><span class="mf">27.66</span><span class="p">,</span><span class="mf">41.03</span><span class="p">,</span><span class="mf">36.73</span><span class="p">,</span><span class="mf">48.65</span><span class="p">,</span><span class="mf">28.12</span><span class="p">,</span><span class="mf">46.62</span><span class="p">,</span><span class="mf">35.57</span><span class="p">,</span><span class="mf">32.98</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mf">26.07</span><span class="p">,</span><span class="mf">23.77</span><span class="p">,</span><span class="mf">39.73</span><span class="p">,</span><span class="mf">40.57</span><span class="p">,</span><span class="mf">31.65</span><span class="p">,</span><span class="mf">31.21</span><span class="p">,</span><span class="mf">36.32</span><span class="p">,</span><span class="mf">20.45</span><span class="p">,</span><span class="mf">21.93</span><span class="p">,</span><span class="mf">26.02</span><span class="p">,</span><span class="mf">27.34</span><span class="p">,</span><span class="mf">23.49</span><span class="p">,</span><span class="mf">46.94</span><span class="p">,</span><span class="mf">30.5</span><span class="p">,</span><span class="mf">33.8</span><span class="p">,</span><span class="mf">24.23</span><span class="p">,</span><span class="mf">21.4</span><span class="p">,</span><span class="mf">27.94</span><span class="p">,</span><span class="mf">32.24</span><span class="p">,</span><span class="mf">40.57</span><span class="p">,</span><span class="mf">25.07</span><span class="p">,</span><span class="mf">19.42</span><span class="p">,</span><span class="mf">22.39</span><span class="p">,</span><span class="mf">18.42</span><span class="p">,</span><span class="mf">46.96</span><span class="p">,</span><span class="mf">23.72</span><span class="p">,</span><span class="mf">26.41</span><span class="p">,</span><span class="mf">26.97</span><span class="p">,</span><span class="mf">36.76</span><span class="p">,</span><span class="mf">40.32</span><span class="p">,</span><span class="mf">35.02</span><span class="p">,</span><span class="mf">29.47</span><span class="p">,</span><span class="mf">30.2</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mf">38.11</span><span class="p">,</span><span class="mf">38.18</span><span class="p">,</span><span class="mf">36.31</span><span class="p">,</span><span class="mf">21.03</span><span class="p">,</span><span class="mf">30.86</span><span class="p">,</span><span class="mf">36.07</span><span class="p">,</span><span class="mf">28.66</span><span class="p">,</span><span class="mf">29.08</span><span class="p">,</span><span class="mf">37.28</span><span class="p">,</span><span class="mf">15.28</span><span class="p">,</span><span class="mf">24.17</span><span class="p">,</span><span class="mf">22.31</span><span class="p">,</span><span class="mf">30.17</span><span class="p">,</span><span class="mf">25.53</span><span class="p">,</span><span class="mf">19.85</span><span class="p">,</span><span class="mf">35.37</span><span class="p">,</span><span class="mf">44.6</span><span class="p">,</span><span class="mf">17.23</span><span class="p">,</span><span class="mf">13.47</span><span class="p">,</span><span class="mf">26.33</span><span class="p">,</span><span class="mf">35.02</span><span class="p">,</span><span class="mf">32.09</span><span class="p">,</span><span class="mf">24.81</span><span class="p">,</span><span class="mf">19.33</span><span class="p">,</span><span class="mf">28.77</span><span class="p">,</span><span class="mf">24.26</span><span class="p">,</span><span class="mf">31.98</span><span class="p">,</span><span class="mf">25.73</span><span class="p">,</span><span class="mf">24.86</span><span class="p">,</span><span class="mf">16.28</span><span class="p">,</span><span class="mf">34.51</span><span class="p">,</span><span class="mf">15.23</span><span class="p">,</span><span class="mf">39.72</span><span class="p">,</span><span class="mf">40.8</span><span class="p">,</span><span class="mf">26.06</span><span class="p">,</span><span class="mf">35.76</span><span class="p">,</span><span class="mf">34.76</span><span class="p">,</span><span class="mf">16.13</span><span class="p">,</span><span class="mf">44.04</span><span class="p">,</span><span class="mf">18.03</span><span class="p">,</span><span class="mf">19.65</span><span class="p">,</span><span class="mf">32.62</span><span class="p">,</span><span class="mf">35.59</span><span class="p">,</span><span class="mf">39.43</span><span class="p">,</span><span class="mf">14.18</span><span class="p">,</span><span class="mf">35.24</span><span class="p">,</span><span class="mf">40.13</span><span class="p">,</span><span class="mf">41.82</span><span class="p">,</span><span class="mf">35.45</span><span class="p">,</span><span class="mf">36.07</span><span class="p">,</span><span class="mf">43.67</span><span class="p">,</span><span class="mf">24.61</span><span class="p">,</span><span class="mf">20.9</span><span class="p">,</span><span class="mf">21.9</span><span class="p">,</span><span class="mf">18.79</span><span class="p">,</span><span class="mf">27.61</span><span class="p">,</span><span class="mf">27.21</span><span class="p">,</span><span class="mf">26.61</span><span class="p">,</span><span class="mf">29.77</span><span class="p">,</span><span class="mf">20.59</span><span class="p">,</span><span class="mf">27.53</span><span class="p">,</span><span class="mf">13.82</span><span class="p">,</span><span class="mf">33.2</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mf">33.1</span><span class="p">,</span><span class="mf">36.65</span><span class="p">,</span><span class="mf">18.63</span><span class="p">,</span><span class="mf">14.87</span><span class="p">,</span><span class="mf">22.2</span><span class="p">,</span><span class="mf">36.81</span><span class="p">,</span><span class="mf">25.53</span><span class="p">,</span><span class="mf">24.62</span><span class="p">,</span><span class="mf">26.25</span><span class="p">,</span><span class="mf">18.21</span><span class="p">,</span><span class="mf">28.08</span><span class="p">,</span><span class="mf">19.42</span><span class="p">,</span><span class="mf">29.79</span><span class="p">,</span><span class="mf">32.8</span><span class="p">,</span><span class="mf">35.99</span><span class="p">,</span><span class="mf">28.32</span><span class="p">,</span><span class="mf">27.79</span><span class="p">,</span><span class="mf">35.88</span><span class="p">,</span><span class="mf">29.06</span><span class="p">,</span><span class="mf">36.28</span><span class="p">,</span><span class="mf">14.1</span><span class="p">,</span><span class="mf">36.63</span><span class="p">,</span><span class="mf">37.49</span><span class="p">,</span><span class="mf">26.9</span><span class="p">,</span><span class="mf">18.58</span><span class="p">,</span><span class="mf">38.48</span><span class="p">,</span><span class="mf">24.48</span><span class="p">,</span><span class="mf">18.95</span><span class="p">,</span><span class="mf">33.55</span><span class="p">,</span><span class="mf">14.24</span><span class="p">,</span><span class="mf">29.04</span><span class="p">,</span><span class="mf">32.51</span><span class="p">,</span><span class="mf">25.63</span><span class="p">,</span><span class="mf">22.22</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mf">32.73</span><span class="p">,</span><span class="mf">15.16</span><span class="p">,</span><span class="mf">13.9</span><span class="p">,</span><span class="mf">27.2</span><span class="p">,</span><span class="mf">32.01</span><span class="p">,</span><span class="mf">29.27</span><span class="p">,</span><span class="mi">33</span><span class="p">,</span><span class="mf">13.74</span><span class="p">,</span><span class="mf">20.42</span><span class="p">,</span><span class="mf">27.32</span><span class="p">,</span><span class="mf">18.23</span><span class="p">,</span><span class="mf">35.35</span><span class="p">,</span><span class="mf">28.48</span><span class="p">,</span><span class="mf">9.08</span><span class="p">,</span><span class="mf">24.62</span><span class="p">,</span><span class="mf">20.12</span><span class="p">,</span><span class="mf">35.26</span><span class="p">,</span><span class="mf">19.92</span><span class="p">,</span><span class="mf">31.02</span><span class="p">,</span><span class="mf">16.49</span><span class="p">,</span><span class="mf">12.16</span><span class="p">,</span><span class="mf">30.7</span><span class="p">,</span><span class="mf">31.22</span><span class="p">,</span><span class="mf">34.65</span><span class="p">,</span><span class="mf">13.13</span><span class="p">,</span><span class="mf">27.51</span><span class="p">,</span><span class="mf">33.2</span><span class="p">,</span><span class="mf">31.57</span><span class="p">,</span><span class="mf">14.1</span><span class="p">,</span><span class="mf">33.42</span><span class="p">,</span><span class="mf">17.44</span><span class="p">,</span><span class="mf">10.12</span><span class="p">,</span><span class="mf">24.42</span><span class="p">,</span><span class="mf">9.82</span><span class="p">,</span><span class="mf">23.39</span><span class="p">,</span><span class="mf">30.93</span><span class="p">,</span><span class="mf">15.03</span><span class="p">,</span><span class="mf">21.67</span><span class="p">,</span><span class="mf">31.09</span><span class="p">,</span><span class="mf">33.29</span><span class="p">,</span><span class="mf">22.61</span><span class="p">,</span><span class="mf">26.89</span><span class="p">,</span><span class="mf">23.48</span><span class="p">,</span><span class="mf">8.38</span><span class="p">,</span><span class="mf">27.81</span><span class="p">,</span><span class="mf">32.35</span><span class="p">,</span><span class="mf">23.84</span><span class="p">]</span>
+<span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span> <span class="o">=</span> <span class="mf">22.9475</span><span class="p">,</span> <span class="mf">0.90386</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">num_friends_good</span><span class="p">,</span> <span class="n">daily_minutes_good</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">num_friends_good</span><span class="p">,</span> <span class="p">[</span><span class="n">alpha</span> <span class="o">+</span> <span class="n">beta</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">num_friends_good</span><span class="p">],</span> <span class="s1">&#39;b-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;# of friends&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;minutes per day&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;linear regression&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-06-regression_9_0.png" src="_images/08-06-regression_9_0.png" />
+</div>
+</div>
+<p>Of course, we need a better way to figure out how well we’ve fit the data than staring at the graph.</p>
+<p>A common measure is the coefficient of determination (or R-squared), which measures the fraction of the total variation in the dependent variable that is captured by the model.</p>
+</div>
+</div>
+<div class="section" id="the-matrix-method">
+<h2>The Matrix Method<a class="headerlink" href="#the-matrix-method" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[ y_i = X_i^T w\]</div>
+<p>The constant could be represent by 1 in X</p>
+<p>The squared error could be written as:</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{i = 1}^m (y_i -X_i^T w)^2 \]</div>
+<p><img alt="image.png" src="_images/regression.png" /></p>
+<p>We can also write this in matrix notation as <span class="math notranslate nohighlight">\((y-Xw)^T(y-Xw)\)</span>.</p>
+<p>If we take the derivative of this with respect to <span class="math notranslate nohighlight">\(w\)</span>, we’ll get</p>
+<div class="math notranslate nohighlight">
+\[X^T(y-Xw)\]</div>
+<p>We can set this to zero and solve for w to get the following equation:</p>
+<div class="math notranslate nohighlight">
+\[\hat w = (X^T X)^{-1}X^T y\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># https://github.com/computational-class/machinelearninginaction/blob/master/Ch08/regression.py</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/ex0.txt&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])</span>
+<span class="n">dat</span><span class="p">[</span><span class="s1">&#39;x3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">yi</span><span class="o">*.</span><span class="mi">3</span> <span class="o">+</span> <span class="o">.</span><span class="mi">5</span><span class="o">*</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]]</span>
+<span class="n">dat</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x1</th>
+      <th>x2</th>
+      <th>y</th>
+      <th>x3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>0.067732</td>
+      <td>3.176513</td>
+      <td>1.432701</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>0.427810</td>
+      <td>3.816464</td>
+      <td>1.149538</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>0.995731</td>
+      <td>4.550095</td>
+      <td>1.638831</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>0.738336</td>
+      <td>4.256571</td>
+      <td>1.587099</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.0</td>
+      <td>0.981083</td>
+      <td>4.560815</td>
+      <td>1.840716</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">mat</span><span class="p">,</span> <span class="n">linalg</span><span class="p">,</span> <span class="n">corrcoef</span>
+
+<span class="k">def</span> <span class="nf">standRegres</span><span class="p">(</span><span class="n">xArr</span><span class="p">,</span><span class="n">yArr</span><span class="p">):</span>
+    <span class="n">xMat</span> <span class="o">=</span> <span class="n">mat</span><span class="p">(</span><span class="n">xArr</span><span class="p">);</span> <span class="n">yMat</span> <span class="o">=</span> <span class="n">mat</span><span class="p">(</span><span class="n">yArr</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">xTx</span> <span class="o">=</span> <span class="n">xMat</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">xMat</span>
+    <span class="k">if</span> <span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">xTx</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This matrix is singular, cannot do inverse&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="n">ws</span> <span class="o">=</span> <span class="n">xTx</span><span class="o">.</span><span class="n">I</span> <span class="o">*</span> <span class="p">(</span><span class="n">xMat</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">yMat</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ws</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xs</span> <span class="o">=</span> <span class="p">[[</span><span class="n">dat</span><span class="o">.</span><span class="n">x1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dat</span><span class="o">.</span><span class="n">x2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dat</span><span class="o">.</span><span class="n">x3</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dat</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">y</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">xs</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">standRegres</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.0, 0.067732, 1.4327013306690486], [1.0, 0.42781, 1.1495375558478735]]
+[[2.92237739]
+ [1.65664071]
+ [0.07440558]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xMat</span><span class="o">=</span><span class="n">mat</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+<span class="n">yMat</span><span class="o">=</span><span class="n">mat</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="c1">#yHat = xMat*ws</span>
+<span class="n">xCopy</span><span class="o">=</span><span class="n">xMat</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">xCopy</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">yHat</span><span class="o">=</span><span class="n">xCopy</span><span class="o">*</span><span class="n">ws</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xMat</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">yMat</span><span class="o">.</span><span class="n">T</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xCopy</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">yHat</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-06-regression_18_0.png" src="_images/08-06-regression_18_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yHat</span> <span class="o">=</span> <span class="n">xMat</span><span class="o">*</span><span class="n">ws</span>
+<span class="n">corrcoef</span><span class="p">(</span><span class="n">yHat</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">yMat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.        ,  0.98666465],
+       [ 0.98666465,  1.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="regression-with-statsmodels">
+<h2>Regression with Statsmodels<a class="headerlink" href="#regression-with-statsmodels" title="Permalink to this headline">¶</a></h2>
+<p>http://www.statsmodels.org/stable/index.html</p>
+<p>statsmodels is a Python module that provides classes and functions for the estimation of many different statistical models, as well as for conducting statistical tests, and statistical data exploration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/ex0.txt&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">])</span>
+<span class="n">dat</span><span class="p">[</span><span class="s1">&#39;x3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">yi</span><span class="o">*.</span><span class="mi">3</span> <span class="o">-</span> <span class="o">.</span><span class="mi">1</span><span class="o">*</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="n">y</span><span class="p">]</span>
+<span class="n">dat</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x1</th>
+      <th>x2</th>
+      <th>y</th>
+      <th>x3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>0.067732</td>
+      <td>3.176513</td>
+      <td>0.901243</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>0.427810</td>
+      <td>3.816464</td>
+      <td>1.114610</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>0.995731</td>
+      <td>4.550095</td>
+      <td>1.312534</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>0.738336</td>
+      <td>4.256571</td>
+      <td>1.266192</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.0</td>
+      <td>0.981083</td>
+      <td>4.560815</td>
+      <td>1.314824</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;y ~ x2 + x3&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dat</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>            <td>y</td>        <th>  R-squared:         </th> <td>   0.984</td> 
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.984</td> 
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   6062.</td> 
+</tr>
+<tr>
+  <th>Date:</th>             <td>Sun, 07 Jun 2020</td> <th>  Prob (F-statistic):</th> <td>1.19e-177</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>08:56:46</td>     <th>  Log-Likelihood:    </th> <td>  267.56</td> 
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>  -529.1</td> 
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>   197</td>      <th>  BIC:               </th> <td>  -519.2</td> 
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     2</td>      <th>                     </th>     <td> </td>    
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>    
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>    1.7243</td> <td>    0.111</td> <td>   15.508</td> <td> 0.000</td> <td>    1.505</td> <td>    1.944</td>
+</tr>
+<tr>
+  <th>x2</th>        <td>    0.9567</td> <td>    0.066</td> <td>   14.576</td> <td> 0.000</td> <td>    0.827</td> <td>    1.086</td>
+</tr>
+<tr>
+  <th>x3</th>        <td>    1.4967</td> <td>    0.129</td> <td>   11.579</td> <td> 0.000</td> <td>    1.242</td> <td>    1.752</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>11.851</td> <th>  Durbin-Watson:     </th> <td>   1.973</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.003</td> <th>  Jarque-Bera (JB):  </th> <td>   5.411</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td>-0.143</td> <th>  Prob(JB):          </th> <td>  0.0668</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 2.247</td> <th>  Cond. No.          </th> <td>    63.4</td>
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">plot_partregress_grid</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-06-regression_23_0.png" src="_images/08-06-regression_23_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># regression</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">num_friends_good</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">prepend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">daily_minutes_good</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.329
+Model:                            OLS   Adj. R-squared:                  0.326
+Method:                 Least Squares   F-statistic:                     98.60
+Date:                Sun, 07 Jun 2020   Prob (F-statistic):           3.68e-19
+Time:                        08:56:55   Log-Likelihood:                -711.76
+No. Observations:                 203   AIC:                             1428.
+Df Residuals:                     201   BIC:                             1434.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+x1             0.9039      0.091      9.930      0.000       0.724       1.083
+const         22.9476      0.846     27.133      0.000      21.280      24.615
+==============================================================================
+Omnibus:                       26.873   Durbin-Watson:                   2.027
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):                7.541
+Skew:                           0.004   Prob(JB):                       0.0230
+Kurtosis:                       2.056   Cond. No.                         13.9
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">plot_partregress_grid</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-06-regression_25_0.png" src="_images/08-06-regression_25_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="regression-towards-mediocrity">
+<h2>Regression towards mediocrity<a class="headerlink" href="#regression-towards-mediocrity" title="Permalink to this headline">¶</a></h2>
+<p>The concept of regression comes from genetics and was popularized by Sir Francis Galton during the late 19th century with the publication of Regression towards mediocrity in hereditary stature. Galton observed that extreme characteristics (e.g., height) in parents are not passed on completely to their offspring.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/galton.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;father_above_average&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;father&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;father&#39;</span><span class="p">]]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;mother_above_average&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;mother&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;mother&#39;</span><span class="p">]]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;height_more_than_father&#39;</span><span class="p">]</span> <span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;father&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;height_more_than_mother&#39;</span><span class="p">]</span> <span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;mother&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>family</th>
+      <th>father</th>
+      <th>mother</th>
+      <th>sex</th>
+      <th>height</th>
+      <th>nkids</th>
+      <th>father_above_average</th>
+      <th>mother_above_average</th>
+      <th>height_more_than_father</th>
+      <th>height_more_than_mother</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>78.5</td>
+      <td>67.0</td>
+      <td>M</td>
+      <td>73.2</td>
+      <td>4</td>
+      <td>9.267149</td>
+      <td>2.91559</td>
+      <td>-5.3</td>
+      <td>6.2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>78.5</td>
+      <td>67.0</td>
+      <td>F</td>
+      <td>69.2</td>
+      <td>4</td>
+      <td>9.267149</td>
+      <td>2.91559</td>
+      <td>-9.3</td>
+      <td>2.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>78.5</td>
+      <td>67.0</td>
+      <td>F</td>
+      <td>69.0</td>
+      <td>4</td>
+      <td>9.267149</td>
+      <td>2.91559</td>
+      <td>-9.5</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>78.5</td>
+      <td>67.0</td>
+      <td>F</td>
+      <td>69.0</td>
+      <td>4</td>
+      <td>9.267149</td>
+      <td>2.91559</td>
+      <td>-9.5</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>75.5</td>
+      <td>66.5</td>
+      <td>M</td>
+      <td>73.5</td>
+      <td>4</td>
+      <td>6.267149</td>
+      <td>2.41559</td>
+      <td>-2.0</td>
+      <td>7.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">font_scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">PairGrid</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">y_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">],</span> <span class="n">x_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;father&quot;</span><span class="p">,</span> <span class="s2">&quot;mother&quot;</span><span class="p">],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-06-regression_28_0.png" src="_images/08-06-regression_28_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">PairGrid</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">y_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;height_more_than_father&quot;</span><span class="p">,</span> <span class="s2">&quot;height_more_than_mother&quot;</span><span class="p">],</span> 
+                 <span class="n">x_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;father_above_average&quot;</span><span class="p">,</span> <span class="s2">&quot;mother_above_average&quot;</span><span class="p">],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">add_legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-06-regression_29_0.png" src="_images/08-06-regression_29_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;height ~ father + mother + C(sex) + nkids&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 height   R-squared:                       0.641
+Model:                            OLS   Adj. R-squared:                  0.639
+Method:                 Least Squares   F-statistic:                     398.1
+Date:                Sun, 07 Jun 2020   Prob (F-statistic):          9.09e-197
+Time:                        11:04:16   Log-Likelihood:                -1960.1
+No. Observations:                 898   AIC:                             3930.
+Df Residuals:                     893   BIC:                             3954.
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+===============================================================================
+                  coef    std err          t      P&gt;|t|      [0.025      0.975]
+-------------------------------------------------------------------------------
+Intercept      16.1877      2.794      5.794      0.000      10.704      21.671
+C(sex)[T.M]     5.2099      0.144     36.125      0.000       4.927       5.493
+father          0.3983      0.030     13.472      0.000       0.340       0.456
+mother          0.3210      0.031     10.269      0.000       0.260       0.382
+nkids          -0.0438      0.027     -1.612      0.107      -0.097       0.010
+==============================================================================
+Omnibus:                       12.177   Durbin-Watson:                   1.566
+Prob(Omnibus):                  0.002   Jarque-Bera (JB):               16.265
+Skew:                          -0.149   Prob(JB):                     0.000294
+Kurtosis:                       3.588   Cond. No.                     3.68e+03
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 3.68e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results2</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;height_more_than_father ~ father_above_average + mother_above_average + C(sex) + nkids&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results2</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                               OLS Regression Results                              
+===================================================================================
+Dep. Variable:     height_more_than_father   R-squared:                       0.672
+Model:                                 OLS   Adj. R-squared:                  0.671
+Method:                      Least Squares   F-statistic:                     457.6
+Date:                     Sun, 07 Jun 2020   Prob (F-statistic):          1.84e-214
+Time:                             11:04:21   Log-Likelihood:                -1960.1
+No. Observations:                      898   AIC:                             3930.
+Df Residuals:                          893   BIC:                             3954.
+Df Model:                                4                                         
+Covariance Type:                 nonrobust                                         
+========================================================================================
+                           coef    std err          t      P&gt;|t|      [0.025      0.975]
+----------------------------------------------------------------------------------------
+Intercept               -4.9011      0.201    -24.426      0.000      -5.295      -4.507
+C(sex)[T.M]              5.2099      0.144     36.125      0.000       4.927       5.493
+father_above_average    -0.6017      0.030    -20.351      0.000      -0.660      -0.544
+mother_above_average     0.3210      0.031     10.269      0.000       0.260       0.382
+nkids                   -0.0438      0.027     -1.612      0.107      -0.097       0.010
+==============================================================================
+Omnibus:                       12.177   Durbin-Watson:                   1.566
+Prob(Omnibus):                  0.002   Jarque-Bera (JB):               16.265
+Skew:                          -0.149   Prob(JB):                     0.000294
+Kurtosis:                       3.588   Cond. No.                         20.4
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">plot_partregress_grid</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-06-regression_32_0.png" src="_images/08-06-regression_32_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">plot_partregress_grid</span><span class="p">(</span><span class="n">results2</span><span class="p">,</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">fig</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-06-regression_33_0.png" src="_images/08-06-regression_33_0.png" />
+</div>
+</div>
+<p><img alt="image.png" src="_images/end.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="08-05-gradient-descent.html" title="previous page">Introduction to Gradient Descent</a>
+    <a class='right-next' id="next-link" href="08-06-statsmodels.html" title="next page">Statistical Modeling with Python</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

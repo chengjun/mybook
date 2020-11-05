@@ -1,0 +1,1157 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>天涯论坛的回帖网络分析 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="可视化Facebook社交网络" href="19-facebook-ego-netwrok-visualization.html" />
+    <link rel="prev" title="SEIR-HCD Model" href="18-04-seir-hcd-model.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="16-network-science-models.html">
+     网络科学模型
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="17-networkx.html">
+     使用NetworkX分析网络
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-02-network-diffusion.html">
+     Simulating Network Diffusion With NDlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-03-network-epidemics.html">
+     Epidemics on Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-04-seir-hcd-model.html">
+     SEIR-HCD Model
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     天涯论坛的回帖网络分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">
+     可视化Facebook社交网络
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/18-network-analysis-of-tianya-bbs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/ebook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/ebook/issues/new?title=Issue%20on%20page%20%2F18-network-analysis-of-tianya-bbs.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/ebook/master?urlpath=tree/docs/18-network-analysis-of-tianya-bbs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   提取评论信息
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gephi">
+   使用 Gephi进行网络可视化
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>天涯论坛的回帖网络分析<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dtt</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;../data/tianya_bbs_threads_network.txt&#39;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">pnum</span><span class="p">,</span> <span class="n">link</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">author_id</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span>\
+        <span class="n">content</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">dtt</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">pnum</span><span class="p">,</span> <span class="n">link</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">author_id</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">content</span><span class="p">])</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">dtt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8079
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dtt</span><span class="p">)</span>
+<span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;page_num&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="s1">&#39;link&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="s1">&#39;author&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">:</span><span class="s1">&#39;author_name&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="s1">&#39;reply&#39;</span><span class="p">})</span>
+<span class="n">dt</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>page_num</th>
+      <th>link</th>
+      <th>time</th>
+      <th>author</th>
+      <th>author_name</th>
+      <th>reply</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>/post-free-2849477-1.shtml</td>
+      <td>2012-10-29 07:59:00</td>
+      <td>50499450</td>
+      <td>贾也</td>
+      <td>先生是一位真爷们！第161期导语：人人宁波，面朝大海，春暖花开!　　宁波的事，怎谈？无从谈，...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>/post-free-2849477-1.shtml</td>
+      <td>2012-10-29 08:13:54</td>
+      <td>22122799</td>
+      <td>三平67</td>
+      <td>我们中国人都在一条船，颠簸已久，我们都想做宁波人，希望有一个风平浪静的港湾，面朝大海，春暖花...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>/post-free-2849477-1.shtml</td>
+      <td>2012-10-29 08:27:02</td>
+      <td>39027950</td>
+      <td>赶浪头</td>
+      <td>默默围观~</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>/post-free-2849477-1.shtml</td>
+      <td>2012-10-29 08:43:15</td>
+      <td>53986501</td>
+      <td>m408833176</td>
+      <td>不能收藏？</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>/post-free-2849477-1.shtml</td>
+      <td>2012-10-29 08:55:52</td>
+      <td>39073643</td>
+      <td>兰质薰心</td>
+      <td>楼主好文！　　相信政府一定有能力解决好这些问题.</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract date from datetime</span>
+<span class="n">date</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dt</span><span class="o">.</span><span class="n">time</span><span class="p">]</span>
+<span class="n">dt</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>page_num</th>
+      <th>link</th>
+      <th>time</th>
+      <th>author</th>
+      <th>author_name</th>
+      <th>reply</th>
+      <th>date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>/post-free-2849477-1.shtml</td>
+      <td>2012-10-29 07:59:00</td>
+      <td>50499450</td>
+      <td>贾也</td>
+      <td>先生是一位真爷们！第161期导语：人人宁波，面朝大海，春暖花开!　　宁波的事，怎谈？无从谈，...</td>
+      <td>2012-10-29</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>/post-free-2849477-1.shtml</td>
+      <td>2012-10-29 08:13:54</td>
+      <td>22122799</td>
+      <td>三平67</td>
+      <td>我们中国人都在一条船，颠簸已久，我们都想做宁波人，希望有一个风平浪静的港湾，面朝大海，春暖花...</td>
+      <td>2012-10-29</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>/post-free-2849477-1.shtml</td>
+      <td>2012-10-29 08:27:02</td>
+      <td>39027950</td>
+      <td>赶浪头</td>
+      <td>默默围观~</td>
+      <td>2012-10-29</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>/post-free-2849477-1.shtml</td>
+      <td>2012-10-29 08:43:15</td>
+      <td>53986501</td>
+      <td>m408833176</td>
+      <td>不能收藏？</td>
+      <td>2012-10-29</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>/post-free-2849477-1.shtml</td>
+      <td>2012-10-29 08:55:52</td>
+      <td>39073643</td>
+      <td>兰质薰心</td>
+      <td>楼主好文！　　相信政府一定有能力解决好这些问题.</td>
+      <td>2012-10-29</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/tianya_bbs_threads_list.txt&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="s1">&#39;link&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="s1">&#39;author&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="s1">&#39;author_page&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="s1">&#39;reply&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span><span class="s1">&#39;time&#39;</span><span class="p">})</span>
+<span class="n">df</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>link</th>
+      <th>author</th>
+      <th>author_page</th>
+      <th>click</th>
+      <th>reply</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>【民间语文第161期】宁波px启示:船进港湾人应上岸</td>
+      <td>/post-free-2849477-1.shtml</td>
+      <td>贾也</td>
+      <td>http://www.tianya.cn/50499450</td>
+      <td>194675</td>
+      <td>2703</td>
+      <td>2012-10-29 07:59</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>宁波镇海PX项目引发群体上访 当地政府发布说明(转载)</td>
+      <td>/post-free-2839539-1.shtml</td>
+      <td>无上卫士ABC</td>
+      <td>http://www.tianya.cn/74341835</td>
+      <td>88244</td>
+      <td>1041</td>
+      <td>2012-10-24 12:41</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">link_user_dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dt</span><span class="p">)):</span>
+    <span class="n">link_user_dict</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">link</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">author</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">link_user_dict</span><span class="p">[</span><span class="n">l</span><span class="p">])</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">link</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>link</th>
+      <th>author</th>
+      <th>author_page</th>
+      <th>click</th>
+      <th>reply</th>
+      <th>time</th>
+      <th>user</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>【民间语文第161期】宁波px启示:船进港湾人应上岸</td>
+      <td>/post-free-2849477-1.shtml</td>
+      <td>贾也</td>
+      <td>http://www.tianya.cn/50499450</td>
+      <td>194675</td>
+      <td>2703</td>
+      <td>2012-10-29 07:59</td>
+      <td>2478</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>宁波镇海PX项目引发群体上访 当地政府发布说明(转载)</td>
+      <td>/post-free-2839539-1.shtml</td>
+      <td>无上卫士ABC</td>
+      <td>http://www.tianya.cn/74341835</td>
+      <td>88244</td>
+      <td>1041</td>
+      <td>2012-10-24 12:41</td>
+      <td>830</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">user</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">reply</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">prepend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">xx</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">constant</span><span class="p">,</span><span class="n">beta</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">params</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">rsquared</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">reply</span><span class="p">,</span> <span class="s1">&#39;rs&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="s1">&#39;Data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">constant</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="n">beta</span><span class="p">),</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Fit&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">);</span><span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$Users$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$Replies$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">user</span><span class="p">)</span><span class="o">/</span><span class="mi">300</span><span class="p">,</span><span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">reply</span><span class="p">)</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span>
+         <span class="sa">r</span><span class="s1">&#39;$\beta$ = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;$R^2$ = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">numpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-network-analysis-of-tianya-bbs_9_0.png" src="_images/18-network-analysis-of-tianya-bbs_9_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">user</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">click</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">prepend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">xx</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">constant</span><span class="p">,</span><span class="n">beta</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">params</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">rsquared</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">click</span><span class="p">,</span> <span class="s1">&#39;rs&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="s1">&#39;Data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">constant</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="n">beta</span><span class="p">),</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Fit&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">);</span><span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$Users$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$Clicks$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">user</span><span class="p">)</span><span class="o">/</span><span class="mi">300</span><span class="p">,</span><span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">click</span><span class="p">)</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span>
+         <span class="sa">r</span><span class="s1">&#39;$\beta$ = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;$R^2$ = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">numpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-network-analysis-of-tianya-bbs_10_0.png" src="_images/18-network-analysis-of-tianya-bbs_10_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert str to datetime format</span>
+<span class="n">dt</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
+<span class="n">dt</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+<span class="n">dt</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<span class="n">dt</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.tslib.Timestamp
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">dd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">dd</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getDate</span><span class="p">(</span><span class="n">dat</span><span class="p">):</span>
+    <span class="n">dat_date_str</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span><span class="s1">&#39;-01-01&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="n">dat_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">dat_date_str</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">dat_date</span>
+
+<span class="n">ds</span><span class="o">.</span><span class="n">date</span> <span class="o">=</span> <span class="n">getDate</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+<span class="n">dd</span><span class="o">.</span><span class="n">date</span> <span class="o">=</span> <span class="n">getDate</span><span class="p">(</span><span class="n">dd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="s1">&#39;g-s&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$Cumulative\: Number\:of\: Threads$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="s1">&#39;r-o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$Yearly\:Number\:of\:Threads$&#39;</span><span class="p">)</span>
+<span class="c1">#plt.yscale(&#39;log&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">numpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-network-analysis-of-tianya-bbs_14_0.png" src="_images/18-network-analysis-of-tianya-bbs_14_0.png" />
+</div>
+</div>
+<div class="section" id="id2">
+<h2>提取评论信息<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="o">.</span><span class="n">reply</span><span class="p">[:</span><span class="mi">55</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     先生是一位真爷们！第161期导语：人人宁波，面朝大海，春暖花开!　　宁波的事，怎谈？无从谈，...
+1     我们中国人都在一条船，颠簸已久，我们都想做宁波人，希望有一个风平浪静的港湾，面朝大海，春暖花...
+2                                                 默默围观~
+3                                                 不能收藏？
+4                              楼主好文！　　相信政府一定有能力解决好这些问题.
+5                                                人民在觉醒。
+6                                          理性的文字，向楼主致敬！
+7                                     呼唤变革,人民需要的是服务型政府！
+8                                      顶贾兄！让我们携手努力保卫家园！
+9                                        围观就是力量,顶起就有希望.
+10                                       文章写得太有力量了，支持你！
+11    @贾也 2012-10-29 7:59:00　　导语：人人宁波，面朝大海，春暖花开　　......
+12                                   中国人从文盲走向民粹，实在是太快了。
+13                               杀死娘胎里的，毒死已出生的，这个社会怎么了？
+14                                                    3
+15    环境比什么都可贵，每一次呼吸，每一顿粮食，都息息相关，若任其恶化，而无从改观，那遑谈国家之未...
+16                                                 写的很好
+17    未来这里将是全球最大的垃圾场，而他们早已放浪西方。苟活的将面临数不清的癌症，无助的死亡。悲哀...
+18    媒体失声，高压维稳，只保留微博和论坛可以说这件事！因为那些人知道，网上的人和事就只能热几天，...
+19                                       说的太好了，看的我泪流满面！
+20          “我相信官场中，许多官员应该葆有社会正能量”　　通篇好文，顶！唯这句，不说也罢....
+21                                            先占一环，然后看帖
+22                                                说的太好了
+23    我上的小学，隔壁就是一家水泥厂，到处飞扬的水泥灰是我最熟悉的颜色;坐一站地车，就是一家造纸厂...
+24     我们中国人都在一条船，颠簸已久，我们都想做宁波人，希望有一个风平浪静的港湾，面朝大海，春暖花开！
+25                                               前排占座~~
+26                                          贾也先生是一位真爷们！
+27                                                     
+28                           为什么我的眼里常含着泪水?因为我对这片土地爱得深沉!
+29    又是因为环保的群体事件，影响面大，危害严重，理由叫的响，取得阶段性胜利。　　那些拆迁的、城管...
+30    回复第20楼，@rual_f　　“我相信官场中，许多官员应该葆有社会正能量” 　　通篇好文，...
+31                                                  好文.
+32                         一环　　天涯现在太滞后了，看消息还是得靠微博。太失望了。
+33                                                 刘明……
+34                                杂谈的低智商屌丝男们确定自己懂什么是px？
+35                                                屁民的胜利
+36                                                说的太好了
+37                                          ．．．．．　　。。。。
+38                                               。。。。。。
+39                                             宁波人民胜利了！
+40                                                   好文
+41                                                  不显示
+42                                         含泪顶起~~~~~~~~
+43     盲目决策，　　然后群众反对，　　再抓人，　　政府出面承诺项目搁置，　　再偷偷上马，　　在各地轮回
+44    好文頂一個先！希望我們的政府不要再置人民的利益于不顧！不要再行滅絕漢族子孫的政策！不要逼民眾...
+45    每次看到这样的消息，都很痛心，很堵很堵。为什么在经济发展的同时，我的祖国却越来越残忍，越来越...
+46    @兰质薰心 2012-10-29 08:55:52　　楼主好文！　　相信政府一定有能力解决好...
+47                   记得以前有人说过 厦门 必将会成为一座里程碑 烛照万里 看来真的成了
+48                       贾也，真爷们，　　一直爱在天涯逛逛，是因为这还多少能让人说话
+49                                          帖子咋了，啥都看不到。
+50                                                    顶
+51                                                顶,好文章
+52                                        在宁波呆过几年，感觉还不错
+53    @昊爷7 2012-10-29 11:19:29　　杂谈的低智商屌丝男们确定自己懂什么是px...
+54                                            什么时候变成了奴隶
+Name: reply, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>&#64;贾也2012-10-297:59:00　　导语：人人宁波，面朝大海，春暖花开　　……..</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    @兰质薰心2012-10-2908:55:52　　楼主好文！　　相信政府一定有能力解决好这些...
+    
+            回复第20楼，@rual_f　　“我相信官场中，许多官员应该葆有社会正能量”　　通篇好文，顶...
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="n">tweet</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;//@lilei: dd //@Bob: cc//@Girl: dd//@魏武: </span><span class="se">\</span>
+<span class="s2">    利益所致 自然念念不忘// @诺什: 吸引优质  客户，摆脱屌丝男！！！//@MarkGreene: 转发微博&quot;</span>
+<span class="n">RTpattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;&#39;&#39;//?@(\w+)&#39;&#39;&#39;</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RTpattern</span><span class="p">,</span> <span class="n">tweet</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">UNICODE</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lilei
+Bob
+Girl
+魏武
+MarkGreene
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">reply</span><span class="p">[</span><span class="mi">11</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>@贾也 2012-10-29 7:59:00　　导语：人人宁波，面朝大海，春暖花开　　...........　　-----------------------------　　顶贾兄！　　充分说明：莫言或诺贝尔，名至实归！
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RTpattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;&#39;&#39;@(\w+)\s&#39;&#39;&#39;</span>
+<span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RTpattern</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">reply</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">re</span><span class="o">.</span><span class="n">UNICODE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;贾也&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RTpattern</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">reply</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">re</span><span class="o">.</span><span class="n">UNICODE</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">reply</span><span class="p">[:</span><span class="mi">100</span><span class="p">]):</span>
+<span class="c1">#     tweet = tweet.decode(&#39;utf8&#39;)</span>
+    <span class="n">RTpattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;&#39;&#39;@(\w+)\s&#39;&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RTpattern</span><span class="p">,</span> <span class="n">tweet</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">UNICODE</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">dt</span><span class="o">.</span><span class="n">author_name</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">person</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">tweet</span><span class="p">[:</span><span class="mi">30</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11 	 木兰清风_ 	 贾也 		 @贾也 2012-10-29 7:59:00　　导语：人人宁
+30 	 此东西非南北 	 rual_f 		 回复第20楼，@rual_f　　“我相信官场中，许多官员应该
+46 	 弱水三千chen 	 兰质薰心 		 @兰质薰心 2012-10-29 08:55:52　　楼主好
+53 	 彼得与梦想 	 昊爷7 		 @昊爷7 2012-10-29 11:19:29　　杂谈的低
+66 	 lenglengjing 	 蒙上眼睛的牛 		 @蒙上眼睛的牛 2012-10-29 10:15:56　　未
+67 	 AGy戰女 	 天时怼兮威灵怒 		 @天时怼兮威灵怒 66楼 　　http://baike.ba
+69 	 我真的要说吗 	 香湖人 		 @香湖人 27楼 　　　　-----------------
+71 	 2011我为卿狂 	 shdsb 		 @shdsb 2012-10-29 10:17:43　　媒体
+72 	 无色天空FRANK 	 pals2009 		 @pals2009 48楼 　　每次看到这样的消息，都很痛心
+76 	 gaolihshq 	 兰质薰心 		 作者：弱水三千chen　回复日期：2012-10-29 11
+80 	 LBJStream 	 曾开贵 		 @曾开贵 2012-10-29 11:40:09　　没有ZF
+93 	 大头菜烤年糕 	 横冲节度使 		 @横冲节度使 2012-10-29 12:11:50　　楼主
+94 	 xinggzyyc 	 赶浪头 		 @赶浪头 2楼 　　默默围观~　　　　-----------
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">reply</span><span class="p">[</span><span class="mi">80</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>@曾开贵 2012-10-29 11:40:09　　没有ZF，哪来新ZG，没有新ZG，你们吃什么？为什么你们总是要攻击ZF呢，就像之前那样骂骂小日本多好啊……看看台湾，一碗牛肉面竟然卖到100台币一碗，大L都才卖10元一碗，你还不知足！啥，工资不一样？没错，台湾平均工资5万台币能买500碗牛肉面，大L平均工资2000能买200碗牛肉面。但是，小同志，事情没这么简单啊，你能一下吃完500碗面吗？在倡导节约、环保低碳的今天，你不觉得铺张浪费是件可耻...........　　-----------------------------　　叼
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">link_author_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)):</span>
+    <span class="n">link_author_dict</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">link</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">author</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> 
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">reply</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">link</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    <span class="n">RTpattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;&#39;&#39;@(\w+)\s&#39;&#39;&#39;</span>
+    <span class="n">persons</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">RTpattern</span><span class="p">,</span> <span class="n">tweet</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">UNICODE</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">persons</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">persons</span><span class="p">:</span>
+            <span class="n">graph</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">dt</span><span class="o">.</span><span class="n">author_name</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">person</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">graph</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">author_name</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">link_author_dict</span><span class="p">[</span><span class="n">url</span><span class="p">]]</span>  <span class="p">)</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8769
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[:</span><span class="mi">3</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>贾也 贾也
+三平67 贾也
+赶浪头 贾也
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">y</span><span class="p">:</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Name: \nType: DiGraph\nNumber of nodes: 4289\nNumber of edges: 5995\nAverage in degree:   1.3978\nAverage out degree:   1.3978&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">GU</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">to_undirected</span><span class="p">(</span><span class="n">reciprocal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">graphs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">connected_component_subgraphs</span><span class="p">(</span><span class="n">GU</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">size</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">graphs</span><span class="p">:</span>
+    <span class="n">size</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">nodes</span><span class="p">()))</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">size</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4067, 120)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">graphs</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span> <span class="o">&gt;</span><span class="mi">5</span><span class="p">:</span>
+        <span class="n">gs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">gs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">gs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+120
+44
+9
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g_max</span> <span class="o">=</span> <span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">g_max</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>120
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">g_max</span><span class="p">)</span>          
+<span class="c1">#定义一个布局，此处采用了spectral布局方式，后变还会介绍其它布局方式，注意图形上的区别</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">g_max</span><span class="p">,</span><span class="n">pos</span><span class="p">,</span><span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">node_size</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span>  
+<span class="c1">#绘制规则图的图形，with_labels决定节点是非带标签（编号）,node_size是节点的直径</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1">#显示图形</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-network-analysis-of-tianya-bbs_36_0.png" src="_images/18-network-analysis-of-tianya-bbs_36_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># with open(&#39;../data/tianya_network_120.csv&#39;, &#39;a&#39;) as f:</span>
+<span class="c1">#     for x, y in g_max.edges():</span>
+<span class="c1">#         f.write(x + &#39;,&#39; + y + &#39;\n&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="" src="_images/tianyaGephi.png" /></p>
+</div>
+<div class="section" id="gephi">
+<h2>使用 Gephi进行网络可视化<a class="headerlink" href="#gephi" title="Permalink to this headline">¶</a></h2>
+<p>1	/post-free-2849477-1.shtml	2012-10-29 11:11:32	51150428	生生0326	一环　　天涯现在太滞后了，看消息还是得靠微博。太失望了。</p>
+<p>作业</p>
+<ul class="simple">
+<li><ol class="simple">
+<li><p>计算节点的度，并绘制其散点图。</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>计算节点的聚类系数</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>计算节点的pagerank</p></li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="18-04-seir-hcd-model.html" title="previous page">SEIR-HCD Model</a>
+    <a class='right-next' id="next-link" href="19-facebook-ego-netwrok-visualization.html" title="next page">可视化Facebook社交网络</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

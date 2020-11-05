@@ -1,0 +1,1662 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>第八章 文本挖掘 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="词向量模型简介" href="10-word2vec.html" />
+    <link rel="prev" title="Recognizing Hand-Written Digits with Neural Networks" href="09-12-hand-written-digits.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   第八章 文本挖掘
+  </a>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-word2vec.html">
+     词向量模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">
+     基于字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-2-emotion-dict.html">
+     大连理工大学中文情感词汇
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-NRC-Chinese-dict.html">
+     基于NRC字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-textblob.html">
+     利用textblob进行情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-4-sentiment-classifier.html">
+     基于机器学习的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-update.html">
+     主题模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-with-turicreate.html">
+     使用Turicreate建立主题模型
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/10-text-minning-gov-report.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/ebook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/ebook/issues/new?title=Issue%20on%20page%20%2F10-text-minning-gov-report.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/ebook/master?urlpath=tree/docs/10-text-minning-gov-report.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bag-of-words-model-bow">
+   Bag-of-words model （BOW)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transforming-words-into-feature-vectors">
+     Transforming words into feature vectors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#n-gram-model">
+   n-gram model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tf-idf">
+   TF-IDF
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#l2-normalization">
+     L2-normalization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tfidftransformer">
+     TfidfTransformer
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   政府工作报告文本挖掘
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     0. 读取数据
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     1. 分词
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   2. 停用词
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     3. 关键词抽取
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       基于TF-IDF 算法的关键词抽取
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#textrank">
+       基于 TextRank 算法的关键词抽取
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     4. 词云
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tfidf">
+       基于tfidf过滤的词云
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       基于停用词过滤的词云
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     绘制1954-2016政府工作报告词云
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   5. 词向量的时间序列
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>第八章 文本挖掘<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><img alt="image.png" src="_images/author1.png" /></p>
+<p>What can be learned from 5 million books</p>
+<p>https://www.bilibili.com/video/BV1jJ411u7Nd</p>
+<p>This talk by Jean-Baptiste Michel and Erez Lieberman Aiden is phenomenal.</p>
+<p>Michel, J.-B., et al. (2011). Quantitative Analysis of Culture Using Millions of Digitized Books. Science, 331, 176–182.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span> 
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;//player.bilibili.com/player.html?aid=68934891&amp;bvid=BV1jJ411u7Nd&amp;cid=119471774&amp;page=1&quot;</span> 
+<span class="na">width</span><span class="o">=</span><span class="s">1000</span> <span class="na">height</span><span class="o">=</span><span class="s">600</span>
+<span class="na">scrolling</span><span class="o">=</span><span class="s">&quot;no&quot;</span> <span class="na">border</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;no&quot;</span> <span class="na">framespacing</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">allowfullscreen</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe src="//player.bilibili.com/player.html?aid=68934891&bvid=BV1jJ411u7Nd&cid=119471774&page=1" 
+width=1000 height=600
+scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+</div></div>
+</div>
+<p><img alt="" src="_images/books.jpg" /></p>
+<p>试一下谷歌图书的数据: https://books.google.com/ngrams/</p>
+<p>数据下载： http://www.culturomics.org/home</p>
+<div class="section" id="bag-of-words-model-bow">
+<h2>Bag-of-words model （BOW)<a class="headerlink" href="#bag-of-words-model-bow" title="Permalink to this headline">¶</a></h2>
+<p>Represent text as numerical feature vectors</p>
+<ul class="simple">
+<li><p>We create a vocabulary of unique tokens—for example, words—from the entire set of documents.</p></li>
+<li><p>We construct a feature vector from each document that contains the counts of how often each word occurs in the particular document.</p></li>
+</ul>
+<p>Since the unique words in each document represent only a small subset of all the
+words in the bag-of-words vocabulary, the feature vectors will consist of mostly
+zeros, which is why we call them sparse</p>
+<p><img alt="image.png" src="_images/bow.png" /></p>
+<p>“词袋模型”（Bag of words model）假定对于一个文本：</p>
+<ul class="simple">
+<li><p>忽略词序、语法、句法；</p></li>
+<li><p>将其仅仅看做是一个词集合或组合；</p></li>
+<li><p>每个词的出现都是独立的，不依赖于其他词是否出现。</p>
+<ul>
+<li><p>文本任意一个位置出现某一个词汇是独立选择的，不受前面句子的影响。</p></li>
+</ul>
+</li>
+</ul>
+<p>这种假设虽然对自然语言进行了简化，便于模型化。</p>
+<p>Document-Term Matrix (DTM)</p>
+<p>问题：例如在新闻个性化推荐中，用户对“南京醉酒驾车事故”这个短语很感兴趣。词袋模型忽略了顺序和句法，认为用户对“南京”、“醉酒”、“驾车”和“事故”感兴趣，因此可能推荐出和“南京”、“公交车”、“事故”相关的新闻。</p>
+<p>解决方法: 可抽取出整个短语；或者采用高阶（2阶以上）统计语言模型。例如bigram、trigram来将词序保留下来，相当于bag of bigram和bag of trigram。</p>
+<div class="section" id="transforming-words-into-feature-vectors">
+<h3>Transforming words into feature vectors<a class="headerlink" href="#transforming-words-into-feature-vectors" title="Permalink to this headline">¶</a></h3>
+<p>A document-term matrix or term-document matrix is a mathematical matrix that describes the frequency of terms that occur in a collection of documents.</p>
+<p>In a document-term matrix, rows correspond to documents in the collection and columns correspond to terms.</p>
+<p>There are various schemes for determining the value that each entry in the matrix should take. One such scheme is tf-idf. They are useful in the field of natural language processing.</p>
+<p>D1 = “I like databases”</p>
+<p>D2 = “I hate databases”</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="text-align:center head"><p>I</p></th>
+<th class="text-align:center head"><p>like</p></th>
+<th class="text-align:center head"><p>hate</p></th>
+<th class="text-align:right head"><p>databases</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>D1</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:right"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>D2</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:right"><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="n">count</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="s1">&#39;The sun is shining&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;The weather is sweet&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;The sun is shining and the weather is sweet&#39;</span><span class="p">])</span>
+<span class="n">bag</span> <span class="o">=</span> <span class="n">count</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>count<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;and&#39;,
+ &#39;and the&#39;,
+ &#39;is&#39;,
+ &#39;is shining&#39;,
+ &#39;is sweet&#39;,
+ &#39;shining&#39;,
+ &#39;shining and&#39;,
+ &#39;sun&#39;,
+ &#39;sun is&#39;,
+ &#39;sweet&#39;,
+ &#39;the&#39;,
+ &#39;the sun&#39;,
+ &#39;the weather&#39;,
+ &#39;weather&#39;,
+ &#39;weather is&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="o">.</span><span class="n">vocabulary_</span><span class="p">)</span> <span class="c1"># word: position index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;the&#39;: 5, &#39;sun&#39;: 3, &#39;is&#39;: 1, &#39;shining&#39;: 2, &#39;weather&#39;: 6, &#39;sweet&#39;: 4, &#39;and&#39;: 0}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">bag</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>scipy.sparse.csr.csr_matrix
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">bag</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0 1 1 1 0 1 0]
+ [0 1 0 0 1 1 1]
+ [1 2 1 1 1 2 1]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bag</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">count</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>and</th>
+      <th>is</th>
+      <th>shining</th>
+      <th>sun</th>
+      <th>sweet</th>
+      <th>the</th>
+      <th>weather</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The sequence of items in the bag-of-words model that we just created is also called the 1-gram or unigram model: each item or token in the vocabulary represents a single word.</p>
+</div>
+</div>
+<div class="section" id="n-gram-model">
+<h2>n-gram model<a class="headerlink" href="#n-gram-model" title="Permalink to this headline">¶</a></h2>
+<p>The choice of the number n in the n-gram model depends on the particular application</p>
+<ul class="simple">
+<li><p>1-gram: “the”, “sun”, “is”, “shining”</p></li>
+<li><p>2-gram: “the sun”, “sun is”, “is shining”</p></li>
+</ul>
+<p>The CountVectorizer class in scikit-learn allows us to use different
+n-gram models via its <code class="docutils literal notranslate"><span class="pre">ngram_range</span></code> parameter.</p>
+<p>While a 1-gram
+representation is used by default</p>
+<p>we could switch to a 2-gram
+representation by initializing a new CountVectorizer instance with
+ngram_range=(2,2).</p>
+</div>
+<div class="section" id="tf-idf">
+<h2>TF-IDF<a class="headerlink" href="#tf-idf" title="Permalink to this headline">¶</a></h2>
+<p>Assessing word relevancy via term frequency-inverse document frequency</p>
+<div class="math notranslate nohighlight">
+\[tf*idf(t, d) = tf(t, d) \times idf(t)\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(tf(t, d)\)</span> is the term frequency of term t in document d.</p></li>
+<li><p>inverse document frequency <span class="math notranslate nohighlight">\(idf(t)\)</span> can be calculated as: <span class="math notranslate nohighlight">\(idf(t) = log \frac{n_d}{1 + df(d, t)}\)</span></p></li>
+</ul>
+<p>Question: Why do we add the constant 1 to the denominator ?</p>
+<p>The tf-idf equation that was implemented in scikit-learn is as follows: <span class="math notranslate nohighlight">\(tf*idf(t, d) = tf(t, d) \times （idf(t, d) + 1）\)</span></p>
+<p><a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfTransformer.html#sklearn.feature_extraction.text.TfidfTransformer">SKlearn use <code class="docutils literal notranslate"><span class="pre">smooth_idf=True</span></code></a> <span class="math notranslate nohighlight">\(idf(t) = log \frac{1+n_d}{1 + df(d, t)} + 1\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(n_d\)</span> is the total number of documents, and <span class="math notranslate nohighlight">\(df(d, t)\)</span> is the number of documents <span class="math notranslate nohighlight">\(d\)</span> that contain the term <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<div class="section" id="l2-normalization">
+<h3>L2-normalization<a class="headerlink" href="#l2-normalization" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[l2_{x} = \frac{x} {\sqrt{\sum {x^2}}}\]</div>
+<p>课堂作业：请根据公式计算’is’这个词在文本2中的tfidf数值？</p>
+<p><img alt="" src="_images/ask.jpeg" /></p>
+</div>
+<div class="section" id="tfidftransformer">
+<h3>TfidfTransformer<a class="headerlink" href="#tfidftransformer" title="Permalink to this headline">¶</a></h3>
+<p>Scikit-learn implements yet another transformer, the TfidfTransformer, that
+takes the raw term frequencies from CountVectorizer as input and transforms
+them into tf-idfs:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfTransformer</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">tfidf</span> <span class="o">=</span> <span class="n">TfidfTransformer</span><span class="p">(</span><span class="n">use_idf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">,</span> <span class="n">smooth_idf</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tfidf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">count</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">docs</span><span class="p">))</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.   0.43 0.56 0.56 0.   0.43 0.  ]
+ [0.   0.43 0.   0.   0.56 0.43 0.56]
+ [0.4  0.48 0.31 0.31 0.31 0.48 0.31]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfTransformer</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">tfidf</span> <span class="o">=</span> <span class="n">TfidfTransformer</span><span class="p">(</span><span class="n">use_idf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">smooth_idf</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tfidf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">count</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">docs</span><span class="p">))</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.   1.   1.29 1.29 0.   1.   0.  ]
+ [0.   1.   0.   0.   1.29 1.   1.29]
+ [1.69 2.   1.29 1.29 1.29 2.   1.29]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">bag</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">count</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">docs</span><span class="p">))</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bag</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">count</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>and</th>
+      <th>is</th>
+      <th>shining</th>
+      <th>sun</th>
+      <th>sweet</th>
+      <th>the</th>
+      <th>weather</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>1.287682</td>
+      <td>1.287682</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.287682</td>
+      <td>1.0</td>
+      <td>1.287682</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.693147</td>
+      <td>2.0</td>
+      <td>1.287682</td>
+      <td>1.287682</td>
+      <td>1.287682</td>
+      <td>2.0</td>
+      <td>1.287682</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 一个词的tfidf值</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">tf_is</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">n_docs</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="c1"># smooth_idf=True &amp; norm = None</span>
+<span class="n">idf_is</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="n">n_docs</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">tfidf_is</span> <span class="o">=</span> <span class="n">tf_is</span> <span class="o">*</span> <span class="n">idf_is</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;tf-idf of term &quot;is&quot; = </span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">tfidf_is</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tf-idf of term &quot;is&quot; = 2.00
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># *最后一个文本*里的词的tfidf原始数值（未标准化）</span>
+<span class="n">tfidf</span> <span class="o">=</span> <span class="n">TfidfTransformer</span><span class="p">(</span><span class="n">use_idf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">smooth_idf</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_tfidf</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">count</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">docs</span><span class="p">))</span><span class="o">.</span><span class="n">toarray</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">raw_tfidf</span><span class="p">,</span> <span class="n">count</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([1.69, 2.  , 1.29, 1.29, 1.29, 2.  , 1.29]),
+ [&#39;and&#39;, &#39;is&#39;, &#39;shining&#39;, &#39;sun&#39;, &#39;sweet&#39;, &#39;the&#39;, &#39;weather&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># l2标准化后的tfidf数值</span>
+<span class="n">l2_tfidf</span> <span class="o">=</span> <span class="n">raw_tfidf</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">raw_tfidf</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">l2_tfidf</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.4 , 0.48, 0.31, 0.31, 0.31, 0.48, 0.31])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>政府工作报告文本挖掘<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>0. 读取数据<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/gov_reports1954-2017.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">reports</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">reports</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>48
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">reports</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">1000</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1954	1954年政府工作报告——1954年5月23日在中华人民共和国第一届全国人民代表大会第一次会议上　　　　　　　　　　　　　　　　　　　　　　　　  国务院总理周恩来各位代表：　　我们第一届全国人民代表大会第一次会议，在听了刘少奇同志关于宪法草案的报告并进行了三天的讨论以后，已经光荣地完成了一件历史性的工作，通过了我们国家的根本法——中华人民共和国宪法，接着，又通过了几个重要的法律。现在，我代表中央人民政府作工作报告。　　我国伟大的人民革命的根本目的，是在于从帝国主义、封建主义和官僚资本主义的压迫下面，最后也从资本主义的束缚和小生产的限制下面，解放我国的生产力，使我国国民经济能够沿着社会主义的道路而得到有计划的迅速的发展，以便提高人民的物质生活和文化生活的水平，并且巩固我们国家的独立和安全。我国的经济原来是很落后的；如果我们不建设起强大的现代化的工业、现代化的农业、现代化的交通运输业和现代化的国防，我们就不能摆脱落后和贫困，我们的革命就不能达到目的。在一九四九年至一九五二年间，中央人民政府按照中国人民政治协商会议共同纲领的规定，先后完成了全国大陆的统一，完成了土地制度的改革，进行了广泛的和深入的镇压反革命运动和各种民主改革运动，恢复了遭受长期战争破坏的国民经济，着重地发展了社会主义的国营经济和各种类型的合作社经济，初步地调整了公私营工商业之间的关系，这一切都为有计划地进行经济建设和逐步过渡到社会主义社会准备了必要的条件。随后，从一九五三年起，我国就开始了经济建设的第一个五年计划，着手有系统地逐步地实现国家的社会主义工业化和对农业、手工业和资本主义工商业的社会主义改造。经济建设工作在整个国家生活中已经居于首要的地位。　　制订第一个五年计划的全部工作现在还没有最后完成，对于计划的许多细节还在进行补充和修订。第一个五年计划的方针是大家已经知道的，这就是：集中主要力量发展重工业，建立国家工业化和国防现代化的基础；相应地发展交通运输业、轻工业、农业和商业；相应地培养建设人才；有步骤地促进农业、手工业的合作化；继续进行对资本主义工商业的改造；保证国民经济中社会主义成份的比重稳步增长，同时正确地发挥个体农业、手工业和资本主义工商业的作用；保证在发展生产的基础上逐步提高人民物质生活和文化生活的水平。第一个五年计划所以要集中主要力量发展重工业，即冶金工业、燃料工业、动力工业、
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">reports</span><span class="p">[</span><span class="mi">4</span><span class="p">][:</span><span class="mi">500</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1959						1959年国务院政府工作报告	——1959年4月18日在第二届全国人民代表大会第一次会议上	　　　　　　　　　　　　　　　　  国务院总理周恩来	各位代表：	　　我现在根据国务院的决定，向第二届全国人民代表大会第一次会议作政府工作报告。	　　一、第一个五年计划时期内和第二个五年计划的第一年——一九五八年的伟大成就	　　在第一届全国人民代表大会的四年多的任期中间，我们的国家经历了一系列的具有重大历史意义的变化。	　　当一九五四年第一届全国人民代表大会第一次会议召开的时候，我国社会主义经济已经在国民经济中居于主导的地位，但是，我国还存在着大量的资本主义的工业和商业，并且大量地存在着个体的农业和手工业。农村中劳动互助运动已经广泛地发展起来，参加农业劳动互助组的农户达到了百分之六十左右，但是，组成农业生产合作社的农户还只占农户总数的百分之二左右。在那时候，我国已经完成了经济恢复时期的任务，开始了大规模的、有计划的经济建设。但是，究竟我们能不能在一个较短的时间内，使我国这样一个有六亿多人口的大国，建立起社会主义工业化的基础来，还有待于事实的证明。而现在呢？大家看到，只经过四年
+</pre></div>
+</div>
+</div>
+</div>
+<p>pip install jieba</p>
+<blockquote>
+<div><p>https://github.com/fxsjy/jieba</p>
+</div></blockquote>
+<p>pip install wordcloud</p>
+<blockquote>
+<div><p>https://github.com/amueller/word_cloud</p>
+</div></blockquote>
+<p>pip install gensim</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">gensim</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting gensim
+  Downloading gensim-3.8.3-cp37-cp37m-macosx_10_9_x86_64.whl (24.2 MB)
+     |████████████████████████████████| 24.2 MB 376 kB/s eta 0:00:01
+?25hRequirement already satisfied: scipy&gt;=0.18.1 in /opt/anaconda3/lib/python3.7/site-packages (from gensim) (1.4.1)
+Requirement already satisfied: numpy&gt;=1.11.3 in /opt/anaconda3/lib/python3.7/site-packages (from gensim) (1.18.1)
+Requirement already satisfied: six&gt;=1.5.0 in /opt/anaconda3/lib/python3.7/site-packages (from gensim) (1.14.0)
+Collecting smart-open&gt;=1.8.1
+  Downloading smart_open-2.0.0.tar.gz (103 kB)
+     |████████████████████████████████| 103 kB 625 kB/s eta 0:00:01
+?25hRequirement already satisfied: requests in /opt/anaconda3/lib/python3.7/site-packages (from smart-open&gt;=1.8.1-&gt;gensim) (2.22.0)
+Requirement already satisfied: boto in /opt/anaconda3/lib/python3.7/site-packages (from smart-open&gt;=1.8.1-&gt;gensim) (2.49.0)
+Requirement already satisfied: boto3 in /opt/anaconda3/lib/python3.7/site-packages (from smart-open&gt;=1.8.1-&gt;gensim) (1.9.191)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,&lt;1.26,&gt;=1.21.1 in /opt/anaconda3/lib/python3.7/site-packages (from requests-&gt;smart-open&gt;=1.8.1-&gt;gensim) (1.25.8)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /opt/anaconda3/lib/python3.7/site-packages (from requests-&gt;smart-open&gt;=1.8.1-&gt;gensim) (2019.11.28)
+Requirement already satisfied: chardet&lt;3.1.0,&gt;=3.0.2 in /opt/anaconda3/lib/python3.7/site-packages (from requests-&gt;smart-open&gt;=1.8.1-&gt;gensim) (3.0.4)
+Requirement already satisfied: idna&lt;2.9,&gt;=2.5 in /opt/anaconda3/lib/python3.7/site-packages (from requests-&gt;smart-open&gt;=1.8.1-&gt;gensim) (2.8)
+Requirement already satisfied: s3transfer&lt;0.3.0,&gt;=0.2.0 in /opt/anaconda3/lib/python3.7/site-packages (from boto3-&gt;smart-open&gt;=1.8.1-&gt;gensim) (0.2.1)
+Requirement already satisfied: jmespath&lt;1.0.0,&gt;=0.7.1 in /opt/anaconda3/lib/python3.7/site-packages (from boto3-&gt;smart-open&gt;=1.8.1-&gt;gensim) (0.9.5)
+Requirement already satisfied: botocore&lt;1.13.0,&gt;=1.12.191 in /opt/anaconda3/lib/python3.7/site-packages (from boto3-&gt;smart-open&gt;=1.8.1-&gt;gensim) (1.12.191)
+Requirement already satisfied: docutils&gt;=0.10 in /opt/anaconda3/lib/python3.7/site-packages (from botocore&lt;1.13.0,&gt;=1.12.191-&gt;boto3-&gt;smart-open&gt;=1.8.1-&gt;gensim) (0.16)
+Requirement already satisfied: python-dateutil&lt;3.0.0,&gt;=2.1 in /opt/anaconda3/lib/python3.7/site-packages (from botocore&lt;1.13.0,&gt;=1.12.191-&gt;boto3-&gt;smart-open&gt;=1.8.1-&gt;gensim) (2.8.1)
+Building wheels for collected packages: smart-open
+  Building wheel for smart-open (setup.py) ... ?25ldone
+?25h  Created wheel for smart-open: filename=smart_open-2.0.0-py3-none-any.whl size=101341 sha256=373e4939f516de66ae607886c52d7a00529e0930868ce9f5ae1ecec2297f40f4
+  Stored in directory: /Users/datalab/Library/Caches/pip/wheels/bb/1c/9c/412ec03f6d5ac7d41f4b965bde3fc0d1bd201da5ba3e2636de
+Successfully built smart-open
+Installing collected packages: smart-open, gensim
+Successfully installed gensim-3.8.3 smart-open-2.0.0
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">sys</span> 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span>
+<span class="kn">import</span> <span class="nn">jieba</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">gensim</span>
+<span class="kn">from</span> <span class="nn">gensim</span> <span class="kn">import</span> <span class="n">corpora</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">similarities</span>
+<span class="kn">from</span> <span class="nn">gensim.utils</span> <span class="kn">import</span> <span class="n">simple_preprocess</span>
+<span class="kn">from</span> <span class="nn">gensim.parsing.preprocessing</span> <span class="kn">import</span> <span class="n">STOPWORDS</span>
+<span class="c1">#matplotlib.rcParams[&#39;font.sans-serif&#39;] = [&#39;Microsoft YaHei&#39;] #指定默认字体 </span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s2">&quot;savefig&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 为了确保中文可以在matplotlib里正确显示</span>
+<span class="c1">#matplotlib.rcParams[&#39;font.sans-serif&#39;] = [&#39;Microsoft YaHei&#39;] #指定默认字体 </span>
+<span class="c1"># 需要确定系统安装了Microsoft YaHei</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import matplotlib</span>
+<span class="c1"># my_font = matplotlib.font_manager.FontProperties(</span>
+<span class="c1">#     fname=&#39;/Users/chengjun/github/cjc/data/msyh.ttf&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>1. 分词<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jieba</span>
+
+<span class="n">seg_list</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="s2">&quot;我来到北京清华大学&quot;</span><span class="p">,</span> <span class="n">cut_all</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Full Mode: &quot;</span> <span class="o">+</span> <span class="s2">&quot;/ &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">))</span>  <span class="c1"># 全模式</span>
+
+<span class="n">seg_list</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="s2">&quot;我来到北京清华大学&quot;</span><span class="p">,</span> <span class="n">cut_all</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Default Mode: &quot;</span> <span class="o">+</span> <span class="s2">&quot;/ &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">))</span>  <span class="c1"># 精确模式</span>
+
+<span class="n">seg_list</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="s2">&quot;他来到了网易杭研大厦&quot;</span><span class="p">)</span>  <span class="c1"># 默认是精确模式</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">))</span>
+
+<span class="n">seg_list</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut_for_search</span><span class="p">(</span><span class="s2">&quot;小明硕士毕业于中国科学院计算所，后在日本京都大学深造&quot;</span><span class="p">)</span>  <span class="c1"># 搜索引擎模式</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Building prefix dict from the default dictionary ...
+Dumping model to file cache /var/folders/8b/hhnbt0nd4zsg2qhxc28q23w80000gn/T/jieba.cache
+Loading model cost 0.941 seconds.
+Prefix dict has been built successfully.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Full Mode: 我/ 来到/ 北京/ 清华/ 清华大学/ 华大/ 大学
+Default Mode: 我/ 来到/ 北京/ 清华大学
+他, 来到, 了, 网易, 杭研, 大厦
+小明, 硕士, 毕业, 于, 中国, 科学, 学院, 科学院, 中国科学院, 计算, 计算所, ，, 后, 在, 日本, 京都, 大学, 日本京都大学, 深造
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>2. 停用词<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;../data/stopwords.txt&#39;</span>
+<span class="n">stopwords</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+<span class="k">while</span> <span class="n">line</span><span class="p">:</span>
+    <span class="n">stopwords</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">stopwords</span><span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adding_stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;我们&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;要&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;地&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;有&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;这&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;人&#39;</span><span class="p">,</span>
+                    <span class="sa">u</span><span class="s1">&#39;发展&#39;</span><span class="p">,</span><span class="sa">u</span><span class="s1">&#39;建设&#39;</span><span class="p">,</span><span class="sa">u</span><span class="s1">&#39;加强&#39;</span><span class="p">,</span><span class="sa">u</span><span class="s1">&#39;继续&#39;</span><span class="p">,</span><span class="sa">u</span><span class="s1">&#39;对&#39;</span><span class="p">,</span><span class="sa">u</span><span class="s1">&#39;等&#39;</span><span class="p">,</span>
+                    <span class="sa">u</span><span class="s1">&#39;推进&#39;</span><span class="p">,</span><span class="sa">u</span><span class="s1">&#39;工作&#39;</span><span class="p">,</span><span class="sa">u</span><span class="s1">&#39;增加&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">adding_stopwords</span><span class="p">:</span> <span class="n">stopwords</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">=</span><span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>3. 关键词抽取<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h4>基于TF-IDF 算法的关键词抽取<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jieba.analyse</span>
+<span class="n">txt</span> <span class="o">=</span> <span class="n">reports</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">extract_tags</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">topK</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sa">u</span><span class="s2">&quot;、&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tf</span><span class="p">[:</span><span class="mi">50</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;发展、改革、推进、建设、加强、加快、推动、深化、完善、创新、就业、全面、促进、经济、政府、深入、实施、提高、企业、支持、群众、服务、坚持、人民、坚决、制度、治理、政策、农村、试点、扩大、机制、社会、落实、工作、保障、增长、国家、生态、安全、今年、稳定、继续、地区、保护、中国、合作、产能、维护、重点&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tf</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_56_0.png" src="_images/10-text-minning-gov-report_56_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="textrank">
+<h4>基于 TextRank 算法的关键词抽取<a class="headerlink" href="#textrank" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tr</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">textrank</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span><span class="n">topK</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="sa">u</span><span class="s2">&quot;、&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tr</span><span class="p">[:</span><span class="mi">50</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;发展、改革、推进、建设、经济、加强、推动、加快、政府、完善、创新、企业、全面、实施、促进、提高、支持、服务、政策、深入、中国、就业、国家、制度、群众、社会、人民、地区、坚持、扩大、农村、地方、保护、继续、增长、机制、工作、保障、治理、试点、合作、综合、重点、市场、投资、领域、加大、消费、制定、维护&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tr</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_59_0.png" src="_images/10-text-minning-gov-report_59_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="k">def</span> <span class="nf">keywords</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
+    <span class="n">txt</span> <span class="o">=</span> <span class="n">reports</span><span class="p">[</span><span class="o">-</span><span class="n">index</span><span class="p">]</span>
+    <span class="n">tf</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">extract_tags</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">topK</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">tr</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">textrank</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span><span class="n">topK</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">tfdata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tf</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;word&#39;</span><span class="p">,</span> <span class="s1">&#39;tfidf&#39;</span><span class="p">])</span>
+    <span class="n">trdata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;word&#39;</span><span class="p">,</span> <span class="s1">&#39;textrank&#39;</span><span class="p">])</span>
+    <span class="n">worddata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">tfdata</span><span class="p">,</span> <span class="n">trdata</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;word&#39;</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">worddata</span><span class="o">.</span><span class="n">tfidf</span><span class="p">,</span> <span class="n">worddata</span><span class="o">.</span><span class="n">textrank</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">worddata</span><span class="o">.</span><span class="n">word</span><span class="p">)):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">worddata</span><span class="o">.</span><span class="n">tfidf</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">worddata</span><span class="o">.</span><span class="n">textrank</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">worddata</span><span class="o">.</span><span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> 
+                 <span class="n">fontsize</span> <span class="o">=</span> <span class="n">worddata</span><span class="o">.</span><span class="n">textrank</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mi">30</span><span class="p">,</span> 
+                 <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">txt</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Tf-Idf&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;TextRank&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">keywords</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_61_0.png" src="_images/10-text-minning-gov-report_61_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">keywords</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_62_0.png" src="_images/10-text-minning-gov-report_62_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">keywords</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_63_0.png" src="_images/10-text-minning-gov-report_63_0.png" />
+</div>
+</div>
+<p>TextRank: Bringing Order into Texts</p>
+<p>基本思想:</p>
+<ul class="simple">
+<li><p>将待抽取关键词的文本进行分词</p></li>
+<li><p>以固定窗口大小(默认为5，通过span属性调整)，词之间的共现关系，构建图</p></li>
+<li><p>计算图中节点的PageRank，注意是无向带权图</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>4. 词云<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wordcloudplot</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
+    <span class="n">wordcloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span><span class="n">font_path</span><span class="o">=</span><span class="s1">&#39;../data/msyh.ttf&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
+    <span class="c1"># Open a plot of the generated image.</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wordcloud</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+    <span class="c1">#plt.show()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tfidf">
+<h4>基于tfidf过滤的词云<a class="headerlink" href="#tfidf" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">txt</span> <span class="o">=</span> <span class="n">reports</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">tfidf200</span><span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">extract_tags</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">topK</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">seg_list</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">cut_all</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">seg_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seg_list</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tfidf200</span><span class="p">]</span>
+<span class="n">txt200</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">)</span>
+<span class="n">wordcloudplot</span><span class="p">(</span><span class="n">txt200</span><span class="p">,</span> <span class="n">txt</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_68_0.png" src="_images/10-text-minning-gov-report_68_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">txt</span> <span class="o">=</span> <span class="n">reports</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">tfidf200</span><span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">extract_tags</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">topK</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">seg_list</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">cut_all</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">seg_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seg_list</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tfidf200</span><span class="p">]</span>
+<span class="n">txt200</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">)</span>
+<span class="n">wordcloudplot</span><span class="p">(</span><span class="n">txt200</span><span class="p">,</span> <span class="n">txt</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_69_0.png" src="_images/10-text-minning-gov-report_69_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wordfreq</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seg_list</span><span class="p">:</span>
+    <span class="n">wordfreq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span><span class="mi">1</span>
+<span class="n">wordfreq</span> <span class="o">=</span> <span class="p">[[</span><span class="n">i</span><span class="p">,</span> <span class="n">wordfreq</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">wordfreq</span><span class="p">]</span>
+
+<span class="n">wordfreq</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span> <span class="o">=</span> <span class="kc">True</span> <span class="p">)</span>
+<span class="sa">u</span><span class="s2">&quot;、 &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sa">u</span><span class="s1">&#39;（&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span><span class="sa">u</span><span class="s1">&#39;）&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">wordfreq</span> <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;发展（125）、 改革（68）、 推进（65）、 建设（54）、 经济（52）、 加强（45）、 推动（42）、 加快（40）、 政府（36）、 创新（36）、 完善（35）、 企业（35）、 全面（35）、 促进（34）、 提高（32）、 就业（31）、 实施（31）、 中国（31）、 支持（29）、 深化（29）、 政策（28）、 服务（27）、 国家（26）、 人民（26）、 工作（26）、 制度（25）、 我们（25）、 深入（25）、 社会（25）、 增长（25）、 群众（24）、 坚持（24）、 今年（23）、 继续（23）、 地区（22）、 扩大（22）、 农村（20）、 坚决（20）、 机制（19）、 治理（19）、 稳定（19）、 地方（19）、 保障（18）、 安全（18）、 保护（18）、 持续（17）、 合作（17）、 市场（17）、 重点（17）、 实现（17）、 消费（16）、 投资（16）、 综合（16）、 落实（16）、 试点（16）、 结构（15）、 有效（15）、 维护（15）、 加大（15）、 产能（15）、 积极（15）、 领域（15）、 教育（15）、 改善（14）、 国际（14）、 国内（14）、 城市（14）、 我国（14）、 生态（14）、 以上（14）、 基本（14）、 问题（14）、 强化（13）、 增加（13）、 农业（13）、 提升（13）、 制定（13）、 力度（13）、 质量（13）、 引导（13）、 降低（13）、 依法（12）、 战略（12）、 升级（12）、 重要（12）、 标准（12）、 作用（12）、 健康（12）、 保持（12）、 增强（12）、 生产（12）、 文化（12）、 更加（12）、 必须（12）、 创业（12）、 目标（12）、 民生（12）、 下降（12）、 确保（11）、 取得（11）、 供给（11）、 生活（11）、 核心（11）、 规范（11）、 环境（11）、 收费（11）、 进一步（11）、 管理（11）、 做好（10）、 完成（10）、 资金（10）、 能力（10）、 不断（10）、 开展（10）、 产业（10）、 健全（10）、 水平（10）、 科技（10）、 体系（10）、 风险（10）、 世界（10）、 鼓励（10）、 重大（10）、 一年（10）、 监管（10）、 一批（10）、 困难（10）、 突出（9）、 代表（9）、 责任（9）、 金融（9）、 全国（9）、 大力（9）、 行政（9）、 区域（9）、 体制改革（9）、 减少（9）、 贯彻（9）、 组织（9）、 经济社会（9）、 国务院（8）、 各位（8）、 协调（8）、 制造（8）、 发挥（8）、 合理（8）、 优化（8）、 扶贫（8）、 调控（8）、 习近平（8）、 党中央（8）、 专项（8）、 动能（8）、 现代化（8）、 资源（8）、 城镇（8）、 行动（8）、 文明（7）、 全年（7）、 取消（7）、 住房（7）、 新型（7）、 万人（7）、 特色（7）、 生产总值（7）、 出台（7）、 引领（7）、 城乡（7）、 实体（7）、 更好（7）、 基础设施（7）、 和谐（7）、 高校（7）、 脱贫（7）、 改造（7）、 抓好（6）、 严肃查处（6）、 转型（6）、 新兴产业（6）、 打造（6）、 互联网（6）、 对外开放（6）、 补助（6）、 结构性（6）、 扎实（6）、 减税（6）、 涉企（6）、 培育（6）、 补短（6）、 办好（5）、 双创（5）、 精准（5）、 督查（5）、 试验区（5）、 医保（5）、 政策措施（5）、 实干（5）、 2000（4）、 降费（4）、 问责（4）&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id9">
+<h4>基于停用词过滤的词云<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#jieba.add_word(&#39;股灾&#39;, freq=100, tag=None) </span>
+
+<span class="n">txt</span> <span class="o">=</span> <span class="n">reports</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">seg_list</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">cut_all</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">seg_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seg_list</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">]</span>
+<span class="n">txt</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">)</span>
+<span class="n">wordcloudplot</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">txt</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>  
+<span class="c1">#file_path = &#39;/Users/chengjun/GitHub/cjc2016/figures/wordcloud-&#39; + txt[:4] + &#39;.png&#39;</span>
+<span class="c1">#plt.savefig(file_path,dpi = 300, bbox_inches=&quot;tight&quot;,transparent = True)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_72_0.png" src="_images/10-text-minning-gov-report_72_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>绘制1954-2016政府工作报告词云<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#jieba.add_word(&#39;股灾&#39;, freq=100, tag=None) </span>
+
+<span class="k">for</span> <span class="n">txt</span> <span class="ow">in</span> <span class="n">reports</span><span class="p">:</span>
+    <span class="n">seg_list</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">cut_all</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">seg_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seg_list</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">]</span>
+    <span class="n">txt</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">)</span>
+    <span class="n">wordcloudplot</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">txt</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span> 
+    <span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;../figure/wordcloud-&#39;</span> <span class="o">+</span> <span class="n">txt</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.png&#39;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="n">dpi</span> <span class="o">=</span> <span class="mi">400</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">,</span>\
+                <span class="n">transparent</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_74_0.png" src="_images/10-text-minning-gov-report_74_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>5. 词向量的时间序列<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reports</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">500</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1954\t1954年政府工作报告——1954年5月23日在中华人民共和国第一届全国人民代表大会第一次会议上\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\xa0 国务院总理周恩来各位代表：\u3000\u3000我们第一届全国人民代表大会第一次会议，在听了刘少奇同志关于宪法草案的报告并进行了三天的讨论以后，已经光荣地完成了一件历史性的工作，通过了我们国家的根本法——中华人民共和国宪法，接着，又通过了几个重要的法律。现在，我代表中央人民政府作工作报告。\u3000\u3000我国伟大的人民革命的根本目的，是在于从帝国主义、封建主义和官僚资本主义的压迫下面，最后也从资本主义的束缚和小生产的限制下面，解放我国的生产力，使我国国民经济能够沿着社会主义的道路而得到有计划的迅速的发展，以便提高人民的物质生活和文化生活的水平，并且巩固我们国家的独立和安全。我国的经济原来是很落后的；如果我们不建设起强大的现代化的工业、现代化的农业、现代化的交通运输业和现代化的国防，我们就不能摆脱落后和贫困，我们的革命就不能达到目的。在一九四九年至一九五二年间，中央人民政府按照中国人民政治协商会议共同纲领的规定，先后完成了全国大陆的统一，完成了土地制度的改革，进&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reports</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="mi">500</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1955\t1955年国务院政府工作报告关于发展国民经济的第一个五年计划的报告\xa0——1955年7月5日至6日在第一届全国人民代表大会第二次会议上\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\xa0 国务院副总理兼国家计划委员会主任李富春目录\xa0 一、国家在过渡时期的总任务\xa0 二、第一个五年计划概要\xa0 三、第一个五年计划的若干问题\xa0 （一）关于工业和运输业的基本建设问题\xa0 （二）关于工业的生产问题\xa0 （三）关于农业的增产问题\xa0 （四）关于对资本主义工商业的社会主义改造问题\xa0 （五）关于保证市场的稳定问题\xa0 （六）关于培养建设干部问题\xa0 （七）关于提高人民的物质生活和文化生活的水平问题\xa0 （八）关于厉行节约问题\xa0 （九）关于苏联和各人民民主国家同我国建设的关系\u3000四、为完成和超额完成第一个五年计划而奋斗\t\t\u3000\u3000各位代表：\u3000\u3000中华人民共和国国务院向第一届全国人民代表大会第二次会议提出关于发展国民经济第一个五年计划的议案，我现在代表国务院向本次大会作关于第一个五年计划的报告。\u3000\u3000中华人民共和国发展国民经济的第一个五年计划草案，是在中国共产党中央委员会和毛泽东主席的直接领导下编制完成的。一九五五年三月间经过中国共产党的全国代表会&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">textrank</span><span class="p">(</span><span class="n">reports</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">topK</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">extract_tags</span><span class="p">(</span><span class="n">reports</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">topK</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">extract_tags</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on method extract_tags in module jieba.analyse.tfidf:
+
+extract_tags(sentence, topK=20, withWeight=False, allowPOS=(), withFlag=False) method of jieba.analyse.tfidf.TFIDF instance
+    Extract keywords from sentence using TF-IDF algorithm.
+    Parameter:
+        - topK: return how many top keywords. `None` for all possible words.
+        - withWeight: if True, return a list of (word, weight);
+                      if False, return a list of words.
+        - allowPOS: the allowed POS list eg. [&#39;ns&#39;, &#39;n&#39;, &#39;vn&#39;, &#39;v&#39;,&#39;nr&#39;].
+                    if the POS of w is not in this list,it will be filtered.
+        - withFlag: only work with allowPOS is not empty.
+                    if True, return a list of pair(word, weight) like posseg.cut
+                    if False, return a list of words
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jieba.analyse</span>
+
+<span class="n">wordset</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">txt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reports</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">top20</span><span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">extract_tags</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">topK</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">top20</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">wordset</span><span class="p">:</span>
+            <span class="n">wordset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">wordset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1717
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">wordset</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>人民 我们 国家 我国 一九五三年 工业 一九五四年 必须 工作 建设 发展 和平 一九四九年 社会主义 一九五 国家机关 生产 计划 全国 农业 亚洲 美国 事业 企业 应当 经济 这些 改造 增加 并且 完成 但是 已经 等于 合作社 集团 方面 需要 台湾 资本主义 反对 几年 生活 建立 为了 技术 这个 进行 日内瓦 问题 一九五二年 各级 侵略 中央人民政府 可以 比重 改善 东南亚 现代化 中国 关系 反革命 卖国 会议 对于 条约 浪费 加强 注意 保证 任务 努力 正在 军事同盟 根据 能够 组织 基本建设 克服 少数民族 文化 全国人民代表大会 许多 工作人员 总产值 领导 职工 协议 重要 过去 困难 提高 战争 印度支那 今年 迅速 政府 逐步 国营商业 合作 五年 现在 参加 集体 他们 分子 一切 世界 公私合营 解决 商业 机关 得到 现象 因为 今后 其他 民主 胜利 完全 力量 斗争 苏联 群众 地方 计划供应 朝鲜 防务 五年计划 容许 重工业 改进 没有 百分之三十 实行 不能 人民代表大会 所谓 财政 政策 解放 社会 广大 运动 产量 很大 充分 缺点 安全 官僚主义 国营 巩固 不少 落后 增长 达到 一个 恢复 由于 农民 交通运输业 原则 中华人民共和国 而且 各国 中央 依靠 教育 人民共和国 实现 选举 节约 四点 破坏 关于 代表 保障 工业化 破坏活动 时期 作用 百分之八十 资金 采取 棉花 保卫 利益 同时 权利 主要 或者 华侨 制度 不顾 继续 法律 劳动 蒋介石 预算 就是 应该 增产 第一个 私营 国民经济 工商业 单位 一九五七年 可能 年产能力 过渡时期 适当 规定 基础 各种 供应 产品 万吨 水平 投资 帮助 手工业 这种 设计 限额 工厂 粮食 这样 扩大 形式 合作化 制造 积极 条件 工人 建成 资本家 部门 铁路 非生产性 原料 援助 收购 工业生产 因此 方针 加以 两年 经验 规模 新建 工程 全部 超额完成 总任务 设备 中国共产党 厂矿 指标 工人阶级 轻工业 产值 办法 百分之五十 定货 必要 周转量 文化教育 以上 情况 特别 学习 团结 某些 错误 职员 发挥 重大 施工 培养 百分之七十 工业品 播种面积 有些 一些 按照 地区 它们 巨大 要求 开始 百分之一百 曾经 一百五十 农村 改建 帝国主义 支出 上年 收入 国家决算 占本 万人 决算 总数 建设费 亿斤 国营企业 原定 年收入 文教 一部分 减少 铺轨 农户 比较 收支 执行 上升 在校学生 本年 片面 数字 准备 税收 农业税 部分 提前完成 国防费 立井 工业部 收到 货物 降低 拨付 秋征 钢材 其中 扣除 亿元 比例 实际 将要 节减 年内 以外 中所 去年 万担 行政 工农业 项目 公路 年本 包括 数额 中央预算 除了 建筑安装 信贷资金 年度计划 债款 万亩 以内 调整 去年同期 招生 公方 合理 状况 超过 质量 下降 储备 预计 国家计划 农林水利 国家银行 工资 开支 可比 其他支出 过程 用于 奖励制度 农业贷款 灌溉面积 物资 1956 共占本 商品流转 零售总额 统购 共产党 革命 科学 右派分子 资产阶级 思想 政治 科学事业 基本 工农 宗派主义 高等学校 统一战线 偏差 成绩 这是 取得 不够 有人 提出 甚至 科学家 知识分子 科学研究 民主党派 一年 存在 学生 因而 如果 时候 三年 经过 整风运动 工资制度 意见 制订 不是 批判 殖民主义 否定 一定 大团结 性质 高级 研究 正确 改革 还有 任何 学徒 更加 学校 例如 队伍 三大 规划 之间 日益 阵营 解放以来 集中 企图 少数 阶级 个别 内部 悬殊 一九五八年 一九五九年 鼓掌 热烈鼓掌 西藏 跃进 民族 大跃进 干部 同时并举 战线 人民公社 美帝国主义 运输 总路线 土法生产 群众运动 体力劳动 爱好和平 相结合 各个 帝国主义者 岸信 自我改造 全世界 阿拉伯 贯彻执行 开展 反动分子 百分之四十 自己 独立 伟大 叛乱 日本 劳动力 友好 中间 长时间 积极性 以后 掌声 服务 西藏地方 首先 起来 绝对数 叛乱分子 活动 威胁 二千 生产资料 共产主义 普及 掌握 纲要 食堂 机械化 社办 半机械化 八字宪法 公社 提前 一九五六年 棉田 十二年 消灭 所有制 人民公社化 养猪 草案 平均 农具 普遍 措施 四十斤 群众性 改良 大大 四年 基本上 六十斤 效益 办好 麻雀 危害 技术革新 五亿 各地 精耕细作 因地 七千 分配制度 更好 分别 高级社 防治 每人 广大群众 耕地 社员 毛泽东 除四害 1960 一九六七年 公布 不仅 公共 坚持 八十斤 过渡 举办 大办 卫生事业 争取 托儿所 五千 皮棉 一百斤 科学试验 才能 纲领 还要 百分之二十 亿亩 面积 动员 同志 赶上 化肥厂 农作物 充分发挥 多种经营 进一步 不断 病疫 园田化 办得 病虫害 做到 二百 兴办 鼓足干劲 零四个 整个 亩产量 一千 合理密植 集体福利 一九六二年 总产量 事情 社有 八十五 周总理 无产阶级 阶级斗争 反动派 自力更生 修正主义 毛主席 革命化 马克思列宁主义 指出 彻底 支持 一九六四年 毛泽东思想 一九六五年 现代 坚决 走狗 对外 复辟 革命斗争 周恩来 高举 反帝 历史 反华 核武器 支援 阴谋 新高潮 及其 总理 成就 民主革命 长期 国际威望 认识 拉丁美洲 国际主义 强大 意义 领土 巨大成就 半农半读 劳动化 下中农 文化战线 亚非 一次 封建主义 客观规律 非洲 精神 半工半读 发动 放手 强调指出 武装 总结经验 专政 工农兵 路线 批林批孔 马克思主义 超级大国 被压迫 各族人民 文化大革命 一九七五年 上层建筑 争议地区 1975 国务院 深入 各位 团结起来 设想 边界 武装冲突 统一 争夺 第三世界 两国关系 一九七四年 十年 大革命 永远 斗批改 本世纪内 加强团结 一九八 二倍 互不侵犯 宏伟目标 列宁主义 领域 伟大胜利 认真执行 路线斗争 两个 霸权主义 美苏 发动群众 不要 激烈 一点 新生事物 三届 全心全意 中苏 广大干部 称霸 贫下中农 三倍 国际形势 继续执行 工业体系 第二步 第四个 蓬勃发展 战备 人民解放军 颠覆 林彪 二十多年 共同努力 第四届 双方 教导 互不 委员会 三点 联合 两步 不论是 武装力量 人大 第一步 封锁 方向 民兵 武力 党中央 理论 文艺 第三个 报告 粉碎 经济危机 缓和 战胜 卫生 争论 往来 克服缺点 发扬成绩 洋奴哲学 百分之八十五 光荣任务 学大庆 脱离 那么 四人帮 搞好 揭批 整顿 认真 科学技术 作风 强国 打击 社队 十年规划 指示 各项 反霸 干扰 高速度 各条战线 一九七六年 先进 篡党夺权 两霸 四届 召开 基地 两国人民 大寨 大力 苏美 加快 发扬 严重 抓好 四个 切实 妄图 敌人 改变 谬论 劳动竞赛 促进 科学实验 自治区 成为 重点 正义斗争 八年 讨论 维护 轻纺 纪律 目前 制定 秩序 现有企业 当前 安定团结 法制 管理 引进 无政府主义 人口 越南 生产力 矛盾 事业单位 允许 管理体制 千分之 农副产品 义务 歪风邪气 仍然 民主集中制 祖国 试行 着重点 机械 试点 安排 自主权 上半年 明年 能源 商品 进展 标准煤 节约能源 效果 节能 经济作物 材料 提高质量 开发 结构 技术改造 勘探 奖金 一批 经营 竞争 自销 有所改善 工业锅炉 住宅 积累率 共生矿 购买力 能耗 综合利用 油料 前进 城乡人民 市场 协作 调查 烧油 积累 劳动保护 生活资料 生产能力 指导 大力开展 集体所有制 调动 对外贸易 流通 亿吨 消费品 进出口 上缴利润 原材料 党和政府 缝纫机 不足 发展缓慢 自行车 通过 品种 多年 联合体 经济效益 责任制 利用 全面 精神文明 国民收入 交通 速度 显著 现有 做好 分配 以及 物价 结合 石油 相当 平衡 财政收支 这方面 城市 作出 有步骤 稳定 犯罪分子 不同 财政收入 国际 防止 第六个 一九八五年 一九八一年 递增 六五 每年 期间 一九八二年 百分之四点 固定资产 建设项目 经济体制 进步 根本好转 百分之五点 一律 着重 社会风气 一项 技术水平 严格控制 国家计委 全局 翻两番 形势 六千 财经纪律 百分之四 不合理 大量 一九七八年 政法 抓紧 一九七九年 城乡 科技 大力加强 纠正 宪法 体制 国防 财力 智力开发 长期存在 有效 上交 体育 前提 造成 多种形式 种种 振兴 五项原则 和平共处 精神污染 紧张局势 承包 有利于 利改税 包干 裁军 主张 一九八三年 建筑业 愿意 香港 友好合作 核国家 核裁军 希望 平等互利 社会制度 税利 经济特区 共同 决不 供销社 批发 购销 所有 承包单位 核军备 赞成 人才 具有 大锅饭 增进 和睦相处 推行 交流 使用 科研单位 审批 社会治安 科研 保持 价格 工资改革 搞活 不正之风 价格体系 工资总额 消费基金 消费 推动 随着 坚定不移 在改革中 货币 增加收入 大中型 产业结构 基数 增长速度 顺利进行 城乡居民 符合 核定 1985 补贴 信贷 城乡经济 增强 控制 四化 大幅度 部署 迈出 决不能 决定 追求 向前 专业银行 协调 坚决贯彻 统一认识 出发 基金 持续增长 考虑 步调 宏观经济 长远利益 放开 消费者 七五 第七个 商品经济 投资规模 出口 能力 充分认识 实践 五五 适应 出口创汇 对外开放 完善 外汇 进口 运用 恰当 出现 手段 观念 活力 九十年代 开放 调节 越来越 更新改造 贸易 加工工业 转变 自由化 四项 增产节约 增收节支 切实加强 思潮 努力提高 人们 推进 政治局面 方针政策 批评 横向联合 特色 十一届三中全会 经营机制 及时 健全 真正 不变 正常 重视 引导 经营责任制 创造 一系列 机构 目标 柬埔寨 体制改革 深化 外向型 实施 理顺 改革开放 计划生育 发展中国家 鼓励 改革方案 法制建设 综合 科技进步 解放思想 军队 沿海地区 贯彻 探索 大力发展 繁荣 深化改革 职能 治理整顿 压缩 监督 清理 经济秩序 教育经费 严格 各类 总需求 物价上涨 环境 劳动生产率 储蓄 治理 需求 素质 有关 产业政策 依法 通货膨胀 公司 宏观调控 制止 密切 审计 缓建 农业投入 党政机关 紧张 责任 根本利益 乡镇企业 市场调节 动乱 暴乱 廉政建设 贷款 中国政府 计划经济 中华民族 内政 风波 联合声明 违法违纪 案件 指令性 道路 自觉 以来 一九九一年 一九九 产品质量 新增 全民 全年 农产品 生活费用 一亿 调整结构 回升 建成投产 千万吨 煤炭 零售物价 投入 推广 里程 总量 三千八百 六百 新品种 丰收 一千六百 四百五十 提高效益 高等院校 引进技术 九千 亿公斤 油田 开拓市场 非贸易 三千 化肥 四千 大体 开发新 扩大开放 人权 继续加强 开拓 民主监督 海外侨胞 两岸关系 祖国统一 步伐 欢迎 科技成果 集中力量 深入开展 树立 计划体制 保护 机制 综合治理 八五 澳门 高新技术 国内 无党派人士 实力 精简 基础设施 人员 住房 第三产业 国有企业 市场经济 社会化 和平统一 各项事业 一手 建立健全 十四大 范围 城镇 环境保护 形成 勤政廉政 外贸体制 人均 生产总值 交通运输 办学 健康 国民 国有 顺利 财税 突出 邓小平 良好 持续 农民收入 江泽民 自治 银行 共同愿望 1994 投资体制 开发区 稳妥 加以解决 香港特别行政区 腐败现象 廉洁自律 乱收费 落实 犯罪活动 九五 职业 认真贯彻 推进改革 市场需求 始终不渝 四是 1995 体系 义务教育 全面进步 体育事业 流动人口 中西部 民主法制 资源 年均 十五年 方式 战略 初步 社会保障 民族团结 主体 扶贫 正确处理 经济社会 格局 作为 行使主权 贫困人口 优化 积极参与 奋斗目标 注重 改组 就业 行业 兼并 产业 规范 国有经济 水利建设 小企业 一国两制 结构调整 负责制 征管 大型 破产 国有资产 资本金 适用技术 力度 倾斜 治安状况 放活 多亿元 适度从紧 金融 邓小平理论 广泛开展 回归祖国 下岗职工 盲目 投融资 股份合作制 加大 有利条件 思想道德 全国代表大会 伟大旗帜 金融风险 1999 财政赤字 科教兴国 防范 利用外资 小城镇 严厉打击 澳门特别行政区 财政政策 扩大出口 严肃查处 拓宽 强化 确保 外商投资 大多数 中央财政 1000 21 养老金 重复 金融危机 工程建设 金融机构 脱困 2000 国债 离退休 扩大内需 失业 严格执行 统一大业 台湾同胞 贯彻落实 三是 工作力度 有力 高度重视 认真落实 反腐败 招标 二是 十五 西部 服务业 创新 优势 2001 升级 传统产业 放在 高技术 科研院所 生态环境 战略性 积极探索 着力 因地制宜 培育 二要 战略目标 创新能力 世贸组织 退耕还林 农村税费 农民负担 发放 三个代表 加入 竞争力 足额 按时 尽快 政府职能 信息化 财政预算 行为 信息 总体 2002 主产区 重组 万亿元 产业化 不断加强 依法行政 万公里 三农 带动 亿美元 非典 公共卫生 非公有制 决策 农民工 统筹 调控 疫情 拖欠 监管 医疗卫生 补助 东北地区 合法权益 股份制 种粮 预防 自主 区域 基层 经济运行 发展观 和谐社会 群众利益 贫困家庭 2005 新进展 专项 法治 直接 生态建设 政策措施 减免 煤矿安全 许可法 十一五 服务体系 2006 标准 医疗 救助 国债资金 小康社会 知识产权 个省 公正 环保 用地 超收 稳步 减排 优化结构 节能降耗 污染 保护环境 集约 高于 四要 三要 土地 淘汰 房地产 政策性 违法 最低工资 农村金融 高污染 高耗能 产能 保险 五是 500 2007 更多地 新上 民生 养老保险 价格上涨 公共服务 家庭 成果 和谐 累计 市场准入 应对 两岸 重建 一是 平稳 中小企业 扶持 灾区 全面实施 灾后 参保 来自 挑战 同胞 生态 医药卫生 新型农村 出台 气候变化 外交 公益性 创业 中非 保障性 三网 专项资金 互利 财政支出 城镇居民 优先 十二五 城镇化 提升 2011 低收入 转移 覆盖 有序 4% 安居工程 小型 债务 微型 学前教育 增值税 大病 中小学 医保 营业税 人民币 融合 互联网 风险 2012 10 新农 改征 适度 结构性 扶贫开发 货币政策 公平 食品药品 居民消费 长远 冲击 经费支出 明显增强 坚实基础 诚挚 左右 万套 新型 贫困地区 2014 习近平 稳中 7.5% 构建 资本 经济带 领导人 协同 公开 简政放权 下放 打造 600 自贸区 化解 小微 海洋 定向 拓展 示范区 核准 新兴产业 大幅 区间 修订 谈判 清单 支付 危房改造 启动 大国 管理制度 低保 融资 动能 脱贫 供给 绿色 2020 棚户区 市场化 网络 高校 6.5% 自贸 80% 涉企 收费 补短 核心 双创 实干 减税 引领 督查 扎实 试验区 降费 问责 实体 文明 行动 精准 取消 转型
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+<span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">reports</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">wordset</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">txt</span> <span class="ow">in</span> <span class="n">reports</span><span class="p">:</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">txt</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">top1000</span><span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">textrank</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">topK</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ww</span> <span class="ow">in</span> <span class="n">top1000</span><span class="p">:</span>
+        <span class="n">word</span><span class="p">,</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">ww</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">wordset</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="n">year</span><span class="p">]</span><span class="o">+=</span> <span class="n">weight</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">word_weight</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">word_weight</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()))])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">word_weight</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span> <span class="o">=</span> <span class="kc">True</span> <span class="p">)</span>
+<span class="n">top50</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">word_weight</span><span class="p">[:</span><span class="mi">50</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">top50</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;发展 建设 经济 加强 企业 工作 改革 国家 人民 继续 社会主义 提高 社会 生产 农业 政府 制度 增加 推进 问题 促进 增长 加快 农村 方面 管理 进行 重点 坚持 全国 教育 市场 投资 完善 地区 工业 支持 政策 中国 实行 计划 文化 生活 扩大 实现 基本 改善 建立 群众 技术&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plotEvolution</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">linestyle</span><span class="p">,</span> <span class="n">marker</span><span class="p">):</span>
+    <span class="n">cx</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">cx</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">cx</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">color</span> <span class="o">=</span> <span class="n">color</span><span class="p">,</span> 
+             <span class="n">linestyle</span><span class="o">=</span><span class="n">linestyle</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="n">word</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;词语重要性&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;民主&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;法制&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_90_0.png" src="_images/10-text-minning-gov-report_90_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;动能&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;互联网&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_91_0.png" src="_images/10-text-minning-gov-report_91_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;工业&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;农业&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;制造业&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;服务业&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_92_0.png" src="_images/10-text-minning-gov-report_92_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;教育&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;社会保障&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;医疗&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_93_0.png" src="_images/10-text-minning-gov-report_93_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;环境&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;住房&#39;</span><span class="p">,</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_94_0.png" src="_images/10-text-minning-gov-report_94_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;发展&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;经济&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;改革&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;创新&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_95_0.png" src="_images/10-text-minning-gov-report_95_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;社会主义&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;马克思主义&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_96_0.png" src="_images/10-text-minning-gov-report_96_0.png" />
+</div>
+</div>
+<p><img alt="image.png" src="_images/end1.png" /></p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="09-12-hand-written-digits.html" title="previous page">Recognizing Hand-Written Digits with Neural Networks</a>
+    <a class='right-next' id="next-link" href="10-word2vec.html" title="next page">词向量模型简介</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

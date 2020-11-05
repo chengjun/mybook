@@ -1,0 +1,1891 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>第五章 统计思维 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Linear algebra" href="08-02-linear-algebra.html" />
+    <link rel="prev" title="使用Pandas进行数据清洗" href="06-data-cleaning-pandas.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   第五章 统计思维
+  </a>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-02-linear-algebra.html">
+     Linear algebra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-03-distributions.html">
+     Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-03-probability.html">
+     Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-04-hypothesis-inference.html">
+     Statistical Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-05-gradient-descent.html">
+     Introduction to Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-06-regression.html">
+     Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-06-statsmodels.html">
+     Statistical Modeling with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-07-analyzing-titanic-dataset.html">
+     Logistic Regression of Titanic Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-07-covid19-pew-survey.html">
+     Analysing the Pew Survey Data of COVID19
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-08-covid19-grangercausality.html">
+     社交媒体可以预测新冠疫情吗？
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/08-01-statistics-thinking.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/ebook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/ebook/issues/new?title=Issue%20on%20page%20%2F08-01-statistics-thinking.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/ebook/master?urlpath=tree/docs/08-01-statistics-thinking.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plato-typological-thinking">
+   Plato &amp; Typological Thinking
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#social-physics-taking-physics-as-a-role-model">
+     Social Physics: Taking Physics as a Role Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#population-thinking">
+   <strong>
+    Population Thinking
+   </strong>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     本体论： 世界的本质
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     认识论： 人类知识的起源、本质、方法及局限
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     方法论： 使用什么方法
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#three-basic-principles-of-social-science-research">
+     Three Basic Principles of Social Science Research
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#statistics-for-describing-data">
+   Statistics for Describing Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distribution-and-histogram">
+     Distribution and Histogram
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#from-max-to-min">
+     From Max to Min
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mean-median-mode-and-quantile">
+     Mean, Median, Mode, and Quantile
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variance-and-standard-deviation">
+     Variance and Standard Deviation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#covariance-correlation-and-scatter-plot">
+     Covariance, Correlation, and Scatter Plot
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-analysis">
+     Regression Analysis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#t">
+     比较均值：T检验
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#one-way-anova">
+     单因素方差分析（one-way ANOVA）
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-way-anova">
+     Two-way ANOVA
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-chi-squared-test">
+     卡方检验 A chi-squared test
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#chi-square-formula">
+     Chi-Square Formula
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>第五章 统计思维<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><img alt="image.png" src="_images/author.png" /></p>
+<p><img alt="" src="_images/preface2.png" /></p>
+<ol class="simple">
+<li><p>Introduction</p></li>
+<li><p>A Crash Course in Python</p></li>
+<li><p>Visualizing Data</p></li>
+<li><p>Linear Algebra</p></li>
+<li><p>Statistics</p></li>
+<li><p>Probability</p></li>
+<li><p>Hypothesis and Inference</p></li>
+<li><p>Gradient Descent</p></li>
+</ol>
+<a class="reference internal image-reference" href="_images/school.png"><img alt="_images/school.png" src="_images/school.png" style="width: 800px;" /></a>
+<p><strong>The School of Athens</strong> by Raphael (1509–1510), fresco at the Apostolic Palace, Vatican City. https://en.wikipedia.org/wiki/Platonic_Academy</p>
+<a class="reference internal image-reference" href="_images/socrats2.png"><img alt="_images/socrats2.png" src="_images/socrats2.png" style="width: 800px;" /></a>
+<p>The School of Athens by Raphael (1509–1510), fresco at the Apostolic Palace, Vatican City. https://en.wikipedia.org/wiki/Platonic_Academy</p>
+<a class="reference internal image-reference" href="_images/plato.jpg"><img alt="_images/plato.jpg" class="align-right" src="_images/plato.jpg" style="width: 150px;" /></a>
+<div class="section" id="plato-typological-thinking">
+<h2>Plato &amp; Typological Thinking<a class="headerlink" href="#plato-typological-thinking" title="Permalink to this headline">¶</a></h2>
+<p>Pythagoras held that</p>
+<ul class="simple">
+<li><p>all things are number</p></li>
+<li><p>the cosmos comes from numerical principles.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">theory</span> <span class="pre">of</span> <span class="pre">Forms</span></code> or <code class="docutils literal notranslate"><span class="pre">theory</span> <span class="pre">of</span> <span class="pre">Ideas</span></code> is a philosophical theory, concept, or world-view, attributed to Plato, that the <code class="docutils literal notranslate"><span class="pre">physical</span> <span class="pre">world</span></code> is not as real or true as timeless, absolute, unchangeable <code class="docutils literal notranslate"><span class="pre">ideas</span></code>.</p>
+<a class="reference internal image-reference" href="_images/plato2.png"><img alt="_images/plato2.png" class="align-right" src="_images/plato2.png" style="width: 150px;" /></a>
+<p>The physical world of becoming is an imitation of the mathematical world of being.</p>
+<ul class="simple">
+<li><p>the realm of being 本质世界(理念世界)</p>
+<ul>
+<li><p>perfect, eternal, and changeless forms,</p></li>
+</ul>
+</li>
+<li><p>sensible world of becoming  现实世界</p>
+<ul>
+<li><p>imperfect</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="social-physics-taking-physics-as-a-role-model">
+<h3>Social Physics: Taking Physics as a Role Model<a class="headerlink" href="#social-physics-taking-physics-as-a-role-model" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>French social thinker <strong>Henri de Saint-Simon</strong> 1803 described the idea of describing society using laws similar to those of the physical and biological sciences.</p></li>
+<li><p>His student and collaborator was <strong>Auguste Comte</strong>, a French philosopher, the founder of sociology, who first defined the term</p></li>
+</ul>
+<blockquote>
+<div><p>Social physics is that science which occupies itself with social phenomena, considered in the same light as astronomical, physical, chemical, and physiological phenomena, that is to say as being subject to <strong>natural and invariable laws</strong>, the discovery of which is the special object of its researches.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Computational Social Science</p></li>
+</ul>
+<p>https://en.wikipedia.org/wiki/Social_physics</p>
+<a class="reference internal image-reference" href="_images/Adolphe_Quételet.jpg"><img alt="_images/Adolphe_Quételet.jpg" class="align-right" src="_images/Adolphe_Quételet.jpg" style="width: 200px;" /></a>
+<p><strong>Lambert Adolphe Jacques Quetelet</strong> (1796-1874)
+introducing statistical methods to the social sciences in his book titled <strong>Essays on Social Physics</strong>,</p>
+<ul class="simple">
+<li><p>the concept of the “average man”</p></li>
+<li><p>characterized by the mean values</p></li>
+<li><p>follow a normal distribution.</p></li>
+<li><p>He collected data about many such variables.</p>
+<ul>
+<li><p>developed the body mass index scale</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><p>“His goal was to understand the statistical laws underlying such phenomena as crime rates, marriage rates or suicide rates. He wanted to explain the values of these variables by other social factors”.</p>
+</div></blockquote>
+<a class="reference internal image-reference" href="_images/darwin.jpg"><img alt="_images/darwin.jpg" class="align-right" src="_images/darwin.jpg" style="width: 200px;" /></a>
+</div>
+</div>
+<div class="section" id="population-thinking">
+<h2><strong>Population Thinking</strong><a class="headerlink" href="#population-thinking" title="Permalink to this headline">¶</a></h2>
+<p><strong>Charles Robert Darwin</strong> (12 February 1809 – 19 April 1882)</p>
+<blockquote>
+<div><p>favourable variations would make organisms better at surviving and passing the variations on to their offspring, while unfavourable variations would be lost.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Variation is the basis of natural seletion.</p></li>
+</ul>
+<blockquote>
+<div><p>在类型逻辑中平均数是主要的内容。在总体逻辑中重要的是差异，平均数只是总体的一个特征值，是探讨真实原因的手段，而不是原因本身。</p>
+</div></blockquote>
+<p>Statisticism  or Damn Lies</p>
+<p>“统计至上主义”天真地以为统计学是科学方法的完备基础。</p>
+<ul class="simple">
+<li><p>改进测量工具</p></li>
+<li><p>研究设计、概念化</p></li>
+</ul>
+<p>Duncan, O.D. 1984. Notes on Social Measurement, Historical and Critical. New York: Russell Sage Fundation, p.226.</p>
+<p>The Paradigm of Demography</p>
+<p>Otis Dudley Duncan (1921-2004) 确立一种新的学术传统</p>
+<ul class="simple">
+<li><p>蔑视模仿自然科学试图寻找普遍规律的做法；</p></li>
+<li><p>记录和理解真实人口中的经验模式是第一要务；</p></li>
+<li><p>变异是人类社会的本质。</p>
+<ul>
+<li><p>柏拉图：变异是对本质世界的拙劣复制。</p></li>
+</ul>
+</li>
+</ul>
+<a class="reference internal image-reference" href="_images/aristotle2.png"><img alt="_images/aristotle2.png" src="_images/aristotle2.png" style="width: 600px;" /></a>
+<p>The School of Athens by Raphael (1509–1510), fresco at the Apostolic Palace, Vatican City. https://en.wikipedia.org/wiki/Platonic_Academy</p>
+<a class="reference internal image-reference" href="_images/galton.jpg"><img alt="_images/galton.jpg" class="align-right" src="_images/galton.jpg" style="width: 200px;" /></a>
+<div class="section" id="id2">
+<h3>本体论： 世界的本质<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>“我认为自然科学是以“挖掘”本质的世界中的真理为最终目的，这也是其精华所在。而社会科学是以“了解”形成的世界为最终目的。历史上很多人想在社会科学领域找到一种真理，能够适用于各个方面，并且做过许多这方面的尝试。我认为社会科学不应该是这样的。在社会科学中，我们的目的是要了解现实世界，而不是去挖掘永恒的真理。这可能和你们的想象不一样。……既然差异是世界的本质，那差异就应该是研究的对象。” — 谢宇</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>高尔顿认为凯特莱的社会物理学用处不大，普通人不是万能的。</p>
+<ul>
+<li><p>左手入冰，右手入火，平均温度？</p></li>
+</ul>
+</li>
+<li><p>高尔顿说（社会）科学的探索必须关注变异和共变。</p>
+<ul>
+<li><p>variation &amp; Co-variation</p></li>
+</ul>
+</li>
+</ul>
+<p>The measurements have both</p>
+<ul class="simple">
+<li><p>a central tendency, or mean, and</p></li>
+<li><p>a spread around this central value, or variance.
+<img src = './img/stats/galton.jpg' width = '200px' align = 'right'></p>
+<ul>
+<li><p>In the late 1860s, Galton conceived of a measure to quantify normal variation:</p>
+<ul>
+<li><p>the <strong>standard deviation</strong>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>“Regression to mediocrity”</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>认识论： 人类知识的起源、本质、方法及局限<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>谢宇：“你到底能知道什么，你怎样认识世界。”</p>
+<ul class="simple">
+<li><p>自然科学追求永恒真理，关注典型现象；</p>
+<ul>
+<li><p>典型现象 &amp; 平均人</p></li>
+</ul>
+</li>
+<li><p>社会科学关注所有个案组成的总体的状况。</p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>方法论： 使用什么方法<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>谢宇：“社会科学之所以复杂，是因为我们运用的数据是通过观察所得，而观察所得的数据必然受到外来因素的影响，这些外来因素都可能解释你的数据。“</p>
+<ul class="simple">
+<li><p>自然科学使用实验来隔离外来因素的影响；</p></li>
+<li><p>“社会科学可以使用统计排除一些外来影响，但你不能排除所有的外来因素”。</p></li>
+</ul>
+</div>
+<div class="section" id="three-basic-principles-of-social-science-research">
+<h3>Three Basic Principles of Social Science Research<a class="headerlink" href="#three-basic-principles-of-social-science-research" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Variability Principle</p>
+<ul>
+<li><p>Social Grouping Principle</p>
+<ul>
+<li><p>Social Context Principle</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="statistics-for-describing-data">
+<h2>Statistics for Describing Data<a class="headerlink" href="#statistics-for-describing-data" title="Permalink to this headline">¶</a></h2>
+<p>The mathematics and techniques with which we understand data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;v_1 * w_1 + ... + v_n * w_n&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v_i</span> <span class="o">*</span> <span class="n">w_i</span> <span class="k">for</span> <span class="n">v_i</span><span class="p">,</span> <span class="n">w_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">sum_of_squares</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;v_1 * v_1 + ... + v_n * v_n&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">daily_minutes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">68.77</span><span class="p">,</span><span class="mf">51.25</span><span class="p">,</span><span class="mf">52.08</span><span class="p">,</span><span class="mf">38.36</span><span class="p">,</span><span class="mf">44.54</span><span class="p">,</span><span class="mf">57.13</span><span class="p">,</span>
+                 <span class="mf">51.4</span><span class="p">,</span><span class="mf">41.42</span><span class="p">,</span><span class="mf">31.22</span><span class="p">,</span><span class="mf">34.76</span><span class="p">,</span><span class="mf">54.01</span><span class="p">,</span><span class="mf">38.79</span><span class="p">,</span>
+                 <span class="mf">47.59</span><span class="p">,</span><span class="mf">49.1</span><span class="p">,</span><span class="mf">27.66</span><span class="p">,</span><span class="mf">41.03</span><span class="p">,</span><span class="mf">36.73</span><span class="p">,</span><span class="mf">48.65</span><span class="p">,</span><span class="mf">28.12</span><span class="p">,</span>
+                 <span class="mf">46.62</span><span class="p">,</span><span class="mf">35.57</span><span class="p">,</span><span class="mf">32.98</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mf">26.07</span><span class="p">,</span><span class="mf">23.77</span><span class="p">,</span><span class="mf">39.73</span><span class="p">,</span>
+                 <span class="mf">40.57</span><span class="p">,</span><span class="mf">31.65</span><span class="p">,</span><span class="mf">31.21</span><span class="p">,</span><span class="mf">36.32</span><span class="p">,</span><span class="mf">20.45</span><span class="p">,</span><span class="mf">21.93</span><span class="p">,</span><span class="mf">26.02</span><span class="p">,</span>
+                 <span class="mf">27.34</span><span class="p">,</span><span class="mf">23.49</span><span class="p">,</span><span class="mf">46.94</span><span class="p">,</span><span class="mf">30.5</span><span class="p">,</span><span class="mf">33.8</span><span class="p">,</span><span class="mf">24.23</span><span class="p">,</span><span class="mf">21.4</span><span class="p">,</span><span class="mf">27.94</span><span class="p">,</span>
+                 <span class="mf">32.24</span><span class="p">,</span><span class="mf">40.57</span><span class="p">,</span><span class="mf">25.07</span><span class="p">,</span><span class="mf">19.42</span><span class="p">,</span><span class="mf">22.39</span><span class="p">,</span><span class="mf">18.42</span><span class="p">,</span><span class="mf">46.96</span><span class="p">,</span><span class="mf">23.72</span><span class="p">,</span>
+                 <span class="mf">26.41</span><span class="p">,</span><span class="mf">26.97</span><span class="p">,</span><span class="mf">36.76</span><span class="p">,</span><span class="mf">40.32</span><span class="p">,</span><span class="mf">35.02</span><span class="p">,</span><span class="mf">29.47</span><span class="p">,</span><span class="mf">30.2</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span>
+                 <span class="mf">38.11</span><span class="p">,</span><span class="mf">38.18</span><span class="p">,</span><span class="mf">36.31</span><span class="p">,</span><span class="mf">21.03</span><span class="p">,</span><span class="mf">30.86</span><span class="p">,</span><span class="mf">36.07</span><span class="p">,</span><span class="mf">28.66</span><span class="p">,</span>
+                 <span class="mf">29.08</span><span class="p">,</span><span class="mf">37.28</span><span class="p">,</span><span class="mf">15.28</span><span class="p">,</span><span class="mf">24.17</span><span class="p">,</span><span class="mf">22.31</span><span class="p">,</span><span class="mf">30.17</span><span class="p">,</span><span class="mf">25.53</span><span class="p">,</span>
+                 <span class="mf">19.85</span><span class="p">,</span><span class="mf">35.37</span><span class="p">,</span><span class="mf">44.6</span><span class="p">,</span><span class="mf">17.23</span><span class="p">,</span><span class="mf">13.47</span><span class="p">,</span><span class="mf">26.33</span><span class="p">,</span><span class="mf">35.02</span><span class="p">,</span>
+                 <span class="mf">32.09</span><span class="p">,</span><span class="mf">24.81</span><span class="p">,</span><span class="mf">19.33</span><span class="p">,</span><span class="mf">28.77</span><span class="p">,</span><span class="mf">24.26</span><span class="p">,</span><span class="mf">31.98</span><span class="p">,</span><span class="mf">25.73</span><span class="p">,</span>
+                 <span class="mf">24.86</span><span class="p">,</span><span class="mf">16.28</span><span class="p">,</span><span class="mf">34.51</span><span class="p">,</span><span class="mf">15.23</span><span class="p">,</span><span class="mf">39.72</span><span class="p">,</span><span class="mf">40.8</span><span class="p">,</span><span class="mf">26.06</span><span class="p">,</span>
+                 <span class="mf">35.76</span><span class="p">,</span><span class="mf">34.76</span><span class="p">,</span><span class="mf">16.13</span><span class="p">,</span><span class="mf">44.04</span><span class="p">,</span><span class="mf">18.03</span><span class="p">,</span><span class="mf">19.65</span><span class="p">,</span><span class="mf">32.62</span><span class="p">,</span>
+                 <span class="mf">35.59</span><span class="p">,</span><span class="mf">39.43</span><span class="p">,</span><span class="mf">14.18</span><span class="p">,</span><span class="mf">35.24</span><span class="p">,</span><span class="mf">40.13</span><span class="p">,</span><span class="mf">41.82</span><span class="p">,</span><span class="mf">35.45</span><span class="p">,</span>
+                 <span class="mf">36.07</span><span class="p">,</span><span class="mf">43.67</span><span class="p">,</span><span class="mf">24.61</span><span class="p">,</span><span class="mf">20.9</span><span class="p">,</span><span class="mf">21.9</span><span class="p">,</span><span class="mf">18.79</span><span class="p">,</span><span class="mf">27.61</span><span class="p">,</span><span class="mf">27.21</span><span class="p">,</span>
+                 <span class="mf">26.61</span><span class="p">,</span><span class="mf">29.77</span><span class="p">,</span><span class="mf">20.59</span><span class="p">,</span><span class="mf">27.53</span><span class="p">,</span><span class="mf">13.82</span><span class="p">,</span><span class="mf">33.2</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mf">33.1</span><span class="p">,</span><span class="mf">36.65</span><span class="p">,</span>
+                 <span class="mf">18.63</span><span class="p">,</span><span class="mf">14.87</span><span class="p">,</span><span class="mf">22.2</span><span class="p">,</span><span class="mf">36.81</span><span class="p">,</span><span class="mf">25.53</span><span class="p">,</span><span class="mf">24.62</span><span class="p">,</span><span class="mf">26.25</span><span class="p">,</span><span class="mf">18.21</span><span class="p">,</span>
+                 <span class="mf">28.08</span><span class="p">,</span><span class="mf">19.42</span><span class="p">,</span><span class="mf">29.79</span><span class="p">,</span><span class="mf">32.8</span><span class="p">,</span><span class="mf">35.99</span><span class="p">,</span><span class="mf">28.32</span><span class="p">,</span><span class="mf">27.79</span><span class="p">,</span><span class="mf">35.88</span><span class="p">,</span><span class="mf">29.06</span><span class="p">,</span>
+                 <span class="mf">36.28</span><span class="p">,</span><span class="mf">14.1</span><span class="p">,</span><span class="mf">36.63</span><span class="p">,</span><span class="mf">37.49</span><span class="p">,</span><span class="mf">26.9</span><span class="p">,</span><span class="mf">18.58</span><span class="p">,</span><span class="mf">38.48</span><span class="p">,</span><span class="mf">24.48</span><span class="p">,</span>
+                 <span class="mf">18.95</span><span class="p">,</span><span class="mf">33.55</span><span class="p">,</span><span class="mf">14.24</span><span class="p">,</span><span class="mf">29.04</span><span class="p">,</span><span class="mf">32.51</span><span class="p">,</span><span class="mf">25.63</span><span class="p">,</span><span class="mf">22.22</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span>
+                 <span class="mf">32.73</span><span class="p">,</span><span class="mf">15.16</span><span class="p">,</span><span class="mf">13.9</span><span class="p">,</span><span class="mf">27.2</span><span class="p">,</span><span class="mf">32.01</span><span class="p">,</span><span class="mf">29.27</span><span class="p">,</span><span class="mi">33</span><span class="p">,</span><span class="mf">13.74</span><span class="p">,</span><span class="mf">20.42</span><span class="p">,</span>
+                 <span class="mf">27.32</span><span class="p">,</span><span class="mf">18.23</span><span class="p">,</span><span class="mf">35.35</span><span class="p">,</span><span class="mf">28.48</span><span class="p">,</span><span class="mf">9.08</span><span class="p">,</span><span class="mf">24.62</span><span class="p">,</span><span class="mf">20.12</span><span class="p">,</span><span class="mf">35.26</span><span class="p">,</span>
+                 <span class="mf">19.92</span><span class="p">,</span><span class="mf">31.02</span><span class="p">,</span><span class="mf">16.49</span><span class="p">,</span><span class="mf">12.16</span><span class="p">,</span><span class="mf">30.7</span><span class="p">,</span><span class="mf">31.22</span><span class="p">,</span><span class="mf">34.65</span><span class="p">,</span><span class="mf">13.13</span><span class="p">,</span>
+                 <span class="mf">27.51</span><span class="p">,</span><span class="mf">33.2</span><span class="p">,</span><span class="mf">31.57</span><span class="p">,</span><span class="mf">14.1</span><span class="p">,</span><span class="mf">33.42</span><span class="p">,</span><span class="mf">17.44</span><span class="p">,</span><span class="mf">10.12</span><span class="p">,</span><span class="mf">24.42</span><span class="p">,</span>
+                 <span class="mf">9.82</span><span class="p">,</span><span class="mf">23.39</span><span class="p">,</span><span class="mf">30.93</span><span class="p">,</span><span class="mf">15.03</span><span class="p">,</span><span class="mf">21.67</span><span class="p">,</span><span class="mf">31.09</span><span class="p">,</span><span class="mf">33.29</span><span class="p">,</span><span class="mf">22.61</span><span class="p">,</span>
+                 <span class="mf">26.89</span><span class="p">,</span><span class="mf">23.48</span><span class="p">,</span><span class="mf">8.38</span><span class="p">,</span><span class="mf">27.81</span><span class="p">,</span><span class="mf">32.35</span><span class="p">,</span><span class="mf">23.84</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_friends</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">49</span><span class="p">,</span><span class="mi">41</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span>
+               <span class="mi">18</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span>
+               <span class="mi">13</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span>
+               <span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span>
+               <span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span>
+               <span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span>
+               <span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span>
+               <span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span>
+               <span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span>
+               <span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span>
+               <span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span>
+               <span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span>
+               <span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span>
+               <span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span>
+               <span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="distribution-and-histogram">
+<h3>Distribution and Histogram<a class="headerlink" href="#distribution-and-histogram" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">daily_minutes</span><span class="p">))</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">69</span><span class="p">)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[</span><span class="n">time_counts</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">69</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">14</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Histogram of Time Counts&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;# of Time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# of people&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-01-statistics-thinking_23_0.png" src="_images/08-01-statistics-thinking_23_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">friend_counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">num_friends</span><span class="p">)</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="p">[</span><span class="n">friend_counts</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">25</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Histogram of Friend Counts&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;# of friends&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# of people&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-01-statistics-thinking_24_0.png" src="_images/08-01-statistics-thinking_24_0.png" />
+</div>
+</div>
+<p>We can also draw them with <code class="docutils literal notranslate"><span class="pre">plt.hist</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">daily_minutes</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Daily minutes&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-01-statistics-thinking_26_0.png" src="_images/08-01-statistics-thinking_26_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;# of friends&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-01-statistics-thinking_27_0.png" src="_images/08-01-statistics-thinking_27_0.png" />
+</div>
+</div>
+<p>Unfortunately, this chart is still too difficult to interpret.</p>
+<ul class="simple">
+<li><p>So you start generating some statistics.</p></li>
+</ul>
+</div>
+<div class="section" id="from-max-to-min">
+<h3>From Max to Min<a class="headerlink" href="#from-max-to-min" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_points</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_friends</span><span class="p">)</span>               <span class="c1"># 204</span>
+
+<span class="n">largest_value</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">num_friends</span><span class="p">)</span>            <span class="c1"># 100</span>
+<span class="n">smallest_value</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">num_friends</span><span class="p">)</span>           <span class="c1"># 1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">num_points</span><span class="p">,</span> <span class="n">largest_value</span><span class="p">,</span> <span class="n">smallest_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>204 100 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sorted_values</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">num_friends</span><span class="p">)</span>
+<span class="n">smallest_value</span> <span class="o">=</span> <span class="n">sorted_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>           <span class="c1"># 1</span>
+
+<span class="n">second_smallest_value</span> <span class="o">=</span> <span class="n">sorted_values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>    <span class="c1"># 1</span>
+<span class="n">second_largest_value</span> <span class="o">=</span> <span class="n">sorted_values</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>    <span class="c1"># 49</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mean-median-mode-and-quantile">
+<h3>Mean, Median, Mode, and Quantile<a class="headerlink" href="#mean-median-mode-and-quantile" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean(num_friends)&quot;</span><span class="p">,</span> <span class="n">mean</span><span class="p">(</span><span class="n">num_friends</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mean(num_friends) 7.333333333333333
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">num_friends</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.333333333333333
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">median</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;finds the &#39;middle-most&#39; value of v&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="n">sorted_v</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="n">midpoint</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="mi">2</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># if odd, return the middle value</span>
+        <span class="k">return</span> <span class="n">sorted_v</span><span class="p">[</span><span class="n">midpoint</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># if even, return the average of the middle values</span>
+        <span class="n">lo</span> <span class="o">=</span> <span class="n">midpoint</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">hi</span> <span class="o">=</span> <span class="n">midpoint</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">sorted_v</span><span class="p">[</span><span class="n">lo</span><span class="p">]</span> <span class="o">+</span> <span class="n">sorted_v</span><span class="p">[</span><span class="n">hi</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;median(num_friends)&quot;</span><span class="p">,</span> <span class="n">median</span><span class="p">(</span><span class="n">num_friends</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>median(num_friends) 6.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">num_friends</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;returns the pth-percentile value in x&quot;&quot;&quot;</span>
+    <span class="n">p_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="n">p_index</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;quantile(num_friends, 0.10)&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;quantile(num_friends, 0.25)&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;quantile(num_friends, 0.50)&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="mf">0.50</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;quantile(num_friends, 0.75)&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;quantile(num_friends, 0.90)&quot;</span><span class="p">,</span> <span class="n">quantile</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="mf">0.90</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>quantile(num_friends, 0.10) 1
+quantile(num_friends, 0.25) 3
+quantile(num_friends, 0.50) 6
+quantile(num_friends, 0.75) 9
+quantile(num_friends, 0.90) 13
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mode</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;returns a list, might be more than one mode&quot;&quot;&quot;</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">max_count</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">x_i</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="n">max_count</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mode(num_friends)&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="p">(</span><span class="n">num_friends</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mode(num_friends) [6, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">num_friends</span><span class="p">))</span>
+<span class="c1"># Only the first occurrence is returned.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">num_friends</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0, 22, 17, 20, 20, 17, 22, 15, 13, 18, 15,  1,  2,  4,  2,  4,  1,
+        0,  2,  2,  0,  2,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  1,  1,  0,  0,  0,  0,  0,  0,  0,  1,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="n">stats</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ModeResult(mode=array([1]), count=array([22]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">data_range</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;data_range(num_friends)&quot;</span><span class="p">,</span> <span class="n">data_range</span><span class="p">(</span><span class="n">num_friends</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data_range(num_friends) 99
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">interquartile_range</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">)</span> <span class="o">-</span> <span class="n">quantile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;interquartile_range(num_friends)&quot;</span><span class="p">,</span> <span class="n">interquartile_range</span><span class="p">(</span><span class="n">num_friends</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>interquartile_range(num_friends) 6
+</pre></div>
+</div>
+</div>
+</div>
+<a class="reference internal image-reference" href="_images/boxplot.png"><img alt="_images/boxplot.png" src="_images/boxplot.png" style="width: 600px;" /></a>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;ticks&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;pastel&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">daily_minutes</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-01-statistics-thinking_51_0.png" src="_images/08-01-statistics-thinking_51_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;ticks&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;pastel&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">num_friends</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-01-statistics-thinking_52_0.png" src="_images/08-01-statistics-thinking_52_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="variance-and-standard-deviation">
+<h3>Variance and Standard Deviation<a class="headerlink" href="#variance-and-standard-deviation" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\sigma = \sqrt{\frac{\sum_{i=1}^N (x_i - \overline{x})^2}{N-1} }\]</div>
+<div class="math notranslate nohighlight">
+\[\sigma ^ 2 = \frac{\sum_{i=1}^N (x_i - \overline{x})^2}{N-1} \]</div>
+<p><a class="reference external" href="https://blog.csdn.net/hearthougan/article/details/77859173">样本方差为何除以n-1?</a></p>
+<p><img alt="" src="_images/variance.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">de_mean</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;translate x by subtracting its mean </span>
+<span class="sd">    so the result has mean 0&quot;&quot;&quot;</span>
+    <span class="n">x_bar</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">x_i</span> <span class="o">-</span> <span class="n">x_bar</span> <span class="k">for</span> <span class="n">x_i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">variance</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;assumes x has at least two elements&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">deviations</span> <span class="o">=</span> <span class="n">de_mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sum_of_squares</span><span class="p">(</span><span class="n">deviations</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;variance(num_friends)&quot;</span><span class="p">,</span> <span class="n">variance</span><span class="p">(</span><span class="n">num_friends</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>variance(num_friends) 81.54351395730716
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">num_friends</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>81.14379084967321
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">standard_deviation</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;standard_deviation(num_friends)&quot;</span><span class="p">,</span> <span class="n">standard_deviation</span><span class="p">(</span><span class="n">num_friends</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>standard_deviation(num_friends) 9.03014473623248
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">num_friends</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.007984838446012
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="covariance-correlation-and-scatter-plot">
+<h3>Covariance, Correlation, and Scatter Plot<a class="headerlink" href="#covariance-correlation-and-scatter-plot" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matplotlib</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="n">daily_minutes</span><span class="p">,</span> 
+            <span class="n">alpha</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;number of friends&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;daily minutes&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;outliers&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-01-statistics-thinking_61_0.png" src="_images/08-01-statistics-thinking_61_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="n">daily_minutes</span><span class="p">,</span> 
+                  <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;kde&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-01-statistics-thinking_62_0.png" src="_images/08-01-statistics-thinking_62_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">covariance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dot</span><span class="p">(</span><span class="n">de_mean</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">de_mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;covariance(num_friends, daily_minutes)&quot;</span><span class="p">,</span> <span class="n">covariance</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="n">daily_minutes</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>covariance(num_friends, daily_minutes) 22.425435139573064
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="n">daily_minutes</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 81.54351396,  22.42543514],
+       [ 22.42543514, 100.78589895]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">correlation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">stdev_x</span> <span class="o">=</span> <span class="n">standard_deviation</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">stdev_y</span> <span class="o">=</span> <span class="n">standard_deviation</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">stdev_x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">stdev_y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">covariance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">stdev_x</span> <span class="o">/</span> <span class="n">stdev_y</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span> <span class="c1"># if no variation, correlation is zero</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;correlation(num_friends, daily_minutes)&quot;</span><span class="p">,</span> <span class="n">correlation</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="n">daily_minutes</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>correlation(num_friends, daily_minutes) 0.24736957366478218
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;ticks&quot;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;pastel&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">num_friends</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">daily_minutes</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-01-statistics-thinking_66_0.png" src="_images/08-01-statistics-thinking_66_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="n">daily_minutes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.        , 0.24736957],
+       [0.24736957, 1.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>   
+  
+<span class="n">pearsonr</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="n">daily_minutes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.24736957366478224, 0.0003610473973450633)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outlier</span> <span class="o">=</span> <span class="n">num_friends</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># index of outlier</span>
+
+<span class="n">num_friends_good</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span>
+                    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">num_friends</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">outlier</span><span class="p">]</span>
+
+<span class="n">daily_minutes_good</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span>
+                      <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">daily_minutes</span><span class="p">)</span>
+                      <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">outlier</span><span class="p">]</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;correlation(num_friends_good, daily_minutes_good)&quot;</span><span class="p">,</span> \
+      <span class="n">correlation</span><span class="p">(</span><span class="n">num_friends_good</span><span class="p">,</span> <span class="n">daily_minutes_good</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>correlation(num_friends_good, daily_minutes_good) 0.5736792115665573
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="regression-analysis">
+<h3>Regression Analysis<a class="headerlink" href="#regression-analysis" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">r_value</span><span class="p">,</span> <span class="n">p_value</span><span class="p">,</span> <span class="n">std_err</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">num_friends_good</span><span class="p">,</span><span class="n">daily_minutes_good</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">r_value</span><span class="p">,</span> <span class="n">p_value</span><span class="p">)</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">num_friends_good</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># plotting the line</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+<span class="n">y_fit</span> <span class="o">=</span> <span class="n">slope</span><span class="o">*</span><span class="n">xi</span><span class="o">+</span><span class="n">intercept</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span><span class="n">daily_minutes</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">y_fit</span><span class="p">,</span><span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$Linear\,Fit$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x_i$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">numpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9038659456058652 22.947552413469026 0.5736792115665575 3.676825862770313e-19
+</pre></div>
+</div>
+<img alt="_images/08-01-statistics-thinking_71_1.png" src="_images/08-01-statistics-thinking_71_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="t">
+<h3>比较均值：T检验<a class="headerlink" href="#t" title="Permalink to this headline">¶</a></h3>
+<p><img alt="image.png" src="_images/end2.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">income_male</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1500</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="mi">2500</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">3500</span><span class="p">]</span>
+<span class="n">income_female</span><span class="o">=</span><span class="p">[</span><span class="mi">6000</span><span class="p">,</span> <span class="mi">6200</span><span class="p">,</span> <span class="mi">7000</span><span class="p">,</span> <span class="mi">7100</span><span class="p">,</span> <span class="mi">9000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">12000</span><span class="p">]</span>
+<span class="n">income_male_median</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">income_male</span><span class="p">)</span>
+<span class="n">income_female_median</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">income_female</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">income_male_median</span><span class="p">,</span> <span class="n">income_female_median</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2750.0 7100.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the boxplot to see</span>
+<span class="c1"># minimum value, 25%,50%,75% percentile, maximum value</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">([</span><span class="n">income_male</span><span class="p">,</span> <span class="n">income_female</span><span class="p">],</span> <span class="c1"># meanline=True,showmeans=True,</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$male$&#39;</span><span class="p">,</span> <span class="s1">&#39;$female$&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-01-statistics-thinking_74_0.png" src="_images/08-01-statistics-thinking_74_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">income_male</span><span class="p">,</span> <span class="n">income_female</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_indResult(statistic=-5.757056463981614, pvalue=6.631425817426509e-05)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="one-way-anova">
+<h3>单因素方差分析（one-way ANOVA）<a class="headerlink" href="#one-way-anova" title="Permalink to this headline">¶</a></h3>
+<p>ANOVA: Analysis of Variance</p>
+<p>假设：有k组实验数据，彼此之间相互独立且服从正态分布，均值分别为<span class="math notranslate nohighlight">\(\mu_1,\mu_2,...\mu_k\)</span>，方差都为<span class="math notranslate nohighlight">\(\sigma^2\)</span></p>
+<ul class="simple">
+<li><p>H0:假设两组或者多组数据之间有相同的均值</p></li>
+<li><p>H1:至少有两个均值不相等</p></li>
+</ul>
+<p><img alt="image.png" src="_images/chi2.png" /></p>
+<p>https://en.wikipedia.org/wiki/One-way_analysis_of_variance</p>
+<p>Consider an experiment to study the effect of three different levels of a factor on a response (e.g. three levels of a fertilizer on plant growth). If we had 6 observations for each level, we could write the outcome of the experiment in a table like this, where a1, a2, and a3 are the three levels of the factor being studied.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a1</span>	<span class="n">a2</span>	<span class="n">a3</span>
+<span class="mi">6</span>	<span class="mi">8</span>	<span class="mi">13</span>
+<span class="mi">8</span>	<span class="mi">12</span>	<span class="mi">9</span>
+<span class="mi">4</span>	<span class="mi">9</span>	<span class="mi">11</span>
+<span class="mi">5</span>	<span class="mi">11</span>	<span class="mi">8</span>
+<span class="mi">3</span>	<span class="mi">6</span>	<span class="mi">7</span>
+<span class="mi">4</span>	<span class="mi">8</span>	<span class="mi">12</span>
+</pre></div>
+</div>
+<p>The null hypothesis, denoted H0, for the overall F-test for this experiment would be that all three levels of the factor produce the same response, on average.</p>
+<p>To calculate the F-ratio:</p>
+<p>Step 1: Calculate the mean within each group:</p>
+<p>\begin{aligned}{\overline {Y}}<em>{1}&amp;={\frac {1}{6}}\sum Y</em>{1i}={\frac {6+8+4+5+3+4}{6}}=5\{\overline {Y}}<em>{2}&amp;={\frac {1}{6}}\sum Y</em>{2i}={\frac {8+12+9+11+6+8}{6}}=9\{\overline {Y}}<em>{3}&amp;={\frac {1}{6}}\sum Y</em>{3i}={\frac {13+9+11+8+7+12}{6}}=10\end{aligned}</p>
+<p>Step 2: Calculate the overall mean:
+<span class="math notranslate nohighlight">\(\overline{Y}=\frac{\sum _{i} \overline{Y_i}}{a}=\frac {\overline{Y_1}+\overline{Y_2}+\overline{Y_3}}{a}=\frac {5+9+10}{3}=8\)</span> where a is the number of groups.</p>
+<p>Step 3: Calculate the “between-group” sum of squared differences:</p>
+<p>\begin{aligned}S_{B}&amp;=n({\overline {Y}}<em>{1}-{\overline {Y}})^{2}+n({\overline {Y}}</em>{2}-{\overline {Y}})^{2}+n({\overline {Y}}_{3}-{\overline {Y}})^{2}\[8pt]&amp;=6(5-8)^{2}+6(9-8)^{2}+6(10-8)^{2}=84\end{aligned}</p>
+<p>where n is the number of data values per group.</p>
+<p>The between-group degrees of freedom is one less than the number of groups <span class="math notranslate nohighlight">\(f_{b}=3-1=2\)</span></p>
+<p>The between-group mean square value is
+<span class="math notranslate nohighlight">\(MS_{B}=84/2=42\)</span></p>
+<p>Step 4: Calculate the “within-group” sum of squares. Begin by centering the data in each group</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>a1	a2	a3
+6−5=1	8−9=−1	13−10=3
+8−5=3	12−9=3	9−10=−1
+4−5=−1	9−9=0	11−10=1
+5−5=0	11−9=2	8−10=−2
+3−5=−2	6−9=−3	7−10=−3
+4−5=−1	8−9=−1	12−10=2
+</pre></div>
+</div>
+<p>The within-group sum of squares:</p>
+<p>\begin{aligned}S_{W}=&amp;(1)^{2}+(3)^{2}+(-1)^{2}+(0)^{2}+(-2)^{2}+(-1)^{2}+\&amp;(-1)^{2}+(3)^{2}+(0)^{2}+(2)^{2}+(-3)^{2}+(-1)^{2}+\&amp;(3)^{2}+(-1)^{2}+(1)^{2}+(-2)^{2}+(-3)^{2}+(2)^{2}= 68\end{aligned}</p>
+<p>The within-group degrees of freedom is</p>
+<p><span class="math notranslate nohighlight">\(f_{W}=a(n-1)=3(6-1)=15\)</span></p>
+<p>Thus the within-group mean square value is</p>
+<p><span class="math notranslate nohighlight">\(MS_{W}=S_{W}/f_{W}=68/15\approx 4.5\)</span></p>
+<p>Step 5: The F-ratio is</p>
+<p><span class="math notranslate nohighlight">\( F={\frac {MS_{B}}{MS_{W}}}\approx 42/4.5\approx 9.3\)</span></p>
+<p><span class="math notranslate nohighlight">\(F_{crit}(2,15) = 3.68\)</span> at α = 0.05. The results are significant at the 5% significance level.</p>
+<p><img alt="image.png" src="_images/anova.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="n">a3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+
+<span class="n">f</span><span class="p">,</span><span class="n">p</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">f_oneway</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.264705882352942 0.0023987773293929083
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 5个地方的蚌壳长度的均值是否都一样呢？</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="n">tillamook</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0571</span><span class="p">,</span> <span class="mf">0.0813</span><span class="p">,</span> <span class="mf">0.0831</span><span class="p">,</span> <span class="mf">0.0976</span><span class="p">,</span> <span class="mf">0.0817</span><span class="p">,</span> <span class="mf">0.0859</span><span class="p">,</span> <span class="mf">0.0735</span><span class="p">,</span> <span class="mf">0.0659</span><span class="p">,</span> <span class="mf">0.0923</span><span class="p">,</span> <span class="mf">0.0836</span><span class="p">]</span>
+<span class="n">newport</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0873</span><span class="p">,</span> <span class="mf">0.0662</span><span class="p">,</span> <span class="mf">0.0672</span><span class="p">,</span> <span class="mf">0.0819</span><span class="p">,</span> <span class="mf">0.0749</span><span class="p">,</span> <span class="mf">0.0649</span><span class="p">,</span> <span class="mf">0.0835</span><span class="p">,</span><span class="mf">0.0725</span><span class="p">]</span>
+<span class="n">petersburg</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0974</span><span class="p">,</span> <span class="mf">0.1352</span><span class="p">,</span> <span class="mf">0.0817</span><span class="p">,</span> <span class="mf">0.1016</span><span class="p">,</span> <span class="mf">0.0968</span><span class="p">,</span> <span class="mf">0.1064</span><span class="p">,</span> <span class="mf">0.105</span><span class="p">]</span>
+<span class="n">magadan</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1033</span><span class="p">,</span> <span class="mf">0.0915</span><span class="p">,</span> <span class="mf">0.0781</span><span class="p">,</span> <span class="mf">0.0685</span><span class="p">,</span> <span class="mf">0.0677</span><span class="p">,</span> <span class="mf">0.0697</span><span class="p">,</span> <span class="mf">0.0764</span><span class="p">,</span> <span class="mf">0.0689</span><span class="p">]</span>
+<span class="n">tvarminne</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0703</span><span class="p">,</span> <span class="mf">0.1026</span><span class="p">,</span> <span class="mf">0.0956</span><span class="p">,</span> <span class="mf">0.0973</span><span class="p">,</span> <span class="mf">0.1039</span><span class="p">,</span> <span class="mf">0.1045</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">([</span><span class="n">tillamook</span><span class="p">,</span> <span class="n">newport</span><span class="p">,</span> <span class="n">petersburg</span><span class="p">,</span> <span class="n">magadan</span><span class="p">,</span> <span class="n">tvarminne</span><span class="p">],</span> <span class="c1"># meanline=True,showmeans=True,</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tillamook&#39;</span><span class="p">,</span> <span class="s1">&#39;newport&#39;</span><span class="p">,</span> <span class="s1">&#39;petersburg&#39;</span><span class="p">,</span> <span class="s1">&#39;magadan&#39;</span><span class="p">,</span> <span class="s1">&#39;tvarminne&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-01-statistics-thinking_85_0.png" src="_images/08-01-statistics-thinking_85_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span><span class="n">p</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">f_oneway</span><span class="p">(</span><span class="n">tillamook</span><span class="p">,</span> <span class="n">newport</span><span class="p">,</span> <span class="n">petersburg</span><span class="p">,</span> <span class="n">magadan</span><span class="p">,</span> <span class="n">tvarminne</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.121019471642447 0.0002812242314534544
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">ols</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.anova</span> <span class="kn">import</span> <span class="n">anova_lm</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tillamook&#39;</span><span class="p">,</span> <span class="s1">&#39;newport&#39;</span><span class="p">,</span> <span class="s1">&#39;petersburg&#39;</span><span class="p">,</span> <span class="s1">&#39;magadan&#39;</span><span class="p">,</span> <span class="s1">&#39;tvarminne&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">tillamook</span><span class="p">,</span> <span class="n">newport</span><span class="p">,</span> <span class="n">petersburg</span><span class="p">,</span> <span class="n">magadan</span><span class="p">,</span> <span class="n">tvarminne</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">labels</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="n">j</span><span class="p">])</span>
+        
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;treatment&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">])</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s1">&#39;value ~ C(treatment)&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">anova_lm</span><span class="p">(</span><span class="n">model</span><span class="p">))</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                df    sum_sq   mean_sq         F    PR(&gt;F)
+C(treatment)   4.0  0.004520  0.001130  7.121019  0.000281
+Residual      34.0  0.005395  0.000159       NaN       NaN
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="two-way-anova">
+<h3>Two-way ANOVA<a class="headerlink" href="#two-way-anova" title="Permalink to this headline">¶</a></h3>
+<p>ANOVA with interaction</p>
+<p>Measurement of fetal head circumference <strong>hs</strong>, by four observers in three fetuses.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># https://raw.githubusercontent.com/thomas-haslwanter/statsintro_python/master/ipynb/Data/data_altman/altman_12_6.txt</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/altman_12_6.txt&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;hs&#39;</span><span class="p">,</span> <span class="s1">&#39;fetus&#39;</span><span class="p">,</span> <span class="s1">&#39;observer&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hs</th>
+      <th>fetus</th>
+      <th>observer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>14.3</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>14.0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>14.8</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>13.6</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>13.6</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.graphics.api</span> <span class="kn">import</span> <span class="n">interaction_plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">interaction_plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;fetus&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;observer&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hs&#39;</span><span class="p">],</span>
+        <span class="n">ms</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-01-statistics-thinking_90_0.png" src="_images/08-01-statistics-thinking_90_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;hs ~ C(fetus) + C(observer) + C(fetus):C(observer)&#39;</span>
+<span class="n">lm</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">anova_lm</span><span class="p">(</span><span class="n">lm</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        df      sum_sq     mean_sq            F        PR(&gt;F)
+C(fetus)               2.0  324.008889  162.004444  2113.101449  1.051039e-27
+C(observer)            3.0    1.198611    0.399537     5.211353  6.497055e-03
+C(fetus):C(observer)   6.0    0.562222    0.093704     1.222222  3.295509e-01
+Residual              24.0    1.840000    0.076667          NaN           NaN
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="a-chi-squared-test">
+<h3>卡方检验 A chi-squared test<a class="headerlink" href="#a-chi-squared-test" title="Permalink to this headline">¶</a></h3>
+<p>https://en.wikipedia.org/wiki/Chi-squared_test</p>
+<p>Suppose we look at the House of Representatives for the 113th Congress. This data is taken from <a class="reference external" href="https://www.senate.gov">www.senate.gov</a>.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p></p></th>
+<th class="text-align:center head"><p>Republican</p></th>
+<th class="text-align:center head"><p>Democrat</p></th>
+<th class="text-align:center head"><p>Total</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Male</p></td>
+<td class="text-align:center"><p>215</p></td>
+<td class="text-align:center"><p>143</p></td>
+<td class="text-align:center"><p>358</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Female</p></td>
+<td class="text-align:center"><p>19</p></td>
+<td class="text-align:center"><p>64</p></td>
+<td class="text-align:center"><p>83</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Total</p></td>
+<td class="text-align:center"><p>234</p></td>
+<td class="text-align:center"><p>207</p></td>
+<td class="text-align:center"><p>441</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>also referred to as χ² test (or chi-square test), is any statistical hypothesis test in which the sampling distribution of the test statistic is a chi-square distribution when the null hypothesis is true.</p></li>
+<li><p>A chi-squared test can then be used to reject the null hypothesis that the data are independent.</p></li>
+<li><p>Test statistics that follow a chi-squared distribution arise from an assumption of independent normally distributed data, which is valid in many cases due to the central limit theorem.</p></li>
+<li><p>Chi-squared tests are often constructed from a sum of squared errors, or through the sample variance.</p></li>
+</ul>
+</div>
+<div class="section" id="chi-square-formula">
+<h3>Chi-Square Formula<a class="headerlink" href="#chi-square-formula" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(Χ^2 = \frac{\sum (O − E)^2}{E} \)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\sum\)</span> means to sum up (see Sigma Notation)</p></li>
+<li><p>O = each Observed (actual) value</p></li>
+<li><p>E = each Expected value</p></li>
+</ul>
+<p>So we calculate  <span class="math notranslate nohighlight">\((O−E)^2/E\)</span> for each pair of observed and expected values then sum them all up.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="o">=</span> <span class="mi">441</span>
+<span class="n">republican_prob</span> <span class="o">=</span> <span class="mf">234.0</span><span class="o">/</span><span class="mi">441</span>
+<span class="n">democrat_prob</span> <span class="o">=</span> <span class="mf">207.0</span><span class="o">/</span><span class="mi">441</span>
+
+<span class="n">male_prob</span> <span class="o">=</span> <span class="mf">358.0</span><span class="o">/</span><span class="mi">441</span>
+<span class="n">female_prob</span> <span class="o">=</span> <span class="mf">83.0</span><span class="o">/</span><span class="mi">441</span>
+<span class="n">male_republican_expected</span> <span class="o">=</span> <span class="n">republican_prob</span> <span class="o">*</span> <span class="n">male_prob</span> <span class="o">*</span> <span class="n">total</span>
+<span class="n">male_democrat_expected</span> <span class="o">=</span> <span class="n">democrat_prob</span> <span class="o">*</span> <span class="n">male_prob</span> <span class="o">*</span> <span class="n">total</span>
+<span class="n">female_republican_expected</span> <span class="o">=</span> <span class="n">republican_prob</span> <span class="o">*</span> <span class="n">female_prob</span> <span class="o">*</span> <span class="n">total</span>
+<span class="n">female_democrat_expected</span> <span class="o">=</span> <span class="n">democrat_prob</span> <span class="o">*</span> <span class="n">female_prob</span> <span class="o">*</span> <span class="n">total</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">male_republican_expected</span><span class="p">,</span> <span class="n">male_democrat_expected</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> 
+      <span class="n">female_republican_expected</span><span class="p">,</span> <span class="n">female_democrat_expected</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>189.9591836734694 168.04081632653063 
+ 44.04081632653061 38.95918367346939
+</pre></div>
+</div>
+</div>
+</div>
+<p>Under the null hypothesis, it has approximately a chi-square distribution whose number of degrees of freedom are</p>
+<p>(number of rows−1)(number of columns−1)=(2−1)(2−1)=1.</p>
+<p>Then in that “cell” of the table, we have</p>
+<div class="math notranslate nohighlight">
+\[\frac{(observed−expected)^2}{expected}=\frac{(215−189.9)^2}{189.9} = 3.3\]</div>
+<p>The sum of these quantities over all of the cells is the Chi-square statistic.</p>
+<p>3.30093271 + 13.12279349 + 222.36009343 + 277.84184475 = 37.37</p>
+<p>Observed</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p></p></th>
+<th class="text-align:center head"><p>Republican</p></th>
+<th class="text-align:center head"><p>Democrat</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Male</p></td>
+<td class="text-align:center"><p>215</p></td>
+<td class="text-align:center"><p>143</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Female</p></td>
+<td class="text-align:center"><p>19</p></td>
+<td class="text-align:center"><p>64</p></td>
+</tr>
+</tbody>
+</table>
+<p>Expected</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p></p></th>
+<th class="text-align:center head"><p>Republican</p></th>
+<th class="text-align:center head"><p>Democrat</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Male</p></td>
+<td class="text-align:center"><p>189.9</p></td>
+<td class="text-align:center"><p>168.0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Female</p></td>
+<td class="text-align:center"><p>44.0</p></td>
+<td class="text-align:center"><p>38.9</p></td>
+</tr>
+</tbody>
+</table>
+<p>Chi Square</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p></p></th>
+<th class="text-align:center head"><p>Republican</p></th>
+<th class="text-align:center head"><p>Democrat</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Male</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\frac{(215-189.9)^2}{189.9} \)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\frac{(143-168.0)^2}{168.0}  \)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Female</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\frac{(19-44.0)^2}{44.0}\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\frac{(64-38.9)^2}{38.9}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">observed</span> <span class="o">=</span> <span class="p">[</span><span class="mi">215</span><span class="p">,</span> <span class="mi">143</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">64</span><span class="p">]</span>
+<span class="n">expected</span> <span class="o">=</span> <span class="p">[</span><span class="n">male_republican_expected</span><span class="p">,</span> <span class="n">male_democrat_expected</span><span class="p">,</span>
+            <span class="n">female_republican_expected</span><span class="p">,</span> <span class="n">female_democrat_expected</span><span class="p">]</span>
+<span class="c1"># The sum of these quantities over all of the cells is the test statistic.</span>
+<span class="n">chi_square</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span> <span class="p">[(</span><span class="n">observed</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">i</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">expected</span><span class="p">)]</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chi_square</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>37.365036593000426
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy</span>
+<span class="n">house</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span> <span class="mi">215</span><span class="p">,</span> <span class="mi">143</span> <span class="p">],</span> <span class="p">[</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">64</span> <span class="p">]</span> <span class="p">]</span>
+<span class="n">chi2</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">ddof</span><span class="p">,</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">chi2_contingency</span><span class="p">(</span> <span class="n">house</span><span class="p">,</span> <span class="n">correction</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Test Statistic: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">p-value: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">Degrees of Freedom: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">chi2</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">ddof</span> <span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">expected</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Statistic: 37.36503659300042
+p-value: 9.796267016333982e-10
+Degrees of Freedom: 1
+
+[[189.95918367 168.04081633]
+ [ 44.04081633  38.95918367]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>scipy.stats.chi2_contingency<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Suppose there is a city of 1 million residents with four neighborhoods: A, B, C, and D.</p></li>
+<li><p>A random sample of 650 residents of the city is taken and their occupation is recorded as “blue collar”, “white collar”, or “no collar”.</p></li>
+<li><p>The null hypothesis is that each person’s neighborhood of residence is independent of the person’s occupational classification. The data are tabulated as:</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p></p></th>
+<th class="text-align:center head"><p>A</p></th>
+<th class="text-align:center head"><p>B</p></th>
+<th class="text-align:center head"><p>C</p></th>
+<th class="text-align:right head"><p>D</p></th>
+<th class="text-align:right head"><p>Total</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>White collar</p></td>
+<td class="text-align:center"><p>90</p></td>
+<td class="text-align:center"><p>60</p></td>
+<td class="text-align:center"><p>104</p></td>
+<td class="text-align:right"><p>95</p></td>
+<td class="text-align:right"><p>349</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Blue collar</p></td>
+<td class="text-align:center"><p>30</p></td>
+<td class="text-align:center"><p>50</p></td>
+<td class="text-align:center"><p>51</p></td>
+<td class="text-align:right"><p>20</p></td>
+<td class="text-align:right"><p>151</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>No coloar</p></td>
+<td class="text-align:center"><p>30</p></td>
+<td class="text-align:center"><p>40</p></td>
+<td class="text-align:center"><p>45</p></td>
+<td class="text-align:right"><p>35</p></td>
+<td class="text-align:right"><p>150</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Total</p></td>
+<td class="text-align:center"><p>150</p></td>
+<td class="text-align:center"><p>150</p></td>
+<td class="text-align:center"><p>200</p></td>
+<td class="text-align:right"><p>150</p></td>
+<td class="text-align:right"><p>650</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>住在A社区的概率：Let us take the sample living in neighborhood A, 150/650, to estimate what proportion of the whole 1 million people live in neighborhood A.</p></li>
+<li><p>白领的概率：Similarly we take 349/650 to estimate what proportion of the 1 million people are white-collar workers.</p></li>
+<li><p>住在A社区的白领的数量：By the assumption of independence under the hypothesis we should “expect” the number of white-collar workers in neighborhood A to be</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\frac{150}{650}\frac{349}{650}650=80.54\]</div>
+<p>Then in that “cell” of the table, we have</p>
+<div class="math notranslate nohighlight">
+\[\frac{(observed−expected)^2}{expected}=\frac{(90−80.54)^2}{80.54} = 1.11\]</div>
+<p>The sum of these quantities over all of the cells is the test statistic.</p>
+<p>Under the null hypothesis, it has approximately a chi-square distribution whose number of degrees of freedom are</p>
+<p>(number of rows−1)(number of columns−1)=(3−1)(4−1)=6.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">house</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">104</span><span class="p">,</span> <span class="mi">95</span> <span class="p">],</span> <span class="p">[</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">20</span> <span class="p">],</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">35</span><span class="p">]</span> <span class="p">]</span>
+<span class="n">chi2</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">ddof</span><span class="p">,</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">chi2_contingency</span><span class="p">(</span> <span class="n">house</span> <span class="p">)</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Test Statistic: </span><span class="si">{}</span><span class="se">\n</span><span class="s2"> p-value: </span><span class="si">{}</span><span class="se">\n</span><span class="s2"> Degrees of Freedom: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">chi2</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">ddof</span> <span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">expected</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Statistic: 24.5712028585826
+ p-value: 0.0004098425861096696
+ Degrees of Freedom: 6
+
+[[ 80.53846154  80.53846154 107.38461538  80.53846154]
+ [ 34.84615385  34.84615385  46.46153846  34.84615385]
+ [ 34.61538462  34.61538462  46.15384615  34.61538462]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="image.png" src="_images/statistics.png" /></p>
+<p><img alt="image.png" src="_images/end.png" /></p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="06-data-cleaning-pandas.html" title="previous page">使用Pandas进行数据清洗</a>
+    <a class='right-next' id="next-link" href="08-02-linear-algebra.html" title="next page">Linear algebra</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
