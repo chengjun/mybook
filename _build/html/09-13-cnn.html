@@ -1,0 +1,920 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Convolutional Networks &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Sequnce Modeling: Recurrent and Recursive Nets" href="09-14-rnn.html" />
+    <link rel="prev" title="第七章 神经网络与深度学习" href="09-11-neural-network-intro.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Convolutional Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-14-rnn.html">
+     Sequnce Modeling: Recurrent and Recursive Nets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-12-hand-written-digits.html">
+     Recognizing Hand-Written Digits with Neural Networks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/09-13-cnn.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/ebook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/ebook/issues/new?title=Issue%20on%20page%20%2F09-13-cnn.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/ebook/master?urlpath=tree/docs/09-13-cnn.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-convolution-operation">
+   The Convolution Operation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#three-operations">
+   Three Operations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pooling">
+   Pooling 池化
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pytorchmnist">
+   使用PyTorch建立卷积神经网络并处理MNIST数据
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="convolutional-networks">
+<h1>Convolutional Networks<a class="headerlink" href="#convolutional-networks" title="Permalink to this headline">¶</a></h1>
+<p><img alt="image.png" src="_images/author1.png" /></p>
+<p><img alt="image.png" src="_images/cnn.png" /></p>
+<p>https://www.deeplearningbook.org/contents/convnets.html</p>
+<p>Convolutional networks (LeCun, 1989), also known as convolutional neural networks, or CNNs, are a specialized kind of neural network for processing data that has a known <em>grid-like topology</em>.</p>
+<ul class="simple">
+<li><p>time-series data,  1-D grid</p></li>
+<li><p>image data, 2-D grid of pixels.</p></li>
+</ul>
+<p>The name “convolutional neural network” indicates that the network employs a mathematical operation called <code class="docutils literal notranslate"><span class="pre">convolution</span></code>.</p>
+<ul class="simple">
+<li><p>Convolution is a specialized kind of linear operation.</p></li>
+<li><p>Convolutional networks are simply neural networks that use convolution in place of general matrix multiplication in at least one of their layers.</p></li>
+</ul>
+<p><img alt="image.png" src="_images/cnn2.png" /></p>
+<p><img alt="image.png" src="_images/cnn3.gif" /></p>
+<p>全连接前馈网络在图像处理中的缺点：图像数据维度太高（一个像素点被视为一个维度），而且由于图像很多信息在高层次才体现，在过低的层次分析导致过拟合以及训练效率过低。</p>
+<ul class="simple">
+<li><p>Scale up neural networks to process very large images / video sequences</p>
+<ul>
+<li><p>Sparse connections</p></li>
+<li><p>Parameter sharing</p></li>
+</ul>
+</li>
+<li><p>Automatically generalize across spatial translations of inputs</p></li>
+<li><p>Applicable to any input that is laid out on a grid (1-D, 2-D, 3-D, …)</p></li>
+</ul>
+<ul class="simple">
+<li><p>Replace matrix multiplication in neural nets with convolution</p></li>
+<li><p>Everything else stays the same</p>
+<ul>
+<li><p>Maximum likelihood</p></li>
+<li><p>Back-propagation</p></li>
+<li><p>etc.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Convolution</strong> is a mathematical way of combining two signals to form a third signal.</p>
+<div class="math notranslate nohighlight">
+\[(f * g)(t) \triangleq\ \int_{-\infty}^\infty f(\tau) g(t - \tau) \, d\tau\]</div>
+<p><img alt="image.png" src="_images/cnn4.gif" /></p>
+<div class="section" id="the-convolution-operation">
+<h2>The Convolution Operation<a class="headerlink" href="#the-convolution-operation" title="Permalink to this headline">¶</a></h2>
+<p>Suppose we are tracking the location of a spaceship with a laser tensor.</p>
+<p><span class="math notranslate nohighlight">\(x(\tau)\)</span> denote the location of the <code class="docutils literal notranslate"><span class="pre">spaceship</span></code> at time <span class="math notranslate nohighlight">\(\tau\)</span>. Assume that our laser sensor is somewhat noisy, we would like to average together several measurements. But we would like to give more weight to recent measurements with a weight function <span class="math notranslate nohighlight">\(w(t)\)</span>, wheare <span class="math notranslate nohighlight">\(\tau\)</span> is the age of a measurement. We can obtain a new function <span class="math notranslate nohighlight">\(F(t)\)</span> providing a smoothed estimate of the position of the spaceship.</p>
+<div class="math notranslate nohighlight">
+\[ F(t) = x*w(t) = \int x(\tau) w(t-\tau) d \tau\]</div>
+<p>Suppose we are tracking the location of a spaceship with a laser tensor.</p>
+<p><img alt="image.png" src="_images/cnn5.gif" /></p>
+<p>https://mathworld.wolfram.com/Convolution.html</p>
+<p><strong>Convolution network terminology</strong></p>
+<ul class="simple">
+<li><p>input: function <span class="math notranslate nohighlight">\(x\)</span></p></li>
+<li><p>kernal: function <span class="math notranslate nohighlight">\(w\)</span></p></li>
+<li><p>featuremap: output</p></li>
+</ul>
+<p>In machine learning applications, the input is usually <strong>a multidimensional array</strong> of data, and the kernel is usually a multidimensional array of parameters that are adapted by the learning algorithm. We will refer to these multidimensional arrays as <strong>tensors</strong>.</p>
+<p><strong>Discrete Convolution</strong></p>
+<p>We only measure at discreted timestamp</p>
+<div class="math notranslate nohighlight">
+\[ s(t) = \sum_{\tau = -\infty}^{\infty} x(\tau) w(t-\tau)\]</div>
+<p>Finally, we often use convolutions over more than one axis at a time. For example, if we use a two-dimensional image <span class="math notranslate nohighlight">\(I\)</span> as our input, we probably also want to use a two-dimensional kernel</p>
+<div class="math notranslate nohighlight">
+\[S(i, j) = (I ∗ K)(i, j) =\sum_m \sum_n I(m, n)K(i − m, j − n)\]</div>
+<p>Discrete convolution can be viewed as multiplication by a matrix</p>
+<p><img alt="image.png" src="_images/cnn6.png" /></p>
+<p>Matrix (Dot) Product</p>
+<p><strong>2D Convolution</strong></p>
+<p><img alt="image.png" src="_images/cnn7.png" /></p>
+<p>Discrete convolution can be viewed as multiplication by a matrix</p>
+<p>本质来说，CNN基于一个假设：即使每个像素只偏移一点点，图片的整体信息仍然不变。从而可以用卷积操作高效降维度。</p>
+<p><img alt="image.png" src="_images/cnn8.png" /></p>
+<p><strong>Padding</strong></p>
+<p>每次卷积操作都会使图像缩小，角落和边缘区域的像素点使用的很少，即丢失了图像边缘位置的信息。为了解决这两个问题，在卷积操作之前，先对图像周围进行填充，通常为zero-padding，即填充0。</p>
+<p><img alt="image.png" src="_images/cnn9.png" /></p>
+</div>
+<div class="section" id="three-operations">
+<h2>Three Operations<a class="headerlink" href="#three-operations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Convolution: like matrix multiplication</p>
+<ul>
+<li><p>Take an input, produce an output (hidden layer)</p></li>
+</ul>
+</li>
+<li><p>“Deconvolution”: like multiplication by transpose of a matrix</p>
+<ul>
+<li><p>Used to back-propagate error from output to input</p></li>
+<li><p>Reconstruction in autoencoder / RBM</p></li>
+</ul>
+</li>
+<li><p>Weight gradient computation</p>
+<ul>
+<li><p>Used to backpropagate error from output to weights</p></li>
+<li><p>Accounts for the parameter sharing</p></li>
+</ul>
+</li>
+</ul>
+<p>Convolution leverages three important ideas:</p>
+<ul>
+<li><p>sparse interactions,</p></li>
+<li><p>parameter sharing,</p></li>
+<li><p>equivariant representations.</p>
+<div class="math notranslate nohighlight">
+\[f(g(x)) = g(f(x))\]</div>
+<p>if we move the object in the input, its representation wil move the same amount in the outupt.</p>
+</li>
+</ul>
+<p><img alt="image.png" src="_images/cnn10.png" /></p>
+<p><img alt="image.png" src="_images/cnn11.png" /></p>
+<p><img alt="image.png" src="_images/cnn12.png" /></p>
+<p><img alt="image.png" src="_images/cnn13.png" /></p>
+<p>Example: Edge Detection by Convolution</p>
+<p><img alt="image.png" src="_images/cnn14.png" /></p>
+<p><a class="reference external" href="https://github.com/computational-class/summer-school/blob/master/class_03_%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3.pdf">卷积的直观理解</a></p>
+<p><img alt="" src="_images/cnn15.png" /></p>
+<p>A typical layer of a convolutional network consists of <strong>three stages</strong></p>
+<ul class="simple">
+<li><p>In the ﬁrst stage, the layer performs several <strong>convolutions</strong> in parallel to produce aset of linear activations.</p></li>
+<li><p>In the second stage, each linear activation is run through a nonlinear activation function, such as the rectiﬁed linear activation function. This stage is sometimes called the <strong>detector</strong> stage.</p></li>
+<li><p>In the third stage, we use <strong>apooling</strong> function to modify the output of the layer further.</p></li>
+</ul>
+<p><img alt="" src="_images/cnn16.png" /></p>
+</div>
+<div class="section" id="pooling">
+<h2>Pooling 池化<a class="headerlink" href="#pooling" title="Permalink to this headline">¶</a></h2>
+<p><strong>A pooling function</strong> replaces the output of the net at a certain location with a summary statistic of the nearby outputs.</p>
+<p>For example, the <strong>max pooling</strong> (Zhou and Chellappa, 1988) operation reports the maximum output within a rectangular neighborhood.</p>
+<p>Other popular pooling functions include</p>
+<ul class="simple">
+<li><p>the average of a rectangularneighborhood,</p></li>
+<li><p>the L2 norm (每个元素的平方的和) of a rectangular neighborhood,</p></li>
+<li><p>a weighted average based on the distance from the central pixel.</p></li>
+</ul>
+<p><img alt="" src="_images/cnn17.png" /></p>
+<p><img alt="" src="_images/cnn18.png" /></p>
+<p><img alt="" src="_images/cnn19.png" /></p>
+<p><img alt="" src="_images/cnn20.png" /></p>
+<p>The human eye is mostly very low resolution, except for a tiny patch called the fovea. The fovea only observes an area about the size of a thumbnail held at arms length.</p>
+<p><img alt="" src="_images/cnn21.png" /></p>
+<p>Though we feel as if we can see an entire scene in high resolution, this is an illusion created by the subconscious part of our brain, as it stitches together several glimpses of small areas.</p>
+<p>Most convolutional networks actually receive large full-resolution photographs as input.</p>
+<p>The human brain makes several eye movements called saccadesto glimpse the most visually salient or task-relevant parts of a scene.</p>
+<p>Incorporating similar attention mechanisms into deep learning models is an active research direction.</p>
+<p>https://atcold.github.io/pytorch-Deep-Learning/</p>
+</div>
+<div class="section" id="pytorchmnist">
+<h2>使用PyTorch建立卷积神经网络并处理MNIST数据<a class="headerlink" href="#pytorchmnist" title="Permalink to this headline">¶</a></h2>
+<p>https://computational-communication.com/pytorch-mnist/</p>
+<p>https://github.com/computational-class/summer-school/blob/master/class_04_CNN.ipynb</p>
+<p><img alt="" src="_images/cnn22.png" /></p>
+<p>https://pytorch.org/</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">transforms</span>
+<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="kn">import</span> <span class="n">Variable</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># MNIST Dataset</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">&#39;../data/&#39;</span><span class="p">,</span>
+                            <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                            <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+                            <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                            <span class="c1"># change it to False after you have downloaded the data</span>
+
+<span class="n">test_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">&#39;../data/&#39;</span><span class="p">,</span>
+                           <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                           <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hyper Parameters</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">100</span> 
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data Loader (Input Pipeline)</span>
+<span class="n">train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">,</span>
+                                           <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                                           <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">test_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">test_dataset</span><span class="p">,</span>
+                                          <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                                          <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">torchvision</span>
+
+<span class="c1"># functions to show an image</span>
+<span class="k">def</span> <span class="nf">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">img</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">0.5</span>     <span class="c1"># unnormalize</span>
+    <span class="n">npimg</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">npimg</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+
+
+<span class="c1"># get some random training images</span>
+<span class="n">dataiter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">train_loader</span><span class="p">)</span>
+<span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">dataiter</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">images</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([100, 1, 28, 28])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show images</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">images</span><span class="p">[:</span><span class="mi">5</span><span class="p">]))</span>
+<span class="c1"># print labels</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%5s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">labels</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor(7) tensor(9) tensor(9) tensor(6) tensor(7)
+</pre></div>
+</div>
+<img alt="_images/09-13-cnn_44_1.png" src="_images/09-13-cnn_44_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CNN Model (2 conv layer)</span>
+<span class="k">class</span> <span class="nc">CNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CNN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="c1"># in_channels=1 (图片只有一种颜色), out_channels=16(16个不同的卷积核，产生16个卷积结果)</span>
+            <span class="c1"># kernel_size: 每个卷积核的边长， padding：图片周围加两圈0</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+            <span class="c1"># apply batch normalization</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+            <span class="c1"># 每个kernel take all channels from input and comebine them into one channel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">7</span><span class="o">*</span><span class="mi">7</span><span class="o">*</span><span class="mi">32</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> 
+        <span class="c1"># a linear transformation AX +b: 把7*7*32维的张量 reduce 成 (x1,..,x10)的10维向量</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span>
+
+<span class="n">cnn</span> <span class="o">=</span> <span class="n">CNN</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loss and Optimizer</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">cnn</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[[0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0627, 0.4078, 0.5529, 0.9451, 0.7529,
+          0.5529, 0.4078, 0.0157, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.1255,
+          0.2235, 0.3725, 0.6627, 0.8471, 0.9882, 0.9882, 0.9882, 0.9922,
+          0.9882, 0.9882, 0.2078, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.1490, 0.8980,
+          0.9882, 0.9882, 0.9882, 0.9922, 0.9882, 0.8784, 0.6588, 0.6588,
+          0.8784, 0.9882, 0.8941, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.4431, 0.9922,
+          0.9882, 0.9882, 0.7922, 0.5490, 0.2549, 0.0745, 0.0000, 0.0000,
+          0.4667, 0.9882, 0.9882, 0.3961, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.6392,
+          0.4431, 0.0980, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.2745, 0.9922, 0.9922, 0.4471, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0275,
+          0.7333, 0.9882, 0.9882, 0.4431, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.1137,
+          0.9882, 0.9882, 0.9882, 0.4431, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.5020,
+          0.9882, 0.9882, 0.9882, 0.2471, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.6039,
+          0.9922, 0.9922, 0.3059, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.1020, 0.9922,
+          0.9882, 0.9882, 0.1098, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.7843, 0.9922,
+          0.9882, 0.7294, 0.0235, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.8824, 0.9922,
+          0.8902, 0.1686, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.3843, 0.9922, 1.0000,
+          0.7216, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0510, 0.8196, 0.9882, 0.9686,
+          0.2549, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.2235, 0.9882, 0.9882, 0.7333,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.6157, 0.9882, 0.9882, 0.4431,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.3608, 0.9922, 0.9922, 0.9922, 0.0510,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.5529, 0.9882, 0.9882, 0.9882, 0.4431,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.5529, 0.9882, 0.9882, 0.6941, 0.0980,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.5529, 0.9882, 0.6431, 0.0588, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000],
+         [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,
+          0.0000, 0.0000, 0.0000, 0.0000]]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([1, 28, 28])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train the Model</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_loader</span><span class="p">):</span>
+        <span class="n">images</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+
+        <span class="c1"># Forward + Backward + Optimize</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">cnn</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">200</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Epoch [</span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">], Iter [</span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">] Loss: </span><span class="si">%.4f</span><span class="s1">&#39;</span>
+                   <span class="o">%</span><span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_epochs</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">)</span><span class="o">//</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [1/5], Iter [200/600] Loss: 0.0932
+Epoch [1/5], Iter [400/600] Loss: 0.0841
+Epoch [1/5], Iter [600/600] Loss: 0.0559
+Epoch [2/5], Iter [200/600] Loss: 0.1323
+Epoch [2/5], Iter [400/600] Loss: 0.0386
+Epoch [2/5], Iter [600/600] Loss: 0.0586
+Epoch [3/5], Iter [200/600] Loss: 0.1227
+Epoch [3/5], Iter [400/600] Loss: 0.0483
+Epoch [3/5], Iter [600/600] Loss: 0.0633
+Epoch [4/5], Iter [200/600] Loss: 0.0392
+Epoch [4/5], Iter [400/600] Loss: 0.0121
+Epoch [4/5], Iter [600/600] Loss: 0.0071
+Epoch [5/5], Iter [200/600] Loss: 0.0134
+Epoch [5/5], Iter [400/600] Loss: 0.0347
+Epoch [5/5], Iter [600/600] Loss: 0.0491
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test the Model</span>
+<span class="n">cnn</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>  <span class="c1"># Change model to &#39;eval&#39; mode (BN uses moving mean/var).</span>
+<span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">cnn</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">predicted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># 自动返回数列中最大的value和对应的index</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">labels</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">correct</span> <span class="o">+=</span> <span class="p">(</span><span class="n">predicted</span> <span class="o">==</span> <span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test Accuracy of the model on the 10000 test images: </span><span class="si">%d</span><span class="s1"> </span><span class="si">%%</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">correct</span> <span class="o">/</span> <span class="n">total</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Accuracy of the model on the 10000 test images: 98 %
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/distiller/project/conda/conda-bld/pytorch_1587428061935/work/aten/src/ATen/native/BinaryOps.cpp:81: UserWarning: Integer division of tensors using div or / is deprecated, and in a future release div will perform true division as in Python 3. Use true_divide or floor_divide (// in Python) instead.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">case</span><span class="o">=</span><span class="n">test_dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">case</span><span class="o">=</span><span class="n">case</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">case</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-13-cnn_52_0.png" src="_images/09-13-cnn_52_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">cnn</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pred</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[7]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 识别错误的一个例子---即使人工也很难认出这是什么数字，说明CNN的准确率已经达到较高水平</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">4</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-13-cnn_54_0.png" src="_images/09-13-cnn_54_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Chapter 9, Deep Learning. Ian Goodfellow et al. 2016
+http://www.deeplearningbook.org/contents/convnets.html</p></li>
+<li><p>CNN Explainer: Learning Convolutional Neural Networks with Interactive Visualization https://poloclub.github.io/cnn-explainer/</p></li>
+</ul>
+<p><img alt="" src="_images/end1.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="09-11-neural-network-intro.html" title="previous page">第七章 神经网络与深度学习</a>
+    <a class='right-next' id="next-link" href="09-14-rnn.html" title="next page">Sequnce Modeling: Recurrent and Recursive Nets</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

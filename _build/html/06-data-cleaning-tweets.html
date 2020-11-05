@@ -1,0 +1,1124 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>数据清洗之推特数据 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="对占中新闻进行数据清洗" href="06-data-cleaning-occupy-central-news.html" />
+    <link rel="prev" title="对大数据进行预处理" href="06-data-cleaning-preprocessing.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-preprocessing.html">
+     对大数据进行预处理
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     数据清洗之推特数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-occupy-central-news.html">
+     对占中新闻进行数据清洗
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-music-list.html">
+     清洗音乐列表🎵
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-pandas.html">
+     使用Pandas进行数据清洗
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/06-data-cleaning-tweets.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/ebook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/ebook/issues/new?title=Issue%20on%20page%20%2F06-data-cleaning-tweets.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/ebook/master?urlpath=tree/docs/06-data-cleaning-tweets.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-cleaning">
+   数据清洗（data cleaning）
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     同时考虑分列符和引用符
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     统计发帖数量所对应的人数的分布
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tweets">
+   清洗tweets文本
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#twitter-text">
+     安装twitter_text
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     获得清洗过的推特文本
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   作业
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>数据清洗之推特数据<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="data-cleaning">
+<h2>数据清洗（data cleaning）<a class="headerlink" href="#data-cleaning" title="Permalink to this headline">¶</a></h2>
+<p>是数据分析的重要步骤，其主要目标是将混杂的数据清洗为可以被直接分析的数据，一般需要将数据转化为数据框（data frame）的样式。</p>
+<p>本章将以推特文本的清洗作为例子，介绍数据清洗的基本逻辑。</p>
+<ul class="simple">
+<li><p>清洗错误行</p></li>
+<li><p>正确分列</p></li>
+<li><p>提取所要分析的内容</p></li>
+<li><p>介绍通过按行、chunk的方式对大规模数据进行预处理</p></li>
+</ul>
+<div class="section" id="id2">
+<h3>同时考虑分列符和引用符<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>分列符🔥分隔符：sep, delimiter</p></li>
+<li><p>引用符☁️：quotechar</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 提示：你可能需要修改以下路径名</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../data/ows_tweets_sample.txt&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">chunk</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2754
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="n">lines_csv</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">lines_csv</span><span class="p">)))</span>
+<span class="c1"># next(lines_csv)</span>
+<span class="c1"># next(lines_csv)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2628
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/ows_tweets_sample.txt&quot;</span><span class="p">,</span>
+                 <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Twitter ID</th>
+      <th>Text</th>
+      <th>Profile Image URL</th>
+      <th>Day</th>
+      <th>Hour</th>
+      <th>Minute</th>
+      <th>Created At</th>
+      <th>Geo</th>
+      <th>From User</th>
+      <th>From User ID</th>
+      <th>Language</th>
+      <th>To User</th>
+      <th>To User ID</th>
+      <th>Source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>121813144174727168</td>
+      <td>RT @AnonKitsu: ALERT!!!!!!!!!!COPS ARE KETTLIN...</td>
+      <td>http://a2.twimg.com/profile_images/1539375713/...</td>
+      <td>2011-10-06</td>
+      <td>5</td>
+      <td>4</td>
+      <td>2011-10-06 05:04:51</td>
+      <td>N;</td>
+      <td>Anonops_Cop</td>
+      <td>401240477</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://twitter.com/&amp;quot;&amp;gt;...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>121813146137657344</td>
+      <td>@jamiekilstein @allisonkilkenny Interesting in...</td>
+      <td>http://a2.twimg.com/profile_images/1574715503/...</td>
+      <td>2011-10-06</td>
+      <td>5</td>
+      <td>4</td>
+      <td>2011-10-06 05:04:51</td>
+      <td>N;</td>
+      <td>KittyHybrid</td>
+      <td>34532053</td>
+      <td>en</td>
+      <td>jamiekilstein</td>
+      <td>2149053</td>
+      <td>&amp;lt;a href=&amp;quot;http://twitter.com/&amp;quot;&amp;gt;...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>121813150000619521</td>
+      <td>@Seductivpancake Right! Those guys have a vict...</td>
+      <td>http://a1.twimg.com/profile_images/1241412831/...</td>
+      <td>2011-10-06</td>
+      <td>5</td>
+      <td>4</td>
+      <td>2011-10-06 05:04:52</td>
+      <td>N;</td>
+      <td>nerdsherpa</td>
+      <td>95067344</td>
+      <td>en</td>
+      <td>Seductivpancake</td>
+      <td>19695580</td>
+      <td>&amp;lt;a href=&amp;quot;http://www.echofon.com/&amp;quot;...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2627
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">Text</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;RT @AnonKitsu: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELICOPTERS AND PADDYWAGONS!!!! #OCCUPYWALLSTREET #OWS #OCCUPYNY PLEASE RT !!HELP!!!!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;From User&#39;</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0       Anonops_Cop
+1       KittyHybrid
+2        nerdsherpa
+3        hamudistan
+4           kl_knox
+5     vickycrampton
+6    burgerbuilders
+7          neverfox
+8       davidgaliel
+9           AnonOws
+Name: From User, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>统计发帖数量所对应的人数的分布<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>人数在发帖数量方面的分布情况</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="n">data_dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;From User&#39;</span><span class="p">]:</span>
+    <span class="n">data_dict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span><span class="mi">1</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">data_dict</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="c1">#data_dict</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Anonops_Cop&#39;, 1),
+ (&#39;KittyHybrid&#39;, 1),
+ (&#39;nerdsherpa&#39;, 2),
+ (&#39;hamudistan&#39;, 1),
+ (&#39;kl_knox&#39;, 1)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="c1">#plt.yscale(&#39;log&#39;)</span>
+<span class="c1">#plt.xscale(&#39;log&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;发帖数&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;人数&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06-data-cleaning-tweets_14_0.png" src="_images/06-data-cleaning-tweets_14_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tweet_dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data_dict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="n">tweet_dict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+ 
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">tweet_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">tweet_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span><span class="c1">#linewidth=2)  </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;推特数&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;人数&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06-data-cleaning-tweets_15_0.png" src="_images/06-data-cleaning-tweets_15_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="k">def</span> <span class="nf">powerPlot</span><span class="p">(</span><span class="n">d_value</span><span class="p">,</span> <span class="n">d_freq</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">marker</span><span class="p">):</span>
+    <span class="n">d_freq</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">d_freq</span><span class="p">]</span>
+    <span class="n">d_prob</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">d_freq</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">d_freq</span><span class="p">]</span>
+    <span class="c1">#d_rank = ss.rankdata(d_value).astype(int)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">d_value</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">d_prob</span><span class="p">)</span>
+    <span class="n">xx</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">prepend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">xx</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="n">constant</span><span class="p">,</span><span class="n">beta</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">params</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">rsquared</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d_value</span><span class="p">,</span> <span class="n">d_prob</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>\
+             <span class="n">color</span> <span class="o">=</span> <span class="n">color</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="n">marker</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d_value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">constant</span><span class="o">+</span><span class="n">x</span><span class="o">*</span><span class="n">beta</span><span class="p">),</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">d_value</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="nb">max</span><span class="p">(</span><span class="n">d_prob</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
+             <span class="sa">r</span><span class="s1">&#39;$\beta$ = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;$R^2$ = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">histo</span><span class="p">,</span> <span class="n">bin_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">data_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">bin_center</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">bin_edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">bin_edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">powerPlot</span><span class="p">(</span><span class="n">bin_center</span><span class="p">,</span><span class="n">histo</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;^&#39;</span><span class="p">)</span>
+<span class="c1">#lg=plt.legend(labels = [u&#39;Tweets&#39;, u&#39;Fit&#39;], loc=3, fontsize=20)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;概率&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;推特数&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06-data-cleaning-tweets_17_0.png" src="_images/06-data-cleaning-tweets_17_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">powerPlot2</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">reverse</span> <span class="o">=</span> <span class="kc">True</span> <span class="p">)</span>
+    <span class="n">d_table</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+        <span class="n">d_table</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">d_value</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">d_table</span><span class="p">)</span>
+    <span class="n">d_value</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">d_value</span><span class="p">]</span>
+    <span class="n">d_freq</span> <span class="o">=</span> <span class="p">[</span><span class="n">d_table</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">d_value</span><span class="p">]</span>
+    <span class="n">d_prob</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">d_freq</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">d_freq</span><span class="p">]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">d_value</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">d_prob</span><span class="p">)</span>
+    <span class="n">xx</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">prepend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">xx</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="n">constant</span><span class="p">,</span><span class="n">beta</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">params</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">rsquared</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d_value</span><span class="p">,</span> <span class="n">d_prob</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d_value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">constant</span><span class="o">+</span><span class="n">x</span><span class="o">*</span><span class="n">beta</span><span class="p">),</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">d_value</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="nb">max</span><span class="p">(</span><span class="n">d_prob</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span><span class="p">,</span>
+             <span class="s1">&#39;Beta = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;R squared = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P(K)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;K&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">powerPlot2</span><span class="p">(</span><span class="n">data_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06-data-cleaning-tweets_19_0.png" src="_images/06-data-cleaning-tweets_19_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">powerlaw</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting powerlaw
+  Downloading powerlaw-1.4.6.tar.gz (27 kB)
+Requirement already satisfied: scipy in /opt/anaconda3/lib/python3.7/site-packages (from powerlaw) (1.4.1)
+Requirement already satisfied: numpy in /opt/anaconda3/lib/python3.7/site-packages (from powerlaw) (1.18.1)
+Requirement already satisfied: matplotlib in /opt/anaconda3/lib/python3.7/site-packages (from powerlaw) (3.1.3)
+Requirement already satisfied: mpmath in /opt/anaconda3/lib/python3.7/site-packages (from powerlaw) (1.1.0)
+Requirement already satisfied: python-dateutil&gt;=2.1 in /opt/anaconda3/lib/python3.7/site-packages (from matplotlib-&gt;powerlaw) (2.8.1)
+Requirement already satisfied: cycler&gt;=0.10 in /opt/anaconda3/lib/python3.7/site-packages (from matplotlib-&gt;powerlaw) (0.10.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /opt/anaconda3/lib/python3.7/site-packages (from matplotlib-&gt;powerlaw) (1.1.0)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in /opt/anaconda3/lib/python3.7/site-packages (from matplotlib-&gt;powerlaw) (2.4.6)
+Requirement already satisfied: six&gt;=1.5 in /opt/anaconda3/lib/python3.7/site-packages (from python-dateutil&gt;=2.1-&gt;matplotlib-&gt;powerlaw) (1.14.0)
+Requirement already satisfied: setuptools in /opt/anaconda3/lib/python3.7/site-packages (from kiwisolver&gt;=1.0.1-&gt;matplotlib-&gt;powerlaw) (46.0.0.post20200309)
+Building wheels for collected packages: powerlaw
+  Building wheel for powerlaw (setup.py) ... ?25ldone
+?25h  Created wheel for powerlaw: filename=powerlaw-1.4.6-py3-none-any.whl size=24787 sha256=0e7d23e9100feb4fed1092e73633e496f9c1cb767c3f8632b9d9e9d488215eda
+  Stored in directory: /Users/datalab/Library/Caches/pip/wheels/ee/51/38/2e0f20cf80e1a0909acdd527df2288bd9feb8356b926d7d775
+Successfully built powerlaw
+Installing collected packages: powerlaw
+Successfully installed powerlaw-1.4.6
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">powerlaw</span>
+<span class="k">def</span> <span class="nf">plotPowerlaw</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">ax</span><span class="p">,</span><span class="n">col</span><span class="p">,</span><span class="n">xlab</span><span class="p">):</span>
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">powerlaw</span><span class="o">.</span><span class="n">Fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">xmin</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1">#fit = powerlaw.Fit(data)</span>
+    <span class="n">fit</span><span class="o">.</span><span class="n">plot_pdf</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="n">col</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">a</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">power_law</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span><span class="n">fit</span><span class="o">.</span><span class="n">power_law</span><span class="o">.</span><span class="n">xmin</span><span class="p">)</span>
+    <span class="n">fit</span><span class="o">.</span><span class="n">power_law</span><span class="o">.</span><span class="n">plot_pdf</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="n">col</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;dotted&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">,</span> \
+                            <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;$\alpha = </span><span class="si">%d</span><span class="s2"> \:\:, x_</span><span class="si">{min}</span><span class="s2"> = </span><span class="si">%d</span><span class="s2">$&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlab</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$Probability$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">frameon</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="n">data_dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;From User&#39;</span><span class="p">]:</span>
+    <span class="n">data_dict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;rainbow_r&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plotPowerlaw</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">data_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">ax</span><span class="p">,</span><span class="n">cmap</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> 
+             <span class="s1">&#39;$Tweets$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
+  (Theoretical_CDF * (1 - Theoretical_CDF))
+/opt/anaconda3/lib/python3.7/site-packages/powerlaw.py:700: RuntimeWarning: invalid value encountered in true_divide
+  (Theoretical_CDF * (1 - Theoretical_CDF))
+</pre></div>
+</div>
+<img alt="_images/06-data-cleaning-tweets_23_1.png" src="_images/06-data-cleaning-tweets_23_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tweets">
+<h2>清洗tweets文本<a class="headerlink" href="#tweets" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tweet</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;RT @AnonKitsu: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELICOPTERS AND PADDYWAGONS!!!! </span>
+<span class="s1">            #OCCUPYWALLSTREET #OWS #OCCUPYNY PLEASE @chengjun @mili http://computational-communication.com </span>
+<span class="s1">            http://ccc.nju.edu.cn RT !!HELP!!!!&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="twitter-text">
+<h3>安装twitter_text<a class="headerlink" href="#twitter-text" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/dryan/twitter-text-py/issues/21">twitter-text-py</a> could not be used for python 3</p>
+<p>Glyph debug the problem, and make <a class="reference external" href="https://github.com/glyph/twitter-text-py">a new repo of twitter-text-py3</a>.</p>
+<blockquote>
+<div><p>pip install twitter-text</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install twitter-text</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">twitter_text</span>
+<span class="c1"># https://github.com/dryan/twitter-text-py/issues/21</span>
+<span class="c1">#Macintosh HD ▸ 用户 ▸ datalab ▸ 应用程序 ▸ anaconda ▸ lib ▸ python3.5 ▸ site-packages</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">tweet</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;RT @AnonKitsu: @who ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELICOPTERS AND PADDYWAGONS!!!! </span>
+<span class="s1">            #OCCUPYWALLSTREET #OWS #OCCUPYNY PLEASE @chengjun @mili http://computational-communication.com </span>
+<span class="s1">            http://ccc.nju.edu.cn RT !!HELP!!!!&#39;&#39;&#39;</span>
+
+<span class="n">rt_patterns</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(RT|via)((?:\b\W*@\w+)+)&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+<span class="n">rt_user_name</span> <span class="o">=</span> <span class="n">rt_patterns</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">tweet</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; @&#39;</span><span class="p">)</span><span class="c1">#.split(&#39;:&#39;)[0]</span>
+<span class="n">rt_user_name</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;AnonKitsu: @who&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">tweet</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;RT @AnonKitsu: @who ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELICOPTERS AND PADDYWAGONS!!!! </span>
+<span class="s1">            #OCCUPYWALLSTREET #OWS #OCCUPYNY PLEASE @chengjun @mili http://computational-communication.com </span>
+<span class="s1">            http://ccc.nju.edu.cn RT !!HELP!!!!&#39;&#39;&#39;</span>
+
+<span class="n">rt_patterns</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(RT|via)((?:\b\W*@\w+)+)&quot;</span><span class="p">,</span> \
+                         <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+<span class="n">rt_user_name</span> <span class="o">=</span> <span class="n">rt_patterns</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">tweet</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; @&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">rt_user_name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;AnonKitsu&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">tweet</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;@chengjun:@who ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELICOPTERS AND PADDYWAGONS!!!! </span>
+<span class="s1">            #OCCUPYWALLSTREET #OWS #OCCUPYNY PLEASE @chengjun @mili http://computational-communication.com </span>
+<span class="s1">            http://ccc.nju.edu.cn RT !!HELP!!!!&#39;&#39;&#39;</span>
+
+<span class="n">rt_patterns</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(RT|via)((?:\b\W*@\w+)+)&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+<span class="n">rt_user_name</span> <span class="o">=</span> <span class="n">rt_patterns</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rt_user_name</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">rt_user_name</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;it exits.&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+None
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">extract_rt_user</span><span class="p">(</span><span class="n">tweet</span><span class="p">):</span>
+    <span class="n">rt_patterns</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(RT|via)((?:\b\W*@\w+)+)&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+    <span class="n">rt_user_name</span> <span class="o">=</span> <span class="n">rt_patterns</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rt_user_name</span><span class="p">:</span>
+        <span class="n">rt_user_name</span> <span class="o">=</span> <span class="n">rt_user_name</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; @&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rt_user_name</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">rt_user_name</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tweet</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;RT @chengjun: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELICOPTERS AND PADDYWAGONS!!!! </span>
+<span class="s1">            #OCCUPYWALLSTREET #OWS #OCCUPYNY PLEASE @chengjun @mili http://computational-communication.com </span>
+<span class="s1">            http://ccc.nju.edu.cn RT !!HELP!!!!&#39;&#39;&#39;</span>
+
+<span class="n">extract_rt_user</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;chengjun&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tweet</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;@chengjun: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELICOPTERS AND PADDYWAGONS!!!! </span>
+<span class="s1">            #OCCUPYWALLSTREET #OWS #OCCUPYNY PLEASE @chengjun @mili http://computational-communication.com </span>
+<span class="s1">            http://ccc.nju.edu.cn RT !!HELP!!!!&#39;&#39;&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">extract_rt_user</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>None
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../data/ows_tweets_sample.txt&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">chunk</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    
+<span class="n">rt_network</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">chunk</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
+<span class="n">tweet_user_data</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
+<span class="n">tweet_user_data</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;RT @AnonKitsu: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELICOPTERS AND PADDYWAGONS!!!! #OCCUPYWALLSTREET #OWS #OCCUPYNY PLEASE RT !!HELP!!!!&#39;,
+  &#39;Anonops_Cop&#39;),
+ (&#39;@jamiekilstein @allisonkilkenny Interesting interview (never aired, wonder why??) by Fox with #ows protester http://t.co/Fte55Kh7&#39;,
+  &#39;KittyHybrid&#39;),
+ (&quot;@Seductivpancake Right! Those guys have a victory condition: regime change. #ows doesn&#39;t seem to have a goal I can figure out.&quot;,
+  &#39;nerdsherpa&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">rt_network</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">rt_dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span>  <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tweet_user_data</span><span class="p">):</span>
+    <span class="n">tweet</span><span class="p">,</span><span class="n">user</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="n">rt_user</span> <span class="o">=</span> <span class="n">extract_rt_user</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rt_user</span><span class="p">:</span>
+        <span class="n">rt_network</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">user</span><span class="p">,</span> <span class="n">rt_user</span><span class="p">))</span> <span class="c1">#(rt_user,&#39;  &#39;, user, end = &#39;\n&#39;)</span>
+        <span class="n">rt_dict</span><span class="p">[(</span><span class="n">user</span><span class="p">,</span> <span class="n">rt_user</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="c1">#rt_network[:5]</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">rt_dict</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[((&#39;Anonops_Cop&#39;, &#39;AnonKitsu&#39;), 1),
+ ((&#39;hamudistan&#39;, &#39;bembel&#39;), 1),
+ ((&#39;vickycrampton&#39;, &#39;TheNewDeal&#39;), 2)]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>获得清洗过的推特文本<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>不含人名、url、各种符号（如RT &#64;等）</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extract_tweet_text</span><span class="p">(</span><span class="n">tweet</span><span class="p">,</span> <span class="n">at_names</span><span class="p">,</span> <span class="n">urls</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">at_names</span><span class="p">:</span>
+        <span class="n">tweet</span> <span class="o">=</span> <span class="n">tweet</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span>
+        <span class="n">tweet</span> <span class="o">=</span> <span class="n">tweet</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">marks</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;RT @&#39;</span><span class="p">,</span> <span class="s1">&#39;@&#39;</span><span class="p">,</span> <span class="s1">&#39;&amp;quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;  &#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">marks</span><span class="p">:</span>
+        <span class="n">tweet</span> <span class="o">=</span> <span class="n">tweet</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tweet</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">twitter_text</span>
+
+<span class="n">tweet</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;RT @AnonKitsu: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELICOPTERS AND PADDYWAGONS!!!! </span>
+<span class="s1">            #OCCUPYWALLSTREET #OWS #OCCUPYNY PLEASE @chengjun @mili http://computational-communication.com </span>
+<span class="s1">            http://ccc.nju.edu.cn RT !!HELP!!!!&#39;&#39;&#39;</span>
+
+<span class="n">ex</span> <span class="o">=</span> <span class="n">twitter_text</span><span class="o">.</span><span class="n">Extractor</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+<span class="n">at_names</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">extract_mentioned_screen_names</span><span class="p">()</span>
+<span class="n">urls</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">extract_urls</span><span class="p">()</span>
+<span class="n">hashtags</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">extract_hashtags</span><span class="p">()</span>
+<span class="n">rt_user</span> <span class="o">=</span> <span class="n">extract_rt_user</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+<span class="c1">#tweet_text = extract_tweet_text(tweet, at_names, urls)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">at_names</span><span class="p">,</span> <span class="n">urls</span><span class="p">,</span> <span class="n">hashtags</span><span class="p">,</span> <span class="n">rt_user</span><span class="p">,</span><span class="s1">&#39;--------&gt;&#39;</span><span class="p">)</span><span class="c1">#, tweet_text)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;AnonKitsu&#39;, &#39;chengjun&#39;, &#39;mili&#39;] [&#39;http://computational-communication.com&#39;, &#39;http://ccc.nju.edu.cn&#39;] [&#39;OCCUPYWALLSTREET&#39;, &#39;OWS&#39;, &#39;OCCUPYNY&#39;] AnonKitsu --------&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="n">lines</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
+<span class="n">tweets</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">tweets</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="n">ex</span> <span class="o">=</span> <span class="n">twitter_text</span><span class="o">.</span><span class="n">Extractor</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+    <span class="n">at_names</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">extract_mentioned_screen_names</span><span class="p">()</span>
+    <span class="n">urls</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">extract_urls</span><span class="p">()</span>
+    <span class="n">hashtags</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">extract_hashtags</span><span class="p">()</span>
+    <span class="n">rt_user</span> <span class="o">=</span> <span class="n">extract_rt_user</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+    <span class="c1">#tweet_text = extract_tweet_text(tweet, at_names, urls)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">at_names</span><span class="p">,</span> <span class="n">urls</span><span class="p">,</span> <span class="n">hashtags</span><span class="p">,</span> <span class="n">rt_user</span><span class="p">)</span>
+    <span class="c1">#print(tweet_text)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[] [] [] None
+[&#39;AnonKitsu&#39;] [] [&#39;OCCUPYWALLSTREET&#39;, &#39;OWS&#39;, &#39;OCCUPYNY&#39;] AnonKitsu
+[&#39;jamiekilstein&#39;, &#39;allisonkilkenny&#39;] [&#39;http://t.co/Fte55Kh7&#39;] [&#39;ows&#39;] None
+[&#39;Seductivpancake&#39;] [] [&#39;ows&#39;] None
+[&#39;bembel&#39;] [&#39;http://j.mp/rhHavq&#39;] [&#39;OccupyWallStreet&#39;, &#39;OWS&#39;] bembel
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>作业<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>提取出raw tweets中的rtuser与user的转发网络</p>
+<p>格式：</p>
+<p>rt_user1, user1, 3</p>
+<p>rt_user2, user3, 2</p>
+<p>rt_user2, user4, 1</p>
+<p>…</p>
+<p>数据保存为csv格式</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="06-data-cleaning-preprocessing.html" title="previous page">对大数据进行预处理</a>
+    <a class='right-next' id="next-link" href="06-data-cleaning-occupy-central-news.html" title="next page">对占中新闻进行数据清洗</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

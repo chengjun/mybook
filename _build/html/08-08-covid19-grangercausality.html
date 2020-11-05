@@ -1,0 +1,1391 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>社交媒体可以预测新冠疫情吗？ &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="第六章 社会科学家的机器学习" href="09-01-machine-learning-with-sklearn.html" />
+    <link rel="prev" title="Analysing the Pew Survey Data of COVID19" href="08-07-covid19-pew-survey.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-02-linear-algebra.html">
+     Linear algebra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-03-distributions.html">
+     Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-03-probability.html">
+     Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-04-hypothesis-inference.html">
+     Statistical Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-05-gradient-descent.html">
+     Introduction to Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-06-regression.html">
+     Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-06-statsmodels.html">
+     Statistical Modeling with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-07-analyzing-titanic-dataset.html">
+     Logistic Regression of Titanic Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-07-covid19-pew-survey.html">
+     Analysing the Pew Survey Data of COVID19
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     社交媒体可以预测新冠疫情吗？
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/08-08-covid19-grangercausality.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/ebook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/ebook/issues/new?title=Issue%20on%20page%20%2F08-08-covid19-grangercausality.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/ebook/master?urlpath=tree/docs/08-08-covid19-grangercausality.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   格兰杰因果检验
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-null-hypothesis-for-grangercausalitytests">
+     The Null hypothesis for grangercausalitytests
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#without-peak">
+     without peak
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-the-tails">
+     test the tails
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spurous-correlation">
+   Spurous Correlation
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>社交媒体可以预测新冠疫情吗？<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>基于知微事见数据</p>
+<p>http://xgml.zhiweidata.net/?from=floating#/</p>
+<p><img alt="image.png" src="_images/pew6.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;no&quot;</span> <span class="na">border</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">marginwidth</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">marginheight</span><span class="o">=</span><span class="s">&quot;0&quot;</span> 
+    <span class="na">width</span><span class="o">=</span><span class="s">900</span> <span class="na">height</span><span class="o">=</span><span class="s">600</span> 
+    <span class="na">src</span><span class="o">=</span><span class="s">&quot;//xgml.zhiweidata.net/?from=floating#/&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" 
+    width=900 height=600 
+    src="//xgml.zhiweidata.net/?from=floating#/">
+</iframe>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">json</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#j = json.load(open(&#39;../data/zhiwei_line.json&#39;))</span>
+<span class="n">j</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/zhiwei_line0417.json&#39;</span><span class="p">))</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>voice</th>
+      <th>heat</th>
+      <th>case</th>
+      <th>allCase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>100</th>
+      <td>2020-04-08</td>
+      <td></td>
+      <td>225533</td>
+      <td>63</td>
+      <td>81865</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>2020-04-09</td>
+      <td></td>
+      <td>197162</td>
+      <td>42</td>
+      <td>81907</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>2020-04-10</td>
+      <td></td>
+      <td>212046</td>
+      <td>31</td>
+      <td>81953</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>2020-04-11</td>
+      <td></td>
+      <td>164010</td>
+      <td>31</td>
+      <td>82052</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>2020-04-12</td>
+      <td></td>
+      <td>157726</td>
+      <td>31</td>
+      <td>82160</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 105 entries, 0 to 104
+Data columns (total 5 columns):
+ #   Column   Non-Null Count  Dtype 
+---  ------   --------------  ----- 
+ 0   time     105 non-null    object
+ 1   voice    105 non-null    object
+ 2   heat     105 non-null    object
+ 3   case     105 non-null    object
+ 4   allCase  105 non-null    object
+dtypes: object(5)
+memory usage: 4.2+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">][:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    2019-12-30
+1    2019-12-31
+2    2020-01-01
+Name: time, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;heat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;heat&#39;</span><span class="p">]]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;case&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;case&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;heat&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0           2.00000
+1       62978.12912
+2       19890.45538
+3       13725.50326
+4       16509.66362
+           ...     
+100    225533.00000
+101    197162.00000
+102    212046.00000
+103    164010.00000
+104    157726.00000
+Name: heat, Length: 105, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;heat&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;case&#39;</span><span class="p">],</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="c1">#plt.xscale(&#39;log&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;新增确诊&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;舆论热度&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">800000</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-08-covid19-grangercausality_9_0.png" src="_images/08-08-covid19-grangercausality_9_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MIN</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;heat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">MAX</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;heat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="n">bins</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">MIN</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">MAX</span><span class="p">),</span><span class="mi">20</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;heat&#39;</span><span class="p">],</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;舆论热度&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;频数&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-08-covid19-grangercausality_10_0.png" src="_images/08-08-covid19-grangercausality_10_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MIN</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;case&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">MAX</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;case&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="n">bins</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">MIN</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">MAX</span><span class="p">),</span><span class="mi">20</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;case&#39;</span><span class="p">],</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">bins</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;新增确诊&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;频数&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-08-covid19-grangercausality_11_0.png" src="_images/08-08-covid19-grangercausality_11_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;heat&#39;</span><span class="p">],</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-08-covid19-grangercausality_12_0.png" src="_images/08-08-covid19-grangercausality_12_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plt.hist( df[&#39;heat&#39;], bins = 50)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;case&#39;</span><span class="p">],</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-08-covid19-grangercausality_13_0.png" src="_images/08-08-covid19-grangercausality_13_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span><span class="n">dpi</span> <span class="o">=</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>  <span class="n">df</span><span class="p">[</span><span class="s1">&#39;heat&#39;</span><span class="p">],</span> <span class="s1">&#39;r-s&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;舆论热度&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;舆论热度&#39;</span><span class="p">,),</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="c1">#ax1.set_yscale(&#39;log&#39;)</span>
+
+<span class="n">ax2</span><span class="o">=</span><span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;case&#39;</span><span class="p">],</span> <span class="s1">&#39;g-o&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;新增确诊&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;新增确诊&#39;</span><span class="p">,),</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="c1">#ax2.set_yscale(&#39;log&#39;)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-08-covid19-grangercausality_14_0.png" src="_images/08-08-covid19-grangercausality_14_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span> <span class="o">=</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;heat&#39;</span><span class="p">]],</span> <span class="s1">&#39;r-s&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;舆论热度/100&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;case&#39;</span><span class="p">]],</span> <span class="s1">&#39;g-o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;新增确诊&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;数量&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-08-covid19-grangercausality_15_0.png" src="_images/08-08-covid19-grangercausality_15_0.png" />
+</div>
+</div>
+<div class="section" id="id2">
+<h2>格兰杰因果检验<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>http://www.statsmodels.org/dev/generated/statsmodels.tsa.stattools.grangercausalitytests.html</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">grangercausalitytests</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>help(df.pct_change)</p>
+<p>Percentage change between the current and a prior element.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Computes the percentage change from the immediately previous row by
+default. This is useful in comparing the percentage of change in a time
+series of elements.
+</pre></div>
+</div>
+<div class="section" id="the-null-hypothesis-for-grangercausalitytests">
+<h3>The Null hypothesis for grangercausalitytests<a class="headerlink" href="#the-null-hypothesis-for-grangercausalitytests" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>H0: the time series in the second column, x2, does NOT Granger cause the time series in the first column, x1.</p>
+</div></blockquote>
+<p>Grange causality means that past values of x2 have a statistically significant effect on the current value of x1, taking past values of x1 into account as regressors. We reject the null hypothesis that x2 does not Granger cause x1 if the pvalues are below a desired size of the test.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>grangercausalitytests<span class="o">?</span>
+<span class="c1"># The data for test whether the time series in the second column Granger</span>
+<span class="c1">#     causes the time series in the first column. Missing values are not</span>
+<span class="c1">#     supported.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="mi">21</span><span class="p">:][[</span><span class="s1">&#39;case&#39;</span><span class="p">,</span><span class="s1">&#39;heat&#39;</span> <span class="p">]]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>case</th>
+      <th>heat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>22</th>
+      <td>0.935065</td>
+      <td>1.442401</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>-0.120805</td>
+      <td>0.299869</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>0.977099</td>
+      <td>0.310704</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>0.714286</td>
+      <td>-0.081957</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>0.549550</td>
+      <td>-0.044222</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-08-covid19-grangercausality_23_0.png" src="_images/08-08-covid19-grangercausality_23_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gc_res</span> <span class="o">=</span> <span class="n">grangercausalitytests</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Granger Causality
+number of lags (no zero) 1
+ssr based F test:         F=0.2522  , p=0.6169  , df_denom=79, df_num=1
+ssr based chi2 test:   chi2=0.2618  , p=0.6089  , df=1
+likelihood ratio test: chi2=0.2613  , p=0.6092  , df=1
+parameter F test:         F=0.2522  , p=0.6169  , df_denom=79, df_num=1
+
+Granger Causality
+number of lags (no zero) 2
+ssr based F test:         F=12.3885 , p=0.0000  , df_denom=76, df_num=2
+ssr based chi2 test:   chi2=26.4070 , p=0.0000  , df=2
+likelihood ratio test: chi2=22.8563 , p=0.0000  , df=2
+parameter F test:         F=12.3885 , p=0.0000  , df_denom=76, df_num=2
+
+Granger Causality
+number of lags (no zero) 3
+ssr based F test:         F=8.8247  , p=0.0000  , df_denom=73, df_num=3
+ssr based chi2 test:   chi2=29.0127 , p=0.0000  , df=3
+likelihood ratio test: chi2=24.7550 , p=0.0000  , df=3
+parameter F test:         F=8.8247  , p=0.0000  , df_denom=73, df_num=3
+
+Granger Causality
+number of lags (no zero) 4
+ssr based F test:         F=6.1783  , p=0.0003  , df_denom=70, df_num=4
+ssr based chi2 test:   chi2=27.8906 , p=0.0000  , df=4
+likelihood ratio test: chi2=23.8863 , p=0.0001  , df=4
+parameter F test:         F=6.1783  , p=0.0003  , df_denom=70, df_num=4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="mi">21</span><span class="p">:][[</span><span class="s1">&#39;heat&#39;</span><span class="p">,</span><span class="s1">&#39;case&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">gc_res1</span> <span class="o">=</span> <span class="n">grangercausalitytests</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Granger Causality
+number of lags (no zero) 1
+ssr based F test:         F=0.0044  , p=0.9473  , df_denom=79, df_num=1
+ssr based chi2 test:   chi2=0.0046  , p=0.9461  , df=1
+likelihood ratio test: chi2=0.0046  , p=0.9461  , df=1
+parameter F test:         F=0.0044  , p=0.9473  , df_denom=79, df_num=1
+
+Granger Causality
+number of lags (no zero) 2
+ssr based F test:         F=0.0877  , p=0.9162  , df_denom=76, df_num=2
+ssr based chi2 test:   chi2=0.1869  , p=0.9108  , df=2
+likelihood ratio test: chi2=0.1866  , p=0.9109  , df=2
+parameter F test:         F=0.0877  , p=0.9162  , df_denom=76, df_num=2
+
+Granger Causality
+number of lags (no zero) 3
+ssr based F test:         F=0.7988  , p=0.4985  , df_denom=73, df_num=3
+ssr based chi2 test:   chi2=2.6262  , p=0.4529  , df=3
+likelihood ratio test: chi2=2.5840  , p=0.4603  , df=3
+parameter F test:         F=0.7988  , p=0.4985  , df_denom=73, df_num=3
+
+Granger Causality
+number of lags (no zero) 4
+ssr based F test:         F=0.8460  , p=0.5008  , df_denom=70, df_num=4
+ssr based chi2 test:   chi2=3.8190  , p=0.4311  , df=4
+likelihood ratio test: chi2=3.7296  , p=0.4438  , df=4
+parameter F test:         F=0.8460  , p=0.5008  , df_denom=70, df_num=4
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="without-peak">
+<h3>without peak<a class="headerlink" href="#without-peak" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;case&#39;</span><span class="p">][</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;2020-02-12&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;case&#39;</span><span class="p">][</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;2020-02-13&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:1: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df = pd.read_excel(&#39;zhiwei_line_no_peak.xlsx&#39;)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;heat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;heat&#39;</span><span class="p">]]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;case&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;case&#39;</span><span class="p">]]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>voice</th>
+      <th>heat</th>
+      <th>case</th>
+      <th>allCase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>100</th>
+      <td>2020-04-08</td>
+      <td></td>
+      <td>225533.0</td>
+      <td>63</td>
+      <td>81865</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>2020-04-09</td>
+      <td></td>
+      <td>197162.0</td>
+      <td>42</td>
+      <td>81907</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>2020-04-10</td>
+      <td></td>
+      <td>212046.0</td>
+      <td>31</td>
+      <td>81953</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>2020-04-11</td>
+      <td></td>
+      <td>164010.0</td>
+      <td>31</td>
+      <td>82052</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>2020-04-12</td>
+      <td></td>
+      <td>157726.0</td>
+      <td>31</td>
+      <td>82160</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span><span class="n">dpi</span> <span class="o">=</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>  <span class="n">df</span><span class="p">[</span><span class="s1">&#39;heat&#39;</span><span class="p">],</span> <span class="s1">&#39;r-s&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;舆论热度&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;舆论热度&#39;</span><span class="p">,),</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">=</span><span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;case&#39;</span><span class="p">],</span> <span class="s1">&#39;g-o&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;新增确诊&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;新增确诊&#39;</span><span class="p">,),</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-08-covid19-grangercausality_29_0.png" src="_images/08-08-covid19-grangercausality_29_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="mi">21</span><span class="p">:][[</span><span class="s1">&#39;case&#39;</span><span class="p">,</span><span class="s1">&#39;heat&#39;</span> <span class="p">]]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-08-covid19-grangercausality_31_0.png" src="_images/08-08-covid19-grangercausality_31_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gc_res</span> <span class="o">=</span> <span class="n">grangercausalitytests</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Granger Causality
+number of lags (no zero) 1
+ssr based F test:         F=0.0104  , p=0.9189  , df_denom=79, df_num=1
+ssr based chi2 test:   chi2=0.0108  , p=0.9172  , df=1
+likelihood ratio test: chi2=0.0108  , p=0.9172  , df=1
+parameter F test:         F=0.0104  , p=0.9189  , df_denom=79, df_num=1
+
+Granger Causality
+number of lags (no zero) 2
+ssr based F test:         F=3.7056  , p=0.0291  , df_denom=76, df_num=2
+ssr based chi2 test:   chi2=7.8988  , p=0.0193  , df=2
+likelihood ratio test: chi2=7.5370  , p=0.0231  , df=2
+parameter F test:         F=3.7056  , p=0.0291  , df_denom=76, df_num=2
+
+Granger Causality
+number of lags (no zero) 3
+ssr based F test:         F=1.6880  , p=0.1771  , df_denom=73, df_num=3
+ssr based chi2 test:   chi2=5.5496  , p=0.1357  , df=3
+likelihood ratio test: chi2=5.3656  , p=0.1469  , df=3
+parameter F test:         F=1.6880  , p=0.1771  , df_denom=73, df_num=3
+
+Granger Causality
+number of lags (no zero) 4
+ssr based F test:         F=1.1838  , p=0.3255  , df_denom=70, df_num=4
+ssr based chi2 test:   chi2=5.3439  , p=0.2538  , df=4
+likelihood ratio test: chi2=5.1709  , p=0.2702  , df=4
+parameter F test:         F=1.1838  , p=0.3255  , df_denom=70, df_num=4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="mi">21</span><span class="p">:][[</span><span class="s1">&#39;heat&#39;</span><span class="p">,</span><span class="s1">&#39;case&#39;</span> <span class="p">]]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">gc_res</span> <span class="o">=</span> <span class="n">grangercausalitytests</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Granger Causality
+number of lags (no zero) 1
+ssr based F test:         F=0.3389  , p=0.5621  , df_denom=79, df_num=1
+ssr based chi2 test:   chi2=0.3518  , p=0.5531  , df=1
+likelihood ratio test: chi2=0.3511  , p=0.5535  , df=1
+parameter F test:         F=0.3389  , p=0.5621  , df_denom=79, df_num=1
+
+Granger Causality
+number of lags (no zero) 2
+ssr based F test:         F=0.4490  , p=0.6400  , df_denom=76, df_num=2
+ssr based chi2 test:   chi2=0.9571  , p=0.6197  , df=2
+likelihood ratio test: chi2=0.9514  , p=0.6214  , df=2
+parameter F test:         F=0.4490  , p=0.6400  , df_denom=76, df_num=2
+
+Granger Causality
+number of lags (no zero) 3
+ssr based F test:         F=0.2301  , p=0.8751  , df_denom=73, df_num=3
+ssr based chi2 test:   chi2=0.7565  , p=0.8598  , df=3
+likelihood ratio test: chi2=0.7530  , p=0.8607  , df=3
+parameter F test:         F=0.2301  , p=0.8751  , df_denom=73, df_num=3
+
+Granger Causality
+number of lags (no zero) 4
+ssr based F test:         F=0.3046  , p=0.8740  , df_denom=70, df_num=4
+ssr based chi2 test:   chi2=1.3749  , p=0.8485  , df=4
+likelihood ratio test: chi2=1.3631  , p=0.8506  , df=4
+parameter F test:         F=0.3046  , p=0.8740  , df_denom=70, df_num=4
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="test-the-tails">
+<h3>test the tails<a class="headerlink" href="#test-the-tails" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#df = pd.read_excel(&#39;zhiwei_line_no_peak.xlsx&#39;)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;heat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;heat&#39;</span><span class="p">]]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;case&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;case&#39;</span><span class="p">]]</span>
+<span class="n">df</span><span class="p">[</span><span class="mi">40</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>voice</th>
+      <th>heat</th>
+      <th>case</th>
+      <th>allCase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>40</th>
+      <td>2020-02-08</td>
+      <td></td>
+      <td>198955.9754</td>
+      <td>2656</td>
+      <td>37198</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>2020-02-09</td>
+      <td></td>
+      <td>178865.4643</td>
+      <td>3062</td>
+      <td>40171</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>2020-02-10</td>
+      <td></td>
+      <td>366537.5655</td>
+      <td>2478</td>
+      <td>42638</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>2020-02-11</td>
+      <td></td>
+      <td>463839.3934</td>
+      <td>2015</td>
+      <td>44653</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>2020-02-12</td>
+      <td></td>
+      <td>548711.0169</td>
+      <td>2015</td>
+      <td>59804</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>100</th>
+      <td>2020-04-08</td>
+      <td></td>
+      <td>225533.0000</td>
+      <td>63</td>
+      <td>81865</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>2020-04-09</td>
+      <td></td>
+      <td>197162.0000</td>
+      <td>42</td>
+      <td>81907</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>2020-04-10</td>
+      <td></td>
+      <td>212046.0000</td>
+      <td>31</td>
+      <td>81953</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>2020-04-11</td>
+      <td></td>
+      <td>164010.0000</td>
+      <td>31</td>
+      <td>82052</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>2020-04-12</td>
+      <td></td>
+      <td>157726.0000</td>
+      <td>31</td>
+      <td>82160</td>
+    </tr>
+  </tbody>
+</table>
+<p>65 rows × 5 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="mi">40</span><span class="p">:][[</span><span class="s1">&#39;heat&#39;</span><span class="p">,</span><span class="s1">&#39;case&#39;</span> <span class="p">]]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">gc_res</span> <span class="o">=</span> <span class="n">grangercausalitytests</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Granger Causality
+number of lags (no zero) 1
+ssr based F test:         F=0.7319  , p=0.3957  , df_denom=60, df_num=1
+ssr based chi2 test:   chi2=0.7685  , p=0.3807  , df=1
+likelihood ratio test: chi2=0.7638  , p=0.3821  , df=1
+parameter F test:         F=0.7319  , p=0.3957  , df_denom=60, df_num=1
+
+Granger Causality
+number of lags (no zero) 2
+ssr based F test:         F=0.8160  , p=0.4473  , df_denom=57, df_num=2
+ssr based chi2 test:   chi2=1.7752  , p=0.4117  , df=2
+likelihood ratio test: chi2=1.7502  , p=0.4168  , df=2
+parameter F test:         F=0.8160  , p=0.4473  , df_denom=57, df_num=2
+
+Granger Causality
+number of lags (no zero) 3
+ssr based F test:         F=0.5435  , p=0.6546  , df_denom=54, df_num=3
+ssr based chi2 test:   chi2=1.8419  , p=0.6059  , df=3
+likelihood ratio test: chi2=1.8146  , p=0.6118  , df=3
+parameter F test:         F=0.5435  , p=0.6546  , df_denom=54, df_num=3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="mi">40</span><span class="p">:][[</span><span class="s1">&#39;case&#39;</span><span class="p">,</span><span class="s1">&#39;heat&#39;</span> <span class="p">]]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">gc_res</span> <span class="o">=</span> <span class="n">grangercausalitytests</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Granger Causality
+number of lags (no zero) 1
+ssr based F test:         F=0.4303  , p=0.5143  , df_denom=60, df_num=1
+ssr based chi2 test:   chi2=0.4518  , p=0.5015  , df=1
+likelihood ratio test: chi2=0.4502  , p=0.5022  , df=1
+parameter F test:         F=0.4303  , p=0.5143  , df_denom=60, df_num=1
+
+Granger Causality
+number of lags (no zero) 2
+ssr based F test:         F=1.7140  , p=0.1893  , df_denom=57, df_num=2
+ssr based chi2 test:   chi2=3.7286  , p=0.1550  , df=2
+likelihood ratio test: chi2=3.6208  , p=0.1636  , df=2
+parameter F test:         F=1.7140  , p=0.1893  , df_denom=57, df_num=2
+
+Granger Causality
+number of lags (no zero) 3
+ssr based F test:         F=1.0282  , p=0.3875  , df_denom=54, df_num=3
+ssr based chi2 test:   chi2=3.4843  , p=0.3228  , df=3
+likelihood ratio test: chi2=3.3884  , p=0.3355  , df=3
+parameter F test:         F=1.0282  , p=0.3875  , df_denom=54, df_num=3
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="spurous-correlation">
+<h2>Spurous Correlation<a class="headerlink" href="#spurous-correlation" title="Permalink to this headline">¶</a></h2>
+<p>http://www.tylervigen.com/spurious-correlations</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">suicide</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5427</span><span class="p">,</span><span class="mi">5688</span><span class="p">,</span><span class="mi">6198</span><span class="p">,</span><span class="mi">6462</span><span class="p">,</span><span class="mi">6635</span><span class="p">,</span><span class="mi">7336</span><span class="p">,</span><span class="mi">7248</span><span class="p">,</span><span class="mi">7491</span><span class="p">,</span><span class="mi">8161</span><span class="p">,</span><span class="mi">8578</span><span class="p">,</span><span class="mi">9000</span><span class="p">]</span>
+<span class="n">spending</span> <span class="o">=</span> <span class="p">[</span><span class="mf">18.079</span><span class="p">,</span><span class="mf">18.594</span><span class="p">,</span><span class="mf">19.753</span><span class="p">,</span><span class="mf">20.734</span><span class="p">,</span><span class="mf">20.831</span><span class="p">,</span><span class="mf">23.029</span><span class="p">,</span><span class="mf">23.597</span><span class="p">,</span><span class="mf">23.584</span><span class="p">,</span><span class="mf">25.525</span><span class="p">,</span><span class="mf">27.731</span><span class="p">,</span><span class="mf">29.449</span><span class="p">]</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">suicide</span><span class="p">,</span> <span class="n">spending</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;suicide&#39;</span><span class="p">,</span> <span class="s1">&#39;spending&#39;</span><span class="p">])</span> <span class="c1"># .pct_change().dropna()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;suicide&#39;</span><span class="p">,</span><span class="s1">&#39;spending&#39;</span> <span class="p">]]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">gc_res</span> <span class="o">=</span> <span class="n">grangercausalitytests</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Granger Causality
+number of lags (no zero) 1
+ssr based F test:         F=7.6049  , p=0.0330  , df_denom=6, df_num=1
+ssr based chi2 test:   chi2=11.4073 , p=0.0007  , df=1
+likelihood ratio test: chi2=7.3680  , p=0.0066  , df=1
+parameter F test:         F=7.6049  , p=0.0330  , df_denom=6, df_num=1
+
+Granger Causality
+number of lags (no zero) 2
+ssr based F test:         F=0.5180  , p=0.6408  , df_denom=3, df_num=2
+ssr based chi2 test:   chi2=2.7627  , p=0.2512  , df=2
+likelihood ratio test: chi2=2.3731  , p=0.3053  , df=2
+parameter F test:         F=0.5180  , p=0.6408  , df_denom=3, df_num=2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;spending&#39;</span><span class="p">,</span> <span class="s1">&#39;suicide&#39;</span> <span class="p">]]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">gc_res</span> <span class="o">=</span> <span class="n">grangercausalitytests</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Granger Causality
+number of lags (no zero) 1
+ssr based F test:         F=2.5229  , p=0.1633  , df_denom=6, df_num=1
+ssr based chi2 test:   chi2=3.7844  , p=0.0517  , df=1
+likelihood ratio test: chi2=3.1590  , p=0.0755  , df=1
+parameter F test:         F=2.5229  , p=0.1633  , df_denom=6, df_num=1
+
+Granger Causality
+number of lags (no zero) 2
+ssr based F test:         F=0.1465  , p=0.8695  , df_denom=3, df_num=2
+ssr based chi2 test:   chi2=0.7814  , p=0.6766  , df=2
+likelihood ratio test: chi2=0.7455  , p=0.6888  , df=2
+parameter F test:         F=0.1465  , p=0.8695  , df_denom=3, df_num=2
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="08-07-covid19-pew-survey.html" title="previous page">Analysing the Pew Survey Data of COVID19</a>
+    <a class='right-next' id="next-link" href="09-01-machine-learning-with-sklearn.html" title="next page">第六章 社会科学家的机器学习</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

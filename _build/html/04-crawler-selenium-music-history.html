@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>抓取网易云音乐用户的听歌记录 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="使用Selenium提取人民网搜索数据" href="04-crawler-selenium-people-com-search.html" />
+    <link rel="prev" title="使用Selenium操纵浏览器" href="04-crawler-selenium.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-fact-checking.html">
+     抓取实时辟谣数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-13chambers.html">
+     抓取网络小说
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-wechat.html">
+     抓取微信公众号文章内容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-douban.html">
+     使用requests + Xpath抓取豆瓣电影数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-gov-report.html">
+     抓取历届政府工作报告
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-cppcc.html">
+     抓取江苏省政协十年提案
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-netease-music.html">
+     抓取网易云音乐热门评论
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium.html">
+     使用Selenium操纵浏览器
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     抓取网易云音乐用户的听歌记录
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-people-com-search.html">
+     使用Selenium提取人民网搜索数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-tripadvisor.html">
+     使用Selenium抓取TripAdvisor用户评论
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/04-crawler-selenium-music-history.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/ebook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/ebook/issues/new?title=Issue%20on%20page%20%2F04-crawler-selenium-music-history.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/ebook/master?urlpath=tree/docs/04-crawler-selenium-music-history.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>抓取网易云音乐用户的听歌记录<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>https://blog.csdn.net/android_ruben/article/details/77692455</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">import</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="k">as</span> <span class="nn">ui</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span><span class="s1">&#39;/Users/datalab/downloads/chromedriver2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://music.163.com/#/user/songs/rank?id=39686047&quot;</span><span class="p">)</span><span class="c1">#需要抓取的用户链接，这里注意的是这里的id不是用户的id，而是用户听歌形成的所有时间排行的排行版的id</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="s1">&#39;g_iframe&#39;</span><span class="p">)</span>  <span class="c1"># 从windows切换到frame，切换到歌曲列表所在的frame</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="p">[]</span><span class="c1">#用来保存数据</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">wait</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+    <span class="c1">#找到歌曲列表所在的父标签</span>
+    <span class="k">if</span> <span class="n">wait</span><span class="o">.</span><span class="n">until</span><span class="p">(</span><span class="k">lambda</span> <span class="n">driver</span><span class="p">:</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_class_name</span><span class="p">(</span><span class="s1">&#39;g-bd&#39;</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;success!&#39;</span><span class="p">)</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">title</span><span class="o">+=</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;rHeader&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find_element_by_tag_name</span><span class="p">(</span><span class="s1">&#39;h4&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">title</span><span class="p">)</span><span class="c1">#抓取用户听了多少首歌</span>
+        <span class="n">lists</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_class_name</span><span class="p">(</span><span class="s1">&#39;m-record&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find_elements_by_tag_name</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lists</span><span class="p">))</span><span class="c1">#网易只给出了前100首听的最频繁的歌</span>
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lists</span><span class="p">:</span>
+            <span class="n">temp</span><span class="o">=</span><span class="s1">&#39;歌曲名：&#39;</span><span class="o">+</span><span class="n">l</span><span class="o">.</span><span class="n">find_element_by_tag_name</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">+</span><span class="s1">&#39; 歌手：&#39;</span><span class="o">+</span><span class="n">l</span><span class="o">.</span><span class="n">find_element_by_class_name</span><span class="p">(</span><span class="s1">&#39;s-fc8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; 频率：&#39;</span><span class="o">+</span><span class="n">l</span><span class="o">.</span><span class="n">find_element_by_class_name</span><span class="p">(</span><span class="s1">&#39;bg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s1">&#39;style&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span><span class="c1">#解析出歌名 歌手 频率</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+
+<span class="k">finally</span><span class="p">:</span>
+    <span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>success!
+累积听歌2575首
+
+100
+歌曲名：Anifled 歌手：Pianoboy高至豪 频率：width: 100%;
+歌曲名：The truth that you leave 歌手：Pianoboy高至豪 频率：width: 96%;
+歌曲名：偏偏喜欢你 歌手：陈百强 频率：width: 69%;
+歌曲名：Annabelle 歌手：Pianoboy高至豪 频率：width: 65%;
+歌曲名：逆流成河 歌手：金南玲 频率：width: 60%;
+歌曲名：钢琴课:是否真的开心/尼曼 歌手：Various Artists 频率：width: 55%;
+歌曲名：Forgive Me 歌手：CMA 频率：width: 52%;
+歌曲名：BINGBIAN病变 (女声版) 歌手：鞠文娴 频率：width: 50%;
+歌曲名：老街 歌手：李荣浩 频率：width: 48%;
+歌曲名：等一分钟 歌手：徐誉滕 频率：width: 46%;
+歌曲名：City 歌手：羽肿 频率：width: 41%;
+歌曲名：白昼之夜 歌手：林隆璇 频率：width: 39%;
+歌曲名：Sad Angel 歌手：伊戈尔.克鲁托伊 频率：width: 39%;
+歌曲名：Don Coi (Instrumental) 歌手：Truong Quynh Anh 频率：width: 36%;
+歌曲名：周杰伦歌曲串烧 歌手：BEC包子 频率：width: 33%;
+歌曲名：白色羽毛 歌手：芮恩 频率：width: 32%;
+歌曲名：Ce Frumoasa E Iubirea 歌手：Giulia 频率：width: 30%;
+歌曲名：Faded (Instrumental) 歌手：Alan Walker 频率：width: 29%;
+歌曲名：蓝色土耳其 歌手：周传雄 频率：width: 29%;
+歌曲名：Let Her Go 歌手：Passenger 频率：width: 28%;
+歌曲名：Negative Things 歌手：Selwyn 频率：width: 28%;
+歌曲名：Take My Hand 歌手：Omar Akram 频率：width: 27%;
+歌曲名：Mirror Night 歌手：V.K克 频率：width: 26%;
+歌曲名：Set Fire To The Rain 歌手：Piano Tribute Players 频率：width: 25%;
+歌曲名：A Walk In The Rain 歌手：Yanni 频率：width: 24%;
+歌曲名：绅士 歌手：薛之谦 频率：width: 23%;
+歌曲名：Inspire 歌手：Capo Productions 频率：width: 22%;
+歌曲名：红色高跟鞋 歌手：蔡健雅 频率：width: 21%;
+歌曲名：A New Day 歌手：Mark Petrie 频率：width: 21%;
+歌曲名：Tassel 歌手：Cymophane 频率：width: 21%;
+歌曲名：死不了 歌手：任贤齐 频率：width: 21%;
+歌曲名：三人游 歌手：方大同 频率：width: 21%;
+歌曲名：Going home 歌手：Kenny G 频率：width: 20%;
+歌曲名：ALONE ON THE WAY 歌手：Pianoboy高至豪 频率：width: 20%;
+歌曲名：钟无艳 歌手：谢安琪 频率：width: 19%;
+歌曲名：Wild Sea 歌手：Roberto Cacciapaglia 频率：width: 19%;
+歌曲名：越来越不懂 歌手：蔡健雅 频率：width: 18%;
+歌曲名：Here We Are Again 歌手：CAGNET/日向大介 频率：width: 18%;
+歌曲名：เจอกับตัวเอง...ถึงรู้ 歌手：Sara Nusara Poongprasert 频率：width: 18%;
+歌曲名：镜夜 歌手：V.K克 频率：width: 18%;
+歌曲名：漂洋过海来看你 歌手：李宗盛 频率：width: 18%;
+歌曲名：Young For You 歌手：GALA 频率：width: 17%;
+歌曲名：Sky High 歌手：Thomas Prime 频率：width: 16%;
+歌曲名：用心良苦 歌手：张崇德 频率：width: 15%;
+歌曲名：卡农变奏曲 歌手：K. Williams 频率：width: 15%;
+歌曲名：The Heart Asks Pleasure First 歌手：Michael Nyman 频率：width: 15%;
+歌曲名：Breath and Life 歌手：Audiomachine 频率：width: 15%;
+歌曲名：算什么男人 歌手：周杰伦 频率：width: 14%;
+歌曲名：Against All Odds 2006 (Take A Look At Me Now) (Cinema Sax Album Version) 歌手：Sam Levine 频率：width: 14%;
+歌曲名：演员 歌手：薛之谦 频率：width: 14%;
+歌曲名：Layee 歌手：Pianoboy高至豪 频率：width: 13%;
+歌曲名：陌生人 歌手：蔡健雅 频率：width: 13%;
+歌曲名：Apologize 歌手：OneRepublic 频率：width: 13%;
+歌曲名：Lonely Day 歌手：Jurrivh 频率：width: 13%;
+歌曲名：逍遥叹 歌手：胡歌 频率：width: 13%;
+歌曲名：Take a bow 歌手：Rihanna 频率：width: 12%;
+歌曲名：追梦赤子心 歌手：GALA 频率：width: 12%;
+歌曲名：Anifled 歌手：Pianoboy高至豪 频率：width: 12%;
+歌曲名：走着走着就散了 歌手：庄心妍 频率：width: 12%;
+歌曲名：祝你幸福 歌手：黄奕蓉 频率：width: 12%;
+歌曲名：The Beginning 歌手：Ryan 频率：width: 11%;
+歌曲名：Five Hundred Miles 歌手：Justin Timberlake/Carey Mulligan/Stark Sands 频率：width: 11%;
+歌曲名：we&#39;re turning into regular people 歌手：the tumbled sea 频率：width: 11%;
+歌曲名：无底洞 歌手：蔡健雅 频率：width: 11%;
+歌曲名：Tonight I Wanna Cry 歌手：Keith Urban 频率：width: 11%;
+歌曲名：Still Water 歌手：Maksim Mrvica 频率：width: 11%;
+歌曲名：千言万语 歌手：韩磊 频率：width: 11%;
+歌曲名：飘雪 歌手：陈慧娴 频率：width: 10%;
+歌曲名：海边的留言 歌手：Pianoboy高至豪 频率：width: 10%;
+歌曲名：离人 歌手：林志炫 频率：width: 10%;
+歌曲名：Sundial Dreams 歌手：Kevin Kern 频率：width: 10%;
+歌曲名：Autumn 歌手：July 频率：width: 10%;
+歌曲名：Serenade 歌手：Jim Brickman 频率：width: 9%;
+歌曲名：再见二丁目 歌手：杨千嬅 频率：width: 9%;
+歌曲名：想太多 歌手：李玖哲 频率：width: 9%;
+歌曲名：Run Away with Me 歌手：Omar Akram 频率：width: 9%;
+歌曲名：Brotherhood 歌手：John Dreamer 频率：width: 9%;
+歌曲名：无赖 歌手：郑中基 频率：width: 9%;
+歌曲名：梦一场 歌手：萧敬腾 频率：width: 9%;
+歌曲名：一万个舍不得 歌手：庄心妍/祁隆 频率：width: 9%;
+歌曲名：Dream Of A Dream 歌手：Epistra 频率：width: 8%;
+歌曲名：Traveling Light 歌手：Joel Hanson/Sara Groves 频率：width: 8%;
+歌曲名：英雄的黎明 歌手：横山菁児 频率：width: 8%;
+歌曲名：爱 歌手：莫文蔚 频率：width: 8%;
+歌曲名：Will and Elizabeth 歌手：Klaus Badelt 频率：width: 8%;
+歌曲名：卡农钢琴随弹（Cover 卡农） 歌手：Keyshawn Binean 频率：width: 8%;
+歌曲名：菊次郎的夏天 歌手：K. Williams 频率：width: 8%;
+歌曲名：Susan说 歌手：陶喆 频率：width: 8%;
+歌曲名：杏花弦外雨 歌手：CRITTY/司夏 频率：width: 8%;
+歌曲名：Open Window (Original Mix) 歌手：MitiS/Anna Yvette 频率：width: 8%;
+歌曲名：You&#39;re Beautiful 歌手：James Blunt 频率：width: 8%;
+歌曲名：我在那一角落患过伤风(钢琴版) 歌手：群星 频率：width: 8%;
+歌曲名：暗香 歌手：韩磊 频率：width: 8%;
+歌曲名：what for? 歌手：sAr 频率：width: 8%;
+歌曲名：过云雨 歌手：张敬轩 频率：width: 7%;
+歌曲名：Journey 歌手：Capo Productions 频率：width: 7%;
+歌曲名：夜的钢琴曲五 歌手：石进 频率：width: 7%;
+歌曲名：A Little Story 歌手：Valentin 频率：width: 7%;
+歌曲名：Free Loop 歌手：Daniel Powter 频率：width: 7%;
+歌曲名：白色羽毛 歌手：芮恩 频率：width: 7%;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 存储为文本</span>
+<span class="k">def</span> <span class="nf">write2txt</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="c1">#write2txt(data,&#39;./data/songs.txt&#39;)#保存文件中</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;歌曲名：Anifled 歌手：Pianoboy高至豪 频率：width: 100%;&#39;,
+ &#39;歌曲名：The truth that you leave 歌手：Pianoboy高至豪 频率：width: 96%;&#39;,
+ &#39;歌曲名：偏偏喜欢你 歌手：陈百强 频率：width: 69%;&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="04-crawler-selenium.html" title="previous page">使用Selenium操纵浏览器</a>
+    <a class='right-next' id="next-link" href="04-crawler-selenium-people-com-search.html" title="next page">使用Selenium提取人民网搜索数据</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

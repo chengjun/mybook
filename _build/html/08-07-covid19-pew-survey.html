@@ -1,0 +1,1475 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Analysing the Pew Survey Data of COVID19 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="社交媒体可以预测新冠疫情吗？" href="08-08-covid19-grangercausality.html" />
+    <link rel="prev" title="Logistic Regression of Titanic Data" href="08-07-analyzing-titanic-dataset.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-02-linear-algebra.html">
+     Linear algebra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-03-distributions.html">
+     Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-03-probability.html">
+     Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-04-hypothesis-inference.html">
+     Statistical Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-05-gradient-descent.html">
+     Introduction to Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-06-regression.html">
+     Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-06-statsmodels.html">
+     Statistical Modeling with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-07-analyzing-titanic-dataset.html">
+     Logistic Regression of Titanic Data
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Analysing the Pew Survey Data of COVID19
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-08-covid19-grangercausality.html">
+     社交媒体可以预测新冠疫情吗？
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/08-07-covid19-pew-survey.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/ebook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/ebook/issues/new?title=Issue%20on%20page%20%2F08-07-covid19-pew-survey.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/ebook/master?urlpath=tree/docs/08-07-covid19-pew-survey.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-cleaning">
+   Data Cleaning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#weighting">
+   Weighting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sampling-with-weight">
+   Sampling with weight
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#weighted-regression-wls-vs-glm">
+   Weighted Regression: WLS vs. GLM
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#glm-binomial-regression">
+   GLM Binomial Regression
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="analysing-the-pew-survey-data-of-covid19">
+<h1>Analysing the Pew Survey Data of COVID19<a class="headerlink" href="#analysing-the-pew-survey-data-of-covid19" title="Permalink to this headline">¶</a></h1>
+<p><img alt="image.png" src="_images/author.png" /></p>
+<p>阅读 https://www.journalism.org/dataset/election-news-pathways-april-2020-survey/</p>
+<ol class="simple">
+<li><p>下载Pathways-April-2020-ATP-W66-1.zip 数据，该数据来自pewresearch针对2020年总统选举所做的panel study中的一次，其中加入了关于covid19的部分问题。</p></li>
+</ol>
+<p><img alt="image.png" src="_images/pew.png" /></p>
+<p><img alt="image.png" src="_images/pew2.png" /></p>
+<p>https://www.journalism.org/2020/05/08/americans-views-of-the-news-media-during-the-covid-19-outbreak/</p>
+<p><img alt="image.png" src="_images/pew3.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the statsmodels.api uses numpy array notation</span>
+<span class="c1"># statsmodels.formula.api use formula notation (similar to R&#39;s formula notation)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="s2">&quot;/Users/datalab/bigdata/Pathways April 2020 (ATP W66)/&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/datalab/bigdata/Pathways April 2020 (ATP W66)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Pathways April 2020 (ATP W66) Methodology.pdf</span>*
+<span class=" -Color -Color-Red">Pathways April 2020 (ATP W66) Questionnaire.pdf</span>*
+<span class=" -Color -Color-Red">Pathways April 2020 (ATP W66) Readme.txt</span>*
+<span class=" -Color -Color-Red">Pathways April 2020 (ATP W66) Topline.pdf</span>*
+<span class=" -Color -Color-Red">Pathways April 2020 (ATP W66).sav</span>*
+</pre></div>
+</div>
+</div>
+</div>
+<p>First of all, we install the pyreadstat module, which allows us to import SPSS files as DataFrames</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install pyreadstat
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pyreadstat
+  Downloading pyreadstat-0.3.3-cp37-cp37m-macosx_10_9_x86_64.whl (527 kB)
+     |████████████████████████████████| 527 kB 233 kB/s eta 0:00:01
+?25hRequirement already satisfied: pandas&gt;0.24.0 in /opt/anaconda3/lib/python3.7/site-packages (from pyreadstat) (1.0.1)
+Requirement already satisfied: numpy&gt;=1.13.3 in /opt/anaconda3/lib/python3.7/site-packages (from pandas&gt;0.24.0-&gt;pyreadstat) (1.18.1)
+Requirement already satisfied: pytz&gt;=2017.2 in /opt/anaconda3/lib/python3.7/site-packages (from pandas&gt;0.24.0-&gt;pyreadstat) (2019.3)
+Requirement already satisfied: python-dateutil&gt;=2.6.1 in /opt/anaconda3/lib/python3.7/site-packages (from pandas&gt;0.24.0-&gt;pyreadstat) (2.8.1)
+Requirement already satisfied: six&gt;=1.5 in /opt/anaconda3/lib/python3.7/site-packages (from python-dateutil&gt;=2.6.1-&gt;pandas&gt;0.24.0-&gt;pyreadstat) (1.14.0)
+Installing collected packages: pyreadstat
+Successfully installed pyreadstat-0.3.3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df = pd.read_spss(&#39;Pathways April 2020 (ATP W66).sav&#39;)</span>
+<span class="c1"># df.head()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyreadstat</span>
+<span class="n">df</span><span class="p">,</span> <span class="n">meta</span> <span class="o">=</span> <span class="n">pyreadstat</span><span class="o">.</span><span class="n">read_sav</span><span class="p">(</span><span class="s1">&#39;Pathways April 2020 (ATP W66).sav&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>QKEY</th>
+      <th>Device_Type_W66</th>
+      <th>LANG_W66</th>
+      <th>FORM_W66</th>
+      <th>COMATTACH_W66</th>
+      <th>MH_TRACK_a_W66</th>
+      <th>MH_TRACK_b_W66</th>
+      <th>MH_TRACK_c_W66</th>
+      <th>MH_TRACK_d_W66</th>
+      <th>MH_TRACK_e_W66</th>
+      <th>...</th>
+      <th>F_PARTYSUM_FINAL</th>
+      <th>F_INCOME</th>
+      <th>F_INCOME_RECODE</th>
+      <th>F_REG</th>
+      <th>F_IDEO</th>
+      <th>F_ACSWEB</th>
+      <th>F_VOLSUM</th>
+      <th>F_HISP_ORIGIN</th>
+      <th>F_YEARSINUS</th>
+      <th>WEIGHT_W66</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>100197.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>6.0</td>
+      <td>5.0</td>
+      <td>0.294864</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>100260.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>6.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>6.0</td>
+      <td>5.0</td>
+      <td>0.689713</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>100314.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>6.0</td>
+      <td>5.0</td>
+      <td>0.442058</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>100363.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>9.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>6.0</td>
+      <td>5.0</td>
+      <td>0.423189</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>100446.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>8.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>6.0</td>
+      <td>5.0</td>
+      <td>0.368074</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 119 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">column_names</span><span class="p">,</span> <span class="n">meta</span><span class="o">.</span><span class="n">column_labels</span><span class="p">))</span>
+<span class="n">meta_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;QKEY&#39;, &#39;Device_Type_W66&#39;, &#39;LANG_W66&#39;, &#39;FORM_W66&#39;, &#39;COMATTACH_W66&#39;, &#39;MH_TRACK_a_W66&#39;, &#39;MH_TRACK_b_W66&#39;, &#39;MH_TRACK_c_W66&#39;, &#39;MH_TRACK_d_W66&#39;, &#39;MH_TRACK_e_W66&#39;, &#39;COVIDFOL_W66&#39;, &#39;COVIDCOVER1_W66&#39;, &#39;COVIDTONE_a_W66&#39;, &#39;COVIDTONE_b_W66&#39;, &#39;COVIDTONE_c_W66&#39;, &#39;COVIDTONE_d_W66&#39;, &#39;COVIDNEWSPLAT_a_W66&#39;, &#39;COVIDNEWSPLAT_b_W66&#39;, &#39;COVIDNEWSPLAT_c_W66&#39;, &#39;COVIDNEWSPLAT_d_W66&#39;, &#39;COVIDNEWSPLAT_e_W66&#39;, &#39;COVIDNEWSPLAT_f_W66&#39;, &#39;COVIDNEWSPLAT_g_W66&#39;, &#39;COVIDNEWSPLAT_h_W66&#39;, &#39;COVIDNEWSPLAT_i_W66&#39;, &#39;COVIDNEWSPLAT_j_W66&#39;, &#39;COVIDNEWSRELY_W66&#39;, &#39;COVIDDEAL_W66&#39;, &#39;COVIDNATLOC_W66&#39;, &#39;COVIDNEWSSWITCH_W66&#39;, &#39;COVIDDISC_W66&#39;, &#39;COVIDSM_W66&#39;, &#39;COVIDSMSHARE_W66&#39;, &#39;COVIDINFO_W66&#39;, &#39;COVIDREPORT_W66&#39;, &#39;COVIDNEWSFINAN_W66&#39;, &#39;COVIDNEWSPAIR_a_W66&#39;, &#39;COVIDNEWSPAIR_b_W66&#39;, &#39;COVIDNEWSPAIR_c_W66&#39;, &#39;COVIDNEWSPAIR_d_W66&#39;, &#39;COVIDNEWSPAIR_e_W66&#39;, &#39;COVIDINFODIFF_W66&#39;, &#39;COVIDWORN_W66&#39;, &#39;COVIDNEWSFEEL_W66&#39;, &#39;COVIDTOPICA_a_W66&#39;, &#39;COVIDTOPICA_b_W66&#39;, &#39;COVIDTOPICA_c_W66&#39;, &#39;COVIDTOPICA_d_W66&#39;, &#39;COVIDTOPICA_e_W66&#39;, &#39;COVIDTOPICA_f_W66&#39;, &#39;COVIDTOPICB_a_W66&#39;, &#39;COVIDTOPICB_b_W66&#39;, &#39;COVIDTOPICB_c_W66&#39;, &#39;COVIDTOPICB_d_W66&#39;, &#39;COVIDTOPICB_e_W66&#39;, &#39;COVIDTOPICB_f_W66&#39;, &#39;COVIDTOPICB_g_W66&#39;, &#39;COVIDINFOCHECK_W66&#39;, &#39;MH_TRACK_CV_W66&#39;, &#39;COVIDCUREWORK_W66&#39;, &#39;COVIDCUREHEARD_a_W66&#39;, &#39;COVIDCUREHEARD_b_W66&#39;, &#39;COVIDCUREHEARD_c_W66&#39;, &#39;COVIDCUREHEARD_d_W66&#39;, &#39;COVIDCUREHEARD_e_W66&#39;, &#39;COVIDCUREHEARD_f_W66&#39;, &#39;COVIDBILL_a_W66&#39;, &#39;COVIDBILL_b_W66&#39;, &#39;COVIDBILL_c_W66&#39;, &#39;COVIDBILL_d_W66&#39;, &#39;COVIDBILL_e_W66&#39;, &#39;COVIDBILLSIZE_W66&#39;, &#39;COVIDPOLCOOP_W66&#39;, &#39;COVIDMISINFO_W66&#39;, &#39;COVIDCONFUSE_W66&#39;, &#39;COVIDINFOWRONG_W66&#39;, &#39;COVIDAVOID_W66&#39;, &#39;CAMPNII_W66&#39;, &#39;CAMP20INT_W66&#39;, &#39;PELECT20_STATUS_W66&#39;, &#39;COVIDCONG1_W66&#39;, &#39;COVIDCONG2_W66&#39;, &#39;COVIDSPIR_W66&#39;, &#39;GROUP_TRUST_a_W57&#39;, &#39;NEWS_MOST_W57&#39;, &#39;TALKPOL_W57&#39;, &#39;FOLELECT_W57&#39;, &#39;CR_PARTYNEWSUSE_W57&#39;, &#39;CR_NEWS_INFLU_W57&#39;, &#39;CR_DIG_SAV_W57&#39;, &#39;CR_MAINSOPOL_GROUPS_W57&#39;, &#39;CR_KNOWLEDGE_INDEX_W57&#39;, &#39;F_METRO&#39;, &#39;F_CREGION&#39;, &#39;F_AGECAT&#39;, &#39;F_SEX&#39;, &#39;F_EDUCCAT&#39;, &#39;F_EDUCCAT2&#39;, &#39;F_HISP&#39;, &#39;F_RACECMB&#39;, &#39;F_RACETHN&#39;, &#39;F_CITIZEN&#39;, &#39;F_NATIVITY2&#39;, &#39;F_MARITAL&#39;, &#39;F_RELIG&#39;, &#39;F_BORN&#39;, &#39;F_ATTEND&#39;, &#39;F_PARTY_FINAL&#39;, &#39;F_PARTYLN_FINAL&#39;, &#39;F_PARTYSUM_FINAL&#39;, &#39;F_INCOME&#39;, &#39;F_INCOME_RECODE&#39;, &#39;F_REG&#39;, &#39;F_IDEO&#39;, &#39;F_ACSWEB&#39;, &#39;F_VOLSUM&#39;, &#39;F_HISP_ORIGIN&#39;, &#39;F_YEARSINUS&#39;, &#39;WEIGHT_W66&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meta_dict</span><span class="p">[</span><span class="s1">&#39;F_INCOME&#39;</span><span class="p">],</span> <span class="n">meta_dict</span><span class="p">[</span><span class="s1">&#39;COVIDCOVER1_W66&#39;</span><span class="p">],</span> <span class="n">meta_dict</span><span class="p">[</span><span class="s1">&#39;COVIDFOL_W66&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Family income&#39;,
+ &#39;COVIDCOVER1_W66. How well do you think the news media have covered the coronavirus outbreak?&#39;,
+ &#39;COVIDFOL_W66. How closely have you been following news about the outbreak of the coronavirus strain known as COVID-19?&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">meta_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>QKEY Unique ID
+Device_Type_W66 The device used in the latest access of the survey link
+LANG_W66 Preferred language
+FORM_W66 Form number
+COMATTACH_W66 COMATTACH_W66. In general, how attached do you feel to your local community?
+MH_TRACK_a_W66 MH_TRACK_a_W66. In the past 7 days, how often have you…      Felt nervous, anxious, or on edge?
+MH_TRACK_b_W66 MH_TRACK_b_W66. In the past 7 days, how often have you…      Felt depressed?
+MH_TRACK_c_W66 MH_TRACK_c_W66. In the past 7 days, how often have you…      Felt lonely?
+MH_TRACK_d_W66 MH_TRACK_d_W66. In the past 7 days, how often have you…      Felt hopeful about the future?
+MH_TRACK_e_W66 MH_TRACK_e_W66. In the past 7 days, how often have you…      Had trouble sleeping?
+COVIDFOL_W66 COVIDFOL_W66. How closely have you been following news about the outbreak of the coronavirus strain known as COVID-19?
+COVIDCOVER1_W66 COVIDCOVER1_W66. How well do you think the news media have covered the coronavirus outbreak?
+COVIDTONE_a_W66 COVIDTONE_a_W66. Thinking about the coronavirus outbreak, how in general do you think each of the following has responded?       The news media
+COVIDTONE_b_W66 COVIDTONE_b_W66. Thinking about the coronavirus outbreak, how in general do you think each of the following has responded?        Donald Trump
+COVIDTONE_c_W66 COVIDTONE_c_W66. Thinking about the coronavirus outbreak, how in general do you think each of the following has responded?        Democratic leaders in Congress
+COVIDTONE_d_W66 COVIDTONE_d_W66. Thinking about the coronavirus outbreak, how in general do you think each of the following has responded? Public health officials such as those at the CDC (Centers for Disease Control and Prevention)
+COVIDNEWSPLAT_a_W66 COVIDNEWSPLAT_a_W66. Please indicate whether each of the following is a source of news for you about the coronavirus outbreak.          International news outlets
+COVIDNEWSPLAT_b_W66 COVIDNEWSPLAT_b_W66. Please indicate whether each of the following is a source of news for you about the coronavirus outbreak.           National news outlets
+COVIDNEWSPLAT_c_W66 COVIDNEWSPLAT_c_W66. Please indicate whether each of the following is a source of news for you about the coronavirus outbreak.            Local news outlets
+COVIDNEWSPLAT_d_W66 COVIDNEWSPLAT_d_W66. Please indicate whether each of the following is a source of news for you about the coronavirus outbreak.           Donald Trump and his coronavirus task force
+COVIDNEWSPLAT_e_W66 COVIDNEWSPLAT_e_W66. Please indicate whether each of the following is a source of news for you about the coronavirus outbreak.           Joe Biden and his campaign
+COVIDNEWSPLAT_f_W66 COVIDNEWSPLAT_f_W66. Please indicate whether each of the following is a source of news for you about the coronavirus outbreak.            State and local elected officials and their offices
+COVIDNEWSPLAT_g_W66 COVIDNEWSPLAT_g_W66. Please indicate whether each of the following is a source of news for you about the coronavirus outbreak.             Public health organizations and officials
+COVIDNEWSPLAT_h_W66 COVIDNEWSPLAT_h_W66. Please indicate whether each of the following is a source of news for you about the coronavirus outbreak.              Friends, family and neighbors
+COVIDNEWSPLAT_i_W66 COVIDNEWSPLAT_i_W66. Please indicate whether each of the following is a source of news for you about the coronavirus outbreak.               Community or neighborhood newsletter or Listserv
+COVIDNEWSPLAT_j_W66 COVIDNEWSPLAT_j_W66. Please indicate whether each of the following is a source of news for you about the coronavirus outbreak.                Online forums or discussion groups
+COVIDNEWSRELY_W66 COVIDNEWSRELY_W66. And which of these sources do you RELY ON MOST for news about the coronavirus outbreak?
+COVIDDEAL_W66 COVIDDEAL_W66. All in all, do you think that the coronavirus outbreak has been…
+COVIDNATLOC_W66 COVIDNATLOC_W66. Do you pay more attention to news about the coronavirus outbreak at...
+COVIDNEWSSWITCH_W66 COVIDNEWSSWITCH_W66. In keeping up with the coronavirus outbreak, have you turned to any different sources for news than you usually do?
+COVIDDISC_W66 COVIDDISC_W66. How often, if at all, are you discussing the coronavirus outbreak with others whether online, in person or over the phone?
+COVIDSM_W66 COVIDSM_W66. How often, if ever, do you get news and information about the coronavirus outbreak on social media (such as Facebook, Twitter, or Instagram)?
+COVIDSMSHARE_W66 COVIDSMSHARE_W66. Have you posted or shared any news and information about the coronavirus outbreak on social media?
+COVIDINFO_W66 COVIDINFO_W66. In general, do you feel like you have a handle on the issues and developments surrounding the coronavirus outbreak?
+COVIDREPORT_W66 COVIDREPORT_W66. How much, if at all, do you think journalists have had to change the way they report the news due to the coronavirus outbreak?
+COVIDNEWSFINAN_W66 COVIDNEWSFINAN_W66. To the best of your knowledge, what impact has the coronavirus outbreak had on the finances of most news organizations?
+COVIDNEWSPAIR_a_W66 COVIDNEWSPAIR_a_W66. For each pair of opposite phrases, which one do you feel better describes the news media’s coverage of the COVID-19 outbreak? If you think neither phrase applies, please indicate so.Largely accurate/ inaccurate
+COVIDNEWSPAIR_b_W66 COVIDNEWSPAIR_b_W66. For each pair of opposite phrases, which one do you feel better describes the news media’s coverage of the COVID-19 outbreak? If you think neither phrase applies, please indicate so.Helping/ Hurting the country
+COVIDNEWSPAIR_c_W66 COVIDNEWSPAIR_c_W66. For each pair of opposite phrases, which one do you feel better describes the news media’s coverage of the COVID-19 outbreak? If you think neither phrase applies, please indicate so. Working for the benefit of the public/ to benefit
+COVIDNEWSPAIR_d_W66 COVIDNEWSPAIR_d_W66. For each pair of opposite phrases, which one do you feel better describes the news media’s coverage of the COVID-19 outbreak? If you think neither phrase applies, please indicate so.Gets me the information I need/ Is not getting me t
+COVIDNEWSPAIR_e_W66 COVIDNEWSPAIR_e_W66. For each pair of opposite phrases, which one do you feel better describes the news media’s coverage of the COVID-19 outbreak? If you think neither phrase applies, please indicate so. More positive/ negative than it should be
+COVIDINFODIFF_W66 COVIDINFODIFF_W66. When you get news and information about the coronavirus outbreak, do you generally find it…
+COVIDWORN_W66 COVIDWORN_W66. Which of the following statements comes closer to how you feel?
+COVIDNEWSFEEL_W66 COVIDNEWSFEEL_W66. Does keeping up with news about the coronavirus outbreak make you feel…
+COVIDTOPICA_a_W66 COVIDTOPICA_a_W66. How closely are you following NATIONAL news and information about each of these topics related to the coronavirus outbreak?      The economic impact of the outbreak
+COVIDTOPICA_b_W66 COVIDTOPICA_b_W66. How closely are you following NATIONAL news and information about each of these topics related to the coronavirus outbreak?       Actions and statements by the federal government
+COVIDTOPICA_c_W66 COVIDTOPICA_c_W66. How closely are you following NATIONAL news and information about each of these topics related to the coronavirus outbreak?         The number of confirmed cases and deaths in the U.S.
+COVIDTOPICA_d_W66 COVIDTOPICA_d_W66. How closely are you following NATIONAL news and information about each of these topics related to the coronavirus outbreak? Advice from national health organizations, such as the CDC (Centers for Disease Control and Prevention)
+COVIDTOPICA_e_W66 COVIDTOPICA_e_W66. How closely are you following NATIONAL news and information about each of these topics related to the coronavirus outbreak?          The ability of hospitals across the country to treat patients
+COVIDTOPICA_f_W66 COVIDTOPICA_f_W66. How closely are you following NATIONAL news and information about each of these topics related to the coronavirus outbreak?            The health impact of the coronavirus on people like me
+COVIDTOPICB_a_W66 COVIDTOPICB_a_W66. And how closely are you following news and information in YOUR LOCAL AREA about each of these topics related to the coronavirus outbreak?        The status of nearby businesses
+COVIDTOPICB_b_W66 COVIDTOPICB_b_W66. And how closely are you following news and information in YOUR LOCAL AREA about each of these topics related to the coronavirus outbreak?         The status of nearby schools
+COVIDTOPICB_c_W66 COVIDTOPICB_c_W66. And how closely are you following news and information in YOUR LOCAL AREA about each of these topics related to the coronavirus outbreak?The availability of food and other essentials in stores
+COVIDTOPICB_d_W66 COVIDTOPICB_d_W66. And how closely are you following news and information in YOUR LOCAL AREA about each of these topics related to the coronavirus outbreak?Actions and statements by your state and local government
+COVIDTOPICB_e_W66 COVIDTOPICB_e_W66. And how closely are you following news and information in YOUR LOCAL AREA about each of these topics related to the coronavirus outbreak?          The availability of testing for COVID-19
+COVIDTOPICB_f_W66 COVIDTOPICB_f_W66. And how closely are you following news and information in YOUR LOCAL AREA about each of these topics related to the coronavirus outbreak?            The status of nearby hospitals
+COVIDTOPICB_g_W66 COVIDTOPICB_g_W66. And how closely are you following news and information in YOUR LOCAL AREA about each of these topics related to the coronavirus outbreak?Availability of unemployment benefits and other aid
+COVIDINFOCHECK_W66 COVIDINFOCHECK_W66. If you wanted to check the accuracy of news and information about the coronavirus, how confident are you that you would know what steps to take?
+MH_TRACK_CV_W66 MH_TRACK_CV_W66. In the past 7 days, how often have you had physical reactions, such as sweating, trouble breathing, nausea, or a pounding heart, when THINKING about your experience with the coronavirus outbreak?
+COVIDCUREWORK_W66 COVIDCUREWORK_W66. As far as you know, how effective are at-home treatments for serious cases of the coronavirus?
+COVIDCUREHEARD_a_W66 COVIDCUREHEARD_a_W66. How much, if anything, have you heard about each of the following?      Using the medicine known as hydroxychloroquine to treat the coronavirus
+COVIDCUREHEARD_b_W66 COVIDCUREHEARD_b_W66. How much, if anything, have you heard about each of the following?       Drinking a form of diluted bleach sometimes called “miracle mineral solution” (MMS) to treat the coronavirus
+COVIDCUREHEARD_c_W66 COVIDCUREHEARD_c_W66. How much, if anything, have you heard about each of the following?       Taking vitamin C to prevent getting the coronavirus
+COVIDCUREHEARD_d_W66 COVIDCUREHEARD_d_W66. How much, if anything, have you heard about each of the following?          Treating COVID-19 patients with blood plasma transfusions from recovered patients
+COVIDCUREHEARD_e_W66 COVIDCUREHEARD_e_W66. How much, if anything, have you heard about each of the following The coronavirus going away in warmer weather
+COVIDCUREHEARD_f_W66 COVIDCUREHEARD_f_W66. How much, if anything, have you heard about each of the following?          A connection between 5G mobile-phone technology and the coronavirus
+COVIDBILL_a_W66 COVIDBILL_a_W66. From what you’ve seen or heard, does the economic aid law passed by Congress and signed by Donald Trump include each of the following or not?        $1,200 in stimulus money for many American adults
+COVIDBILL_b_W66 COVIDBILL_b_W66. From what you’ve seen or heard, does the economic aid law passed by Congress and signed by Donald Trump include each of the following or not?          Pay raises for members of Congress
+COVIDBILL_c_W66 COVIDBILL_c_W66. From what you’ve seen or heard, does the economic aid law passed by Congress and signed by Donald Trump include each of the following or not?Restrictions on businesses connected to Donald Trump and other administration officials from rec
+COVIDBILL_d_W66 COVIDBILL_d_W66. From what you’ve seen or heard, does the economic aid law passed by Congress and signed by Donald Trump include each of the following or not?Increased unemployment benefits for the next four months
+COVIDBILL_e_W66 COVIDBILL_e_W66. From what you’ve seen or heard, does the economic aid law passed by Congress and signed by Donald Trump include each of the following or not?Federal aid and benefits for undocumented immigrants
+COVIDBILLSIZE_W66 COVIDBILLSIZE_W66. From what you have seen or heard, about how much economic aid was in the bill passed by Congress and Donald Trump in March?
+COVIDPOLCOOP_W66 COVIDPOLCOOP_W66. How well are elected officials working together to address the coronavirus outbreak?
+COVIDMISINFO_W66 COVIDMISINFO_W66. How much, if any, news and information have you seen or heard about the coronavirus outbreak that seemed completely made up?
+COVIDCONFUSE_W66 COVIDCONFUSE_W66. How much do you think made-up news and information leaves Americans confused about the basic facts of the coronavirus outbreak?
+COVIDINFOWRONG_W66 COVIDINFOWRONG_W66. Did you initially think any of the made-up news and information you have seen or heard was true before realizing it was made-up?
+COVIDAVOID_W66 COVIDAVOID_W66. Have you stopped going to a specific source because you thought that they were putting out made-up news and information about the coronavirus outbreak?
+CAMPNII_W66 CAMPNII_W66. How closely have you been following news about candidates for the 2020 presidential election?
+CAMP20INT_W66 CAMP20INT_W66. How important, if at all, is it to you personally to get messages and statements about the upcoming election and other important issues from the presidential campaigns of Donald Trump and Joe Biden?
+PELECT20_STATUS_W66 PELECT20_STATUS_W66. As far as you know, are states still holding primaries for the Democratic presidential nomination…
+COVIDCONG1_W66 COVIDCONG1_W66. Has the congregation or house of worship you most often attend closed its regular religious services to the public in response to the coronavirus outbreak, or are people still gathering there in person?
+COVIDCONG2_W66 COVIDCONG2_W66. Is the congregation or house of worship you most often attend streaming or recording its services so that people can watch them online or on TV?
+COVIDSPIR_W66 COVIDSPIR_W66. As a result of the coronavirus outbreak, has your own religious faith become
+GROUP_TRUST_a_W57 GROUP_TRUST_a_W57. How much, if at all, do you trust the information you get from… National news organizations
+NEWS_MOST_W57 NEWS_MOST_W57. What is the most common way you get political and election news?
+TALKPOL_W57 TALKPOL_W57. Now, thinking about the people you talk with, whether in person, over the phone, or online…How often do you discuss government and politics with others?
+FOLELECT_W57 FOLELECT_W57. How closely do you follow political and election news?
+CR_PARTYNEWSUSE_W57 Index of news consumption by leaned party and outlet audience ideology - CREATED
+CR_NEWS_INFLU_W57 News influencers, combo of FOLELECT and LEADPOL - Includes follow somewhat in News influencer - CREATED
+CR_DIG_SAV_W57 Digital savviness combo of INTFREQ and DIGCONF - CREATED
+CR_MAINSOPOL_GROUPS_W57 Main source of election news, recoded - CREATED
+CR_KNOWLEDGE_INDEX_W57 Political knowledge index - CREATED
+F_METRO Metropolitan area indicator
+F_CREGION Census region based on self-reported zipcode
+F_AGECAT Age category
+F_SEX Sex
+F_EDUCCAT Education level category
+F_EDUCCAT2 Education level category 2
+F_HISP HISP.Are you of Hispanic, Latino, or Spanish origin, such as Mexican, Puerto Rican or Cuban? - Includes RACE backcodes
+F_RACECMB Combining race
+F_RACETHN Race-Ethnicity
+F_CITIZEN Citizenship
+F_NATIVITY2 NATIVITY. Where were you born? (with Cuba and Mexico broken out)
+F_MARITAL Marital status
+F_RELIG Religion
+F_BORN BORN. Would you describe yourself as a born-again or evangelical Christian, or not?
+F_ATTEND Religious service attendance
+F_PARTY_FINAL Party
+F_PARTYLN_FINAL Party lean
+F_PARTYSUM_FINAL Party summary
+F_INCOME Family income
+F_INCOME_RECODE Family income recoded
+F_REG Registered voter
+F_IDEO Ideology
+F_ACSWEB Household internet status
+F_VOLSUM Volunteerism status
+F_HISP_ORIGIN Hispanic Origin
+F_YEARSINUS Foreign-born Hispanic Years in U.S.
+WEIGHT_W66 Wave 66 weight
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;WEIGHT_W66&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    10139.000000
+mean         1.000000
+std          1.213926
+min          0.065288
+25%          0.351129
+50%          0.572091
+75%          1.107659
+max          7.487729
+Name: WEIGHT_W66, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;F_AGECAT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0    0.107506
+2.0    0.316698
+3.0    0.310090
+4.0    0.265707
+Name: F_AGECAT, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;COVIDNEWSPAIR_a_W66&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0    0.564750
+2.0    0.208798
+3.0    0.226452
+Name: COVIDNEWSPAIR_a_W66, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;COVIDNEWSPAIR_a_W66&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">variable_value_labels</span><span class="p">[</span><span class="s1">&#39;COVIDNEWSPAIR_a_W66&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Largely accurate      0.564750
+Neither applies       0.226452
+Largely inaccurate    0.208798
+Name: COVIDNEWSPAIR_a_W66, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="data-cleaning">
+<h2>Data Cleaning<a class="headerlink" href="#data-cleaning" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clean_missing_data</span><span class="p">(</span><span class="n">var</span><span class="p">):</span>
+    <span class="c1"># raw data using 99 as missing values</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">][</span><span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">==</span><span class="mi">99</span><span class="p">]</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span> 
+    <span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">var</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">clean_missing_data</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dummy coding</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;republic&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;F_PARTYLN_FINAL&#39;</span><span class="p">]</span> <span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;edu&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="o">-</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;F_EDUCCAT2&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="weighting">
+<h2>Weighting<a class="headerlink" href="#weighting" title="Permalink to this headline">¶</a></h2>
+<p><img alt="image.png" src="_images/pew4.png" /></p>
+<p>按总体人口数据，总体平均收入应为：(5000 * 1000+4000 * 2000+3000 * 3000)/6000 = 3666.67 元。</p>
+<ul class="simple">
+<li><p>按样本数据（不加权）：全部人口的样本平均收入 = (5000 * 200+4000 * 100+3000 * 100)/400 = 4250 元。</p></li>
+<li><p>采用总体/样本倍数加权，总体平均收入= (5000 * 200 * 5+4000 * 100 * 20+3000 * 100 * 30)/(200 * 5+100 * 20+100 * 30) = 3666.67元。</p></li>
+</ul>
+<p><strong>A weighting adjustment technique</strong> can only be carried of proper auxiliary variables are available.</p>
+<ul class="simple">
+<li><p>Such variables must have been measured in the survey, and there population distribution must be available.</p></li>
+<li><p>Typical auxiliary variables are gender, age, marital status and region of the country.</p></li>
+<li><p>The population distribution of such variables can usually be obtained from national statistical institutes.</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Young</p></th>
+<th class="head"><p>Middle</p></th>
+<th class="head"><p>Old</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Population</p></td>
+<td><p>30%</p></td>
+<td><p>40%</p></td>
+<td><p>30%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sample</p></td>
+<td><p>60%</p></td>
+<td><p>30%</p></td>
+<td><p>10%</p></td>
+</tr>
+<tr class="row-even"><td><p>Weight</p></td>
+<td><p>0.5</p></td>
+<td><p>1.33</p></td>
+<td><p>3</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;F_INCOME&quot;</span><span class="p">],</span> <span class="n">alpha</span> <span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;without weight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;F_INCOME&quot;</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;WEIGHT_W66&quot;</span><span class="p">],</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;with weight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-07-covid19-pew-survey_24_0.png" src="_images/08-07-covid19-pew-survey_24_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;COVIDCOVER1_W66&quot;</span><span class="p">],</span> <span class="n">alpha</span> <span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;without weight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;COVIDCOVER1_W66&quot;</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;WEIGHT_W66&quot;</span><span class="p">],</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;with weight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-07-covid19-pew-survey_25_0.png" src="_images/08-07-covid19-pew-survey_25_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="sampling-with-weight">
+<h2>Sampling with weight<a class="headerlink" href="#sampling-with-weight" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mf">0.66</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;WEIGHT_W66&#39;</span><span class="p">],</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">2020</span><span class="p">)</span> 
+<span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>QKEY</th>
+      <th>Device_Type_W66</th>
+      <th>LANG_W66</th>
+      <th>FORM_W66</th>
+      <th>COMATTACH_W66</th>
+      <th>MH_TRACK_a_W66</th>
+      <th>MH_TRACK_b_W66</th>
+      <th>MH_TRACK_c_W66</th>
+      <th>MH_TRACK_d_W66</th>
+      <th>MH_TRACK_e_W66</th>
+      <th>...</th>
+      <th>F_PARTYSUM_FINAL</th>
+      <th>F_INCOME</th>
+      <th>F_INCOME_RECODE</th>
+      <th>F_REG</th>
+      <th>F_IDEO</th>
+      <th>F_ACSWEB</th>
+      <th>F_VOLSUM</th>
+      <th>F_HISP_ORIGIN</th>
+      <th>F_YEARSINUS</th>
+      <th>WEIGHT_W66</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9997</th>
+      <td>2.019011e+11</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>3.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>0.284252</td>
+    </tr>
+    <tr>
+      <th>8833</th>
+      <td>2.019010e+11</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>6.0</td>
+      <td>5.0</td>
+      <td>7.476299</td>
+    </tr>
+    <tr>
+      <th>4964</th>
+      <td>2.018011e+11</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>6.0</td>
+      <td>5.0</td>
+      <td>7.476299</td>
+    </tr>
+    <tr>
+      <th>2919</th>
+      <td>2.017012e+11</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>6.0</td>
+      <td>5.0</td>
+      <td>4.243243</td>
+    </tr>
+    <tr>
+      <th>3452</th>
+      <td>2.018010e+11</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.504054</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 119 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;F_INCOME&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;WEIGHT_W66&#39;</span><span class="p">]),</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;F_INCOME&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">),</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+<span class="n">df2</span><span class="p">[[</span><span class="s1">&#39;F_INCOME&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>F_INCOME    9.632119
+dtype: float64 
+ F_INCOME    9.897722
+dtype: float64 
+ F_INCOME    9.887926
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">df2</span><span class="p">),</span> <span class="n">df2</span><span class="p">[[</span><span class="s1">&#39;F_INCOME&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10139,
+ 2028,
+ F_INCOME    9.970414
+ dtype: float64)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="weighted-regression-wls-vs-glm">
+<h2>Weighted Regression: WLS vs. GLM<a class="headerlink" href="#weighted-regression-wls-vs-glm" title="Permalink to this headline">¶</a></h2>
+<p>The weights are presumed to be (proportional to) the inverse of the variance of the observations. That is, if the variables are to be transformed by 1/sqrt(W) you must supply weights = 1/W.</p>
+<blockquote>
+<div><p>sm.WLS?</p>
+</div></blockquote>
+<p>https://www.coursera.org/learn/fitting-statistical-models-data-python</p>
+<p>https://www.coursera.org/lecture/fitting-statistical-models-data-python/should-we-use-survey-weights-when-fitting-models-Qzt5p</p>
+<p>freq_weights : array_like</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1d array of frequency weights. The default is None. If None is selected
+or a blank value, then the algorithm will replace with an array of 1&#39;s
+with length equal to the endog.
+WARNING: Using weights is not verified yet for all possible options
+and results, see Notes.
+</pre></div>
+</div>
+<p>var_weights : array_like</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1d array of variance (analytic) weights. The default is None. If None
+is selected or a blank value, then the algorithm will replace with an
+array of 1&#39;s with length equal to the endog.
+WARNING: Using weights is not verified yet for all possible options
+and results, see Notes.
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">101</span><span class="p">),</span> <span class="s1">&#39;wt&#39;</span><span class="p">:</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span> <span class="p">})</span>
+
+<span class="kn">from</span> <span class="nn">statsmodels.stats.weightstats</span> <span class="kn">import</span> <span class="n">DescrStatsW</span>
+<span class="n">wdf</span> <span class="o">=</span> <span class="n">DescrStatsW</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">df1</span><span class="o">.</span><span class="n">wt</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;without weight, the mean value is: &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;with weight, the mean value is: &#39;</span><span class="p">,</span> <span class="n">wdf</span><span class="o">.</span><span class="n">mean</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">wdf</span><span class="o">.</span><span class="n">std</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">wdf</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.50</span><span class="p">,</span><span class="mf">0.75</span><span class="p">])</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>without weight, the mean value is:  50.5
+with weight, the mean value is:  67.0
+23.687784005919827
+p
+0.25    50
+0.50    71
+0.75    87
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># &#39;COVIDFOL_W66. How closely have you been following news about the outbreak of the coronavirus</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;F_INCOME&#39;</span><span class="p">,</span><span class="s1">&#39;F_AGECAT&#39;</span><span class="p">,</span> <span class="s1">&#39;edu&#39;</span><span class="p">,</span> <span class="s1">&#39;republic&#39;</span><span class="p">,</span><span class="s1">&#39;COVIDCOVER1_W66&#39;</span><span class="p">,</span> <span class="s1">&#39;MH_TRACK_a_W66&#39;</span><span class="p">,</span> 
+                        <span class="s1">&#39;MH_TRACK_b_W66&#39;</span><span class="p">,</span> <span class="s1">&#39;MH_TRACK_d_W66&#39;</span><span class="p">,</span> <span class="s1">&#39;MH_TRACK_d_W66&#39;</span><span class="p">,</span> <span class="s1">&#39;MH_TRACK_e_W66&#39;</span><span class="p">]])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;COVIDFOL_W66&#39;</span><span class="p">]</span>
+<span class="n">reg</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">X</span><span class="p">,</span> <span class="n">freq_weights</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;WEIGHT_W66&#39;</span><span class="p">])</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">reg1</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">X</span><span class="p">)</span>
+<span class="n">results1</span> <span class="o">=</span> <span class="n">reg1</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">reg2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">X</span><span class="p">,</span> <span class="n">freq_weights</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;WEIGHT_W66&#39;</span><span class="p">])</span>
+<span class="n">results2</span> <span class="o">=</span> <span class="n">reg2</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:           COVIDFOL_W66   R-squared:                       0.123
+Model:                            OLS   Adj. R-squared:                  0.123
+Method:                 Least Squares   F-statistic:                     158.4
+Date:                Thu, 14 May 2020   Prob (F-statistic):          1.33e-281
+Time:                        00:34:56   Log-Likelihood:                -9776.3
+No. Observations:               10139   AIC:                         1.957e+04
+Df Residuals:                   10129   BIC:                         1.964e+04
+Df Model:                           9                                         
+Covariance Type:            nonrobust                                         
+===================================================================================
+                      coef    std err          t      P&gt;|t|      [0.025      0.975]
+-----------------------------------------------------------------------------------
+const               1.8951      0.046     41.361      0.000       1.805       1.985
+F_INCOME           -0.0269      0.003     -8.709      0.000      -0.033      -0.021
+F_AGECAT           -0.1573      0.007    -23.487      0.000      -0.170      -0.144
+edu                 0.0226      0.005      4.746      0.000       0.013       0.032
+republic            0.0203      0.018      1.150      0.250      -0.014       0.055
+COVIDCOVER1_W66     0.1493      0.007     20.698      0.000       0.135       0.163
+MH_TRACK_a_W66     -0.0657      0.009     -7.725      0.000      -0.082      -0.049
+MH_TRACK_b_W66      0.0125      0.009      1.325      0.185      -0.006       0.031
+MH_TRACK_d_W66     -0.0012      0.003     -0.360      0.719      -0.008       0.005
+MH_TRACK_d_W66     -0.0012      0.003     -0.360      0.719      -0.008       0.005
+MH_TRACK_e_W66      0.0038      0.007      0.550      0.583      -0.010       0.017
+==============================================================================
+Omnibus:                      985.955   Durbin-Watson:                   2.025
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             1306.676
+Skew:                           0.824   Prob(JB):                    1.81e-284
+Kurtosis:                       3.613   Cond. No.                     4.31e+16
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The smallest eigenvalue is 4.57e-28. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">results1</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:           COVIDFOL_W66   No. Observations:                10139
+Model:                            GLM   Df Residuals:                    10129
+Model Family:                Gaussian   Df Model:                            9
+Link Function:               identity   Scale:                         0.40316
+Method:                          IRLS   Log-Likelihood:                -9776.3
+Date:                Thu, 14 May 2020   Deviance:                       4083.6
+Time:                        00:35:03   Pearson chi2:                 4.08e+03
+No. Iterations:                     3                                         
+Covariance Type:            nonrobust                                         
+===================================================================================
+                      coef    std err          z      P&gt;|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------
+const               1.8951      0.046     41.361      0.000       1.805       1.985
+F_INCOME           -0.0269      0.003     -8.709      0.000      -0.033      -0.021
+F_AGECAT           -0.1573      0.007    -23.487      0.000      -0.170      -0.144
+edu                 0.0226      0.005      4.746      0.000       0.013       0.032
+republic            0.0203      0.018      1.150      0.250      -0.014       0.055
+COVIDCOVER1_W66     0.1493      0.007     20.698      0.000       0.135       0.163
+MH_TRACK_a_W66     -0.0657      0.009     -7.725      0.000      -0.082      -0.049
+MH_TRACK_b_W66      0.0125      0.009      1.325      0.185      -0.006       0.031
+MH_TRACK_d_W66     -0.0012      0.003     -0.360      0.719      -0.008       0.005
+MH_TRACK_d_W66     -0.0012      0.003     -0.360      0.719      -0.008       0.005
+MH_TRACK_e_W66      0.0038      0.007      0.550      0.583      -0.010       0.017
+===================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">results2</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:           COVIDFOL_W66   No. Observations:                10139
+Model:                            GLM   Df Residuals:                 10129.00
+Model Family:                Gaussian   Df Model:                            9
+Link Function:               identity   Scale:                         0.47043
+Method:                          IRLS   Log-Likelihood:                -10559.
+Date:                Thu, 14 May 2020   Deviance:                       4765.0
+Time:                        00:35:04   Pearson chi2:                 4.76e+03
+No. Iterations:                     3                                         
+Covariance Type:            nonrobust                                         
+===================================================================================
+                      coef    std err          z      P&gt;|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------
+const               1.9164      0.047     40.841      0.000       1.824       2.008
+F_INCOME           -0.0221      0.003     -6.976      0.000      -0.028      -0.016
+F_AGECAT           -0.1773      0.007    -26.078      0.000      -0.191      -0.164
+edu                 0.0369      0.005      7.619      0.000       0.027       0.046
+republic           -0.0042      0.018     -0.229      0.819      -0.040       0.032
+COVIDCOVER1_W66     0.1803      0.008     23.747      0.000       0.165       0.195
+MH_TRACK_a_W66     -0.0709      0.009     -7.862      0.000      -0.089      -0.053
+MH_TRACK_b_W66      0.0104      0.010      1.073      0.283      -0.009       0.030
+MH_TRACK_d_W66     -0.0140      0.004     -3.912      0.000      -0.021      -0.007
+MH_TRACK_d_W66     -0.0140      0.004     -3.912      0.000      -0.021      -0.007
+MH_TRACK_e_W66      0.0072      0.007      0.993      0.321      -0.007       0.022
+===================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="glm-binomial-regression">
+<h2>GLM Binomial Regression<a class="headerlink" href="#glm-binomial-regression" title="Permalink to this headline">¶</a></h2>
+<p>https://www.statsmodels.org/stable/glm.html</p>
+<p><img alt="image.png" src="_images/pew5.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Largely accurate </span>
+<span class="kn">from</span> <span class="nn">statsmodels.genmod</span> <span class="kn">import</span> <span class="n">families</span>
+<span class="n">dfs</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;COVIDNEWSPAIR_a_W66&#39;</span><span class="p">]</span><span class="o">!=</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">dfs</span><span class="p">[[</span><span class="s1">&#39;F_INCOME&#39;</span><span class="p">,</span><span class="s1">&#39;F_AGECAT&#39;</span><span class="p">,</span> <span class="s1">&#39;edu&#39;</span><span class="p">,</span> <span class="s1">&#39;republic&#39;</span><span class="p">,</span><span class="s1">&#39;COVIDCOVER1_W66&#39;</span><span class="p">,</span> <span class="s1">&#39;MH_TRACK_a_W66&#39;</span><span class="p">,</span> 
+                        <span class="s1">&#39;MH_TRACK_b_W66&#39;</span><span class="p">,</span> <span class="s1">&#39;MH_TRACK_d_W66&#39;</span><span class="p">,</span> <span class="s1">&#39;MH_TRACK_d_W66&#39;</span><span class="p">,</span> <span class="s1">&#39;MH_TRACK_e_W66&#39;</span><span class="p">]])</span>
+<span class="n">y</span> <span class="o">=</span><span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="n">dfs</span><span class="p">[</span><span class="s1">&#39;COVIDNEWSPAIR_a_W66&#39;</span><span class="p">]]</span>
+<span class="n">reg1</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">X</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span>
+<span class="n">results1</span> <span class="o">=</span> <span class="n">reg1</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">reg2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">X</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(),</span> <span class="n">freq_weights</span><span class="o">=</span><span class="n">dfs</span><span class="p">[</span><span class="s1">&#39;WEIGHT_W66&#39;</span><span class="p">])</span>
+<span class="n">results2</span> <span class="o">=</span> <span class="n">reg2</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results2</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:                      y   No. Observations:                 8022
+Model:                            GLM   Df Residuals:                  7694.52
+Model Family:                Binomial   Df Model:                            9
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -4259.8
+Date:                Thu, 14 May 2020   Deviance:                       8519.6
+Time:                        13:10:17   Pearson chi2:                 7.66e+03
+No. Iterations:                     4                                         
+Covariance Type:            nonrobust                                         
+===================================================================================
+                      coef    std err          z      P&gt;|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------
+const               2.8958      0.188     15.397      0.000       2.527       3.264
+F_INCOME            0.0275      0.012      2.200      0.028       0.003       0.052
+F_AGECAT            0.0798      0.026      3.051      0.002       0.029       0.131
+edu                -0.1463      0.019     -7.696      0.000      -0.184      -0.109
+republic           -0.5598      0.073     -7.710      0.000      -0.702      -0.417
+COVIDCOVER1_W66    -1.1353      0.039    -28.945      0.000      -1.212      -1.058
+MH_TRACK_a_W66      0.1216      0.035      3.432      0.001       0.052       0.191
+MH_TRACK_b_W66      0.0327      0.038      0.858      0.391      -0.042       0.107
+MH_TRACK_d_W66     -0.0242      0.014     -1.721      0.085      -0.052       0.003
+MH_TRACK_d_W66     -0.0242      0.014     -1.721      0.085      -0.052       0.003
+MH_TRACK_e_W66      0.0248      0.028      0.872      0.383      -0.031       0.081
+===================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Largely inaccurate </span>
+<span class="n">y</span> <span class="o">=</span><span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">3</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="n">dfs</span><span class="p">[</span><span class="s1">&#39;COVIDNEWSPAIR_a_W66&#39;</span><span class="p">]]</span>
+<span class="n">reg1</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">X</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span>
+<span class="n">results1</span> <span class="o">=</span> <span class="n">reg1</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">reg2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">X</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(),</span> <span class="n">freq_weights</span><span class="o">=</span><span class="n">dfs</span><span class="p">[</span><span class="s1">&#39;WEIGHT_W66&#39;</span><span class="p">])</span>
+<span class="n">results2</span> <span class="o">=</span> <span class="n">reg2</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results2</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:                      y   No. Observations:                 8022
+Model:                            GLM   Df Residuals:                  7694.52
+Model Family:                Binomial   Df Model:                            9
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -4259.8
+Date:                Thu, 14 May 2020   Deviance:                       8519.6
+Time:                        13:10:31   Pearson chi2:                 7.66e+03
+No. Iterations:                     4                                         
+Covariance Type:            nonrobust                                         
+===================================================================================
+                      coef    std err          z      P&gt;|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------
+const              -2.8958      0.188    -15.397      0.000      -3.264      -2.527
+F_INCOME           -0.0275      0.012     -2.200      0.028      -0.052      -0.003
+F_AGECAT           -0.0798      0.026     -3.051      0.002      -0.131      -0.029
+edu                 0.1463      0.019      7.696      0.000       0.109       0.184
+republic            0.5598      0.073      7.710      0.000       0.417       0.702
+COVIDCOVER1_W66     1.1353      0.039     28.945      0.000       1.058       1.212
+MH_TRACK_a_W66     -0.1216      0.035     -3.432      0.001      -0.191      -0.052
+MH_TRACK_b_W66     -0.0327      0.038     -0.858      0.391      -0.107       0.042
+MH_TRACK_d_W66      0.0242      0.014      1.721      0.085      -0.003       0.052
+MH_TRACK_d_W66      0.0242      0.014      1.721      0.085      -0.003       0.052
+MH_TRACK_e_W66     -0.0248      0.028     -0.872      0.383      -0.081       0.031
+===================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="image.png" src="_images/end.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="08-07-analyzing-titanic-dataset.html" title="previous page">Logistic Regression of Titanic Data</a>
+    <a class='right-next' id="next-link" href="08-08-covid19-grangercausality.html" title="next page">社交媒体可以预测新冠疫情吗？</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,1567 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>基于机器学习的情感分析 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="主题模型简介" href="12-topic-models-update.html" />
+    <link rel="prev" title="利用textblob进行情感分析" href="11-3-textblob.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-word2vec.html">
+     词向量模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">
+     基于字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-2-emotion-dict.html">
+     大连理工大学中文情感词汇
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-NRC-Chinese-dict.html">
+     基于NRC字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-textblob.html">
+     利用textblob进行情感分析
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     基于机器学习的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-update.html">
+     主题模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-with-turicreate.html">
+     使用Turicreate建立主题模型
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/11-4-sentiment-classifier.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/ebook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/ebook/issues/new?title=Issue%20on%20page%20%2F11-4-sentiment-classifier.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/ebook/master?urlpath=tree/docs/11-4-sentiment-classifier.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#emotion">
+   Emotion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#polarity">
+   Polarity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sentiment-analysis-with-sklearn">
+   Sentiment Analysis with Sklearn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#paddlepaddle">
+   PaddlePaddle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#turicreate">
+   Turicreate
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-sentiment-classifier-with-turicreate">
+   Creating Sentiment Classifier with Turicreate
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#imdb-movies-reviews-dataset">
+     IMDB movies reviews Dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deeplearningmovies">
+     DeepLearningMovies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loading-data">
+     Loading Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#constructing-bag-of-words-classifier">
+     Constructing Bag-of-Words Classifier
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#improving-the-classifier">
+     Improving The Classifier
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unlabeled-test-file">
+     Unlabeled Test File
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#further-readings">
+     Further Readings
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>基于机器学习的情感分析<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><img alt="image.png" src="_images/author1.png" /></p>
+<div><img src="images/emotion.png" align="right"></div>
+<div class="section" id="emotion">
+<h2>Emotion<a class="headerlink" href="#emotion" title="Permalink to this headline">¶</a></h2>
+<p>Different types of emotion: anger, disgust, fear, joy, sadness, and surprise. The classification can be performed using different algorithms: e.g., naive Bayes classiﬁer trained on Carlo Strapparava and Alessandro Valitutti’s emotions lexicon.</p>
+</div>
+<div class="section" id="polarity">
+<h2>Polarity<a class="headerlink" href="#polarity" title="Permalink to this headline">¶</a></h2>
+<p>To classify some text as positive or negative. In this case, the classification can be done by using a naive Bayes algorithm trained on Janyce Wiebe’s subjectivity lexicon.</p>
+<p><img alt="image.png" src="_images/tweet.png" /></p>
+</div>
+<div class="section" id="sentiment-analysis-with-sklearn">
+<h2>Sentiment Analysis with Sklearn<a class="headerlink" href="#sentiment-analysis-with-sklearn" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pos_tweets</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;I love this car&#39;</span><span class="p">,</span> <span class="s1">&#39;positive&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;This view is amazing&#39;</span><span class="p">,</span> <span class="s1">&#39;positive&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;I feel great this morning&#39;</span><span class="p">,</span> <span class="s1">&#39;positive&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;I am so excited about the concert&#39;</span><span class="p">,</span> <span class="s1">&#39;positive&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;He is my best friend&#39;</span><span class="p">,</span> <span class="s1">&#39;positive&#39;</span><span class="p">)]</span>
+
+<span class="n">neg_tweets</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;I do not like this car&#39;</span><span class="p">,</span> <span class="s1">&#39;negative&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;This view is horrible&#39;</span><span class="p">,</span> <span class="s1">&#39;negative&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;I feel tired this morning&#39;</span><span class="p">,</span> <span class="s1">&#39;negative&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;I am not looking forward to the concert&#39;</span><span class="p">,</span> <span class="s1">&#39;negative&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;He is my enemy&#39;</span><span class="p">,</span> <span class="s1">&#39;negative&#39;</span><span class="p">)]</span>
+
+<span class="n">test_tweets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;feel happy this morning&#39;</span><span class="p">,</span> <span class="s1">&#39;positive&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;larry is my friend&#39;</span><span class="p">,</span> <span class="s1">&#39;positive&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;I do not like that man&#39;</span><span class="p">,</span> <span class="s1">&#39;negative&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;house is not great&#39;</span><span class="p">,</span> <span class="s1">&#39;negative&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;your song is annoying&#39;</span><span class="p">,</span> <span class="s1">&#39;negative&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dat</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pos_tweets</span><span class="o">+</span><span class="n">neg_tweets</span><span class="o">+</span><span class="n">test_tweets</span><span class="p">:</span>
+    <span class="n">dat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>TfidfVectorizer<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="n">ngram_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">lowercase</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">X_vec</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">Xtrain</span> <span class="o">=</span> <span class="n">X_vec</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">Xtest</span> <span class="o">=</span> <span class="n">X_vec</span><span class="p">[</span><span class="mi">10</span><span class="p">:]</span>
+<span class="n">ytrain</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">ytest</span><span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">10</span><span class="p">:]</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_vec</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">vec</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>amazing</th>
+      <th>annoying</th>
+      <th>best</th>
+      <th>car</th>
+      <th>concert</th>
+      <th>enemy</th>
+      <th>excited</th>
+      <th>feel</th>
+      <th>forward</th>
+      <th>friend</th>
+      <th>...</th>
+      <th>house</th>
+      <th>larry</th>
+      <th>like</th>
+      <th>looking</th>
+      <th>love</th>
+      <th>man</th>
+      <th>morning</th>
+      <th>song</th>
+      <th>tired</th>
+      <th>view</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.655648</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.755067</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.755067</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.655648</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.554219</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.554219</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.655648</td>
+      <td>0.0</td>
+      <td>0.755067</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.755067</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.655648</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.707107</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.707107</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.655648</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.522329</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.522329</td>
+      <td>0.000000</td>
+      <td>0.67405</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.523243</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.602585</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.602585</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.522329</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.522329</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.655648</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.755067</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.655648</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.755067</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.755067</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0.000000</td>
+      <td>0.707107</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.707107</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>15 rows × 23 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span> <span class="c1"># 1. choose model class</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>                       <span class="c1"># 2. instantiate model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtrain</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">ytrain</span><span class="p">)</span>                  <span class="c1"># 3. fit model to data</span>
+<span class="n">y_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtest</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>              <span class="c1"># 4. predict on new data</span>
+<span class="n">y_model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;positive&#39;, &#39;positive&#39;, &#39;negative&#39;, &#39;positive&#39;, &#39;negative&#39;],
+      dtype=&#39;&lt;U8&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">ytest</span><span class="p">,</span> <span class="n">y_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="n">svc</span><span class="o">=</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 超级参数 </span>
+<span class="n">svc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtrain</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">ytrain</span><span class="p">)</span>                  <span class="c1"># 3. fit model to data</span>
+<span class="n">y_model</span><span class="o">=</span><span class="n">svc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtest</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">ytest</span><span class="p">,</span> <span class="n">y_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_model</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;positive&#39;, &#39;positive&#39;, &#39;negative&#39;, &#39;positive&#39;, &#39;negative&#39;],
+      dtype=&#39;&lt;U39&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_model</span><span class="o">=</span><span class="n">svc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtest</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Don’t be too positive, let’s try another example:</span>
+<span class="n">vocabulary</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">classify_sentiment</span><span class="p">(</span><span class="n">str_list</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">):</span>
+    <span class="c1"># str_list = [&#39;a str&#39;]</span>
+    <span class="n">vec_pred</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="n">ngram_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">lowercase</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">vocabulary</span> <span class="o">=</span> <span class="n">vocabulary</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">vec_pred</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">str_list</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+
+<span class="n">classify_sentiment</span><span class="p">([</span><span class="s1">&#39;Your song is annoying&#39;</span><span class="p">,</span><span class="s1">&#39;larry is horrible&#39;</span><span class="p">],</span> <span class="n">model</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;negative&#39;, &#39;negative&#39;], dtype=&#39;&lt;U8&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classify_sentiment</span><span class="p">([</span><span class="s1">&#39;I do not like larry&#39;</span><span class="p">,</span> <span class="s1">&#39;larry is my friend&#39;</span><span class="p">],</span> <span class="n">svc</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;negative&#39;, &#39;positive&#39;], dtype=&#39;&lt;U39&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>作业</p>
+<ul class="simple">
+<li><p>使用另外一种sklearn的分类器来对tweet_negative2进行情感分析</p></li>
+<li><p>使用https://github.com/victorneo/Twitter-Sentimental-Analysis 所提供的推特数据进行情感分析，可以使用其代码 https://github.com/victorneo/Twitter-Sentimental-Analysis/blob/master/classification.py</p></li>
+<li><p>Sentiment Analysis of IMDb movie review Dataset Using Sklearn https://nbviewer.jupyter.org/github/rasbt/python-machine-learning-book/blob/master/code/ch08/ch08.ipynb</p></li>
+</ul>
+</div>
+<div class="section" id="paddlepaddle">
+<h2>PaddlePaddle<a class="headerlink" href="#paddlepaddle" title="Permalink to this headline">¶</a></h2>
+<div><img src="images/paddlepaddle.png" align="right"></div>  飞桨（PaddlePaddle）以百度多年的深度学习技术研究和业务应用为基础，集深度学习核心框架、基础模型库、端到端开发套件、工具组件和服务平台于一体，2016 年正式开源，是全面开源开放、技术领先、功能完备的产业级深度学习平台。 
+<p>http://paddlepaddle.org</p>
+<p>https://github.com/PaddlePaddle/book/tree/develop/06.understand_sentiment</p>
+</div>
+<div class="section" id="turicreate">
+<h2>Turicreate<a class="headerlink" href="#turicreate" title="Permalink to this headline">¶</a></h2>
+<p>https://github.com/apple/turicreate</p>
+<div><img src="images/turicreate.png" align = "right"></div>
+Turi Create simplifies the development of custom machine learning models. You don't have to be a machine learning expert to add recommendations, object detection, image classification, image similarity or activity classification to your app.
+<p>https://apple.github.io/turicreate/docs/userguide/text_classifier/</p>
+<p>https://www.kaggle.com/prakharrathi25/updated-turicreate-sentiment-analysis</p>
+<p><img alt="image.png" src="_images/end1.png" /></p>
+</div>
+<div class="section" id="creating-sentiment-classifier-with-turicreate">
+<h2>Creating Sentiment Classifier with Turicreate<a class="headerlink" href="#creating-sentiment-classifier-with-turicreate" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook, I will explain how to develop sentiment analysis classifiers that are based on a bag-of-words model.
+Then, I will demonstrate how these classifiers can be utilized to solve Kaggle’s “When Bag of Words Meets Bags of Popcorn” challenge.</p>
+<p>Using <del>GraphLab</del> Turicreate it is very easy and straight foward to create a sentiment classifier based on bag-of-words model. Given a dataset stored as a CSV file, you can construct your sentiment classifier using the following code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># toy code, do not run it</span>
+<span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
+<span class="n">train_data</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">SFrame</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">traindata_path</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">quote_char</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> 
+                                <span class="n">column_type_hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> 
+                                                     <span class="s1">&#39;sentiment&#39;</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> 
+                                                     <span class="s1">&#39;review&#39;</span><span class="p">:</span><span class="nb">str</span> <span class="p">}</span> <span class="p">)</span>
+<span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;1grams features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">text_analytics</span><span class="o">.</span><span class="n">count_ngrams</span><span class="p">(</span>
+    <span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;2grams features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">text_analytics</span><span class="o">.</span><span class="n">count_ngrams</span><span class="p">(</span>
+    <span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span>
+<span class="bp">cls</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">classifier</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;sentiment&#39;</span><span class="p">,</span> 
+                           <span class="n">features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;1grams features&#39;</span><span class="p">,</span>
+                                     <span class="s1">&#39;2grams features&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the rest of this notebook, we will explain this code recipe in details, by demonstrating how this recipe can used to create IMDB movie reviews sentiment classifier.</p>
+<p>Before we begin constructing the classifiers, we need to import some Python libraries: turicreate (tc), and IPython display utilities.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="imdb-movies-reviews-dataset">
+<h3>IMDB movies reviews Dataset<a class="headerlink" href="#imdb-movies-reviews-dataset" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Bag of Words Meets Bags of Popcorn</p>
+</div></blockquote>
+<p>Throughout this notebook, I will use Kaggle’s IMDB movies reviews datasets that is available to download from the following link: https://www.kaggle.com/c/word2vec-nlp-tutorial/data. I downloaded labeledTrainData.tsv and testData.tsv files, and unzipped them to the following local files.</p>
+</div>
+<div class="section" id="deeplearningmovies">
+<h3>DeepLearningMovies<a class="headerlink" href="#deeplearningmovies" title="Permalink to this headline">¶</a></h3>
+<p>Kaggle’s competition for using Google’s word2vec package for sentiment analysis</p>
+<p>https://github.com/wendykan/DeepLearningMovies</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">traindata_path</span> <span class="o">=</span> <span class="s2">&quot;/Users/datalab/bigdata/cjc/kaggle_popcorn_data/labeledTrainData.tsv&quot;</span>
+<span class="n">testdata_path</span> <span class="o">=</span> <span class="s2">&quot;/Users/datalab/bigdata/cjc/kaggle_popcorn_data/testData.tsv&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="loading-data">
+<h3>Loading Data<a class="headerlink" href="#loading-data" title="Permalink to this headline">¶</a></h3>
+<p>We will load the data with IMDB movie reviews to an SFrame using SFrame.read_csv function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">movies_reviews_data</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">SFrame</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">traindata_path</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                         <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">quote_char</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> 
+                                         <span class="n">column_type_hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> 
+                                                              <span class="s1">&#39;sentiment&#39;</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                                                              <span class="s1">&#39;review&#39;</span><span class="p">:</span><span class="nb">str</span> <span class="p">}</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre>Finished parsing file /Users/datalab/bigdata/cjc/kaggle_popcorn_data/labeledTrainData.tsv</pre></div><div class="output text_html"><pre>Parsing completed. Parsed 100 lines in 0.318532 secs.</pre></div><div class="output text_html"><pre>Finished parsing file /Users/datalab/bigdata/cjc/kaggle_popcorn_data/labeledTrainData.tsv</pre></div><div class="output text_html"><pre>Parsing completed. Parsed 25000 lines in 0.499892 secs.</pre></div></div>
+</div>
+<p>By using the SFrame show function, we can visualize the data and notice that the train dataset consists of 12,500 positive and 12,500 negative, and overall 24,932 unique reviews.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">movies_reviews_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="max-height:1000px;max-width:1500px;overflow:auto;"><table frame="box" rules="cols">
+    <tr>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">sentiment</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">review</th>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5814_8</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">With all this stuff going<br>down at the moment with ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2381_9</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">&quot;The Classic War of the<br>Worlds&quot; by Timothy Hines ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">7759_3</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">The film starts with a<br>manager (Nicholas Bell) ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3630_4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">It must be assumed that<br>those who praised this ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">9495_8</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">Superbly trashy and<br>wondrously unpretentious ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">8196_8</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">I dont know why people<br>think this is such a bad ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">7166_2</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">This movie could have<br>been very good, but c ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">10633_1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">I watched this video at a<br>friend&#x27;s house. I&#x27;m glad ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">319_1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">A friend of mine bought<br>this film for £1, and ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">8713_10</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">&lt;br /&gt;&lt;br /&gt;This movie is<br>full of references. Like ...</td>
+    </tr>
+</table>
+[25000 rows x 3 columns]<br/>Note: Only the head of the SFrame is printed.<br/>You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+</div></div></div>
+</div>
+</div>
+<div class="section" id="constructing-bag-of-words-classifier">
+<h3>Constructing Bag-of-Words Classifier<a class="headerlink" href="#constructing-bag-of-words-classifier" title="Permalink to this headline">¶</a></h3>
+<p>One of the common techniques to perform document classification (and reviews classification) is using Bag-of-Words model, in which the frequency of each word in the document is used as a feature for training a classifier. GraphLab’s text analytics toolkit makes it easy to calculate the frequency of each word in each review. Namely, by using the count_ngrams function with n=1, we can calculate the frequency of each word in each review. By running the following command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">movies_reviews_data</span><span class="p">[</span><span class="s1">&#39;1grams features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">text_analytics</span><span class="o">.</span><span class="n">count_ngrams</span><span class="p">(</span><span class="n">movies_reviews_data</span> <span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>By running the last command, we created a new column in movies_reviews_data SFrame object. In this column each value is a dictionary object, where each dictionary’s keys are the different words which appear in the corresponding review, and the dictionary’s values are the frequency of each word.
+We can view the values of this new column using the following command.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">movies_reviews_data</span><span class="c1">#[[&#39;review&#39;,&#39;1grams features&#39;]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="max-height:1000px;max-width:1500px;overflow:auto;"><table frame="box" rules="cols">
+    <tr>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">sentiment</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">review</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">1grams features</th>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5814_8</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">With all this stuff going<br>down at the moment with ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;just&#x27;: 3, &#x27;sickest&#x27;: 1,<br>&#x27;smooth&#x27;: 1, &#x27;this&#x27;: 11, ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2381_9</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">&quot;The Classic War of the<br>Worlds&quot; by Timothy Hines ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;year&#x27;: 1, &#x27;others&#x27;: 1,<br>&#x27;those&#x27;: 2, &#x27;this&#x27;: 1, ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">7759_3</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">The film starts with a<br>manager (Nicholas Bell) ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;hair&#x27;: 1, &#x27;bound&#x27;: 1,<br>&#x27;this&#x27;: 1, &#x27;when&#x27;: 2, ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3630_4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">It must be assumed that<br>those who praised this ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;crocuses&#x27;: 1, &#x27;that&#x27;:<br>7, &#x27;batonzilla&#x27;: 1, ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">9495_8</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">Superbly trashy and<br>wondrously unpretentious ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;unshaven&#x27;: 1, &#x27;just&#x27;:<br>1, &#x27;in&#x27;: 5, &#x27;when&#x27;: 2, ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">8196_8</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">I dont know why people<br>think this is such a bad ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;harry&#x27;: 3, &#x27;this&#x27;: 4,<br>&#x27;of&#x27;: 2, &#x27;hurt&#x27;: 1, &#x27; ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">7166_2</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">This movie could have<br>been very good, but c ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;acting&#x27;: 1,<br>&#x27;background&#x27;: 1, &#x27;just&#x27;: ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">10633_1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">I watched this video at a<br>friend&#x27;s house. I&#x27;m glad ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;photography&#x27;: 1,<br>&#x27;others&#x27;: 1, &#x27;zapruder&#x27;: ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">319_1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">A friend of mine bought<br>this film for £1, and ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;just&#x27;: 1, &#x27;this&#x27;: 2,<br>&#x27;when&#x27;: 1, &#x27;as&#x27;: 5, &#x27;s&#x27;: ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">8713_10</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">&lt;br /&gt;&lt;br /&gt;This movie is<br>full of references. Like ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;peter&#x27;: 1, &#x27;ii&#x27;: 1,<br>&#x27;full&#x27;: 1, &#x27;others&#x27;: 1, ...</td>
+    </tr>
+</table>
+[25000 rows x 4 columns]<br/>Note: Only the head of the SFrame is printed.<br/>You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+</div></div></div>
+</div>
+<p>We are now ready to construct and evaluate the movie reviews sentiment classifier using the calculated above features. But first, to be able to perform a quick evaluation of the constructed classifier, we need to create labeled train and test datasets. We will create train and test datasets by randomly splitting the train dataset into two parts. The first part will contain 80% of the labeled train dataset and will be used as the training dataset, while the second part will contain 20% of the labeled train dataset and will be used as the testing dataset. We will create these two dataset by using the following command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_set</span><span class="p">,</span> <span class="n">test_set</span> <span class="o">=</span> <span class="n">movies_reviews_data</span><span class="o">.</span><span class="n">random_split</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are now ready to create a classifier using the following command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_1</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">classifier</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;sentiment&#39;</span><span class="p">,</span> \
+                               <span class="n">features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;1grams features&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PROGRESS: Creating a validation set from 5 percent of training data. This may take a while.
+          You can set ``validation_set=None`` to disable validation tracking.
+
+PROGRESS: The following methods are available for this type of problem.
+PROGRESS: LogisticClassifier, SVMClassifier
+PROGRESS: The returned model will be chosen according to validation accuracy.
+</pre></div>
+</div>
+<div class="output text_html"><pre>Logistic regression:</pre></div><div class="output text_html"><pre>--------------------------------------------------------</pre></div><div class="output text_html"><pre>Number of examples          : 19077</pre></div><div class="output text_html"><pre>Number of classes           : 2</pre></div><div class="output text_html"><pre>Number of feature columns   : 1</pre></div><div class="output text_html"><pre>Number of unpacked features : 68246</pre></div><div class="output text_html"><pre>Number of coefficients      : 68247</pre></div><div class="output text_html"><pre>Starting L-BFGS</pre></div><div class="output text_html"><pre>--------------------------------------------------------</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output text_html"><pre>| Iteration | Passes   | Step size | Elapsed Time | Training Accuracy | Validation Accuracy |</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output text_html"><pre>| 0         | 2        | 1.000000  | 1.111660     | 0.942182          | 0.860697            |</pre></div><div class="output text_html"><pre>| 1         | 4        | 1.000000  | 1.253890     | 0.968444          | 0.865672            |</pre></div><div class="output text_html"><pre>| 2         | 6        | 1.000000  | 1.390344     | 0.990040          | 0.897512            |</pre></div><div class="output text_html"><pre>| 3         | 7        | 1.000000  | 1.474481     | 0.992923          | 0.899502            |</pre></div><div class="output text_html"><pre>| 4         | 8        | 1.000000  | 1.563669     | 0.997379          | 0.891542            |</pre></div><div class="output text_html"><pre>| 9         | 13       | 1.000000  | 2.052863     | 1.000000          | 0.867662            |</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output text_html"><pre>SVM:</pre></div><div class="output text_html"><pre>--------------------------------------------------------</pre></div><div class="output text_html"><pre>Number of examples          : 19077</pre></div><div class="output text_html"><pre>Number of classes           : 2</pre></div><div class="output text_html"><pre>Number of feature columns   : 1</pre></div><div class="output text_html"><pre>Number of unpacked features : 68246</pre></div><div class="output text_html"><pre>Number of coefficients    : 68247</pre></div><div class="output text_html"><pre>Starting L-BFGS</pre></div><div class="output text_html"><pre>--------------------------------------------------------</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output text_html"><pre>| Iteration | Passes   | Step size | Elapsed Time | Training Accuracy | Validation Accuracy |</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output text_html"><pre>| 0         | 2        | 1.000000  | 0.125585     | 0.942182          | 0.860697            |</pre></div><div class="output text_html"><pre>| 1         | 4        | 1.000000  | 0.268260     | 0.973738          | 0.875622            |</pre></div><div class="output text_html"><pre>| 2         | 5        | 1.000000  | 0.348993     | 0.989411          | 0.881592            |</pre></div><div class="output text_html"><pre>| 3         | 6        | 1.000000  | 0.433099     | 0.992976          | 0.884577            |</pre></div><div class="output text_html"><pre>| 4         | 7        | 1.000000  | 0.519594     | 0.996016          | 0.881592            |</pre></div><div class="output text_html"><pre>| 9         | 12       | 1.000000  | 0.923521     | 0.999685          | 0.886567            |</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PROGRESS: Model selection based on validation accuracy:
+PROGRESS: ---------------------------------------------
+PROGRESS: LogisticClassifier              : 0.8676616915422886
+PROGRESS: SVMClassifier                   : 0.8865671641791045
+PROGRESS: ---------------------------------------------
+PROGRESS: Selecting SVMClassifier based on validation set performance.
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can evaluate the performence of the classifier by evaluating it on the test dataset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result1</span> <span class="o">=</span> <span class="n">model_1</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_set</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to get an easy view of the classifier’s prediction result, we define and use the following function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_statistics</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">30</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;Accuracy        : &quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;Confusion Matrix: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;confusion_matrix&quot;</span><span class="p">])</span>
+<span class="n">print_statistics</span><span class="p">(</span><span class="n">result1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>******************************
+Accuracy        :  0.8710858072387149
+Confusion Matrix: 
+ +--------------+-----------------+-------+
+| target_label | predicted_label | count |
++--------------+-----------------+-------+
+|      0       |        1        |  374  |
+|      1       |        0        |  260  |
+|      1       |        1        |  2133 |
+|      0       |        0        |  2151 |
++--------------+-----------------+-------+
+[4 rows x 3 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<p>As can be seen in the results above, in just a few relatively straight foward lines of code, we have developed a sentiment classifier that has accuracy of about ~0.88. Next, we demonstrate how we can improve the classifier accuracy even more.</p>
+</div>
+<div class="section" id="improving-the-classifier">
+<h3>Improving The Classifier<a class="headerlink" href="#improving-the-classifier" title="Permalink to this headline">¶</a></h3>
+<p>One way to improve the movie reviews sentiment classifier is to extract more meaningful features from the reviews. One method to add additional features, which might be meaningful, is to calculate the frequency of every two consecutive words in each review. To calculate the frequency of each two consecutive words in each review, as before, we will use turicreate’s count_ngrams function only this time we will set n to be equal 2 (n=2) to create new column named ‘2grams features’.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">movies_reviews_data</span><span class="p">[</span><span class="s1">&#39;2grams features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">text_analytics</span><span class="o">.</span><span class="n">count_ngrams</span><span class="p">(</span><span class="n">movies_reviews_data</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">movies_reviews_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="max-height:1000px;max-width:1500px;overflow:auto;"><table frame="box" rules="cols">
+    <tr>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">sentiment</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">review</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">1grams features</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">2grams features</th>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5814_8</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">With all this stuff going<br>down at the moment with ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;just&#x27;: 3, &#x27;sickest&#x27;: 1,<br>&#x27;smooth&#x27;: 1, &#x27;this&#x27;: 11, ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;alone a&#x27;: 1, &#x27;most<br>people&#x27;: 1, &#x27;hope he&#x27; ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2381_9</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">&quot;The Classic War of the<br>Worlds&quot; by Timothy Hines ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;year&#x27;: 1, &#x27;others&#x27;: 1,<br>&#x27;those&#x27;: 2, &#x27;this&#x27;: 1, ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;slightest resemblance&#x27;:<br>1, &#x27;which is&#x27;: 1, &#x27;very ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">7759_3</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">The film starts with a<br>manager (Nicholas Bell) ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;hair&#x27;: 1, &#x27;bound&#x27;: 1,<br>&#x27;this&#x27;: 1, &#x27;when&#x27;: 2, ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;quite boring&#x27;: 1,<br>&#x27;packs a&#x27;: 1, &#x27;small ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3630_4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">It must be assumed that<br>those who praised this ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;crocuses&#x27;: 1, &#x27;that&#x27;:<br>7, &#x27;batonzilla&#x27;: 1, ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;but i&#x27;: 1, &#x27;is<br>represented&#x27;: 1, &#x27;opera ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">9495_8</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">Superbly trashy and<br>wondrously unpretentious ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;unshaven&#x27;: 1, &#x27;just&#x27;:<br>1, &#x27;in&#x27;: 5, &#x27;when&#x27;: 2, ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;unpretentious 80&#x27;: 1,<br>&#x27;sleazy black&#x27;: 1, &#x27;d ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">8196_8</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">I dont know why people<br>think this is such a bad ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;harry&#x27;: 3, &#x27;this&#x27;: 4,<br>&#x27;of&#x27;: 2, &#x27;hurt&#x27;: 1, &#x27; ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;like that&#x27;: 1, &#x27;see<br>this&#x27;: 1, &#x27;is such&#x27;: 1, ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">7166_2</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">This movie could have<br>been very good, but c ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;acting&#x27;: 1,<br>&#x27;background&#x27;: 1, &#x27;just&#x27;: ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;linked to&#x27;: 1, &#x27;way<br>short&#x27;: 1, &#x27;good but&#x27; ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">10633_1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">I watched this video at a<br>friend&#x27;s house. I&#x27;m glad ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;photography&#x27;: 1,<br>&#x27;others&#x27;: 1, &#x27;zapruder&#x27;: ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;curiously ends&#x27;: 1,<br>&#x27;several clips&#x27;: 1, ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">319_1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">A friend of mine bought<br>this film for £1, and ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;just&#x27;: 1, &#x27;this&#x27;: 2,<br>&#x27;when&#x27;: 1, &#x27;as&#x27;: 5, &#x27;s&#x27;: ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;bob thornton&#x27;: 1, &#x27;in<br>the&#x27;: 1, &#x27;taking a&#x27;: 1, ...</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">8713_10</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">&lt;br /&gt;&lt;br /&gt;This movie is<br>full of references. Like ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;peter&#x27;: 1, &#x27;ii&#x27;: 1,<br>&#x27;full&#x27;: 1, &#x27;others&#x27;: 1, ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">{&#x27;in the&#x27;: 1, &#x27;is a&#x27;: 1,<br>&#x27;lorre this&#x27;: 1, &#x27;much ...</td>
+    </tr>
+</table>
+[25000 rows x 5 columns]<br/>Note: Only the head of the SFrame is printed.<br/>You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+</div></div></div>
+</div>
+<p>As before, we will construct and evaluate a movie reviews sentiment classifier. However, this time we will use both the ‘1grams features’ and the ‘2grams features’ features</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_set</span><span class="p">,</span> <span class="n">test_set</span> <span class="o">=</span> <span class="n">movies_reviews_data</span><span class="o">.</span><span class="n">random_split</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">model_2</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">classifier</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;sentiment&#39;</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;1grams features&#39;</span><span class="p">,</span><span class="s1">&#39;2grams features&#39;</span><span class="p">])</span>
+<span class="n">result2</span> <span class="o">=</span> <span class="n">model_2</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_set</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PROGRESS: Creating a validation set from 5 percent of training data. This may take a while.
+          You can set ``validation_set=None`` to disable validation tracking.
+
+PROGRESS: The following methods are available for this type of problem.
+PROGRESS: LogisticClassifier, SVMClassifier
+PROGRESS: The returned model will be chosen according to validation accuracy.
+</pre></div>
+</div>
+<div class="output text_html"><pre>Logistic regression:</pre></div><div class="output text_html"><pre>--------------------------------------------------------</pre></div><div class="output text_html"><pre>Number of examples          : 19077</pre></div><div class="output text_html"><pre>Number of classes           : 2</pre></div><div class="output text_html"><pre>Number of feature columns   : 2</pre></div><div class="output text_html"><pre>Number of unpacked features : 1206694</pre></div><div class="output text_html"><pre>Number of coefficients      : 1206695</pre></div><div class="output text_html"><pre>Starting L-BFGS</pre></div><div class="output text_html"><pre>--------------------------------------------------------</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output text_html"><pre>| Iteration | Passes   | Step size | Elapsed Time | Training Accuracy | Validation Accuracy |</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output text_html"><pre>| 0         | 3        | 0.500000  | 0.884358     | 0.999266          | 0.866667            |</pre></div><div class="output text_html"><pre>| 1         | 5        | 0.500000  | 1.542838     | 0.999948          | 0.866667            |</pre></div><div class="output text_html"><pre>| 2         | 6        | 0.625000  | 1.909261     | 1.000000          | 0.865672            |</pre></div><div class="output text_html"><pre>| 3         | 8        | 0.625000  | 2.436618     | 1.000000          | 0.864677            |</pre></div><div class="output text_html"><pre>| 4         | 10       | 0.625000  | 2.971373     | 1.000000          | 0.863682            |</pre></div><div class="output text_html"><pre>| 9         | 18       | 0.976563  | 5.228981     | 1.000000          | 0.862687            |</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output text_html"><pre>SVM:</pre></div><div class="output text_html"><pre>--------------------------------------------------------</pre></div><div class="output text_html"><pre>Number of examples          : 19077</pre></div><div class="output text_html"><pre>Number of classes           : 2</pre></div><div class="output text_html"><pre>Number of feature columns   : 2</pre></div><div class="output text_html"><pre>Number of unpacked features : 1206694</pre></div><div class="output text_html"><pre>Number of coefficients    : 1206695</pre></div><div class="output text_html"><pre>Starting L-BFGS</pre></div><div class="output text_html"><pre>--------------------------------------------------------</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output text_html"><pre>| Iteration | Passes   | Step size | Elapsed Time | Training Accuracy | Validation Accuracy |</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output text_html"><pre>| 0         | 2        | 1.000000  | 0.710178     | 0.999266          | 0.866667            |</pre></div><div class="output text_html"><pre>| 1         | 4        | 1.000000  | 1.227603     | 1.000000          | 0.865672            |</pre></div><div class="output text_html"><pre>| 2         | 5        | 1.000000  | 1.524246     | 1.000000          | 0.865672            |</pre></div><div class="output text_html"><pre>| 3         | 6        | 1.000000  | 1.824261     | 1.000000          | 0.865672            |</pre></div><div class="output text_html"><pre>| 4         | 13       | 0.001263  | 3.080125     | 1.000000          | 0.865672            |</pre></div><div class="output text_html"><pre>| 9         | 26       | 0.262737  | 6.006328     | 1.000000          | 0.865672            |</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PROGRESS: Model selection based on validation accuracy:
+PROGRESS: ---------------------------------------------
+PROGRESS: LogisticClassifier              : 0.8626865671641791
+PROGRESS: SVMClassifier                   : 0.8656716417910447
+PROGRESS: ---------------------------------------------
+PROGRESS: Selecting SVMClassifier based on validation set performance.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_statistics</span><span class="p">(</span><span class="n">result2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>******************************
+Accuracy        :  0.8816592110614071
+Confusion Matrix: 
+ +--------------+-----------------+-------+
+| target_label | predicted_label | count |
++--------------+-----------------+-------+
+|      0       |        1        |  343  |
+|      1       |        0        |  239  |
+|      1       |        1        |  2154 |
+|      0       |        0        |  2182 |
++--------------+-----------------+-------+
+[4 rows x 3 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Indeed, the new constructed classifier seems to be more accurate with an accuracy of about ~0.9.</p>
+</div>
+<div class="section" id="unlabeled-test-file">
+<h3>Unlabeled Test File<a class="headerlink" href="#unlabeled-test-file" title="Permalink to this headline">¶</a></h3>
+<p>To test how well the presented method works, we will use all the 25,000 labeled IMDB movie reviews in the train dataset to construct a classifier. Afterwards, we will utilize the constructed classifier to predict sentiment for each review in the unlabeled dataset. Lastly, we will create a submission file according to Kaggle’s guidelines and submit it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">traindata_path</span> <span class="o">=</span> <span class="s2">&quot;/Users/datalab/bigdata/cjc/kaggle_popcorn_data/labeledTrainData.tsv&quot;</span>
+<span class="n">testdata_path</span> <span class="o">=</span> <span class="s2">&quot;/Users/datalab/bigdata/cjc/kaggle_popcorn_data/testData.tsv&quot;</span>
+<span class="c1">#creating classifier using all 25,000 reviews</span>
+<span class="n">train_data</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">SFrame</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">traindata_path</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">quote_char</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> 
+                                <span class="n">column_type_hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="s1">&#39;sentiment&#39;</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s1">&#39;review&#39;</span><span class="p">:</span><span class="nb">str</span> <span class="p">}</span> <span class="p">)</span>
+<span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;1grams features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">text_analytics</span><span class="o">.</span><span class="n">count_ngrams</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;2grams features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">text_analytics</span><span class="o">.</span><span class="n">count_ngrams</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="bp">cls</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">classifier</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;sentiment&#39;</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;1grams features&#39;</span><span class="p">,</span><span class="s1">&#39;2grams features&#39;</span><span class="p">])</span>
+<span class="c1">#creating the test dataset</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">SFrame</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">testdata_path</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">quote_char</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> 
+                               <span class="n">column_type_hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="s1">&#39;review&#39;</span><span class="p">:</span><span class="nb">str</span> <span class="p">}</span> <span class="p">)</span>
+<span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;1grams features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">text_analytics</span><span class="o">.</span><span class="n">count_ngrams</span><span class="p">(</span><span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;2grams features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">text_analytics</span><span class="o">.</span><span class="n">count_ngrams</span><span class="p">(</span><span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;review&#39;</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">#predicting the sentiment of each review in the test dataset</span>
+<span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">test_data</span><span class="p">)[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1">#saving the prediction to a CSV for submission</span>
+<span class="n">test_data</span><span class="p">[[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;/Users/datalab/bigdata/cjc/kaggle_popcorn_data/predictions.csv&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre>Finished parsing file /Users/datalab/bigdata/cjc/kaggle_popcorn_data/labeledTrainData.tsv</pre></div><div class="output text_html"><pre>Parsing completed. Parsed 100 lines in 0.282738 secs.</pre></div><div class="output text_html"><pre>Finished parsing file /Users/datalab/bigdata/cjc/kaggle_popcorn_data/labeledTrainData.tsv</pre></div><div class="output text_html"><pre>Parsing completed. Parsed 25000 lines in 0.507212 secs.</pre></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PROGRESS: Creating a validation set from 5 percent of training data. This may take a while.
+          You can set ``validation_set=None`` to disable validation tracking.
+
+PROGRESS: The following methods are available for this type of problem.
+PROGRESS: LogisticClassifier, SVMClassifier
+PROGRESS: The returned model will be chosen according to validation accuracy.
+</pre></div>
+</div>
+<div class="output text_html"><pre>Logistic regression:</pre></div><div class="output text_html"><pre>--------------------------------------------------------</pre></div><div class="output text_html"><pre>Number of examples          : 23750</pre></div><div class="output text_html"><pre>Number of classes           : 2</pre></div><div class="output text_html"><pre>Number of feature columns   : 2</pre></div><div class="output text_html"><pre>Number of unpacked features : 1407914</pre></div><div class="output text_html"><pre>Number of coefficients      : 1407915</pre></div><div class="output text_html"><pre>Starting L-BFGS</pre></div><div class="output text_html"><pre>--------------------------------------------------------</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output text_html"><pre>| Iteration | Passes   | Step size | Elapsed Time | Training Accuracy | Validation Accuracy |</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output text_html"><pre>| 0         | 2        | 1.000000  | 0.772874     | 0.998821          | 0.896000            |</pre></div><div class="output text_html"><pre>| 1         | 4        | 1.000000  | 1.443709     | 0.999916          | 0.894400            |</pre></div><div class="output text_html"><pre>| 2         | 6        | 0.648072  | 2.077022     | 0.999958          | 0.895200            |</pre></div><div class="output text_html"><pre>| 3         | 8        | 0.648072  | 2.769055     | 0.999958          | 0.894400            |</pre></div><div class="output text_html"><pre>| 4         | 10       | 0.648072  | 3.420360     | 0.999958          | 0.894400            |</pre></div><div class="output text_html"><pre>| 9         | 22       | 0.486054  | 6.816458     | 1.000000          | 0.892800            |</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output text_html"><pre>SVM:</pre></div><div class="output text_html"><pre>--------------------------------------------------------</pre></div><div class="output text_html"><pre>Number of examples          : 23750</pre></div><div class="output text_html"><pre>Number of classes           : 2</pre></div><div class="output text_html"><pre>Number of feature columns   : 2</pre></div><div class="output text_html"><pre>Number of unpacked features : 1407914</pre></div><div class="output text_html"><pre>Number of coefficients    : 1407915</pre></div><div class="output text_html"><pre>Starting L-BFGS</pre></div><div class="output text_html"><pre>--------------------------------------------------------</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output text_html"><pre>| Iteration | Passes   | Step size | Elapsed Time | Training Accuracy | Validation Accuracy |</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output text_html"><pre>| 0         | 2        | 1.000000  | 0.724382     | 0.998821          | 0.896000            |</pre></div><div class="output text_html"><pre>| 1         | 4        | 1.000000  | 1.284643     | 0.999916          | 0.896000            |</pre></div><div class="output text_html"><pre>| 2         | 5        | 1.000000  | 1.634216     | 0.999958          | 0.896000            |</pre></div><div class="output text_html"><pre>| 3         | 6        | 1.000000  | 2.002875     | 0.999958          | 0.896000            |</pre></div><div class="output text_html"><pre>| 4         | 13       | 0.000338  | 3.462338     | 1.000000          | 0.895200            |</pre></div><div class="output text_html"><pre>| 9         | 38       | 4.080042  | 9.019969     | 1.000000          | 0.895200            |</pre></div><div class="output text_html"><pre>+-----------+----------+-----------+--------------+-------------------+---------------------+</pre></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PROGRESS: Model selection based on validation accuracy:
+PROGRESS: ---------------------------------------------
+PROGRESS: LogisticClassifier              : 0.8928
+PROGRESS: SVMClassifier                   : 0.8952
+PROGRESS: ---------------------------------------------
+PROGRESS: Selecting SVMClassifier based on validation set performance.
+</pre></div>
+</div>
+<div class="output text_html"><pre>Finished parsing file /Users/datalab/bigdata/cjc/kaggle_popcorn_data/testData.tsv</pre></div><div class="output text_html"><pre>Parsing completed. Parsed 100 lines in 0.313905 secs.</pre></div><div class="output text_html"><pre>Finished parsing file /Users/datalab/bigdata/cjc/kaggle_popcorn_data/testData.tsv</pre></div><div class="output text_html"><pre>Parsing completed. Parsed 25000 lines in 0.560208 secs.</pre></div></div>
+</div>
+<p>We then submitted the predictions.csv file to the Kaggle challange website and scored AUC of about 0.88.</p>
+</div>
+<div class="section" id="further-readings">
+<h3>Further Readings<a class="headerlink" href="#further-readings" title="Permalink to this headline">¶</a></h3>
+<p>Further reading materials can be found in the following links:</p>
+<p>http://en.wikipedia.org/wiki/Bag-of-words_model</p>
+<p>https://dato.com/products/create/docs/generated/graphlab.SFrame.html</p>
+<p>https://dato.com/products/create/docs/graphlab.toolkits.classifier.html</p>
+<p>https://www.kaggle.com/c/word2vec-nlp-tutorial/details/part-1-for-beginners-bag-of-words</p>
+<p>Andrew L. Maas, Raymond E. Daly, Peter T. Pham, Dan Huang, Andrew Y. Ng, and Christopher Potts. (2011). “Learning Word Vectors for Sentiment Analysis.” The 49th Annual Meeting of the Association for Computational Linguistics (ACL 2011).</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="11-3-textblob.html" title="previous page">利用textblob进行情感分析</a>
+    <a class='right-next' id="next-link" href="12-topic-models-update.html" title="next page">主题模型简介</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
