@@ -6,7 +6,7 @@ Elements of Computational Communication
 
 王成军
 
-在线浏览链接见：https://computational-class.github.io/ccbook/
+在线浏览链接见：https://chengjunwang.com/mybook/
 
 ## 起源
 
