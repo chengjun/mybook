@@ -255,11 +255,11 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/chengjun/ebook"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/chengjun/ebook/issues/new?title=Issue%20on%20page%20%2F09-05-naive-bayes.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F09-05-naive-bayes.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -280,7 +280,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/ebook/master?urlpath=tree/docs/09-05-naive-bayes.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/master?urlpath=tree/docs/09-05-naive-bayes.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -417,8 +417,8 @@ $<span class="math notranslate nohighlight">\(P(L~|~{\rm features}) = \frac{P({\
 <p>The “naive” conditional independent assumptions: assume that each feature <span class="math notranslate nohighlight">\(x_i\)</span> is conditionally statistical independence of every other feature <span class="math notranslate nohighlight">\(x_j\)</span> for <span class="math notranslate nohighlight">\(j\neq i\)</span>, given the category <span class="math notranslate nohighlight">\(L_k\)</span>.  This means that</p>
 <div class="math notranslate nohighlight">
 \[p(x_i \mid x_{i+1}, \dots ,x_{n}, L_k ) = p(x_i \mid L_k)\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-bac6fd16-8e8f-4ac4-9fa5-ea717dbc3956">
-<span class="eqno">(2)<a class="headerlink" href="#equation-bac6fd16-8e8f-4ac4-9fa5-ea717dbc3956" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a1d589d4-9e10-459f-b228-28760f0ee8ff">
+<span class="eqno">(2)<a class="headerlink" href="#equation-a1d589d4-9e10-459f-b228-28760f0ee8ff" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(L_k, x_1, \dots, x_n) &amp; = p(x_1, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2 \mid x_3, \dots, x_n, L_k) p(x_3, \dots, x_n, L_k) \\
@@ -426,8 +426,8 @@ p(L_k, x_1, \dots, x_n) &amp; = p(x_1, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2 \mid x_3, \dots, x_n, L_k) \dots   p(x_{n-1} \mid x_n, L_k) p(x_n \mid L_k) p(L_k) \\
 \end{align}\]</div>
 <p>Thus, the joint model can be expressed as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-542771b4-c7db-4e61-881d-469eeb024296">
-<span class="eqno">(3)<a class="headerlink" href="#equation-542771b4-c7db-4e61-881d-469eeb024296" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7e262d8b-8f9a-48df-b47d-84d0e8c7dc0d">
+<span class="eqno">(3)<a class="headerlink" href="#equation-7e262d8b-8f9a-48df-b47d-84d0e8c7dc0d" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(L_k \mid x_1, \dots, x_n) &amp; \varpropto p(L_k, x_1, \dots, x_n) = \\
                             &amp; = p(L_k) \ p(x_1 \mid L_k) \ p(x_2\mid L_k) \ p(x_3\mid L_k) \ \cdots \\
                             &amp; = p(L_k) \prod_{i=1}^n p(x_i \mid L_k)\,.
@@ -463,8 +463,8 @@ f(x \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2} } e^{ -\frac{(x-\mu)^2}{2
 <p>Suppose we have collected some observation value <span class="math notranslate nohighlight">\(v\)</span>.
 Then, the probability distribution of <span class="math notranslate nohighlight">\(v\)</span> given a class <span class="math notranslate nohighlight">\(C_k\)</span>,</p>
 <p><span class="math notranslate nohighlight">\(p(x=v \mid C_k)\)</span>, can be computed by plugging <span class="math notranslate nohighlight">\(v\)</span> into the equation for a Normal distribution parameterized by <span class="math notranslate nohighlight">\(\mu_k\)</span> and <span class="math notranslate nohighlight">\(\sigma^2_k\)</span>. That is,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-387236c0-f7d8-4ecc-8080-94e83a138a80">
-<span class="eqno">(4)<a class="headerlink" href="#equation-387236c0-f7d8-4ecc-8080-94e83a138a80" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-790cf452-2060-4409-8212-7dd6c80cb3fe">
+<span class="eqno">(4)<a class="headerlink" href="#equation-790cf452-2060-4409-8212-7dd6c80cb3fe" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(x=v \mid C_k)=\frac{1}{\sqrt{2\pi\sigma^2_k}}\,e^{ -\frac{(v-\mu_k)^2}{2\sigma^2_k} }
 \end{align}\]</div>
 <p><strong>Problem</strong>: classify whether a given person is a male or a female based on the measured features.</p>
