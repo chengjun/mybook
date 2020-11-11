@@ -155,11 +155,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="#support-vector-machines-svms">
-     Support vector machines (SVMs)
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="09-08-random-forests.html">
      In-Depth: Decision Trees and Random Forests
     </a>
@@ -306,69 +301,64 @@
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   In-Depth: Support Vector Machines
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#support-vector-machines-svms">
    Support vector machines (SVMs)
   </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#motivating-support-vector-machines">
      Motivating Support Vector Machines
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#support-vector-machines-maximizing-the-margin">
-     Support Vector Machines: Maximizing the
-     <em>
-      Margin
-     </em>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#fitting-a-support-vector-machine">
-       Fitting a support vector machine
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#beyond-linear-boundaries-kernel-svm">
-       Beyond linear boundaries: Kernel SVM
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#strategy">
-     Strategy
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#problem">
-       Problem
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#tuning-the-svm-softening-margins">
-       Tuning the SVM: Softening Margins
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-face-recognition">
-     Example: Face Recognition
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#support-vector-machines-maximizing-the-margin">
+   Support Vector Machines: Maximizing the
+   <em>
+    Margin
+   </em>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fitting-a-support-vector-machine">
+     Fitting a support vector machine
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#support-vector-machine-summary">
-     Support Vector Machine Summary
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beyond-linear-boundaries-kernel-svm">
+     Beyond linear boundaries: Kernel SVM
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#strategy">
+   Strategy
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problem">
+     Problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tuning-the-svm-softening-margins">
+     Tuning the SVM: Softening Margins
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-face-recognition">
+   Example: Face Recognition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#support-vector-machine-summary">
+   Support Vector Machine Summary
+  </a>
  </li>
 </ul>
 
@@ -387,9 +377,8 @@
 <!--BOOK_INFORMATION-->
 <p><em>This notebook contains an excerpt from the <a class="reference external" href="http://shop.oreilly.com/product/0636920034919.do">Python Data Science Handbook</a> by Jake VanderPlas; the content is available <a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook">on GitHub</a>.</em></p>
 <p><em>The text is released under the <a class="reference external" href="https://creativecommons.org/licenses/by-nc-nd/3.0/us/legalcode">CC-BY-NC-ND license</a>, and code is released under the <a class="reference external" href="https://opensource.org/licenses/MIT">MIT license</a>. If you find this content useful, please consider supporting the work by <a class="reference external" href="http://shop.oreilly.com/product/0636920034919.do">buying the book</a>!</em></p>
-</div>
 <div class="section" id="support-vector-machines-svms">
-<h1>Support vector machines (SVMs)<a class="headerlink" href="#support-vector-machines-svms" title="Permalink to this headline">¶</a></h1>
+<h2>Support vector machines (SVMs)<a class="headerlink" href="#support-vector-machines-svms" title="Permalink to this headline">¶</a></h2>
 <p>A particularly powerful and flexible class of supervised algorithms for both classification and regression.</p>
 <p>In this section,</p>
 <ul class="simple">
@@ -411,7 +400,7 @@
 </div>
 </div>
 <div class="section" id="motivating-support-vector-machines">
-<h2>Motivating Support Vector Machines<a class="headerlink" href="#motivating-support-vector-machines" title="Permalink to this headline">¶</a></h2>
+<h3>Motivating Support Vector Machines<a class="headerlink" href="#motivating-support-vector-machines" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Generative classification</strong></p>
 <ul>
@@ -466,6 +455,7 @@
 <p>Depending on which you choose, a new data point (e.g., the one marked by the “X” in this plot) will be assigned a different label!</p>
 <p><img alt="image.png" src="_images/svm.png" /></p>
 <p>Evidently our simple intuition of “drawing a line between classes” is not enough, and we need to think a bit deeper.</p>
+</div>
 </div>
 <div class="section" id="support-vector-machines-maximizing-the-margin">
 <h2>Support Vector Machines: Maximizing the <em>Margin</em><a class="headerlink" href="#support-vector-machines-maximizing-the-margin" title="Permalink to this headline">¶</a></h2>

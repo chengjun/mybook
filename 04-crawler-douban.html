@@ -371,7 +371,36 @@
 <span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://movie.douban.com/subject/26611804/&#39;</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Response [418]&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>如果不加headers，响应状态：418， 正常返回状态应该是 200</p>
+<ul class="simple">
+<li><p>418啥意思？就是你爬取的网站有反爬虫机制，我们要向服务器发出爬虫请求，需要添加请求头：headers</p></li>
+<li><p>如何加请求头headers?</p>
+<ul>
+<li><p>网页右键“检查元素”-Network-Doc 如上图</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png" src="_images/headers.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://movie.douban.com/subject/26611804/&#39;</span>
+
+<span class="n">headers</span> <span class="o">=</span><span class="p">{</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36&#39;</span><span class="p">}</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  
 </pre></div>
 </div>
@@ -403,7 +432,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>三块广告牌 Three Billboards Outside Ebbing, Missouri [&#39;马丁·麦克唐纳&#39;] [&#39;弗兰西斯·麦克多蒙德&#39;, &#39;伍迪·哈里森&#39;, &#39;山姆·洛克威尔&#39;, &#39;艾比·考尼什&#39;, &#39;卢卡斯·赫奇斯&#39;, &#39;彼特·丁拉基&#39;, &#39;约翰·浩克斯&#39;, &#39;卡赖伯·兰德里·琼斯&#39;, &#39;凯瑟琳·纽顿&#39;, &#39;凯瑞·康顿&#39;, &#39;泽利科·伊万内克&#39;, &#39;萨玛拉·维文&#39;, &#39;克拉克·彼得斯&#39;, &#39;尼克·西塞&#39;, &#39;阿曼达·沃伦&#39;, &#39;玛拉雅·瑞沃拉·德鲁 &#39;, &#39;布兰登·萨克斯顿&#39;, &#39;迈克尔·艾伦·米利甘&#39;] [&#39;剧情&#39;] [&#39;犯罪&#39;] [&#39;官方网站:&#39;] [&#39;2018-03-02(中国大陆)&#39;] [&#39;2017-12-01(美国)&#39;] 8.7
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>三块广告牌 Three Billboards Outside Ebbing, Missouri [&#39;马丁·麦克唐纳&#39;] [&#39;弗兰西斯·麦克多蒙德&#39;, &#39;伍迪·哈里森&#39;, &#39;山姆·洛克威尔&#39;, &#39;艾比·考尼什&#39;, &#39;卢卡斯·赫奇斯&#39;, &#39;彼特·丁拉基&#39;, &#39;约翰·浩克斯&#39;, &#39;卡赖伯·兰德里·琼斯&#39;, &#39;凯瑟琳·纽顿&#39;, &#39;凯瑞·康顿&#39;, &#39;泽利科·伊万内克&#39;, &#39;萨玛拉·维文&#39;, &#39;克拉克·彼得斯&#39;, &#39;尼克·瑟西&#39;, &#39;阿曼达·沃伦&#39;, &#39;玛拉雅·瑞沃拉·德鲁 &#39;, &#39;布兰登·萨克斯顿&#39;, &#39;迈克尔·艾伦·米利甘&#39;] [&#39;剧情&#39;] [&#39;犯罪&#39;] [&#39;官方网站:&#39;] [&#39;2018-03-02(中国大陆)&#39;] [&#39;2017-12-01(美国)&#39;] 8.7
 </pre></div>
 </div>
 </div>
@@ -429,7 +458,19 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;schedule_url&#39;, &#39;title&#39;, &#39;aka&#39;, &#39;photos_count&#39;, &#39;languages&#39;, &#39;year&#39;, &#39;tags&#39;, &#39;blooper_urls&#39;, &#39;images&#39;, &#39;trailers&#39;, &#39;popular_reviews&#39;, &#39;videos&#39;, &#39;summary&#39;, &#39;clip_urls&#39;, &#39;do_count&#39;, &#39;comments_count&#39;, &#39;has_ticket&#39;, &#39;ratings_count&#39;, &#39;countries&#39;, &#39;has_video&#39;, &#39;collect_count&#39;, &#39;wish_count&#39;, &#39;writers&#39;, &#39;directors&#39;, &#39;id&#39;, &#39;mainland_pubdate&#39;, &#39;popular_comments&#39;, &#39;episodes_count&#39;, &#39;website&#39;, &#39;clips&#39;, &#39;casts&#39;, &#39;genres&#39;, &#39;reviews_count&#39;, &#39;douban_site&#39;, &#39;alt&#39;, &#39;pubdate&#39;, &#39;trailer_urls&#39;, &#39;mobile_url&#39;, &#39;share_url&#39;, &#39;durations&#39;, &#39;seasons_count&#39;, &#39;photos&#39;, &#39;pubdates&#39;, &#39;subtype&#39;, &#39;current_season&#39;, &#39;has_schedule&#39;, &#39;bloopers&#39;, &#39;collection&#39;, &#39;rating&#39;, &#39;original_title&#39;])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;msg&#39;, &#39;code&#39;, &#39;request&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jsonm</span><span class="p">[</span><span class="s1">&#39;msg&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;invalid_credencial2&#39;
 </pre></div>
 </div>
 </div>
@@ -526,8 +567,57 @@
 <span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
 
 <span class="n">url0</span> <span class="o">=</span> <span class="s1">&#39;https://movie.douban.com/top250?start=0&amp;filter=&#39;</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url0</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url0</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">//*</span><span class="p">[</span><span class="nd">@id</span><span class="o">=</span><span class="s2">&quot;content&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">div</span><span class="o">/</span><span class="n">div</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">ol</span><span class="o">/</span><span class="n">li</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">div</span><span class="o">/</span><span class="n">div</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">div</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">a</span><span class="o">/</span><span class="n">span</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">body</span><span class="o">/</span><span class="n">div</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="n">div</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">div</span><span class="o">/</span><span class="n">div</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">ol</span><span class="o">/</span><span class="n">li</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">div</span><span class="o">/</span><span class="n">div</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">div</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">a</span><span class="o">/</span><span class="n">span</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">str1</span> <span class="o">=</span> <span class="s1">&#39;//*[@id=&quot;content&quot;]/div/div[1]/ol/li[&#39;</span>
+<span class="n">str2</span> <span class="o">=</span> <span class="s1">&#39;]/div/div[2]/div[1]/a/span[1]/text()&#39;</span>
+
+<span class="n">xstr_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">str1</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span><span class="n">str2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xstr_list</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;肖申克的救赎&#39;,
+ &#39;霸王别姬&#39;,
+ &#39;阿甘正传&#39;,
+ &#39;这个杀手不太冷&#39;,
+ &#39;泰坦尼克号&#39;,
+ &#39;美丽人生&#39;,
+ &#39;千与千寻&#39;,
+ &#39;辛德勒的名单&#39;,
+ &#39;盗梦空间&#39;,
+ &#39;忠犬八公的故事&#39;,
+ &#39;海上钢琴师&#39;,
+ &#39;星际穿越&#39;,
+ &#39;楚门的世界&#39;,
+ &#39;三傻大闹宝莱坞&#39;,
+ &#39;机器人总动员&#39;,
+ &#39;放牛班的春天&#39;,
+ &#39;大话西游之大圣娶亲&#39;,
+ &#39;熔炉&#39;,
+ &#39;疯狂动物城&#39;,
+ &#39;无间道&#39;,
+ &#39;教父&#39;,
+ &#39;龙猫&#39;,
+ &#39;当幸福来敲门&#39;,
+ &#39;怦然心动&#39;,
+ &#39;触不可及&#39;]
 </pre></div>
 </div>
 </div>
@@ -574,7 +664,7 @@
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 
 <span class="n">url0</span> <span class="o">=</span> <span class="s1">&#39;https://movie.douban.com/top250?start=0&amp;filter=&#39;</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url0</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url0</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
 <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -632,9 +722,9 @@
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;div class=&quot;star&quot;&gt;
 &lt;span class=&quot;rating5-t&quot;&gt;&lt;/span&gt;
-&lt;span class=&quot;rating_num&quot; property=&quot;v:average&quot;&gt;9.6&lt;/span&gt;
+&lt;span class=&quot;rating_num&quot; property=&quot;v:average&quot;&gt;9.7&lt;/span&gt;
 &lt;span content=&quot;10.0&quot; property=&quot;v:best&quot;&gt;&lt;/span&gt;
-&lt;span&gt;1444420人评价&lt;/span&gt;
+&lt;span&gt;2180198人评价&lt;/span&gt;
 &lt;/div&gt;
 </pre></div>
 </div>
@@ -647,7 +737,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;9.6&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;9.7&#39;
 </pre></div>
 </div>
 </div>
@@ -660,7 +750,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1444420&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2180198&#39;
 </pre></div>
 </div>
 </div>
@@ -678,31 +768,31 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://movie.douban.com/subject/1292052/ 肖申克的救赎 9.6 1444420
-https://movie.douban.com/subject/1291546/ 霸王别姬 9.6 1070028
-https://movie.douban.com/subject/1295644/ 这个杀手不太冷 9.4 1315767
-https://movie.douban.com/subject/1292720/ 阿甘正传 9.4 1136609
-https://movie.douban.com/subject/1292063/ 美丽人生 9.5 666021
-https://movie.douban.com/subject/1292722/ 泰坦尼克号 9.3 1077710
-https://movie.douban.com/subject/1291561/ 千与千寻 9.3 1063060
-https://movie.douban.com/subject/1295124/ 辛德勒的名单 9.5 592924
-https://movie.douban.com/subject/3541415/ 盗梦空间 9.3 1137434
-https://movie.douban.com/subject/3011091/ 忠犬八公的故事 9.3 753683
-https://movie.douban.com/subject/2131459/ 机器人总动员 9.3 753202
-https://movie.douban.com/subject/3793023/ 三傻大闹宝莱坞 9.2 1023706
-https://movie.douban.com/subject/1292001/ 海上钢琴师 9.2 837910
-https://movie.douban.com/subject/1291549/ 放牛班的春天 9.3 710391
-https://movie.douban.com/subject/1292064/ 楚门的世界 9.2 787025
-https://movie.douban.com/subject/1292213/ 大话西游之大圣娶亲 9.2 793255
-https://movie.douban.com/subject/1889243/ 星际穿越 9.2 814373
-https://movie.douban.com/subject/1291560/ 龙猫 9.2 702137
-https://movie.douban.com/subject/1291841/ 教父 9.3 513800
-https://movie.douban.com/subject/5912992/ 熔炉 9.3 462360
-https://movie.douban.com/subject/1307914/ 无间道 9.2 652219
-https://movie.douban.com/subject/25662329/ 疯狂动物城 9.2 899529
-https://movie.douban.com/subject/1849031/ 当幸福来敲门 9.0 829997
-https://movie.douban.com/subject/3319755/ 怦然心动 9.0 918966
-https://movie.douban.com/subject/6786002/ 触不可及 9.2 547463
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://movie.douban.com/subject/1292052/ 肖申克的救赎 9.7 2180198
+https://movie.douban.com/subject/1291546/ 霸王别姬 9.6 1617190
+https://movie.douban.com/subject/1292720/ 阿甘正传 9.5 1645488
+https://movie.douban.com/subject/1295644/ 这个杀手不太冷 9.4 1830376
+https://movie.douban.com/subject/1292722/ 泰坦尼克号 9.4 1599954
+https://movie.douban.com/subject/1292063/ 美丽人生 9.5 1021593
+https://movie.douban.com/subject/1291561/ 千与千寻 9.4 1713845
+https://movie.douban.com/subject/1295124/ 辛德勒的名单 9.5 839385
+https://movie.douban.com/subject/3541415/ 盗梦空间 9.3 1600397
+https://movie.douban.com/subject/3011091/ 忠犬八公的故事 9.4 1091928
+https://movie.douban.com/subject/1292001/ 海上钢琴师 9.3 1303992
+https://movie.douban.com/subject/1889243/ 星际穿越 9.3 1272630
+https://movie.douban.com/subject/1292064/ 楚门的世界 9.3 1186190
+https://movie.douban.com/subject/3793023/ 三傻大闹宝莱坞 9.2 1456332
+https://movie.douban.com/subject/2131459/ 机器人总动员 9.3 1027953
+https://movie.douban.com/subject/1291549/ 放牛班的春天 9.3 1011523
+https://movie.douban.com/subject/1292213/ 大话西游之大圣娶亲 9.2 1163415
+https://movie.douban.com/subject/5912992/ 熔炉 9.3 713037
+https://movie.douban.com/subject/25662329/ 疯狂动物城 9.2 1401001
+https://movie.douban.com/subject/1307914/ 无间道 9.2 952194
+https://movie.douban.com/subject/1291841/ 教父 9.3 712979
+https://movie.douban.com/subject/1291560/ 龙猫 9.2 973850
+https://movie.douban.com/subject/1849031/ 当幸福来敲门 9.1 1173041
+https://movie.douban.com/subject/3319755/ 怦然心动 9.1 1366194
+https://movie.douban.com/subject/6786002/ 触不可及 9.2 759487
 </pre></div>
 </div>
 </div>
@@ -736,7 +826,8 @@ https://movie.douban.com/top250?start=225&amp;filter=
 <span class="n">dat</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">25</span><span class="p">):</span>
     <span class="n">urli</span> <span class="o">=</span> <span class="s1">&#39;https://movie.douban.com/top250?start=</span><span class="si">%d</span><span class="s1">&amp;filter=&#39;</span><span class="o">%</span> <span class="n">j</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">urli</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">urli</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">urli</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
     <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
     <span class="n">movies</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">})</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">movies</span><span class="p">:</span>
@@ -747,6 +838,20 @@ https://movie.douban.com/top250?start=225&amp;filter=
         <span class="n">rating_num</span> <span class="o">=</span> <span class="n">des</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;人评价&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">listi</span> <span class="o">=</span> <span class="p">[</span><span class="n">url</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">rating</span><span class="p">,</span> <span class="n">rating_num</span><span class="p">]</span>
         <span class="n">dat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">listi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://movie.douban.com/top250?start=0&amp;filter=
+https://movie.douban.com/top250?start=25&amp;filter=
+https://movie.douban.com/top250?start=50&amp;filter=
+https://movie.douban.com/top250?start=75&amp;filter=
+https://movie.douban.com/top250?start=100&amp;filter=
+https://movie.douban.com/top250?start=125&amp;filter=
+https://movie.douban.com/top250?start=150&amp;filter=
+https://movie.douban.com/top250?start=175&amp;filter=
+https://movie.douban.com/top250?start=200&amp;filter=
+https://movie.douban.com/top250?start=225&amp;filter=
 </pre></div>
 </div>
 </div>
@@ -791,36 +896,36 @@ https://movie.douban.com/top250?start=225&amp;filter=
       <th>0</th>
       <td>https://movie.douban.com/subject/1292052/</td>
       <td>肖申克的救赎</td>
-      <td>9.6</td>
-      <td>1444420</td>
+      <td>9.7</td>
+      <td>2180198</td>
     </tr>
     <tr>
       <th>1</th>
       <td>https://movie.douban.com/subject/1291546/</td>
       <td>霸王别姬</td>
       <td>9.6</td>
-      <td>1070028</td>
+      <td>1617258</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>https://movie.douban.com/subject/1295644/</td>
-      <td>这个杀手不太冷</td>
-      <td>9.4</td>
-      <td>1315767</td>
+      <td>https://movie.douban.com/subject/1292720/</td>
+      <td>阿甘正传</td>
+      <td>9.5</td>
+      <td>1645488</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>https://movie.douban.com/subject/1292720/</td>
-      <td>阿甘正传</td>
+      <td>https://movie.douban.com/subject/1295644/</td>
+      <td>这个杀手不太冷</td>
       <td>9.4</td>
-      <td>1136609</td>
+      <td>1830376</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>https://movie.douban.com/subject/1292063/</td>
-      <td>美丽人生</td>
-      <td>9.5</td>
-      <td>666021</td>
+      <td>https://movie.douban.com/subject/1292722/</td>
+      <td>泰坦尼克号</td>
+      <td>9.4</td>
+      <td>1599954</td>
     </tr>
   </tbody>
 </table>
@@ -837,7 +942,7 @@ https://movie.douban.com/top250?start=225&amp;filter=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/04-crawler-douban_32_0.png" src="_images/04-crawler-douban_32_0.png" />
+<img alt="_images/04-crawler-douban_38_0.png" src="_images/04-crawler-douban_38_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -848,7 +953,7 @@ https://movie.douban.com/top250?start=225&amp;filter=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/04-crawler-douban_33_0.png" src="_images/04-crawler-douban_33_0.png" />
+<img alt="_images/04-crawler-douban_39_0.png" src="_images/04-crawler-douban_39_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -865,7 +970,7 @@ https://movie.douban.com/top250?start=225&amp;filter=
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/04-crawler-douban_34_0.png" src="_images/04-crawler-douban_34_0.png" />
+<img alt="_images/04-crawler-douban_40_0.png" src="_images/04-crawler-douban_40_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
