@@ -14,7 +14,7 @@
 # 
 # *The text is released under the [CC-BY-NC-ND license](https://creativecommons.org/licenses/by-nc-nd/3.0/us/legalcode), and code is released under the [MIT license](https://opensource.org/licenses/MIT). If you find this content useful, please consider supporting the work by [buying the book](http://shop.oreilly.com/product/0636920034919.do)!*
 
-# # Support vector machines (SVMs) 
+# ## Support vector machines (SVMs) 
 # 
 # A particularly powerful and flexible class of supervised algorithms for both classification and regression.
 # 
@@ -35,7 +35,7 @@ from scipy import stats
 import seaborn as sns; sns.set()
 
 
-# ## Motivating Support Vector Machines
+# ### Motivating Support Vector Machines
 
 # 
 # - **Generative classification**

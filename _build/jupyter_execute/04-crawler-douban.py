@@ -20,14 +20,35 @@
 # 参考：https://mp.weixin.qq.com/s/zx3_eflBCrrfOqFEWjAUJw
 # 
 
-# In[31]:
+# In[2]:
 
 
 import requests
 from lxml import etree
 
 url = 'https://movie.douban.com/subject/26611804/'
-data = requests.get(url).text
+requests.get(url)
+
+
+# 如果不加headers，响应状态：418， 正常返回状态应该是 200
+# 
+# - 418啥意思？就是你爬取的网站有反爬虫机制，我们要向服务器发出爬虫请求，需要添加请求头：headers
+# - 如何加请求头headers?
+#     - 网页右键“检查元素”-Network-Doc 如上图
+
+# ![image.png](images/headers.png)
+
+# In[3]:
+
+
+import requests
+from lxml import etree
+
+url = 'https://movie.douban.com/subject/26611804/'
+
+headers ={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36'}
+
+data = requests.get(url, headers = headers).text
 s = etree.HTML(data)  
 
 
@@ -41,7 +62,7 @@ s = etree.HTML(data)
 # 
 # 
 
-# In[33]:
+# In[4]:
 
 
 title = s.xpath('//*[@id="content"]/h1/span[1]/text()')[0]
@@ -55,7 +76,7 @@ length = s.xpath('//*[@id="info"]/span[13]/text()')
 score = s.xpath('//*[@id="interest_sectl"]/div[1]/div[2]/strong/text()')[0]
 
 
-# In[34]:
+# In[5]:
 
 
 print(title, director, actors, type1, type2, type3, time, length, score)
@@ -76,10 +97,16 @@ url = 'https://api.douban.com/v2/movie/subject/26611804?apikey=0b2bdeda43b568892
 jsonm = requests.get(url).json()
 
 
-# In[11]:
+# In[7]:
 
 
 jsonm.keys()
+
+
+# In[8]:
+
+
+jsonm['msg']
 
 
 # In[3]:
@@ -115,7 +142,7 @@ jsonm['genres']
 
 # ## 作业：抓取豆瓣电影 Top 250
 
-# In[55]:
+# In[9]:
 
 
 import requests
@@ -123,11 +150,29 @@ from bs4 import BeautifulSoup
 from lxml import etree
 
 url0 = 'https://movie.douban.com/top250?start=0&filter='
-data = requests.get(url0).text
+data = requests.get(url0, headers=headers).text
 s = etree.HTML(data)
 
 
-# In[56]:
+# In[ ]:
+
+
+(/*[@id="content"]/div/div[1]/ol/li[1]/div/div[2]/div[1]/a/span[1])
+
+html(/body/div[3]/div[1]/div/div[1]/ol/li[1]/div/div[2]/div[1]/a/span[1])
+
+
+# In[13]:
+
+
+str1 = '//*[@id="content"]/div/div[1]/ol/li['
+str2 = ']/div/div[2]/div[1]/a/span[1]/text()'
+
+xstr_list = [str1 + str(i+1) +str2 for i in range(25)]
+[s.xpath(i)[0]  for i in xstr_list]
+
+
+# In[11]:
 
 
 s.xpath('//*[@id="content"]/div/div[1]/ol/li[1]/div/div[2]/div[1]/a/span[1]/text()')[0]
@@ -145,61 +190,61 @@ s.xpath('//*[@id="content"]/div/div[1]/ol/li[2]/div/div[2]/div[1]/a/span[1]/text
 s.xpath('//*[@id="content"]/div/div[1]/ol/li[3]/div/div[2]/div[1]/a/span[1]/text()')[0]
 
 
-# In[58]:
+# In[14]:
 
 
 import requests
 from bs4 import BeautifulSoup
 
 url0 = 'https://movie.douban.com/top250?start=0&filter='
-data = requests.get(url0).text
+data = requests.get(url0, headers = headers).text
 soup = BeautifulSoup(data, 'lxml')
 
 
-# In[59]:
+# In[15]:
 
 
 movies = soup.find_all('div', {'class', 'info'})
 
 
-# In[60]:
+# In[16]:
 
 
 len(movies)
 
 
-# In[61]:
+# In[19]:
 
 
 movies[0].a['href']
 
 
-# In[62]:
+# In[23]:
 
 
 movies[0].find('span', {'class', 'title'}).text
 
 
-# In[63]:
+# In[25]:
 
 
 movies[0].find('div', {'class', 'star'})
 
 
-# In[64]:
+# In[26]:
 
 
 movies[0].find('span', {'class', 'rating_num'}).text
 
 
-# In[65]:
+# In[27]:
 
 
 people_num = movies[0].find('div', {'class', 'star'}).find_all('span')[-1]
 people_num.text.split('人评价')[0]
 
 
-# In[66]:
+# In[28]:
 
 
 for i in movies:
@@ -211,14 +256,14 @@ for i in movies:
     print(url, title, rating, rating_num)
 
 
-# In[67]:
+# In[29]:
 
 
 for i in range(0, 250, 25):
     print('https://movie.douban.com/top250?start=%d&filter='% i)
 
 
-# In[68]:
+# In[30]:
 
 
 import requests
@@ -226,7 +271,8 @@ from bs4 import BeautifulSoup
 dat = []
 for j in range(0, 250, 25):
     urli = 'https://movie.douban.com/top250?start=%d&filter='% j
-    data = requests.get(urli).text
+    print(urli)
+    data = requests.get(urli, headers = headers).text
     soup = BeautifulSoup(data, 'lxml')
     movies = soup.find_all('div', {'class', 'info'})
     for i in movies:
@@ -239,7 +285,7 @@ for j in range(0, 250, 25):
         dat.append(listi)
 
 
-# In[69]:
+# In[31]:
 
 
 import pandas as pd

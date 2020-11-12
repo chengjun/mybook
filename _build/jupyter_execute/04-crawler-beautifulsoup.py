@@ -52,7 +52,7 @@
 
 # ## 第一个爬虫
 # 
-# <div><img src="./images/alice.png" align = 'middle' width=500></div>
+# ![](images/alice.png)
 # 
 # Beautifulsoup Quick Start 
 # 
@@ -65,7 +65,8 @@
 # 
 # 'Once upon a time there were three little sisters,' the Dormouse began in a great hurry; 'and their names were Elsie, Lacie, and Tillie; and they lived at the bottom of a well--'
 # 
-# <div><img src="./images/alice2.png" align='right'></div>
+# <img src="./images/alice2.png" align='right'>
+# 
 # 'What did they live on?' said Alice, who always took a great interest in questions of eating and drinking.
 # 
 # 'They lived on treacle,' said the Dormouse, after thinking a minute or two.
@@ -83,51 +84,21 @@ import requests
 from bs4 import BeautifulSoup 
 
 
-# In[41]:
-
-
-import requests
-from bs4 import BeautifulSoup 
-
-url = 'https://vp.fact.qq.com/home'
-content = requests.get(url)
-soup = BeautifulSoup(content.text, 'html.parser') 
-
+# ```
+# import requests
+# from bs4 import BeautifulSoup 
+# 
+# url = 'https://vp.fact.qq.com/home'
+# content = requests.get(url)
+# soup = BeautifulSoup(content.text, 'html.parser') 
+# 
+# ```
+# 
 
 # In[77]:
 
 
 help(requests.get)
-
-
-# In[59]:
-
-
-[i.text.split('\xa0')[0].replace('\u200b', '') for i in soup.select('.content_text')]
-
-
-# In[53]:
-
-
-[i.select('.mark_title')[0].text for i in soup.select('.content_text')]
-
-
-# In[51]:
-
-
-soup.select('.content_text')[0].select('.mark_text')[0].text
-
-
-# In[25]:
-
-
-print(*['https://vp.fact.qq.com/article?id=' + i['id']  for i in soup.select('li')])
-
-
-# In[2]:
-
-
-help(requests.get) 
 
 
 # In[2]:

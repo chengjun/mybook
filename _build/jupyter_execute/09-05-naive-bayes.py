@@ -4,7 +4,7 @@
 # # In Depth: Naive Bayes Classification
 # 
 # 
-# ![image.png](./images/author.png)
+# ![image.png](images/author.png)
 # 
 
 # <!--BOOK_INFORMATION-->
