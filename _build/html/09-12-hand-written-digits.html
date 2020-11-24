@@ -48,8 +48,6 @@
     <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -480,7 +478,7 @@ https://archive.ics.uci.edu/ml/datasets/Optical+Recognition+of+Handwritten+Digit
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9333333333333333
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9388888888888889
 </pre></div>
 </div>
 </div>
@@ -579,23 +577,23 @@ https://archive.ics.uci.edu/ml/datasets/Optical+Recognition+of+Handwritten+Digit
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 0/num_epoch | Loss: 0.0959
-Epoch: 0/num_epoch | Loss: 0.0992
-Epoch: 0/num_epoch | Loss: 0.0986
-Epoch: 0/num_epoch | Loss: 0.0944
-Epoch: 0/num_epoch | Loss: 0.0907
-Epoch: 0/num_epoch | Loss: 0.0948
-Epoch: 0/num_epoch | Loss: 0.0895
-Epoch: 0/num_epoch | Loss: 0.0934
-Epoch: 0/num_epoch | Loss: 0.0907
-Epoch: 0/num_epoch | Loss: 0.0876
-Epoch: 0/num_epoch | Loss: 0.0907
-Epoch: 0/num_epoch | Loss: 0.0856
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 0/num_epoch | Loss: 0.1011
+Epoch: 0/num_epoch | Loss: 0.1043
+Epoch: 0/num_epoch | Loss: 0.0998
+Epoch: 0/num_epoch | Loss: 0.0977
+Epoch: 0/num_epoch | Loss: 0.0963
+Epoch: 0/num_epoch | Loss: 0.0921
+Epoch: 0/num_epoch | Loss: 0.0955
+Epoch: 0/num_epoch | Loss: 0.0981
+Epoch: 0/num_epoch | Loss: 0.0964
+Epoch: 0/num_epoch | Loss: 0.0915
+Epoch: 0/num_epoch | Loss: 0.0840
+Epoch: 0/num_epoch | Loss: 0.0882
+Epoch: 0/num_epoch | Loss: 0.0974
 Epoch: 0/num_epoch | Loss: 0.0893
-Epoch: 0/num_epoch | Loss: 0.0868
-Epoch: 0/num_epoch | Loss: 0.0833
-Epoch: 0/num_epoch | Loss: 0.0864
-Epoch: 0/num_epoch | Loss: 0.0729
+Epoch: 0/num_epoch | Loss: 0.0843
+Epoch: 0/num_epoch | Loss: 0.0885
+Epoch: 0/num_epoch | Loss: 0.0624
 </pre></div>
 </div>
 </div>
@@ -618,7 +616,7 @@ Epoch: 0/num_epoch | Loss: 0.0729
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Accuracy: 98 %
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Accuracy: 96 %
 </pre></div>
 </div>
 </div>
@@ -758,7 +756,7 @@ Epoch: 0/num_epoch | Loss: 0.0729
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train the Model</span>
 <span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="kn">import</span> <span class="n">Variable</span>
 
-<span class="n">num_epoch</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">num_epoch</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epoch</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_loader</span><span class="p">):</span>
         <span class="c1"># reshape the shape of data</span>
@@ -770,98 +768,113 @@ Epoch: 0/num_epoch | Loss: 0.0729
         <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
         <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Epoch [</span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">], Iter [</span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">] Loss: </span><span class="si">%.4f</span><span class="s1">&#39;</span>
                    <span class="o">%</span><span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_epoch</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">train</span><span class="p">)</span><span class="o">//</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [1/5], Iter [1/16] Loss: 0.0766
-Epoch [1/5], Iter [2/16] Loss: 0.1281
-Epoch [1/5], Iter [3/16] Loss: 0.1132
-Epoch [1/5], Iter [4/16] Loss: 0.0562
-Epoch [1/5], Iter [5/16] Loss: 0.1689
-Epoch [1/5], Iter [6/16] Loss: 0.0223
-Epoch [1/5], Iter [7/16] Loss: 0.0726
-Epoch [1/5], Iter [8/16] Loss: 0.0336
-Epoch [1/5], Iter [9/16] Loss: 0.1128
-Epoch [1/5], Iter [10/16] Loss: 0.0445
-Epoch [1/5], Iter [11/16] Loss: 0.1064
-Epoch [1/5], Iter [12/16] Loss: 0.0843
-Epoch [1/5], Iter [13/16] Loss: 0.1876
-Epoch [1/5], Iter [14/16] Loss: 0.0871
-Epoch [1/5], Iter [15/16] Loss: 0.0484
-Epoch [1/5], Iter [16/16] Loss: 0.0237
-Epoch [1/5], Iter [17/16] Loss: 0.0027
-Epoch [2/5], Iter [1/16] Loss: 0.0637
-Epoch [2/5], Iter [2/16] Loss: 0.0636
-Epoch [2/5], Iter [3/16] Loss: 0.0870
-Epoch [2/5], Iter [4/16] Loss: 0.0358
-Epoch [2/5], Iter [5/16] Loss: 0.0563
-Epoch [2/5], Iter [6/16] Loss: 0.0901
-Epoch [2/5], Iter [7/16] Loss: 0.0532
-Epoch [2/5], Iter [8/16] Loss: 0.0934
-Epoch [2/5], Iter [9/16] Loss: 0.0656
-Epoch [2/5], Iter [10/16] Loss: 0.0664
-Epoch [2/5], Iter [11/16] Loss: 0.0906
-Epoch [2/5], Iter [12/16] Loss: 0.0122
-Epoch [2/5], Iter [13/16] Loss: 0.1302
-Epoch [2/5], Iter [14/16] Loss: 0.1345
-Epoch [2/5], Iter [15/16] Loss: 0.0308
-Epoch [2/5], Iter [16/16] Loss: 0.0289
-Epoch [2/5], Iter [17/16] Loss: 0.0416
-Epoch [3/5], Iter [1/16] Loss: 0.1061
-Epoch [3/5], Iter [2/16] Loss: 0.0319
-Epoch [3/5], Iter [3/16] Loss: 0.0453
-Epoch [3/5], Iter [4/16] Loss: 0.0667
-Epoch [3/5], Iter [5/16] Loss: 0.0448
-Epoch [3/5], Iter [6/16] Loss: 0.0632
-Epoch [3/5], Iter [7/16] Loss: 0.0150
-Epoch [3/5], Iter [8/16] Loss: 0.0695
-Epoch [3/5], Iter [9/16] Loss: 0.0993
-Epoch [3/5], Iter [10/16] Loss: 0.1005
-Epoch [3/5], Iter [11/16] Loss: 0.0447
-Epoch [3/5], Iter [12/16] Loss: 0.0735
-Epoch [3/5], Iter [13/16] Loss: 0.0721
-Epoch [3/5], Iter [14/16] Loss: 0.0868
-Epoch [3/5], Iter [15/16] Loss: 0.0723
-Epoch [3/5], Iter [16/16] Loss: 0.1377
-Epoch [3/5], Iter [17/16] Loss: 0.0644
-Epoch [4/5], Iter [1/16] Loss: 0.0281
-Epoch [4/5], Iter [2/16] Loss: 0.0462
-Epoch [4/5], Iter [3/16] Loss: 0.0133
-Epoch [4/5], Iter [4/16] Loss: 0.0393
-Epoch [4/5], Iter [5/16] Loss: 0.0414
-Epoch [4/5], Iter [6/16] Loss: 0.0641
-Epoch [4/5], Iter [7/16] Loss: 0.0274
-Epoch [4/5], Iter [8/16] Loss: 0.0094
-Epoch [4/5], Iter [9/16] Loss: 0.0189
-Epoch [4/5], Iter [10/16] Loss: 0.0692
-Epoch [4/5], Iter [11/16] Loss: 0.1650
-Epoch [4/5], Iter [12/16] Loss: 0.0403
-Epoch [4/5], Iter [13/16] Loss: 0.1196
-Epoch [4/5], Iter [14/16] Loss: 0.0699
-Epoch [4/5], Iter [15/16] Loss: 0.0748
-Epoch [4/5], Iter [16/16] Loss: 0.0594
-Epoch [4/5], Iter [17/16] Loss: 0.0053
-Epoch [5/5], Iter [1/16] Loss: 0.0327
-Epoch [5/5], Iter [2/16] Loss: 0.0092
-Epoch [5/5], Iter [3/16] Loss: 0.0700
-Epoch [5/5], Iter [4/16] Loss: 0.0681
-Epoch [5/5], Iter [5/16] Loss: 0.0065
-Epoch [5/5], Iter [6/16] Loss: 0.0608
-Epoch [5/5], Iter [7/16] Loss: 0.0288
-Epoch [5/5], Iter [8/16] Loss: 0.0438
-Epoch [5/5], Iter [9/16] Loss: 0.0358
-Epoch [5/5], Iter [10/16] Loss: 0.0297
-Epoch [5/5], Iter [11/16] Loss: 0.0194
-Epoch [5/5], Iter [12/16] Loss: 0.0239
-Epoch [5/5], Iter [13/16] Loss: 0.0462
-Epoch [5/5], Iter [14/16] Loss: 0.0111
-Epoch [5/5], Iter [15/16] Loss: 0.0383
-Epoch [5/5], Iter [16/16] Loss: 0.0819
-Epoch [5/5], Iter [17/16] Loss: 0.0052
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [1/100], Iter [10/16] Loss: 2.5073
+Epoch [2/100], Iter [10/16] Loss: 2.3236
+Epoch [3/100], Iter [10/16] Loss: 2.2836
+Epoch [4/100], Iter [10/16] Loss: 1.9957
+Epoch [5/100], Iter [10/16] Loss: 1.4108
+Epoch [6/100], Iter [10/16] Loss: 0.5429
+Epoch [7/100], Iter [10/16] Loss: 0.3105
+Epoch [8/100], Iter [10/16] Loss: 0.1456
+Epoch [9/100], Iter [10/16] Loss: 0.2635
+Epoch [10/100], Iter [10/16] Loss: 0.0572
+Epoch [11/100], Iter [10/16] Loss: 0.0202
+Epoch [12/100], Iter [10/16] Loss: 0.0370
+Epoch [13/100], Iter [10/16] Loss: 0.0279
+Epoch [14/100], Iter [10/16] Loss: 0.0654
+Epoch [15/100], Iter [10/16] Loss: 0.0075
+Epoch [16/100], Iter [10/16] Loss: 0.0093
+Epoch [17/100], Iter [10/16] Loss: 0.0052
+Epoch [18/100], Iter [10/16] Loss: 0.0049
+Epoch [19/100], Iter [10/16] Loss: 0.0021
+Epoch [20/100], Iter [10/16] Loss: 0.0009
+Epoch [21/100], Iter [10/16] Loss: 0.0025
+Epoch [22/100], Iter [10/16] Loss: 0.0005
+Epoch [23/100], Iter [10/16] Loss: 0.0009
+Epoch [24/100], Iter [10/16] Loss: 0.0011
+Epoch [25/100], Iter [10/16] Loss: 0.0002
+Epoch [26/100], Iter [10/16] Loss: 0.0004
+Epoch [27/100], Iter [10/16] Loss: 0.0003
+Epoch [28/100], Iter [10/16] Loss: 0.0003
+Epoch [29/100], Iter [10/16] Loss: 0.0002
+Epoch [30/100], Iter [10/16] Loss: 0.0001
+Epoch [31/100], Iter [10/16] Loss: 0.0002
+Epoch [32/100], Iter [10/16] Loss: 0.0002
+Epoch [33/100], Iter [10/16] Loss: 0.0003
+Epoch [34/100], Iter [10/16] Loss: 0.0003
+Epoch [35/100], Iter [10/16] Loss: 0.0002
+Epoch [36/100], Iter [10/16] Loss: 0.0002
+Epoch [37/100], Iter [10/16] Loss: 0.0002
+Epoch [38/100], Iter [10/16] Loss: 0.0001
+Epoch [39/100], Iter [10/16] Loss: 0.0002
+Epoch [40/100], Iter [10/16] Loss: 0.0001
+Epoch [41/100], Iter [10/16] Loss: 0.0003
+Epoch [42/100], Iter [10/16] Loss: 0.0001
+Epoch [43/100], Iter [10/16] Loss: 0.0002
+Epoch [44/100], Iter [10/16] Loss: 0.0001
+Epoch [45/100], Iter [10/16] Loss: 0.0000
+Epoch [46/100], Iter [10/16] Loss: 0.0002
+Epoch [47/100], Iter [10/16] Loss: 0.0001
+Epoch [48/100], Iter [10/16] Loss: 0.0002
+Epoch [49/100], Iter [10/16] Loss: 0.0001
+Epoch [50/100], Iter [10/16] Loss: 0.0001
+Epoch [51/100], Iter [10/16] Loss: 0.0002
+Epoch [52/100], Iter [10/16] Loss: 0.0000
+Epoch [53/100], Iter [10/16] Loss: 0.0001
+Epoch [54/100], Iter [10/16] Loss: 0.0001
+Epoch [55/100], Iter [10/16] Loss: 0.0000
+Epoch [56/100], Iter [10/16] Loss: 0.0000
+Epoch [57/100], Iter [10/16] Loss: 0.0001
+Epoch [58/100], Iter [10/16] Loss: 0.0001
+Epoch [59/100], Iter [10/16] Loss: 0.0001
+Epoch [60/100], Iter [10/16] Loss: 0.0001
+Epoch [61/100], Iter [10/16] Loss: 0.0001
+Epoch [62/100], Iter [10/16] Loss: 0.0001
+Epoch [63/100], Iter [10/16] Loss: 0.0001
+Epoch [64/100], Iter [10/16] Loss: 0.0001
+Epoch [65/100], Iter [10/16] Loss: 0.0000
+Epoch [66/100], Iter [10/16] Loss: 0.0000
+Epoch [67/100], Iter [10/16] Loss: 0.0000
+Epoch [68/100], Iter [10/16] Loss: 0.0000
+Epoch [69/100], Iter [10/16] Loss: 0.0001
+Epoch [70/100], Iter [10/16] Loss: 0.0001
+Epoch [71/100], Iter [10/16] Loss: 0.0001
+Epoch [72/100], Iter [10/16] Loss: 0.0000
+Epoch [73/100], Iter [10/16] Loss: 0.0001
+Epoch [74/100], Iter [10/16] Loss: 0.0001
+Epoch [75/100], Iter [10/16] Loss: 0.0001
+Epoch [76/100], Iter [10/16] Loss: 0.0000
+Epoch [77/100], Iter [10/16] Loss: 0.0001
+Epoch [78/100], Iter [10/16] Loss: 0.0001
+Epoch [79/100], Iter [10/16] Loss: 0.0001
+Epoch [80/100], Iter [10/16] Loss: 0.0000
+Epoch [81/100], Iter [10/16] Loss: 0.0000
+Epoch [82/100], Iter [10/16] Loss: 0.0000
+Epoch [83/100], Iter [10/16] Loss: 0.0000
+Epoch [84/100], Iter [10/16] Loss: 0.0000
+Epoch [85/100], Iter [10/16] Loss: 0.0000
+Epoch [86/100], Iter [10/16] Loss: 0.0000
+Epoch [87/100], Iter [10/16] Loss: 0.0000
+Epoch [88/100], Iter [10/16] Loss: 0.0000
+Epoch [89/100], Iter [10/16] Loss: 0.0000
+Epoch [90/100], Iter [10/16] Loss: 0.0000
+Epoch [91/100], Iter [10/16] Loss: 0.0000
+Epoch [92/100], Iter [10/16] Loss: 0.0000
+Epoch [93/100], Iter [10/16] Loss: 0.0000
+Epoch [94/100], Iter [10/16] Loss: 0.0001
+Epoch [95/100], Iter [10/16] Loss: 0.0000
+Epoch [96/100], Iter [10/16] Loss: 0.0000
+Epoch [97/100], Iter [10/16] Loss: 0.0000
+Epoch [98/100], Iter [10/16] Loss: 0.0000
+Epoch [99/100], Iter [10/16] Loss: 0.0000
+Epoch [100/100], Iter [10/16] Loss: 0.0000
 </pre></div>
 </div>
 </div>

@@ -32,7 +32,7 @@
 # 
 # 
 
-# In[43]:
+# In[33]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
@@ -48,7 +48,7 @@ from sklearn import datasets
 digits = datasets.load_digits()
 
 
-# In[44]:
+# In[34]:
 
 
 # prepare training sets
@@ -60,7 +60,7 @@ l = int(L*k)
 print(L, l)
 
 
-# In[46]:
+# In[35]:
 
 
 Batches = {}
@@ -73,7 +73,7 @@ for j in range(M):
     Batches[j]=[x,y]
 
 
-# In[40]:
+# In[36]:
 
 
 # softmax
@@ -92,7 +92,7 @@ def flushPrint(d):
     sys.stdout.flush()
 
 
-# In[47]:
+# In[37]:
 
 
 w1 = np.random.randn(D_in, H)/H 
@@ -154,7 +154,7 @@ for t in range(200):# epoch_num
 #     w2 -= learning_rate * grad_w2
 # ```
 
-# In[42]:
+# In[38]:
 
 
 # Test
@@ -172,7 +172,7 @@ Accuracy
 # 3. choose to use MSELoss 
 # 4. Convert y_batch from the form of [1] to the form of [0,1,0, 0, 0, 0, 0, 0, 0, 0]
 
-# In[213]:
+# In[39]:
 
 
 from sklearn.model_selection import train_test_split
@@ -200,7 +200,7 @@ test_loader = torch.utils.data.DataLoader(dataset=test,
                                            shuffle=True)
 
 
-# In[215]:
+# In[40]:
 
 
 from torch.nn import functional as F
@@ -222,7 +222,7 @@ criterion = nn.MSELoss(reduction='mean')
 optimizer = optim.SGD(model.parameters(), lr=1e-1) # learning rate is very sensitive
 
 
-# In[214]:
+# In[41]:
 
 
 def get_prob(y_batch):
@@ -232,7 +232,7 @@ def get_prob(y_batch):
     return y
 
 
-# In[216]:
+# In[42]:
 
 
 # Training loop
@@ -257,7 +257,7 @@ for k, epoch in enumerate(range(num_epoch)):
 # 
 # <font size = 25>Model Validation</font>
 
-# In[217]:
+# In[43]:
 
 
 # Test the Model
@@ -275,7 +275,7 @@ print('Test Accuracy: %d %%' % (100 * correct / total))
 
 # ## Recognizing Hand-Written Digits with CNN Using Pytorch
 
-# In[263]:
+# In[44]:
 
 
 from sklearn.model_selection import train_test_split
@@ -306,31 +306,31 @@ test_loader = torch.utils.data.DataLoader(dataset=test,
                                            shuffle=True)
 
 
-# In[264]:
+# In[45]:
 
 
 Xtrain.shape
 
 
-# In[285]:
+# In[46]:
 
 
 Xtest.shape
 
 
-# In[266]:
+# In[47]:
 
 
 Xtrain[0]
 
 
-# In[286]:
+# In[48]:
 
 
 Xtest[0]
 
 
-# In[267]:
+# In[49]:
 
 
 # CNN Model (2 conv layer)
@@ -362,13 +362,13 @@ criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(cnn.parameters(), lr=1e-1)
 
 
-# In[280]:
+# In[50]:
 
 
 # Train the Model
 from torch.autograd import Variable
 
-num_epoch = 5
+num_epoch = 100
 for epoch in range(num_epoch):
     for i, (images, labels) in enumerate(train_loader):
         # reshape the shape of data
@@ -380,12 +380,12 @@ for epoch in range(num_epoch):
         loss.backward()
         optimizer.step()
 
-        if (i+1) % 1 == 0:
+        if (i+1) % 10 == 0:
             print ('Epoch [%d/%d], Iter [%d/%d] Loss: %.4f'
                    %(epoch+1, num_epoch, i+1, len(train)//batch_size, loss.data.item()))
 
 
-# In[287]:
+# In[51]:
 
 
 # Test the Model

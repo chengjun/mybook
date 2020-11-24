@@ -59,7 +59,7 @@ l = [0, 0, 1, 0]
 o = [0, 0, 0, 1]
 
 
-# In[2]:
+# In[3]:
 
 
 # One cell RNN input_dim (4) -> output_dim (2). sequence: 5
@@ -69,7 +69,7 @@ cell = nn.RNN(input_size=4, hidden_size=2, batch_first=True)
 hidden = Variable(torch.randn(1, 1, 2))
 
 
-# In[3]:
+# In[4]:
 
 
 # Propagate input through RNN
@@ -82,7 +82,7 @@ out, hidden = cell(inputs, hidden)
 print("sequence input size", inputs.size(), "out size", out.size())
 
 
-# In[4]:
+# In[5]:
 
 
 # One cell RNN input_dim (4) -> output_dim (2). sequence: 5, batch 3
@@ -102,19 +102,19 @@ out, hidden = cell(inputs, hidden)
 print("batch input size", inputs.size(), "out size", out.size())
 
 
-# In[10]:
+# In[6]:
 
 
 inputs
 
 
-# In[11]:
+# In[7]:
 
 
 hidden
 
 
-# In[12]:
+# In[8]:
 
 
 out
@@ -126,7 +126,7 @@ out
 
 # ![image.png](images/rnn10.png)
 
-# In[5]:
+# In[9]:
 
 
 import sys
@@ -150,7 +150,7 @@ y_data = [1, 0, 2, 3, 3, 4]    # ihello
 x_one_hot = [one_hot_lookup[x] for x in x_data]
 
 
-# In[6]:
+# In[10]:
 
 
 # As we have one batch of samples, we will change them to variables only once
@@ -166,7 +166,7 @@ num_layers = 1  # one-layer rnn
 labels
 
 
-# In[7]:
+# In[11]:
 
 
 class Model(nn.Module):
@@ -188,7 +188,7 @@ class Model(nn.Module):
         return Variable(torch.zeros(num_layers, batch_size, hidden_size))
 
 
-# In[8]:
+# In[12]:
 
 
 # Instantiate RNN model
@@ -201,7 +201,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.1)
 
 
-# In[9]:
+# In[13]:
 
 
 # Train the model
@@ -231,7 +231,7 @@ print("Learning finished!")
 # 
 # ![image.png](images/rnn11.png)
 
-# In[19]:
+# In[14]:
 
 
 idx2char = ['h', 'i', 'e', 'l', 'o']
@@ -249,7 +249,7 @@ x_one_hot = [[[1, 0, 0, 0, 0],   # h 0
 y_data = [1, 0, 2, 3, 3, 4]    # ihello
 
 
-# In[22]:
+# In[15]:
 
 
 # As we have one batch of samples, we will change them to variables only once
@@ -264,7 +264,7 @@ sequence_length = 6  # Note: |ihello| == 6
 num_layers = 1  # one-layer rnn
 
 
-# In[10]:
+# In[16]:
 
 
 class RNN(nn.Module):
@@ -290,7 +290,7 @@ class RNN(nn.Module):
         return out.view(-1, num_classes)
 
 
-# In[24]:
+# In[17]:
 
 
 # Instantiate RNN model
@@ -303,7 +303,7 @@ criterion = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(rnn.parameters(), lr=0.1)
 
 
-# In[26]:
+# In[18]:
 
 
 # Train the model
@@ -326,7 +326,7 @@ print("Learning finished!")
 # 
 # ![image.png](images/rnn12.png)
 
-# In[28]:
+# In[51]:
 
 
 # Lab 12 RNN
@@ -347,7 +347,7 @@ inputs = Variable(torch.LongTensor(x_data))
 labels = Variable(torch.LongTensor(y_data))
 
 
-# In[29]:
+# In[52]:
 
 
 num_classes = 5
@@ -360,12 +360,14 @@ sequence_length = 6  # |ihello| == 6
 num_layers = 1  # one-layer rnn
 
 
-# In[30]:
+# In[53]:
 
 
 class Model(nn.Module):
     def __init__(self):
         super(Model, self).__init__()
+        self.num_layers = num_layers
+        self.hidden_size = hidden_size
         self.embedding = nn.Embedding(input_size, embedding_size) 
         # input_size: 有几个不同的词汇；embedding_size: 把这些词汇embed到几个维度的空间里
         self.rnn = nn.RNN(input_size=embedding_size,
@@ -375,20 +377,17 @@ class Model(nn.Module):
     def forward(self, x):
         # Initialize hidden and cell states
         # (num_layers * num_directions, batch, hidden_size)
-        h_0 = Variable(torch.zeros(
-            num_layers, x.size(0), hidden_size))
-
-        emb = self.embedding(x)ngth, -1)
-
+        h_0 = Variable(torch.zeros(num_layers, x.size(0), hidden_size))
+        emb = self.embedding(x)
+        emb = emb.view(batch_size, sequence_length, -1)
         # Propagate embedding through RNN
-        # Input: (batch, seq_len, embeddi
-        emb = emb.view(batch_size, sequence_leng_size)
-        # h_0: (num_layers * num_directions, batch, hidden_size)
+        # Input: (batch, seq_len, embedding_size)
+        # h_0: (num_layers * num_directions, batch, hidden_size)        
         out, _ = self.rnn(emb, h_0)
         return self.fc(out.view(-1, num_classes))
 
 
-# In[31]:
+# In[54]:
 
 
 # Instantiate RNN model
@@ -401,7 +400,7 @@ criterion = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.1)
 
 
-# In[33]:
+# In[55]:
 
 
 # Train the model

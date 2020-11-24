@@ -48,8 +48,6 @@
     <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -468,9 +466,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[[0.4196, 0.8705],
-         [0.3543, 0.2878],
-         [0.5785, 0.2704]]], grad_fn=&lt;StackBackward&gt;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[[-0.6094, -0.5195],
+         [-0.3507, -0.3204],
+         [-0.3608, -0.0211]]], grad_fn=&lt;StackBackward&gt;)
 </pre></div>
 </div>
 </div>
@@ -482,23 +480,23 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[[-0.4925,  0.2061],
-         [-0.0136,  0.5975],
-         [ 0.5275,  0.0605],
-         [ 0.1702,  0.2726],
-         [ 0.4196,  0.8705]],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[[-0.3839, -0.2360],
+         [-0.6938,  0.0357],
+         [-0.3971, -0.0806],
+         [-0.3233, -0.2799],
+         [-0.6094, -0.5195]],
 
-        [[-0.6582,  0.6415],
-         [ 0.6723,  0.6984],
-         [ 0.4791,  0.5166],
-         [ 0.4216,  0.3644],
-         [ 0.3543,  0.2878]],
+        [[-0.7402, -0.3336],
+         [-0.7111, -0.3068],
+         [-0.4820, -0.1196],
+         [-0.3631, -0.2346],
+         [-0.3507, -0.3204]],
 
-        [[ 0.4837, -0.5505],
-         [-0.1786,  0.0664],
-         [-0.1517,  0.7002],
-         [ 0.2128,  0.7917],
-         [ 0.5785,  0.2704]]], grad_fn=&lt;TransposeBackward1&gt;)
+        [[ 0.0085, -0.1466],
+         [-0.1904, -0.5055],
+         [-0.6940, -0.1271],
+         [-0.7386,  0.2450],
+         [-0.3608, -0.0211]]], grad_fn=&lt;TransposeBackward1&gt;)
 </pre></div>
 </div>
 </div>
@@ -1086,6 +1084,8 @@ Learning finished!
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Model</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_layers</span> <span class="o">=</span> <span class="n">num_layers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="n">hidden_size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">)</span> 
         <span class="c1"># input_size: 有几个不同的词汇；embedding_size: 把这些词汇embed到几个维度的空间里</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">RNN</span><span class="p">(</span><span class="n">input_size</span><span class="o">=</span><span class="n">embedding_size</span><span class="p">,</span>
@@ -1095,15 +1095,12 @@ Learning finished!
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="c1"># Initialize hidden and cell states</span>
         <span class="c1"># (num_layers * num_directions, batch, hidden_size)</span>
-        <span class="n">h_0</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
-            <span class="n">num_layers</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">hidden_size</span><span class="p">))</span>
-
-        <span class="n">emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="n">ngth</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
+        <span class="n">h_0</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_layers</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">hidden_size</span><span class="p">))</span>
+        <span class="n">emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">emb</span> <span class="o">=</span> <span class="n">emb</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">sequence_length</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="c1"># Propagate embedding through RNN</span>
-        <span class="c1"># Input: (batch, seq_len, embeddi</span>
-        <span class="n">emb</span> <span class="o">=</span> <span class="n">emb</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">sequence_leng_size</span><span class="p">)</span>
-        <span class="c1"># h_0: (num_layers * num_directions, batch, hidden_size)</span>
+        <span class="c1"># Input: (batch, seq_len, embedding_size)</span>
+        <span class="c1"># h_0: (num_layers * num_directions, batch, hidden_size)        </span>
         <span class="n">out</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span><span class="n">emb</span><span class="p">,</span> <span class="n">h_0</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">))</span>
 </pre></div>
@@ -1153,105 +1150,105 @@ Learning finished!
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch: 1, loss: 0.007
-Predicted string:  ihello
-epoch: 2, loss: 0.007
-Predicted string:  ihello
-epoch: 3, loss: 0.007
-Predicted string:  ihello
-epoch: 4, loss: 0.006
-Predicted string:  ihello
-epoch: 5, loss: 0.006
-Predicted string:  ihello
-epoch: 6, loss: 0.006
-Predicted string:  ihello
-epoch: 7, loss: 0.006
-Predicted string:  ihello
-epoch: 8, loss: 0.006
-Predicted string:  ihello
-epoch: 9, loss: 0.006
-Predicted string:  ihello
-epoch: 10, loss: 0.006
-Predicted string:  ihello
-epoch: 11, loss: 0.006
-Predicted string:  ihello
-epoch: 12, loss: 0.006
-Predicted string:  ihello
-epoch: 13, loss: 0.006
-Predicted string:  ihello
-epoch: 14, loss: 0.006
-Predicted string:  ihello
-epoch: 15, loss: 0.005
-Predicted string:  ihello
-epoch: 16, loss: 0.005
-Predicted string:  ihello
-epoch: 17, loss: 0.005
-Predicted string:  ihello
-epoch: 18, loss: 0.005
-Predicted string:  ihello
-epoch: 19, loss: 0.005
-Predicted string:  ihello
-epoch: 20, loss: 0.006
-Predicted string:  ihello
-epoch: 21, loss: 0.034
-Predicted string:  ihello
-epoch: 22, loss: 0.261
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch: 1, loss: 1.768
+Predicted string:  eheohh
+epoch: 2, loss: 1.396
+Predicted string:  oheiii
+epoch: 3, loss: 1.132
 Predicted string:  iheloo
-epoch: 23, loss: 0.422
+epoch: 4, loss: 0.949
+Predicted string:  ihello
+epoch: 5, loss: 0.798
 Predicted string:  ihelll
-epoch: 24, loss: 0.605
-Predicted string:  iheloo
-epoch: 25, loss: 0.812
-Predicted string:  iheloo
-epoch: 26, loss: 0.713
-Predicted string:  iheloo
-epoch: 27, loss: 0.533
-Predicted string:  iheloo
-epoch: 28, loss: 0.341
-Predicted string:  iheloo
-epoch: 29, loss: 0.242
-Predicted string:  iheloo
-epoch: 30, loss: 0.306
+epoch: 6, loss: 0.659
 Predicted string:  ihelll
-epoch: 31, loss: 0.429
+epoch: 7, loss: 0.547
 Predicted string:  ihelll
-epoch: 32, loss: 0.501
+epoch: 8, loss: 0.449
 Predicted string:  ihelll
-epoch: 33, loss: 0.511
+epoch: 9, loss: 0.384
 Predicted string:  ihelll
-epoch: 34, loss: 0.465
-Predicted string:  ihelll
-epoch: 35, loss: 0.370
-Predicted string:  ihelll
-epoch: 36, loss: 0.215
-Predicted string:  ihelll
-epoch: 37, loss: 0.272
-Predicted string:  ihelli
-epoch: 38, loss: 0.272
-Predicted string:  iheloo
-epoch: 39, loss: 0.266
-Predicted string:  iheloo
-epoch: 40, loss: 0.276
-Predicted string:  iheloo
-epoch: 41, loss: 0.271
-Predicted string:  iheloo
-epoch: 42, loss: 0.222
-Predicted string:  iheloo
-epoch: 43, loss: 0.164
-Predicted string:  iheloo
-epoch: 44, loss: 0.115
+epoch: 10, loss: 0.343
 Predicted string:  ihello
-epoch: 45, loss: 0.082
+epoch: 11, loss: 0.304
 Predicted string:  ihello
-epoch: 46, loss: 0.067
+epoch: 12, loss: 0.235
 Predicted string:  ihello
-epoch: 47, loss: 0.064
+epoch: 13, loss: 0.227
 Predicted string:  ihello
-epoch: 48, loss: 0.068
+epoch: 14, loss: 0.239
+Predicted string:  iheloo
+epoch: 15, loss: 0.233
+Predicted string:  iheloo
+epoch: 16, loss: 0.146
 Predicted string:  ihello
-epoch: 49, loss: 0.074
+epoch: 17, loss: 0.320
+Predicted string:  ihelll
+epoch: 18, loss: 0.139
 Predicted string:  ihello
-epoch: 50, loss: 0.071
+epoch: 19, loss: 0.228
+Predicted string:  iheloo
+epoch: 20, loss: 0.242
+Predicted string:  iheloo
+epoch: 21, loss: 0.191
+Predicted string:  iheloo
+epoch: 22, loss: 0.115
+Predicted string:  ihello
+epoch: 23, loss: 0.157
+Predicted string:  ihelll
+epoch: 24, loss: 0.133
+Predicted string:  ihello
+epoch: 25, loss: 0.105
+Predicted string:  ihello
+epoch: 26, loss: 0.127
+Predicted string:  ihello
+epoch: 27, loss: 0.135
+Predicted string:  ihello
+epoch: 28, loss: 0.109
+Predicted string:  ihello
+epoch: 29, loss: 0.078
+Predicted string:  ihello
+epoch: 30, loss: 0.099
+Predicted string:  ihello
+epoch: 31, loss: 0.074
+Predicted string:  ihello
+epoch: 32, loss: 0.061
+Predicted string:  ihello
+epoch: 33, loss: 0.074
+Predicted string:  ihello
+epoch: 34, loss: 0.063
+Predicted string:  ihello
+epoch: 35, loss: 0.045
+Predicted string:  ihello
+epoch: 36, loss: 0.062
+Predicted string:  ihello
+epoch: 37, loss: 0.039
+Predicted string:  ihello
+epoch: 38, loss: 0.044
+Predicted string:  ihello
+epoch: 39, loss: 0.047
+Predicted string:  ihello
+epoch: 40, loss: 0.034
+Predicted string:  ihello
+epoch: 41, loss: 0.038
+Predicted string:  ihello
+epoch: 42, loss: 0.035
+Predicted string:  ihello
+epoch: 43, loss: 0.030
+Predicted string:  ihello
+epoch: 44, loss: 0.034
+Predicted string:  ihello
+epoch: 45, loss: 0.030
+Predicted string:  ihello
+epoch: 46, loss: 0.026
+Predicted string:  ihello
+epoch: 47, loss: 0.030
+Predicted string:  ihello
+epoch: 48, loss: 0.024
+Predicted string:  ihello
+epoch: 49, loss: 0.025
+Predicted string:  ihello
+epoch: 50, loss: 0.025
 Predicted string:  ihello
 Learning finished!
 </pre></div>

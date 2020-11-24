@@ -8,7 +8,8 @@
 # 
 # 
 # **Network Science**, a textbook for network science, is freely available under the Creative Commons license. http://networksciencebook.com/
-# <div><img src="images/network.png" width = 400 align = 'right'></div>
+# 
+# <img src="images/network.png" width = 250 align = 'right'>
 # 
 # 1. Introduction
 # 2. Graph Theory
@@ -33,7 +34,7 @@
 # 
 # 
 
-# <img src = './img/saddam.png' width = 700 align = 'right'>
+# <img src = './img/saddam.png' width = 300 align = 'right'>
 # 
 # It demonstrates the remarkable **stability of these networks**.
 # 
