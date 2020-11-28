@@ -454,7 +454,7 @@ print("Learning finished!")
 
 # ![image.png](images/rnn23.png)
 
-# <div><img src="images/rnn24.png" align = 'right' width = "500"></div>
+# <img src="images/rnn24.png" align = 'right' width = "300">
 # 
 # **Practical PyTorch: Classifying Names with a Character-Level RNN**
 # 
