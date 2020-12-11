@@ -795,5 +795,6 @@ class Net(nn.Module):
 # 09-14-rnn
 # 09-12-hand-written-digits
 # 09-15-cifar10
+# 09-16-pytorch_vgg_pretrained
 # ```
 # 

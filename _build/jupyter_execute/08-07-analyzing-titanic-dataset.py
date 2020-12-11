@@ -43,12 +43,11 @@ import statsmodels.api as sm
 # - Extensive unit tests to ensure correctness of results
 # - Many more models and extensions in development
 
-# In[2]:
+# In[3]:
 
 
-
-train = pd.read_csv('../data/tatanic_train.csv',sep = ",", header=0)
-test = pd.read_csv('../data/tatanic_test.csv',sep = ",", header=0)
+train = pd.read_csv('./data/tatanic_train.csv',sep = ",", header=0)
+test = pd.read_csv('./data/tatanic_test.csv',sep = ",", header=0)
 
 
 # ### Describing Data 
@@ -80,6 +79,10 @@ train.shape#, len(train)
 # Passengers that survived vs passengers that passed away
 train["Survived"][:3] 
 
+
+# ## Value Counts
+# 
+# 以Series形式返回指定列的不同取值的频率
 
 # In[6]:
 
@@ -164,6 +167,62 @@ train.Survived[train.Child == 1].value_counts(normalize = True)
 
 # Normalized Survival Rates for over 18
 train.Survived[train.Child == 0].value_counts(normalize = True)
+
+
+# ## 透视表(pivotTab)
+# 透视表就是将指定原有DataFrame的列分别作为行索引和列索引，然后对指定的列应用聚集函数(默认情况下式mean函数)。
+# 
+# ## 列联表（crossTab）
+# 交叉表是用于统计分组频率的特殊透视表
+# 
+# Compute a simple cross tabulation of two (or more) factors. By default computes a frequency table of the factors unless an array of values and an aggregation function are passed.
+
+# In[4]:
+
+
+pd.crosstab(train['Sex'],train['Survived'],margins=True)
+
+
+# In[20]:
+
+
+pd.crosstab(train['Sex'],train['Survived'],margins=True, normalize='index')
+
+
+# In[19]:
+
+
+pd.crosstab(train['Sex'],[train['Survived'], train['Pclass']],margins=True)
+
+
+# In[22]:
+
+
+pd.crosstab(train['Sex'],[train['Survived'], train['Pclass']], normalize='index')
+
+
+# In[26]:
+
+
+pd.crosstab(train['Sex'],train['Pclass'], values=train['Survived'], aggfunc=np.average)
+
+
+# In[27]:
+
+
+pd.crosstab(train['Sex'],train['Pclass'], values=train['Survived'], aggfunc=np.average, margins=True)
+
+
+# In[6]:
+
+
+train[['Survived','Sex','Pclass']].pivot_table(index=['Sex','Pclass'])
+
+
+# In[5]:
+
+
+train[['Fare','Sex','Pclass']].pivot_table(index=['Sex','Pclass'])
 
 
 # In[18]:
