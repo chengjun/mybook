@@ -1,0 +1,1489 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Social Network Analysis &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="天涯论坛的回帖网络分析" href="18-network-analysis-of-tianya-bbs.html" />
+    <link rel="prev" title="SEIR-HCD Model" href="18-04-seir-hcd-model.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="16-network-science-models.html">
+     网络科学模型
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="17-networkx.html">
+     使用NetworkX分析网络
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-02-network-diffusion.html">
+     Simulating Network Diffusion With NDlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-03-network-epidemics.html">
+     Epidemics on Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-04-seir-hcd-model.html">
+     SEIR-HCD Model
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Social Network Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">
+     天涯论坛的回帖网络分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">
+     可视化Facebook社交网络
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/18-network-ergm-siena.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F18-network-ergm-siena.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/18-network-ergm-siena.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/18-network-ergm-siena.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rsiena">
+   RSiena
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-rsiena">
+     Install Rsiena
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rsiena-tutorials">
+     RSiena Tutorials
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rsiena-scripts">
+     RSiena scripts
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#basicrsiena-r">
+       basicRSiena.r
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="social-network-analysis">
+<h1>Social Network Analysis<a class="headerlink" href="#social-network-analysis" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="rsiena">
+<h2>RSiena<a class="headerlink" href="#rsiena" title="Permalink to this headline">¶</a></h2>
+<p>http://www.stats.ox.ac.uk/~snijders/siena/</p>
+<p>SIENA is designed for analyzing various types of data as dependent variables:</p>
+<ul class="simple">
+<li><p><strong>Longitudinal network data</strong>:
+This refers to repeated measures of networks on a given node set (although it is allowed that there are some changes in the node set). Models can be specified with actor-oriented as well as tie-oriented dynamics; but mainly the former.</p></li>
+<li><p><strong>Longitudinal data of networks and behavior</strong>:
+This is like longitudinal network data, but in addition there are one or more changing nodal variables that are also treated as dependent variables, and referred to as behavior. The network will influence the dynamics of the behavior, and the behavior will influence the dynamics of the network. In other words, this is about the co-evolution of networks and behavior.</p></li>
+<li><p><strong>Cross-sectional network data</strong>.
+‘Cross-sectional’ means that only one observation is available. This method uses exponential random graph models (‘ERGMs’), also called p* models.
+The ERG model is implemented in SIENA version 3, but not any more in version 4 (RSiena). It is still available, but no longer maintained.</p></li>
+</ul>
+<p>The name SIENA stands for Simulation Investigation for Empirical Network Analysis. The method is implemented in the R package RSiena, and the more experimental version RSienaTest.</p>
+<p>RSiena Manual http://www.stats.ox.ac.uk/~snijders/siena/RSiena_Manual.pdf</p>
+<p>RSiena Github https://github.com/snlab-nl/rsiena</p>
+<div class="section" id="install-rsiena">
+<h3>Install Rsiena<a class="headerlink" href="#install-rsiena" title="Permalink to this headline">¶</a></h3>
+<p>Open Rstudio and Run the following script:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#39;remotes&#39;</span><span class="p">)</span>
+<span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;snlab-nl/rsiena&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">RSiena</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="rsiena-tutorials">
+<h3>RSiena Tutorials<a class="headerlink" href="#rsiena-tutorials" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Snijders, T. A. B., van de Bunt, G. G., and Steglich, C. (2010b). Introduction to actorbased models for network dynamics. Social Networks, 32:44–60.</p></li>
+<li><p>Snijders, T. A. B. (2017). Stochastic actor-oriented models for network dynamics. Annual
+Review of Statistics and Its Application, 4:343–363.</p></li>
+</ul>
+</div>
+<div class="section" id="rsiena-scripts">
+<h3>RSiena scripts<a class="headerlink" href="#rsiena-scripts" title="Permalink to this headline">¶</a></h3>
+<p>http://www.stats.ox.ac.uk/~snijders/siena/</p>
+<p>The following scripts on the RSiena website go through the steps outlined in the previous
+section, providing additional details and options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">basicRSiena.r</span></code>: a minimal example of a basic sequence of commands for estimating a
+model by function siena07() of RSiena.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Rscript01DataFormat.R</span></code>: gives a brief overview of R functions and data formats that
+are essential for using RSiena.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Rscript02SienaVariableFormat.R</span></code>: shows how to prepare data for a SIENA analysis,
+including the creation of RSiena objects; and how to specify effects for RSiena models.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Rscript03SienaRunModel.R</span></code>: shows how to carry out the estimation and look at the
+results;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Rscript04SienaBehaviour.R</span></code>: illustrates how to specify models for dynamics of networks
+and behaviour.</p></li>
+</ul>
+<p>The website contains a lot of other scripts illustrating other functionalities of RSiena.</p>
+<div class="section" id="basicrsiena-r">
+<h4>basicRSiena.r<a class="headerlink" href="#basicrsiena-r" title="Permalink to this headline">¶</a></h4>
+<p>a basic script for the introduction to RSiena</p>
+<p>version: August 8, 2020</p>
+<p>http://www.stats.ox.ac.uk/~snijders/siena/basicRSiena.r</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">?</span><span class="n">RSiena</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now we use the internally available s50 data set.</span>
+<span class="c1"># Look at its description:</span>
+<span class="c1"># 3 waves, 50 actors</span>
+<span class="o">?</span><span class="n">s50</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">s501</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<caption>A matrix: 6 × 50 of type int</caption>
+<thead>
+	<tr><th scope=col>V1</th><th scope=col>V2</th><th scope=col>V3</th><th scope=col>V4</th><th scope=col>V5</th><th scope=col>V6</th><th scope=col>V7</th><th scope=col>V8</th><th scope=col>V9</th><th scope=col>V10</th><th scope=col>⋯</th><th scope=col>V41</th><th scope=col>V42</th><th scope=col>V43</th><th scope=col>V44</th><th scope=col>V45</th><th scope=col>V46</th><th scope=col>V47</th><th scope=col>V48</th><th scope=col>V49</th><th scope=col>V50</th></tr>
+</thead>
+<tbody>
+	<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>⋯</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>⋯</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>⋯</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>⋯</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>⋯</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>⋯</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">tail</span><span class="p">(</span><span class="n">s501</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<caption>A matrix: 6 × 50 of type int</caption>
+<thead>
+	<tr><th></th><th scope=col>V1</th><th scope=col>V2</th><th scope=col>V3</th><th scope=col>V4</th><th scope=col>V5</th><th scope=col>V6</th><th scope=col>V7</th><th scope=col>V8</th><th scope=col>V9</th><th scope=col>V10</th><th scope=col>⋯</th><th scope=col>V41</th><th scope=col>V42</th><th scope=col>V43</th><th scope=col>V44</th><th scope=col>V45</th><th scope=col>V46</th><th scope=col>V47</th><th scope=col>V48</th><th scope=col>V49</th><th scope=col>V50</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>45</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>⋯</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>46</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>⋯</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+	<tr><th scope=row>47</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>⋯</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>48</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>⋯</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+	<tr><th scope=row>49</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>⋯</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>50</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>⋯</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># and at the alcohol variable</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">s50a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<caption>A matrix: 6 × 3 of type int</caption>
+<thead>
+	<tr><th scope=col>V1</th><th scope=col>V2</th><th scope=col>V3</th></tr>
+</thead>
+<tbody>
+	<tr><td>3</td><td>1</td><td>3</td></tr>
+	<tr><td>2</td><td>2</td><td>2</td></tr>
+	<tr><td>2</td><td>3</td><td>3</td></tr>
+	<tr><td>2</td><td>3</td><td>2</td></tr>
+	<tr><td>3</td><td>3</td><td>4</td></tr>
+	<tr><td>4</td><td>4</td><td>4</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now define the objects with the same names as above</span>
+<span class="c1"># (this step is superfluous if you read the data already).</span>
+<span class="n">friend.data.w1</span> <span class="o">&lt;-</span> <span class="n">s501</span>
+<span class="n">friend.data.w2</span> <span class="o">&lt;-</span> <span class="n">s502</span>
+<span class="n">friend.data.w3</span> <span class="o">&lt;-</span> <span class="n">s503</span>
+<span class="n">drink</span> <span class="o">&lt;-</span> <span class="n">s50a</span>
+<span class="n">smoke</span> <span class="o">&lt;-</span> <span class="n">s50s</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now the data must be given the specific roles of variables</span>
+<span class="c1"># in an RSiena analysis.</span>
+<span class="c1">#</span>
+<span class="c1"># Dependent variable</span>
+
+<span class="o">?</span><span class="n">sienaDependent</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># First create a 50 * 50 * 3 array composed of the 3 adjacency matrices</span>
+<span class="n">friendshipData</span> <span class="o">&lt;-</span> <span class="nf">array</span><span class="p">(</span> <span class="nf">c</span><span class="p">(</span> <span class="n">friend.data.w1</span><span class="p">,</span> <span class="n">friend.data.w2</span><span class="p">,</span> <span class="n">friend.data.w3</span> <span class="p">),</span>
+           <span class="n">dim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span> <span class="m">50</span><span class="p">,</span> <span class="m">50</span><span class="p">,</span> <span class="m">3</span> <span class="p">)</span> <span class="p">)</span>
+
+<span class="c1"># and next give this the role of the dependent variable:</span>
+
+<span class="n">friendship</span> <span class="o">&lt;-</span> <span class="nf">sienaDependent</span><span class="p">(</span><span class="n">friendshipData</span><span class="p">)</span>
+<span class="c1"># What did we construct?</span>
+<span class="n">friendship</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Type         oneMode             
+Observations 3                   
+Nodeset      Actors (50 elements)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># We also must prepare the objects that will be the explanatory variables.</span>
+<span class="c1">#</span>
+<span class="c1"># Actor covariates</span>
+<span class="c1"># We use smoking for wave 1 as a constant actor covariate:</span>
+<span class="n">smoke1</span> <span class="o">&lt;-</span> <span class="nf">coCovar</span><span class="p">(</span> <span class="n">smoke[</span> <span class="p">,</span> <span class="m">1</span> <span class="n">]</span> <span class="p">)</span>
+<span class="c1"># A variable actor covariate is defined for drinking:</span>
+<span class="n">alcohol</span> <span class="o">&lt;-</span> <span class="nf">varCovar</span><span class="p">(</span> <span class="n">drink</span> <span class="p">)</span>
+<span class="c1"># (This choice is purely for the purpose of illustration here.)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put the variables together in the data set for analysis</span>
+<span class="o">?</span><span class="n">sienaDataCreate</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mydata</span> <span class="o">&lt;-</span> <span class="nf">sienaDataCreate</span><span class="p">(</span> <span class="n">friendship</span><span class="p">,</span> <span class="n">smoke1</span><span class="p">,</span> <span class="n">alcohol</span> <span class="p">)</span>
+<span class="c1"># Check what we have</span>
+<span class="n">mydata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dependent variables:  friendship 
+Number of observations: 3 
+
+Nodeset                  Actors 
+Number of nodes              50 
+
+Dependent variable friendship      
+Type               oneMode         
+Observations       3               
+Nodeset            Actors          
+Densities          0.046 0.047 0.05
+
+Constant covariates:  smoke1 
+Changing covariates:  alcohol 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can get an outline of the data set with some basic descriptives from</span>
+<span class="nf">print01Report</span><span class="p">(</span> <span class="n">mydata</span><span class="p">,</span> <span class="n">modelname</span><span class="o">=</span><span class="s">&quot;./data/s50_RSiena_output&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># For the model specification we need to create the effects object</span>
+<span class="n">myeff</span> <span class="o">&lt;-</span> <span class="nf">getEffects</span><span class="p">(</span> <span class="n">mydata</span> <span class="p">)</span>
+<span class="c1"># All the effects that are available given the structure</span>
+<span class="c1"># of this data set can be seen from</span>
+<span class="nf">effectsDocumentation</span><span class="p">(</span><span class="n">myeff</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">?</span><span class="n">effectsDocumentation</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># For a precise description of all effects, see Chapter 12 in the RSiena manual.</span>
+<span class="c1"># A basic specification of the structural effects:</span>
+<span class="o">?</span><span class="n">includeEffects</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">myeff</span> <span class="o">&lt;-</span> <span class="nf">includeEffects</span><span class="p">(</span> <span class="n">myeff</span><span class="p">,</span> <span class="n">transTrip</span><span class="p">,</span> <span class="n">cycle3</span><span class="p">)</span>
+<span class="c1"># and some covariate effects:</span>
+<span class="n">myeff</span> <span class="o">&lt;-</span> <span class="nf">includeEffects</span><span class="p">(</span> <span class="n">myeff</span><span class="p">,</span> <span class="n">egoX</span><span class="p">,</span> <span class="n">altX</span><span class="p">,</span> <span class="n">simX</span><span class="p">,</span> <span class="n">interaction1</span> <span class="o">=</span> <span class="s">&quot;alcohol&quot;</span> <span class="p">)</span>
+<span class="n">myeff</span> <span class="o">&lt;-</span> <span class="nf">includeEffects</span><span class="p">(</span> <span class="n">myeff</span><span class="p">,</span> <span class="n">simX</span><span class="p">,</span> <span class="n">interaction1</span> <span class="o">=</span> <span class="s">&quot;smoke1&quot;</span> <span class="p">)</span>
+<span class="n">myeff</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  effectName          include fix   test  initialValue parm
+1 transitive triplets TRUE    FALSE FALSE          0   0   
+2 3-cycles            TRUE    FALSE FALSE          0   0   
+  effectName         include fix   test  initialValue parm
+1 alcohol alter      TRUE    FALSE FALSE          0   0   
+2 alcohol ego        TRUE    FALSE FALSE          0   0   
+3 alcohol similarity TRUE    FALSE FALSE          0   0   
+  effectName        include fix   test  initialValue parm
+1 smoke1 similarity TRUE    FALSE FALSE          0   0   
+</pre></div>
+</div>
+<div class="output text_html"><table>
+<caption>A sienaEffects: 520 × 31</caption>
+<thead>
+	<tr><th></th><th scope=col>name</th><th scope=col>effectName</th><th scope=col>functionName</th><th scope=col>shortName</th><th scope=col>interaction1</th><th scope=col>interaction2</th><th scope=col>type</th><th scope=col>basicRate</th><th scope=col>include</th><th scope=col>randomEffects</th><th scope=col>⋯</th><th scope=col>effect3</th><th scope=col>interactionType</th><th scope=col>local</th><th scope=col>setting</th><th scope=col>effectFn</th><th scope=col>statisticFn</th><th scope=col>netType</th><th scope=col>groupName</th><th scope=col>group</th><th scope=col>effectNumber</th></tr>
+	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>⋯</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;list&gt;</th><th scope=col>&lt;list&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>friendship.rate.1</th><td>friendship</td><td>constant friendship rate (period 1)      </td><td>Amount of network change in period 1            </td><td>Rate        </td><td>       </td><td></td><td>rate    </td><td> TRUE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 1</td></tr>
+	<tr><th scope=row>friendship.rate.2</th><td>friendship</td><td>constant friendship rate (period 2)      </td><td>Amount of network change in period 2            </td><td>Rate        </td><td>       </td><td></td><td>rate    </td><td> TRUE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 2</td></tr>
+	<tr><th scope=row>friendship.rate.3</th><td>friendship</td><td>outdegree effect on rate friendship      </td><td>Amount of change x outdegrees                   </td><td>outRate     </td><td>       </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 3</td></tr>
+	<tr><th scope=row>friendship.rate.4</th><td>friendship</td><td>indegree effect on rate friendship       </td><td>Amount of change x indegrees                    </td><td>inRate      </td><td>       </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 4</td></tr>
+	<tr><th scope=row>friendship.rate.5</th><td>friendship</td><td>reciprocity effect on rate friendship    </td><td>Amount of change x reciprocity                  </td><td>recipRate   </td><td>       </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 5</td></tr>
+	<tr><th scope=row>friendship.rate.6</th><td>friendship</td><td>effect 1/outdegree on rate friendship    </td><td>Amount of change x (1/outdegrees)               </td><td>outRateInv  </td><td>       </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 6</td></tr>
+	<tr><th scope=row>friendship.rate.7</th><td>friendship</td><td>effect ln(outdegree+1) on rate friendship</td><td>Amount of change x ln(outdegrees+1)             </td><td>outRateLog  </td><td>       </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 7</td></tr>
+	<tr><th scope=row>friendship.rate.8</th><td>friendship</td><td>effect smoke1 on rate                    </td><td>Amount of change x smoke1                       </td><td>RateX       </td><td>smoke1 </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 8</td></tr>
+	<tr><th scope=row>friendship.rate.9</th><td>friendship</td><td>effect alcohol on rate                   </td><td>Amount of change x alcohol                      </td><td>RateX       </td><td>alcohol</td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 9</td></tr>
+	<tr><th scope=row>friendship.obj.eval.1</th><td>friendship</td><td>outdegree (density)                      </td><td>Number of ties                                  </td><td>density     </td><td>       </td><td></td><td>eval    </td><td>FALSE</td><td> TRUE</td><td> TRUE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>10</td></tr>
+	<tr><th scope=row>friendship.obj.endow.1</th><td>friendship</td><td>outdegree (density)                      </td><td>Lost ties: Number of ties                       </td><td>density     </td><td>       </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>11</td></tr>
+	<tr><th scope=row>friendship.obj.creation.1</th><td>friendship</td><td>outdegree (density)                      </td><td>New ties: Number of ties                        </td><td>density     </td><td>       </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>12</td></tr>
+	<tr><th scope=row>friendship.obj.eval.2</th><td>friendship</td><td>reciprocity                              </td><td>Number of reciprocated ties                     </td><td>recip       </td><td>       </td><td></td><td>eval    </td><td>FALSE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>13</td></tr>
+	<tr><th scope=row>friendship.obj.endow.2</th><td>friendship</td><td>reciprocity                              </td><td>Lost ties: Number of reciprocated ties          </td><td>recip       </td><td>       </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>14</td></tr>
+	<tr><th scope=row>friendship.obj.creation.2</th><td>friendship</td><td>reciprocity                              </td><td>New ties: Number of reciprocated ties           </td><td>recip       </td><td>       </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>15</td></tr>
+	<tr><th scope=row>friendship.obj.eval.3</th><td>friendship</td><td>transitive triplets                      </td><td>Number of transitive triplets                   </td><td>transTrip   </td><td>       </td><td></td><td>eval    </td><td>FALSE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>16</td></tr>
+	<tr><th scope=row>friendship.obj.endow.3</th><td>friendship</td><td>transitive triplets                      </td><td>Lost ties: Number of transitive triplets        </td><td>transTrip   </td><td>       </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>17</td></tr>
+	<tr><th scope=row>friendship.obj.creation.3</th><td>friendship</td><td>transitive triplets                      </td><td>New ties: Number of transitive triplets         </td><td>transTrip   </td><td>       </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>18</td></tr>
+	<tr><th scope=row>friendship.obj.eval.4</th><td>friendship</td><td>transitive triplets (1)                  </td><td>Number of transitive triplets                   </td><td>transTrip1  </td><td>       </td><td></td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>19</td></tr>
+	<tr><th scope=row>friendship.obj.endow.4</th><td>friendship</td><td>transitive triplets (1)                  </td><td>Lost ties: Number of transitive triplets        </td><td>transTrip1  </td><td>       </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>20</td></tr>
+	<tr><th scope=row>friendship.obj.creation.4</th><td>friendship</td><td>transitive triplets (1)                  </td><td>New ties: Number of transitive triplets         </td><td>transTrip1  </td><td>       </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>21</td></tr>
+	<tr><th scope=row>friendship.obj.eval.5</th><td>friendship</td><td>transitive triplets (2)                  </td><td>Number of transitive triplets                   </td><td>transTrip2  </td><td>       </td><td></td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>22</td></tr>
+	<tr><th scope=row>friendship.obj.endow.5</th><td>friendship</td><td>transitive triplets (2)                  </td><td>Lost ties: Number of transitive triplets        </td><td>transTrip2  </td><td>       </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>23</td></tr>
+	<tr><th scope=row>friendship.obj.creation.5</th><td>friendship</td><td>transitive triplets (2)                  </td><td>New ties: Number of transitive triplets         </td><td>transTrip2  </td><td>       </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>24</td></tr>
+	<tr><th scope=row>friendship.obj.eval.6</th><td>friendship</td><td>transitive mediated triplets             </td><td>Number of transitive triplets                   </td><td>transMedTrip</td><td>       </td><td></td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>25</td></tr>
+	<tr><th scope=row>friendship.obj.endow.6</th><td>friendship</td><td>transitive mediated triplets             </td><td>Lost ties: Number of transitive triplets        </td><td>transMedTrip</td><td>       </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>26</td></tr>
+	<tr><th scope=row>friendship.obj.creation.6</th><td>friendship</td><td>transitive mediated triplets             </td><td>New ties: Number of transitive triplets         </td><td>transMedTrip</td><td>       </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>27</td></tr>
+	<tr><th scope=row>friendship.obj.eval.7</th><td>friendship</td><td>transitive recipr. triplets              </td><td>Number of transitive recipr. triplets           </td><td>transRecTrip</td><td>       </td><td></td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>28</td></tr>
+	<tr><th scope=row>friendship.obj.endow.7</th><td>friendship</td><td>transitive recipr. triplets              </td><td>Lost ties: Number of transitive recipr. triplets</td><td>transRecTrip</td><td>       </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>29</td></tr>
+	<tr><th scope=row>friendship.obj.creation.7</th><td>friendship</td><td>transitive recipr. triplets              </td><td>New ties: Number of transitive recipr. triplets </td><td>transRecTrip</td><td>       </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>30</td></tr>
+	<tr><th scope=row>⋮</th><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋱</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td></tr>
+	<tr><th scope=row>friendship.obj.eval.170</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>491</td></tr>
+	<tr><th scope=row>friendship.obj.endow.157</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>492</td></tr>
+	<tr><th scope=row>friendship.obj.creation.157</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>493</td></tr>
+	<tr><th scope=row>friendship.obj.eval.171</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>494</td></tr>
+	<tr><th scope=row>friendship.obj.endow.158</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>495</td></tr>
+	<tr><th scope=row>friendship.obj.creation.158</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>496</td></tr>
+	<tr><th scope=row>friendship.obj.eval.172</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>497</td></tr>
+	<tr><th scope=row>friendship.obj.endow.159</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>498</td></tr>
+	<tr><th scope=row>friendship.obj.creation.159</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>499</td></tr>
+	<tr><th scope=row>friendship.obj.eval.173</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>500</td></tr>
+	<tr><th scope=row>friendship.obj.endow.160</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>501</td></tr>
+	<tr><th scope=row>friendship.obj.creation.160</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>502</td></tr>
+	<tr><th scope=row>friendship.obj.eval.174</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>503</td></tr>
+	<tr><th scope=row>friendship.obj.endow.161</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>504</td></tr>
+	<tr><th scope=row>friendship.obj.creation.161</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>505</td></tr>
+	<tr><th scope=row>friendship.obj.eval.175</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>506</td></tr>
+	<tr><th scope=row>friendship.obj.endow.162</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>507</td></tr>
+	<tr><th scope=row>friendship.obj.creation.162</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>508</td></tr>
+	<tr><th scope=row>friendship.obj.eval.176</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>509</td></tr>
+	<tr><th scope=row>friendship.obj.endow.163</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>510</td></tr>
+	<tr><th scope=row>friendship.obj.creation.163</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>511</td></tr>
+	<tr><th scope=row>friendship.obj.eval.177</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>512</td></tr>
+	<tr><th scope=row>friendship.obj.endow.164</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>513</td></tr>
+	<tr><th scope=row>friendship.obj.creation.164</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>514</td></tr>
+	<tr><th scope=row>friendship.obj.eval.178</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>515</td></tr>
+	<tr><th scope=row>friendship.obj.endow.165</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>516</td></tr>
+	<tr><th scope=row>friendship.obj.creation.165</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>517</td></tr>
+	<tr><th scope=row>friendship.obj.eval.179</th><td>friendship</td><td>from friendship agr. weighted by friendship ind</td><td>m.tr. XWW, W = friendship, weigth ind. friendship           </td><td>from.w.ind</td><td>friendship</td><td>friendship</td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>518</td></tr>
+	<tr><th scope=row>friendship.obj.endow.166</th><td>friendship</td><td>from friendship agr. weighted by friendship ind</td><td>Lost ties: m.tr. XWW, W = friendship, weigth ind. friendship</td><td>from.w.ind</td><td>friendship</td><td>friendship</td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>519</td></tr>
+	<tr><th scope=row>friendship.obj.creation.166</th><td>friendship</td><td>from friendship agr. weighted by friendship ind</td><td>New ties: m.tr. XWW, W = friendship, weigth ind. friendship </td><td>from.w.ind</td><td>friendship</td><td>friendship</td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>520</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create object with algorithm settings</span>
+<span class="c1"># Accept defaults but specify name for output file</span>
+<span class="c1"># (which you may replace by any name you prefer)</span>
+<span class="c1">#?sienaAlgorithmCreate</span>
+<span class="n">myalgorithm</span> <span class="o">&lt;-</span> <span class="nf">sienaAlgorithmCreate</span><span class="p">(</span> <span class="n">projname</span> <span class="o">=</span> <span class="s">&#39;./data/s50_RSiena_output&#39;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If you use this algorithm object, siena07 will create/use an output file ./data/s50_RSiena_output.txt .
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estimate parameters</span>
+<span class="c1">#?siena07</span>
+<span class="n">ans</span> <span class="o">&lt;-</span> <span class="nf">siena07</span><span class="p">(</span> <span class="n">myalgorithm</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">mydata</span><span class="p">,</span> <span class="n">effects</span> <span class="o">=</span> <span class="n">myeff</span><span class="p">)</span>
+<span class="n">ans</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimates, standard errors and convergence t-ratios
+
+                                   Estimate   Standard   Convergence 
+                                                Error      t-ratio   
+
+Rate parameters: 
+  0.1      Rate parameter period 1  6.6429  ( 1.1563   )             
+  0.2      Rate parameter period 2  5.2683  ( 0.9107   )             
+
+Other parameters: 
+  1.  eval outdegree (density)     -2.7298  ( 0.1221   )   -0.0502   
+  2.  eval reciprocity              2.4405  ( 0.2122   )   -0.0438   
+  3.  eval transitive triplets      0.6551  ( 0.1532   )   -0.1090   
+  4.  eval 3-cycles                -0.0810  ( 0.3050   )   -0.0999   
+  5.  eval smoke1 similarity        0.2000  ( 0.1993   )   -0.0658   
+  6.  eval alcohol alter           -0.0139  ( 0.0704   )   -0.0336   
+  7.  eval alcohol ego              0.0578  ( 0.0748   )   -0.0026   
+  8.  eval alcohol similarity       0.7253  ( 0.3003   )   -0.0420   
+
+Overall maximum convergence ratio:    0.1750 
+
+
+Total of 2078 iteration steps.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># This gives results from a random starting point.</span>
+<span class="c1"># To use a fixed starting point, use the &quot;seed&quot; parameter:</span>
+<span class="c1"># myalgorithm &lt;- sienaAlgorithmCreate( projname = &#39;s50&#39;, seed=435123 )</span>
+
+<span class="c1"># For checking convergence, look at the</span>
+<span class="c1"># &#39;Overall maximum convergence ratio&#39; mentioned under the parameter estimates.</span>
+<span class="c1"># It can also be shown by requesting</span>
+<span class="n">ans</span><span class="o">$</span><span class="n">tconv.max</span>
+<span class="c1"># If this is less than 0.25, convergence is good.</span>
+<span class="c1"># If convergence is inadequate, estimate once more,</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<caption>A matrix: 1 × 1 of type dbl</caption>
+<tbody>
+	<tr><td>0.1749599</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># using the result obtained as the &quot;previous answer&quot;</span>
+<span class="c1"># from which estimation continues:</span>
+
+<span class="n">ans</span> <span class="o">&lt;-</span> <span class="nf">siena07</span><span class="p">(</span> <span class="n">myalgorithm</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">mydata</span><span class="p">,</span> <span class="n">effects</span> <span class="o">=</span> <span class="n">myeff</span><span class="p">,</span> <span class="n">prevAns</span><span class="o">=</span><span class="n">ans</span><span class="p">)</span>
+<span class="n">ans</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimates, standard errors and convergence t-ratios
+
+                                   Estimate   Standard   Convergence 
+                                                Error      t-ratio   
+
+Rate parameters: 
+  0.1      Rate parameter period 1  6.5987  ( 1.1420   )             
+  0.2      Rate parameter period 2  5.2479  ( 0.9013   )             
+
+Other parameters: 
+  1.  eval outdegree (density)     -2.7497  ( 0.1274   )   -0.0337   
+  2.  eval reciprocity              2.4843  ( 0.2264   )   -0.0296   
+  3.  eval transitive triplets      0.7102  ( 0.1343   )   -0.0524   
+  4.  eval 3-cycles                -0.1962  ( 0.2711   )   -0.0873   
+  5.  eval smoke1 similarity        0.1962  ( 0.2054   )    0.0154   
+  6.  eval alcohol alter           -0.0139  ( 0.0735   )   -0.0647   
+  7.  eval alcohol ego              0.0486  ( 0.0769   )   -0.0492   
+  8.  eval alcohol similarity       0.7276  ( 0.3153   )   -0.0681   
+
+Overall maximum convergence ratio:    0.3318 
+
+
+Total of 2507 iteration steps.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># If convergence is good, you can look at the estimates.</span>
+<span class="c1"># More extensive results</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimates, standard errors and convergence t-ratios
+
+                                   Estimate   Standard   Convergence 
+                                                Error      t-ratio   
+
+Rate parameters: 
+  0.1      Rate parameter period 1  6.5987  ( 1.1420   )             
+  0.2      Rate parameter period 2  5.2479  ( 0.9013   )             
+
+Other parameters: 
+  1.  eval outdegree (density)     -2.7497  ( 0.1274   )   -0.0337   
+  2.  eval reciprocity              2.4843  ( 0.2264   )   -0.0296   
+  3.  eval transitive triplets      0.7102  ( 0.1343   )   -0.0524   
+  4.  eval 3-cycles                -0.1962  ( 0.2711   )   -0.0873   
+  5.  eval smoke1 similarity        0.1962  ( 0.2054   )    0.0154   
+  6.  eval alcohol alter           -0.0139  ( 0.0735   )   -0.0647   
+  7.  eval alcohol ego              0.0486  ( 0.0769   )   -0.0492   
+  8.  eval alcohol similarity       0.7276  ( 0.3153   )   -0.0681   
+
+Overall maximum convergence ratio:    0.3318 
+
+
+Total of 2507 iteration steps.
+
+Covariance matrix of estimates (correlations below diagonal)
+
+       0.016       -0.019       -0.008        0.009       -0.004        0.000        0.000       -0.007
+      -0.659        0.051        0.012       -0.031        0.002        0.000        0.000        0.000
+      -0.471        0.391        0.018       -0.030        0.000        0.000       -0.001        0.002
+       0.261       -0.502       -0.824        0.073       -0.001        0.000        0.000       -0.002
+      -0.153        0.052        0.006       -0.026        0.042        0.004        0.004       -0.013
+       0.030       -0.020       -0.010       -0.025        0.280        0.005       -0.002       -0.001
+      -0.029        0.021       -0.081        0.016        0.227       -0.360        0.006       -0.001
+      -0.179        0.002        0.044       -0.027       -0.195       -0.028       -0.041        0.099
+
+Derivative matrix of expected statistics X by parameters:
+
+     307.725      245.155      526.623      164.347       31.609       23.598       33.775       24.704
+     138.365      147.579      264.155       88.164       12.847       16.351       14.557       11.462
+     350.325      315.808     1159.165      365.130       34.010       69.683       79.320       25.192
+     169.536      165.882      550.416      184.755       16.710       33.153       33.168       12.358
+      32.124       25.976       56.832       17.727       38.240      -44.446      -40.842        6.332
+      14.856       21.264       80.128       28.661      -43.852      311.565      197.524        0.786
+      31.378       29.850      143.206       45.094      -38.377      212.422      303.070        2.957
+      27.112       22.951       44.680       13.811        6.144        2.123        2.991       13.610
+
+Covariance matrix of X (correlations below diagonal):
+
+     480.139      419.154     1152.795      367.347       51.644       68.977       71.176       40.934
+       0.931      422.413     1121.278      364.679       46.312       72.085       65.059       37.305
+       0.798        0.828     4341.699     1395.871      133.177      250.193      265.263       90.505
+       0.785        0.831        0.992      455.923       42.436       82.880       83.736       28.358
+       0.350        0.335        0.300        0.295       45.281      -53.506      -51.800        7.965
+       0.155        0.173        0.187        0.191       -0.391      413.110      333.103        8.260
+       0.160        0.156        0.198        0.193       -0.379        0.807      412.416        8.513
+       0.467        0.454        0.343        0.332        0.296        0.102        0.105       16.002
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Still more extensive results are given in the output file</span>
+<span class="c1"># s50.txt in the current directory.</span>
+
+<span class="c1"># Note that by putting an R command between parentheses (....),</span>
+<span class="c1"># the result will also be printed to the screen.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Next add the transitive reciprocated triplets effect,</span>
+<span class="c1"># an interaction between transitive triplets and reciprocity,</span>
+
+<span class="p">(</span><span class="n">myeff</span> <span class="o">&lt;-</span> <span class="nf">includeEffects</span><span class="p">(</span> <span class="n">myeff</span><span class="p">,</span> <span class="n">transRecTrip</span><span class="p">))</span>
+<span class="p">(</span><span class="n">ans1</span> <span class="o">&lt;-</span> <span class="nf">siena07</span><span class="p">(</span> <span class="n">myalgorithm</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">mydata</span><span class="p">,</span> <span class="n">effects</span> <span class="o">=</span> <span class="n">myeff</span><span class="p">,</span> <span class="n">prevAns</span><span class="o">=</span><span class="n">ans</span><span class="p">))</span>
+<span class="c1"># If necessary, repeat the estimation with the new result:</span>
+<span class="p">(</span><span class="n">ans1</span> <span class="o">&lt;-</span> <span class="nf">siena07</span><span class="p">(</span> <span class="n">myalgorithm</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">mydata</span><span class="p">,</span> <span class="n">effects</span> <span class="o">=</span> <span class="n">myeff</span><span class="p">,</span> <span class="n">prevAns</span><span class="o">=</span><span class="n">ans1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  effectName                  include fix   test  initialValue parm
+1 transitive recipr. triplets TRUE    FALSE FALSE          0   0   
+</pre></div>
+</div>
+<div class="output text_html"><table>
+<caption>A sienaEffects: 520 × 31</caption>
+<thead>
+	<tr><th></th><th scope=col>name</th><th scope=col>effectName</th><th scope=col>functionName</th><th scope=col>shortName</th><th scope=col>interaction1</th><th scope=col>interaction2</th><th scope=col>type</th><th scope=col>basicRate</th><th scope=col>include</th><th scope=col>randomEffects</th><th scope=col>⋯</th><th scope=col>effect3</th><th scope=col>interactionType</th><th scope=col>local</th><th scope=col>setting</th><th scope=col>effectFn</th><th scope=col>statisticFn</th><th scope=col>netType</th><th scope=col>groupName</th><th scope=col>group</th><th scope=col>effectNumber</th></tr>
+	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>⋯</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;list&gt;</th><th scope=col>&lt;list&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>friendship.rate.1</th><td>friendship</td><td>constant friendship rate (period 1)      </td><td>Amount of network change in period 1            </td><td>Rate        </td><td>       </td><td></td><td>rate    </td><td> TRUE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 1</td></tr>
+	<tr><th scope=row>friendship.rate.2</th><td>friendship</td><td>constant friendship rate (period 2)      </td><td>Amount of network change in period 2            </td><td>Rate        </td><td>       </td><td></td><td>rate    </td><td> TRUE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 2</td></tr>
+	<tr><th scope=row>friendship.rate.3</th><td>friendship</td><td>outdegree effect on rate friendship      </td><td>Amount of change x outdegrees                   </td><td>outRate     </td><td>       </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 3</td></tr>
+	<tr><th scope=row>friendship.rate.4</th><td>friendship</td><td>indegree effect on rate friendship       </td><td>Amount of change x indegrees                    </td><td>inRate      </td><td>       </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 4</td></tr>
+	<tr><th scope=row>friendship.rate.5</th><td>friendship</td><td>reciprocity effect on rate friendship    </td><td>Amount of change x reciprocity                  </td><td>recipRate   </td><td>       </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 5</td></tr>
+	<tr><th scope=row>friendship.rate.6</th><td>friendship</td><td>effect 1/outdegree on rate friendship    </td><td>Amount of change x (1/outdegrees)               </td><td>outRateInv  </td><td>       </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 6</td></tr>
+	<tr><th scope=row>friendship.rate.7</th><td>friendship</td><td>effect ln(outdegree+1) on rate friendship</td><td>Amount of change x ln(outdegrees+1)             </td><td>outRateLog  </td><td>       </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 7</td></tr>
+	<tr><th scope=row>friendship.rate.8</th><td>friendship</td><td>effect smoke1 on rate                    </td><td>Amount of change x smoke1                       </td><td>RateX       </td><td>smoke1 </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 8</td></tr>
+	<tr><th scope=row>friendship.rate.9</th><td>friendship</td><td>effect alcohol on rate                   </td><td>Amount of change x alcohol                      </td><td>RateX       </td><td>alcohol</td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 9</td></tr>
+	<tr><th scope=row>friendship.obj.eval.1</th><td>friendship</td><td>outdegree (density)                      </td><td>Number of ties                                  </td><td>density     </td><td>       </td><td></td><td>eval    </td><td>FALSE</td><td> TRUE</td><td> TRUE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>10</td></tr>
+	<tr><th scope=row>friendship.obj.endow.1</th><td>friendship</td><td>outdegree (density)                      </td><td>Lost ties: Number of ties                       </td><td>density     </td><td>       </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>11</td></tr>
+	<tr><th scope=row>friendship.obj.creation.1</th><td>friendship</td><td>outdegree (density)                      </td><td>New ties: Number of ties                        </td><td>density     </td><td>       </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>12</td></tr>
+	<tr><th scope=row>friendship.obj.eval.2</th><td>friendship</td><td>reciprocity                              </td><td>Number of reciprocated ties                     </td><td>recip       </td><td>       </td><td></td><td>eval    </td><td>FALSE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>13</td></tr>
+	<tr><th scope=row>friendship.obj.endow.2</th><td>friendship</td><td>reciprocity                              </td><td>Lost ties: Number of reciprocated ties          </td><td>recip       </td><td>       </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>14</td></tr>
+	<tr><th scope=row>friendship.obj.creation.2</th><td>friendship</td><td>reciprocity                              </td><td>New ties: Number of reciprocated ties           </td><td>recip       </td><td>       </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>15</td></tr>
+	<tr><th scope=row>friendship.obj.eval.3</th><td>friendship</td><td>transitive triplets                      </td><td>Number of transitive triplets                   </td><td>transTrip   </td><td>       </td><td></td><td>eval    </td><td>FALSE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>16</td></tr>
+	<tr><th scope=row>friendship.obj.endow.3</th><td>friendship</td><td>transitive triplets                      </td><td>Lost ties: Number of transitive triplets        </td><td>transTrip   </td><td>       </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>17</td></tr>
+	<tr><th scope=row>friendship.obj.creation.3</th><td>friendship</td><td>transitive triplets                      </td><td>New ties: Number of transitive triplets         </td><td>transTrip   </td><td>       </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>18</td></tr>
+	<tr><th scope=row>friendship.obj.eval.4</th><td>friendship</td><td>transitive triplets (1)                  </td><td>Number of transitive triplets                   </td><td>transTrip1  </td><td>       </td><td></td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>19</td></tr>
+	<tr><th scope=row>friendship.obj.endow.4</th><td>friendship</td><td>transitive triplets (1)                  </td><td>Lost ties: Number of transitive triplets        </td><td>transTrip1  </td><td>       </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>20</td></tr>
+	<tr><th scope=row>friendship.obj.creation.4</th><td>friendship</td><td>transitive triplets (1)                  </td><td>New ties: Number of transitive triplets         </td><td>transTrip1  </td><td>       </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>21</td></tr>
+	<tr><th scope=row>friendship.obj.eval.5</th><td>friendship</td><td>transitive triplets (2)                  </td><td>Number of transitive triplets                   </td><td>transTrip2  </td><td>       </td><td></td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>22</td></tr>
+	<tr><th scope=row>friendship.obj.endow.5</th><td>friendship</td><td>transitive triplets (2)                  </td><td>Lost ties: Number of transitive triplets        </td><td>transTrip2  </td><td>       </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>23</td></tr>
+	<tr><th scope=row>friendship.obj.creation.5</th><td>friendship</td><td>transitive triplets (2)                  </td><td>New ties: Number of transitive triplets         </td><td>transTrip2  </td><td>       </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>24</td></tr>
+	<tr><th scope=row>friendship.obj.eval.6</th><td>friendship</td><td>transitive mediated triplets             </td><td>Number of transitive triplets                   </td><td>transMedTrip</td><td>       </td><td></td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>25</td></tr>
+	<tr><th scope=row>friendship.obj.endow.6</th><td>friendship</td><td>transitive mediated triplets             </td><td>Lost ties: Number of transitive triplets        </td><td>transMedTrip</td><td>       </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>26</td></tr>
+	<tr><th scope=row>friendship.obj.creation.6</th><td>friendship</td><td>transitive mediated triplets             </td><td>New ties: Number of transitive triplets         </td><td>transMedTrip</td><td>       </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>27</td></tr>
+	<tr><th scope=row>friendship.obj.eval.7</th><td>friendship</td><td>transitive recipr. triplets              </td><td>Number of transitive recipr. triplets           </td><td>transRecTrip</td><td>       </td><td></td><td>eval    </td><td>FALSE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>28</td></tr>
+	<tr><th scope=row>friendship.obj.endow.7</th><td>friendship</td><td>transitive recipr. triplets              </td><td>Lost ties: Number of transitive recipr. triplets</td><td>transRecTrip</td><td>       </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>29</td></tr>
+	<tr><th scope=row>friendship.obj.creation.7</th><td>friendship</td><td>transitive recipr. triplets              </td><td>New ties: Number of transitive recipr. triplets </td><td>transRecTrip</td><td>       </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>30</td></tr>
+	<tr><th scope=row>⋮</th><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋱</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td></tr>
+	<tr><th scope=row>friendship.obj.eval.170</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>491</td></tr>
+	<tr><th scope=row>friendship.obj.endow.157</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>492</td></tr>
+	<tr><th scope=row>friendship.obj.creation.157</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>493</td></tr>
+	<tr><th scope=row>friendship.obj.eval.171</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>494</td></tr>
+	<tr><th scope=row>friendship.obj.endow.158</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>495</td></tr>
+	<tr><th scope=row>friendship.obj.creation.158</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>496</td></tr>
+	<tr><th scope=row>friendship.obj.eval.172</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>497</td></tr>
+	<tr><th scope=row>friendship.obj.endow.159</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>498</td></tr>
+	<tr><th scope=row>friendship.obj.creation.159</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>499</td></tr>
+	<tr><th scope=row>friendship.obj.eval.173</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>500</td></tr>
+	<tr><th scope=row>friendship.obj.endow.160</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>501</td></tr>
+	<tr><th scope=row>friendship.obj.creation.160</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>502</td></tr>
+	<tr><th scope=row>friendship.obj.eval.174</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>503</td></tr>
+	<tr><th scope=row>friendship.obj.endow.161</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>504</td></tr>
+	<tr><th scope=row>friendship.obj.creation.161</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>505</td></tr>
+	<tr><th scope=row>friendship.obj.eval.175</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>506</td></tr>
+	<tr><th scope=row>friendship.obj.endow.162</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>507</td></tr>
+	<tr><th scope=row>friendship.obj.creation.162</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>508</td></tr>
+	<tr><th scope=row>friendship.obj.eval.176</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>509</td></tr>
+	<tr><th scope=row>friendship.obj.endow.163</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>510</td></tr>
+	<tr><th scope=row>friendship.obj.creation.163</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>511</td></tr>
+	<tr><th scope=row>friendship.obj.eval.177</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>512</td></tr>
+	<tr><th scope=row>friendship.obj.endow.164</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>513</td></tr>
+	<tr><th scope=row>friendship.obj.creation.164</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>514</td></tr>
+	<tr><th scope=row>friendship.obj.eval.178</th><td>friendship</td><td>unspecified interaction effect                 </td><td>unspecified interaction statistic                           </td><td>unspInt   </td><td>          </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>515</td></tr>
+	<tr><th scope=row>friendship.obj.endow.165</th><td>friendship</td><td>unspecified interaction effect                 </td><td>Lost ties: unspecified interaction statistic                </td><td>unspInt   </td><td>          </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>516</td></tr>
+	<tr><th scope=row>friendship.obj.creation.165</th><td>friendship</td><td>unspecified interaction effect                 </td><td>New ties: unspecified interaction statistic                 </td><td>unspInt   </td><td>          </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>517</td></tr>
+	<tr><th scope=row>friendship.obj.eval.179</th><td>friendship</td><td>from friendship agr. weighted by friendship ind</td><td>m.tr. XWW, W = friendship, weigth ind. friendship           </td><td>from.w.ind</td><td>friendship</td><td>friendship</td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>518</td></tr>
+	<tr><th scope=row>friendship.obj.endow.166</th><td>friendship</td><td>from friendship agr. weighted by friendship ind</td><td>Lost ties: m.tr. XWW, W = friendship, weigth ind. friendship</td><td>from.w.ind</td><td>friendship</td><td>friendship</td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>519</td></tr>
+	<tr><th scope=row>friendship.obj.creation.166</th><td>friendship</td><td>from friendship agr. weighted by friendship ind</td><td>New ties: m.tr. XWW, W = friendship, weigth ind. friendship </td><td>from.w.ind</td><td>friendship</td><td>friendship</td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>520</td></tr>
+</tbody>
+</table>
+</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimates, standard errors and convergence t-ratios
+
+                                       Estimate   Standard   Convergence 
+                                                    Error      t-ratio   
+
+Rate parameters: 
+  0.1      Rate parameter period 1      6.2152  ( 1.0314   )             
+  0.2      Rate parameter period 2      5.1112  ( 0.8516   )             
+
+Other parameters: 
+  1.  eval outdegree (density)         -2.9470  ( 0.1678   )   -0.0379   
+  2.  eval reciprocity                  2.9023  ( 0.2929   )    0.0076   
+  3.  eval transitive triplets          0.9058  ( 0.1609   )   -0.0042   
+  4.  eval transitive recipr. triplets -0.9005  ( 0.2770   )   -0.0033   
+  5.  eval 3-cycles                     0.5051  ( 0.2724   )   -0.0135   
+  6.  eval smoke1 similarity            0.1636  ( 0.2034   )    0.0113   
+  7.  eval alcohol alter               -0.0241  ( 0.0709   )    0.0079   
+  8.  eval alcohol ego                  0.0459  ( 0.0769   )    0.0107   
+  9.  eval alcohol similarity           0.7283  ( 0.2996   )    0.0214   
+
+Overall maximum convergence ratio:    0.1767 
+
+
+Total of 2495 iteration steps.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimates, standard errors and convergence t-ratios
+
+                                       Estimate   Standard   Convergence 
+                                                    Error      t-ratio   
+
+Rate parameters: 
+  0.1      Rate parameter period 1      6.2214  ( 1.0105   )             
+  0.2      Rate parameter period 2      5.0716  ( 0.8385   )             
+
+Other parameters: 
+  1.  eval outdegree (density)         -2.9360  ( 0.1534   )    0.0005   
+  2.  eval reciprocity                  2.8922  ( 0.2597   )    0.0084   
+  3.  eval transitive triplets          0.8966  ( 0.1535   )   -0.0090   
+  4.  eval transitive recipr. triplets -0.9056  ( 0.2583   )   -0.0030   
+  5.  eval 3-cycles                     0.5302  ( 0.2677   )   -0.0084   
+  6.  eval smoke1 similarity            0.1527  ( 0.2145   )   -0.0425   
+  7.  eval alcohol alter               -0.0230  ( 0.0728   )    0.0266   
+  8.  eval alcohol ego                  0.0420  ( 0.0777   )    0.0151   
+  9.  eval alcohol similarity           0.7251  ( 0.3062   )   -0.0400   
+
+Overall maximum convergence ratio:    0.0804 
+
+
+Total of 2615 iteration steps.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># This might still not have an overall maximum convergence ratio</span>
+<span class="c1"># less than 0.25. If not, you could go on once more.</span>
+<span class="c1">#</span>
+<span class="c1"># Inspect the file s50.txt in your working directory</span>
+<span class="c1"># and understand the meaning of its contents.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># To have a joint test of the three effects of alcohol:</span>
+<span class="c1"># ?Multipar.RSiena</span>
+<span class="nf">Multipar.RSiena</span><span class="p">(</span><span class="n">ans1</span><span class="p">,</span> <span class="m">7</span><span class="o">:</span><span class="m">9</span><span class="p">)</span>
+<span class="c1"># Focusing on alcohol similarity, the effect is significant;</span>
+<span class="c1"># diluting the effects of alcohol by also considering ego and alter,</span>
+<span class="c1"># the three effects simultaneously are not significant.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tested effects:
+ friendship: alcohol alter 
+ friendship: alcohol ego 
+ friendship: alcohol similarity 
+chi-squared = 5.98, d.f. = 3;  p = 0.113. 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">###                Assignment 1                                              </span>
+<span class="c1"># 1a.</span>
+<span class="c1"># Drop the effect of smoke1 similarity and estimate the model again.</span>
+<span class="c1"># Do this by the function setEffects() using the &lt;&lt;include&gt;&gt; parameter.</span>
+<span class="c1"># Give the changed effects object and the new answer object new names,</span>
+<span class="c1"># such as effects1 and ans1, to distinguish them.</span>
+<span class="c1"># 1b.</span>
+<span class="c1"># Change the three effects of alcohol to the single effect</span>
+<span class="c1"># of alcohol similarity, and estimate again.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">###                Networks and behavior study                               </span>
+<span class="c1"># Now we redefine the role of alcohol drinking</span>
+<span class="c1"># as a dependent behaviour variable.</span>
+<span class="c1"># Once again, look at the help file</span>
+<span class="c1"># ?sienaDependent</span>
+<span class="c1"># now paying special attention to the &lt;&lt;type&gt;&gt; parameter.</span>
+<span class="n">drinking</span> <span class="o">&lt;-</span> <span class="nf">sienaDependent</span><span class="p">(</span> <span class="n">drink</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;behavior&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Put the variables together in the data set for analysis</span>
+<span class="n">NBdata</span> <span class="o">&lt;-</span> <span class="nf">sienaDataCreate</span><span class="p">(</span> <span class="n">friendship</span><span class="p">,</span> <span class="n">smoke1</span><span class="p">,</span> <span class="n">drinking</span> <span class="p">)</span>
+<span class="n">NBdata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dependent variables:  friendship, drinking 
+Number of observations: 3 
+
+Nodeset                  Actors 
+Number of nodes              50 
+
+Dependent variable friendship      
+Type               oneMode         
+Observations       3               
+Nodeset            Actors          
+Densities          0.046 0.047 0.05
+
+Dependent variable drinking
+Type               behavior
+Observations       3       
+Nodeset            Actors  
+Range              1 - 5   
+
+Constant covariates:  smoke1 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">NBeff</span> <span class="o">&lt;-</span> <span class="nf">getEffects</span><span class="p">(</span> <span class="n">NBdata</span> <span class="p">)</span>
+<span class="nf">effectsDocumentation</span><span class="p">(</span><span class="n">NBeff</span><span class="p">)</span>
+<span class="n">NBeff</span> <span class="o">&lt;-</span> <span class="nf">includeEffects</span><span class="p">(</span> <span class="n">NBeff</span><span class="p">,</span> <span class="n">transTrip</span><span class="p">,</span> <span class="n">transRecTrip</span> <span class="p">)</span>
+<span class="n">NBeff</span> <span class="o">&lt;-</span> <span class="nf">includeEffects</span><span class="p">(</span> <span class="n">NBeff</span><span class="p">,</span> <span class="n">egoX</span><span class="p">,</span> <span class="n">egoSqX</span><span class="p">,</span> <span class="n">altX</span><span class="p">,</span> <span class="n">altSqX</span><span class="p">,</span> <span class="n">diffSqX</span><span class="p">,</span>
+                         <span class="n">interaction1</span> <span class="o">=</span> <span class="s">&quot;drinking&quot;</span> <span class="p">)</span>
+<span class="n">NBeff</span> <span class="o">&lt;-</span> <span class="nf">includeEffects</span><span class="p">(</span> <span class="n">NBeff</span><span class="p">,</span> <span class="n">egoX</span><span class="p">,</span> <span class="n">altX</span><span class="p">,</span> <span class="n">simX</span><span class="p">,</span> <span class="n">interaction1</span> <span class="o">=</span> <span class="s">&quot;smoke1&quot;</span> <span class="p">)</span>
+<span class="n">NBeff</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  effectName                  include fix   test  initialValue parm
+1 transitive triplets         TRUE    FALSE FALSE          0   0   
+2 transitive recipr. triplets TRUE    FALSE FALSE          0   0   
+  effectName             include fix   test  initialValue parm
+1 drinking alter         TRUE    FALSE FALSE          0   0   
+2 drinking squared alter TRUE    FALSE FALSE          0   0   
+3 drinking ego           TRUE    FALSE FALSE          0   0   
+4 drinking squared ego   TRUE    FALSE FALSE          0   0   
+5 drinking diff. squared TRUE    FALSE FALSE          0   0   
+  effectName        include fix   test  initialValue parm
+1 smoke1 alter      TRUE    FALSE FALSE          0   0   
+2 smoke1 ego        TRUE    FALSE FALSE          0   0   
+3 smoke1 similarity TRUE    FALSE FALSE          0   0   
+</pre></div>
+</div>
+<div class="output text_html"><table>
+<caption>A sienaEffects: 683 × 31</caption>
+<thead>
+	<tr><th></th><th scope=col>name</th><th scope=col>effectName</th><th scope=col>functionName</th><th scope=col>shortName</th><th scope=col>interaction1</th><th scope=col>interaction2</th><th scope=col>type</th><th scope=col>basicRate</th><th scope=col>include</th><th scope=col>randomEffects</th><th scope=col>⋯</th><th scope=col>effect3</th><th scope=col>interactionType</th><th scope=col>local</th><th scope=col>setting</th><th scope=col>effectFn</th><th scope=col>statisticFn</th><th scope=col>netType</th><th scope=col>groupName</th><th scope=col>group</th><th scope=col>effectNumber</th></tr>
+	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>⋯</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;list&gt;</th><th scope=col>&lt;list&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>friendship.rate.1</th><td>friendship</td><td>constant friendship rate (period 1)      </td><td>Amount of network change in period 1            </td><td>Rate        </td><td>        </td><td></td><td>rate    </td><td> TRUE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 1</td></tr>
+	<tr><th scope=row>friendship.rate.2</th><td>friendship</td><td>constant friendship rate (period 2)      </td><td>Amount of network change in period 2            </td><td>Rate        </td><td>        </td><td></td><td>rate    </td><td> TRUE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 2</td></tr>
+	<tr><th scope=row>friendship.rate.3</th><td>friendship</td><td>outdegree effect on rate friendship      </td><td>Amount of change x outdegrees                   </td><td>outRate     </td><td>        </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 3</td></tr>
+	<tr><th scope=row>friendship.rate.4</th><td>friendship</td><td>indegree effect on rate friendship       </td><td>Amount of change x indegrees                    </td><td>inRate      </td><td>        </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 4</td></tr>
+	<tr><th scope=row>friendship.rate.5</th><td>friendship</td><td>reciprocity effect on rate friendship    </td><td>Amount of change x reciprocity                  </td><td>recipRate   </td><td>        </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 5</td></tr>
+	<tr><th scope=row>friendship.rate.6</th><td>friendship</td><td>effect 1/outdegree on rate friendship    </td><td>Amount of change x (1/outdegrees)               </td><td>outRateInv  </td><td>        </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 6</td></tr>
+	<tr><th scope=row>friendship.rate.7</th><td>friendship</td><td>effect ln(outdegree+1) on rate friendship</td><td>Amount of change x ln(outdegrees+1)             </td><td>outRateLog  </td><td>        </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 7</td></tr>
+	<tr><th scope=row>friendship.rate.8</th><td>friendship</td><td>effect smoke1 on rate                    </td><td>Amount of change x smoke1                       </td><td>RateX       </td><td>smoke1  </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 8</td></tr>
+	<tr><th scope=row>friendship.rate.9</th><td>friendship</td><td>effect drinking on rate                  </td><td>Amount of change x drinking                     </td><td>RateX       </td><td>drinking</td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 9</td></tr>
+	<tr><th scope=row>friendship.obj.eval.1</th><td>friendship</td><td>outdegree (density)                      </td><td>Number of ties                                  </td><td>density     </td><td>        </td><td></td><td>eval    </td><td>FALSE</td><td> TRUE</td><td> TRUE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>10</td></tr>
+	<tr><th scope=row>friendship.obj.endow.1</th><td>friendship</td><td>outdegree (density)                      </td><td>Lost ties: Number of ties                       </td><td>density     </td><td>        </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>11</td></tr>
+	<tr><th scope=row>friendship.obj.creation.1</th><td>friendship</td><td>outdegree (density)                      </td><td>New ties: Number of ties                        </td><td>density     </td><td>        </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>12</td></tr>
+	<tr><th scope=row>friendship.obj.eval.2</th><td>friendship</td><td>reciprocity                              </td><td>Number of reciprocated ties                     </td><td>recip       </td><td>        </td><td></td><td>eval    </td><td>FALSE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>13</td></tr>
+	<tr><th scope=row>friendship.obj.endow.2</th><td>friendship</td><td>reciprocity                              </td><td>Lost ties: Number of reciprocated ties          </td><td>recip       </td><td>        </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>14</td></tr>
+	<tr><th scope=row>friendship.obj.creation.2</th><td>friendship</td><td>reciprocity                              </td><td>New ties: Number of reciprocated ties           </td><td>recip       </td><td>        </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>15</td></tr>
+	<tr><th scope=row>friendship.obj.eval.3</th><td>friendship</td><td>transitive triplets                      </td><td>Number of transitive triplets                   </td><td>transTrip   </td><td>        </td><td></td><td>eval    </td><td>FALSE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>16</td></tr>
+	<tr><th scope=row>friendship.obj.endow.3</th><td>friendship</td><td>transitive triplets                      </td><td>Lost ties: Number of transitive triplets        </td><td>transTrip   </td><td>        </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>17</td></tr>
+	<tr><th scope=row>friendship.obj.creation.3</th><td>friendship</td><td>transitive triplets                      </td><td>New ties: Number of transitive triplets         </td><td>transTrip   </td><td>        </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>18</td></tr>
+	<tr><th scope=row>friendship.obj.eval.4</th><td>friendship</td><td>transitive triplets (1)                  </td><td>Number of transitive triplets                   </td><td>transTrip1  </td><td>        </td><td></td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>19</td></tr>
+	<tr><th scope=row>friendship.obj.endow.4</th><td>friendship</td><td>transitive triplets (1)                  </td><td>Lost ties: Number of transitive triplets        </td><td>transTrip1  </td><td>        </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>20</td></tr>
+	<tr><th scope=row>friendship.obj.creation.4</th><td>friendship</td><td>transitive triplets (1)                  </td><td>New ties: Number of transitive triplets         </td><td>transTrip1  </td><td>        </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>21</td></tr>
+	<tr><th scope=row>friendship.obj.eval.5</th><td>friendship</td><td>transitive triplets (2)                  </td><td>Number of transitive triplets                   </td><td>transTrip2  </td><td>        </td><td></td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>22</td></tr>
+	<tr><th scope=row>friendship.obj.endow.5</th><td>friendship</td><td>transitive triplets (2)                  </td><td>Lost ties: Number of transitive triplets        </td><td>transTrip2  </td><td>        </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>23</td></tr>
+	<tr><th scope=row>friendship.obj.creation.5</th><td>friendship</td><td>transitive triplets (2)                  </td><td>New ties: Number of transitive triplets         </td><td>transTrip2  </td><td>        </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>24</td></tr>
+	<tr><th scope=row>friendship.obj.eval.6</th><td>friendship</td><td>transitive mediated triplets             </td><td>Number of transitive triplets                   </td><td>transMedTrip</td><td>        </td><td></td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>25</td></tr>
+	<tr><th scope=row>friendship.obj.endow.6</th><td>friendship</td><td>transitive mediated triplets             </td><td>Lost ties: Number of transitive triplets        </td><td>transMedTrip</td><td>        </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>26</td></tr>
+	<tr><th scope=row>friendship.obj.creation.6</th><td>friendship</td><td>transitive mediated triplets             </td><td>New ties: Number of transitive triplets         </td><td>transMedTrip</td><td>        </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>27</td></tr>
+	<tr><th scope=row>friendship.obj.eval.7</th><td>friendship</td><td>transitive recipr. triplets              </td><td>Number of transitive recipr. triplets           </td><td>transRecTrip</td><td>        </td><td></td><td>eval    </td><td>FALSE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>28</td></tr>
+	<tr><th scope=row>friendship.obj.endow.7</th><td>friendship</td><td>transitive recipr. triplets              </td><td>Lost ties: Number of transitive recipr. triplets</td><td>transRecTrip</td><td>        </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>29</td></tr>
+	<tr><th scope=row>friendship.obj.creation.7</th><td>friendship</td><td>transitive recipr. triplets              </td><td>New ties: Number of transitive recipr. triplets </td><td>transRecTrip</td><td>        </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>30</td></tr>
+	<tr><th scope=row>⋮</th><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋱</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td></tr>
+	<tr><th scope=row>drinking.obj.eval.62</th><td>drinking</td><td>drinking: pos. contrast outd. (friendship) - smoke1</td><td>sum drinking * abs.outd. (friendship) - smoke1  </td><td>degPosContrX</td><td>smoke1</td><td>friendship</td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>OK</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>654</td></tr>
+	<tr><th scope=row>drinking.obj.endow.30</th><td>drinking</td><td>drinking: pos. contrast outd. (friendship) - smoke1</td><td>sum drinking * abs.outd. (friendship) - smoke1  </td><td>degPosContrX</td><td>smoke1</td><td>friendship</td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>OK</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>655</td></tr>
+	<tr><th scope=row>drinking.obj.creation.30</th><td>drinking</td><td>drinking: pos. contrast outd. (friendship) - smoke1</td><td>sum drinking * abs.outd. (friendship) - smoke1  </td><td>degPosContrX</td><td>smoke1</td><td>friendship</td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>OK</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>656</td></tr>
+	<tr><th scope=row>drinking.obj.eval.63</th><td>drinking</td><td>drinking: neg. contrast outd. (friendship) - smoke1</td><td>sum drinking * abs.outd. (friendship) - smoke1  </td><td>degNegContrX</td><td>smoke1</td><td>friendship</td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>OK</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>657</td></tr>
+	<tr><th scope=row>drinking.obj.endow.31</th><td>drinking</td><td>drinking: neg. contrast outd. (friendship) - smoke1</td><td>sum drinking * abs.outd. (friendship) - smoke1  </td><td>degNegContrX</td><td>smoke1</td><td>friendship</td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>OK</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>658</td></tr>
+	<tr><th scope=row>drinking.obj.creation.31</th><td>drinking</td><td>drinking: neg. contrast outd. (friendship) - smoke1</td><td>sum drinking * abs.outd. (friendship) - smoke1  </td><td>degNegContrX</td><td>smoke1</td><td>friendship</td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>OK</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>659</td></tr>
+	<tr><th scope=row>drinking.obj.eval.64</th><td>drinking</td><td>drinking: av. sim. (friendship) x ego's smoke1     </td><td>drinking av. sim. (friendship) x ego's smoke1   </td><td>avSimEgoX   </td><td>smoke1</td><td>friendship</td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>660</td></tr>
+	<tr><th scope=row>drinking.obj.endow.32</th><td>drinking</td><td>drinking: av. sim. (friendship) x ego's smoke1     </td><td>drinking av. sim. (friendship) x ego's smoke1   </td><td>avSimEgoX   </td><td>smoke1</td><td>friendship</td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>661</td></tr>
+	<tr><th scope=row>drinking.obj.creation.32</th><td>drinking</td><td>drinking: av. sim. (friendship) x ego's smoke1     </td><td>drinking av. sim. (friendship) x ego's smoke1   </td><td>avSimEgoX   </td><td>smoke1</td><td>friendship</td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>662</td></tr>
+	<tr><th scope=row>drinking.obj.eval.65</th><td>drinking</td><td>drinking: tot. sim. (friendship) x ego's smoke1    </td><td>drinking tot. sim. (friendship) x ego's smoke1  </td><td>totSimEgoX  </td><td>smoke1</td><td>friendship</td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>663</td></tr>
+	<tr><th scope=row>drinking.obj.endow.33</th><td>drinking</td><td>drinking: tot. sim. (friendship) x ego's smoke1    </td><td>drinking tot. sim. (friendship) x ego's smoke1  </td><td>totSimEgoX  </td><td>smoke1</td><td>friendship</td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>664</td></tr>
+	<tr><th scope=row>drinking.obj.creation.33</th><td>drinking</td><td>drinking: tot. sim. (friendship) x ego's smoke1    </td><td>drinking tot. sim. (friendship) x ego's smoke1  </td><td>totSimEgoX  </td><td>smoke1</td><td>friendship</td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>665</td></tr>
+	<tr><th scope=row>drinking.obj.eval.66</th><td>drinking</td><td>drinking: av. alters (friendship) x ego's smoke1   </td><td>drinking av. alters (friendship) x ego's smoke1 </td><td>avAltEgoX   </td><td>smoke1</td><td>friendship</td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>666</td></tr>
+	<tr><th scope=row>drinking.obj.endow.34</th><td>drinking</td><td>drinking: av. alters (friendship) x ego's smoke1   </td><td>drinking av. alters (friendship) x ego's smoke1 </td><td>avAltEgoX   </td><td>smoke1</td><td>friendship</td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>667</td></tr>
+	<tr><th scope=row>drinking.obj.creation.34</th><td>drinking</td><td>drinking: av. alters (friendship) x ego's smoke1   </td><td>drinking av. alters (friendship) x ego's smoke1 </td><td>avAltEgoX   </td><td>smoke1</td><td>friendship</td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>668</td></tr>
+	<tr><th scope=row>drinking.obj.eval.67</th><td>drinking</td><td>drinking: tot. alt's (friendship) x ego's smoke1   </td><td>drinking tot. alt's (friendship) x ego's smoke1 </td><td>totAltEgoX  </td><td>smoke1</td><td>friendship</td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>669</td></tr>
+	<tr><th scope=row>drinking.obj.endow.35</th><td>drinking</td><td>drinking: tot. alt's (friendship) x ego's smoke1   </td><td>drinking tot. alt's (friendship) x ego's smoke1 </td><td>totAltEgoX  </td><td>smoke1</td><td>friendship</td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>670</td></tr>
+	<tr><th scope=row>drinking.obj.creation.35</th><td>drinking</td><td>drinking: tot. alt's (friendship) x ego's smoke1   </td><td>drinking tot. alt's (friendship) x ego's smoke1 </td><td>totAltEgoX  </td><td>smoke1</td><td>friendship</td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>671</td></tr>
+	<tr><th scope=row>drinking.obj.eval.68</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>672</td></tr>
+	<tr><th scope=row>drinking.obj.endow.36</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>673</td></tr>
+	<tr><th scope=row>drinking.obj.creation.36</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>674</td></tr>
+	<tr><th scope=row>drinking.obj.eval.69</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>675</td></tr>
+	<tr><th scope=row>drinking.obj.endow.37</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>676</td></tr>
+	<tr><th scope=row>drinking.obj.creation.37</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>677</td></tr>
+	<tr><th scope=row>drinking.obj.eval.70</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>678</td></tr>
+	<tr><th scope=row>drinking.obj.endow.38</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>679</td></tr>
+	<tr><th scope=row>drinking.obj.creation.38</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>680</td></tr>
+	<tr><th scope=row>drinking.obj.eval.71</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>681</td></tr>
+	<tr><th scope=row>drinking.obj.endow.39</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>682</td></tr>
+	<tr><th scope=row>drinking.obj.creation.39</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>683</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># For including effects also for the dependent behaviour variable, see</span>
+<span class="c1"># ?includeEffects</span>
+<span class="n">NBeff</span> <span class="o">&lt;-</span> <span class="nf">includeEffects</span><span class="p">(</span> <span class="n">NBeff</span><span class="p">,</span> <span class="n">avAlt</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;drinking&quot;</span><span class="p">,</span>
+                         <span class="n">interaction1</span> <span class="o">=</span> <span class="s">&quot;friendship&quot;</span> <span class="p">)</span>
+<span class="n">NBeff</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  effectName             include fix   test  initialValue parm
+1 drinking average alter TRUE    FALSE FALSE          0   0   
+</pre></div>
+</div>
+<div class="output text_html"><table>
+<caption>A sienaEffects: 683 × 31</caption>
+<thead>
+	<tr><th></th><th scope=col>name</th><th scope=col>effectName</th><th scope=col>functionName</th><th scope=col>shortName</th><th scope=col>interaction1</th><th scope=col>interaction2</th><th scope=col>type</th><th scope=col>basicRate</th><th scope=col>include</th><th scope=col>randomEffects</th><th scope=col>⋯</th><th scope=col>effect3</th><th scope=col>interactionType</th><th scope=col>local</th><th scope=col>setting</th><th scope=col>effectFn</th><th scope=col>statisticFn</th><th scope=col>netType</th><th scope=col>groupName</th><th scope=col>group</th><th scope=col>effectNumber</th></tr>
+	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>⋯</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;list&gt;</th><th scope=col>&lt;list&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>friendship.rate.1</th><td>friendship</td><td>constant friendship rate (period 1)      </td><td>Amount of network change in period 1            </td><td>Rate        </td><td>        </td><td></td><td>rate    </td><td> TRUE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 1</td></tr>
+	<tr><th scope=row>friendship.rate.2</th><td>friendship</td><td>constant friendship rate (period 2)      </td><td>Amount of network change in period 2            </td><td>Rate        </td><td>        </td><td></td><td>rate    </td><td> TRUE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 2</td></tr>
+	<tr><th scope=row>friendship.rate.3</th><td>friendship</td><td>outdegree effect on rate friendship      </td><td>Amount of change x outdegrees                   </td><td>outRate     </td><td>        </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 3</td></tr>
+	<tr><th scope=row>friendship.rate.4</th><td>friendship</td><td>indegree effect on rate friendship       </td><td>Amount of change x indegrees                    </td><td>inRate      </td><td>        </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 4</td></tr>
+	<tr><th scope=row>friendship.rate.5</th><td>friendship</td><td>reciprocity effect on rate friendship    </td><td>Amount of change x reciprocity                  </td><td>recipRate   </td><td>        </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 5</td></tr>
+	<tr><th scope=row>friendship.rate.6</th><td>friendship</td><td>effect 1/outdegree on rate friendship    </td><td>Amount of change x (1/outdegrees)               </td><td>outRateInv  </td><td>        </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 6</td></tr>
+	<tr><th scope=row>friendship.rate.7</th><td>friendship</td><td>effect ln(outdegree+1) on rate friendship</td><td>Amount of change x ln(outdegrees+1)             </td><td>outRateLog  </td><td>        </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 7</td></tr>
+	<tr><th scope=row>friendship.rate.8</th><td>friendship</td><td>effect smoke1 on rate                    </td><td>Amount of change x smoke1                       </td><td>RateX       </td><td>smoke1  </td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 8</td></tr>
+	<tr><th scope=row>friendship.rate.9</th><td>friendship</td><td>effect drinking on rate                  </td><td>Amount of change x drinking                     </td><td>RateX       </td><td>drinking</td><td></td><td>rate    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td> 9</td></tr>
+	<tr><th scope=row>friendship.obj.eval.1</th><td>friendship</td><td>outdegree (density)                      </td><td>Number of ties                                  </td><td>density     </td><td>        </td><td></td><td>eval    </td><td>FALSE</td><td> TRUE</td><td> TRUE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>10</td></tr>
+	<tr><th scope=row>friendship.obj.endow.1</th><td>friendship</td><td>outdegree (density)                      </td><td>Lost ties: Number of ties                       </td><td>density     </td><td>        </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>11</td></tr>
+	<tr><th scope=row>friendship.obj.creation.1</th><td>friendship</td><td>outdegree (density)                      </td><td>New ties: Number of ties                        </td><td>density     </td><td>        </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>12</td></tr>
+	<tr><th scope=row>friendship.obj.eval.2</th><td>friendship</td><td>reciprocity                              </td><td>Number of reciprocated ties                     </td><td>recip       </td><td>        </td><td></td><td>eval    </td><td>FALSE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>13</td></tr>
+	<tr><th scope=row>friendship.obj.endow.2</th><td>friendship</td><td>reciprocity                              </td><td>Lost ties: Number of reciprocated ties          </td><td>recip       </td><td>        </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>14</td></tr>
+	<tr><th scope=row>friendship.obj.creation.2</th><td>friendship</td><td>reciprocity                              </td><td>New ties: Number of reciprocated ties           </td><td>recip       </td><td>        </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>15</td></tr>
+	<tr><th scope=row>friendship.obj.eval.3</th><td>friendship</td><td>transitive triplets                      </td><td>Number of transitive triplets                   </td><td>transTrip   </td><td>        </td><td></td><td>eval    </td><td>FALSE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>16</td></tr>
+	<tr><th scope=row>friendship.obj.endow.3</th><td>friendship</td><td>transitive triplets                      </td><td>Lost ties: Number of transitive triplets        </td><td>transTrip   </td><td>        </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>17</td></tr>
+	<tr><th scope=row>friendship.obj.creation.3</th><td>friendship</td><td>transitive triplets                      </td><td>New ties: Number of transitive triplets         </td><td>transTrip   </td><td>        </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>18</td></tr>
+	<tr><th scope=row>friendship.obj.eval.4</th><td>friendship</td><td>transitive triplets (1)                  </td><td>Number of transitive triplets                   </td><td>transTrip1  </td><td>        </td><td></td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>19</td></tr>
+	<tr><th scope=row>friendship.obj.endow.4</th><td>friendship</td><td>transitive triplets (1)                  </td><td>Lost ties: Number of transitive triplets        </td><td>transTrip1  </td><td>        </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>20</td></tr>
+	<tr><th scope=row>friendship.obj.creation.4</th><td>friendship</td><td>transitive triplets (1)                  </td><td>New ties: Number of transitive triplets         </td><td>transTrip1  </td><td>        </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>21</td></tr>
+	<tr><th scope=row>friendship.obj.eval.5</th><td>friendship</td><td>transitive triplets (2)                  </td><td>Number of transitive triplets                   </td><td>transTrip2  </td><td>        </td><td></td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>22</td></tr>
+	<tr><th scope=row>friendship.obj.endow.5</th><td>friendship</td><td>transitive triplets (2)                  </td><td>Lost ties: Number of transitive triplets        </td><td>transTrip2  </td><td>        </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>23</td></tr>
+	<tr><th scope=row>friendship.obj.creation.5</th><td>friendship</td><td>transitive triplets (2)                  </td><td>New ties: Number of transitive triplets         </td><td>transTrip2  </td><td>        </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>dyadic</td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>24</td></tr>
+	<tr><th scope=row>friendship.obj.eval.6</th><td>friendship</td><td>transitive mediated triplets             </td><td>Number of transitive triplets                   </td><td>transMedTrip</td><td>        </td><td></td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>25</td></tr>
+	<tr><th scope=row>friendship.obj.endow.6</th><td>friendship</td><td>transitive mediated triplets             </td><td>Lost ties: Number of transitive triplets        </td><td>transMedTrip</td><td>        </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>26</td></tr>
+	<tr><th scope=row>friendship.obj.creation.6</th><td>friendship</td><td>transitive mediated triplets             </td><td>New ties: Number of transitive triplets         </td><td>transMedTrip</td><td>        </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>27</td></tr>
+	<tr><th scope=row>friendship.obj.eval.7</th><td>friendship</td><td>transitive recipr. triplets              </td><td>Number of transitive recipr. triplets           </td><td>transRecTrip</td><td>        </td><td></td><td>eval    </td><td>FALSE</td><td> TRUE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>28</td></tr>
+	<tr><th scope=row>friendship.obj.endow.7</th><td>friendship</td><td>transitive recipr. triplets              </td><td>Lost ties: Number of transitive recipr. triplets</td><td>transRecTrip</td><td>        </td><td></td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>29</td></tr>
+	<tr><th scope=row>friendship.obj.creation.7</th><td>friendship</td><td>transitive recipr. triplets              </td><td>New ties: Number of transitive recipr. triplets </td><td>transRecTrip</td><td>        </td><td></td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>      </td><td> TRUE</td><td></td><td>NULL</td><td>NULL</td><td>oneMode</td><td>Group1</td><td>1</td><td>30</td></tr>
+	<tr><th scope=row>⋮</th><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋱</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td></tr>
+	<tr><th scope=row>drinking.obj.eval.62</th><td>drinking</td><td>drinking: pos. contrast outd. (friendship) - smoke1</td><td>sum drinking * abs.outd. (friendship) - smoke1  </td><td>degPosContrX</td><td>smoke1</td><td>friendship</td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>OK</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>654</td></tr>
+	<tr><th scope=row>drinking.obj.endow.30</th><td>drinking</td><td>drinking: pos. contrast outd. (friendship) - smoke1</td><td>sum drinking * abs.outd. (friendship) - smoke1  </td><td>degPosContrX</td><td>smoke1</td><td>friendship</td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>OK</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>655</td></tr>
+	<tr><th scope=row>drinking.obj.creation.30</th><td>drinking</td><td>drinking: pos. contrast outd. (friendship) - smoke1</td><td>sum drinking * abs.outd. (friendship) - smoke1  </td><td>degPosContrX</td><td>smoke1</td><td>friendship</td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>OK</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>656</td></tr>
+	<tr><th scope=row>drinking.obj.eval.63</th><td>drinking</td><td>drinking: neg. contrast outd. (friendship) - smoke1</td><td>sum drinking * abs.outd. (friendship) - smoke1  </td><td>degNegContrX</td><td>smoke1</td><td>friendship</td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>OK</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>657</td></tr>
+	<tr><th scope=row>drinking.obj.endow.31</th><td>drinking</td><td>drinking: neg. contrast outd. (friendship) - smoke1</td><td>sum drinking * abs.outd. (friendship) - smoke1  </td><td>degNegContrX</td><td>smoke1</td><td>friendship</td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>OK</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>658</td></tr>
+	<tr><th scope=row>drinking.obj.creation.31</th><td>drinking</td><td>drinking: neg. contrast outd. (friendship) - smoke1</td><td>sum drinking * abs.outd. (friendship) - smoke1  </td><td>degNegContrX</td><td>smoke1</td><td>friendship</td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>OK</td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>659</td></tr>
+	<tr><th scope=row>drinking.obj.eval.64</th><td>drinking</td><td>drinking: av. sim. (friendship) x ego's smoke1     </td><td>drinking av. sim. (friendship) x ego's smoke1   </td><td>avSimEgoX   </td><td>smoke1</td><td>friendship</td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>660</td></tr>
+	<tr><th scope=row>drinking.obj.endow.32</th><td>drinking</td><td>drinking: av. sim. (friendship) x ego's smoke1     </td><td>drinking av. sim. (friendship) x ego's smoke1   </td><td>avSimEgoX   </td><td>smoke1</td><td>friendship</td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>661</td></tr>
+	<tr><th scope=row>drinking.obj.creation.32</th><td>drinking</td><td>drinking: av. sim. (friendship) x ego's smoke1     </td><td>drinking av. sim. (friendship) x ego's smoke1   </td><td>avSimEgoX   </td><td>smoke1</td><td>friendship</td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>662</td></tr>
+	<tr><th scope=row>drinking.obj.eval.65</th><td>drinking</td><td>drinking: tot. sim. (friendship) x ego's smoke1    </td><td>drinking tot. sim. (friendship) x ego's smoke1  </td><td>totSimEgoX  </td><td>smoke1</td><td>friendship</td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>663</td></tr>
+	<tr><th scope=row>drinking.obj.endow.33</th><td>drinking</td><td>drinking: tot. sim. (friendship) x ego's smoke1    </td><td>drinking tot. sim. (friendship) x ego's smoke1  </td><td>totSimEgoX  </td><td>smoke1</td><td>friendship</td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>664</td></tr>
+	<tr><th scope=row>drinking.obj.creation.33</th><td>drinking</td><td>drinking: tot. sim. (friendship) x ego's smoke1    </td><td>drinking tot. sim. (friendship) x ego's smoke1  </td><td>totSimEgoX  </td><td>smoke1</td><td>friendship</td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>665</td></tr>
+	<tr><th scope=row>drinking.obj.eval.66</th><td>drinking</td><td>drinking: av. alters (friendship) x ego's smoke1   </td><td>drinking av. alters (friendship) x ego's smoke1 </td><td>avAltEgoX   </td><td>smoke1</td><td>friendship</td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>666</td></tr>
+	<tr><th scope=row>drinking.obj.endow.34</th><td>drinking</td><td>drinking: av. alters (friendship) x ego's smoke1   </td><td>drinking av. alters (friendship) x ego's smoke1 </td><td>avAltEgoX   </td><td>smoke1</td><td>friendship</td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>667</td></tr>
+	<tr><th scope=row>drinking.obj.creation.34</th><td>drinking</td><td>drinking: av. alters (friendship) x ego's smoke1   </td><td>drinking av. alters (friendship) x ego's smoke1 </td><td>avAltEgoX   </td><td>smoke1</td><td>friendship</td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>668</td></tr>
+	<tr><th scope=row>drinking.obj.eval.67</th><td>drinking</td><td>drinking: tot. alt's (friendship) x ego's smoke1   </td><td>drinking tot. alt's (friendship) x ego's smoke1 </td><td>totAltEgoX  </td><td>smoke1</td><td>friendship</td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>669</td></tr>
+	<tr><th scope=row>drinking.obj.endow.35</th><td>drinking</td><td>drinking: tot. alt's (friendship) x ego's smoke1   </td><td>drinking tot. alt's (friendship) x ego's smoke1 </td><td>totAltEgoX  </td><td>smoke1</td><td>friendship</td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>670</td></tr>
+	<tr><th scope=row>drinking.obj.creation.35</th><td>drinking</td><td>drinking: tot. alt's (friendship) x ego's smoke1   </td><td>drinking tot. alt's (friendship) x ego's smoke1 </td><td>totAltEgoX  </td><td>smoke1</td><td>friendship</td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>671</td></tr>
+	<tr><th scope=row>drinking.obj.eval.68</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>672</td></tr>
+	<tr><th scope=row>drinking.obj.endow.36</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>673</td></tr>
+	<tr><th scope=row>drinking.obj.creation.36</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>674</td></tr>
+	<tr><th scope=row>drinking.obj.eval.69</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>675</td></tr>
+	<tr><th scope=row>drinking.obj.endow.37</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>676</td></tr>
+	<tr><th scope=row>drinking.obj.creation.37</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>677</td></tr>
+	<tr><th scope=row>drinking.obj.eval.70</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>678</td></tr>
+	<tr><th scope=row>drinking.obj.endow.38</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>679</td></tr>
+	<tr><th scope=row>drinking.obj.creation.38</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>680</td></tr>
+	<tr><th scope=row>drinking.obj.eval.71</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>eval    </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>681</td></tr>
+	<tr><th scope=row>drinking.obj.endow.39</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>endow   </td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>682</td></tr>
+	<tr><th scope=row>drinking.obj.creation.39</th><td>drinking</td><td>drinking: unspecified interaction                  </td><td>drinking: unspecified interaction               </td><td>behUnspInt  </td><td>      </td><td>          </td><td>creation</td><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>⋯</td><td>0</td><td>  </td><td>FALSE</td><td></td><td>NULL</td><td>NULL</td><td>behavior</td><td>Group1</td><td>1</td><td>683</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an algorithm with a new project name</span>
+<span class="n">myalgorithm1</span> <span class="o">&lt;-</span> <span class="nf">sienaAlgorithmCreate</span><span class="p">(</span> <span class="n">projname</span> <span class="o">=</span> <span class="s">&#39;./data/s50NB_RSiena_output&#39;</span> <span class="p">)</span>
+
+<span class="c1"># Estimate again, using the second algorithm right from the start.</span>
+<span class="n">NBans</span> <span class="o">&lt;-</span> <span class="nf">siena07</span><span class="p">(</span> <span class="n">myalgorithm1</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">NBdata</span><span class="p">,</span> <span class="n">effects</span> <span class="o">=</span> <span class="n">NBeff</span><span class="p">)</span>
+<span class="c1"># You may improve convergence (considering the overall maximum</span>
+<span class="c1"># convergence ratio) by repeated estimation in the same way as above.</span>
+
+<span class="c1"># Look at results</span>
+<span class="n">NBans</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If you use this algorithm object, siena07 will create/use an output file ./data/s50NB_RSiena_output.txt .
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimates, standard errors and convergence t-ratios
+
+                                               Estimate   Standard   Convergence 
+                                                            Error      t-ratio   
+Network Dynamics 
+   1. rate constant friendship rate (period 1)  6.3175  ( 1.0385   )    0.0803   
+   2. rate constant friendship rate (period 2)  5.0232  ( 0.7736   )    0.0334   
+   3. eval outdegree (density)                 -2.8288  ( 0.2283   )   -0.0071   
+   4. eval reciprocity                          2.8284  ( 0.2936   )   -0.0166   
+   5. eval transitive triplets                  0.8919  ( 0.1480   )    0.0149   
+   6. eval transitive recipr. triplets         -0.5107  ( 0.2409   )    0.0136   
+   7. eval smoke1 alter                         0.0721  ( 0.1485   )    0.0377   
+   8. eval smoke1 ego                          -0.0101  ( 0.1658   )    0.0234   
+   9. eval smoke1 similarity                    0.2570  ( 0.2505   )   -0.0036   
+  10. eval drinking alter                      -0.0576  ( 0.1229   )    0.0470   
+  11. eval drinking squared alter              -0.1153  ( 0.1234   )   -0.0172   
+  12. eval drinking ego                         0.0379  ( 0.1161   )    0.0404   
+  13. eval drinking squared ego                 0.2302  ( 0.1275   )    0.0239   
+  14. eval drinking diff. squared              -0.1014  ( 0.0520   )    0.0517   
+
+Behavior Dynamics
+  15. rate rate drinking (period 1)             1.3338  ( 0.3710   )    0.0627   
+  16. rate rate drinking (period 2)             1.7877  ( 0.4801   )   -0.0303   
+  17. eval drinking linear shape                0.4010  ( 0.1963   )    0.0123   
+  18. eval drinking quadratic shape            -0.5507  ( 0.3391   )    0.0723   
+  19. eval drinking average alter               1.2149  ( 0.8540   )    0.0361   
+
+Overall maximum convergence ratio:    0.2124 
+
+
+Total of 3762 iteration steps.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a nicer listing of the results</span>
+<span class="nf">siena.table</span><span class="p">(</span><span class="n">NBans</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;html&quot;</span><span class="p">,</span> <span class="n">sig</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="c1"># This produces an html file; siena.table can also produce a LaTeX file.</span>
+<span class="c1"># But the current version (2.12) does not do this well for html.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">###                Assignment 2                                              ###</span>
+<span class="c1">################################################################################</span>
+
+<span class="c1"># 2a.</span>
+<span class="c1"># Replace the average alter effect by average similarity (avSim)</span>
+<span class="c1"># or total similarity (totSim) and estimate the model again.</span>
+<span class="c1"># 2b.</span>
+<span class="c1"># Add the effect of smoking on drinking and estimate again.</span>
+
+<span class="c1">################################################################################</span>
+
+<span class="c1">################################################################################</span>
+<span class="c1">###                Assignment 3                                              ###</span>
+<span class="c1">################################################################################</span>
+
+<span class="c1"># Read Sections 13.3 and 13.4 of the Siena Manual, download scripts</span>
+<span class="c1"># SelectionTables.r and InfluenceTables.r from the Siena website,</span>
+<span class="c1"># and make plots of the selection table and influence table for drinking.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="18-04-seir-hcd-model.html" title="previous page">SEIR-HCD Model</a>
+    <a class='right-next' id="next-link" href="18-network-analysis-of-tianya-bbs.html" title="next page">天涯论坛的回帖网络分析</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
