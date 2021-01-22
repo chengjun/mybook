@@ -46,9 +46,10 @@ nx.draw(G, with_labels = True)
 
 # WWW Data download 
 # 
-# <del>http://www3.nd.edu/~networks/resources.htm</del>
+# https://snap.stanford.edu/data/web-NotreDame.html
 # 
-# https://pan.baidu.com/s/1o86ZaTc
+# 上面的数据也可以在Barabasi的networksciencebook网页下载
+# http://networksciencebook.com/translations/en/resources/data.html
 # 
 # World-Wide-Web: [README] [DATA]
 # Réka Albert, Hawoong Jeong and Albert-László Barabási:
@@ -207,6 +208,12 @@ plt.show()
 # \\! - a negative thin space
 
 # ### 匹配系数
+# 
+# Assortativity measures the similarity of connections in the graph with respect to the node degree.
+# 
+# M. E. J. Newman, Mixing patterns in networks, Physical Review E, 67 026126, 2003
+# 
+# 
 
 # In[20]:
 
@@ -263,6 +270,41 @@ plt.show()
 # * out_degree_centrality(G)    # Compute the out-degree centrality for nodes.
 # * closeness_centrality(G[, v, weighted_edges])   #  Compute closeness centrality for nodes.
 # * betweenness_centrality(G[, normalized, ...])  #  Betweenness centrality measures.（介数中心性）
+
+# **degree_centrality(G)**
+# 
+# The degree centrality values are normalized by dividing by the maximum possible degree. 
+# - The maximum possible degreein a simple graph is n-1 where n is the number of nodes in G.
+
+# **closeness_centrality(G[, v, weighted_edges])**
+# 
+# Closeness centrality of a node u is the reciprocal of the average shortest path distance to u over all n-1 reachable nodes.
+# 
+# $$C(u) = \frac{n - 1}{\sum_{v=1}^{n-1} d(v, u)}$$
+# 
+# For graphs with more than one connected component:
+# 
+# $$C_{WF}(u) = \frac{n-1}{N-1} \frac{n - 1}{\sum_{v=1}^{n-1} d(v, u)}$$
+# 
+# Letting N denote the number of nodes in the graph
+# 
+# 
+# - Linton C. Freeman: Centrality in networks: I. Conceptual clarification. Social Networks 1:215-239, 1979. 
+# - Wasserman, S. and Faust, K., Social Network Analysis: Methods and Applications, 1994, Cambridge University Press.pp.201.
+
+# **betweenness_centrality(G)**
+# 
+# Compute the shortest-path betweenness centrality for nodes.
+# 
+# Betweenness centrality of a node 𝑣 is the sum of the fraction of all-pairs shortest paths that pass through 𝑣
+# 
+# $$c_B(v) =\sum_{s,t \in V} \frac{\sigma(s, t|v)}{\sigma(s, t)}$$
+# 
+# - s, t denote a node 
+# - 𝑉 is the set of nodes
+# - 𝜎(𝑠,𝑡) is the number of shortest (𝑠,𝑡)-paths
+# - 𝜎(𝑠,𝑡|𝑣) is the number of those paths passing through some node 𝑣 other than 𝑠,𝑡. 
+# 
 
 # In[22]:
 

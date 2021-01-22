@@ -44,12 +44,11 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -450,8 +449,9 @@
 </div>
 </div>
 <p>WWW Data download</p>
-<p><del>http://www3.nd.edu/~networks/resources.htm</del></p>
-<p>https://pan.baidu.com/s/1o86ZaTc</p>
+<p>https://snap.stanford.edu/data/web-NotreDame.html</p>
+<p>上面的数据也可以在Barabasi的networksciencebook网页下载
+http://networksciencebook.com/translations/en/resources/data.html</p>
 <p>World-Wide-Web: [README] [DATA]
 Réka Albert, Hawoong Jeong and Albert-László Barabási:
 Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
@@ -689,6 +689,8 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 <div class="section" id="id5">
 <h3>匹配系数<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Assortativity measures the similarity of connections in the graph with respect to the node degree.</p>
+<p>M. E. J. Newman, Mixing patterns in networks, Physical Review E, 67 026126, 2003</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># M. E. J. Newman, Mixing patterns in networks Physical Review E, 67 026126, 2003</span>
@@ -766,6 +768,34 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 <li><p>closeness_centrality(G[, v, weighted_edges])   #  Compute closeness centrality for nodes.</p></li>
 <li><p>betweenness_centrality(G[, normalized, …])  #  Betweenness centrality measures.（介数中心性）</p></li>
 </ul>
+<p><strong>degree_centrality(G)</strong></p>
+<p>The degree centrality values are normalized by dividing by the maximum possible degree.</p>
+<ul class="simple">
+<li><p>The maximum possible degreein a simple graph is n-1 where n is the number of nodes in G.</p></li>
+</ul>
+<p><strong>closeness_centrality(G[, v, weighted_edges])</strong></p>
+<p>Closeness centrality of a node u is the reciprocal of the average shortest path distance to u over all n-1 reachable nodes.</p>
+<div class="math notranslate nohighlight">
+\[C(u) = \frac{n - 1}{\sum_{v=1}^{n-1} d(v, u)}\]</div>
+<p>For graphs with more than one connected component:</p>
+<div class="math notranslate nohighlight">
+\[C_{WF}(u) = \frac{n-1}{N-1} \frac{n - 1}{\sum_{v=1}^{n-1} d(v, u)}\]</div>
+<p>Letting N denote the number of nodes in the graph</p>
+<ul class="simple">
+<li><p>Linton C. Freeman: Centrality in networks: I. Conceptual clarification. Social Networks 1:215-239, 1979.</p></li>
+<li><p>Wasserman, S. and Faust, K., Social Network Analysis: Methods and Applications, 1994, Cambridge University Press.pp.201.</p></li>
+</ul>
+<p><strong>betweenness_centrality(G)</strong></p>
+<p>Compute the shortest-path betweenness centrality for nodes.</p>
+<p>Betweenness centrality of a node 𝑣 is the sum of the fraction of all-pairs shortest paths that pass through 𝑣</p>
+<div class="math notranslate nohighlight">
+\[c_B(v) =\sum_{s,t \in V} \frac{\sigma(s, t|v)}{\sigma(s, t)}\]</div>
+<ul class="simple">
+<li><p>s, t denote a node</p></li>
+<li><p>𝑉 is the set of nodes</p></li>
+<li><p>𝜎(𝑠,𝑡) is the number of shortest (𝑠,𝑡)-paths</p></li>
+<li><p>𝜎(𝑠,𝑡|𝑣) is the number of those paths passing through some node 𝑣 other than 𝑠,𝑡.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">degree_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
@@ -796,7 +826,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_34_0.png" src="_images/17-networkx_34_0.png" />
+<img alt="_images/17-networkx_37_0.png" src="_images/17-networkx_37_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -813,7 +843,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_35_0.png" src="_images/17-networkx_35_0.png" />
+<img alt="_images/17-networkx_38_0.png" src="_images/17-networkx_38_0.png" />
 </div>
 </div>
 </div>
@@ -846,7 +876,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_37_0.png" src="_images/17-networkx_37_0.png" />
+<img alt="_images/17-networkx_40_0.png" src="_images/17-networkx_40_0.png" />
 </div>
 </div>
 </div>
@@ -869,7 +899,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_40_0.png" src="_images/17-networkx_40_0.png" />
+<img alt="_images/17-networkx_43_0.png" src="_images/17-networkx_43_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -879,7 +909,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_41_0.png" src="_images/17-networkx_41_0.png" />
+<img alt="_images/17-networkx_44_0.png" src="_images/17-networkx_44_0.png" />
 </div>
 </div>
 </div>
@@ -899,7 +929,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_43_0.png" src="_images/17-networkx_43_0.png" />
+<img alt="_images/17-networkx_46_0.png" src="_images/17-networkx_46_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -910,7 +940,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_44_0.png" src="_images/17-networkx_44_0.png" />
+<img alt="_images/17-networkx_47_0.png" src="_images/17-networkx_47_0.png" />
 </div>
 </div>
 </div>
@@ -931,7 +961,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_46_0.png" src="_images/17-networkx_46_0.png" />
+<img alt="_images/17-networkx_49_0.png" src="_images/17-networkx_49_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -941,7 +971,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_47_0.png" src="_images/17-networkx_47_0.png" />
+<img alt="_images/17-networkx_50_0.png" src="_images/17-networkx_50_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -967,7 +997,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_49_0.png" src="_images/17-networkx_49_0.png" />
+<img alt="_images/17-networkx_52_0.png" src="_images/17-networkx_52_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1001,7 +1031,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_52_0.png" src="_images/17-networkx_52_0.png" />
+<img alt="_images/17-networkx_55_0.png" src="_images/17-networkx_55_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1011,7 +1041,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_53_0.png" src="_images/17-networkx_53_0.png" />
+<img alt="_images/17-networkx_56_0.png" src="_images/17-networkx_56_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1023,7 +1053,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_54_0.png" src="_images/17-networkx_54_0.png" />
+<img alt="_images/17-networkx_57_0.png" src="_images/17-networkx_57_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1041,7 +1071,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_55_0.png" src="_images/17-networkx_55_0.png" />
+<img alt="_images/17-networkx_58_0.png" src="_images/17-networkx_58_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1087,7 +1117,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_58_0.png" src="_images/17-networkx_58_0.png" />
+<img alt="_images/17-networkx_61_0.png" src="_images/17-networkx_61_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1115,7 +1145,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_59_0.png" src="_images/17-networkx_59_0.png" />
+<img alt="_images/17-networkx_62_0.png" src="_images/17-networkx_62_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1143,7 +1173,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_60_0.png" src="_images/17-networkx_60_0.png" />
+<img alt="_images/17-networkx_63_0.png" src="_images/17-networkx_63_0.png" />
 </div>
 </div>
 <p>作业</p>
@@ -1186,7 +1216,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/17-networkx_64_0.png" src="_images/17-networkx_64_0.png" />
+<img alt="_images/17-networkx_67_0.png" src="_images/17-networkx_67_0.png" />
 </div>
 </div>
 </div>
