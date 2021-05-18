@@ -712,6 +712,7 @@ for i, ax in enumerate(axes.flat):
 # 09-06-linear-regression
 # 09-07-support-vector-machines
 # 09-08-random-forests
+# 09-09-googleflustudy
 # 09-10-future-employment
 # ```
 # 

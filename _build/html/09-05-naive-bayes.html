@@ -49,6 +49,8 @@
     <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -158,6 +160,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="09-08-random-forests.html">
      In-Depth: Decision Trees and Random Forests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-09-googleflustudy.html">
+     Forecasting and nowcasting with Google Flu Trends
     </a>
    </li>
    <li class="toctree-l2">
@@ -417,8 +424,8 @@ $<span class="math notranslate nohighlight">\(P(L~|~{\rm features}) = \frac{P({\
 <p>The “naive” conditional independent assumptions: assume that each feature <span class="math notranslate nohighlight">\(x_i\)</span> is conditionally statistical independence of every other feature <span class="math notranslate nohighlight">\(x_j\)</span> for <span class="math notranslate nohighlight">\(j\neq i\)</span>, given the category <span class="math notranslate nohighlight">\(L_k\)</span>.  This means that</p>
 <div class="math notranslate nohighlight">
 \[p(x_i \mid x_{i+1}, \dots ,x_{n}, L_k ) = p(x_i \mid L_k)\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-ac4a4d4a-23a3-4921-a465-0ddde3e8bddd">
-<span class="eqno">(2)<a class="headerlink" href="#equation-ac4a4d4a-23a3-4921-a465-0ddde3e8bddd" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b282c7b4-f302-459d-b191-68e9455542e8">
+<span class="eqno">(2)<a class="headerlink" href="#equation-b282c7b4-f302-459d-b191-68e9455542e8" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(L_k, x_1, \dots, x_n) &amp; = p(x_1, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2 \mid x_3, \dots, x_n, L_k) p(x_3, \dots, x_n, L_k) \\
@@ -426,8 +433,8 @@ p(L_k, x_1, \dots, x_n) &amp; = p(x_1, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2 \mid x_3, \dots, x_n, L_k) \dots   p(x_{n-1} \mid x_n, L_k) p(x_n \mid L_k) p(L_k) \\
 \end{align}\]</div>
 <p>Thus, the joint model can be expressed as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0a09b1fe-7a68-4f88-bd07-bd5a6f935123">
-<span class="eqno">(3)<a class="headerlink" href="#equation-0a09b1fe-7a68-4f88-bd07-bd5a6f935123" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-db131431-a0cf-46c1-800d-8a59346e8a4a">
+<span class="eqno">(3)<a class="headerlink" href="#equation-db131431-a0cf-46c1-800d-8a59346e8a4a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(L_k \mid x_1, \dots, x_n) &amp; \varpropto p(L_k, x_1, \dots, x_n) = \\
                             &amp; = p(L_k) \ p(x_1 \mid L_k) \ p(x_2\mid L_k) \ p(x_3\mid L_k) \ \cdots \\
                             &amp; = p(L_k) \prod_{i=1}^n p(x_i \mid L_k)\,.
@@ -463,8 +470,8 @@ f(x \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2} } e^{ -\frac{(x-\mu)^2}{2
 <p>Suppose we have collected some observation value <span class="math notranslate nohighlight">\(v\)</span>.
 Then, the probability distribution of <span class="math notranslate nohighlight">\(v\)</span> given a class <span class="math notranslate nohighlight">\(C_k\)</span>,</p>
 <p><span class="math notranslate nohighlight">\(p(x=v \mid C_k)\)</span>, can be computed by plugging <span class="math notranslate nohighlight">\(v\)</span> into the equation for a Normal distribution parameterized by <span class="math notranslate nohighlight">\(\mu_k\)</span> and <span class="math notranslate nohighlight">\(\sigma^2_k\)</span>. That is,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2694eebc-95ec-48e9-be5a-10c062d14bab">
-<span class="eqno">(4)<a class="headerlink" href="#equation-2694eebc-95ec-48e9-be5a-10c062d14bab" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d45f2e56-95a5-4117-a6dc-5441ff74a8a0">
+<span class="eqno">(4)<a class="headerlink" href="#equation-d45f2e56-95a5-4117-a6dc-5441ff74a8a0" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(x=v \mid C_k)=\frac{1}{\sqrt{2\pi\sigma^2_k}}\,e^{ -\frac{(v-\mu_k)^2}{2\sigma^2_k} }
 \end{align}\]</div>
 <p><strong>Problem</strong>: classify whether a given person is a male or a female based on the measured features.</p>

@@ -1,0 +1,1826 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Forecasting and nowcasting with Google Flu Trends &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The future of employment" href="09-10-future-employment.html" />
+    <link rel="prev" title="In-Depth: Decision Trees and Random Forests" href="09-08-random-forests.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-03-hyperparameters-and-model-validation.html">
+     Hyperparameters and Model Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-04-feature-engineering.html">
+     Feature Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-05-naive-bayes.html">
+     In Depth: Naive Bayes Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-06-linear-regression.html">
+     In Depth: Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-07-support-vector-machines.html">
+     In-Depth: Support Vector Machines
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-08-random-forests.html">
+     In-Depth: Decision Trees and Random Forests
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Forecasting and nowcasting with Google Flu Trends
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-10-future-employment.html">
+     The future of employment
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/09-09-googleflustudy.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F09-09-googleflustudy.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/09-09-googleflustudy.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/09-09-googleflustudy.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#predicting-the-present-with-google-trends">
+   Predicting the Present with Google Trends
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#detecting-influenza-epidemics-using-search-engine-query-data">
+   Detecting influenza epidemics using search engine query data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-parable-of-google-flu-traps-in-big-data-analysis">
+   The Parable of Google Flu: Traps in Big Data Analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-by-doing">
+   Learning by Doing
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="forecasting-and-nowcasting-with-google-flu-trends">
+<h1>Forecasting and nowcasting with Google Flu Trends<a class="headerlink" href="#forecasting-and-nowcasting-with-google-flu-trends" title="Permalink to this headline">¶</a></h1>
+<p>Rather than predicting the future, nowcasting attempts to use ideas from forecasting to measure the current state of the world; it attempts to “predict the present” (Choi and Varian 2012). Nowcasting has the potential to be especially useful to governments and companies that require timely and accurate measures of the world.</p>
+<p>https://www.bitbybitbook.com/en/1st-ed/observing-behavior/strategies/forecasting/</p>
+<div class="section" id="predicting-the-present-with-google-trends">
+<h2>Predicting the Present with Google Trends<a class="headerlink" href="#predicting-the-present-with-google-trends" title="Permalink to this headline">¶</a></h2>
+<p>HYUNYOUNG CHOI and HAL VARIAN</p>
+<p>Google, Inc., California, USA</p>
+<blockquote>
+<div><p>In this paper we show how to use search engine data to forecast near-term values of economic indicators. Examples include automobile sales, unemployment claims, travel destination planning
+and consumer confidence.</p>
+</div></blockquote>
+<p>Choi, Hyunyoung, and Hal Varian. 2012. “Predicting the Present with Google Trends.” Economic Record 88 (June):2–9. https://doi.org/10.1111/j.1475-4932.2012.00809.x.</p>
+</div>
+<div class="section" id="detecting-influenza-epidemics-using-search-engine-query-data">
+<h2>Detecting influenza epidemics using search engine query data<a class="headerlink" href="#detecting-influenza-epidemics-using-search-engine-query-data" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Jeremy Ginsberg et al. (2009) Detecting influenza epidemics using search engine query data. Nature. 457, pp:1012–1014 https://www.nature.com/articles/nature07634#Ack1</p></li>
+<li><p><strong>Google Query Data</strong> https://static-content.springer.com/esm/art%3A10.1038%2Fnature07634/MediaObjects/41586_2009_BFnature07634_MOESM271_ESM.xls Query fractions for the top 100 search queries, sorted by mean Z-transformed correlation with CDC-provided ILI percentages across the nine regions of the United States. (XLS 5264 kb)</p></li>
+<li><p><strong>CDC’s ILI Data</strong>. We use the weighted version of CDC’s ILI activity level as the estimation target (available at gis.cdc.gov/grasp/fluview/fluportaldashboard.html). The weekly revisions of CDC’s ILI are available at the CDC website for all recorded seasons (from week 40 of a given year to week 20 of the subsequent year). Click <strong>Download Data</strong> to get the data.</p></li>
+</ul>
+<p><img alt="image.png" src="_images/09CDC.png" /></p>
+<p>For example, ILI report revision at week 50 of season 2012–2013 is available at www.cdc.gov/flu/weekly/weeklyarchives2012-2013/data/senAllregt50.htm; ILI report revision at week 9 of season 2014–2015 is available at www.cdc.gov/flu/weekly/weeklyarchives2014-2015/data/senAllregt09.html.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">ElasticNetCV</span><span class="p">,</span> <span class="n">ElasticNet</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">RandomizedSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;41586_2009_BFnature07634_MOESM271_ESM.xls&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>United States</th>
+      <th>New England Region</th>
+      <th>Mid-Atlantic Region</th>
+      <th>East North Central Region</th>
+      <th>West North Central Region</th>
+      <th>South Atlantic Region</th>
+      <th>East South Central Region</th>
+      <th>West South Central Region</th>
+      <th>Mountain Region</th>
+      <th>Pacific Region</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2003-06-01</td>
+      <td>0.778</td>
+      <td>0.979</td>
+      <td>0.990</td>
+      <td>0.838</td>
+      <td>0.673</td>
+      <td>0.732</td>
+      <td>0.922</td>
+      <td>0.809</td>
+      <td>0.486</td>
+      <td>0.621</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2003-06-08</td>
+      <td>0.850</td>
+      <td>0.932</td>
+      <td>0.806</td>
+      <td>0.879</td>
+      <td>0.839</td>
+      <td>0.852</td>
+      <td>0.479</td>
+      <td>0.800</td>
+      <td>1.383</td>
+      <td>1.008</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2003-06-15</td>
+      <td>0.838</td>
+      <td>1.018</td>
+      <td>0.892</td>
+      <td>0.839</td>
+      <td>0.568</td>
+      <td>0.751</td>
+      <td>1.130</td>
+      <td>1.111</td>
+      <td>0.702</td>
+      <td>0.777</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2003-06-22</td>
+      <td>0.828</td>
+      <td>0.615</td>
+      <td>1.149</td>
+      <td>0.676</td>
+      <td>0.730</td>
+      <td>0.867</td>
+      <td>1.149</td>
+      <td>0.498</td>
+      <td>0.936</td>
+      <td>0.734</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2003-06-29</td>
+      <td>0.747</td>
+      <td>0.896</td>
+      <td>0.768</td>
+      <td>0.829</td>
+      <td>0.612</td>
+      <td>0.530</td>
+      <td>0.854</td>
+      <td>0.491</td>
+      <td>1.081</td>
+      <td>1.015</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;United States&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-09-googleflustudy_4_0.png" src="_images/09-09-googleflustudy_4_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Mid-Atlantic Region&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-09-googleflustudy_5_0.png" src="_images/09-09-googleflustudy_5_0.png" />
+</div>
+</div>
+<p>Figure 1: An evaluation of how many top-scoring queries to include in the ILI-related query fraction.</p>
+<p><img alt="image.png" src="_images/09gft1.png" /></p>
+<p>Maximal performance at estimating out-of-sample points during cross-validation was obtained by summing the top 45 search queries. A steep drop in model performance occurs after adding query 81, which is ‘oscar nominations’.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combine 45 queries</span>
+<span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">46</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;41586_2009_BFnature07634_MOESM271_ESM.xls&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nb">dict</span><span class="p">[</span><span class="s1">&#39;query&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;United States&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+<span class="n">dat</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>query1</th>
+      <th>query2</th>
+      <th>query3</th>
+      <th>query4</th>
+      <th>query5</th>
+      <th>query6</th>
+      <th>query7</th>
+      <th>query8</th>
+      <th>query9</th>
+      <th>...</th>
+      <th>query36</th>
+      <th>query37</th>
+      <th>query38</th>
+      <th>query39</th>
+      <th>query40</th>
+      <th>query41</th>
+      <th>query42</th>
+      <th>query43</th>
+      <th>query44</th>
+      <th>query45</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2003-06-01</td>
+      <td>0.778</td>
+      <td>5.297</td>
+      <td>6.096</td>
+      <td>0.893</td>
+      <td>1.036</td>
+      <td>1.357</td>
+      <td>0.124</td>
+      <td>0.366</td>
+      <td>0.675</td>
+      <td>...</td>
+      <td>0.483</td>
+      <td>0.131</td>
+      <td>0.633</td>
+      <td>0.173</td>
+      <td>0.241</td>
+      <td>0.848</td>
+      <td>0.138</td>
+      <td>0.190</td>
+      <td>2.027</td>
+      <td>2.133</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2003-06-08</td>
+      <td>0.850</td>
+      <td>5.348</td>
+      <td>6.097</td>
+      <td>1.005</td>
+      <td>0.899</td>
+      <td>1.584</td>
+      <td>0.096</td>
+      <td>0.432</td>
+      <td>0.574</td>
+      <td>...</td>
+      <td>0.527</td>
+      <td>0.178</td>
+      <td>0.716</td>
+      <td>0.227</td>
+      <td>0.257</td>
+      <td>1.153</td>
+      <td>0.145</td>
+      <td>0.164</td>
+      <td>2.245</td>
+      <td>2.335</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2003-06-15</td>
+      <td>0.838</td>
+      <td>4.961</td>
+      <td>5.772</td>
+      <td>0.868</td>
+      <td>0.811</td>
+      <td>1.515</td>
+      <td>0.084</td>
+      <td>0.392</td>
+      <td>0.563</td>
+      <td>...</td>
+      <td>0.509</td>
+      <td>0.156</td>
+      <td>0.760</td>
+      <td>0.213</td>
+      <td>0.234</td>
+      <td>1.123</td>
+      <td>0.138</td>
+      <td>0.213</td>
+      <td>2.338</td>
+      <td>2.311</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2003-06-22</td>
+      <td>0.828</td>
+      <td>4.480</td>
+      <td>5.140</td>
+      <td>0.733</td>
+      <td>0.883</td>
+      <td>1.942</td>
+      <td>0.052</td>
+      <td>0.326</td>
+      <td>0.478</td>
+      <td>...</td>
+      <td>0.417</td>
+      <td>0.128</td>
+      <td>0.715</td>
+      <td>0.198</td>
+      <td>0.192</td>
+      <td>1.220</td>
+      <td>0.146</td>
+      <td>0.198</td>
+      <td>2.231</td>
+      <td>2.237</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2003-06-29</td>
+      <td>0.747</td>
+      <td>3.910</td>
+      <td>4.409</td>
+      <td>0.637</td>
+      <td>0.726</td>
+      <td>1.580</td>
+      <td>0.049</td>
+      <td>0.352</td>
+      <td>0.364</td>
+      <td>...</td>
+      <td>0.429</td>
+      <td>0.080</td>
+      <td>0.671</td>
+      <td>0.150</td>
+      <td>0.153</td>
+      <td>1.114</td>
+      <td>0.138</td>
+      <td>0.165</td>
+      <td>2.005</td>
+      <td>2.085</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 46 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="the-parable-of-google-flu-traps-in-big-data-analysis">
+<h2>The Parable of Google Flu: Traps in Big Data Analysis<a class="headerlink" href="#the-parable-of-google-flu-traps-in-big-data-analysis" title="Permalink to this headline">¶</a></h2>
+<p>David Lazer*, Ryan Kennedy, Gary King, Alessandro Vespignani</p>
+<p>Science 14 Mar 2014: Vol. 343, Issue 6176, pp. 1203-1205 DOI: 10.1126/science.1248506</p>
+<p>In February 2013, Google Flu Trends (GFT) made headlines but not for a reason that Google executives or the creators of the flu tracking system would have hoped. Nature reported that GFT was predicting more than double the proportion of doctor visits for influenza-like illness (ILI) than the Centers for Disease Control and Prevention (CDC), which bases its estimates on surveillance reports from laboratories across the United States (1, 2). This happened despite the fact that GFT was built to predict CDC reports. Given that GFT is often held up as an exemplary use of big data (3, 4), what lessons can we draw from this error?</p>
+<p>https://science.sciencemag.org/content/343/6176/1203.summary</p>
+<p><strong>Data &amp; Code</strong></p>
+<p>https://science.sciencemag.org/content/sci/suppl/2014/03/12/343.6176.1203.DC1/1248506.Lazer.SM.revision1.pdf</p>
+<p>Lazer, David; Kennedy, Ryan; King, Gary; Vespignani, Alessandro, 2014, “Replication data for: The Parable of Google Flu: Traps in Big Data Analysis”, https://doi.org/10.7910/DVN/24823, Harvard Dataverse</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># merge the ILI data</span>
+<span class="c1"># cflu is CDC % ILI</span>
+<span class="n">dat2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../GFT2.0/parable/ParableOfGFT(Replication).csv&#39;</span><span class="p">)</span>
+<span class="n">dat3</span> <span class="o">=</span> <span class="n">dat2</span><span class="p">[[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;cflu&#39;</span><span class="p">]]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">dat3</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>query1</th>
+      <th>query2</th>
+      <th>query3</th>
+      <th>query4</th>
+      <th>query5</th>
+      <th>query6</th>
+      <th>query7</th>
+      <th>query8</th>
+      <th>query9</th>
+      <th>...</th>
+      <th>query37</th>
+      <th>query38</th>
+      <th>query39</th>
+      <th>query40</th>
+      <th>query41</th>
+      <th>query42</th>
+      <th>query43</th>
+      <th>query44</th>
+      <th>query45</th>
+      <th>cflu</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2003-09-28</td>
+      <td>1.853</td>
+      <td>6.679</td>
+      <td>7.824</td>
+      <td>1.072</td>
+      <td>2.399</td>
+      <td>1.623</td>
+      <td>0.162</td>
+      <td>0.606</td>
+      <td>0.731</td>
+      <td>...</td>
+      <td>0.224</td>
+      <td>0.741</td>
+      <td>0.324</td>
+      <td>0.496</td>
+      <td>1.267</td>
+      <td>0.294</td>
+      <td>0.204</td>
+      <td>2.097</td>
+      <td>2.905</td>
+      <td>0.884021</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2003-10-05</td>
+      <td>1.976</td>
+      <td>6.310</td>
+      <td>8.259</td>
+      <td>1.194</td>
+      <td>2.733</td>
+      <td>1.589</td>
+      <td>0.167</td>
+      <td>0.607</td>
+      <td>0.662</td>
+      <td>...</td>
+      <td>0.210</td>
+      <td>0.852</td>
+      <td>0.295</td>
+      <td>0.442</td>
+      <td>1.329</td>
+      <td>0.322</td>
+      <td>0.225</td>
+      <td>2.233</td>
+      <td>2.713</td>
+      <td>1.027731</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2003-10-12</td>
+      <td>2.834</td>
+      <td>6.911</td>
+      <td>9.009</td>
+      <td>1.228</td>
+      <td>3.304</td>
+      <td>1.581</td>
+      <td>0.221</td>
+      <td>0.664</td>
+      <td>0.783</td>
+      <td>...</td>
+      <td>0.259</td>
+      <td>0.890</td>
+      <td>0.306</td>
+      <td>0.413</td>
+      <td>1.392</td>
+      <td>0.353</td>
+      <td>0.201</td>
+      <td>2.305</td>
+      <td>2.874</td>
+      <td>1.282964</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2003-10-19</td>
+      <td>3.501</td>
+      <td>7.492</td>
+      <td>9.611</td>
+      <td>1.291</td>
+      <td>3.846</td>
+      <td>1.619</td>
+      <td>0.326</td>
+      <td>0.698</td>
+      <td>0.841</td>
+      <td>...</td>
+      <td>0.260</td>
+      <td>0.900</td>
+      <td>0.352</td>
+      <td>0.450</td>
+      <td>1.357</td>
+      <td>0.383</td>
+      <td>0.255</td>
+      <td>2.279</td>
+      <td>2.965</td>
+      <td>1.326605</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2003-10-26</td>
+      <td>3.721</td>
+      <td>7.121</td>
+      <td>9.352</td>
+      <td>1.309</td>
+      <td>3.876</td>
+      <td>1.640</td>
+      <td>0.288</td>
+      <td>0.674</td>
+      <td>0.762</td>
+      <td>...</td>
+      <td>0.260</td>
+      <td>0.950</td>
+      <td>0.293</td>
+      <td>0.393</td>
+      <td>1.367</td>
+      <td>0.319</td>
+      <td>0.271</td>
+      <td>2.317</td>
+      <td>2.986</td>
+      <td>1.773040</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 47 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#data.to_csv(&#39;gft_ili_us.csv&#39;, index = False)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># filter data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;query1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;query1&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;query1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;query2&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;query2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;query3&#39;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;query3&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;cflu&#39;</span><span class="p">],</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;CDC ILI&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-09-googleflustudy_12_0.png" src="_images/09-09-googleflustudy_12_0.png" />
+</div>
+</div>
+<p>Using this ILI-related query fraction as the explanatory variable, we fit a final linear model to weekly ILI percentages between 2003 and 2007 for all nine regions together, thus obtaining a single, region-independent coefficient. The model was able to obtain a good fit with CDC-reported ILI percentages, with a mean correlation of 0.90 (min = 0.80, max = 0.96, n = 9 regions; Fig. 2).</p>
+<p><strong>Figure 2</strong>: A comparison of model estimates for the mid-Atlantic region (black) against CDC-reported ILI percentages (red), including points over which the model was fit and validated.</p>
+<p><img alt="image.png" src="_images/09gft2.png" /></p>
+<p>A correlation of 0.85 was obtained over 128 points from this region to which the model was fit, whereas a correlation of 0.96 was obtained over 42 validation points. Dotted lines indicate 95% prediction intervals. The region comprises New York, New Jersey and Pennsylvania.</p>
+<p><strong>Figure 3</strong>: ILI percentages estimated by our model (black) and provided by the CDC (red) in the <strong>mid-Atlantic region</strong>, showing data available at four points in the 2007-2008 influenza season.</p>
+<p><img alt="image.png" src="_images/09gft3.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+    <span class="n">data</span><span class="p">[</span><span class="s2">&quot;lag_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;cflu&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;done&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>done
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;cflu&#39;</span><span class="p">]</span>
+<span class="n">date</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;cflu&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>242
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      0.884021
+1      1.027731
+2      1.282964
+3      1.326605
+4      1.773040
+         ...   
+237    1.165197
+238    1.020348
+239    0.877607
+240    0.825107
+241    0.787315
+Name: cflu, Length: 242, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>query1</th>
+      <th>query2</th>
+      <th>query3</th>
+      <th>query4</th>
+      <th>query5</th>
+      <th>query6</th>
+      <th>query7</th>
+      <th>query8</th>
+      <th>query9</th>
+      <th>query10</th>
+      <th>...</th>
+      <th>query43</th>
+      <th>query44</th>
+      <th>query45</th>
+      <th>lag_1</th>
+      <th>lag_2</th>
+      <th>lag_3</th>
+      <th>lag_4</th>
+      <th>lag_5</th>
+      <th>lag_6</th>
+      <th>lag_7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.853</td>
+      <td>6.679</td>
+      <td>7.824</td>
+      <td>1.072</td>
+      <td>2.399</td>
+      <td>1.623</td>
+      <td>0.162</td>
+      <td>0.606</td>
+      <td>0.731</td>
+      <td>0.145</td>
+      <td>...</td>
+      <td>0.204</td>
+      <td>2.097</td>
+      <td>2.905</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.976</td>
+      <td>6.310</td>
+      <td>8.259</td>
+      <td>1.194</td>
+      <td>2.733</td>
+      <td>1.589</td>
+      <td>0.167</td>
+      <td>0.607</td>
+      <td>0.662</td>
+      <td>0.185</td>
+      <td>...</td>
+      <td>0.225</td>
+      <td>2.233</td>
+      <td>2.713</td>
+      <td>0.884021</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2.834</td>
+      <td>6.911</td>
+      <td>9.009</td>
+      <td>1.228</td>
+      <td>3.304</td>
+      <td>1.581</td>
+      <td>0.221</td>
+      <td>0.664</td>
+      <td>0.783</td>
+      <td>0.259</td>
+      <td>...</td>
+      <td>0.201</td>
+      <td>2.305</td>
+      <td>2.874</td>
+      <td>1.027731</td>
+      <td>0.884021</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3.501</td>
+      <td>7.492</td>
+      <td>9.611</td>
+      <td>1.291</td>
+      <td>3.846</td>
+      <td>1.619</td>
+      <td>0.326</td>
+      <td>0.698</td>
+      <td>0.841</td>
+      <td>0.312</td>
+      <td>...</td>
+      <td>0.255</td>
+      <td>2.279</td>
+      <td>2.965</td>
+      <td>1.282964</td>
+      <td>1.027731</td>
+      <td>0.884021</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.721</td>
+      <td>7.121</td>
+      <td>9.352</td>
+      <td>1.309</td>
+      <td>3.876</td>
+      <td>1.640</td>
+      <td>0.288</td>
+      <td>0.674</td>
+      <td>0.762</td>
+      <td>0.321</td>
+      <td>...</td>
+      <td>0.271</td>
+      <td>2.317</td>
+      <td>2.986</td>
+      <td>1.326605</td>
+      <td>1.282964</td>
+      <td>1.027731</td>
+      <td>0.884021</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>237</th>
+      <td>2.683</td>
+      <td>8.227</td>
+      <td>11.683</td>
+      <td>1.636</td>
+      <td>2.690</td>
+      <td>2.322</td>
+      <td>0.241</td>
+      <td>0.858</td>
+      <td>0.933</td>
+      <td>0.292</td>
+      <td>...</td>
+      <td>0.281</td>
+      <td>2.707</td>
+      <td>1.569</td>
+      <td>1.311296</td>
+      <td>1.652751</td>
+      <td>2.033656</td>
+      <td>2.692446</td>
+      <td>3.215218</td>
+      <td>3.832486</td>
+      <td>4.532340</td>
+    </tr>
+    <tr>
+      <th>238</th>
+      <td>2.290</td>
+      <td>7.648</td>
+      <td>10.502</td>
+      <td>1.435</td>
+      <td>2.359</td>
+      <td>2.239</td>
+      <td>0.165</td>
+      <td>0.769</td>
+      <td>0.850</td>
+      <td>0.225</td>
+      <td>...</td>
+      <td>0.254</td>
+      <td>2.568</td>
+      <td>1.510</td>
+      <td>1.165197</td>
+      <td>1.311296</td>
+      <td>1.652751</td>
+      <td>2.033656</td>
+      <td>2.692446</td>
+      <td>3.215218</td>
+      <td>3.832486</td>
+    </tr>
+    <tr>
+      <th>239</th>
+      <td>1.766</td>
+      <td>7.375</td>
+      <td>10.081</td>
+      <td>1.258</td>
+      <td>2.031</td>
+      <td>2.194</td>
+      <td>0.142</td>
+      <td>0.735</td>
+      <td>0.775</td>
+      <td>0.214</td>
+      <td>...</td>
+      <td>0.237</td>
+      <td>2.480</td>
+      <td>1.468</td>
+      <td>1.020348</td>
+      <td>1.165197</td>
+      <td>1.311296</td>
+      <td>1.652751</td>
+      <td>2.033656</td>
+      <td>2.692446</td>
+      <td>3.215218</td>
+    </tr>
+    <tr>
+      <th>240</th>
+      <td>1.446</td>
+      <td>7.132</td>
+      <td>9.531</td>
+      <td>1.097</td>
+      <td>1.930</td>
+      <td>2.190</td>
+      <td>0.114</td>
+      <td>0.654</td>
+      <td>0.657</td>
+      <td>0.188</td>
+      <td>...</td>
+      <td>0.269</td>
+      <td>2.436</td>
+      <td>1.378</td>
+      <td>0.877607</td>
+      <td>1.020348</td>
+      <td>1.165197</td>
+      <td>1.311296</td>
+      <td>1.652751</td>
+      <td>2.033656</td>
+      <td>2.692446</td>
+    </tr>
+    <tr>
+      <th>241</th>
+      <td>1.317</td>
+      <td>6.807</td>
+      <td>9.315</td>
+      <td>1.000</td>
+      <td>1.752</td>
+      <td>2.551</td>
+      <td>0.126</td>
+      <td>0.619</td>
+      <td>0.672</td>
+      <td>0.168</td>
+      <td>...</td>
+      <td>0.259</td>
+      <td>2.470</td>
+      <td>1.423</td>
+      <td>0.825107</td>
+      <td>0.877607</td>
+      <td>1.020348</td>
+      <td>1.165197</td>
+      <td>1.311296</td>
+      <td>1.652751</td>
+      <td>2.033656</td>
+    </tr>
+  </tbody>
+</table>
+<p>242 rows × 52 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">N</span><span class="p">,]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">N</span><span class="p">:,]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">N</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">N</span><span class="p">:]</span>
+
+<span class="c1"># 利用弹性网络</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="n">cv_model</span> <span class="o">=</span> <span class="n">ElasticNetCV</span><span class="p">(</span><span class="n">l1_ratio</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">n_alphas</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                        <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">precompute</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.006</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+                        <span class="n">copy_X</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># 训练模型              </span>
+<span class="n">cv_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># 计算最佳迭代次数、alpha和ratio</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;最佳 alpha: </span><span class="si">%.8f</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">cv_model</span>.alpha_)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;最佳 l1_ratio: </span><span class="si">%.3f</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">cv_model</span>.l1_ratio_)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;迭代次数 </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">cv_model</span>.n_iter_)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>最佳 alpha: 0.06455398
+最佳 l1_ratio: 0.500
+迭代次数 63
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 输出结果</span>
+<span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">cv_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">cv_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train r2 score: &#39;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train_pred</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test r2 score: &#39;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="n">train_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train_pred</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">test_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">train_rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">train_mse</span><span class="p">)</span>
+<span class="n">test_rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">test_mse</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train RMSE: </span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">train_rmse</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test RMSE: </span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">test_rmse</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train r2 score:  0.899526504124001
+Test r2 score:  0.8509986476456004
+Train RMSE: 0.4792
+Test RMSE: 0.4345
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">)})</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">date</span><span class="p">[</span><span class="n">N</span><span class="p">:],</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-09-googleflustudy_22_0.png" src="_images/09-09-googleflustudy_22_0.png" />
+</div>
+</div>
+<p>However, this apparent success story eventually turned into an embarrassment.</p>
+<ol class="simple">
+<li><p>Google Flu Trends with all its data, machine learning, and powerful computing did not dramatically outperform a simple and easier-to-understand heuristic. This suggests that when evaluating any forecast or nowcast, it is important to compare against a baseline.</p></li>
+<li><p>Its ability to predict the CDC flu data was prone to short-term failure and long-term decay because of drift and algorithmic confounding.</p></li>
+</ol>
+<p>These two caveats complicate future nowcasting efforts, but they do not doom them. In fact, by using more careful methods, Lazer et al. (2014) and Yang, Santillana, and Kou (2015) were able to avoid these two problems.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Goel, Sharad, Jake M. Hofman, Sébastien Lahaie, David M. Pennock, and Duncan J. Watts. 2010. “Predicting Consumer Behavior with Web Search.” Proceedings of the National Academy of Sciences of the USA 107 (41):17486–90. https://doi.org/10.1073/pnas.1005962107.</p></li>
+<li><p>Yang, Shihao, Mauricio Santillana, and S. C. Kou. 2015. “Accurate Estimation of Influenza Epidemics Using Google Search Data via ARGO.” Proceedings of the National Academy of Sciences of the USA 112 (47):14473–8. https://doi.org/10.1073/pnas.1515373112.</p></li>
+<li><p>Lazer, David, Ryan Kennedy, Gary King, and Alessandro Vespignani. 2014. “The Parable of Google Flu: Traps in Big Data Analysis.” Science 343 (6176):1203–5. https://doi.org/10.1126/science.1248506.</p></li>
+</ul>
+</div>
+<div class="section" id="learning-by-doing">
+<h2>Learning by Doing<a class="headerlink" href="#learning-by-doing" title="Permalink to this headline">¶</a></h2>
+<p>https://github.com/JEstebanMejiaV/The.Analytics.Edge/blob/352d59a27d2c376f268b1dbdf838e9ee77989d36/Unit%202%20-%20Linear%20Regression/Detecting%20Flu%20Epidemics%20via%20Search%20Engine%20Query%20Data.ipynb</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;FluTrain.csv&#39;</span><span class="p">)</span>
+<span class="n">dat</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Week</th>
+      <th>ILI</th>
+      <th>Queries</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2004-01-04 - 2004-01-10</td>
+      <td>2.418331</td>
+      <td>0.237716</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2004-01-11 - 2004-01-17</td>
+      <td>1.809056</td>
+      <td>0.220452</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2004-01-18 - 2004-01-24</td>
+      <td>1.712024</td>
+      <td>0.225764</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2004-01-25 - 2004-01-31</td>
+      <td>1.542495</td>
+      <td>0.237716</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2004-02-01 - 2004-02-07</td>
+      <td>1.437868</td>
+      <td>0.224436</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dat</span><span class="p">[</span><span class="s1">&#39;Week&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      2004-01-04 - 2004-01-10
+1      2004-01-11 - 2004-01-17
+2      2004-01-18 - 2004-01-24
+3      2004-01-25 - 2004-01-31
+4      2004-02-01 - 2004-02-07
+                ...           
+412    2011-11-27 - 2011-12-03
+413    2011-12-04 - 2011-12-10
+414    2011-12-11 - 2011-12-17
+415    2011-12-18 - 2011-12-24
+416    2011-12-25 - 2011-12-31
+Name: Week, Length: 417, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+    <span class="n">dat</span><span class="p">[</span><span class="s2">&quot;lag_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;ILI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;done&quot;</span><span class="p">)</span>
+<span class="n">dat</span><span class="o">=</span><span class="n">dat</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>done
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;ILI&#39;</span><span class="p">]</span>
+<span class="n">week</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;Week&#39;</span><span class="p">]</span>
+<span class="n">week</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">week</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+<span class="n">week</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">week</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">dat</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;ILI&#39;</span><span class="p">,</span> <span class="s1">&#39;Week&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      2.418331
+1      1.809056
+2      1.712024
+3      1.542495
+4      1.437868
+         ...   
+412    1.465723
+413    1.518106
+414    1.663954
+415    1.852736
+416    2.124130
+Name: ILI, Length: 417, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Queries</th>
+      <th>lag_1</th>
+      <th>lag_2</th>
+      <th>lag_3</th>
+      <th>lag_4</th>
+      <th>lag_5</th>
+      <th>lag_6</th>
+      <th>lag_7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.237716</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.220452</td>
+      <td>2.418331</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.225764</td>
+      <td>1.809056</td>
+      <td>2.418331</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.237716</td>
+      <td>1.712024</td>
+      <td>1.809056</td>
+      <td>2.418331</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.224436</td>
+      <td>1.542495</td>
+      <td>1.712024</td>
+      <td>1.809056</td>
+      <td>2.418331</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>412</th>
+      <td>0.478088</td>
+      <td>1.655415</td>
+      <td>1.462212</td>
+      <td>1.440892</td>
+      <td>1.452843</td>
+      <td>1.305461</td>
+      <td>1.252586</td>
+      <td>1.236957</td>
+    </tr>
+    <tr>
+      <th>413</th>
+      <td>0.464807</td>
+      <td>1.465723</td>
+      <td>1.655415</td>
+      <td>1.462212</td>
+      <td>1.440892</td>
+      <td>1.452843</td>
+      <td>1.305461</td>
+      <td>1.252586</td>
+    </tr>
+    <tr>
+      <th>414</th>
+      <td>0.479416</td>
+      <td>1.518106</td>
+      <td>1.465723</td>
+      <td>1.655415</td>
+      <td>1.462212</td>
+      <td>1.440892</td>
+      <td>1.452843</td>
+      <td>1.305461</td>
+    </tr>
+    <tr>
+      <th>415</th>
+      <td>0.537849</td>
+      <td>1.663954</td>
+      <td>1.518106</td>
+      <td>1.465723</td>
+      <td>1.655415</td>
+      <td>1.462212</td>
+      <td>1.440892</td>
+      <td>1.452843</td>
+    </tr>
+    <tr>
+      <th>416</th>
+      <td>0.618858</td>
+      <td>1.852736</td>
+      <td>1.663954</td>
+      <td>1.518106</td>
+      <td>1.465723</td>
+      <td>1.655415</td>
+      <td>1.462212</td>
+      <td>1.440892</td>
+    </tr>
+  </tbody>
+</table>
+<p>417 rows × 8 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">N</span><span class="p">,]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">N</span><span class="p">:,]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">N</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">N</span><span class="p">:]</span>
+
+<span class="c1"># 利用弹性网络</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="n">cv_model</span> <span class="o">=</span> <span class="n">ElasticNetCV</span><span class="p">(</span><span class="n">l1_ratio</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">n_alphas</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                        <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">precompute</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.006</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+                        <span class="n">copy_X</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># 训练模型              </span>
+<span class="n">cv_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># 计算最佳迭代次数、alpha和ratio</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;最佳 alpha: </span><span class="si">%.8f</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">cv_model</span>.alpha_)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;最佳 l1_ratio: </span><span class="si">%.3f</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">cv_model</span>.l1_ratio_)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;迭代次数 </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">cv_model</span>.n_iter_)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>最佳 alpha: 0.00034012
+最佳 l1_ratio: 0.500
+迭代次数 15
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 输出结果</span>
+<span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">cv_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">cv_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train r2 score: &#39;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train_pred</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test r2 score: &#39;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="n">train_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train_pred</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">test_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">train_rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">train_mse</span><span class="p">)</span>
+<span class="n">test_rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">test_mse</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train RMSE: </span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">train_rmse</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test RMSE: </span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">test_rmse</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train r2 score:  0.8704190473192481
+Test r2 score:  0.9216895094890315
+Train RMSE: 0.2868
+Test RMSE: 0.3293
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">week</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">week</span><span class="p">[</span><span class="n">N</span><span class="p">:],</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-09-googleflustudy_34_0.png" src="_images/09-09-googleflustudy_34_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="09-08-random-forests.html" title="previous page">In-Depth: Decision Trees and Random Forests</a>
+    <a class='right-next' id="next-link" href="09-10-future-employment.html" title="next page">The future of employment</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
