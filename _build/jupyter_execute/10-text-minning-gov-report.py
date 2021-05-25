@@ -74,7 +74,7 @@ get_ipython().run_cell_magic('html', '', '<iframe src="//player.bilibili.com/pla
 # | D1| 1| 1 | 0 |1|
 # | D2| 1| 0 | 1 |1|
 
-# In[3]:
+# In[10]:
 
 
 import numpy as np
@@ -87,37 +87,37 @@ docs = np.array([
 bag = count.fit_transform(docs)
 
 
-# In[2]:
+# In[12]:
 
 
 get_ipython().run_line_magic('pinfo', 'count')
 
 
-# In[4]:
+# In[13]:
 
 
 count.get_feature_names()
 
 
-# In[5]:
+# In[14]:
 
 
 print(count.vocabulary_) # word: position index
 
 
-# In[6]:
+# In[15]:
 
 
 type(bag)
 
 
-# In[7]:
+# In[16]:
 
 
 print(bag.toarray())
 
 
-# In[8]:
+# In[17]:
 
 
 import pandas as pd
@@ -179,7 +179,7 @@ pd.DataFrame(bag.toarray(), columns = count.get_feature_names())
 # takes the raw term frequencies from CountVectorizer as input and transforms
 # them into tf-idfs:
 
-# In[28]:
+# In[18]:
 
 
 from sklearn.feature_extraction.text import TfidfTransformer
@@ -189,7 +189,7 @@ tfidf = TfidfTransformer(use_idf=True, norm='l2', smooth_idf=True)
 print(tfidf.fit_transform(count.fit_transform(docs)).toarray())
 
 
-# In[29]:
+# In[19]:
 
 
 from sklearn.feature_extraction.text import TfidfTransformer
@@ -199,7 +199,7 @@ tfidf = TfidfTransformer(use_idf=True, norm=None, smooth_idf=True)
 print(tfidf.fit_transform(count.fit_transform(docs)).toarray())
 
 
-# In[30]:
+# In[20]:
 
 
 import pandas as pd
@@ -207,7 +207,7 @@ bag = tfidf.fit_transform(count.fit_transform(docs))
 pd.DataFrame(bag.toarray(), columns = count.get_feature_names())
 
 
-# In[31]:
+# In[21]:
 
 
 # 一个词的tfidf值
@@ -221,7 +221,7 @@ tfidf_is = tf_is * idf_is
 print('tf-idf of term "is" = %.2f' % tfidf_is)
 
 
-# In[32]:
+# In[22]:
 
 
 # *最后一个文本*里的词的tfidf原始数值（未标准化）
@@ -230,7 +230,7 @@ raw_tfidf = tfidf.fit_transform(count.fit_transform(docs)).toarray()[-1]
 raw_tfidf, count.get_feature_names()
 
 
-# In[33]:
+# In[23]:
 
 
 # l2标准化后的tfidf数值
@@ -242,23 +242,24 @@ l2_tfidf
 
 # ### 0. 读取数据
 
-# In[10]:
+# In[26]:
 
 
-with open('../data/gov_reports1954-2017.txt', 'r', encoding = 'utf-8') as f:
+with open('./data/gov_reports1954-2021.txt', 'r', encoding = 'utf-8') as f:
     reports = f.readlines()
+    
 
 
-# In[11]:
+# In[27]:
 
 
 len(reports)
 
 
-# In[15]:
+# In[37]:
 
 
-print(reports[0][:1000])
+print(reports[-7][:1000])
 
 
 # In[16]:
@@ -282,7 +283,7 @@ print(reports[4][:500])
 pip install gensim
 
 
-# In[21]:
+# In[38]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
@@ -321,7 +322,7 @@ matplotlib.rc("savefig", dpi=400)
 
 # ### 1. 分词
 
-# In[34]:
+# In[39]:
 
 
 import jieba
@@ -341,10 +342,10 @@ print(", ".join(seg_list))
 
 # ## 2. 停用词
 
-# In[35]:
+# In[40]:
 
 
-filename = '../data/stopwords.txt'
+filename = './data/stopwords.txt'
 stopwords = {}
 f = open(filename, 'r')
 line = f.readline().rstrip()
@@ -361,14 +362,14 @@ f.close()
 adding_stopwords = [u'我们', u'要', u'地', u'有', u'这', u'人',
                     u'发展',u'建设',u'加强',u'继续',u'对',u'等',
                     u'推进',u'工作',u'增加']
-for s in adding_stopwords: stopwords[s]=10
+for s in adding_stopwords: stopwords[s]=10 
 
 
 # ### 3. 关键词抽取
 
 # #### 基于TF-IDF 算法的关键词抽取
 
-# In[37]:
+# In[41]:
 
 
 import jieba.analyse
@@ -376,13 +377,13 @@ txt = reports[-1]
 tf = jieba.analyse.extract_tags(txt, topK=200, withWeight=True)
 
 
-# In[38]:
+# In[42]:
 
 
 u"、".join([i[0] for i in tf[:50]])
 
 
-# In[39]:
+# In[43]:
 
 
 plt.hist([i[1] for i in tf])
@@ -391,21 +392,21 @@ plt.show()
 
 # #### 基于 TextRank 算法的关键词抽取
 
-# In[40]:
+# In[44]:
 
 
 tr = jieba.analyse.textrank(txt,topK=200, withWeight=True)
 u"、".join([i[0] for i in tr[:50]])
 
 
-# In[41]:
+# In[45]:
 
 
 plt.hist([i[1] for i in tr])
 plt.show()
 
 
-# In[42]:
+# In[46]:
 
 
 import pandas as pd
@@ -430,22 +431,18 @@ def keywords(index):
     plt.show()
 
 
-# In[43]:
+# In[49]:
 
+
+plt.style.use('ggplot')
 
 keywords(1)
 
 
-# In[86]:
+# In[55]:
 
 
-keywords(2)
-
-
-# In[87]:
-
-
-keywords(3)
+keywords(-1)
 
 
 # TextRank: Bringing Order into Texts
@@ -565,13 +562,7 @@ test = jieba.analyse.textrank(reports[0], topK=200, withWeight=False)
 test = jieba.analyse.extract_tags(reports[1], topK=200, withWeight=False)
 
 
-# In[59]:
-
-
-help(jieba.analyse.extract_tags)
-
-
-# In[127]:
+# In[56]:
 
 
 import jieba.analyse
@@ -579,25 +570,25 @@ import jieba.analyse
 wordset = []
 for k, txt in enumerate(reports):
     print(k)
-    top20= jieba.analyse.extract_tags(txt, topK=200, withWeight=False)
-    for w in top20:
+    top200= jieba.analyse.extract_tags(txt, topK=200, withWeight=False)
+    for w in top200:
         if w not in wordset:
             wordset.append(w)
 
 
-# In[128]:
+# In[57]:
 
 
 len(wordset)
 
 
-# In[129]:
+# In[58]:
 
 
 print(' '.join(wordset))
 
 
-# In[38]:
+# In[60]:
 
 
 from collections import defaultdict
@@ -609,19 +600,20 @@ for i in wordset:
         data[i][year] = 0 
 
 
-# In[39]:
+# In[62]:
 
 
 for txt in reports:
     year = int(txt[:4])
-    top1000= jieba.analyse.textrank(txt, topK=1000, withWeight=True)
+    print(year)
+    top1000= jieba.analyse.extract_tags(txt, topK=1000, withWeight=True)
     for ww in top1000:
         word, weight = ww
         if word in wordset:
             data[word][year]+= weight
 
 
-# In[45]:
+# In[63]:
 
 
 word_weight = []
@@ -629,46 +621,51 @@ for i in data:
     word_weight.append([i, np.sum(list(data[i].values()))])
 
 
-# In[47]:
+# In[64]:
 
 
 word_weight.sort(key= lambda x:x[1], reverse = True )
 top50 = [i[0] for i in word_weight[:50]]
 
 
-# In[48]:
+# In[65]:
 
 
 ' '.join(top50) 
 
 
-# In[52]:
+# In[75]:
 
 
 def plotEvolution(word, color, linestyle, marker):
     cx = data[word]
     plt.plot(list(cx.keys()), list(cx.values()), color = color, 
              linestyle=linestyle, marker=marker, label= word)
-    plt.legend(loc=2,fontsize=8)
+    plt.legend(loc=2,fontsize=18)
     plt.ylabel(u'词语重要性')
 
 
-# In[53]:
+# In[76]:
 
 
+plt.figure(figsize=(16, 6),facecolor='white')
 plotEvolution(u'民主', 'g', '-', '>')
 plotEvolution(u'法制', 'b', '-', 's')
 
 
-# In[363]:
+# In[77]:
 
+
+plt.figure(figsize=(16, 6),facecolor='white')
 
 plotEvolution(u'动能', 'b', '-', 's')
 plotEvolution(u'互联网', 'g', '-', '>')
 
 
-# In[364]:
+# In[78]:
 
+
+plt.figure(figsize=(16, 6),facecolor='white')
 
 plotEvolution(u'工业', 'y', '-', '<')
 plotEvolution(u'农业', 'r', '-', 'o')
@@ -676,23 +673,29 @@ plotEvolution(u'制造业', 'b', '-', 's')
 plotEvolution(u'服务业', 'g', '-', '>')
 
 
-# In[362]:
+# In[79]:
 
+
+plt.figure(figsize=(16, 8),facecolor='white')
 
 plotEvolution(u'教育', 'r', '-', 'o')
 plotEvolution(u'社会保障', 'b', '-', 's')
 plotEvolution(u'医疗', 'g', '-', '>')
 
 
-# In[356]:
+# In[80]:
 
+
+plt.figure(figsize=(16, 8),facecolor='white')
 
 plotEvolution(u'环境', 'b', '-', 's')
 plotEvolution(u'住房', 'purple', '-', 'o')
 
 
-# In[357]:
+# In[81]:
 
+
+plt.figure(figsize=(16, 8),facecolor='white')
 
 plotEvolution(u'发展', 'y', '-', '<')
 plotEvolution(u'经济', 'r', '-', 'o')
@@ -700,8 +703,10 @@ plotEvolution(u'改革', 'b', '-', 's')
 plotEvolution(u'创新', 'g', '-', '>')
 
 
-# In[359]:
+# In[82]:
 
+
+plt.figure(figsize=(16, 6),facecolor='white')
 
 plotEvolution(u'社会主义', 'r', '-', 'o')
 plotEvolution(u'马克思主义', 'b', '-', 's')
@@ -721,6 +726,7 @@ plotEvolution(u'马克思主义', 'b', '-', 's')
 # 11-3-NRC-Chinese-dict
 # 11-3-textblob
 # 11-4-sentiment-classifier
+# 11-5-LIWC
 # 12-topic-models-update
 # 12-topic-models-with-turicreate
 # ```

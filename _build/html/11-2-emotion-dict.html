@@ -173,6 +173,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="11-5-LIWC.html">
+     LIWC: Linguistic Inquiry and Word Count  analyzer
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="12-topic-models-update.html">
      主题模型简介
     </a>
@@ -337,6 +342,11 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id7">
    6.  存储格式及规模
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cnsenti">
+   cnsenti
   </a>
  </li>
 </ul>
@@ -573,7 +583,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;./Textmining/情感词汇.xlsx&#39;</span><span class="p">,</span> <span class="n">keep_default_na</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;./data/Textmining/情感词汇.xlsx&#39;</span><span class="p">,</span> <span class="n">keep_default_na</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1050,21 +1060,15 @@ Name: 565, dtype: object
     <span class="n">indexs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;length&#39;</span><span class="p">,</span> <span class="s1">&#39;positive&#39;</span><span class="p">,</span> <span class="s1">&#39;negative&#39;</span><span class="p">,</span> <span class="s1">&#39;anger&#39;</span><span class="p">,</span> <span class="s1">&#39;disgust&#39;</span><span class="p">,</span><span class="s1">&#39;fear&#39;</span><span class="p">,</span><span class="s1">&#39;sadness&#39;</span><span class="p">,</span><span class="s1">&#39;surprise&#39;</span><span class="p">,</span> <span class="s1">&#39;good&#39;</span><span class="p">,</span> <span class="s1">&#39;happy&#39;</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">emotion_info</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">indexs</span><span class="p">)</span>
 
-<span class="n">emotion_caculate</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;这个国家再对这些制造假冒伪劣食品药品的人手软的话，那后果真的会相当糟糕。坐牢？从快判个死刑&#39;</span><span class="p">)</span>
+<span class="n">emotion_caculate</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;这个国家再对这些制造假冒伪劣食品药品的人手软的话，气愤愤，扑杀此獠，那后果真的会相当糟糕。坐牢？从快判个死刑&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Building prefix dict from the default dictionary ...
-Loading model from cache /var/folders/8b/hhnbt0nd4zsg2qhxc28q23w80000gn/T/jieba.cache
-Loading model cost 0.707 seconds.
-Prefix dict has been built successfully.
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>length      25
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>length      29
 positive     0
-negative     4
-anger        0
+negative     6
+anger        2
 disgust      4
 fear         0
 sadness      0
@@ -1094,6 +1098,67 @@ surprise     3
 good         0
 happy        0
 dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="cnsenti">
+<h2>cnsenti<a class="headerlink" href="#cnsenti" title="Permalink to this headline">¶</a></h2>
+<p>中文情感分析库(Chinese Sentiment))可对文本进行情绪分析、正负情感分析。</p>
+<p>github地址 https://github.com/thunderhit/cnsenti</p>
+<p>pypi地址 https://pypi.org/project/cnsenti/</p>
+<p>视频课-Python网络爬虫与文本数据分析</p>
+<p>https://github.com/hidadeng/cnsenti</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">cnsenti</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting cnsenti
+  Downloading cnsenti-0.0.7-py3-none-any.whl (395 kB)
+     |████████████████████████████████| 395 kB 976 kB/s eta 0:00:01
+?25hRequirement already satisfied: jieba in /opt/anaconda3/lib/python3.7/site-packages (from cnsenti) (0.42.1)
+Requirement already satisfied: numpy in /opt/anaconda3/lib/python3.7/site-packages (from cnsenti) (1.18.1)
+Installing collected packages: cnsenti
+Successfully installed cnsenti-0.0.7
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cnsenti</span> <span class="kn">import</span> <span class="n">Sentiment</span>
+
+<span class="n">senti</span> <span class="o">=</span> <span class="n">Sentiment</span><span class="p">()</span>
+<span class="n">test_text</span><span class="o">=</span> <span class="s1">&#39;我好开心啊，非常非常非常高兴！今天我得了一百分，我很兴奋开心，愉快，开心&#39;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">senti</span><span class="o">.</span><span class="n">sentiment_count</span><span class="p">(</span><span class="n">test_text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;words&#39;: 22, &#39;sentences&#39;: 2, &#39;pos&#39;: 4, &#39;neg&#39;: 0}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cnsenti</span> <span class="kn">import</span> <span class="n">Emotion</span>
+
+<span class="n">emotion</span> <span class="o">=</span> <span class="n">Emotion</span><span class="p">()</span>
+<span class="n">test_text</span> <span class="o">=</span> <span class="s1">&#39;我好开心啊，非常非常非常高兴！今天我得了一百分，我很兴奋开心，愉快，开心。路上摔倒了，气愤愤。&#39;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">emotion</span><span class="o">.</span><span class="n">emotion_count</span><span class="p">(</span><span class="n">test_text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;words&#39;: 29, &#39;sentences&#39;: 4, &#39;好&#39;: 0, &#39;乐&#39;: 4, &#39;哀&#39;: 0, &#39;怒&#39;: 1, &#39;惧&#39;: 0, &#39;恶&#39;: 0, &#39;惊&#39;: 0}
 </pre></div>
 </div>
 </div>

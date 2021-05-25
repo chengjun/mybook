@@ -72,11 +72,11 @@
 get_ipython().run_line_magic('pinfo', 'pd.read_excel')
 
 
-# In[1]:
+# In[4]:
 
 
 import pandas as pd
-df = pd.read_excel('./Textmining/情感词汇.xlsx', keep_default_na = False)
+df = pd.read_excel('./data/Textmining/情感词汇.xlsx', keep_default_na = False)
 df.head()
 
 
@@ -86,26 +86,26 @@ df.head()
 df.shape
 
 
-# In[2]:
+# In[5]:
 
 
 df = df[['词语', '词性种类', '词义数', '词义序号', '情感分类', '强度', '极性']]
 df.head()
 
 
-# In[36]:
+# In[6]:
 
 
 df.iloc[565]
 
 
-# In[3]:
+# In[7]:
 
 
 df[df['情感分类']=='NA']
 
 
-# In[4]:
+# In[8]:
 
 
 Happy = []
@@ -135,7 +135,7 @@ Negative = Anger + Sad + Fear + Disgust
 print('情绪词语列表整理完成') 
 
 
-# In[5]:
+# In[11]:
 
 
 import jieba
@@ -188,13 +188,53 @@ def emotion_caculate(text):
     indexs = ['length', 'positive', 'negative', 'anger', 'disgust','fear','sadness','surprise', 'good', 'happy']
     return pd.Series(emotion_info, index=indexs)
 
-emotion_caculate(text='这个国家再对这些制造假冒伪劣食品药品的人手软的话，那后果真的会相当糟糕。坐牢？从快判个死刑')
+emotion_caculate(text='这个国家再对这些制造假冒伪劣食品药品的人手软的话，气愤愤，扑杀此獠，那后果真的会相当糟糕。坐牢？从快判个死刑')
 
 
-# In[6]:
+# In[12]:
 
 
 emotion_caculate(text='错愕，平地一声雷怎么会这样？太让人意外了，非常愤怒呀。今天心情不好！股票又跌了让我大吃一惊。，损失惨重，和女朋友也分手了！非常生气，我非常郁闷！！！！')
+
+
+# ## cnsenti
+# 中文情感分析库(Chinese Sentiment))可对文本进行情绪分析、正负情感分析。
+# 
+# github地址 https://github.com/thunderhit/cnsenti
+# 
+# pypi地址 https://pypi.org/project/cnsenti/
+# 
+# 视频课-Python网络爬虫与文本数据分析
+# 
+# 
+# https://github.com/hidadeng/cnsenti
+
+# In[1]:
+
+
+pip install cnsenti
+
+
+# In[13]:
+
+
+from cnsenti import Sentiment
+
+senti = Sentiment()
+test_text= '我好开心啊，非常非常非常高兴！今天我得了一百分，我很兴奋开心，愉快，开心'
+result = senti.sentiment_count(test_text)
+print(result)
+
+
+# In[15]:
+
+
+from cnsenti import Emotion
+
+emotion = Emotion()
+test_text = '我好开心啊，非常非常非常高兴！今天我得了一百分，我很兴奋开心，愉快，开心。路上摔倒了，气愤愤。'
+result = emotion.emotion_count(test_text)
+print(result)
 
 
 # https://blog.csdn.net/weixin_38008864/article/details/103900840

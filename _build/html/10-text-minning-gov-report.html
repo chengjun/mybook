@@ -173,6 +173,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="11-5-LIWC.html">
+     LIWC: Linguistic Inquiry and Word Count  analyzer
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="12-topic-models-update.html">
      主题模型简介
     </a>
@@ -557,7 +562,7 @@ zeros, which is why we call them sparse</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;the&#39;: 5, &#39;sun&#39;: 3, &#39;is&#39;: 1, &#39;shining&#39;: 2, &#39;weather&#39;: 6, &#39;sweet&#39;: 4, &#39;and&#39;: 0}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;the&#39;: 10, &#39;sun&#39;: 7, &#39;is&#39;: 2, &#39;shining&#39;: 5, &#39;the sun&#39;: 11, &#39;sun is&#39;: 8, &#39;is shining&#39;: 3, &#39;weather&#39;: 13, &#39;sweet&#39;: 9, &#39;the weather&#39;: 12, &#39;weather is&#39;: 14, &#39;is sweet&#39;: 4, &#39;and&#39;: 0, &#39;shining and&#39;: 6, &#39;and the&#39;: 1}
 </pre></div>
 </div>
 </div>
@@ -581,9 +586,9 @@ zeros, which is why we call them sparse</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0 1 1 1 0 1 0]
- [0 1 0 0 1 1 1]
- [1 2 1 1 1 2 1]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0 0 1 1 0 1 0 1 1 0 1 1 0 0 0]
+ [0 0 1 0 1 0 0 0 0 1 1 0 1 1 1]
+ [1 1 2 1 1 1 1 1 1 1 2 1 1 1 1]]
 </pre></div>
 </div>
 </div>
@@ -615,30 +620,54 @@ zeros, which is why we call them sparse</p>
     <tr style="text-align: right;">
       <th></th>
       <th>and</th>
+      <th>and the</th>
       <th>is</th>
+      <th>is shining</th>
+      <th>is sweet</th>
       <th>shining</th>
+      <th>shining and</th>
       <th>sun</th>
+      <th>sun is</th>
       <th>sweet</th>
       <th>the</th>
+      <th>the sun</th>
+      <th>the weather</th>
       <th>weather</th>
+      <th>weather is</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
       <td>1</td>
       <td>1</td>
       <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0</td>
+      <td>0</td>
       <td>1</td>
       <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
       <td>0</td>
       <td>1</td>
       <td>1</td>
@@ -647,11 +676,19 @@ zeros, which is why we call them sparse</p>
     <tr>
       <th>2</th>
       <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
       <td>2</td>
       <td>1</td>
       <td>1</td>
       <td>1</td>
-      <td>2</td>
       <td>1</td>
     </tr>
   </tbody>
@@ -712,9 +749,12 @@ them into tf-idfs:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.   0.43 0.56 0.56 0.   0.43 0.  ]
- [0.   0.43 0.   0.   0.56 0.43 0.56]
- [0.4  0.48 0.31 0.31 0.31 0.48 0.31]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.   0.   0.31 0.4  0.   0.4  0.   0.4  0.4  0.   0.31 0.4  0.   0.
+  0.  ]
+ [0.   0.   0.31 0.   0.4  0.   0.   0.   0.   0.4  0.31 0.   0.4  0.4
+  0.4 ]
+ [0.29 0.29 0.35 0.22 0.22 0.22 0.29 0.22 0.22 0.22 0.35 0.22 0.22 0.22
+  0.22]]
 </pre></div>
 </div>
 </div>
@@ -730,9 +770,12 @@ them into tf-idfs:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.   1.   1.29 1.29 0.   1.   0.  ]
- [0.   1.   0.   0.   1.29 1.   1.29]
- [1.69 2.   1.29 1.29 1.29 2.   1.29]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.   0.   1.   1.29 0.   1.29 0.   1.29 1.29 0.   1.   1.29 0.   0.
+  0.  ]
+ [0.   0.   1.   0.   1.29 0.   0.   0.   0.   1.29 1.   0.   1.29 1.29
+  1.29]
+ [1.69 1.69 2.   1.29 1.29 1.29 1.69 1.29 1.29 1.29 2.   1.29 1.29 1.29
+  1.29]]
 </pre></div>
 </div>
 </div>
@@ -765,43 +808,75 @@ them into tf-idfs:</p>
     <tr style="text-align: right;">
       <th></th>
       <th>and</th>
+      <th>and the</th>
       <th>is</th>
+      <th>is shining</th>
+      <th>is sweet</th>
       <th>shining</th>
+      <th>shining and</th>
       <th>sun</th>
+      <th>sun is</th>
       <th>sweet</th>
       <th>the</th>
+      <th>the sun</th>
+      <th>the weather</th>
       <th>weather</th>
+      <th>weather is</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
       <td>0.000000</td>
+      <td>0.000000</td>
       <td>1.0</td>
+      <td>1.287682</td>
+      <td>0.000000</td>
+      <td>1.287682</td>
+      <td>0.000000</td>
       <td>1.287682</td>
       <td>1.287682</td>
       <td>0.000000</td>
       <td>1.0</td>
+      <td>1.287682</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0.000000</td>
+      <td>0.000000</td>
       <td>1.0</td>
+      <td>0.000000</td>
+      <td>1.287682</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>1.287682</td>
       <td>1.0</td>
+      <td>0.000000</td>
+      <td>1.287682</td>
+      <td>1.287682</td>
       <td>1.287682</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1.693147</td>
+      <td>1.693147</td>
       <td>2.0</td>
       <td>1.287682</td>
       <td>1.287682</td>
       <td>1.287682</td>
+      <td>1.693147</td>
+      <td>1.287682</td>
+      <td>1.287682</td>
+      <td>1.287682</td>
       <td>2.0</td>
+      <td>1.287682</td>
+      <td>1.287682</td>
+      <td>1.287682</td>
       <td>1.287682</td>
     </tr>
   </tbody>
@@ -838,8 +913,23 @@ them into tf-idfs:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([1.69, 2.  , 1.29, 1.29, 1.29, 2.  , 1.29]),
- [&#39;and&#39;, &#39;is&#39;, &#39;shining&#39;, &#39;sun&#39;, &#39;sweet&#39;, &#39;the&#39;, &#39;weather&#39;])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([1.69, 1.69, 2.  , 1.29, 1.29, 1.29, 1.69, 1.29, 1.29, 1.29, 2.  ,
+        1.29, 1.29, 1.29, 1.29]),
+ [&#39;and&#39;,
+  &#39;and the&#39;,
+  &#39;is&#39;,
+  &#39;is shining&#39;,
+  &#39;is sweet&#39;,
+  &#39;shining&#39;,
+  &#39;shining and&#39;,
+  &#39;sun&#39;,
+  &#39;sun is&#39;,
+  &#39;sweet&#39;,
+  &#39;the&#39;,
+  &#39;the sun&#39;,
+  &#39;the weather&#39;,
+  &#39;weather&#39;,
+  &#39;weather is&#39;])
 </pre></div>
 </div>
 </div>
@@ -853,7 +943,8 @@ them into tf-idfs:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.4 , 0.48, 0.31, 0.31, 0.31, 0.48, 0.31])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.29, 0.29, 0.35, 0.22, 0.22, 0.22, 0.29, 0.22, 0.22, 0.22, 0.35,
+       0.22, 0.22, 0.22, 0.22])
 </pre></div>
 </div>
 </div>
@@ -866,8 +957,9 @@ them into tf-idfs:</p>
 <h3>0. 读取数据<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/gov_reports1954-2017.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./data/gov_reports1954-2021.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">reports</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    
 </pre></div>
 </div>
 </div>
@@ -879,19 +971,19 @@ them into tf-idfs:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>48
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>52
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">reports</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">1000</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">reports</span><span class="p">[</span><span class="o">-</span><span class="mi">7</span><span class="p">][:</span><span class="mi">1000</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1954	1954年政府工作报告——1954年5月23日在中华人民共和国第一届全国人民代表大会第一次会议上　　　　　　　　　　　　　　　　　　　　　　　　  国务院总理周恩来各位代表：　　我们第一届全国人民代表大会第一次会议，在听了刘少奇同志关于宪法草案的报告并进行了三天的讨论以后，已经光荣地完成了一件历史性的工作，通过了我们国家的根本法——中华人民共和国宪法，接着，又通过了几个重要的法律。现在，我代表中央人民政府作工作报告。　　我国伟大的人民革命的根本目的，是在于从帝国主义、封建主义和官僚资本主义的压迫下面，最后也从资本主义的束缚和小生产的限制下面，解放我国的生产力，使我国国民经济能够沿着社会主义的道路而得到有计划的迅速的发展，以便提高人民的物质生活和文化生活的水平，并且巩固我们国家的独立和安全。我国的经济原来是很落后的；如果我们不建设起强大的现代化的工业、现代化的农业、现代化的交通运输业和现代化的国防，我们就不能摆脱落后和贫困，我们的革命就不能达到目的。在一九四九年至一九五二年间，中央人民政府按照中国人民政治协商会议共同纲领的规定，先后完成了全国大陆的统一，完成了土地制度的改革，进行了广泛的和深入的镇压反革命运动和各种民主改革运动，恢复了遭受长期战争破坏的国民经济，着重地发展了社会主义的国营经济和各种类型的合作社经济，初步地调整了公私营工商业之间的关系，这一切都为有计划地进行经济建设和逐步过渡到社会主义社会准备了必要的条件。随后，从一九五三年起，我国就开始了经济建设的第一个五年计划，着手有系统地逐步地实现国家的社会主义工业化和对农业、手工业和资本主义工商业的社会主义改造。经济建设工作在整个国家生活中已经居于首要的地位。　　制订第一个五年计划的全部工作现在还没有最后完成，对于计划的许多细节还在进行补充和修订。第一个五年计划的方针是大家已经知道的，这就是：集中主要力量发展重工业，建立国家工业化和国防现代化的基础；相应地发展交通运输业、轻工业、农业和商业；相应地培养建设人才；有步骤地促进农业、手工业的合作化；继续进行对资本主义工商业的改造；保证国民经济中社会主义成份的比重稳步增长，同时正确地发挥个体农业、手工业和资本主义工商业的作用；保证在发展生产的基础上逐步提高人民物质生活和文化生活的水平。第一个五年计划所以要集中主要力量发展重工业，即冶金工业、燃料工业、动力工业、
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1964	1964年国务院政府工作报告（摘要）——１９６４年１２月２１日和２２日在第三届全国人民代表大会第一次会议上　　　　　　　　　　　  　　　　　　　　　　　　　　　国务院总理周恩来　　五年来，我国各族人民在中国共产党的英明领导下，高举毛泽东思想的光辉旗帜，坚持鼓足干劲、力争上游、多快好省地建设社会主义的总路线，在全国范围内开展了阶级斗争、生产斗争、科学实验三大革命运动，有力地反击了资本主义和封建势力的进攻，提高了人民群众的社会主义觉悟，基本上完成了调整国民经济的任务，使工农业生产全面高涨，整个国民经济全面好转，我国自力更生的力量大为增强。同时，在国际上，我们同美帝国主义、各国反动派和现代修正主义进行了针锋相对的斗争，打退了他们掀起的一次又一次的反华高潮；积极地支援了各国革命人民，发展了同许多国家的友好合作关系；我国的国际威望更加提高了，我们的朋友遍天下。　　我们要进一步开展社会主义教育运动，坚决依靠工人阶级、贫农下中农、革命的干部、革命的知识分子和其他革命分子，根据社会主义的彻底革命的原则，在政治、经济、思想和组织这四个方面，进行清理和基本建设，在人民群众中深刻地进行一次阶级教育和社会主义教育；要进一步开展思想文化战线上的社会主义革命，逐步实现知识分子劳动化，劳动人民知识化；要进一步巩固和发展人民民主统一战线，加强各民族的大团结；各级机关和各级干部必须革命化，都要学习解放军、大庆、大寨的彻底革命的精神和工作作风。在深入广泛开展社会主义教育运动的基础上，一九六五年要大力组织工农业生产的新高潮，为一九六六年开始的第三个五年计划作好准备，争取在不太长的历史时期内，把我国建成一个具有现代农业、现代工业、现代国防和现代科学技术的社会主义强国。在国际方面，我们要继续贯彻我国对外政策的总路线，同全世界人民一起，坚决反对美帝国主义及其走狗，为争取世界和平、民族解放、人民民主和社会主义事业的新胜利而奋斗。　　国民经济的成就和今后的建设任务　　周恩来总理在报告中首先指出，从第二届全国人民代表大会第一次会议以来，我国各族人民，在中国共产党的英明领导下，高举毛泽东思想的光辉旗帜，坚持鼓足干劲、力争上游、多快好省地建设社会主义的总路线，在全国范围内展开了阶级斗争、生产斗争、科学实验三大革命运动，在国际上同帝国主义、各国反动派和现代修正主义进行了针锋相对的斗争，取得了一个又一个的伟大胜
 </pre></div>
 </div>
 </div>
@@ -1019,12 +1111,6 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Building prefix dict from the default dictionary ...
-Dumping model to file cache /var/folders/8b/hhnbt0nd4zsg2qhxc28q23w80000gn/T/jieba.cache
-Loading model cost 0.941 seconds.
-Prefix dict has been built successfully.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Full Mode: 我/ 来到/ 北京/ 清华/ 清华大学/ 华大/ 大学
 Default Mode: 我/ 来到/ 北京/ 清华大学
 他, 来到, 了, 网易, 杭研, 大厦
@@ -1039,7 +1125,7 @@ Default Mode: 我/ 来到/ 北京/ 清华大学
 <h2>2. 停用词<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;../data/stopwords.txt&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;./data/stopwords.txt&#39;</span>
 <span class="n">stopwords</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
@@ -1057,7 +1143,7 @@ Default Mode: 我/ 来到/ 北京/ 清华大学
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adding_stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;我们&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;要&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;地&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;有&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;这&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;人&#39;</span><span class="p">,</span>
                     <span class="sa">u</span><span class="s1">&#39;发展&#39;</span><span class="p">,</span><span class="sa">u</span><span class="s1">&#39;建设&#39;</span><span class="p">,</span><span class="sa">u</span><span class="s1">&#39;加强&#39;</span><span class="p">,</span><span class="sa">u</span><span class="s1">&#39;继续&#39;</span><span class="p">,</span><span class="sa">u</span><span class="s1">&#39;对&#39;</span><span class="p">,</span><span class="sa">u</span><span class="s1">&#39;等&#39;</span><span class="p">,</span>
                     <span class="sa">u</span><span class="s1">&#39;推进&#39;</span><span class="p">,</span><span class="sa">u</span><span class="s1">&#39;工作&#39;</span><span class="p">,</span><span class="sa">u</span><span class="s1">&#39;增加&#39;</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">adding_stopwords</span><span class="p">:</span> <span class="n">stopwords</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">=</span><span class="mi">10</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">adding_stopwords</span><span class="p">:</span> <span class="n">stopwords</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">=</span><span class="mi">10</span> 
 </pre></div>
 </div>
 </div>
@@ -1082,7 +1168,7 @@ Default Mode: 我/ 来到/ 北京/ 清华大学
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;发展、改革、推进、建设、加强、加快、推动、深化、完善、创新、就业、全面、促进、经济、政府、深入、实施、提高、企业、支持、群众、服务、坚持、人民、坚决、制度、治理、政策、农村、试点、扩大、机制、社会、落实、工作、保障、增长、国家、生态、安全、今年、稳定、继续、地区、保护、中国、合作、产能、维护、重点&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;人民、我们、国家、我国、一九五三年、工业、一九五四年、必须、工作、建设、发展、和平、一九四九年、社会主义、一九五、国家机关、生产、计划、全国、农业、亚洲、美国、事业、企业、应当、经济、这些、改造、增加、并且、完成、但是、已经、等于、合作社、集团、方面、需要、台湾、资本主义、反对、几年、生活、建立、为了、技术、这个、进行、日内瓦、问题&#39;
 </pre></div>
 </div>
 </div>
@@ -1109,7 +1195,7 @@ Default Mode: 我/ 来到/ 北京/ 清华大学
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;发展、改革、推进、建设、经济、加强、推动、加快、政府、完善、创新、企业、全面、实施、促进、提高、支持、服务、政策、深入、中国、就业、国家、制度、群众、社会、人民、地区、坚持、扩大、农村、地方、保护、继续、增长、机制、工作、保障、治理、试点、合作、综合、重点、市场、投资、领域、加大、消费、制定、维护&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;国家、人民、工业、发展、建设、工作、生产、美国、企业、经济、计划、社会主义、中国、进行、全国、技术、亚洲、集团、需要、问题、农业、方面、完成、建立、台湾、生活、事业、没有、改造、应当、资本主义、增加、关系、组织、保证、会议、侵略、不能、注意、加强、战争、提高、社会、文化、继续、政府、现代化、能够、日内瓦、世界&#39;
 </pre></div>
 </div>
 </div>
@@ -1153,7 +1239,9 @@ Default Mode: 我/ 来到/ 北京/ 清华大学
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">keywords</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+
+<span class="n">keywords</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1163,22 +1251,12 @@ Default Mode: 我/ 来到/ 北京/ 清华大学
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">keywords</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">keywords</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/10-text-minning-gov-report_62_0.png" src="_images/10-text-minning-gov-report_62_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">keywords</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/10-text-minning-gov-report_63_0.png" src="_images/10-text-minning-gov-report_63_0.png" />
 </div>
 </div>
 <p>TextRank: Bringing Order into Texts</p>
@@ -1220,7 +1298,7 @@ Default Mode: 我/ 来到/ 北京/ 清华大学
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10-text-minning-gov-report_68_0.png" src="_images/10-text-minning-gov-report_68_0.png" />
+<img alt="_images/10-text-minning-gov-report_67_0.png" src="_images/10-text-minning-gov-report_67_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1235,7 +1313,7 @@ Default Mode: 我/ 来到/ 北京/ 清华大学
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10-text-minning-gov-report_69_0.png" src="_images/10-text-minning-gov-report_69_0.png" />
+<img alt="_images/10-text-minning-gov-report_68_0.png" src="_images/10-text-minning-gov-report_68_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1274,7 +1352,7 @@ Default Mode: 我/ 来到/ 北京/ 清华大学
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10-text-minning-gov-report_72_0.png" src="_images/10-text-minning-gov-report_72_0.png" />
+<img alt="_images/10-text-minning-gov-report_71_0.png" src="_images/10-text-minning-gov-report_71_0.png" />
 </div>
 </div>
 </div>
@@ -1297,7 +1375,7 @@ Default Mode: 我/ 来到/ 北京/ 清华大学
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10-text-minning-gov-report_74_0.png" src="_images/10-text-minning-gov-report_74_0.png" />
+<img alt="_images/10-text-minning-gov-report_73_0.png" src="_images/10-text-minning-gov-report_73_0.png" />
 </div>
 </div>
 </div>
@@ -1344,37 +1422,13 @@ Default Mode: 我/ 来到/ 北京/ 清华大学
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">extract_tags</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on method extract_tags in module jieba.analyse.tfidf:
-
-extract_tags(sentence, topK=20, withWeight=False, allowPOS=(), withFlag=False) method of jieba.analyse.tfidf.TFIDF instance
-    Extract keywords from sentence using TF-IDF algorithm.
-    Parameter:
-        - topK: return how many top keywords. `None` for all possible words.
-        - withWeight: if True, return a list of (word, weight);
-                      if False, return a list of words.
-        - allowPOS: the allowed POS list eg. [&#39;ns&#39;, &#39;n&#39;, &#39;vn&#39;, &#39;v&#39;,&#39;nr&#39;].
-                    if the POS of w is not in this list,it will be filtered.
-        - withFlag: only work with allowPOS is not empty.
-                    if True, return a list of pair(word, weight) like posseg.cut
-                    if False, return a list of words
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jieba.analyse</span>
 
 <span class="n">wordset</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">txt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reports</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-    <span class="n">top20</span><span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">extract_tags</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">topK</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">top20</span><span class="p">:</span>
+    <span class="n">top200</span><span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">extract_tags</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">topK</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">top200</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">wordset</span><span class="p">:</span>
             <span class="n">wordset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
 </pre></div>
@@ -1429,6 +1483,10 @@ extract_tags(sentence, topK=20, withWeight=False, allowPOS=(), withFlag=False) m
 45
 46
 47
+48
+49
+50
+51
 </pre></div>
 </div>
 </div>
@@ -1440,7 +1498,7 @@ extract_tags(sentence, topK=20, withWeight=False, allowPOS=(), withFlag=False) m
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1717
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2718
 </pre></div>
 </div>
 </div>
@@ -1452,7 +1510,7 @@ extract_tags(sentence, topK=20, withWeight=False, allowPOS=(), withFlag=False) m
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>人民 我们 国家 我国 一九五三年 工业 一九五四年 必须 工作 建设 发展 和平 一九四九年 社会主义 一九五 国家机关 生产 计划 全国 农业 亚洲 美国 事业 企业 应当 经济 这些 改造 增加 并且 完成 但是 已经 等于 合作社 集团 方面 需要 台湾 资本主义 反对 几年 生活 建立 为了 技术 这个 进行 日内瓦 问题 一九五二年 各级 侵略 中央人民政府 可以 比重 改善 东南亚 现代化 中国 关系 反革命 卖国 会议 对于 条约 浪费 加强 注意 保证 任务 努力 正在 军事同盟 根据 能够 组织 基本建设 克服 少数民族 文化 全国人民代表大会 许多 工作人员 总产值 领导 职工 协议 重要 过去 困难 提高 战争 印度支那 今年 迅速 政府 逐步 国营商业 合作 五年 现在 参加 集体 他们 分子 一切 世界 公私合营 解决 商业 机关 得到 现象 因为 今后 其他 民主 胜利 完全 力量 斗争 苏联 群众 地方 计划供应 朝鲜 防务 五年计划 容许 重工业 改进 没有 百分之三十 实行 不能 人民代表大会 所谓 财政 政策 解放 社会 广大 运动 产量 很大 充分 缺点 安全 官僚主义 国营 巩固 不少 落后 增长 达到 一个 恢复 由于 农民 交通运输业 原则 中华人民共和国 而且 各国 中央 依靠 教育 人民共和国 实现 选举 节约 四点 破坏 关于 代表 保障 工业化 破坏活动 时期 作用 百分之八十 资金 采取 棉花 保卫 利益 同时 权利 主要 或者 华侨 制度 不顾 继续 法律 劳动 蒋介石 预算 就是 应该 增产 第一个 私营 国民经济 工商业 单位 一九五七年 可能 年产能力 过渡时期 适当 规定 基础 各种 供应 产品 万吨 水平 投资 帮助 手工业 这种 设计 限额 工厂 粮食 这样 扩大 形式 合作化 制造 积极 条件 工人 建成 资本家 部门 铁路 非生产性 原料 援助 收购 工业生产 因此 方针 加以 两年 经验 规模 新建 工程 全部 超额完成 总任务 设备 中国共产党 厂矿 指标 工人阶级 轻工业 产值 办法 百分之五十 定货 必要 周转量 文化教育 以上 情况 特别 学习 团结 某些 错误 职员 发挥 重大 施工 培养 百分之七十 工业品 播种面积 有些 一些 按照 地区 它们 巨大 要求 开始 百分之一百 曾经 一百五十 农村 改建 帝国主义 支出 上年 收入 国家决算 占本 万人 决算 总数 建设费 亿斤 国营企业 原定 年收入 文教 一部分 减少 铺轨 农户 比较 收支 执行 上升 在校学生 本年 片面 数字 准备 税收 农业税 部分 提前完成 国防费 立井 工业部 收到 货物 降低 拨付 秋征 钢材 其中 扣除 亿元 比例 实际 将要 节减 年内 以外 中所 去年 万担 行政 工农业 项目 公路 年本 包括 数额 中央预算 除了 建筑安装 信贷资金 年度计划 债款 万亩 以内 调整 去年同期 招生 公方 合理 状况 超过 质量 下降 储备 预计 国家计划 农林水利 国家银行 工资 开支 可比 其他支出 过程 用于 奖励制度 农业贷款 灌溉面积 物资 1956 共占本 商品流转 零售总额 统购 共产党 革命 科学 右派分子 资产阶级 思想 政治 科学事业 基本 工农 宗派主义 高等学校 统一战线 偏差 成绩 这是 取得 不够 有人 提出 甚至 科学家 知识分子 科学研究 民主党派 一年 存在 学生 因而 如果 时候 三年 经过 整风运动 工资制度 意见 制订 不是 批判 殖民主义 否定 一定 大团结 性质 高级 研究 正确 改革 还有 任何 学徒 更加 学校 例如 队伍 三大 规划 之间 日益 阵营 解放以来 集中 企图 少数 阶级 个别 内部 悬殊 一九五八年 一九五九年 鼓掌 热烈鼓掌 西藏 跃进 民族 大跃进 干部 同时并举 战线 人民公社 美帝国主义 运输 总路线 土法生产 群众运动 体力劳动 爱好和平 相结合 各个 帝国主义者 岸信 自我改造 全世界 阿拉伯 贯彻执行 开展 反动分子 百分之四十 自己 独立 伟大 叛乱 日本 劳动力 友好 中间 长时间 积极性 以后 掌声 服务 西藏地方 首先 起来 绝对数 叛乱分子 活动 威胁 二千 生产资料 共产主义 普及 掌握 纲要 食堂 机械化 社办 半机械化 八字宪法 公社 提前 一九五六年 棉田 十二年 消灭 所有制 人民公社化 养猪 草案 平均 农具 普遍 措施 四十斤 群众性 改良 大大 四年 基本上 六十斤 效益 办好 麻雀 危害 技术革新 五亿 各地 精耕细作 因地 七千 分配制度 更好 分别 高级社 防治 每人 广大群众 耕地 社员 毛泽东 除四害 1960 一九六七年 公布 不仅 公共 坚持 八十斤 过渡 举办 大办 卫生事业 争取 托儿所 五千 皮棉 一百斤 科学试验 才能 纲领 还要 百分之二十 亿亩 面积 动员 同志 赶上 化肥厂 农作物 充分发挥 多种经营 进一步 不断 病疫 园田化 办得 病虫害 做到 二百 兴办 鼓足干劲 零四个 整个 亩产量 一千 合理密植 集体福利 一九六二年 总产量 事情 社有 八十五 周总理 无产阶级 阶级斗争 反动派 自力更生 修正主义 毛主席 革命化 马克思列宁主义 指出 彻底 支持 一九六四年 毛泽东思想 一九六五年 现代 坚决 走狗 对外 复辟 革命斗争 周恩来 高举 反帝 历史 反华 核武器 支援 阴谋 新高潮 及其 总理 成就 民主革命 长期 国际威望 认识 拉丁美洲 国际主义 强大 意义 领土 巨大成就 半农半读 劳动化 下中农 文化战线 亚非 一次 封建主义 客观规律 非洲 精神 半工半读 发动 放手 强调指出 武装 总结经验 专政 工农兵 路线 批林批孔 马克思主义 超级大国 被压迫 各族人民 文化大革命 一九七五年 上层建筑 争议地区 1975 国务院 深入 各位 团结起来 设想 边界 武装冲突 统一 争夺 第三世界 两国关系 一九七四年 十年 大革命 永远 斗批改 本世纪内 加强团结 一九八 二倍 互不侵犯 宏伟目标 列宁主义 领域 伟大胜利 认真执行 路线斗争 两个 霸权主义 美苏 发动群众 不要 激烈 一点 新生事物 三届 全心全意 中苏 广大干部 称霸 贫下中农 三倍 国际形势 继续执行 工业体系 第二步 第四个 蓬勃发展 战备 人民解放军 颠覆 林彪 二十多年 共同努力 第四届 双方 教导 互不 委员会 三点 联合 两步 不论是 武装力量 人大 第一步 封锁 方向 民兵 武力 党中央 理论 文艺 第三个 报告 粉碎 经济危机 缓和 战胜 卫生 争论 往来 克服缺点 发扬成绩 洋奴哲学 百分之八十五 光荣任务 学大庆 脱离 那么 四人帮 搞好 揭批 整顿 认真 科学技术 作风 强国 打击 社队 十年规划 指示 各项 反霸 干扰 高速度 各条战线 一九七六年 先进 篡党夺权 两霸 四届 召开 基地 两国人民 大寨 大力 苏美 加快 发扬 严重 抓好 四个 切实 妄图 敌人 改变 谬论 劳动竞赛 促进 科学实验 自治区 成为 重点 正义斗争 八年 讨论 维护 轻纺 纪律 目前 制定 秩序 现有企业 当前 安定团结 法制 管理 引进 无政府主义 人口 越南 生产力 矛盾 事业单位 允许 管理体制 千分之 农副产品 义务 歪风邪气 仍然 民主集中制 祖国 试行 着重点 机械 试点 安排 自主权 上半年 明年 能源 商品 进展 标准煤 节约能源 效果 节能 经济作物 材料 提高质量 开发 结构 技术改造 勘探 奖金 一批 经营 竞争 自销 有所改善 工业锅炉 住宅 积累率 共生矿 购买力 能耗 综合利用 油料 前进 城乡人民 市场 协作 调查 烧油 积累 劳动保护 生活资料 生产能力 指导 大力开展 集体所有制 调动 对外贸易 流通 亿吨 消费品 进出口 上缴利润 原材料 党和政府 缝纫机 不足 发展缓慢 自行车 通过 品种 多年 联合体 经济效益 责任制 利用 全面 精神文明 国民收入 交通 速度 显著 现有 做好 分配 以及 物价 结合 石油 相当 平衡 财政收支 这方面 城市 作出 有步骤 稳定 犯罪分子 不同 财政收入 国际 防止 第六个 一九八五年 一九八一年 递增 六五 每年 期间 一九八二年 百分之四点 固定资产 建设项目 经济体制 进步 根本好转 百分之五点 一律 着重 社会风气 一项 技术水平 严格控制 国家计委 全局 翻两番 形势 六千 财经纪律 百分之四 不合理 大量 一九七八年 政法 抓紧 一九七九年 城乡 科技 大力加强 纠正 宪法 体制 国防 财力 智力开发 长期存在 有效 上交 体育 前提 造成 多种形式 种种 振兴 五项原则 和平共处 精神污染 紧张局势 承包 有利于 利改税 包干 裁军 主张 一九八三年 建筑业 愿意 香港 友好合作 核国家 核裁军 希望 平等互利 社会制度 税利 经济特区 共同 决不 供销社 批发 购销 所有 承包单位 核军备 赞成 人才 具有 大锅饭 增进 和睦相处 推行 交流 使用 科研单位 审批 社会治安 科研 保持 价格 工资改革 搞活 不正之风 价格体系 工资总额 消费基金 消费 推动 随着 坚定不移 在改革中 货币 增加收入 大中型 产业结构 基数 增长速度 顺利进行 城乡居民 符合 核定 1985 补贴 信贷 城乡经济 增强 控制 四化 大幅度 部署 迈出 决不能 决定 追求 向前 专业银行 协调 坚决贯彻 统一认识 出发 基金 持续增长 考虑 步调 宏观经济 长远利益 放开 消费者 七五 第七个 商品经济 投资规模 出口 能力 充分认识 实践 五五 适应 出口创汇 对外开放 完善 外汇 进口 运用 恰当 出现 手段 观念 活力 九十年代 开放 调节 越来越 更新改造 贸易 加工工业 转变 自由化 四项 增产节约 增收节支 切实加强 思潮 努力提高 人们 推进 政治局面 方针政策 批评 横向联合 特色 十一届三中全会 经营机制 及时 健全 真正 不变 正常 重视 引导 经营责任制 创造 一系列 机构 目标 柬埔寨 体制改革 深化 外向型 实施 理顺 改革开放 计划生育 发展中国家 鼓励 改革方案 法制建设 综合 科技进步 解放思想 军队 沿海地区 贯彻 探索 大力发展 繁荣 深化改革 职能 治理整顿 压缩 监督 清理 经济秩序 教育经费 严格 各类 总需求 物价上涨 环境 劳动生产率 储蓄 治理 需求 素质 有关 产业政策 依法 通货膨胀 公司 宏观调控 制止 密切 审计 缓建 农业投入 党政机关 紧张 责任 根本利益 乡镇企业 市场调节 动乱 暴乱 廉政建设 贷款 中国政府 计划经济 中华民族 内政 风波 联合声明 违法违纪 案件 指令性 道路 自觉 以来 一九九一年 一九九 产品质量 新增 全民 全年 农产品 生活费用 一亿 调整结构 回升 建成投产 千万吨 煤炭 零售物价 投入 推广 里程 总量 三千八百 六百 新品种 丰收 一千六百 四百五十 提高效益 高等院校 引进技术 九千 亿公斤 油田 开拓市场 非贸易 三千 化肥 四千 大体 开发新 扩大开放 人权 继续加强 开拓 民主监督 海外侨胞 两岸关系 祖国统一 步伐 欢迎 科技成果 集中力量 深入开展 树立 计划体制 保护 机制 综合治理 八五 澳门 高新技术 国内 无党派人士 实力 精简 基础设施 人员 住房 第三产业 国有企业 市场经济 社会化 和平统一 各项事业 一手 建立健全 十四大 范围 城镇 环境保护 形成 勤政廉政 外贸体制 人均 生产总值 交通运输 办学 健康 国民 国有 顺利 财税 突出 邓小平 良好 持续 农民收入 江泽民 自治 银行 共同愿望 1994 投资体制 开发区 稳妥 加以解决 香港特别行政区 腐败现象 廉洁自律 乱收费 落实 犯罪活动 九五 职业 认真贯彻 推进改革 市场需求 始终不渝 四是 1995 体系 义务教育 全面进步 体育事业 流动人口 中西部 民主法制 资源 年均 十五年 方式 战略 初步 社会保障 民族团结 主体 扶贫 正确处理 经济社会 格局 作为 行使主权 贫困人口 优化 积极参与 奋斗目标 注重 改组 就业 行业 兼并 产业 规范 国有经济 水利建设 小企业 一国两制 结构调整 负责制 征管 大型 破产 国有资产 资本金 适用技术 力度 倾斜 治安状况 放活 多亿元 适度从紧 金融 邓小平理论 广泛开展 回归祖国 下岗职工 盲目 投融资 股份合作制 加大 有利条件 思想道德 全国代表大会 伟大旗帜 金融风险 1999 财政赤字 科教兴国 防范 利用外资 小城镇 严厉打击 澳门特别行政区 财政政策 扩大出口 严肃查处 拓宽 强化 确保 外商投资 大多数 中央财政 1000 21 养老金 重复 金融危机 工程建设 金融机构 脱困 2000 国债 离退休 扩大内需 失业 严格执行 统一大业 台湾同胞 贯彻落实 三是 工作力度 有力 高度重视 认真落实 反腐败 招标 二是 十五 西部 服务业 创新 优势 2001 升级 传统产业 放在 高技术 科研院所 生态环境 战略性 积极探索 着力 因地制宜 培育 二要 战略目标 创新能力 世贸组织 退耕还林 农村税费 农民负担 发放 三个代表 加入 竞争力 足额 按时 尽快 政府职能 信息化 财政预算 行为 信息 总体 2002 主产区 重组 万亿元 产业化 不断加强 依法行政 万公里 三农 带动 亿美元 非典 公共卫生 非公有制 决策 农民工 统筹 调控 疫情 拖欠 监管 医疗卫生 补助 东北地区 合法权益 股份制 种粮 预防 自主 区域 基层 经济运行 发展观 和谐社会 群众利益 贫困家庭 2005 新进展 专项 法治 直接 生态建设 政策措施 减免 煤矿安全 许可法 十一五 服务体系 2006 标准 医疗 救助 国债资金 小康社会 知识产权 个省 公正 环保 用地 超收 稳步 减排 优化结构 节能降耗 污染 保护环境 集约 高于 四要 三要 土地 淘汰 房地产 政策性 违法 最低工资 农村金融 高污染 高耗能 产能 保险 五是 500 2007 更多地 新上 民生 养老保险 价格上涨 公共服务 家庭 成果 和谐 累计 市场准入 应对 两岸 重建 一是 平稳 中小企业 扶持 灾区 全面实施 灾后 参保 来自 挑战 同胞 生态 医药卫生 新型农村 出台 气候变化 外交 公益性 创业 中非 保障性 三网 专项资金 互利 财政支出 城镇居民 优先 十二五 城镇化 提升 2011 低收入 转移 覆盖 有序 4% 安居工程 小型 债务 微型 学前教育 增值税 大病 中小学 医保 营业税 人民币 融合 互联网 风险 2012 10 新农 改征 适度 结构性 扶贫开发 货币政策 公平 食品药品 居民消费 长远 冲击 经费支出 明显增强 坚实基础 诚挚 左右 万套 新型 贫困地区 2014 习近平 稳中 7.5% 构建 资本 经济带 领导人 协同 公开 简政放权 下放 打造 600 自贸区 化解 小微 海洋 定向 拓展 示范区 核准 新兴产业 大幅 区间 修订 谈判 清单 支付 危房改造 启动 大国 管理制度 低保 融资 动能 脱贫 供给 绿色 2020 棚户区 市场化 网络 高校 6.5% 自贸 80% 涉企 收费 补短 核心 双创 实干 减税 引领 督查 扎实 试验区 降费 问责 实体 文明 行动 精准 取消 转型
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>发展 建设 推进 加强 完善 创新 实施 就业 促进 推动 体系 坚持 改革 支持 市场主体 脱贫 加快 企业 健全 全面 服务 经济 机制 提升 社会 深化 保障 稳定 优化 防控 提高 政策 疫情 战略 高质量 持续 民生 保持 强化 基本 国家 习近平 科技 农村 工作 扩大 构建 力度 社会主义 目标 加大 继续 区域 帮扶 落实 现代化 安全 能力 制度 重大 监管 统筹 成果 保护 行动 人民 乡村 深入 做好 政府 中国 基础 增长 工程 取得 教育 贯彻 任务 城镇 实现 扎实 降低 健康 领域 农业 消费 精神 巩固 治理 城乡 试点 合作 合理 国内 融合 更好 处置 党中央 水平 改善 国际 文化 生活 努力 坚决 抗疫 小微 及时 增加 十四五 有效 市场化 规范 拓展 生产 中小 万亿元 市场 维护 协同 高水平 弘扬 新型 产业 公共卫生 投资 我们 地区 经济社会 基层 整治 进一步 活力 开放 住房 核心 重点 金融 增强 振兴 质量 残疾人 生态 数字 工商户 生产总值 贷款 稳步 防范 攻坚 发挥 高标准 常态 经济运行 开展 群众 放管服 100 体制 制定 实体 引导 强军 积极 共建 环境 中央 挑战 减税 精准 有序 各位 特色 营商 职业技能 科学 各类 协定 我国 公共服务 基础设施 综合 产业链 今年 公平 关键 恢复 粮食 全国 更加 能源 繁荣 绿色 作用 攻坚战 宏观政策 完成 代表 监督 攻关 扶贫 人员 小康社会 降费 困难 自贸 失业 激发 坚定 大力 减免 创业 贫困人口 复工 支出 农民 重要 领导人 医疗 改革开放 去年 努力完成 防治 建成 电商 同志 出台 扶持 举措 培育 新冠 复产 六稳 六保 投入 安排 各国 研发 设施 一定 各族人民 共享 农民工 坚强 海外侨胞 制造业 鼓励 高校 万人 应急 养老 主要 低保 台湾同胞 广大 全年 大幅 专项 负责制 防疫 服务业 规划 全部 试验区 形式主义 打赢 成本 物资 诚挚 依法 延长 风险 问题 贫困地区 地方 收费 融资 污染 以上 解决 确保 三大 负担 财政 一批 医保 结构 办好 公平竞争 审批 改造 结构性 退役军人 压减 主体 互联网 缴费 民营 化解 公正 切实 抓好 压力 稳妥 下降 不断 各级 2019 提质 70 3% 8000 实际 关系 缓解 供给 事项 区间 五年 着力 世界 30% 变革 标准 协调 产能 管理 升级 民族 年均 重塑 业态 思想 多万 宏观调控 范围 决胜 转移 时代 增速 项目 政府职能 多渠道 2018 稳中 动能 成效 激励 债务 制造 支付 倾斜 涉企 补短 体制改革 城市 严肃查处 双创 调控 实干 必须 行政 责任 突出 引领 一年 国务院 督查 和谐 补助 对外开放 问责 2000 减少 文明 新兴产业 取消 资金 组织 打造 资源 转型 政策措施 城镇化 法治 国有企业 新增 2020 方式 大国 贸易 启动 建立 覆盖 实行 万公里 棚户区 基金 达到 网络 现代 规模 中西部 强国 推广 80% 6.5% 人口 三是 救助 万套 自贸区 公共 深化改革 下放 城乡居民 环保 收入 海洋 国防 定向 矛盾 示范区 核准 铁路 养老保险 价格 修订 谈判 事业 清单 机关 经济带 危房改造 管理制度 左右 交通 2014 预算 结构调整 探索 7.5% 比重 资本 事业单位 节能 食品药品 公开 简政放权 淘汰 人均 机构 投融资 总体 2007 2012 转变 货币政策 保障性 和平 社会保障 形成 累计 义务教育 金融危机 财政政策 显著 居民消费 服务体系 物价 城镇居民 长远 纲要 安居工程 财政赤字 冲击 三农 两岸关系 技术 学生 经费支出 明显增强 人才 调整 坚实基础 自治 应对 财税 大力发展 4% 小型 平稳 微型 农产品 学前教育 分配 理顺 参保 减排 增值税 大病 中小学 营业税 人民币 控制 流通 2011 10 三网 特别 需求 新农 改征 适度 中央财政 总量 十二五 坚定不移 共同 扶贫开发 句細 跺害 浠锋 鍥介 绯伙 氫繚 崗璋 缓绔嬪 鍛樺 鍥界 氫富 跺涵 鍥藉 備腑 缓璁 鍥伴 缓璁剧 爺绌 鑲层 瑰紡 板缓 細淇 鑲叉 涓嶇 轰富 噸鐐 備繚 绯汇 姹傘 洪噸 翠腑 備弗 缓鏈 嬪缓 2010 鑲查 暱鏈 夸腑 戒汉 浠嶇 归潰 潰鍔 備互 十一五 4500 40% 4.45 23 戒富 储鍔 跨編 稿崗璋 鍥寸 10% 鑲诧 茶川 1500 1000 繚鍋 汉鎵 奖瑙 壓鏈 绮剧 氫腑 娴峰 病鏈 鍥為 变簡 轰腑 鏈虹 宠緝 冲績 堕暱 7% 備績 簰鍔 颁汉 16% 8% 抽噸 虹瓚 鑼冪 俊璐锋 环姣 50 渤娴 介噸 缓璁句 夸环 舵斂 浠峰 轰俊 堕噸 重大进展 第十一届 演变成 全国人民代表大会 第四次 中华民族 百年 报告 温家宝 国民经济 自主 有力 奋勇前进 总理 超级计算机 翠环 迈上 39.8 11.2% 3.16 8.31 探月 5771 9.7% 8.9% 2.97 1.18 43.7% 15.3% 23.6% 灾后 14.8% 外需 23% 1335 1226 25% 54641 5919 7356 鍥猴 2.15 暱璐 板伐 2.5 村缓 1.6 63.9 3.3 33 1.7 數瑁 寸數 9601 384 數鏈 7210 2529 遍潰 存薄 19.1% 12.45% 14.29% 轰績 规斂 鐐规 充汉 備富 撲汉 芥斂 鏈洪 借浆 烘斂 稿績 備负 饱琛 數缃 氫骇 氫俊 夸汉 己璋 鏈恒 绉嶇 兼定 俊璐峰 鍥虹 繚鏈 鍛姐 娴锋 轰负 鍥板 鍥姐 歌浆 苟璐 氫細 腐婢 備袱 轰袱 鍥斤 轰汉 快速增长 汽车 极大 灾区 亿元 坚实 重建 第三次 上年 刘卫兵 家电 蓬勃生机 隆重庆祝 下滑 抚今追昔 道路 请予 面之广 无私援助 大爱 張鏈 锋父 鍥哄伐 伴潰 夸繚 剁獎 轰唤 戒績 簡灏变 昏浆 村張 鑲叉斂 鍥拌 婀惧 鏈嬪 潰鍋 撲細 鏈嶇 肩淮 尝鍔 惧害 煙娼 樹簾 富鍔 冨眾 轰互 筹紱 磋储 嶄細 俊璐风 繚淇 硅法 按骞充 逛俊璐枫 曠數 创鑼 懇鎵 互鎵 悶鍔 哗宸 緱璧峰 跺洶 氫互 慨璁 互宸 潰婧 滄斂 曠伯 滅背 绉嶇伯 疆琛 创璧 绘瘡 害姣 四是 补贴 五是 两岸 二是 一是 出口 中小企业 民主 全面实施 抓紧 来自 措施 同胞 家庭 医药卫生 新型农村 对外 经营 方面 军队 2002 进展 借储 归噸 2008 剧兢 2006 備汉 韩鏈 戒袱 夸负 4.8% 鍥达 步伐 顺利 万公顷 国有 迈出 万吨 电信 4140 36 潰瓒 15 2005 翠汉 數瑙 鍋垮 妇鍔 簡璁 负鏈 強鏃 绘斂 噸鍋 虹伯 強骞 翠富 虫定 戒互 缓璁炬 備節 按婧 硅储 规不 氫汉 備弗鑲 版咕 成效显著 农业税 开发 县乡 用于 土地 第六位 非公有制 初步 逐步完善 明显 突破性 新进展 得到 拖欠 500 草案 存在 两基 万名 一些 偏快 2003 112 1.2% 撮噸 嬪伐 外贸顺差 抗灾救灾 分别 三年 感谢 合作医疗 体育事业 法规 投放 群众利益 连续 节能降耗 增幅 工程款 工作力度 约束性 社会治安 抚恤 高污染 继续加强 广泛开展 工资 第十届 高耗能 提出 大幅度提高 最低 行业 社会保险 历史 指标 部分 污染物 能耗 西部 增产 医疗卫生 艾滋病 紙鑽 绀句細 氫嚎 轰簡 个省 浣嶇疆 婁腑 噸瑙 过快 信访 国债资金 贫困家庭 生产能力 28 1700 30 紡杞 负鍔 200 俊璐 眾浜 浠樸 惰储 夸埂璐 紡涓 繃璋 哄績 鐐瑰伐 缓璁鹃 轰汉鎵 辩害 42 鍥藉師 滅畝 伴樁 卫生 下岗职工 种粮 各项 深入开展 关键环节 退税 专项资金 突发 教科书 全局 环境保护 发展观 2004 崇兢 经济体制 固定资产 油运 客观规律 注重 部门 煤电 注重实效 13 800 290 绀句 細璧 悶濂 樺害 剧畝 細璁 敖鏈 增收 积极性 预案 放开 遏制 清理 体制性 依法行政 各项事业 法律手段 商业银行 成就 切身利益 非典 辨斂 數鍔 悶濂介 画鍋 淇濃 插缓 高度重视 抗击 股份制 亿美元 清醒 整顿 武警部队 困难群众 开拓创新 十六大 法制建设 预防 部署 三个代表 内地 反腐败 干部 市场秩序 资金投入 城市居民 研究 监督管理 作出 事件 多年 救治 传染病 财力 统一 采取措施 毕业生 采取 办法 合法权益 领导 国有资产 逐步 精神文明 不断加强 公里 归暱 鍛樸 取得成效 不断扩大 总和 体育 市场经济 水利建设 平方米 明显提高 每年 大幅度 医疗保险 水利枢纽 平均 澳门 依法治国 公路 侨务工作 薄琛 颁績 氮璐 鍥戒 鑷冲 浠锋暈 峰績 负瑙 鐮翠骇 滅嚎 互璐 爺鏈 村伐 鐮村 樹簡 戒俊 數瀛 鍍氫富 曠兢 潰璐 普及 居民家庭 小康水平 本届 姜娲 江泽民 离退休 养老金 严重 互瑙 互琛 骇璐 婚噸 逛富 芥悶 簡寰 氫汉鎵 俊瑾 不鏈 細鍔 鑷村 显著成绩 民主法制 团结奋斗 秩序 七一 年末 十五届 复杂多变 六中全会 农民收入 重大项目 国际形势 党和国家 重要讲话 有利条件 快速 高新技术 保护主义 较大 计划 会议 电网 方针 效益 有些 前进 中国共产党 缓慢 农村用电 积累 具有 正确 科学内涵 公安干警 阔步前进 勤俭建国 违法活动 举办权 有法不依 统揽全局 斗争 加入 干堤 农村税费 立案查处 競璐 洶琛 冲洶 九五 2001 画娣 五年计划 短缺 同时 1995 樹汉 數锛 画鎵 悶濂界 持续增长 第十个 科研院所 迅速 时期 通货紧缩 办成 战略目标 高技术 香港 历史性 技术改造 大中型 注意 扩大内需 克服 祖国 通货膨胀 成绩 拉动 根据 过剩 国债 抑制 其他 奢侈浪费 始终 扭亏增盈 平衡 89404 8.3 1980 13380 16.5 2392 1997 2.9 4743 2492 69 67 2894 79.6 1656 920 2253 6280 4.7 5.7 10.6 863 诸多矛盾 想办 插伐 脱困 1999 工业 揣鍋 卞洶 不宸 崇淮 氮璐广 这些 认真贯彻 广大干部 回升 果断 改组 经济效益 政治 知难而进 各种 势头 增盈 南联盟 法轮功 主动精神 控股 政治素质 滞销产品 2202 52 967 77 27 1501 11377 1949 1547 47 之大是 日起 540 8400 滑闈 交灏变 互淇 繃璐 2100 4200 5100 6100 3358 1423 643 競闈 90 250 鍛樹細 21 金融风险 1998 艰储 斂璐 剧疆 鍥解 鐘舵 亚洲 五十周年 城乡人民 抗洪 贬值 扩大出口 洪涝灾害 工作进展 经济秩序 长江 大多数 预定 外汇储备 多项 成立 增长速度 战胜 难度 比较 正在 迎接 决策 逃汇 科教兴国 年初 奋发进取 财经纪律 乱摊派 姜琛 抗洪抢险 情况 影响 7.8 19 14 航段 团结奋战 骗汇 600 40 29 不旺 回归祖国 一手 科技进步 经验 条件 已经 逐年 变骇 勾宸 樹妇 鍥版 婀剧 集体主义 增添 良好 国际友人 思想道德 消费品 基础产业 两手抓 香港特别行政区 一国两制 综合国力 增多 科技成果 集中力量 邓小平理论 实力 解放思想 出现 过去 不变 初级阶段 进行 民族团结 有所提高 潰璨 多亿元 師鍥 负鍥 弗鎵 治安状况 退税率 多亿美元 物价上涨 产量 宏观经济 重点项目 有所改善 新开工 邓小平 多元 关税 外贸 进出口 职业 出口权 减债 开发技术 勤政廉政 承诺制 供应 适用技术 健身运动 购销两旺 今后 幅度 工交 重视 第八届全国人民代表大会 稳中求进 铺通 以丰补歉 体育健儿 半停产 八五 七五 远景 1996 簡姣 繃娣 害鏈 撲富 传宸 編濂界 夸富 婀鹃 婀句 汉绫昏 成绩显著 格局 生产力 零售物价 轻纺产品 进步 每周五 提前 大会 中共十四大 铺轨 万项 国际风云 簡鏈 患瑙備 垮乏 鍥扮 邯鏈 編濂 变腑 癸細 纰嶇 鐮存 村害 鍥界伯 翠慨 備埂 保持稳定 增加值 浣嶇 扣除 并轨 亿公斤 扩大开放 交换机 百分之十 程度 抓住机遇 因素 亿平方米 比较严重 综合治理 有所 以及 货币 决定性 放松 商品价格 价格上涨 新建 原油 汇率 棉花 港口 十一点七 不同 调节 百分之十八 百分之二十点 农业投入 乱涨价 缺乏活力 百分之三点 肉禽蛋 百分之七点 百分之八 共同奋斗 流转税 设备陈旧 长江三峡工程 必要 引大 入秦 侨务 但同 氫负 充節 1994 斂姣 繚璇 細鏈 娴峰场 中共中央 百分之二十 基本方针 胜利 改革方案 全党 大局 计算机 国内外 百分之十三点 认真 一百周年 基本上 百分之四 外贸体制 百分之十点 群众体育 比较顺利 点二 播映 画淇 共骞翠繚 颁互 界户 告攢姣 鍘裤 俯楗遍 绫嶇 細璐 勾璧峰 韩鍔 悶娲 汉韬 缓瑙 辨部 伙紱鍋 娴锋郸 部娴峰 父骞块 冪兢 垮洶 鸿繕 嬪己 帶璐 勾璐 负绀句 中心 1993 年同 鍥村 灑绾 嬪凡 浠界 冲伐 局面 亿吨公里 接近 保证 亿吨 百分之四十 经营机制 治理整顿 党的基本 百分之五十 物质文明 周转量 来之不易 沿边 利用外资 十一届三中全会 顺利进行 四项 基本建设 第七届 蓬勃发展 农副产品 复杂 货运 全方位 沿江 作风 才能 进一步提高 阶段 比上 总产值 省会 旺盛 开创 鸿础 解放 自然灾害 1992 鍥借 场宸 负淇 婀炬 诲崗 树立 基本路线 总结经验 犯罪活动 长期 贯彻执行 根本利益 打击 第一年 优越性 有利于 丑恶 社会化 外商 原则 根本原因 决不能 根本 反映 是否 从根本上 借鉴 回顾 一切 大胆 路线 百分之七 百分之十七 依法惩治 结存 拚搏 顺乎民意 只有 百分之十四 鲁布革 计划体制 力戒 先进 缩小差距 十年规划 连年丰收 得失成败 吸收 运用 紧密团结 符合 应当 一方有难 一九九 節鐧 工业生产 眾涓 細绮剧 細鍥 交宸 夸節 二千 画鏈 勾鏈 鏈虹數 數褰便 鑾峰 总产量 里程 整个 七千 六百 加工工业 一万四千 上升 三千八百 一百二十七 回落 五十一 1991 一九九一年 交鎵 父寰 嶄袱 夸憨宸 充骇 惰偉 嗚繕 背闈 悶濂戒 鑷充 數璐 煙鎵 荤數 嬪害 惧紡 師鏈 疆璐 句節 欢娌 鐐圭數 師娌 扮數 颁负 攢鏈 画璐 害闈 悍鏈 強濡 辜淇 細绂 板法 夸骇 備骇 緝宸 張鎵 嶄互 紡淇 存睜 父娴 存壙 繕璐枫 借川 鍥翠 捐憲 状况 由于 当前 改进 市场调节 动乱 产品 暴乱 廉政建设 计划生育 自由化 反对 资产阶级 适当 五项原则 充分发挥 安定团结 希望 产业政策 中国政府 计划经济 现象 学习 结合 柬埔寨 知识分子 几年 为了 内政 九十年代 和平共处 并且 风波 联合声明 政治局面 违法违纪 案件 指令性 之间 方向 颠覆 纠正 公司 活动 自觉 有关 以来 閾惰 党政机关 压缩 曠撼 備换 瑰師 过大 储蓄 经济过热 信贷 方针政策 总需求 加剧 商品 紧俏商品 工业品 1989 父鎬 強涓 伴噸 崗璁 妇琛 夸袱 編鍥 疆娴 铺张浪费 紧日子 认识 可比价格 撤并 权威 艰巨性 外汇 总供给 税收 半年 不够 十三届 指导 一心一意 今明两年 三中全会 上交 抢购 建成投产 商品经济 实践 价格体系 鍥炬 所有制 过程 展开 利益 企事业 通过 劳务 开始 许多 总揽全局 可能 改变 需要 日益 物价管理 1988 婚暱 翠互 氫环 鍥句 嗚壇 按璐 鍛樺線 有益 经营责任制 调动 不合理 外商独资 鑷虫 经过 人民解放军 两件 贡献 1987 濡備 捶宸 变細 曠函 垮彈 苟鏈 鐐广 人代会 人民警察 不正之风 保卫祖国 超额完成 工作人员 总的来看 大事 差价 高等教育 坚信 法律 产品质量 力量 艰苦 工作者 很大 缺点 必将 交通运输 审议 颁布 开拓前进 地区差价 公民 围绕 消除 外贸逆差 宏观控制 建设祖国 奋发努力 钢铁长城 可喜成果 六五 一九八五年 一九八 期间 五五 板甫 第七个 工农业 1986 氬強 一九七八年 重工业 财政收入 建国以来 形势 比例 一九五三年 三亿 在世界上 合计 国外 一九八三年 稳定增长 六亿 五千 一千四百 俊璐枫 变富 滑宸 害绀句 氫簡 虹爺 典腑 鑷宠 父鍔 嬪钩 变化 一九八四年 三千 一百零三 合作经营 一五 预算外 村办 六十二 三十七 相比 新路子 票证 一亿 位次 一千五百 三十二 形式 轻工业 1985 国民收入 速度 基数 职工 工资总额 数为 诞鍔 偉绉 宠疮 奖金 一系列 城乡经济 八元 深远 超过 越来越 一个 每人 意义 搞活 这是 单位 第四季度 金融体制 做到 中高档 五元 向前 温饱 消费水平 消费基金 友好关系 随着 核定 活跃 不严 二十六年 构思 推向 入手 省长 现在 其中 产业结构 投产 忽视 协商 结果 急剧 精神污染 承包 设计 自主权 利改税 包干 责任制 可以 国营 建筑业 商业 税利 经济特区 供销社 批发 购销 承包单位 搞好 大锅饭 按照 科研单位 着重 科研 规定 招标 职工队伍 工期 多种形式 科学技术 1984 以税代利 国营商业 父瑙 对于 投标 推行 内部 厂长 允许 适应 素质 对外贸易 科技人员 分配关系 制订 建筑 设备 实践证明 学校 利润 第二步 不论 打破 贸易中心 交流 商品交换 岗位津贴 工贸结合 技贸 知识 创造性 一九八二年 百分之三十 长期存在 一九七九年 一点 1983 紡娲 讳富 簡淇 四倍 拨乱反正 决定 住宅 四年 五万 指导思想 评为 亿万人民 噸宸 互杈 互瓒 婁负 婁汉 充互 競宸 鑲叉椿鍔 颁袱 积累率 四千人 二倍 千张 六倍 错划 百分之八十 在校生 心情舒畅 集体所有制 轨道 在校学生 造成 客观条件 劳动模范 指导方针 七百 十五万 热情 种种 副食品 第六个 递增 逛節 節鐐 要求 1982 數绔 九百 百分之十二 二十八年 一九八一年 三千六百 鲍瑗 娴枫 夸互 汉宸 戒細 环鎬绘 鑷达 勾鎵 樺療 氮璐圭 轰环 百分之六十 百分之五 根本好转 翻两番 本世纪末 六千 争取 前提 第五个 稳步发展 产值 二十年 关于 这个 一九八七年 百分之二十二点 三年计划 应该 利用 能够 首先 起来 现有 石油 相当 不能 现有企业 财政收支 这方面 而且 有步骤 充分 犯罪分子 加以 这种 毛泽东思想 引进 防止 机械 预计 联合 上半年 去年同期 节约 一部分 明年 标准煤 节约能源 国家计划 效果 经济作物 社队 材料 提高质量 管理体制 原料 勘探 竞争 自销 工业锅炉 共生矿 购买力 综合利用 油料 试行 协作 调查 烧油 劳动保护 生活资料 大力开展 上缴利润 原材料 党和政府 缝纫机 不足 发展缓慢 生产资料 自行车 品种 联合体 四人帮 林彪 霸权主义 四个 团结 发扬 权利 破坏 轻纺 阶级斗争 纪律 官僚主义 目前 毛泽东 专政 法制 无政府主义 阶级 自己 越南 但是 伟大 这样 帝国主义 就是 分子 千分之 劳动 义务 歪风邪气 以后 仍然 民主集中制 无产阶级 没有 着重点 台湾 他们 任何 毛主席 革命 揭批 反革命 超级大国 批判 修正主义 统一战线 周总理 指示 少数民族 苏联 粉碎 非洲 马克思主义 运动 反霸 干扰 侵略 阴谋 高速度 各条战线 一九七六年 大革命 篡党夺权 两霸 资本主义 四届 召开 基地 两国人民 大寨 苏美 文化大革命 人大 妄图 敌人 社员 两国关系 彻底 理论 认真执行 文艺 谬论 劳动竞赛 科学实验 教导 自治区 战争 不要 成为 正义斗争 八年 讨论 批林批孔 被压迫 一九七五年 上层建筑 争议地区 1975 团结起来 设想 边界 武装冲突 群众运动 争夺 第三世界 一九七四年 十年 永远 斗批改 本世纪内 一九六四年 加强团结 互不侵犯 宏伟目标 独立 列宁主义 伟大胜利 路线斗争 两个 全世界 国际主义 美苏 发动群众 激烈 新生事物 三届 全心全意 中苏 称霸 依靠 三倍 贫下中农 继续执行 殖民主义 工业体系 第四个 广大群众 战备 二十多年 共同努力 第四届 双方 互不 委员会 三点 两步 不论是 武装力量 封锁 第一步 工人阶级 民兵 武力 第三个 经济危机 缓和 争论 往来 解放以来 百分之八十五 学大庆 洋奴哲学 光荣任务 发扬成绩 克服缺点 脱离 那么 美帝国主义 总路线 反动派 自力更生 革命化 马克思列宁主义 指出 美国 错误 一九六五年 走狗 复辟 革命斗争 周恩来 高举 阵营 反帝 反华 核武器 支援 一九五七年 友好 保卫 新高潮 及其 民主革命 国际威望 拉丁美洲 强大 领土 巨大成就 相结合 下中农 劳动化 一九五九年 半农半读 文化战线 亚非 一次 封建主义 民主党派 参加 半工半读 发动 放手 强调指出 武装 工农兵 一九五八年 鼓掌 热烈鼓掌 西藏 跃进 一九五二年 大跃进 同时并举 战线 人民公社 运输 土法生产 体力劳动 爱好和平 整风运动 第一个 各个 帝国主义者 自我改造 岸信 工人 亿斤 阿拉伯 反动分子 帮助 叛乱 日本 东南亚 劳动力 中间 长时间 手工业 掌声 西藏地方 绝对数 叛乱分子 巨大 威胁 共产主义 或者 掌握 食堂 机械化 社办 半机械化 八字宪法 公社 万亩 合作社 一九五六年 棉田 十二年 消灭 人民公社化 两年 养猪 农具 普遍 完全 四十斤 群众性 改良 大大 高级 六十斤 麻雀 危害 技术革新 五亿 各地 精耕细作 因地 分配制度 执行 高级社 耕地 灌溉面积 1960 除四害 一九六七年 公布 不仅 八十斤 过渡 举办 卫生事业 百分之七十 大办 托儿所 一百斤 皮棉 科学试验 纲领 还要 亿亩 面积 动员 赶上 化肥厂 农作物 多种经营 病疫 园田化 办得 病虫害 二百 兴办 除了 鼓足干劲 零四个 亩产量 一千 集体福利 一九六二年 合理密植 事情 因此 供给制 二亿 公私合营 偏差 私营 充腑 洪樁 句富 颁腑 工商业者 工商业 鍥惧 合作化 簡鍥 簡鐧 骇宸 滑灏辨 变为 劳动改造 个别 管制 内部矛盾 五大 检查 1957 墜宸 鍛界 充娇 滅櫨 宠繕 汉姣 戒娇 绝大多数 敌我矛盾 处理 商店 肃清 性质 私方 灾荒 不是 合作商店 十亿斤 私有制 股息 来说 有人 农户 汉璇达 重新做人 第一届 变娇 簡绀句 滑鏈 翠唤 簡宸 交瑙 轰細 嶄富 充簡 绉嶇兢 鍛樹 借繕 惰繕 国家决算 占本 决算 总数 建设费 国营企业 原定 年收入 文教 收支 本年 片面 准备 提前完成 国防费 立井 工业部 收到 货物 拨付 秋征 钢材 将要 节减 年内 以外 中所 万担 年本 包括 数额 中央预算 建筑安装 信贷资金 年度计划 债款 以内 招生 公方 储备 农林水利 国家银行 开支 可比 其他支出 奖励制度 农业贷款 1956 共占本 商品流转 零售总额 统购 工业化 过渡时期 勾姣 柊绉嶇 猴細 颁娇 总任务 氬師 个体 落后 手工业者 轰節 富瑕 濮嬪 滑鎵 究鏈 鍥剧 环楂 小农经济 统治 一九四九年 中华人民共和国 1955 存偿 负鐧 跺壇 樹负 父娑 樹細 宪法 编制 列宁 生产方式 时间 钢铁厂 解放前 一九五四年 一九五 国家机关 等于 集团 日内瓦 中央人民政府 卖国 条约 浪费 军事同盟 协议 印度支那 集体 因为 计划供应 朝鲜 防务 容许 人民代表大会 所谓 不少 交通运输业 人民共和国 选举 四点 破坏活动 华侨 不顾 蒋介石
 </pre></div>
 </div>
 </div>
@@ -1474,11 +1532,68 @@ extract_tags(sentence, topK=20, withWeight=False, allowPOS=(), withFlag=False) m
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">txt</span> <span class="ow">in</span> <span class="n">reports</span><span class="p">:</span>
     <span class="n">year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">txt</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
-    <span class="n">top1000</span><span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">textrank</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">topK</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+    <span class="n">top1000</span><span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">extract_tags</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">topK</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">ww</span> <span class="ow">in</span> <span class="n">top1000</span><span class="p">:</span>
         <span class="n">word</span><span class="p">,</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">ww</span>
         <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">wordset</span><span class="p">:</span>
             <span class="n">data</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="n">year</span><span class="p">]</span><span class="o">+=</span> <span class="n">weight</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021
+2020
+2019
+2018
+2017
+2016
+2015
+2014
+2013
+2012
+2011
+2010
+2009
+2008
+2007
+2006
+2005
+2004
+2003
+2002
+2001
+2000
+1999
+1998
+1997
+1996
+1995
+1994
+1993
+1992
+1991
+1990
+1989
+1988
+1987
+1986
+1985
+1984
+1983
+1982
+1981
+1980
+1979
+1978
+1975
+1964
+1959
+1960
+1957
+1956
+1955
+1954
 </pre></div>
 </div>
 </div>
@@ -1507,7 +1622,7 @@ extract_tags(sentence, topK=20, withWeight=False, allowPOS=(), withFlag=False) m
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;发展 建设 经济 加强 企业 工作 改革 国家 人民 继续 社会主义 提高 社会 生产 农业 政府 制度 增加 推进 问题 促进 增长 加快 农村 方面 管理 进行 重点 坚持 全国 教育 市场 投资 完善 地区 工业 支持 政策 中国 实行 计划 文化 生活 扩大 实现 基本 改善 建立 群众 技术&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;发展 建设 改革 经济 推进 加强 句細 社会 政府 加快 工作 提高 实施 完善 企业 促进 创新 增长 全面 坚持 推动 社会主义 支持 政策 人民 就业 制度 国家 投资 增加 基本 鍥界 农村 扩大 问题 实现 跺害 农业 继续 鍥介 中国 取得 服务 氫富 归潰 重点 保障 国际 教育 群众&#39;
 </pre></div>
 </div>
 </div>
@@ -1518,7 +1633,7 @@ extract_tags(sentence, topK=20, withWeight=False, allowPOS=(), withFlag=False) m
     <span class="n">cx</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">cx</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">cx</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">color</span> <span class="o">=</span> <span class="n">color</span><span class="p">,</span> 
              <span class="n">linestyle</span><span class="o">=</span><span class="n">linestyle</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="n">word</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;词语重要性&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1526,8 +1641,37 @@ extract_tags(sentence, topK=20, withWeight=False, allowPOS=(), withFlag=False) m
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;民主&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;民主&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
 <span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;法制&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_88_0.png" src="_images/10-text-minning-gov-report_88_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;动能&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;互联网&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-text-minning-gov-report_89_0.png" src="_images/10-text-minning-gov-report_89_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;工业&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;农业&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;制造业&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;服务业&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1537,8 +1681,11 @@ extract_tags(sentence, topK=20, withWeight=False, allowPOS=(), withFlag=False) m
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;动能&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
-<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;互联网&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;教育&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;社会保障&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;医疗&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1548,10 +1695,10 @@ extract_tags(sentence, topK=20, withWeight=False, allowPOS=(), withFlag=False) m
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;工业&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">)</span>
-<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;农业&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;制造业&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
-<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;服务业&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;环境&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;住房&#39;</span><span class="p">,</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1561,9 +1708,12 @@ extract_tags(sentence, topK=20, withWeight=False, allowPOS=(), withFlag=False) m
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;教育&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;社会保障&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
-<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;医疗&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;发展&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;经济&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;改革&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;创新&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1573,37 +1723,15 @@ extract_tags(sentence, topK=20, withWeight=False, allowPOS=(), withFlag=False) m
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;环境&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
-<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;住房&#39;</span><span class="p">,</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/10-text-minning-gov-report_94_0.png" src="_images/10-text-minning-gov-report_94_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;发展&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">)</span>
-<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;经济&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;改革&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
-<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;创新&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/10-text-minning-gov-report_95_0.png" src="_images/10-text-minning-gov-report_95_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;社会主义&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;社会主义&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
 <span class="n">plotEvolution</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;马克思主义&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10-text-minning-gov-report_96_0.png" src="_images/10-text-minning-gov-report_96_0.png" />
+<img alt="_images/10-text-minning-gov-report_94_0.png" src="_images/10-text-minning-gov-report_94_0.png" />
 </div>
 </div>
 <p><img alt="image.png" src="_images/end1.png" /></p>

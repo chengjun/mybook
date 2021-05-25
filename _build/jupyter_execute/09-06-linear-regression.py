@@ -32,7 +32,7 @@
 get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
-import numpy as np
+import numpy as np 
 
 
 # ## Simple Linear Regression
@@ -46,7 +46,7 @@ import numpy as np
 # 
 # Consider the following data, which is scattered about a line with a slope of 2 and an intercept of -5:
 
-# In[5]:
+# In[9]:
 
 
 # generate training set
@@ -62,7 +62,7 @@ plt.scatter(x, y);
 
 # We can use Scikit-Learn's ``LinearRegression`` estimator to fit this data and construct the best-fit line:
 
-# In[6]:
+# In[10]:
 
 
 from sklearn.linear_model import LinearRegression
@@ -125,7 +125,7 @@ print('RMSE: %.4f' % rmse(ytest, ypred))
 print('R2 score: %.4f' % R2(ytest, ypred)) 
 
 
-# In[9]:
+# In[11]:
 
 
 from sklearn.metrics import mean_squared_error, r2_score, explained_variance_score
@@ -199,7 +199,7 @@ print(model.coef_)
 # 
 # This polynomial projection is useful enough that it is built into Scikit-Learn, using the ``PolynomialFeatures`` transformer:
 
-# In[13]:
+# In[12]:
 
 
 from sklearn.preprocessing import PolynomialFeatures
@@ -214,7 +214,7 @@ poly.fit_transform(x[:, None])
 # 
 # Let's make a 7th-degree polynomial model in this way:
 
-# In[14]:
+# In[13]:
 
 
 from sklearn.pipeline import make_pipeline
@@ -228,7 +228,7 @@ poly_model = make_pipeline(PolynomialFeatures(7),
 
 # Our linear model, through the use of 7th-order polynomial basis functions, can provide an excellent fit to this non-linear data!
 
-# In[15]:
+# In[14]:
 
 
 rng = np.random.RandomState(1)

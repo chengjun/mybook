@@ -46,7 +46,7 @@ import seaborn as sns; sns.set()
 # 
 # As an example of this, consider the simple case of a classification task, in which the two classes of points are well separated:
 
-# In[3]:
+# In[2]:
 
 
 from sklearn.datasets import make_blobs
@@ -117,7 +117,7 @@ plt.xlim(-1, 3.5);
 # - set the ``C`` parameter to a very large number
 #     - we'll discuss the meaning of these in more depth momentarily
 
-# In[5]:
+# In[3]:
 
 
 from sklearn.svm import SVC # "Support vector classifier"
@@ -125,7 +125,7 @@ model = SVC(kernel='linear', C=1E10)
 model.fit(X, y)
 
 
-# In[6]:
+# In[4]:
 
 
 # learn about the parameters of SVC
@@ -134,7 +134,7 @@ get_ipython().run_line_magic('pinfo', 'SVC')
 
 # To better visualize what's happening here, let's create a quick convenience function that will plot SVM decision boundaries for us:
 
-# In[7]:
+# In[5]:
 
 
 def plot_svc_decision_function(model, ax=None, plot_support=True):
@@ -165,7 +165,7 @@ def plot_svc_decision_function(model, ax=None, plot_support=True):
     ax.set_ylim(ylim)
 
 
-# In[9]:
+# In[6]:
 
 
 plt.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap='autumn')
@@ -193,7 +193,7 @@ model.support_vectors_
 # 
 # We can see this, for example, if we plot the model learned from the first 60 points and first 120 points of this dataset:
 
-# In[11]:
+# In[15]:
 
 
 def plot_svm(N=10, ax=None):
@@ -228,12 +228,19 @@ for axi, N in zip(ax, [60, 120]):
 
 # If you are running this notebook live, you can use IPython's interactive widgets to view this feature of the SVM model interactively:
 
-# ```
-# from ipywidgets import interact, fixed
-# 
-# interact(plot_svm, N=(10, 200, 30), ax=fixed(None));
-# # https://ipywidgets.readthedocs.io/en/latest/examples/Using%20Interact.html
-# ```
+# In[13]:
+
+
+from ipywidgets import interact, fixed
+
+
+# In[16]:
+
+
+
+interact(plot_svm, N=(10, 200, 30), ax=fixed(None));
+#https://ipywidgets.readthedocs.io/en/latest/examples/Using%20Interact.html
+
 
 # ### Beyond linear boundaries: Kernel SVM
 # 
@@ -245,7 +252,7 @@ for axi, N in zip(ax, [60, 120]):
 # 
 # To motivate the need for kernels, let's look at some data that is not linearly separable:
 
-# In[17]:
+# In[7]:
 
 
 from sklearn.datasets import make_circles
@@ -264,25 +271,25 @@ plot_svc_decision_function(clf, plot_support=False);
 # 
 # For example, one simple projection we could use would be to compute a **radial basis function** centered on the middle clump:
 
-# In[18]:
+# In[8]:
 
 
 (X ** 2)[0]
 
 
-# In[19]:
+# In[9]:
 
 
 (X ** 2)[0].sum()
 
 
-# In[20]:
+# In[10]:
 
 
 (X ** 2).sum(1)[0]
 
 
-# In[21]:
+# In[11]:
 
 
 r = np.exp(-(X ** 2).sum(1))
@@ -291,7 +298,7 @@ r = np.exp(-(X ** 2).sum(1))
 # We can visualize this extra data dimension using a three-dimensional plot
 # - if you are running this notebook live, you will be able to use the sliders to rotate the plot:
 
-# In[22]:
+# In[17]:
 
 
 # plot 3d & interact
@@ -348,7 +355,7 @@ interact(plot_3D, elev=(-90, 90, 10), azip=(-180, 180),
 # 
 # 
 
-# In[23]:
+# In[18]:
 
 
 # In Scikit-Learn, we can apply kernelized SVM 
@@ -358,7 +365,7 @@ clf = SVC(kernel='rbf', C=1E6, gamma = 'scale')
 clf.fit(X, y) 
 
 
-# In[24]:
+# In[19]:
 
 
 plt.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap='autumn')
@@ -379,7 +386,7 @@ plt.scatter(clf.support_vectors_[:, 0], clf.support_vectors_[:, 1],
 # 
 # For example, you may have data like this:
 
-# In[26]:
+# In[20]:
 
 
 X, y = make_blobs(n_samples=100, centers=2,
@@ -396,7 +403,7 @@ plt.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap='autumn');
 # 
 # The plot shown below gives a visual picture of how a changing $C$ parameter affects the final fit, via the softening of the margin:
 
-# In[27]:
+# In[21]:
 
 
 X, y = make_blobs(n_samples=100, centers=2,
@@ -424,7 +431,7 @@ for axi, C in zip(ax, [50.0, 0.1]):
 # 
 # A fetcher for the dataset is built into Scikit-Learn:
 
-# In[29]:
+# In[23]:
 
 
 from sklearn.datasets import fetch_lfw_people
@@ -435,7 +442,7 @@ print(faces.images.shape)
 
 # Let's plot a few of these faces to see what we're working with:
 
-# In[30]:
+# In[24]:
 
 
 fig, ax = plt.subplots(3, 5)
@@ -453,7 +460,7 @@ for i, axi in enumerate(ax.flat):
 # 
 # We can do this most straightforwardly by packaging the preprocessor and the classifier into a single pipeline:
 
-# In[31]:
+# In[25]:
 
 
 from sklearn.svm import SVC
@@ -468,7 +475,7 @@ model = make_pipeline(pca, svc)
 
 # For the sake of testing our classifier output, we will split the data into a training and testing set:
 
-# In[32]:
+# In[26]:
 
 
 from sklearn.model_selection import train_test_split

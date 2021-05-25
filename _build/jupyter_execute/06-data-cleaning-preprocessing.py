@@ -26,6 +26,33 @@
 # In[1]:
 
 
+# 按行读取数据
+line_num = 0
+cops_num = 0
+with open('/Users/datalab/bigdata/cjc/ows-raw.txt', 'r') as f:
+    for i in f:
+        line_num += 1
+        if 'cops' in i:
+            cops_num += 1
+        if line_num % 100000 ==0:
+            print(line_num)
+
+
+# In[2]:
+
+
+line_num
+
+
+# In[4]:
+
+
+cops_num/line_num
+
+
+# In[1]:
+
+
 bigfile = open('/Users/datalab/bigdata/cjc/ows-raw.txt', 'r')
 chunkSize = 1000000
 chunk = bigfile.readlines(chunkSize)
@@ -47,7 +74,7 @@ get_ipython().run_line_magic('pinfo', 'bigfile.readlines')
 5%5
 
 
-# In[9]:
+# In[5]:
 
 
 # https://stackoverflow.com/questions/519633/lazy-method-for-reading-big-file-in-python?lq=1

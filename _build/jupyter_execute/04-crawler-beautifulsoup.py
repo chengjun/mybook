@@ -77,7 +77,7 @@
 # 
 # **Alice's Adventures in Wonderland** CHAPTER VII A Mad Tea-Party http://www.gutenberg.org/files/928/928-h/928-h.htm
 
-# In[26]:
+# In[1]:
 
 
 import requests
@@ -104,18 +104,18 @@ help(requests.get)
 # In[2]:
 
 
-url = 'https://computational-class.github.io/bigdata/data/test.html'
+url = 'https://socratesacademy.github.io/bigdata/data/test.html'
 content = requests.get(url)
 #help(content)
 
 
-# In[4]:
+# In[3]:
 
 
 print(content.text)
 
 
-# In[5]:
+# In[4]:
 
 
 content.encoding
@@ -156,10 +156,10 @@ content.encoding
 # 
 # > $ pip install html5lib
 
-# In[60]:
+# In[6]:
 
 
-url = 'http://computational-class.github.io/bigdata/data/test.html'
+url = 'http://socratesacademy.github.io/bigdata/data/test.html'
 content = requests.get(url)
 content = content.text
 soup = BeautifulSoup(content, 'html.parser') 
@@ -211,19 +211,19 @@ soup.select('body > p.title > b')[0].text
 
 # ### Select 方法: 通过标签名查找
 
-# In[29]:
+# In[11]:
 
 
 soup.select('title')[0].text
 
 
-# In[30]:
+# In[12]:
 
 
 soup.select('a')
 
 
-# In[31]:
+# In[13]:
 
 
 soup.select('b')
@@ -231,19 +231,19 @@ soup.select('b')
 
 # ### Select 方法: 通过类名查找
 
-# In[32]:
+# In[14]:
 
 
 soup.select('.title')
 
 
-# In[33]:
+# In[15]:
 
 
 soup.select('.sister')
 
 
-# In[34]:
+# In[16]:
 
 
 soup.select('.story')
@@ -251,13 +251,13 @@ soup.select('.story')
 
 # ### Select 方法: 通过id名查找
 
-# In[35]:
+# In[17]:
 
 
 soup.select('#link1')
 
 
-# In[36]:
+# In[19]:
 
 
 soup.select('#link1')[0]['href']
@@ -270,7 +270,7 @@ soup.select('#link1')[0]['href']
 # - 例如查找 p 标签中，id 等于 link1的内容
 #  
 
-# In[37]:
+# In[20]:
 
 
 soup.select('p #link1')
@@ -285,13 +285,13 @@ soup.select('p #link1')
 # 
 # 
 
-# In[39]:
+# In[21]:
 
 
 soup.select("head > title")
 
 
-# In[40]:
+# In[22]:
 
 
 soup.select("body > p")
@@ -299,7 +299,7 @@ soup.select("body > p")
 
 # ## find_all方法
 
-# In[63]:
+# In[23]:
 
 
 #soup('p')
@@ -309,48 +309,48 @@ soup.find_all('p')
 # In[29]:
 
 
-soup.find_all('p') 
+soup.find_all('p')  
 
 
-# In[32]:
+# In[24]:
 
 
 [i.text for i in soup('p')]
 
 
-# In[34]:
+# In[25]:
 
 
 for i in soup('p'):
     print(i.text)
 
 
-# In[64]:
+# In[26]:
 
 
 for tag in soup.find_all(True):
     print(tag.name)
 
 
-# In[65]:
+# In[27]:
 
 
 soup('head') # or soup.head
 
 
-# In[37]:
+# In[28]:
 
 
 soup('body') # or soup.body
 
 
-# In[38]:
+# In[29]:
 
 
 soup('title')  # or  soup.title
 
 
-# In[39]:
+# In[30]:
 
 
 soup('p')
@@ -362,19 +362,19 @@ soup('p')
 soup.p
 
 
-# In[66]:
+# In[33]:
 
 
 soup.title.name
 
 
-# In[67]:
+# In[34]:
 
 
 soup.title.string
 
 
-# In[43]:
+# In[36]:
 
 
 soup.title.text
@@ -387,28 +387,28 @@ soup.title.text
 soup.title.parent.name
 
 
-# In[39]:
+# In[37]:
 
 
 soup.p
 
 
-# In[40]:
+# In[38]:
 
 
 soup.p['class']
 
 
-# In[68]:
-
-
-soup.find_all('p', {'class', 'title'}) 
-
-
 # In[42]:
 
 
-soup.find_all('p', class_= 'title')
+soup.find_all('p', {'class', 'story'}) 
+
+
+# In[43]:
+
+
+#soup.find_all('p', class_= 'title')
 
 
 # In[44]:
@@ -423,37 +423,37 @@ soup.find_all('a', {'class', 'sister'})
 soup.find_all('p', {'class', 'story'})[0].find_all('a')
 
 
-# In[69]:
+# In[45]:
 
 
 soup.a
 
 
-# In[70]:
+# In[46]:
 
 
 soup('a')
 
 
-# In[71]:
-
-
-soup.find(id="link3")
-
-
 # In[48]:
+
+
+soup.find(id="link1")
+
+
+# In[49]:
 
 
 soup.find_all('a')
 
 
-# In[72]:
+# In[50]:
 
 
 soup.find_all('a', {'class', 'sister'}) # compare with soup.find_all('a')
 
 
-# In[73]:
+# In[51]:
 
 
 soup.find_all('a', {'class', 'sister'})[0]
@@ -462,7 +462,7 @@ soup.find_all('a', {'class', 'sister'})[0]
 # In[57]:
 
 
-soup.find_all('a', {'class', 'sister'})[0].text
+soup.find_all('a', {'class', 'sister'})[0].text 
 
 
 # In[58]:

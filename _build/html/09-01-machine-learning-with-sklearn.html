@@ -172,6 +172,11 @@
      The future of employment
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-grf.html">
+     Causal Forests
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
@@ -502,6 +507,19 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -647,6 +665,19 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -827,7 +858,7 @@ Depending on the model class we are working with, we might need to answer one or
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
 </pre></div>
 </div>
 </div>
@@ -849,12 +880,14 @@ Depending on the model class we are working with, we might need to answer one or
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-<span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">X</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(50, 1)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3.74540119],
+       [9.50714306],
+       [7.31993942]])
 </pre></div>
 </div>
 </div>
@@ -871,7 +904,7 @@ This can be done with the <code class="docutils literal notranslate"><span class
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
 </pre></div>
 </div>
 </div>
@@ -947,6 +980,7 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Xfit</span> <span class="o">=</span> <span class="n">xfit</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">ytest</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">Xfit</span> <span class="o">-</span><span class="mi">1</span> 
 <span class="n">yfit</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xfit</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -955,13 +989,26 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 <p>Finally, let’s visualize the results by plotting first the raw data, and then this model fit:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+<span class="n">r2_score</span><span class="p">(</span><span class="n">ytest</span><span class="p">,</span> <span class="n">yfit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9998706727838067
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xfit</span><span class="p">,</span> <span class="n">yfit</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-01-machine-learning-with-sklearn_49_0.png" src="_images/09-01-machine-learning-with-sklearn_49_0.png" />
+<img alt="_images/09-01-machine-learning-with-sklearn_50_0.png" src="_images/09-01-machine-learning-with-sklearn_50_0.png" />
 </div>
 </div>
 <p>Typically the efficacy of the model is evaluated by comparing its results to some known baseline, as we will see in the next example</p>
@@ -990,7 +1037,7 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="n">Xtrain</span><span class="p">,</span> <span class="n">Xtest</span><span class="p">,</span> <span class="n">ytrain</span><span class="p">,</span> <span class="n">ytest</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_iris</span><span class="p">,</span> <span class="n">y_iris</span><span class="p">,</span>
                                                 <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
@@ -1095,7 +1142,11 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-01-machine-learning-with-sklearn_64_0.png" src="_images/09-01-machine-learning-with-sklearn_64_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.7/site-packages/seaborn/_decorators.py:43: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+  FutureWarning
+</pre></div>
+</div>
+<img alt="_images/09-01-machine-learning-with-sklearn_65_1.png" src="_images/09-01-machine-learning-with-sklearn_65_1.png" />
 </div>
 </div>
 <p>In the two-dimensional representation, the species are fairly well separated, even though the PCA algorithm had no knowledge of the species labels!</p>
@@ -1115,11 +1166,11 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 <p>We can fit the Gaussian mixture model as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GMM</span>      <span class="c1"># 1. Choose the model class</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">GMM</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-            <span class="n">covariance_type</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>  <span class="c1"># 2. Instantiate the model with hyperparameters</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_iris</span><span class="p">)</span>                    <span class="c1"># 3. Fit to data. Notice y is not specified!</span>
-<span class="n">y_gmm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_iris</span><span class="p">)</span>        <span class="c1"># 4. Determine cluster labels</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>      <span class="c1"># 1. Choose the model class</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+            <span class="n">covariance_type</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>             <span class="c1"># 2. Instantiate the model with hyperparameters</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_iris</span><span class="p">)</span>                               <span class="c1"># 3. Fit to data. Notice y is not specified!</span>
+<span class="n">y_gmm</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_iris</span><span class="p">)</span>                   <span class="c1"># 4. Determine cluster labels</span>
 </pre></div>
 </div>
 </div>
@@ -1167,7 +1218,11 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-01-machine-learning-with-sklearn_70_0.png" src="_images/09-01-machine-learning-with-sklearn_70_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.7/site-packages/seaborn/_decorators.py:43: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+  FutureWarning
+</pre></div>
+</div>
+<img alt="_images/09-01-machine-learning-with-sklearn_71_1.png" src="_images/09-01-machine-learning-with-sklearn_71_1.png" />
 </div>
 </div>
 <p>By splitting the data by cluster number, GMM algorithm recovered the underlying label  without an expert:</p>
@@ -1215,12 +1270,10 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 <p>Let’s visualize the first hundred of these:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
                          <span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;xticks&#39;</span><span class="p">:[],</span> <span class="s1">&#39;yticks&#39;</span><span class="p">:[]},</span>
                          <span class="n">gridspec_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">))</span>
-
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">):</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
@@ -1229,7 +1282,7 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-01-machine-learning-with-sklearn_77_0.png" src="_images/09-01-machine-learning-with-sklearn_77_0.png" />
+<img alt="_images/09-01-machine-learning-with-sklearn_78_0.png" src="_images/09-01-machine-learning-with-sklearn_78_0.png" />
 </div>
 </div>
 <p>In order to work with this data within Scikit-Learn,</p>
@@ -1338,7 +1391,7 @@ Let’s plot this data to see if we can learn anything from its structure:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-01-machine-learning-with-sklearn_87_0.png" src="_images/09-01-machine-learning-with-sklearn_87_0.png" />
+<img alt="_images/09-01-machine-learning-with-sklearn_88_0.png" src="_images/09-01-machine-learning-with-sklearn_88_0.png" />
 </div>
 </div>
 <p>This plot gives us some good intuition into how well various numbers are separated in the larger 64-dimensional space.</p>
@@ -1421,7 +1474,7 @@ Let’s plot this data to see if we can learn anything from its structure:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-01-machine-learning-with-sklearn_95_0.png" src="_images/09-01-machine-learning-with-sklearn_95_0.png" />
+<img alt="_images/09-01-machine-learning-with-sklearn_96_0.png" src="_images/09-01-machine-learning-with-sklearn_96_0.png" />
 </div>
 </div>
 <p>This shows us where the mis-labeled points tend to be:</p>
@@ -1450,7 +1503,7 @@ Let’s plot this data to see if we can learn anything from its structure:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-01-machine-learning-with-sklearn_97_0.png" src="_images/09-01-machine-learning-with-sklearn_97_0.png" />
+<img alt="_images/09-01-machine-learning-with-sklearn_98_0.png" src="_images/09-01-machine-learning-with-sklearn_98_0.png" />
 </div>
 </div>
 <p>Examining this subset of the data, we can gain insight regarding where the algorithm might be not performing optimally.</p>

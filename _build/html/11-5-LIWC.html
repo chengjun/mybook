@@ -1,0 +1,1781 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>LIWC: Linguistic Inquiry and Word Count analyzer &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="主题模型简介" href="12-topic-models-update.html" />
+    <link rel="prev" title="基于机器学习的情感分析" href="11-4-sentiment-classifier.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-word2vec.html">
+     词向量模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">
+     基于字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-2-emotion-dict.html">
+     大连理工大学中文情感词汇
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-NRC-Chinese-dict.html">
+     基于NRC字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-textblob.html">
+     利用textblob进行情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-4-sentiment-classifier.html">
+     基于机器学习的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     LIWC: Linguistic Inquiry and Word Count  analyzer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-update.html">
+     主题模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-with-turicreate.html">
+     使用Turicreate建立主题模型
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/11-5-LIWC.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F11-5-LIWC.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/11-5-LIWC.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/11-5-LIWC.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-liwc-python-package">
+   The liwc Python Package
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cliwc">
+   CLIWC
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     文心
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#liwc-analysis-driver-for-liwc2015-analysis">
+     liwc-analysis: Driver for LIWC2015 analysis.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#chinese-liwc-lexicon">
+     Chinese LIWC Lexicon
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="liwc-linguistic-inquiry-and-word-count-analyzer">
+<h1>LIWC: Linguistic Inquiry and Word Count  analyzer<a class="headerlink" href="#liwc-linguistic-inquiry-and-word-count-analyzer" title="Permalink to this headline">¶</a></h1>
+<p>https://cliwc.weebly.com/</p>
+<p><strong>Language left behind on social media exposes the emotional and cognitive costs of a romantic breakup</strong></p>
+<p>Sarah Seraj,  Kate G. Blackburn, and James W. Pennebaker</p>
+<p>PNAS February 16, 2021 118 (7) e2017154118; https://doi.org/10.1073/pnas.2017154118</p>
+<p>Abstract</p>
+<p>Using archived social media data, the language signatures of people going through breakups were mapped. Text analyses were conducted on 1,027,541 posts from 6,803 Reddit users who had posted about their breakups. The posts include users’ Reddit history in the 2 y surrounding their breakups across the various domains of their life, not just posts pertaining to their relationship. Language markers of an impending breakup were evident 3 mo before the event, peaking on the week of the breakup and returning to baseline 6 mo later. Signs included an increase in I-words, we-words, and cognitive processing words (characteristic of depression, collective focus, and the meaning-making process, respectively) and drops in analytic thinking (indicating more personal and informal language). The patterns held even when people were posting to groups unrelated to breakups and other relationship topics. People who posted about their breakup for longer time periods were less well-adjusted a year after their breakup compared to short-term posters. The language patterns seen for breakups replicated for users going through divorce (n = 5,144; 1,109,867 posts) or other types of upheavals (n = 51,357; 11,081,882 posts). The cognitive underpinnings of emotional upheavals are discussed using language as a lens.</p>
+<p>日常生活中的情感分析</p>
+<ul class="simple">
+<li><p>忧郁与自杀者往往在语言与文字之中发出可侦测的求救信号，但是我们能否有效的敏感到这些信息？（Chung &amp; Pennebaker，2007）</p></li>
+<li><p>初次约会对象之间几分钟的对话可以预测彼此的好感？情侣间的对话可以预测几个月之后持续交往的机率？（Ireland &amp; Pennebaker，2010）</p></li>
+<li><p>团体的凝聚力和合作倾向在对话之中就能够被侦测？（Gonzales，Hancock，&amp; Pennebaker，2010）</p></li>
+</ul>
+<p>日常生活中的情感分析</p>
+<ul class="simple">
+<li><p>你的男/女朋友欺骗你吗？谎言侦测的研究，可以告诉你说谎的语言特性，让你分辨真假之间。（Newman，Pennebaker，Berry，&amp; Richards，2003）</p></li>
+<li><p>还用老套的占星术认识新朋友？最潮的语言分析可以助你一臂之力。（Pennebaker &amp; King，1999）</p></li>
+<li><p>岁月的印记不只在容颜，语言也可以揭开年龄的秘密。（Pennebaker &amp; Stone，2003）</p></li>
+</ul>
+<p>LIWC词库已经开发了不同的语言版本。英文 版LIWC目前包含了64个词语类别，例如，常用的语词类别(代名词、冠词、应和词、 停顿词等)，以及心理特征类别词汇(情感词汇、认知词汇)等。该词典将情感词汇分为积极情感词汇和消极情感词汇。其中，消极情感词汇包括焦虑、愤怒和伤心。
+https://liwc.wpengine.com/</p>
+<div class="section" id="the-liwc-python-package">
+<h2>The liwc Python Package<a class="headerlink" href="#the-liwc-python-package" title="Permalink to this headline">¶</a></h2>
+<p>https://github.com/chbrown/liwc-python</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># https://github.com/chbrown/liwc-python</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">liwc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: liwc in /opt/anaconda3/lib/python3.7/site-packages (0.5.0)
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">liwc</span>
+<span class="n">liwcPath</span> <span class="o">=</span> <span class="s1">&#39;/Users/datalab/OneDrive - nju.edu.cn/research/liwc/LIWC2007_English100131.dic&#39;</span>
+<span class="n">parse</span><span class="p">,</span> <span class="n">category_names</span> <span class="o">=</span> <span class="n">liwc</span><span class="o">.</span><span class="n">load_token_parser</span><span class="p">(</span><span class="n">liwcPath</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>parse is a function from a token of text (a string) to a list of matching LIWC categories (a list of strings)</p></li>
+<li><p>category_names is all LIWC categories in the lexicon (a list of strings)</p></li>
+</ul>
+<p>https://www.liwc.net/LIWC2007LanguageManual.pdf</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;happy&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>affect posemo
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">category_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>funct pronoun ppron i we you shehe they ipron article verb auxverb past present future adverb preps conj negate quant number swear social family friend humans affect posemo negemo anx anger sad cogmech insight cause discrep tentat certain inhib incl excl percept see hear feel bio body health sexual ingest relativ motion space time work achieve leisure home money relig death assent nonfl filler
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="image.png" src="_images/liwc1.png" /></p>
+<p><img alt="image.png" src="_images/liwc2.png" /></p>
+<p><img alt="image.png" src="_images/liwc3.png" /></p>
+<p>The LIWC lexicon only matches lowercase strings, so you will most likely want to lowercase your input text before passing it to parse(…). In the example above, I call .lower() on the entire string, but you could alternatively incorporate that into your tokenization process (e.g., by using spaCy’s token.lower_).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="c1"># you may want to use a smarter tokenizer</span>
+    <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\w+&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">UNICODE</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">gettysburg</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;Four score and seven years ago our fathers brought forth on</span>
+<span class="s1">  this continent a new nation, conceived in liberty, and dedicated to the</span>
+<span class="s1">  proposition that all men are created equal. Now we are engaged in a great</span>
+<span class="s1">  civil war, testing whether that nation, or any nation so conceived and so</span>
+<span class="s1">  dedicated, can long endure. We are met on a great battlefield of that war.</span>
+<span class="s1">  We have come to dedicate a portion of that field, as a final resting place</span>
+<span class="s1">  for those who here gave their lives that that nation might live. It is</span>
+<span class="s1">  altogether fitting and proper that we should do this.&#39;&#39;&#39;</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="n">gettysburg_tokens</span> <span class="o">=</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">gettysburg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="n">gettysburg_counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">category</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">gettysburg_tokens</span> <span class="k">for</span> <span class="n">category</span> <span class="ow">in</span> <span class="n">parse</span><span class="p">(</span><span class="n">token</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gettysburg_counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Counter({&#39;funct&#39;: 58, &#39;pronoun&#39;: 18, &#39;cogmech&#39;: 17, &#39;relativ&#39;: 17, &#39;verb&#39;: 13, &#39;ipron&#39;: 12, &#39;social&#39;: 11, &#39;preps&#39;: 10, &#39;conj&#39;: 9, &#39;incl&#39;: 9, &#39;space&#39;: 9, &#39;auxverb&#39;: 9, &#39;affect&#39;: 8, &#39;present&#39;: 8, &#39;time&#39;: 6, &#39;ppron&#39;: 6, &#39;article&#39;: 6, &#39;we&#39;: 5, &#39;posemo&#39;: 5, &#39;quant&#39;: 4, &#39;adverb&#39;: 4, &#39;past&#39;: 3, &#39;negemo&#39;: 3, &#39;anger&#39;: 3, &#39;tentat&#39;: 3, &#39;number&#39;: 2, &#39;motion&#39;: 2, &#39;certain&#39;: 2, &#39;death&#39;: 2, &#39;excl&#39;: 2, &#39;future&#39;: 2, &#39;family&#39;: 1, &#39;humans&#39;: 1, &#39;cause&#39;: 1, &#39;achieve&#39;: 1, &#39;work&#39;: 1, &#39;leisure&#39;: 1, &#39;they&#39;: 1, &#39;discrep&#39;: 1})
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gettysburg_tokens</span> <span class="o">=</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">gettysburg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">gettysburg_tokens</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>four score and seven years ago our fathers brought forth on this continent a new nation conceived in liberty and dedicated to the proposition that all men are created equal now we are engaged in a great civil war testing whether that nation or any nation so conceived and so dedicated can long endure we are met on a great battlefield of that war we have come to dedicate a portion of that field as a final resting place for those who here gave their lives that that nation might live it is altogether fitting and proper that we should do this
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># liwcPath = &#39;/Users/datalab/bigdata/LIWC2007_100131.dic&#39;</span>
+<span class="c1"># parse, category_names = liwc.load_token_parser(liwcPath)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>like	(02 134)125/464	(02 134)126	253	466</p>
+<p><strong>Another Package with the same name</strong></p>
+<p>https://github.com/evanll/liwc-text-analysis-python</p>
+<blockquote>
+<div><p>pip install liwc-text-analysis</p>
+</div></blockquote>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from liwc import Liwc
+
+liwc = Liwc(LIWC_FILEPATH)
+</pre></div>
+</div>
+<p>Search a word in the dictionary to find in which LIWC categories it belongs</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(liwc.search(&#39;happy&#39;))
+</pre></div>
+</div>
+<p>[‘affect’, ‘posemo’]</p>
+<p>Extract raw counts of words in a document that fall into the various LIWC categories</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(liwc.parse(&#39;I love ice cream.&#39;.split(&#39; &#39;)))
+</pre></div>
+</div>
+<p>Counter({‘verb’: 1, ‘present’: 1, ‘affect’: 1, ‘posemo’: 1, ‘bio’: 1, ‘sexual’: 1, ‘social’: 1})</p>
+</div>
+<div class="section" id="cliwc">
+<h2>CLIWC<a class="headerlink" href="#cliwc" title="Permalink to this headline">¶</a></h2>
+<p>中文版的LIWC詞典（簡稱C-LIWC）也在Pennebaker教授的授權下，於2012建立並正式發表（黃金蘭等人2012）
+https://cliwc.weebly.com/</p>
+<div class="section" id="id1">
+<h3>文心<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>“文心(TextMind)”中文心理分析系统是由中科院心理所计算网络心理实验室研发的，针对中文文本进行语言分析的软件系统，通过“文心”，您可以便捷地分析文本中使用的不同类别语言的程度、偏好等特点。针对中国大陆地区简体环境下的语言特点，参照LIWC2007和正體中文C-LIWC词库，我们开发了“文心（TextMind）”中文心理分析系统。“文心”为用户提供从简体中文自动分词，到语言心理分析的一揽子分析解决方案，其词库、文字和符号等处理方法专门针对简体中文语境，词库分类体系也与LIWC兼容一致。
+http://ccpl.psych.ac.cn/textmind/</p>
+</div>
+<div class="section" id="liwc-analysis-driver-for-liwc2015-analysis">
+<h3>liwc-analysis: Driver for LIWC2015 analysis.<a class="headerlink" href="#liwc-analysis-driver-for-liwc2015-analysis" title="Permalink to this headline">¶</a></h3>
+<p>https://pypi.org/project/liwc-analysis/</p>
+<p>https://github.com/EricWiener/liwc-analysis</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">liwc</span><span class="o">-</span><span class="n">analysis</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting liwc-analysis
+  Downloading liwc_analysis-1.2.4-py2.py3-none-any.whl (5.5 kB)
+Requirement already satisfied: pandas in /opt/anaconda3/lib/python3.7/site-packages (from liwc-analysis) (1.2.0)
+Requirement already satisfied: pytz&gt;=2017.3 in /opt/anaconda3/lib/python3.7/site-packages (from pandas-&gt;liwc-analysis) (2019.3)
+Requirement already satisfied: python-dateutil&gt;=2.7.3 in /opt/anaconda3/lib/python3.7/site-packages (from pandas-&gt;liwc-analysis) (2.8.1)
+Requirement already satisfied: numpy&gt;=1.16.5 in /opt/anaconda3/lib/python3.7/site-packages (from pandas-&gt;liwc-analysis) (1.18.1)
+Requirement already satisfied: six&gt;=1.5 in /opt/anaconda3/lib/python3.7/site-packages (from python-dateutil&gt;=2.7.3-&gt;pandas-&gt;liwc-analysis) (1.12.0)
+Installing collected packages: liwc-analysis
+Successfully installed liwc-analysis-1.2.4
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load file and save contents to text variable</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">LIWCLocation</span> <span class="o">=</span> <span class="s1">&#39;/Users/datalab/OneDrive - nju.edu.cn/research/liwc/LIWC2007_100131.dic&#39;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">LIWCLocation</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+<span class="n">grid</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\ufeff</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">grid</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">num2cat</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="n">j</span>   <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">[:</span><span class="mi">66</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">num2cat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>66
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dat</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">[</span><span class="mi">66</span><span class="p">:]:</span>
+    <span class="n">word</span><span class="p">,</span> <span class="n">nums</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">num2cat</span><span class="p">:</span>
+            <span class="n">dat</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">word</span><span class="p">,</span><span class="n">num2cat</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write to file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/datalab/OneDrive - nju.edu.cn/research/liwc/LIWC2007_all_word_category_pair.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span> <span class="ow">in</span> <span class="n">dat</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> ,</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">category</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">liwcanalysis</span>
+
+<span class="n">LIWCLocation</span> <span class="o">=</span> <span class="s1">&#39;/Users/datalab/OneDrive - nju.edu.cn/research/liwc/Simplified_Chinese_LIWC2015_word_category_pair.txt&#39;</span>
+<span class="n">LIWC</span> <span class="o">=</span> <span class="n">liwcanalysis</span><span class="o">.</span><span class="n">liwc</span><span class="p">(</span><span class="n">LIWCLocation</span><span class="p">)</span>
+<span class="n">result_dics</span><span class="p">,</span> <span class="n">coutn_dics</span> <span class="o">=</span> <span class="n">LIWC</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="s2">&quot;我 今天 很 伤心 。&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">liwcanalysis</span>
+
+<span class="n">LIWCLocation</span> <span class="o">=</span> <span class="s1">&#39;/Users/datalab/OneDrive - nju.edu.cn/research/liwc/LIWC2007_all_word_category_pair.txt&#39;</span>
+<span class="n">LIWC</span> <span class="o">=</span> <span class="n">liwcanalysis</span><span class="o">.</span><span class="n">liwc</span><span class="p">(</span><span class="n">LIWCLocation</span><span class="p">)</span>
+<span class="n">result_dics2</span><span class="p">,</span> <span class="n">coutn_dics2</span> <span class="o">=</span> <span class="n">LIWC</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="s2">&quot;我 今天 很 开心 。&quot;</span><span class="p">)</span>
+<span class="n">result_dics3</span><span class="p">,</span> <span class="n">coutn_dics3</span> <span class="o">=</span> <span class="n">LIWC</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="s2">&quot;I am very happy .&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">coutn_dics</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">j</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>adverb (Adverbs) 1
+focuspresent (Present Focus) 1
+function (Function Words) 3
+i (I) 1
+ppron (Personal Pronouns) 1
+pronoun (Pronouns) 1
+relativ (Relativity) 1
+tensem 1
+time (Time) 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">coutn_dics2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">j</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>adverb 1
+funct 3
+i 1
+ppron 1
+pronoun 1
+relativ 1
+time 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">coutn_dics3</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">j</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>adverb 1
+affect 1
+auxverb 1
+funct 2
+higharousal 2
+posemo 2
+present 1
+verb 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">result_dics</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">j</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>adverb (Adverbs) [&#39;很&#39;]
+focuspresent (Present Focus) [&#39;今天&#39;]
+function (Function Words) [&#39;我&#39;, &#39;今天&#39;, &#39;很&#39;]
+i (I) [&#39;我&#39;]
+ppron (Personal Pronouns) [&#39;我&#39;]
+pronoun (Pronouns) [&#39;我&#39;]
+relativ (Relativity) [&#39;今天&#39;]
+tensem [&#39;今天&#39;]
+time (Time) [&#39;今天&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">result_dics2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">j</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>adverb [&#39;很&#39;]
+funct [&#39;我&#39;, &#39;今天&#39;, &#39;很&#39;]
+i [&#39;我&#39;]
+ppron [&#39;我&#39;]
+pronoun [&#39;我&#39;]
+relativ [&#39;今天&#39;]
+time [&#39;今天&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">result_dics3</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">j</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>adverb [&#39;very&#39;]
+affect [&#39;happy&#39;]
+auxverb [&#39;am&#39;]
+funct [&#39;am&#39;, &#39;very&#39;]
+higharousal [&#39;happy&#39;, &#39;happy&#39;]
+posemo [&#39;happy&#39;, &#39;happy&#39;]
+present [&#39;am&#39;]
+verb [&#39;am&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="chinese-liwc-lexicon">
+<h3>Chinese LIWC Lexicon<a class="headerlink" href="#chinese-liwc-lexicon" title="Permalink to this headline">¶</a></h3>
+<p>https://github.com/thunlp/Auto_CLIWC/blob/master/datasets/sc_liwc.dic</p>
+<p>Auto LIWC</p>
+<p>Xiangkai Zeng, Cheng Yang, Cunchao Tu, Zhiyuan Liu, Maosong Sun. <strong>Chinese LIWC Lexicon Expansion via Hierarchical Classification of Word Embeddings with Sememe Attention</strong>. The 32nd AAAI Conference on Artificial Intelligence (AAAI 2018).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./data/sc_liwc.dic&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># https://github.com/thunlp/Auto_CLIWC/blob/master/utils/load_data.py</span>
+<span class="k">def</span> <span class="nf">load_liwc</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">io</span>
+    <span class="n">liwc_file</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">liwc_file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="n">type2name</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">word2type</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">type2word</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">lc</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>  <span class="c1"># read type</span>
+        <span class="k">if</span> <span class="s1">&#39;%&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="n">lc</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="k">break</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="n">type2name</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[</span><span class="n">lc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="c1">#if tmp[0] not in word2vec:</span>
+            <span class="c1">#continue</span>
+        <span class="n">word2type</span><span class="p">[</span><span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">word2type</span><span class="p">[</span><span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]]:</span>
+            <span class="n">type2word</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">type2word</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="n">type2word</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">type2name</span><span class="p">,</span> <span class="n">word2type</span><span class="p">,</span> <span class="n">type2word</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">type2name</span><span class="p">,</span> <span class="n">word2type</span><span class="p">,</span> <span class="n">type2word</span> <span class="o">=</span> <span class="n">load_liwc</span><span class="p">(</span><span class="s1">&#39;./data/sc_liwc.dic&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">type2name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>51
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_dics</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;achieve (Achievement)&#39;: [],
+  &#39;adverb (Adverbs)&#39;: [&#39;很&#39;],
+  &#39;affect (Affect)&#39;: [],
+  &#39;affiliation (Affiliation)&#39;: [],
+  &#39;anger (Anger)&#39;: [],
+  &#39;anx (Anx)&#39;: [],
+  &#39;assent (Assent)&#39;: [],
+  &#39;auxverb (Auxiliary Verbs)&#39;: [],
+  &#39;bio (Biological Processes)&#39;: [],
+  &#39;body (Body)&#39;: [],
+  &#39;cause (Causal)&#39;: [],
+  &#39;certain (Certainty)&#39;: [],
+  &#39;cogproc (Cognitive Processes)&#39;: [],
+  &#39;compare (Comparisons)&#39;: [],
+  &#39;conj (Conjunctions)&#39;: [],
+  &#39;death (Death)&#39;: [],
+  &#39;differ (Differentiation)&#39;: [],
+  &#39;discrep (Discrepancies)&#39;: [],
+  &#39;drives (Drives)&#39;: [],
+  &#39;family (Family)&#39;: [],
+  &#39;feel (Feel)&#39;: [],
+  &#39;female (Female)&#39;: [],
+  &#39;filler (Filler Words)&#39;: [],
+  &#39;focusfuture (Future Focus)&#39;: [],
+  &#39;focuspast (Past Focus)&#39;: [],
+  &#39;focuspresent (Present Focus)&#39;: [&#39;今天&#39;],
+  &#39;friend (Friends)&#39;: [],
+  &#39;function (Function Words)&#39;: [&#39;我&#39;, &#39;今天&#39;, &#39;很&#39;],
+  &#39;general_pa&#39;: [],
+  &#39;health (Health)&#39;: [],
+  &#39;hear (Hear)&#39;: [],
+  &#39;home (Home)&#39;: [],
+  &#39;i (I)&#39;: [&#39;我&#39;],
+  &#39;informal (Informal Language)&#39;: [],
+  &#39;ingest (Ingest)&#39;: [],
+  &#39;insight (Insight)&#39;: [],
+  &#39;interrog (Interrogatives)&#39;: [],
+  &#39;ipron (Impersonal Pronouns)&#39;: [],
+  &#39;leisure (Leisure)&#39;: [],
+  &#39;male (Male)&#39;: [],
+  &#39;modal_pa&#39;: [],
+  &#39;money (Money)&#39;: [],
+  &#39;motion (Motion)&#39;: [],
+  &#39;negate (Negations)&#39;: [],
+  &#39;negemo (Negative Emotions)&#39;: [],
+  &#39;netspeak (Netspeak)&#39;: [],
+  &#39;nonflu (Nonfluencies)&#39;: [],
+  &#39;number (Numbers)&#39;: [],
+  &#39;particle&#39;: [],
+  &#39;percept (Perceptual Processes)&#39;: [],
+  &#39;posemo (Positive Emotions)&#39;: [],
+  &#39;power (Power)&#39;: [],
+  &#39;ppron (Personal Pronouns)&#39;: [&#39;我&#39;],
+  &#39;prep (Prepositions)&#39;: [],
+  &#39;prepend&#39;: [],
+  &#39;progm&#39;: [],
+  &#39;pronoun (Pronouns)&#39;: [&#39;我&#39;],
+  &#39;quant (Quantifiers)&#39;: [],
+  &#39;quanunit&#39;: [],
+  &#39;relativ (Relativity)&#39;: [&#39;今天&#39;],
+  &#39;relig (Religion)&#39;: [],
+  &#39;reward (Reward)&#39;: [],
+  &#39;risk (Risk)&#39;: [],
+  &#39;sad (Sad)&#39;: [],
+  &#39;see (See)&#39;: [],
+  &#39;sexual (Sexual)&#39;: [],
+  &#39;shehe (SheHe)&#39;: [],
+  &#39;social (Social)&#39;: [],
+  &#39;space (Space)&#39;: [],
+  &#39;specart&#39;: [],
+  &#39;swear (Swear)&#39;: [],
+  &#39;tensem&#39;: [&#39;今天&#39;],
+  &#39;tentat (Tentative)&#39;: [],
+  &#39;they (They)&#39;: [],
+  &#39;time (Time)&#39;: [&#39;今天&#39;],
+  &#39;we (We)&#39;: [],
+  &#39;work (Work)&#39;: [],
+  &#39;you (You)&#39;: [],
+  &#39;youpl&#39;: []}]
+</pre></div>
+</div>
+</div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p></p></td>
+<td><p>LIWC DIMENSION</p></td>
+<td><p>OUTPUT LABEL</p></td>
+<td><p>LIWC2015 MEAN</p></td>
+<td><p>LIWC2007 MEAN</p></td>
+<td><p>LIWC 2015/2007 CORRELATION</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Word Count</p></td>
+<td><p>WC</p></td>
+<td><p>11,921.82</p></td>
+<td><p>11,852.99</p></td>
+<td><p>1.00</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><strong>Summary Variable</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Analytical Thinking</p></td>
+<td><p>Analytic</p></td>
+<td><p>56.34</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Clout</p></td>
+<td><p>Clout</p></td>
+<td><p>57.95</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Authentic</p></td>
+<td><p>Authentic</p></td>
+<td><p>49.17</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Emotional Tone</p></td>
+<td><p>Tone</p></td>
+<td><p>54.22</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><strong>Language Metrics</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Words per sentence1</p></td>
+<td><p>WPS</p></td>
+<td><p>17.40</p></td>
+<td><p>25.07</p></td>
+<td><p>0.74</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Words&gt;6 letters</p></td>
+<td><p>Sixltr</p></td>
+<td><p>15.60</p></td>
+<td><p>15.89</p></td>
+<td><p>0.98</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Dictionary words</p></td>
+<td><p>Dic</p></td>
+<td><p>85.18</p></td>
+<td><p>83.95</p></td>
+<td><p>0.94</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><strong>Function Words</strong></p></td>
+<td><p>function</p></td>
+<td><p>51.87</p></td>
+<td><p>54.29</p></td>
+<td><p>0.95</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Total pronouns</p></td>
+<td><p>pronoun</p></td>
+<td><p>15.22</p></td>
+<td><p>14.99</p></td>
+<td><p>0.99</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Personal pronouns</p></td>
+<td><p>ppron</p></td>
+<td><p>9.95</p></td>
+<td><p>9.83</p></td>
+<td><p>0.99</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>1st pers singular</p></td>
+<td><p>i</p></td>
+<td><p>4.99</p></td>
+<td><p>4.97</p></td>
+<td><p>1.00</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>1st pers plural</p></td>
+<td><p>we</p></td>
+<td><p>0.72</p></td>
+<td><p>0.72</p></td>
+<td><p>1.00</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>2nd person</p></td>
+<td><p>you</p></td>
+<td><p>1.70</p></td>
+<td><p>1.61</p></td>
+<td><p>0.98</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>3rd pers singular</p></td>
+<td><p>shehe</p></td>
+<td><p>1.88</p></td>
+<td><p>1.87</p></td>
+<td><p>1.00</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>3rd pers plural</p></td>
+<td><p>they</p></td>
+<td><p>0.66</p></td>
+<td><p>0.66</p></td>
+<td><p>0.99</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Impersonal pronouns</p></td>
+<td><p>ipron</p></td>
+<td><p>5.26</p></td>
+<td><p>5.17</p></td>
+<td><p>0.99</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Articles</p></td>
+<td><p>article</p></td>
+<td><p>6.51</p></td>
+<td><p>6.53</p></td>
+<td><p>0.99</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Prepositions</p></td>
+<td><p>prep</p></td>
+<td><p>12.93</p></td>
+<td><p>12.59</p></td>
+<td><p>0.96</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Auxiliary verbs</p></td>
+<td><p>auxverb</p></td>
+<td><p>8.53</p></td>
+<td><p>8.82</p></td>
+<td><p>0.96</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Common adverbs</p></td>
+<td><p>adverb</p></td>
+<td><p>5.27</p></td>
+<td><p>4.83</p></td>
+<td><p>0.97</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Conjunctions</p></td>
+<td><p>conj</p></td>
+<td><p>5.90</p></td>
+<td><p>5.87</p></td>
+<td><p>0.99</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Negations</p></td>
+<td><p>negate</p></td>
+<td><p>1.66</p></td>
+<td><p>1.72</p></td>
+<td><p>0.96</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><strong>Grammar Other</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Regular verbs</p></td>
+<td><p>verb</p></td>
+<td><p>16.44</p></td>
+<td><p>15.26</p></td>
+<td><p>0.72</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Adjectives</p></td>
+<td><p>adj</p></td>
+<td><p>4.49</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Comparatives</p></td>
+<td><p>compare</p></td>
+<td><p>2.23</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Interrogatives</p></td>
+<td><p>interrog</p></td>
+<td><p>1.61</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Numbers</p></td>
+<td><p>number</p></td>
+<td><p>2.12</p></td>
+<td><p>1.98</p></td>
+<td><p>0.98</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Quantifiers</p></td>
+<td><p>quant</p></td>
+<td><p>2.02</p></td>
+<td><p>2.48</p></td>
+<td><p>0.88</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><strong>Affect Words</strong></p></td>
+<td><p>affect</p></td>
+<td><p>5.57</p></td>
+<td><p>5.63</p></td>
+<td><p>0.96</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Positive emotion</p></td>
+<td><p>posemo</p></td>
+<td><p>3.67</p></td>
+<td><p>3.75</p></td>
+<td><p>0.96</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Negative emotion</p></td>
+<td><p>negemo</p></td>
+<td><p>1.84</p></td>
+<td><p>1.83</p></td>
+<td><p>0.96</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Anxiety</p></td>
+<td><p>anx</p></td>
+<td><p>0.31</p></td>
+<td><p>0.33</p></td>
+<td><p>0.94</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Anger</p></td>
+<td><p>anger</p></td>
+<td><p>0.54</p></td>
+<td><p>0.60</p></td>
+<td><p>0.97</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Sadness</p></td>
+<td><p>sad</p></td>
+<td><p>0.41</p></td>
+<td><p>0.39</p></td>
+<td><p>0.92</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><strong>Social Words</strong></p></td>
+<td><p>social</p></td>
+<td><p>9.74</p></td>
+<td><p>9.36</p></td>
+<td><p>0.96</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Family</p></td>
+<td><p>family</p></td>
+<td><p>0.44</p></td>
+<td><p>0.38</p></td>
+<td><p>0.94</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Friends</p></td>
+<td><p>friend</p></td>
+<td><p>0.36</p></td>
+<td><p>0.23</p></td>
+<td><p>0.78</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Female referents</p></td>
+<td><p>female</p></td>
+<td><p>0.98</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Male referents</p></td>
+<td><p>male</p></td>
+<td><p>1.65</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><strong>Cognitive Processes2</strong></p></td>
+<td><p>cogproc</p></td>
+<td><p>10.61</p></td>
+<td><p>14.99</p></td>
+<td><p>0.84</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Insight</p></td>
+<td><p>insight</p></td>
+<td><p>2.16</p></td>
+<td><p>2.13</p></td>
+<td><p>0.98</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Cause</p></td>
+<td><p>cause</p></td>
+<td><p>1.40</p></td>
+<td><p>1.41</p></td>
+<td><p>0.97</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Discrepancies</p></td>
+<td><p>discrep</p></td>
+<td><p>1.44</p></td>
+<td><p>1.45</p></td>
+<td><p>0.99</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Tentativeness</p></td>
+<td><p>tentat</p></td>
+<td><p>2.52</p></td>
+<td><p>2.42</p></td>
+<td><p>0.98</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Certainty</p></td>
+<td><p>certain</p></td>
+<td><p>1.35</p></td>
+<td><p>1.27</p></td>
+<td><p>0.92</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Differentiation3</p></td>
+<td><p>differ</p></td>
+<td><p>2.99</p></td>
+<td><p>2.48</p></td>
+<td><p>0.85</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><strong>Perpetual Processes</strong></p></td>
+<td><p>percept</p></td>
+<td><p>2.70</p></td>
+<td><p>2.36</p></td>
+<td><p>0.92</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Seeing</p></td>
+<td><p>see</p></td>
+<td><p>1.08</p></td>
+<td><p>0.87</p></td>
+<td><p>0.88</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Hearing</p></td>
+<td><p>hear</p></td>
+<td><p>0.83</p></td>
+<td><p>0.73</p></td>
+<td><p>0.94</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Feeling</p></td>
+<td><p>feel</p></td>
+<td><p>0.64</p></td>
+<td><p>0.62</p></td>
+<td><p>0.92</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><strong>Biological Processes</strong></p></td>
+<td><p>bio</p></td>
+<td><p>2.03</p></td>
+<td><p>1.88</p></td>
+<td><p>0.94</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Body</p></td>
+<td><p>body</p></td>
+<td><p>0.69</p></td>
+<td><p>0.68</p></td>
+<td><p>0.96</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Health/illness</p></td>
+<td><p>health</p></td>
+<td><p>0.59</p></td>
+<td><p>0.53</p></td>
+<td><p>0.87</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Sexuality</p></td>
+<td><p>sexual</p></td>
+<td><p>0.13</p></td>
+<td><p>0.28</p></td>
+<td><p>0.76</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Ingesting</p></td>
+<td><p>ingest</p></td>
+<td><p>0.57</p></td>
+<td><p>0.46</p></td>
+<td><p>0.94</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><strong>Core Drives and Needs</strong></p></td>
+<td><p>drives</p></td>
+<td><p>6.93</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Affiliation</p></td>
+<td><p>affiliation</p></td>
+<td><p>2.05</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Achievement</p></td>
+<td><p>achieve</p></td>
+<td><p>1.30</p></td>
+<td><p>1.56</p></td>
+<td><p>0.93</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Power</p></td>
+<td><p>power</p></td>
+<td><p>2.35</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Reward focus</p></td>
+<td><p>reward</p></td>
+<td><p>1.46</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Risk/prevention focus</p></td>
+<td><p>risk</p></td>
+<td><p>0.47</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><strong>Time Orientation4</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Past focus</p></td>
+<td><p>focuspast</p></td>
+<td><p>4.64</p></td>
+<td><p>4.14</p></td>
+<td><p>0.97</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Present focus</p></td>
+<td><p>focuspresent</p></td>
+<td><p>9.96</p></td>
+<td><p>8.10</p></td>
+<td><p>0.92</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Future focus</p></td>
+<td><p>focusfuture</p></td>
+<td><p>1.42</p></td>
+<td><p>1.00</p></td>
+<td><p>0.63</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><strong>Relativity</strong></p></td>
+<td><p>relativ</p></td>
+<td><p>14.26</p></td>
+<td><p>13.87</p></td>
+<td><p>0.98</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Motion</p></td>
+<td><p>motion</p></td>
+<td><p>2.15</p></td>
+<td><p>2.06</p></td>
+<td><p>0.93</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Space</p></td>
+<td><p>space</p></td>
+<td><p>6.89</p></td>
+<td><p>6.17</p></td>
+<td><p>0.96</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Time</p></td>
+<td><p>time</p></td>
+<td><p>5.46</p></td>
+<td><p>5.79</p></td>
+<td><p>0.94</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><strong>Personal Concerns</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Work</p></td>
+<td><p>work</p></td>
+<td><p>2.56</p></td>
+<td><p>2.27</p></td>
+<td><p>0.97</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Leisure</p></td>
+<td><p>leisure</p></td>
+<td><p>1.35</p></td>
+<td><p>1.37</p></td>
+<td><p>0.95</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Home</p></td>
+<td><p>home</p></td>
+<td><p>0.55</p></td>
+<td><p>0.56</p></td>
+<td><p>0.99</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Money</p></td>
+<td><p>money</p></td>
+<td><p>0.68</p></td>
+<td><p>0.70</p></td>
+<td><p>0.97</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Religion</p></td>
+<td><p>relig</p></td>
+<td><p>0.28</p></td>
+<td><p>0.32</p></td>
+<td><p>0.96</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Death</p></td>
+<td><p>death</p></td>
+<td><p>0.16</p></td>
+<td><p>0.16</p></td>
+<td><p>0.96</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><strong>Informal Speech</strong></p></td>
+<td><p>informal</p></td>
+<td><p>2.52</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Swear words</p></td>
+<td><p>swear</p></td>
+<td><p>0.21</p></td>
+<td><p>0.17</p></td>
+<td><p>0.89</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Netspeak</p></td>
+<td><p>netspeak</p></td>
+<td><p>0.97</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Assent</p></td>
+<td><p>assent</p></td>
+<td><p>0.95</p></td>
+<td><p>1.11</p></td>
+<td><p>0.68</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Nonfluencies</p></td>
+<td><p>nonfl</p></td>
+<td><p>0.54</p></td>
+<td><p>0.30</p></td>
+<td><p>0.84</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Fillers</p></td>
+<td><p>filler</p></td>
+<td><p>0.11</p></td>
+<td><p>0.40</p></td>
+<td><p>0.29</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><strong>All Punctuation5</strong></p></td>
+<td><p>Allpunc</p></td>
+<td><p>20.47</p></td>
+<td><p>22.90</p></td>
+<td><p>0.96</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Periods</p></td>
+<td><p>Period</p></td>
+<td><p>7.46</p></td>
+<td><p>7.91</p></td>
+<td><p>0.98</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Commas</p></td>
+<td><p>Comma</p></td>
+<td><p>4.73</p></td>
+<td><p>4.81</p></td>
+<td><p>0.98</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Colons</p></td>
+<td><p>Colon</p></td>
+<td><p>0.63</p></td>
+<td><p>0.63</p></td>
+<td><p>1.00</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Semicolons</p></td>
+<td><p>SemiC</p></td>
+<td><p>0.30</p></td>
+<td><p>0.24</p></td>
+<td><p>0.98</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Question marks</p></td>
+<td><p>QMark</p></td>
+<td><p>0.58</p></td>
+<td><p>0.95</p></td>
+<td><p>1.00</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Exclamation marks</p></td>
+<td><p>Exclam</p></td>
+<td><p>1.0</p></td>
+<td><p>0.91</p></td>
+<td><p>1.00</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Dashes</p></td>
+<td><p>Dash</p></td>
+<td><p>1.19</p></td>
+<td><p>1.38</p></td>
+<td><p>0.98</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Quotation marks</p></td>
+<td><p>Quote</p></td>
+<td><p>1.19</p></td>
+<td><p>1.38</p></td>
+<td><p>0.76</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Apostrophes</p></td>
+<td><p>Apostro</p></td>
+<td><p>2.13</p></td>
+<td><p>2.83</p></td>
+<td><p>0.76</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Parentheses (pairs)</p></td>
+<td><p>Parenth</p></td>
+<td><p>0.52</p></td>
+<td><p>0.25</p></td>
+<td><p>0.90</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Other punctuation</p></td>
+<td><p>OtherP</p></td>
+<td><p>0.72</p></td>
+<td><p>1.38</p></td>
+<td><p>0.98</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Pennebaker, J. W. (1997). Writing about emotional experiences as a therapeutic process. Psychological Science, 8, 162-166.</p></li>
+<li><p>Pennebaker, J.W., &amp; Francis, M.E. (1996). Cognitive, emotional, and language processes in disclosure. Cognition and Emotion, 10, 601-626.</p></li>
+<li><p>Pennebaker, J.W., &amp; King, L.A. (1999). Linguistic styles: Language use as an individual difference. Journal of Personality and Social Psychology, 77, 1296-1312.</p></li>
+<li><p>Pennebaker, J. W., Mayne, T., &amp; Francis, M. E. (1997). Linguistic predictors of adaptive bereavement. Journal of Personality and Social Psychology, 72, 863-871.</p></li>
+<li><p>Pennebaker, J.W. (2002). What our words can say about us: Toward a broader language psychology. Psychological Science Agenda, 15, 8-9.</p></li>
+<li><p>Newman, M.L., Pennebaker, J.W., Berry, D.S., &amp; Richards, J.M. (2003). Lying words: Predicting deception from linguistic styles. Personality and social psychology bulletin, 29, 5, 665-675.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="11-4-sentiment-classifier.html" title="previous page">基于机器学习的情感分析</a>
+    <a class='right-next' id="next-link" href="12-topic-models-update.html" title="next page">主题模型简介</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

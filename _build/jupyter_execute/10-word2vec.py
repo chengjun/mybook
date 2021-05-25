@@ -89,7 +89,7 @@
 # - 宜人性（agreeableness）：具有信任、利他、直率、依从、谦虚、移情等特质。
 # - 神经质或情绪稳定性（neuroticism）：具有平衡焦虑、敌对、压抑、自我意识、冲动、脆弱等情绪的特质，即具有保持情绪稳定的能力。
 
-# In[15]:
+# In[1]:
 
 
 # Personality Embeddings: What are you like?
@@ -113,7 +113,7 @@ mike = [-0.5, -0.4, -0.2, 0.7, -0.1]
 # 
 # where $A_i$ and $B_i$ are components of vector $A$ and $B$ respectively.
 
-# In[10]:
+# In[2]:
 
 
 from numpy import dot
@@ -125,7 +125,7 @@ def cos_sim(a, b):
 cos_sim([1, 0, -1], [-1,-1, 0])
 
 
-# In[8]:
+# In[3]:
 
 
 from sklearn.metrics.pairwise import cosine_similarity
@@ -135,22 +135,22 @@ cosine_similarity([[1, 0, -1]], [[-1,-1, 0]])
 
 # $$CosineDistance = 1- CosineSimilarity$$
 
-# In[13]:
+# In[6]:
 
 
 from scipy import spatial
 # spatial.distance.cosine computes 
 # the Cosine distance between 1-D arrays.
-1 - spatial.distance.cosine([1, 0, -1], [-1,-1, 0])
+1-spatial.distance.cosine([1, 0, -1], [-1,-1, 0])
 
 
-# In[11]:
+# In[7]:
 
 
 cos_sim(jay, john)
 
 
-# In[12]:
+# In[8]:
 
 
 cos_sim(jay, mike)
@@ -179,7 +179,7 @@ cos_sim(jay, mike)
 # - add and subtract word vectors, 
 # 
 
-# In[16]:
+# In[9]:
 
 
 import gensim
@@ -188,31 +188,31 @@ filepath = '/Users/datalab/bigdata/GoogleNews-vectors-negative300.bin'
 model = gensim.models.KeyedVectors.load_word2vec_format(filepath, binary=True) 
 
 
-# In[24]:
+# In[11]:
 
 
-model['woman'][:10]
+model['woman'][:3]
 
 
-# In[20]:
+# In[12]:
 
 
 model.most_similar('woman')
 
 
-# In[18]:
+# In[13]:
 
 
 model.similarity('woman', 'man')
 
 
-# In[23]:
+# In[14]:
 
 
 cos_sim(model['woman'], model['man'])
 
 
-# In[17]:
+# In[15]:
 
 
 model.most_similar(positive=['woman', 'king'], negative=['man'], topn=5)
@@ -798,7 +798,7 @@ find_most_similar('智子', vec, word_to_idx)[:10]
 
 # ## Gensim Word2vec 
 
-# In[110]:
+# In[16]:
 
 
 import gensim as gensim
@@ -807,11 +807,15 @@ from gensim.models.keyedvectors import KeyedVectors
 from gensim.models.word2vec import LineSentence
 
 
-# In[112]:
+# In[20]:
 
 
-f = open("../data/三体.txt", 'r')
+f = open("./data/三体.txt", 'r')
 lines = []
+
+import jieba
+import re
+
 for line in f:
     temp = jieba.lcut(line)
     words = []
@@ -824,7 +828,7 @@ for line in f:
         lines.append(words)
 
 
-# In[113]:
+# In[21]:
 
 
 # 调用gensim Word2Vec的算法进行训练。
@@ -832,16 +836,19 @@ for line in f:
 model = Word2Vec(lines, size = 20, window = 2 , min_count = 0)
 
 
-# In[115]:
+# In[23]:
 
 
-model.wv.most_similar('三体', topn = 10)
+model.wv.most_similar('三体', topn = 100)
 
 
-# In[1]:
+# In[26]:
 
 
 # 将词向量投影到二维空间
+import numpy as np
+from sklearn.decomposition import PCA
+
 rawWordVec = []
 word2ind = {}
 for i, w in enumerate(model.wv.vocab):
@@ -849,6 +856,31 @@ for i, w in enumerate(model.wv.vocab):
     word2ind[w] = i
 rawWordVec = np.array(rawWordVec)
 X_reduced = PCA(n_components=2).fit_transform(rawWordVec)
+
+
+# In[34]:
+
+
+# 绘制星空图
+# 绘制所有单词向量的二维空间投影
+import matplotlib.pyplot as plt
+import matplotlib
+
+fig = plt.figure(figsize = (15, 10))
+ax = fig.gca()
+ax.set_facecolor('black')
+ax.plot(X_reduced[:, 0], X_reduced[:, 1], '.', markersize = 1, alpha = 0.5, color = 'white')
+# 绘制几个特殊单词的向量
+words = ['智子', '地球', '三体', '质子', '科学', '世界', '文明', '太空', '加速器', '平面', '宇宙', '进展','的']
+# 设置中文字体，否则无法在图形上显示中文
+#zhfont1 = matplotlib.font_manager.FontProperties(fname='/Library/Fonts/华文仿宋.ttf', size=26)
+for w in words:
+    if w in word2ind:
+        ind = word2ind[w]
+        xy = X_reduced[ind]
+        plt.plot(xy[0], xy[1], '.', alpha =1, color = 'red')
+        #plt.text(xy[0], xy[1], w, fontproperties = zhfont1, alpha = 1, color = 'yellow')
+        plt.text(xy[0], xy[1], w, alpha = 1, color = 'yellow', fontsize = 16)
 
 
 # In[117]:

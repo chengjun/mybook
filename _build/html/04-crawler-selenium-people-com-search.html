@@ -355,9 +355,21 @@
 <p>鼠标右键查看页码</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://search.people.com.cn/cnpeople/search.do?pageNum=&#39;</span>
 <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;&amp;keyword=%D0%C2%B9%DA+%D6%D0%D2%BD&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=&#39;</span>
-<span class="n">page_num</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">page_num</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="n">urls</span> <span class="o">=</span> <span class="p">[</span><span class="n">url</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="n">path</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">page_num</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -366,9 +378,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>http://search.people.com.cn/cnpeople/search.do?pageNum=27&amp;keyword=%D0%C2%B9%DA+%D6%D0%D2%BD&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
-http://search.people.com.cn/cnpeople/search.do?pageNum=28&amp;keyword=%D0%C2%B9%DA+%D6%D0%D2%BD&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
-http://search.people.com.cn/cnpeople/search.do?pageNum=29&amp;keyword=%D0%C2%B9%DA+%D6%D0%D2%BD&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>http://search.people.com.cn/cnpeople/search.do?pageNum=1&amp;keyword=%D0%C2%B9%DA+%D6%D0%D2%BD&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
+http://search.people.com.cn/cnpeople/search.do?pageNum=2&amp;keyword=%D0%C2%B9%DA+%D6%D0%D2%BD&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
 </pre></div>
 </div>
 </div>
@@ -395,6 +406,93 @@ http://search.people.com.cn/cnpeople/search.do?pageNum=29&amp;keyword=%D0%C2%B9%
 <span class="n">content</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf-8&#39;</span>
 <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span> 
 <span class="n">soup</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;style&gt;
+body{ background:#eff1f0; font-family: microsoft yahei; color:#969696; font-size:12px;}
+.online-desc-con { text-align:center; }
+.r-tip01 { color: #969696; font-size: 16px; display: block; text-align: center; width: 500px; padding: 0 10px; overflow: hidden; text-overflow: ellipsis; margin: 0 auto 15px; }
+.r-tip02 { color: #b1b0b0; font-size: 12px; display: block; margin-top: 20px; margin-bottom: 20px; }
+.r-tip02 a:visited { text-decoration: underline; color: #0088CC; }
+.r-tip02 a:link { text-decoration: underline; color: #0088CC; }
+img { border: 0; }
+&lt;/style&gt;
+&lt;script&gt;
+void(function fuckie6(){if(location.hash &amp;&amp; /MSIE 6/.test(navigator.userAgent) &amp;&amp; !/jsl_sec/.test(location.href)){location.href = location.href.split(&#39;#&#39;)[0] + &#39;&amp;jsl_sec&#39; + location.hash}})();
+var error_403 = &#39;&#39;;
+if(error_403 == &#39;&#39;) {
+	error_403 = &#39;当前访问疑似黑客攻击，已被创宇盾拦截。&#39;;
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;online-desc-con&quot; style=&quot;width:550px;padding-top:15px;margin:34px auto;&quot;&gt;
+&lt;a href=&quot;http://www.365cyd.com&quot; id=&quot;official_site&quot; target=&quot;_blank&quot;&gt;
+&lt;img alt=&quot;&quot; id=&quot;wafblock&quot; style=&quot;margin: 0 auto 17px auto;&quot;/&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+            var pic = &#39;&#39; || &#39;hacker&#39;;
+            document.getElementById(&quot;wafblock&quot;).src = &#39;/cdn-cgi/image/&#39; + pic + &#39;.png&#39;;
+        &lt;/script&gt;
+&lt;/a&gt;
+&lt;span class=&quot;r-tip01&quot;&gt;&lt;script&gt;document.write(error_403);&lt;/script&gt;&lt;/span&gt;
+&lt;span class=&quot;r-tip02&quot;&gt;如果您是网站管理员&lt;a href=&quot;http://help.365cyd.com/cyd-error-help.html?code=403&quot; target=&quot;_blank&quot;&gt;点击这里&lt;/a&gt;查看详情&lt;/span&gt;
+&lt;hr/&gt;
+&lt;center&gt;client: 202.120.235.202, server: 0abb659, time: 15/May/2021:15:31:37 +0800 [80001]&lt;/center&gt;
+&lt;img alt=&quot;&quot; src=&quot;/cdn-cgi/image/logo.png&quot;/&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
+<span class="n">dat</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">urls</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> 
+    <span class="n">source</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">page_source</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span> 
+    <span class="n">d</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;null error and retry&#39;</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> 
+        <span class="n">source</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">page_source</span>
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span> 
+        <span class="n">d</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">)</span>
+        
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">urli</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">time_stamp</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\xa0</span><span class="s1">&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">dat</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">urli</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">time_stamp</span><span class="p">])</span>
+
+<span class="n">browser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>64
 </pre></div>
 </div>
 </div>

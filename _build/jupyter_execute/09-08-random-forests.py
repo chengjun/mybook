@@ -83,7 +83,7 @@ import seaborn as sns; sns.set()
 
 import pandas as pd
 import numpy as np
-df = pd.read_excel('../data/play.xlsx')
+df = pd.read_excel('./data/play.xlsx')
 df['y'] = [1 if i=='yes' else 0 for i in df['play']]
 df
 
@@ -96,7 +96,7 @@ df
 # 
 # 
 
-# In[13]:
+# In[4]:
 
 
 df["play"].value_counts()
@@ -113,7 +113,7 @@ df["play"].value_counts()
 # - 考虑到样本数越多的分支节点影响力越大，给分支节点赋予权重$D_v/D$
 # - 可以计算使用属性$a$对$D$个样本进行划分可以获得的信息增益（information gain）:  $Gain(D, a) = Ent(D) - \sum_{v=1}^{V} \frac{D_v}{D} Ent(D_v) $
 
-# In[4]:
+# In[5]:
 
 
 df.groupby(['windy', 'y']).count()['play']
@@ -133,7 +133,7 @@ df.groupby(['humidity', 'y']).count()['play']
 # - E2 =  -6/7 * np.log2(6/7) - 1/7 * np.log2(1/7) = 0.5916727785823275
 # - Gain (humidity) = 0.940 - (7/14) * 0.985 - (7/14) * 0.592 = 0.151
 
-# In[3]:
+# In[6]:
 
 
 def entropy(freq_list):
@@ -144,14 +144,14 @@ def entropy(freq_list):
     return  e
 
 
-# In[4]:
+# In[7]:
 
 
 freq_list = df[df['Outlook']=='Sunny']['play'].value_counts()
 entropy(freq_list)
 
 
-# In[5]:
+# In[8]:
 
 
 def information_gain(feature_name, y_name):
@@ -166,7 +166,7 @@ def information_gain(feature_name, y_name):
     return info_gain
 
 
-# In[6]:
+# In[9]:
 
 
 features = ['Outlook', 'temperature', 'humidity', 'windy']
@@ -179,7 +179,7 @@ features = ['Outlook', 'temperature', 'humidity', 'windy']
 # 
 # Consider the following two-dimensional data, which has one of four class labels:
 
-# In[2]:
+# In[10]:
 
 
 from sklearn.datasets import make_blobs
@@ -207,7 +207,7 @@ plt.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap='rainbow');
 
 # This process of fitting a decision tree to our data can be done in Scikit-Learn with the ``DecisionTreeClassifier`` estimator:
 
-# In[3]:
+# In[14]:
 
 
 from sklearn.tree import DecisionTreeClassifier
@@ -216,7 +216,7 @@ tree = DecisionTreeClassifier().fit(X, y)
 
 # Let's write a quick utility function to help us visualize the output of the classifier:
 
-# In[5]:
+# In[15]:
 
 
 def visualize_classifier(model, X, y, ax=None, cmap='rainbow'):
@@ -248,7 +248,7 @@ def visualize_classifier(model, X, y, ax=None, cmap='rainbow'):
 
 # Now we can examine what the decision tree classification looks like:
 
-# In[6]:
+# In[16]:
 
 
 visualize_classifier(DecisionTreeClassifier(), X, y)
@@ -256,7 +256,7 @@ visualize_classifier(DecisionTreeClassifier(), X, y)
 
 # If you're running this notebook live, you can use the helpers script included in [The Online Appendix](06.00-Figure-Code.ipynb#Helper-Code) to bring up an interactive visualization of the decision tree building process:
 
-# In[7]:
+# In[19]:
 
 
 # helpers_05_08 is found in the online appendix
@@ -296,7 +296,7 @@ helpers_05_08.plot_tree_interactive(X, y);
 
 # If you are running this notebook live, the following function will allow you to interactively display the fits of trees trained on a random subset of the data:
 
-# In[8]:
+# In[20]:
 
 
 # helpers_05_08 is found in the online appendix
@@ -320,7 +320,7 @@ helpers_05_08.randomized_tree_interactive(X, y)
 # 
 # This type of bagging classification can be done manually using Scikit-Learn's ``BaggingClassifier`` meta-estimator, as shown here:
 
-# In[9]:
+# In[21]:
 
 
 from sklearn.tree import DecisionTreeClassifier
@@ -347,7 +347,7 @@ visualize_classifier(bag, X, y)
 # 
 # All you need to do is select a number of estimators, and it will very quickly (in parallel, if desired) fit the ensemble of trees:
 
-# In[10]:
+# In[22]:
 
 
 from sklearn.ensemble import RandomForestClassifier
@@ -368,7 +368,7 @@ visualize_classifier(model, X, y);
 # 
 # Consider the following data, drawn from the combination of a fast and slow oscillation:
 
-# In[11]:
+# In[23]:
 
 
 rng = np.random.RandomState(42)
@@ -387,7 +387,7 @@ plt.errorbar(x, y, 0.3, fmt='o');
 
 # Using the random forest regressor, we can find the best fit curve as follows:
 
-# In[14]:
+# In[24]:
 
 
 from sklearn.ensemble import RandomForestRegressor
@@ -413,7 +413,7 @@ plt.plot(xfit, ytrue, '-y', alpha=1);
 # 
 # Let's use that again here to see how the random forest classifier can be used in this context.
 
-# In[15]:
+# In[25]:
 
 
 from sklearn.datasets import load_digits
@@ -423,7 +423,7 @@ digits.keys()
 
 # To remind us what we're looking at, we'll visualize the first few data points:
 
-# In[18]:
+# In[26]:
 
 
 # set up the figure
@@ -441,7 +441,7 @@ for i in range(64):
 
 # We can quickly classify the digits using a random forest as follows:
 
-# In[16]:
+# In[27]:
 
 
 from sklearn.model_selection import train_test_split
@@ -455,7 +455,7 @@ ypred = model.predict(Xtest)
 
 # We can take a look at the classification report for this classifier:
 
-# In[17]:
+# In[28]:
 
 
 from sklearn import metrics
@@ -464,7 +464,7 @@ print(metrics.classification_report(ypred, ytest))
 
 # And for good measure, plot the confusion matrix:
 
-# In[18]:
+# In[29]:
 
 
 from sklearn.metrics import confusion_matrix

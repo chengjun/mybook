@@ -239,7 +239,7 @@
 # https://en.wikipedia.org/wiki/Naive_Bayes_classifier
 # 
 
-# In[3]:
+# In[1]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
@@ -249,7 +249,7 @@ import seaborn as sns
 sns.set()
 
 
-# In[5]:
+# In[2]:
 
 
 from sklearn.datasets import make_blobs
@@ -276,7 +276,7 @@ plt.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap='RdBu');
 # 
 # This procedure is implemented in Scikit-Learn's ``sklearn.naive_bayes.GaussianNB`` estimator:
 
-# In[6]:
+# In[3]:
 
 
 from sklearn.naive_bayes import GaussianNB
@@ -286,7 +286,7 @@ model.fit(X, y);
 
 # Now let's generate some new data and predict the label:
 
-# In[7]:
+# In[4]:
 
 
 rng = np.random.RandomState(0)
@@ -342,7 +342,7 @@ yprob[-8:].round(2)
 # Using the sparse word count features from the 20 Newsgroups corpus to classify these documents.
 # - Let's download the data and take a look at the target names:
 
-# In[8]:
+# In[5]:
 
 
 from sklearn.datasets import fetch_20newsgroups
@@ -353,7 +353,7 @@ data.target_names
 
 # For simplicity here, we will select just a few of these categories, and download the training and testing set:
 
-# In[9]:
+# In[6]:
 
 
 categories = ['talk.religion.misc', 'soc.religion.christian',
@@ -364,7 +364,7 @@ test = fetch_20newsgroups(subset='test', categories=categories)
 
 # Here is a representative entry from the data:
 
-# In[34]:
+# In[8]:
 
 
 print(train.data[5])
@@ -374,7 +374,7 @@ print(train.data[5])
 # - Use TF-IDF vectorizer (discussed in **Feature Engineering**)
 # - Create a pipeline that attaches it to a multinomial naive Bayes classifier:
 
-# In[10]:
+# In[9]:
 
 
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -386,7 +386,7 @@ model = make_pipeline(TfidfVectorizer(), MultinomialNB())
 
 # With this pipeline, we can apply the model to the training data, and predict labels for the test data:
 
-# In[11]:
+# In[10]:
 
 
 model.fit(train.data, train.target)
@@ -396,7 +396,7 @@ labels = model.predict(test.data)
 # Evaluate the performance of the estimator.
 # - the confusion matrix between the true and predicted labels for the test data
 
-# In[40]:
+# In[11]:
 
 
 # confusion matrix
@@ -439,10 +439,10 @@ predict_category('sending a payload to the ISS')
 # In[14]:
 
 
-predict_category('discussing islam vs atheism')
+predict_category('discussing islam vs atheism') 
 
 
-# In[13]:
+# In[14]:
 
 
 predict_category('determining the screen resolution')

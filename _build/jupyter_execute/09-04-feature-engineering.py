@@ -109,7 +109,7 @@ vec.fit_transform(data)
 # 
 # For example, consider the following set of three phrases:
 
-# In[5]:
+# In[2]:
 
 
 sample = ['problem of evil',
@@ -121,7 +121,7 @@ sample = ['problem of evil',
 # 
 # While doing this by hand would be possible, the tedium can be avoided by using Scikit-Learn's ``CountVectorizer``:
 
-# In[6]:
+# In[3]:
 
 
 from sklearn.feature_extraction.text import CountVectorizer
@@ -135,7 +135,7 @@ X
 # 
 # it is easier to inspect if we convert this to a ``DataFrame`` with labeled columns:
 
-# In[7]:
+# In[4]:
 
 
 import pandas as pd

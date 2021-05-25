@@ -60,18 +60,25 @@ help(webdriver)
 
 # ## 访问页面
 
-# In[3]:
+# In[9]:
+
+
+#from selenium import webdriver
+#browser = webdriver.Chrome(executable_path = '/opt/anaconda3/bin/chromedriver')
+
+
+# In[5]:
 
 
 from selenium import webdriver
 
-browser = webdriver.Chrome()
+browser = webdriver.Chrome(executable_path = '/opt/anaconda3/bin/chromedriver')
 browser.get("http://music.163.com") 
 print(browser.page_source)
 #browser.close() 
 
 
-# In[4]:
+# In[6]:
 
 
 browser.close() 
@@ -85,7 +92,7 @@ browser.close()
 # ![image.png](./images/selenium2.png)
 # 
 
-# In[5]:
+# In[10]:
 
 
 # from selenium import webdriver
@@ -114,7 +121,7 @@ browser.close()
 # - find_element_by_class_name
 # - find_element_by_css_selector
 
-# In[6]:
+# In[11]:
 
 
 # 下面这种方式是比较通用的一种方式：这里需要记住By模块所以需要导入
@@ -163,7 +170,7 @@ browser.close()
 # ## 元素交互操作
 # 对于获取的元素调用交互方法
 
-# In[7]:
+# In[12]:
 
 
 from selenium import webdriver
@@ -188,7 +195,7 @@ time.sleep(3)
 # 这是一个非常有用的方法，这里就可以直接调用js方法来实现一些操作，
 # 下面的例子是通过登录知乎然后通过js翻到页面底部，并弹框提示
 
-# In[10]:
+# In[13]:
 
 
 from selenium import webdriver
@@ -197,7 +204,7 @@ browser.get("https://www.zhihu.com/explore/")
 browser.execute_script('window.scrollTo(0, document.body.scrollHeight)')
 #browser.execute_script('alert("To Bottom")')
 time.sleep(3)
-browser.close()
+#browser.close()
 
 
 # 

@@ -20,7 +20,7 @@
 # 参考：https://mp.weixin.qq.com/s/zx3_eflBCrrfOqFEWjAUJw
 # 
 
-# In[2]:
+# In[3]:
 
 
 import requests
@@ -38,7 +38,7 @@ requests.get(url)
 
 # ![image.png](images/headers.png)
 
-# In[3]:
+# In[4]:
 
 
 import requests
@@ -62,7 +62,7 @@ s = etree.HTML(data)
 # 
 # 
 
-# In[4]:
+# In[5]:
 
 
 title = s.xpath('//*[@id="content"]/h1/span[1]/text()')[0]
@@ -76,7 +76,7 @@ length = s.xpath('//*[@id="info"]/span[13]/text()')
 score = s.xpath('//*[@id="interest_sectl"]/div[1]/div[2]/strong/text()')[0]
 
 
-# In[5]:
+# In[6]:
 
 
 print(title, director, actors, type1, type2, type3, time, length, score)
@@ -88,13 +88,13 @@ print(title, director, actors, type1, type2, type3, time, length, score)
 # 
 # https://github.com/computational-class/douban-api-docs
 
-# In[6]:
+# In[2]:
 
 
-import requests
-# https://movie.douban.com/subject/26611804/
-url = 'https://api.douban.com/v2/movie/subject/26611804?apikey=0b2bdeda43b5688921839c8ecb20399b&start=0&count=20&client=&udid='
-jsonm = requests.get(url).json()
+# import requests
+# # https://movie.douban.com/subject/26611804/
+# url = 'https://api.douban.com/v2/movie/subject/26611804?apikey=0b2bdeda43b5688921839c8ecb20399b&start=0&count=20&client=&udid='
+# jsonm = requests.get(url).json()
 
 
 # In[7]:
@@ -190,7 +190,7 @@ s.xpath('//*[@id="content"]/div/div[1]/ol/li[2]/div/div[2]/div[1]/a/span[1]/text
 s.xpath('//*[@id="content"]/div/div[1]/ol/li[3]/div/div[2]/div[1]/a/span[1]/text()')[0]
 
 
-# In[14]:
+# In[7]:
 
 
 import requests
@@ -201,50 +201,50 @@ data = requests.get(url0, headers = headers).text
 soup = BeautifulSoup(data, 'lxml')
 
 
-# In[15]:
+# In[8]:
 
 
 movies = soup.find_all('div', {'class', 'info'})
 
 
-# In[16]:
+# In[9]:
 
 
 len(movies)
 
 
-# In[19]:
+# In[10]:
 
 
 movies[0].a['href']
 
 
-# In[23]:
+# In[11]:
 
 
 movies[0].find('span', {'class', 'title'}).text
 
 
-# In[25]:
+# In[12]:
 
 
 movies[0].find('div', {'class', 'star'})
 
 
-# In[26]:
+# In[13]:
 
 
 movies[0].find('span', {'class', 'rating_num'}).text
 
 
-# In[27]:
+# In[14]:
 
 
 people_num = movies[0].find('div', {'class', 'star'}).find_all('span')[-1]
 people_num.text.split('人评价')[0]
 
 
-# In[28]:
+# In[15]:
 
 
 for i in movies:
@@ -256,14 +256,14 @@ for i in movies:
     print(url, title, rating, rating_num)
 
 
-# In[29]:
+# In[16]:
 
 
 for i in range(0, 250, 25):
     print('https://movie.douban.com/top250?start=%d&filter='% i)
 
 
-# In[30]:
+# In[17]:
 
 
 import requests
@@ -285,7 +285,7 @@ for j in range(0, 250, 25):
         dat.append(listi)
 
 
-# In[31]:
+# In[18]:
 
 
 import pandas as pd
@@ -295,27 +295,27 @@ df['rating_num'] = df.rating_num.astype(int)
 df.head()
 
 
-# In[3]:
+# In[19]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
 
 plt.hist(df.rating_num)
 plt.show()
 
 
-# In[19]:
+# In[20]:
 
 
 plt.hist(df.rating)
 plt.show()
 
 
-# In[11]:
+# In[21]:
 
 
 # viz
+plt.style.use('ggplot')
 fig = plt.figure(figsize=(16, 16),facecolor='white')
 plt.plot(df.rating_num, df.rating, 'bo')
 for i in df.index:

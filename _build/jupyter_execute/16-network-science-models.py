@@ -103,7 +103,7 @@
 # 大于平均度的节点数量随着度的增加指数下降
 # 
 
-# <div><img src="images/network4.png" width=1200></div>
+# <div><img src="./images/network4.png" width=1200></div>
 
 # <img src='./img/er_evolution.png' width = 1000px>
 # 

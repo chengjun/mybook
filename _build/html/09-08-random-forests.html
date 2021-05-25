@@ -172,6 +172,11 @@
      The future of employment
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-grf.html">
+     Causal Forests
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
@@ -469,13 +474,17 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;../data/play.xlsx&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;./data/play.xlsx&#39;</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="s1">&#39;yes&#39;</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;play&#39;</span><span class="p">]]</span>
 <span class="n">df</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.7/site-packages/openpyxl/worksheet/_reader.py:300: UserWarning: Unknown extension is not supported and will be removed
+  warn(msg)
+</pre></div>
+</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -864,7 +873,7 @@ Name: play, dtype: int64
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "3c9b2e8422624227ad30d8177295ead9", "version_major": 2, "version_minor": 0}
+{"model_id": "b20f4c583663491f9e66f38f02d30d67", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 <p>Notice that as the depth increases, we tend to get very strangely shaped classification regions;</p>
@@ -916,7 +925,7 @@ Name: play, dtype: int64
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "9e623c1222434a83b4499f5f1aee5cc0", "version_major": 2, "version_minor": 0}
+{"model_id": "8ca4b2e095cb40a5a496a6ab5f234f45", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 <p>Just as using information from two trees improves our results, we might expect that using information from many trees would improve our results even further.</p>

@@ -35,7 +35,7 @@
 # 
 # Let's demonstrate the naive approach to validation using the Iris data
 
-# In[1]:
+# In[2]:
 
 
 from sklearn.datasets import load_iris
@@ -92,7 +92,7 @@ accuracy_score(y, y_model)
 # 
 # This splitting can be done using the ``train_test_split`` utility in Scikit-Learn:
 
-# In[9]:
+# In[6]:
 
 
 from sklearn.model_selection import train_test_split
@@ -130,7 +130,7 @@ accuracy_score(y2, y2_model)
 # [figure source in Appendix](06.00-Figure-Code.ipynb#2-Fold-Cross-Validation)
 # 
 
-# In[10]:
+# In[7]:
 
 
 # Here we do two validation trials, 
@@ -153,7 +153,7 @@ accuracy_score(y1, y1_model), accuracy_score(y2, y2_model)
 # 
 # Here we split the data into five groups, and use each of them in turn to evaluate the model fit on the other 4/5 of the data.
 
-# In[12]:
+# In[8]:
 
 
 #  We can use Scikit-Learn's ``cross_val_score`` convenience routine to do it succinctly:

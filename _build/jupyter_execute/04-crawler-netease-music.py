@@ -59,7 +59,7 @@ headers = {
 }
 
 
-# In[7]:
+# In[3]:
 
 
 group_id = 1001
@@ -72,7 +72,7 @@ soup = BeautifulSoup(r.content.decode(), 'html.parser')
 body = soup.body
 
 
-# In[8]:
+# In[4]:
 
 
 hotartist_dic = {}
@@ -87,7 +87,7 @@ for artist in hot_artists:
         print(e)
 
 
-# In[9]:
+# In[5]:
 
 
 artist_dic = {}
@@ -102,13 +102,13 @@ for artist in artists:
             print(e)
 
 
-# In[10]:
+# In[6]:
 
 
 artist_dic
 
 
-# In[11]:
+# In[7]:
 
 
 def save_artist(group_id, initial, hot_artist_dic, artisti_dic):
@@ -141,7 +141,7 @@ def save_artist(group_id, initial, hot_artist_dic, artisti_dic):
     #return artist_dic, hot_artist_dic
 
 
-# In[12]:
+# In[9]:
 
 
 gg = 1001
@@ -151,13 +151,13 @@ hot_artist_dic = {}
 save_artist(gg, initial, hot_artist_dic, artist_dic  )
 
 
-# In[13]:
+# In[10]:
 
 
 artist_dic
 
 
-# In[14]:
+# In[11]:
 
 
 artist_dic = {}
@@ -167,13 +167,13 @@ for i in range(65, 91):
     save_artist(gg, i, hot_artist_dic, artist_dic  )
 
 
-# In[15]:
+# In[12]:
 
 
 len(hot_artist_dic)
 
 
-# In[16]:
+# In[13]:
 
 
 len(artist_dic)
@@ -181,7 +181,7 @@ len(artist_dic)
 
 # ## 爬取所有的专辑信息（album_by _artist.py）
 
-# In[68]:
+# In[14]:
 
 
 list(hot_artist_dic.keys())[0]
@@ -208,7 +208,7 @@ headers = {
 }
 
 
-# In[18]:
+# In[15]:
 
 
 def save_albums(artist_id, albume_dic):
@@ -227,14 +227,14 @@ def save_albums(artist_id, albume_dic):
         albume_dic[albume_id] = artist_id
 
 
-# In[19]:
+# In[16]:
 
 
 albume_dic = {}
 save_albums('2116', albume_dic)
 
 
-# In[20]:
+# In[17]:
 
 
 albume_dic
@@ -242,7 +242,7 @@ albume_dic
 
 # ## 根据专辑信息爬取所有的歌曲信息（music_by _album.py）
 
-# In[21]:
+# In[18]:
 
 
 def save_music(album_id, music_dic):
@@ -260,20 +260,20 @@ def save_music(album_id, music_dic):
         music_dic[music_id] = [music_name, album_id]
 
 
-# In[73]:
+# In[19]:
 
 
 list(albume_dic.keys())[0]
 
 
-# In[22]:
+# In[20]:
 
 
 music_dic = {}
 save_music('6423', music_dic)
 
 
-# In[23]:
+# In[21]:
 
 
 music_dic
@@ -297,7 +297,7 @@ music_dic
 # https://www.zhihu.com/question/36081767
 # 
 
-# In[29]:
+# In[22]:
 
 
 params = {
@@ -311,13 +311,7 @@ data = {
 }
 
 
-# In[155]:
-
-
-print(url)
-
-
-# In[26]:
+# In[24]:
 
 
 offset = 0
@@ -328,16 +322,16 @@ cj = response.json()
 cj.keys()
 
 
-# In[27]:
+# In[25]:
 
 
 cj['total'],len(cj['comments']), len(cj['hotComments']), len(cj['topComments'])
 
 
-# In[28]:
+# In[40]:
 
 
-cj['comments'][0]
+cj['hotComments'][11]
 
 
 # ## 翻页的实现

@@ -45,7 +45,7 @@
 # 
 # We can download this dataset in the form of a Pandas ``DataFrame`` using the [seaborn](http://seaborn.pydata.org/) library:
 
-# In[39]:
+# In[1]:
 
 
 import seaborn as sns
@@ -107,20 +107,20 @@ sns.pairplot(iris, hue='species', size=1.5);
 # For use in Scikit-Learn, we will extract the features matrix and target array from the ``DataFrame``
 # - we can use some of the Pandas ``DataFrame`` operations.
 
-# In[40]:
+# In[2]:
 
 
 X_iris = iris.drop('species', axis=1)
 X_iris.shape
 
 
-# In[41]:
+# In[3]:
 
 
 X_iris[:3]
 
 
-# In[42]:
+# In[4]:
 
 
 y_iris = iris['species']
@@ -183,7 +183,7 @@ y_iris[:3]
 # As an example of this process, let's consider a simple linear regression—that is, the common case of fitting a line to $(x, y)$ data.
 # We will use the following simple data for our regression example:
 
-# In[98]:
+# In[5]:
 
 
 import matplotlib.pyplot as plt
@@ -204,7 +204,7 @@ plt.ylabel('y', fontsize = 30);
 # In Scikit-Learn, every class of model is represented by a Python class.
 # So, for example, if we would like to compute a simple linear regression model, we can import the linear regression class:
 
-# In[44]:
+# In[6]:
 
 
 from sklearn.linear_model import LinearRegression
@@ -237,7 +237,7 @@ from sklearn.linear_model import LinearRegression
 # 
 # For our linear regression example, we can instantiate the ``LinearRegression`` class and specify that we would like to fit the intercept using the ``fit_intercept`` hyperparameter:
 
-# In[47]:
+# In[7]:
 
 
 model = LinearRegression(fit_intercept=True)
@@ -258,11 +258,11 @@ model
 # 
 # In this case, this amounts to a simple reshaping of the one-dimensional array:
 
-# In[49]:
+# In[10]:
 
 
 X = x[:, np.newaxis]
-X.shape
+X[:3]
 
 
 # #### 4. Fit the model to your data
@@ -270,7 +270,7 @@ X.shape
 # Now it is time to apply our model to data.
 # This can be done with the ``fit()`` method of the model:
 
-# In[50]:
+# In[11]:
 
 
 model.fit(X, y)
@@ -281,7 +281,7 @@ model.fit(X, y)
 # In Scikit-Learn, by convention all model parameters that were learned during the ``fit()`` process have trailing underscores; 
 # - for example in this linear model, we have the following:
 
-# In[16]:
+# In[12]:
 
 
 # The parameters represent the slope of the simple linear fit to the data.
@@ -311,7 +311,7 @@ model.intercept_
 # In Scikit-Learn, this can be done using the ``predict()`` method.
 # For the sake of this example, our "new data" will be a grid of *x* values, and we will ask what *y* values the model predicts:
 
-# In[51]:
+# In[15]:
 
 
 xfit = np.linspace(-1, 11)
@@ -320,14 +320,22 @@ xfit
 
 # As before, we need to coerce these *x* values into a ``[n_samples, n_features]`` features matrix, after which we can feed it to the model:
 
-# In[52]:
+# In[16]:
 
 
 Xfit = xfit[:, np.newaxis]
+ytest = 2*Xfit -1 
 yfit = model.predict(Xfit)
 
 
 # Finally, let's visualize the results by plotting first the raw data, and then this model fit:
+
+# In[18]:
+
+
+from sklearn.metrics import r2_score
+r2_score(ytest, yfit)
+
 
 # In[20]:
 
@@ -355,17 +363,17 @@ plt.plot(xfit, yfit);
 # - we will split the data into a *training set* and a *testing set*.
 #     - Using the ``train_test_split`` utility function:
 
-# In[53]:
+# In[21]:
 
 
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 Xtrain, Xtest, ytrain, ytest = train_test_split(X_iris, y_iris,
                                                 random_state=1)
 
 
 # With the data arranged, we can follow our recipe to predict the labels:
 
-# In[59]:
+# In[22]:
 
 
 from sklearn.naive_bayes import GaussianNB # 1. choose model class
@@ -376,13 +384,13 @@ y_model = model.predict(Xtest)             # 4. predict on new data
 
 # Finally, we can use the ``accuracy_score`` utility to see the fraction of predicted labels that match their true value:
 
-# In[60]:
+# In[23]:
 
 
 print(*zip(ytest, y_model))
 
 
-# In[61]:
+# In[25]:
 
 
 from sklearn.metrics import accuracy_score
@@ -415,7 +423,7 @@ accuracy_score(ytest, y_model)
 # 
 # Following the sequence of steps outlined earlier:
 
-# In[62]:
+# In[26]:
 
 
 from sklearn.decomposition import PCA  # 1. Choose the model class
@@ -428,7 +436,7 @@ X_2D = model.transform(X_iris)         # 4. Transform the data to two dimensions
 # - A quick way to do this is to insert the results into the original Iris ``DataFrame``, 
 # - use Seaborn's ``lmplot`` to show the results:
 
-# In[100]:
+# In[28]:
 
 
 sns.set_context("talk", font_scale=1.5)
@@ -453,14 +461,14 @@ sns.lmplot("PCA1", "PCA2", hue='species', data=iris, fit_reg=False);
 # 
 # We can fit the Gaussian mixture model as follows:
 
-# In[64]:
+# In[31]:
 
 
-from sklearn.mixture import GMM      # 1. Choose the model class
-model = GMM(n_components=3,
-            covariance_type='full')  # 2. Instantiate the model with hyperparameters
-model.fit(X_iris)                    # 3. Fit to data. Notice y is not specified!
-y_gmm = model.predict(X_iris)        # 4. Determine cluster labels
+from sklearn.mixture import GaussianMixture      # 1. Choose the model class
+model = GaussianMixture(n_components=3,
+            covariance_type='full')             # 2. Instantiate the model with hyperparameters
+model.fit(X_iris)                               # 3. Fit to data. Notice y is not specified!
+y_gmm = model.predict(X_iris)                   # 4. Determine cluster labels
 
 
 # As before, we will 
@@ -473,7 +481,7 @@ y_gmm = model.predict(X_iris)        # 4. Determine cluster labels
 sns.plotting_context()
 
 
-# In[101]:
+# In[32]:
 
 
 sns.set_context("talk", font_scale=1.5)
@@ -500,7 +508,7 @@ sns.lmplot("PCA1", "PCA2", data=iris, hue='species',
 # 
 # We'll use Scikit-Learn's data access interface and take a look at this data:
 
-# In[28]:
+# In[33]:
 
 
 from sklearn.datasets import load_digits
@@ -514,15 +522,13 @@ digits.images.shape
 # 
 # Let's visualize the first hundred of these:
 
-# In[102]:
+# In[34]:
 
 
-import matplotlib.pyplot as plt
-
+import matplotlib.pyplot as plt 
 fig, axes = plt.subplots(10, 10, figsize=(8, 8),
                          subplot_kw={'xticks':[], 'yticks':[]},
                          gridspec_kw=dict(hspace=0.1, wspace=0.1))
-
 for i, ax in enumerate(axes.flat):
     ax.imshow(digits.images[i], cmap='binary', interpolation='nearest')
     ax.text(0.05, 0.05, str(digits.target[i]),
@@ -537,7 +543,7 @@ for i, ax in enumerate(axes.flat):
 # 
 # Features and targets are represented as the ``data`` and ``target`` attributes in the `digits` dataset respectively:
 
-# In[107]:
+# In[36]:
 
 
 X = digits.data
@@ -550,7 +556,7 @@ X.shape
 X
 
 
-# In[110]:
+# In[37]:
 
 
 y = digits.target
@@ -573,7 +579,7 @@ y
 # 
 # Here, we'll make use of a manifold learning algorithm called *Isomap* (see **In-Depth: Manifold Learning**), and transform the data to two dimensions:
 
-# In[32]:
+# In[38]:
 
 
 from sklearn.manifold import Isomap
@@ -586,7 +592,7 @@ data_projected.shape
 # We see that the projected data is now two-dimensional.
 # Let's plot this data to see if we can learn anything from its structure:
 
-# In[112]:
+# In[39]:
 
 
 plt.scatter(data_projected[:, 0], data_projected[:, 1], c=digits.target,
@@ -615,13 +621,13 @@ plt.clim(-0.5, 9.5);
 # - split the data into a training and testing set
 # - fit a Gaussian naive Bayes model
 
-# In[117]:
+# In[40]:
 
 
 Xtrain, Xtest, ytrain, ytest = train_test_split(X, y, random_state=0)
 
 
-# In[118]:
+# In[41]:
 
 
 from sklearn.naive_bayes import GaussianNB
@@ -632,7 +638,7 @@ y_model = model.predict(Xtest)
 
 # Now that we have predicted our model, we can gauge its accuracy by comparing the true values of the test set to the predictions:
 
-# In[119]:
+# In[43]:
 
 
 from sklearn.metrics import accuracy_score
@@ -645,7 +651,7 @@ accuracy_score(ytest, y_model)
 # - one nice way to do this is to use the *confusion matrix*, 
 #     - which we can compute with Scikit-Learn and plot with Seaborn:
 
-# In[123]:
+# In[44]:
 
 
 from sklearn.metrics import confusion_matrix
@@ -714,5 +720,6 @@ for i, ax in enumerate(axes.flat):
 # 09-08-random-forests
 # 09-09-googleflustudy
 # 09-10-future-employment
+# 09-grf
 # ```
 # 

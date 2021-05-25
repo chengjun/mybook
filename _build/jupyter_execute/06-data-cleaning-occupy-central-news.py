@@ -9,7 +9,7 @@
 
 
 # 使用with open读取每一行数据
-with open("../data/occupycentral/zz-hk-2014-10.rtf", encoding = 'gb18030') as f:
+with open("./data/occupycentral/zz-hk-2014-10.rtf", encoding = 'gb18030') as f:
     news = f.readlines()
 
 
@@ -106,14 +106,14 @@ def flushPrint(s):
 help(sys.stdout)
 
 
-# In[13]:
+# In[12]:
 
 
 # 调用deletetab
 deletetab('\ta')
 
 
-# In[14]:
+# In[13]:
 
 
 # 演示：flushPrint
@@ -123,7 +123,7 @@ for i in range(10):
     flushPrint(i) 
 
 
-# In[12]:
+# In[14]:
 
 
 from collections import defaultdict
@@ -170,35 +170,35 @@ for i in range(1, 8):
     print(news[i][:500])
 
 
-# In[14]:
+# In[15]:
 
 
 # 按block清洗新闻报道
 news_result = readblocks(news_clean) 
 
 
-# In[15]:
+# In[16]:
 
 
 # 新闻的数量
 len(news_result)
 
 
-# In[16]:
+# In[17]:
 
 
 # 查看字典的keys
 list(news_result.keys())[:5]
 
 
-# In[21]:
+# In[18]:
 
 
 # 查看字典的values
 list(news_result.values())[90]
 
 
-# In[22]:
+# In[19]:
 
 
 import pandas as pd
@@ -228,7 +228,7 @@ df = pd.read_csv( '../data/zz-hk-2014-9-clean.txt',
 df[:3]
 
 
-# In[23]:
+# In[20]:
 
 
 # 使用os改变默认的工作路径
@@ -237,7 +237,7 @@ df[:3]
 
 # 使用glob读取某一类文件的所有名称
 import glob
-filenames = glob.glob('../data/occupycentral/*.rtf')
+filenames = glob.glob('./data/occupycentral/*.rtf')
 filenames
 
 

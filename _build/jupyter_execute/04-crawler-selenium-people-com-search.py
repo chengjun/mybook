@@ -20,12 +20,18 @@
 # 
 # 鼠标右键查看页码
 
-# In[12]:
+# In[4]:
+
+
+print(*range(1, 3))
+
+
+# In[5]:
 
 
 url = 'http://search.people.com.cn/cnpeople/search.do?pageNum='
 path = '&keyword=%D0%C2%B9%DA+%D6%D0%D2%BD&siteName=news&facetFlag=null&nodeType=belongsId&nodeId='
-page_num = range(1, 30)
+page_num = range(1, 3)
 urls = [url+str(i)+path for i in page_num]
 for i in urls[-3:]:
     print(i)
@@ -47,7 +53,7 @@ for i in urls[-3:]:
 # soup
 # ```
 
-# In[ ]:
+# In[2]:
 
 
 import requests
@@ -57,6 +63,40 @@ content = requests.get(urls[0])
 content.encoding = 'utf-8'
 soup = BeautifulSoup(content.text, 'html.parser') 
 soup
+
+
+# In[6]:
+
+
+from selenium import webdriver
+from bs4 import BeautifulSoup
+import time
+
+browser = webdriver.Chrome()
+dat = []
+for k, j in enumerate(urls):
+    print(k+1)
+    time.sleep(1)
+    browser.get(j) 
+    source = browser.page_source
+    soup = BeautifulSoup(source, 'html.parser') 
+    d = soup.find_all('ul')
+    while len(d) < 2:
+        print(k+1, 'null error and retry')
+        time.sleep(1)
+        browser.get(j) 
+        source = browser.page_source
+        soup = BeautifulSoup(source, 'html.parser') 
+        d = soup.find_all('ul')
+        
+    for i in d[1:]:
+        urli = i.find('a')['href']
+        title = i.find('a').text
+        time_stamp = i.find_all('li')[-1].text.split('\xa0')[-1]
+        dat.append([k+1, urli, title, time_stamp])
+
+browser.close()
+len(dat)
 
 
 # In[13]:

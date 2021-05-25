@@ -29,7 +29,7 @@
 
 
 # 提示：你可能需要修改以下路径名
-with open("../data/ows_tweets_sample.txt", 'r') as f:
+with open("./data/ows_tweets_sample.txt", 'r') as f:
     chunk = f.readlines()
 
 
@@ -39,7 +39,7 @@ with open("../data/ows_tweets_sample.txt", 'r') as f:
 len(chunk)
 
 
-# In[4]:
+# In[3]:
 
 
 import csv
@@ -53,7 +53,7 @@ print(len(list(lines_csv)))
 
 
 import pandas as pd
-df = pd.read_csv("../data/ows_tweets_sample.txt",
+df = pd.read_csv("./data/ows_tweets_sample.txt",
                  sep = ',', quotechar='"')
 df[:3]
 
@@ -79,7 +79,7 @@ df['From User'][:10]
 # ### 统计发帖数量所对应的人数的分布
 # > 人数在发帖数量方面的分布情况
 
-# In[9]:
+# In[12]:
 
 
 from collections import defaultdict
@@ -88,37 +88,38 @@ for i in df['From User']:
     data_dict[i] +=1 
 
 
-# In[10]:
+# In[14]:
 
 
 list(data_dict.items())[:5]
 #data_dict
 
 
-# In[11]:
+# In[10]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
 
+plt.style.use('ggplot')
 
-# In[12]:
+
+# In[16]:
 
 
 plt.hist(data_dict.values())
-#plt.yscale('log')
-#plt.xscale('log')
+plt.yscale('log')
+plt.xscale('log')
 plt.xlabel(u'发帖数', fontsize = 20)
 plt.ylabel(u'人数', fontsize = 20)
 plt.show()
 
 
-# In[14]:
+# In[18]:
 
 
 tweet_dict = defaultdict(int)
 for i in data_dict.values():
-    tweet_dict[i] += 1
+    tweet_dict[i] += 1 
  
 plt.loglog(list(tweet_dict.keys()), list(tweet_dict.values()), 'ro')#linewidth=2)  
 plt.xlabel(u'推特数', fontsize=20)
@@ -126,7 +127,7 @@ plt.ylabel(u'人数', fontsize=20 )
 plt.show()
 
 
-# In[15]:
+# In[17]:
 
 
 import numpy as np
@@ -149,7 +150,7 @@ def powerPlot(d_value, d_freq, color, marker):
              r'$\beta$ = ' + str(round(beta,2)) +'\n' + r'$R^2$ = ' + str(round(r2, 2)), fontsize = 20)
 
 
-# In[16]:
+# In[19]:
 
 
 histo, bin_edges = np.histogram(list(data_dict.values()), 15)
@@ -161,7 +162,7 @@ plt.xlabel(u'推特数', fontsize=20)
 plt.show()
 
 
-# In[35]:
+# In[20]:
 
 
 import statsmodels.api as sm
@@ -195,7 +196,7 @@ def powerPlot2(data):
     
 
 
-# In[36]:
+# In[21]:
 
 
 powerPlot2(data_dict.values())
@@ -207,7 +208,7 @@ powerPlot2(data_dict.values())
 pip install powerlaw
 
 
-# In[39]:
+# In[22]:
 
 
 import powerlaw
@@ -222,7 +223,7 @@ def plotPowerlaw(data,ax,col,xlab):
     plt.legend(loc = 0, frameon = False)
 
 
-# In[40]:
+# In[23]:
 
 
 from collections import defaultdict
@@ -232,9 +233,10 @@ for i in df['From User']:
     data_dict[i] += 1
 
 
-# In[42]:
+# In[24]:
 
 
+# 
 import matplotlib.cm as cm
 cmap = cm.get_cmap('rainbow_r',6)
 
@@ -246,7 +248,7 @@ plotPowerlaw(list(data_dict.values()), ax,cmap(1),
 
 # ## 清洗tweets文本
 
-# In[17]:
+# In[25]:
 
 
 tweet = '''RT @AnonKitsu: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELICOPTERS AND PADDYWAGONS!!!! 
@@ -263,7 +265,7 @@ tweet = '''RT @AnonKitsu: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W 
 # >  pip install twitter-text
 # 
 
-# In[22]:
+# In[27]:
 
 
 #!pip install twitter-text
@@ -273,7 +275,7 @@ import twitter_text
 #Macintosh HD ▸ 用户 ▸ datalab ▸ 应用程序 ▸ anaconda ▸ lib ▸ python3.5 ▸ site-packages
 
 
-# In[23]:
+# In[28]:
 
 
 import re
@@ -287,7 +289,7 @@ rt_user_name = rt_patterns.findall(tweet)[0][1].strip(' @')#.split(':')[0]
 rt_user_name 
 
 
-# In[24]:
+# In[30]:
 
 
 import re
@@ -301,7 +303,7 @@ rt_user_name = rt_patterns.findall(tweet)[0][1].strip(' @').split(':')[0]
 rt_user_name
 
 
-# In[25]:
+# In[31]:
 
 
 import re
@@ -320,7 +322,7 @@ else:
     print('None')
 
 
-# In[26]:
+# In[32]:
 
 
 import re
@@ -335,7 +337,7 @@ def extract_rt_user(tweet):
     return rt_user_name
 
 
-# In[27]:
+# In[33]:
 
 
 tweet = '''RT @chengjun: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELICOPTERS AND PADDYWAGONS!!!! 
@@ -345,7 +347,7 @@ tweet = '''RT @chengjun: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W H
 extract_rt_user(tweet)    
 
 
-# In[28]:
+# In[34]:
 
 
 tweet = '''@chengjun: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELICOPTERS AND PADDYWAGONS!!!! 
@@ -355,12 +357,12 @@ tweet = '''@chengjun: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELI
 print(extract_rt_user(tweet) )
 
 
-# In[29]:
+# In[35]:
 
 
 import csv
 
-with open("../data/ows_tweets_sample.txt", 'r') as f:
+with open("./data/ows_tweets_sample.txt", 'r') as f:
     chunk = f.readlines()
     
 rt_network = []
@@ -369,7 +371,7 @@ tweet_user_data = [(i[1], i[8]) for i in lines]
 tweet_user_data[:3]
 
 
-# In[30]:
+# In[36]:
 
 
 from collections import defaultdict
@@ -390,7 +392,7 @@ list(rt_dict.items())[:3]
 # 
 # 不含人名、url、各种符号（如RT @等）
 
-# In[31]:
+# In[37]:
 
 
 def extract_tweet_text(tweet, at_names, urls):
@@ -404,7 +406,7 @@ def extract_tweet_text(tweet, at_names, urls):
     return tweet
 
 
-# In[32]:
+# In[38]:
 
 
 import twitter_text
@@ -423,7 +425,7 @@ rt_user = extract_rt_user(tweet)
 print(at_names, urls, hashtags, rt_user,'-------->')#, tweet_text)
 
 
-# In[33]:
+# In[39]:
 
 
 import csv
@@ -432,7 +434,7 @@ lines = csv.reader(chunk,delimiter=',', quotechar='"')
 tweets = [i[1] for i in lines]
 
 
-# In[34]:
+# In[40]:
 
 
 for tweet in tweets[:5]:

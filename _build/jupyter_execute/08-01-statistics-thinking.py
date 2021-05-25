@@ -159,7 +159,7 @@
 # 
 # The mathematics and techniques with which we understand data.
 
-# In[58]:
+# In[1]:
 
 
 from collections import Counter
@@ -171,7 +171,7 @@ import matplotlib
 matplotlib.style.use('ggplot')
 
 
-# In[5]:
+# In[2]:
 
 
 def dot(v, w):
@@ -183,7 +183,7 @@ def sum_of_squares(v):
     return dot(v, v)
 
 
-# In[6]:
+# In[3]:
 
 
 daily_minutes = [1,68.77,51.25,52.08,38.36,44.54,57.13,
@@ -215,7 +215,7 @@ daily_minutes = [1,68.77,51.25,52.08,38.36,44.54,57.13,
                  26.89,23.48,8.38,27.81,32.35,23.84]
 
 
-# In[7]:
+# In[4]:
 
 
 num_friends = [100,49,41,40,25,21,21,19,19,18,
@@ -290,7 +290,7 @@ plt.show()
 
 # ### From Max to Min
 
-# In[12]:
+# In[5]:
 
 
 num_points = len(num_friends)               # 204
@@ -301,7 +301,7 @@ smallest_value = min(num_friends)           # 1
 print(num_points, largest_value, smallest_value)
 
 
-# In[13]:
+# In[6]:
 
 
 sorted_values = sorted(num_friends)
@@ -313,26 +313,26 @@ second_largest_value = sorted_values[-2]    # 49
 
 # ### Mean, Median, Mode, and Quantile
 
-# In[14]:
+# In[7]:
 
 
 def mean(x):
     return sum(x) / len(x)
 
 
-# In[15]:
+# In[8]:
 
 
 print("mean(num_friends)", mean(num_friends))
 
 
-# In[16]:
+# In[9]:
 
 
 np.mean(num_friends)
 
 
-# In[17]:
+# In[10]:
 
 
 def median(v):
@@ -351,19 +351,19 @@ def median(v):
         return (sorted_v[lo] + sorted_v[hi]) / 2
 
 
-# In[18]:
+# In[11]:
 
 
 print("median(num_friends)", median(num_friends))
 
 
-# In[19]:
+# In[12]:
 
 
 np.median(num_friends)
 
 
-# In[20]:
+# In[13]:
 
 
 def quantile(x, p):
@@ -372,7 +372,7 @@ def quantile(x, p):
     return sorted(x)[p_index]
 
 
-# In[21]:
+# In[14]:
 
 
 print("quantile(num_friends, 0.10)", quantile(num_friends, 0.10))
@@ -382,13 +382,13 @@ print("quantile(num_friends, 0.75)", quantile(num_friends, 0.75))
 print("quantile(num_friends, 0.90)", quantile(num_friends, 0.90))
 
 
-# In[22]:
+# In[15]:
 
 
 np.percentile(num_friends, 90)
 
 
-# In[23]:
+# In[16]:
 
 
 def mode(x):
@@ -399,13 +399,13 @@ def mode(x):
             if count == max_count]
 
 
-# In[24]:
+# In[17]:
 
 
 print("mode(num_friends)", mode(num_friends))
 
 
-# In[25]:
+# In[18]:
 
 
 np.argmax(np.bincount(num_friends))
@@ -418,27 +418,27 @@ np.argmax(np.bincount(num_friends))
 np.bincount(num_friends)
 
 
-# In[27]:
+# In[19]:
 
 
 from scipy import stats
 stats.mode(num_friends, axis=None)
 
 
-# In[28]:
+# In[20]:
 
 
 def data_range(x):
     return max(x) - min(x)
 
 
-# In[29]:
+# In[21]:
 
 
 print("data_range(num_friends)", data_range(num_friends))
 
 
-# In[37]:
+# In[22]:
 
 
 def interquartile_range(x):
@@ -477,7 +477,7 @@ sns.boxplot(y = num_friends);
 # 
 # 
 
-# In[32]:
+# In[23]:
 
 
 def de_mean(x):
@@ -487,7 +487,7 @@ def de_mean(x):
     return [x_i - x_bar for x_i in x]
 
 
-# In[33]:
+# In[24]:
 
 
 def variance(x):
@@ -505,7 +505,7 @@ print("variance(num_friends)", variance(num_friends))
 print(np.var(num_friends))
 
 
-# In[35]:
+# In[25]:
 
 
 def standard_deviation(x):
@@ -543,7 +543,7 @@ g = sns.jointplot(num_friends, daily_minutes,
                   kind="kde", height=7, space=0)
 
 
-# In[38]:
+# In[26]:
 
 
 def covariance(x, y):
@@ -559,7 +559,7 @@ print("covariance(num_friends, daily_minutes)", covariance(num_friends, daily_mi
 np.cov(num_friends, daily_minutes) 
 
 
-# In[40]:
+# In[27]:
 
 
 def correlation(x, y):
@@ -572,7 +572,7 @@ def correlation(x, y):
 print("correlation(num_friends, daily_minutes)", correlation(num_friends, daily_minutes))
 
 
-# In[44]:
+# In[28]:
 
 
 import seaborn as sns
@@ -595,7 +595,7 @@ from scipy.stats.stats import pearsonr
 pearsonr(num_friends, daily_minutes)
 
 
-# In[45]:
+# In[29]:
 
 
 outlier = num_friends.index(100) # index of outlier
@@ -642,7 +642,7 @@ income_male = [1000, 1500, 2000, 3000, 2500, 4000, 5000, 3500]
 income_female=[6000, 6200, 7000, 7100, 9000, 10000, 12000]
 income_male_median = np.median(income_male)
 income_female_median = np.median(income_female)
-print(income_male_median, income_female_median)
+print(income_male_median, income_female_median) 
 
 
 # In[50]:
@@ -755,7 +755,7 @@ f,p = stats.f_oneway(a1, a2, a3)
 print(f,p)
 
 
-# In[51]:
+# In[30]:
 
 
 # 5个地方的蚌壳长度的均值是否都一样呢？
@@ -767,7 +767,7 @@ magadan = [0.1033, 0.0915, 0.0781, 0.0685, 0.0677, 0.0697, 0.0764, 0.0689]
 tvarminne = [0.0703, 0.1026, 0.0956, 0.0973, 0.1039, 0.1045]
 
 
-# In[52]:
+# In[31]:
 
 
 plt.boxplot([tillamook, newport, petersburg, magadan, tvarminne], # meanline=True,showmeans=True,
@@ -775,14 +775,14 @@ plt.boxplot([tillamook, newport, petersburg, magadan, tvarminne], # meanline=Tru
 plt.show()
 
 
-# In[151]:
+# In[32]:
 
 
 f,p = stats.f_oneway(tillamook, newport, petersburg, magadan, tvarminne)
 print(f,p)
 
 
-# In[54]:
+# In[37]:
 
 
 from statsmodels.formula.api import ols
@@ -805,15 +805,15 @@ print(anova_lm(model))
 # 
 # Measurement of fetal head circumference **hs**, by four observers in three fetuses.
 
-# In[55]:
+# In[39]:
 
 
 # https://raw.githubusercontent.com/thomas-haslwanter/statsintro_python/master/ipynb/Data/data_altman/altman_12_6.txt
-df = pd.read_csv('../data/altman_12_6.txt', names=['hs', 'fetus', 'observer'])
+df = pd.read_csv('./data/altman_12_6.txt', names=['hs', 'fetus', 'observer'])
 df.head()
 
 
-# In[56]:
+# In[40]:
 
 
 from statsmodels.graphics.api import interaction_plot
@@ -822,7 +822,7 @@ fig = interaction_plot(df['fetus'], df['observer'], df['hs'],
         ms=10, ax=plt.gca())
 
 
-# In[169]:
+# In[41]:
 
 
 formula = 'hs ~ C(fetus) + C(observer) + C(fetus):C(observer)'

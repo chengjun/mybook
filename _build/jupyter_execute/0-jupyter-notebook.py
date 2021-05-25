@@ -11,6 +11,9 @@
 # 
 # 
 
+# <h1>Table of Contents<span class="tocSkip"></span></h1>
+# <div class="toc"><ul class="toc-item"><li><span><a href="#Jupyter-Notebook" data-toc-modified-id="Jupyter-Notebook-1">Jupyter Notebook</a></span><ul class="toc-item"><li><span><a href="#Copy-and-Paste-images" data-toc-modified-id="Copy-and-Paste-images-1.1">Copy and Paste images</a></span></li><li><span><a href="#Set-the-layout-of-figures" data-toc-modified-id="Set-the-layout-of-figures-1.2">Set the layout of figures</a></span></li><li><span><a href="#Publish-on-Github-Pages" data-toc-modified-id="Publish-on-Github-Pages-1.3">Publish on Github Pages</a></span></li><li><span><a href="#Workflow" data-toc-modified-id="Workflow-1.4">Workflow</a></span></li><li><span><a href="#引用" data-toc-modified-id="引用-1.5">引用</a></span><ul class="toc-item"><li><span><a href="#搜狗输入法表情和符号" data-toc-modified-id="搜狗输入法表情和符号-1.5.1">搜狗输入法表情和符号</a></span></li></ul></li><li><span><a href="#运行C代码" data-toc-modified-id="运行C代码-1.6">运行C代码</a></span></li><li><span><a href="#Jupyter-魔术命令" data-toc-modified-id="Jupyter-魔术命令-1.7">Jupyter 魔术命令</a></span></li><li><span><a href="#References" data-toc-modified-id="References-1.8">References</a></span></li></ul></li></ul></div>
+
 # ## Copy and Paste images
 # 
 #     ![image.png](attachment:image.png)
@@ -85,7 +88,7 @@
 # ghp-import -n -p -f _site
 # ```
 
-# In[3]:
+# In[1]:
 
 
 # my first python script
@@ -100,13 +103,13 @@ print("hello world! \n I am Cheng-Jun Wang.")
 # - and much more.
 # 
 
-# In[7]:
+# In[2]:
 
 
 print('hello world')
 
 
-# In[8]:
+# In[3]:
 
 
 1 + 1
@@ -189,12 +192,10 @@ plt.show()
 # In[4]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
-
+plt.style.use('ggplot') 
 xi = [1, 2, 3, 4, 5]
 y = [3, 5, 9, 13, 16]
-
 plt.plot(xi, y, 'g-s')
 plt.xlabel('$x_i$', fontsize = 20)
 plt.ylabel('$y$', fontsize = 20)

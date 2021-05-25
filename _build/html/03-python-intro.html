@@ -484,11 +484,8 @@ Python本身的科学计算类库发展也十分完善，例如NumPy、SciPy和m
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Processing /Users/datalab/Library/Caches/pip/wheels/87/32/ba/7ba0070ffcd371ae5c13511b55583e01b080cb05bcad4dc443/flownetwork-3.1.0-py2.py3-none-any.whl
-Collecting peppercorn
-  Using cached peppercorn-0.6-py3-none-any.whl (4.8 kB)
-Installing collected packages: peppercorn, flownetwork
-Successfully installed flownetwork-3.1.0 peppercorn-0.6
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: flownetwork in /opt/anaconda3/lib/python3.7/site-packages (3.1.0)
+Requirement already satisfied: peppercorn in /opt/anaconda3/lib/python3.7/site-packages (from flownetwork) (0.6)
 Note: you may need to restart the kernel to use updated packages.
 </pre></div>
 </div>
@@ -624,14 +621,66 @@ constructFlowNetwork(C)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">random</span><span class="o">,</span> <span class="nn">datetime</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span><span class="o">,</span> <span class="nn">datetime</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
 <span class="kn">from</span> <span class="nn">scipy.stats.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./data/the_republic_plato_gutenberg_pg1497.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24692
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>list
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lines</span><span class="p">[</span><span class="mi">8520</span><span class="p">:</span><span class="mi">8530</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;\n&#39;,
+ &#39;\n&#39;,
+ &#39;\n&#39;,
+ &#39;\n&#39;,
+ &#39;BOOK I.\n&#39;,
+ &#39;\n&#39;,
+ &#39;I went down yesterday to the Piraeus with Glaucon the son of Ariston,\n&#39;,
+ &#39;that I might offer up my prayers to the goddess (Bendis, the Thracian\n&#39;,
+ &#39;Artemis.); and also because I wanted to see in what manner they would\n&#39;,
+ &#39;celebrate the festival, which was a new thing. I was delighted with the\n&#39;]
 </pre></div>
 </div>
 </div>
@@ -680,7 +729,7 @@ constructFlowNetwork(C)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># float</span>
-<span class="nb">float</span><span class="p">(</span><span class="s1">&#39;7.1&#39;</span><span class="p">)</span>
+<span class="nb">float</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mf">7.1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -723,7 +772,7 @@ constructFlowNetwork(C)
 <p>当你想要了解对象的详细信息时使用</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
@@ -1251,6 +1300,30 @@ class str(object)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;   &#39;</span><span class="o">.</span><span class="n">isspace</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;socrates the king&#39;</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="s1">&#39; is the greatest.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;socrates the king is the greatest.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39; Hello WorlD  &#39;</span>
 <span class="nb">dir</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span> 
 </pre></div>
@@ -1287,12 +1360,12 @@ class str(object)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># upper</span>
-<span class="n">x</span>
+<span class="n">x</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; Hello WorlD  &#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; HELLO WORLD  &#39;
 </pre></div>
 </div>
 </div>
@@ -1395,7 +1468,7 @@ class str(object)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 3] (1, 2, 3, 3) {1, 2, 3} {&#39;c&#39;: 3, &#39;b&#39;: 2, &#39;a&#39;: 1} [1 2 3 3]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 3] (1, 2, 3, 3) {1, 2, 3} {&#39;a&#39;: 1, &#39;b&#39;: 2, &#39;c&#39;: 3} [1 2 3 3]
 </pre></div>
 </div>
 </div>
@@ -1456,7 +1529,7 @@ class str(object)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span> <span class="c1"># dict</span>
-<span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> 
 </pre></div>
 </div>
 </div>
@@ -1574,7 +1647,7 @@ class str(object)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 列表内部的for循环</span>
-<span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="n">devidePlus</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="n">devidePlus</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
 <span class="n">r</span> 
 </pre></div>
 </div>
@@ -1804,14 +1877,14 @@ class str(object)
     <span class="k">try</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">devidePlus</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
         <span class="k">pass</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0
-division by zero
+0 division by zero
 1.8
 </pre></div>
 </div>
@@ -1953,11 +2026,10 @@ division by zero
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on built-in function write:
 
-write(...)
-    write(str) -&gt; None.  Write string str to file.
-    
-    Note that due to buffering, flush() or close() may be needed before
-    the file on disk reflects the data written.
+write(text, /) method of _io.TextIOWrapper instance
+    Write string to stream.
+    Returns the number of characters written (which is always equal to
+    the length of the string).
 </pre></div>
 </div>
 </div>
@@ -1967,7 +2039,7 @@ write(...)
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存数据</span>
 <span class="n">data</span> <span class="o">=</span><span class="p">[[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">**</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)]</span> 
 
-<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../data/data_write_to_file1.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data_write_to_file1.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">i</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -1977,7 +2049,7 @@ write(...)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/data_write_to_file.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data_write_to_file1.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 <span class="n">data</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
@@ -1991,21 +2063,21 @@ write(...)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/data_write_to_file.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data_write_to_file1.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="c1">#bytes </span>
 <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>459
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>77
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/data_write_to_file.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data_write_to_file1.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -2021,6 +2093,10 @@ write(...)
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># with open(&#39;data_write_to_file1.txt&#39;, &#39;r&#39;) as f:</span>
+<span class="c1">#      for i in f:</span>
+<span class="c1">#             print(i)</span>
 </pre></div>
 </div>
 </div>
@@ -2036,9 +2112,29 @@ write(...)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># with open(&#39;../data/data_write_to_file.txt&#39;,&#39;r&#39;) as f:</span>
-<span class="c1">#     for i in f:</span>
-<span class="c1">#         print(i)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data_write_to_file1.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1000
+2000
+3000
+4000
+5000
+6000
+7000
+8000
+9000
+2499833358330000
 </pre></div>
 </div>
 </div>
@@ -2088,7 +2184,7 @@ write(...)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 读取数据</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/data_write_to_file1.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data_write_to_file1.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">line</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">line</span><span class="p">]</span>
@@ -4316,9 +4412,9 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/data_write_to_file.txt&#39;</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data_write_to_file1.txt&#39;</span><span class="p">,</span> 
                  <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
-<span class="n">df</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
+<span class="n">df</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -4348,34 +4444,34 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
   </thead>
   <tbody>
     <tr>
-      <th>9995</th>
-      <td>9995</td>
-      <td>99900025</td>
-      <td>998500749875</td>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>9996</th>
-      <td>9996</td>
-      <td>99920016</td>
-      <td>998800479936</td>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
     </tr>
     <tr>
-      <th>9997</th>
-      <td>9997</td>
-      <td>99940009</td>
-      <td>999100269973</td>
+      <th>2</th>
+      <td>2</td>
+      <td>4</td>
+      <td>8</td>
     </tr>
     <tr>
-      <th>9998</th>
-      <td>9998</td>
-      <td>99960004</td>
-      <td>999400119992</td>
+      <th>3</th>
+      <td>3</td>
+      <td>9</td>
+      <td>27</td>
     </tr>
     <tr>
-      <th>9999</th>
-      <td>9999</td>
-      <td>99980001</td>
-      <td>999700029999</td>
+      <th>4</th>
+      <td>4</td>
+      <td>16</td>
+      <td>64</td>
     </tr>
   </tbody>
 </table>
@@ -4388,7 +4484,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/save_dict.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./data/save_dict.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data_dict</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -4396,7 +4492,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dd</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../data/save_dict.json&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dd</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./data/save_dict.json&quot;</span><span class="p">))</span>
 <span class="n">dd</span>
 </pre></div>
 </div>
@@ -4440,8 +4536,8 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 <h2>使用matplotlib绘图<a class="headerlink" href="#matplotlib" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">x</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">**-</span><span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
@@ -4456,7 +4552,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_101_0.png" src="_images/03-python-intro_101_0.png" />
+<img alt="_images/03-python-intro_107_0.png" src="_images/03-python-intro_107_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4472,7 +4568,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_102_0.png" src="_images/03-python-intro_102_0.png" />
+<img alt="_images/03-python-intro_108_0.png" src="_images/03-python-intro_108_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4495,7 +4591,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_103_0.png" src="_images/03-python-intro_103_0.png" />
+<img alt="_images/03-python-intro_109_0.png" src="_images/03-python-intro_109_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4528,7 +4624,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_105_0.png" src="_images/03-python-intro_105_0.png" />
+<img alt="_images/03-python-intro_111_0.png" src="_images/03-python-intro_111_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4556,7 +4652,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_107_0.png" src="_images/03-python-intro_107_0.png" />
+<img alt="_images/03-python-intro_113_0.png" src="_images/03-python-intro_113_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4582,7 +4678,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_108_0.png" src="_images/03-python-intro_108_0.png" />
+<img alt="_images/03-python-intro_114_0.png" src="_images/03-python-intro_114_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4614,7 +4710,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_110_0.png" src="_images/03-python-intro_110_0.png" />
+<img alt="_images/03-python-intro_116_0.png" src="_images/03-python-intro_116_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4634,7 +4730,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_111_0.png" src="_images/03-python-intro_111_0.png" />
+<img alt="_images/03-python-intro_117_0.png" src="_images/03-python-intro_117_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4715,7 +4811,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_113_0.png" src="_images/03-python-intro_113_0.png" />
+<img alt="_images/03-python-intro_119_0.png" src="_images/03-python-intro_119_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4726,7 +4822,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_114_0.png" src="_images/03-python-intro_114_0.png" />
+<img alt="_images/03-python-intro_120_0.png" src="_images/03-python-intro_120_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4737,7 +4833,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_115_0.png" src="_images/03-python-intro_115_0.png" />
+<img alt="_images/03-python-intro_121_0.png" src="_images/03-python-intro_121_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4748,7 +4844,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_116_0.png" src="_images/03-python-intro_116_0.png" />
+<img alt="_images/03-python-intro_122_0.png" src="_images/03-python-intro_122_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4767,7 +4863,7 @@ The default value for &#39;return_type&#39; will change to &#39;axes&#39; in a f
   if __name__ == &#39;__main__&#39;:
 </pre></div>
 </div>
-<img alt="_images/03-python-intro_117_1.png" src="_images/03-python-intro_117_1.png" />
+<img alt="_images/03-python-intro_123_1.png" src="_images/03-python-intro_123_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4778,7 +4874,7 @@ The default value for &#39;return_type&#39; will change to &#39;axes&#39; in a f
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_118_0.png" src="_images/03-python-intro_118_0.png" />
+<img alt="_images/03-python-intro_124_0.png" src="_images/03-python-intro_124_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4790,7 +4886,7 @@ The default value for &#39;return_type&#39; will change to &#39;axes&#39; in a f
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_119_0.png" src="_images/03-python-intro_119_0.png" />
+<img alt="_images/03-python-intro_125_0.png" src="_images/03-python-intro_125_0.png" />
 </div>
 </div>
 <blockquote>

@@ -173,6 +173,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="11-5-LIWC.html">
+     LIWC: Linguistic Inquiry and Word Count  analyzer
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="12-topic-models-update.html">
      主题模型简介
     </a>
@@ -532,7 +537,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">spatial</span>
 <span class="c1"># spatial.distance.cosine computes </span>
 <span class="c1"># the Cosine distance between 1-D arrays.</span>
-<span class="mi">1</span> <span class="o">-</span> <span class="n">spatial</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">cosine</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="mi">1</span><span class="o">-</span><span class="n">spatial</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">cosine</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -601,14 +606,12 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;woman&#39;</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;woman&#39;</span><span class="p">][:</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.24316406, -0.07714844, -0.10302734, -0.10742188,  0.11816406,
-       -0.10742188, -0.11425781,  0.02563477,  0.11181641,  0.04858398],
-      dtype=float32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.24316406, -0.07714844, -0.10302734], dtype=float32)
 </pre></div>
 </div>
 </div>
@@ -1428,8 +1431,12 @@ SkipGram(
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../data/三体.txt&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./data/三体.txt&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="kn">import</span> <span class="nn">jieba</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">temp</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">lcut</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
     <span class="n">words</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1455,21 +1462,111 @@ SkipGram(
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s1">&#39;三体&#39;</span><span class="p">,</span> <span class="n">topn</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s1">&#39;三体&#39;</span><span class="p">,</span> <span class="n">topn</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;地球&#39;, 0.9994192123413086),
- (&#39;组织&#39;, 0.9993805289268494),
- (&#39;文明&#39;, 0.9993024468421936),
- (&#39;中&#39;, 0.9992458820343018),
- (&#39;发展&#39;, 0.9992369413375854),
- (&#39;的&#39;, 0.9992075562477112),
- (&#39;与&#39;, 0.9990826845169067),
- (&#39;社会&#39;, 0.9990127682685852),
- (&#39;一次&#39;, 0.9990046620368958),
- (&#39;状态&#39;, 0.9989502429962158)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;号&#39;, 0.9991474151611328),
+ (&#39;仍&#39;, 0.9990677237510681),
+ (&#39;背景&#39;, 0.9989785552024841),
+ (&#39;中&#39;, 0.9989073276519775),
+ (&#39;和&#39;, 0.9988664388656616),
+ (&#39;下&#39;, 0.9988356232643127),
+ (&#39;与&#39;, 0.998835027217865),
+ (&#39;时代&#39;, 0.9988163709640503),
+ (&#39;被&#39;, 0.998814582824707),
+ (&#39;上&#39;, 0.9987987875938416),
+ (&#39;设备&#39;, 0.9987902641296387),
+ (&#39;这个&#39;, 0.9987789392471313),
+ (&#39;在&#39;, 0.9987666010856628),
+ (&#39;出&#39;, 0.998758852481842),
+ (&#39;计算&#39;, 0.9987345337867737),
+ (&#39;确实&#39;, 0.9986939430236816),
+ (&#39;地球&#39;, 0.9986928701400757),
+ (&#39;开始&#39;, 0.9986846446990967),
+ (&#39;研究&#39;, 0.9986833930015564),
+ (&#39;目前&#39;, 0.9986788034439087),
+ (&#39;计算机&#39;, 0.9986657500267029),
+ (&#39;一个&#39;, 0.9986624717712402),
+ (&#39;使&#39;, 0.998661994934082),
+ (&#39;的&#39;, 0.9986578226089478),
+ (&#39;出现&#39;, 0.9986552000045776),
+ (&#39;真实&#39;, 0.9986495971679688),
+ (&#39;信息&#39;, 0.9986458420753479),
+ (&#39;那样&#39;, 0.9986419677734375),
+ (&#39;毁灭&#39;, 0.9986330270767212),
+ (&#39;存在&#39;, 0.9986319541931152),
+ (&#39;生命&#39;, 0.9986208081245422),
+ (&#39;太阳&#39;, 0.9986128807067871),
+ (&#39;外星&#39;, 0.9986080527305603),
+ (&#39;宇宙&#39;, 0.9985974431037903),
+ (&#39;技术&#39;, 0.9985949397087097),
+ (&#39;内&#39;, 0.9985937476158142),
+ (&#39;不同&#39;, 0.9985873699188232),
+ (&#39;对&#39;, 0.9985859990119934),
+ (&#39;’&#39;, 0.9985852241516113),
+ (&#39;但&#39;, 0.9985851645469666),
+ (&#39;或&#39;, 0.998579740524292),
+ (&#39;以&#39;, 0.9985793828964233),
+ (&#39;确定&#39;, 0.9985712766647339),
+ (&#39;已&#39;, 0.9985640048980713),
+ (&#39;监听&#39;, 0.9985599517822266),
+ (&#39;产生&#39;, 0.9985580444335938),
+ (&#39;一名&#39;, 0.998555064201355),
+ (&#39;曾&#39;, 0.9985499382019043),
+ (&#39;控制&#39;, 0.9985296726226807),
+ (&#39;质子&#39;, 0.9985259771347046),
+ (&#39;那些&#39;, 0.9985222816467285),
+ (&#39;对于&#39;, 0.9985181093215942),
+ (&#39;人&#39;, 0.9985091686248779),
+ (&#39;很&#39;, 0.9984890222549438),
+ (&#39;状态&#39;, 0.9984877705574036),
+ (&#39;将&#39;, 0.9984877705574036),
+ (&#39;其&#39;, 0.9984660744667053),
+ (&#39;甚至&#39;, 0.9984593987464905),
+ (&#39;并&#39;, 0.998455286026001),
+ (&#39;两个&#39;, 0.9984530806541443),
+ (&#39;为&#39;, 0.9984517097473145),
+ (&#39;一些&#39;, 0.9984512329101562),
+ (&#39;到&#39;, 0.9984411597251892),
+ (&#39;时&#39;, 0.9984337091445923),
+ (&#39;成为&#39;, 0.9984302520751953),
+ (&#39;只有&#39;, 0.9984236359596252),
+ (&#39;人类&#39;, 0.9984211325645447),
+ (&#39;操作&#39;, 0.9984169006347656),
+ (&#39;以前&#39;, 0.9984143972396851),
+ (&#39;有&#39;, 0.998409628868103),
+ (&#39;于&#39;, 0.9984070062637329),
+ (&#39;精确&#39;, 0.9984040260314941),
+ (&#39;材料&#39;, 0.9984034895896912),
+ (&#39;工作&#39;, 0.9984033107757568),
+ (&#39;发射&#39;, 0.9983908534049988),
+ (&#39;撞击&#39;, 0.9983891248703003),
+ (&#39;向&#39;, 0.9983859062194824),
+ (&#39;需要&#39;, 0.9983782768249512),
+ (&#39;金字塔&#39;, 0.9983758926391602),
+ (&#39;周围&#39;, 0.9983750581741333),
+ (&#39;还有&#39;, 0.9983642101287842),
+ (&#39;这种&#39;, 0.9983606338500977),
+ (&#39;部分&#39;, 0.998336911201477),
+ (&#39;从&#39;, 0.9983317852020264),
+ (&#39;人们&#39;, 0.9983276128768921),
+ (&#39;三个&#39;, 0.9983229637145996),
+ (&#39;已经&#39;, 0.9983162879943848),
+ (&#39;太空&#39;, 0.9983103275299072),
+ (&#39;小&#39;, 0.9982970356941223),
+ (&#39;刚刚&#39;, 0.998295783996582),
+ (&#39;一片&#39;, 0.9982841610908508),
+ (&#39;一&#39;, 0.9982807636260986),
+ (&#39;还是&#39;, 0.9982765913009644),
+ (&#39;变成&#39;, 0.9982757568359375),
+ (&#39;科学&#39;, 0.9982727766036987),
+ (&#39;也&#39;, 0.9982692003250122),
+ (&#39;最后&#39;, 0.9982669949531555),
+ (&#39;一颗&#39;, 0.9982632398605347),
+ (&#39;其他&#39;, 0.9982585906982422),
+ (&#39;一下&#39;, 0.9982539415359497)]
 </pre></div>
 </div>
 </div>
@@ -1477,6 +1574,9 @@ SkipGram(
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 将词向量投影到二维空间</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
 <span class="n">rawWordVec</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">word2ind</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">vocab</span><span class="p">):</span>
@@ -1488,18 +1588,39 @@ SkipGram(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-1-05a54a135a3e&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">rawWordVec</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">word2ind</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">vocab</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">rawWordVec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">word2ind</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
-
-<span class="ne">NameError</span>: name &#39;model&#39; is not defined
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:8: DeprecationWarning: Call to deprecated `__getitem__` (Method will be removed in 4.0.0, use self.wv.__getitem__() instead).
+  
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 绘制星空图</span>
+<span class="c1"># 绘制所有单词向量的二维空间投影</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_reduced</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_reduced</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="c1"># 绘制几个特殊单词的向量</span>
+<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;智子&#39;</span><span class="p">,</span> <span class="s1">&#39;地球&#39;</span><span class="p">,</span> <span class="s1">&#39;三体&#39;</span><span class="p">,</span> <span class="s1">&#39;质子&#39;</span><span class="p">,</span> <span class="s1">&#39;科学&#39;</span><span class="p">,</span> <span class="s1">&#39;世界&#39;</span><span class="p">,</span> <span class="s1">&#39;文明&#39;</span><span class="p">,</span> <span class="s1">&#39;太空&#39;</span><span class="p">,</span> <span class="s1">&#39;加速器&#39;</span><span class="p">,</span> <span class="s1">&#39;平面&#39;</span><span class="p">,</span> <span class="s1">&#39;宇宙&#39;</span><span class="p">,</span> <span class="s1">&#39;进展&#39;</span><span class="p">,</span><span class="s1">&#39;的&#39;</span><span class="p">]</span>
+<span class="c1"># 设置中文字体，否则无法在图形上显示中文</span>
+<span class="c1">#zhfont1 = matplotlib.font_manager.FontProperties(fname=&#39;/Library/Fonts/华文仿宋.ttf&#39;, size=26)</span>
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">word2ind</span><span class="p">:</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">word2ind</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="n">X_reduced</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+        <span class="c1">#plt.text(xy[0], xy[1], w, fontproperties = zhfont1, alpha = 1, color = &#39;yellow&#39;)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-word2vec_92_0.png" src="_images/10-word2vec_92_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1524,7 +1645,7 @@ SkipGram(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10-word2vec_92_0.png" src="_images/10-word2vec_92_0.png" />
+<img alt="_images/10-word2vec_93_0.png" src="_images/10-word2vec_93_0.png" />
 </div>
 </div>
 <p><img alt="" src="_images/end1.png" /></p>

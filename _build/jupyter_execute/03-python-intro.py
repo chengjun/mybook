@@ -64,7 +64,7 @@
 pip install flownetwork
 
 
-# In[8]:
+# In[2]:
 
 
 from flownetwork import flownetwork as fn
@@ -75,13 +75,13 @@ import numpy as np
 print(fn.__version__)
 
 
-# In[4]:
+# In[3]:
 
 
 help(fn.constructFlowNetwork)
 
 
-# In[5]:
+# In[4]:
 
 
 # constructing a flow network
@@ -89,7 +89,7 @@ demo = fn.attention_data
 gd = fn.constructFlowNetwork(demo)
 
 
-# In[9]:
+# In[5]:
 
 
 # drawing a demo network
@@ -114,13 +114,13 @@ nx.draw_networkx_labels(gd,pos,font_size=18)
 plt.show()
 
 
-# In[10]:
+# In[6]:
 
 
 nx.info(gd)
 
 
-# In[11]:
+# In[7]:
 
 
 # flow matrix
@@ -128,16 +128,15 @@ m = fn.getFlowMatrix(gd)
 m
 
 
-# In[12]:
+# In[8]:
 
 
 fn.networkDissipate(gd)
 
 
-# In[13]:
+# In[9]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
 import random, datetime
 import numpy as np
 import matplotlib.pyplot as plt
@@ -147,43 +146,68 @@ from scipy.stats import norm
 from scipy.stats.stats import pearsonr
 
 
+# In[11]:
+
+
+with open('./data/the_republic_plato_gutenberg_pg1497.txt', 'r') as f:
+    lines = f.readlines()
+
+
+# In[12]:
+
+
+len(lines)
+
+
+# In[13]:
+
+
+type(lines)
+
+
+# In[24]:
+
+
+lines[8520:8530]
+
+
 # ## Variable Type
 # 
 
-# In[14]:
+# In[27]:
 
 
 # str, int, float, bool
 str(3)
 
 
-# In[17]:
+# In[28]:
 
 
 "chengjun wang"
 
 
-# In[18]:
+# In[29]:
 
 
 # int
 int('5') 
 
 
-# In[19]:
+# In[31]:
 
 
 # float
-float('7.1')
+float(str(7.1))
 
 
-# In[20]:
+# In[32]:
 
 
 range(10)
 
 
-# In[24]:
+# In[33]:
 
 
 # for i in range(1, 10):
@@ -199,7 +223,7 @@ range(1,10)
 # In[26]:
 
 
-dir(str)
+dir(str) 
 
 
 # In[36]:
@@ -214,34 +238,46 @@ dir(str)
 dir(str)[-10:]
 
 
-# In[32]:
+# In[63]:
 
 
 help(str)
 
 
-# In[38]:
+# In[45]:
+
+
+'   '.isspace()
+
+
+# In[35]:
+
+
+'socrates the king'.__add__(' is the greatest.')
+
+
+# In[46]:
 
 
 x = ' Hello WorlD  '
 dir(x)[-10:] 
 
 
-# In[39]:
+# In[47]:
 
 
 # lower
 x.lower() 
 
 
-# In[45]:
+# In[49]:
 
 
 # upper
-x
+x.upper()
 
 
-# In[51]:
+# In[50]:
 
 
 # rstrip
@@ -255,21 +291,21 @@ x.lstrip()
 x.strip()
 
 
-# In[52]:
+# In[51]:
 
 
 # replace
 x.replace('lo', '')
 
 
-# In[53]:
+# In[52]:
 
 
 # split
 x.split('lo')
 
 
-# In[57]:
+# In[53]:
 
 
 # join 
@@ -290,7 +326,7 @@ type(x)
 # list, tuple, set, dictionary, array
 # 
 
-# In[6]:
+# In[54]:
 
 
 l = [1,2,3,3] # list
@@ -309,21 +345,21 @@ l.append(4)
 l
 
 
-# In[61]:
+# In[57]:
 
 
 d = {'a':1,'b':2,'c':3} # dict
 d.keys()
 
 
-# In[62]:
+# In[58]:
 
 
 d = {'a':1,'b':2,'c':3} # dict
 d.values()
 
 
-# In[63]:
+# In[59]:
 
 
 d = {'a':1,'b':2,'c':3} # dict
@@ -334,12 +370,12 @@ d['b']
 
 
 d = {'a':1,'b':2,'c':3} # dict
-d.items()
+d.items() 
 
 
 # ## 定义函数
 
-# In[66]:
+# In[64]:
 
 
 def devidePlus(m, n): # 结尾是冒号
@@ -349,26 +385,26 @@ def devidePlus(m, n): # 结尾是冒号
 
 # ## For 循环
 
-# In[67]:
+# In[65]:
 
 
 range(10)
 
 
-# In[68]:
+# In[66]:
 
 
 range(1, 10)  
 
 
-# In[69]:
+# In[67]:
 
 
 for i in range(10):
     print(i, i*10, i**2)
 
 
-# In[70]:
+# In[68]:
 
 
 for i in range(10):
@@ -382,17 +418,17 @@ for i in range(10):
     print(devidePlus(i, 2))
 
 
-# In[76]:
+# In[71]:
 
 
 # 列表内部的for循环
-r = [devidePlus(i, 2)  for i in range(10)]
+r = [devidePlus(i, 2) for i in range(10)]
 r 
 
 
 # ## map函数
 
-# In[81]:
+# In[74]:
 
 
 def fahrenheit(T):
@@ -413,7 +449,7 @@ print(*m1)
 # 注意： 将（4， 2)作为一个组合进行计算，将（3， 1）作为一个组合进行计算
 
 
-# In[77]:
+# In[75]:
 
 
 m2 = map(lambda x, y: x + y, [1, 3, 5, 7, 9], [2, 4, 6, 8, 10])
@@ -492,7 +528,7 @@ while j <50:
     
 
 
-# In[42]:
+# In[77]:
 
 
 a = 4
@@ -505,7 +541,7 @@ while a: # 0, None, False
 
 # ## try except 
 
-# In[43]:
+# In[80]:
 
 
 def devidePlus(m, n): # 结尾是冒号
@@ -516,7 +552,7 @@ for i in [2, 0, 5]:
     try:
         print(devidePlus(4, i))
     except Exception as e:
-        print(e)
+        print(i, e)
         pass
 
 
@@ -548,93 +584,102 @@ for aa in alist:
 
 # ## Write and Read data
 
-# In[18]:
+# In[82]:
 
 
 data =[[i, i**2, i**3] for i in range(10)] 
 data
 
 
-# In[19]:
+# In[83]:
 
 
 for i in data:
     print('\t'.join(map(str, i)))  
 
 
-# In[22]:
+# In[84]:
 
 
 type(data)
 
 
-# In[23]:
+# In[85]:
 
 
 len(data)
 
 
-# In[24]:
+# In[86]:
 
 
 data[0]
 
 
-# In[61]:
+# In[87]:
 
 
 help(f.write)  
 
 
-# In[29]:
+# In[88]:
 
 
 # 保存数据
 data =[[i, i**2, i**3] for i in range(10000)] 
 
-f = open("../data/data_write_to_file1.txt", "w")
+f = open("data_write_to_file1.txt", "w")
 for i in data:
     f.write('\t'.join(map(str,i)) + '\n')
 f.close()
 
 
-# In[26]:
+# In[89]:
 
 
-with open('../data/data_write_to_file.txt','r') as f:
+with open('data_write_to_file1.txt','r') as f:
     data = f.readlines()
 data[:5]
 
 
-# In[176]:
+# In[91]:
 
 
-with open('../data/data_write_to_file.txt','r') as f:
+with open('data_write_to_file1.txt','r') as f:
     data = f.readlines(1000) #bytes 
 len(data) 
 
 
-# In[30]:
+# In[93]:
 
 
-with open('../data/data_write_to_file.txt','r') as f:
+with open('data_write_to_file1.txt','r') as f:
     print(f.readline())
 
 
-# In[31]:
+# In[94]:
 
 
 f = [1, 2, 3, 4, 5]
 for k, i in enumerate(f):
     print(k, i)
 
+# with open('data_write_to_file1.txt', 'r') as f:
+#      for i in f:
+#             print(i)
 
-# In[1]:
+
+# In[101]:
 
 
-# with open('../data/data_write_to_file.txt','r') as f:
-#     for i in f:
-#         print(i)
+total = 0
+with open('data_write_to_file1.txt','r') as f:
+    for k, i in enumerate(f):
+        if k % 1000 ==0:
+            print(k)
+        total += sum([int(j) for j in i.strip().split('\t')])
+
+print(total)
 
 
 # In[32]:
@@ -658,12 +703,12 @@ data.append(line)
 data
 
 
-# In[35]:
+# In[102]:
 
 
 # 读取数据
 data = []
-with open('../data/data_write_to_file1.txt','r') as f:
+with open('data_write_to_file1.txt','r') as f:
     for line in f:
         line = line.replace('\n', '').split('\t')
         line = [int(i) for i in line]
@@ -684,7 +729,7 @@ with open('../data/data_write_to_file.txt','r') as f:
 data
 
 
-# In[36]:
+# In[103]:
 
 
 import pandas as pd
@@ -696,29 +741,29 @@ import pandas as pd
 help(pd.read_csv)
 
 
-# In[37]:
+# In[105]:
 
 
-df = pd.read_csv('../data/data_write_to_file.txt', 
+df = pd.read_csv('data_write_to_file1.txt', 
                  sep = '\t', names = ['a', 'b', 'c'])
-df[-5:]
+df[:5]
 
 
 # ## 保存中间步骤产生的字典数据
 
-# In[68]:
+# In[109]:
 
 
 import json
 data_dict = {'a':1, 'b':2, 'c':3}
-with open('../data/save_dict.json', 'w') as f:
+with open('./data/save_dict.json', 'w') as f:
     json.dump(data_dict, f)
 
 
-# In[38]:
+# In[111]:
 
 
-dd = json.load(open("../data/save_dict.json"))
+dd = json.load(open("./data/save_dict.json"))
 dd
 
 
@@ -746,8 +791,8 @@ dl
 # In[41]:
 
 
+#
 get_ipython().run_line_magic('matplotlib', 'inline')
-
 import matplotlib.pyplot as plt
 x = range(1, 100)
 y = [i**-3 for i in x]

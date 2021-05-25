@@ -491,9 +491,17 @@ FILE
 <h2>访问页面<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from selenium import webdriver</span>
+<span class="c1">#browser = webdriver.Chrome(executable_path = &#39;/opt/anaconda3/bin/chromedriver&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
 
-<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">executable_path</span> <span class="o">=</span> <span class="s1">&#39;/opt/anaconda3/bin/chromedriver&#39;</span><span class="p">)</span>
 <span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://music.163.com&quot;</span><span class="p">)</span> 
 <span class="nb">print</span><span class="p">(</span><span class="n">browser</span><span class="o">.</span><span class="n">page_source</span><span class="p">)</span>
 <span class="c1">#browser.close() </span>
@@ -521,7 +529,67 @@ FILE
 &lt;meta property=&quot;og:image&quot; content=&quot;http://p3.music.126.net/tBTNafgjNnTL1KlZMt7lVA==/18885211718935735.jpg&quot;&gt;
 &lt;meta property=&quot;og:url&quot; content=&quot;https://music.163.com/&quot;&gt;
 &lt;meta property=&quot;og:site_name&quot; content=&quot;网易云音乐&quot;&gt;
+&lt;script src=&quot;https://st.music.163.com/encrypt-validator/musicfrontencryptvalidator.min.js&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;script&gt;(function(){
+    if (window.CMFrontEncryptedValidator) {
+        var validatorOptions = {
+&quot;captchaOptions&quot;: {
+  &quot;qrSize&quot;: 150
+},
+&quot;whiteAPIs&quot;: [&quot;ac.dun.163yun.com/v3/d&quot;, &quot;ac.dun.163.com/v2/config/js&quot;, &quot;ac.dun.163yun.com/v3/b&quot;, &quot;ac.dun.163yun.com/v2/b&quot;,&quot;ac.dun.163yun.com/v2/d&quot;]
+} || {};
+        var env = &#39;prod&#39; || &#39;prod&#39;;
+        var sampleRate = 1 || 1;
+        var isBubbleEncryptResult = true || false;
+        var disable = false || false;
+        var businessType = &#39;music&#39; || &#39;music&#39;;
+        var grayReleaseRate = Number(1) || 1;
+        var grayReleaseUserIds = &#39;&#39; || &#39;&#39;;
+        
+        validatorOptions.grayReleaseUserIds = grayReleaseUserIds;
+        validatorOptions.grayReleaseRate = grayReleaseRate;
+        validatorOptions.env = env;
+        validatorOptions.businessType = businessType;
+        validatorOptions.sampleRate = sampleRate;
+        validatorOptions.isBubbleEncryptResult = isBubbleEncryptResult;
+        validatorOptions.disable = disable;
+        validatorOptions.whiteAPIs = validatorOptions.whiteAPIs || [];
+        
+        window.CMFrontEncryptedValidator(validatorOptions);
+    }
+    })()&lt;/script&gt;&lt;script src=&quot;https://st.music.163.com/encrypt-sdk/musicfrontencryptsdk.min.js&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;script&gt;(function(){
+if (window.CMFrontEncryptedSDK) {
+    var disable = false;
+    var injectData = {
+&quot;WEVNSM&quot;: &quot;1.0.0&quot;
+}  || {};
+    var crawlerVersion = &#39;01&#39; || {};
+    var cookieOption = {
+  &quot;sameSite&quot;: &quot;strict&quot;
+} || {};
+    var env = &#39;prod&#39; || &#39;prod&#39;;
+    var options = {
+        env: env,
+       disable: disable,
+       injectData: injectData,
+       crawlerVersion: crawlerVersion,
+       cookieOption: cookieOption
+    };
+    window.CMFrontEncryptedSDK.init(options);
+}
+})()&lt;/script&gt;&lt;script async=&quot;&quot; src=&quot;https://s6.music.126.net/puzzle/puzzle@0002A4.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;
+&quot;0&quot;;
+&quot;0&quot;;
+&quot;1621061527794&quot;;
+&quot;false&quot;;
+&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
+if (location.pathname.indexOf(&quot;outchain&quot;) === -1) {
+if (document.domain.match(/music.163.com$/)) {
+document.domain = &quot;music.163.com&quot;;
+} else {
+document.domain = document.domain;
+}
+}
 var GDownloadLink=&quot;&quot;;
 var GDevice = &quot;phone&quot;;
 var GFrom=&quot;&quot;;
@@ -536,7 +604,7 @@ var GAllowRejectComment = false;
 var GEnc = true;
 var GEnvType = &quot;online&quot;;
 var GWebpSupport = &quot;1&quot;;
-var vipWebCashierRedirect = &quot;1&quot;
+var vipWebCashierRedirect = &quot;1&quot;;
 window.NEJ_CONF = {p_csrf:{cookie:&#39;__csrf&#39;,param:&#39;csrf_token&#39;}};
 GUtil = {
 getBase:function(){
@@ -771,10 +839,859 @@ top.location.href = targetUrl;
 }
 })();&lt;/script&gt;
 &lt;link rel=&quot;shortcut icon&quot; href=&quot;//s1.music.126.net/style/favicon.ico?v20180823&quot;&gt;
-&lt;link href=&quot;//s2.music.126.net/web/s/core_0f1beac6ed132accfb73a0fb52798653.css?0f1beac6ed132accfb73a0fb52798653&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;&gt;&lt;link href=&quot;//s2.music.126.net/web/s/pt_frame_01ac2b55b6c46c530921a5bcb21d96d1.css?01ac2b55b6c46c530921a5bcb21d96d1&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;//s2.music.126.net/web/s/core_b1ff0c489f4c43876c6635180aef5c49.css?b1ff0c489f4c43876c6635180aef5c49&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;&gt;&lt;link href=&quot;//s2.music.126.net/web/s/pt_frame_6b2f42ff3c3cf17e3462a100a22e062a.css?6b2f42ff3c3cf17e3462a100a22e062a&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;&gt;
 &lt;style&gt;html,body{overflow:hidden;}&lt;/style&gt;
 &lt;script&gt;if(top!=self)top.location=self.location;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;//s5.music.126.net/static_public/5c51482cf8a93b7fc8cf42cb/0.6.4/vipcashier.umd.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot; charset=&quot;UTF-8&quot; async=&quot;&quot; src=&quot;https://acstatic-dun.126.net/2.7.0_5e18cbf4/watchman.min.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot; charset=&quot;UTF-8&quot; async=&quot;&quot; src=&quot;https://acstatic-dun.126.net/2.7.0_5e18cbf4/watchman.min.js&quot;&gt;&lt;/script&gt;&lt;/head&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+(function(){
+var GDegradeConfig = {}; // 降级配置默认值
+try {
+GDegradeConfig = JSON.parse(&quot;{\&quot;apiList\&quot;:{\&quot;_api_topic_user_info\&quot;:{\&quot;type\&quot;:0},\&quot;_api_copyright_pay_fee_message_config\&quot;:{\&quot;result\&quot;:\&quot;{\\\&quot;code\\\&quot;:200,\\\&quot;config\\\&quot;:{\\\&quot;ipadvip\\\&quot;:\\\&quot;版权方要求，当前歌曲需付费使用。您可以到iPhone/Android/网页版购买后使用\\\&quot;,\\\&quot;headpic_lossless\\\&quot;:\\\&quot;109951163349949354\\\&quot;,\\\&quot;vip2\\\&quot;:\\\&quot;版权方要求，当前歌曲仅限开通VIP使用\\\&quot;,\\\&quot;commonQuality2link\\\&quot;:\\\&quot;2元购买此单曲\\\&quot;,\\\&quot;vipCacheOnlyRenewLink\\\&quot;:\\\&quot;单曲购买\\\&quot;,\\\&quot;unknow\\\&quot;:\\\&quot;版权方要求，当前资源需付费使用\\\&quot;,\\\&quot;upgradeVipPro\\\&quot;:\\\&quot;该权益仅限黑胶VIP使用，立即升级畅享特权\\\&quot;,\\\&quot;superQuality\\\&quot;:\\\&quot;无损品质需付费使用，开通VIP即可自由畅享\\\&quot;,\\\&quot;upgradeVipProButton\\\&quot;:\\\&quot;升级为黑胶VIP\\\&quot;,\\\&quot;headpic_general\\\&quot;:\\\&quot;109951163349949354\\\&quot;,\\\&quot;albumbutton\\\&quot;:\\\&quot;购买专辑\\\&quot;,\\\&quot;headpic_download\\\&quot;:\\\&quot;109951163349949354\\\&quot;,\\\&quot;downloadOnly\\\&quot;:\\\&quot;版权方要求，当前歌曲仅限开通VIP使用\\\&quot;,\\\&quot;vipbutton\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;unknowbutton\\\&quot;:\\\&quot;现在去订购\\\&quot;,\\\&quot;downloadOnlyButton\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;vipCacheOnlyRenew\\\&quot;:\\\&quot;VIP已过期，当前歌曲无法离线播放，应版权方要求，开通VIP即可继续使用\\\&quot;,\\\&quot;vipDownloadLink\\\&quot;:\\\&quot;2元购买此单曲\\\&quot;,\\\&quot;superQualitybutton\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;entryNotVip\\\&quot;:\\\&quot;会员中心\\\&quot;,\\\&quot;headpic_quality\\\&quot;:\\\&quot;109951163349949354\\\&quot;,\\\&quot;exclusive\\\&quot;:\\\&quot;版权方要求，会员专属曲库仅限开通VIP下载，开通即可畅享\\\&quot;,\\\&quot;commonQuality\\\&quot;:\\\&quot;版权方要求，当前歌曲该音质需付费使用，开通VIP即可自由畅享\\\&quot;,\\\&quot;vip\\\&quot;:\\\&quot;版权方要求，当前歌曲需付费使用，开通VIP即可自由畅享\\\&quot;,\\\&quot;buyVipPro\\\&quot;:\\\&quot;该权益仅限黑胶VIP使用，立即开通畅享特权\\\&quot;,\\\&quot;downloadOnlyLink\\\&quot;:\\\&quot;单曲购买\\\&quot;,\\\&quot;commonQuality2button\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;buyVipProButton\\\&quot;:\\\&quot;开通黑胶VIP\\\&quot;,\\\&quot;vip2link\\\&quot;:\\\&quot;2元购买此单曲\\\&quot;,\\\&quot;vipCacheOnlyRenewButton\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;album\\\&quot;:\\\&quot;版权方要求，当前专辑需单独付费，购买数字专辑即可无限畅享\\\&quot;,\\\&quot;commonQuality2\\\&quot;:\\\&quot;版权方要求，当前歌曲该音质仅限开通VIP使用\\\&quot;,\\\&quot;vipDownload\\\&quot;:\\\&quot;版权方要求，当前歌曲需付费下载，开通VIP即可畅享\\\&quot;,\\\&quot;vipCacheOnlyLink\\\&quot;:\\\&quot;2元购买此单曲\\\&quot;,\\\&quot;vip2button\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;vipCacheOnlyButton\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;vipCacheOnly\\\&quot;:\\\&quot;版权方要求，当前歌曲需付费下载，下载后可在VIP有效期内离线使用\\\&quot;,\\\&quot;ipadvipaudit\\\&quot;:\\\&quot;版权方要求，当前歌曲需付费使用。您可以到iPhone版网易云音乐购买后使用\\\&quot;,\\\&quot;vipDownloadButton\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;payFeeTableName\\\&quot;:\\\&quot;会员中心\\\&quot;,\\\&quot;entryVip\\\&quot;:\\\&quot;我的会员\\\&quot;}}\&quot;,\&quot;type\&quot;:1},\&quot;_api_reward_user_showicon\&quot;:{\&quot;type\&quot;:0},\&quot;_api_privacy_info_get_v2\&quot;:{\&quot;type\&quot;:0},\&quot;_api_cdns\&quot;:{\&quot;type\&quot;:0},\&quot;_api_feedback_weblog\&quot;:{\&quot;type\&quot;:0},\&quot;_api_activity_p2p_flow_switch_get\&quot;:{\&quot;result\&quot;:\&quot;{\\\&quot;code\\\&quot;:200,\\\&quot;data\\\&quot;:\\\&quot;{\\\\n \\\\\\\&quot;xysdk\\\\\\\&quot;:\\\\\\\&quot;//s5.music.126.net/static_public/5a1b70ea0180f6ca7295a59d/js/p2p-xy-sdk.2.1.12.1.min.js\\\\\\\&quot;,\\\\n \\\\\\\&quot;yfsdk\\\\\\\&quot;:\\\\\\\&quot;//s5.music.126.net/static_public/5a1b70ea0180f6ca7295a59d/js/p2p-yf-sdk.1.0.0.53.min.js\\\\\\\&quot;,\\\\n \\\\\\\&quot;audio\\\\\\\&quot;:{\\\\n \\\\\\\&quot;turnon\\\\\\\&quot;:false,\\\\n \\\\\\\&quot;init\\\\\\\&quot;:0,\\\\n \\\\\\\&quot;xy\\\\\\\&quot;:1,\\\\n \\\\\\\&quot;yf\\\\\\\&quot;:0\\\\n },\\\\n \\\\\\\&quot;video\\\\\\\&quot;:{\\\\n \\\\\\\&quot;turnon\\\\\\\&quot;:false,\\\\n \\\\\\\&quot;init\\\\\\\&quot;:0,\\\\n \\\\\\\&quot;xy\\\\\\\&quot;:1,\\\\n \\\\\\\&quot;yf\\\\\\\&quot;:0\\\\n }\\\\n}\\\&quot;}\&quot;,\&quot;type\&quot;:1},\&quot;_api_login_token_refresh\&quot;:{\&quot;type\&quot;:0},\&quot;_api_web_banner\&quot;:{\&quot;type\&quot;:1},\&quot;_api_pl_count\&quot;:{\&quot;type\&quot;:0},\&quot;_api_discovery_recommend_resource\&quot;:{\&quot;type\&quot;:0},\&quot;_api_event_user_permission\&quot;:{\&quot;result\&quot;:\&quot;{\\\&quot;code\\\&quot;:200,\\\&quot;topEventPermission\\\&quot;:false,\\\&quot;pubEventWithPictureForbiddenNotice\\\&quot;:\\\&quot;等级达到Lv.0，即可添加图片\\\&quot;,\\\&quot;LongMsgNum\\\&quot;:400,\\\&quot;eventVideoUploadNosType\\\&quot;:1,\\\&quot;pubEventWithPics\\\&quot;:true,\\\&quot;pubEventWithoutResource\\\&quot;:false,\\\&quot;lotteryEventPermission\\\&quot;:false,\\\&quot;pubLongMsgEvent\\\&quot;:false}\&quot;,\&quot;type\&quot;:1},\&quot;_api_privilege_message_mv\&quot;:{\&quot;result\&quot;:\&quot;{\\\&quot;code\\\&quot;:200,\\\&quot;data\\\&quot;:{\\\&quot;mvOnlyMusicPackageButton\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;mvOnlyVinylVipButton\\\&quot;:\\\&quot;开通黑胶VIP\\\&quot;,\\\&quot;onlyBuyMv\\\&quot;:\\\&quot;版权方要求，当前资源需单独付费使用\\\&quot;,\\\&quot;unauthorizedMv\\\&quot;:\\\&quot;版权方要求，当前资源暂时无法使用\\\&quot;,\\\&quot;mvOnlyVinylVip\\\&quot;:\\\&quot;版权方要求，当前资源仅限黑胶VIP使用\\\&quot;,\\\&quot;onlyBuyMvButton\\\&quot;:\\\&quot;去购买\\\&quot;,\\\&quot;mvOnlyDownload\\\&quot;:\\\&quot;版权方要求，当前资源需下载后播放\\\&quot;,\\\&quot;mvOnlyPlay\\\&quot;:\\\&quot;版权方要求，当前资源不能下载\\\&quot;,\\\&quot;mvOnlyMusicPackage\\\&quot;:\\\&quot;版权方要求，当前资源仅限音乐包用户使用\\\&quot;}}\&quot;,\&quot;type\&quot;:1}},\&quot;degrade\&quot;:false,\&quot;degradeLogin\&quot;:false,\&quot;degradeUserList\&quot;:[64970269],\&quot;discoverUrl\&quot;:\&quot;https://y.music.163.com/discover\&quot;,\&quot;vipUserList\&quot;:[]}&quot;);
+if (GDegradeConfig.apiList) {
+// 预处理所有数据
+for (var attr in GDegradeConfig.apiList) {
+if (GDegradeConfig.apiList[attr]
+&amp;&amp; GDegradeConfig.apiList[attr].result) {
+try {
+GDegradeConfig.apiList[attr].result = JSON.parse(GDegradeConfig.apiList[attr].result);
+} catch(e) {
+GDegradeConfig.apiList[attr].result = null;
+}
+}
+}
+}
+} catch (e) {
+console.log(e);
+}
+window.GDegradeConfig = GDegradeConfig;
+// console.log(window.GDegradeConfig);
+})();
+&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; charset=&quot;UTF-8&quot; async=&quot;&quot; src=&quot;https://acstatic-dun.126.net/2.7.1_a02527b8/watchman.min.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot; charset=&quot;UTF-8&quot; async=&quot;&quot; src=&quot;https://acstatic-dun.126.net/2.7.1_a02527b8/watchman.min.js&quot;&gt;&lt;/script&gt;&lt;style type=&quot;text/css&quot;&gt;/* 还是需要定高点 */
+.style_openmask__1Iqoy {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 10004;
+}
+.style_openmask__1Iqoy .style_opentip__3Z4Df {
+  position: fixed;
+  top: 0;
+  left: 10px;
+  right: 10px;
+  height: 144px;
+}
+.style_openmask__1Iqoy .style_opentip__3Z4Df .style_lay__1ovDQ {
+  width: 100%;
+  height: 120px;
+  border-radius: 0 0 8px 8px;
+  background: #f9f9f9 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP4AAACgCAMAAAAbzCHkAAAAOVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0DekkdAAAAEnRSTlMA8ietERxLacmDeNa5oVuRNeAOJcWwAAADUUlEQVR42u2dy5KjMAxFJeMnYB73/z92CJlMkpqqnsequw9nkyKVjWIhXUvC2PcgGplVXgxL1sFoVGbdyMYk6aQak1UCL390eVolzUakSd3iLmkzHum2+GYZuvyDVOygI+/+Rep2UoHBP/kvl4+TRNN+VTXa035nif/1bn0oy3azv6obiFHDewAYSNFvUXv8DVrtZN0x7r9M21P2jo8vKck/Lfagv8T8wNv5zm+KB6d9K1PvP3ApGRfJjUuQJuOSmXvdB0UssfubAmggrXtx8ULtPKH7ZGPnPXjgX3k1vlcqscL9xCVMied3Nmk3LkUajEtnR74dXepJ7FrHNqE3+2Yp2AWTtIAlj9koNeNSpcWwRKEF/wIc6HlhIM8ym7kEzvqZXebr7LTH9v2F7fuNHfctjeSpDjbspc/s5tYgrYYlCJ30V/ZAk6M7m4Xd2tvRva2F3dyZ0FvdLNpTW2+EgSx5DgJY8IP9/iB7I/8B7LBf0GE/OrrE19BqPzm6pz2gm7oZekTLT3Z0ha+hk56FmVzlOAAX+DJ4m2cW3MEZ3yq6n98k56b8DX0iZ5zQXa0uOTfwF+R5fA82J2v9OKFznjU5eJbBLHNvfLDpZ9gDyx1LLk3YEkecRA57s+Tce7+LXNZf0du8JrLWHYU+maKgt/igY3d/p6D7GSN6arWB3zVzz/czVuh36JtGTuJMzvepCvyQ1raLPLaYHZ3yrGD393FYwQPbAfhqoSeLg4Ne7AKX9bZJUqW2sEcH17VSJTu+xZ3r+CGYZWzEb17NDLr0eQc3MtKgg8rsYMbmEvbt6cV10KF3/ayDyhzSjffTN5h+n2s1s8p8EHmZwAOqZdKBI1N9an4avxLDfRx0A3n4wG29d0l7ARq/zMpmTTMw5OXukgbiixTiMrgkaMd21p2JdrBmWnoym07bG8vpt9L3+zDqqjp+ZtvD4D6EDy7+kVTW6rrTzdLn9vlwV2Hhg4u/JOSyjmZZP/F5/Pyb2UEnw8cX78T4+AzBzErrc911YzILOtiH8vlNv+E68Q8v3hn0Qrr98ImZ9fELPWX/H+bPeiGY7TrZax+/3OD9fzj/6rrjvk/BbGxl2b7Ogv9D6Pv+T9H8IfF9c+svLi4uLi4uLhj8AJRKMdjUtWgaAAAAAElFTkSuQmCC) 100% 4px no-repeat;
+  background-size: 127px auto;
+}
+.style_openmask__1Iqoy .style_opentip__3Z4Df .style_lay__1ovDQ .style_note__10dvC {
+  float: right;
+  margin: 14px 58px 0 0;
+  width: 167px;
+  line-height: 20px;
+  color: #222;
+}
+.style_openmask__1Iqoy .style_opentip__3Z4Df .style_lay__1ovDQ h3 {
+  margin-bottom: 6px;
+  font-size: 20px;
+  font-weight: normal;
+}
+.style_openmask__1Iqoy .style_opentip__3Z4Df .style_lay__1ovDQ p {
+  font-size: 14px;
+}
+&lt;/style&gt;&lt;style type=&quot;text/css&quot;&gt;/* 还是需要定高点 */
+/* 中间显示toast */
+.style_CMFrontEncryptedValidator-toast__2hRBW {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 10003;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  min-width: 70px;
+  min-height: 30px;
+  text-align: center;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 1;
+  -webkit-transition: all 200ms linear;
+  -o-transition: all 200ms linear;
+  transition: all 200ms linear;
+  /* 动画设置 */
+}
+.style_CMFrontEncryptedValidator-toast__2hRBW.style_toast-entering__2f54c {
+  opacity: 0;
+}
+.style_CMFrontEncryptedValidator-toast__2hRBW.style_toast-entered__1M1Hx {
+  opacity: 1;
+}
+.style_CMFrontEncryptedValidator-toast__2hRBW.style_toast-exiting__LG8YG {
+  opacity: 1;
+}
+.style_CMFrontEncryptedValidator-toast__2hRBW.style_toast-exited__1vYPC {
+  opacity: 0;
+}
+.style_CMFrontEncryptedValidator-toast__2hRBW .style_text__1FTZu {
+  padding: 10px 15px;
+  line-height: 30px;
+  font-size: 15px;
+  color: #fff;
+}
+.style_CMFrontEncryptedValidator-toast-center__1xkCf {
+  width: 180px;
+  min-height: 116px;
+  border-radius: 6px;
+}
+.style_CMFrontEncryptedValidator-toast-center__1xkCf .style_icn__2KezR {
+  display: block;
+  width: 35px;
+  height: 35px;
+  margin: 10px auto 15px;
+}
+.style_CMFrontEncryptedValidator-toast-center__1xkCf .style_text__1FTZu {
+  line-height: 20px;
+  padding: 0 15px 0;
+  margin: 15px 0;
+}
+.style_CMFrontEncryptedValidator-toast-loading__1Av04 {
+  margin-top: -100px;
+  width: 180px;
+  min-height: 116px;
+  border-radius: 6px;
+}
+.style_CMFrontEncryptedValidator-toast-loading__1Av04 .style_icn__2KezR {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: 27px 0 6px;
+  background: url(&quot;//p3.music.126.net/C9tJEnwLhYm4dvTdsukD0g==/19106213556354168.jpg&quot;) no-repeat;
+  background-size: 30px 240px;
+  background-position: 0 0;
+  -webkit-animation: style_toastload__14ZuG 0.72s infinite step-start;
+          animation: style_toastload__14ZuG 0.72s infinite step-start;
+}
+.style_CMFrontEncryptedValidator-toast-loading__1Av04 .style_text__1FTZu {
+  line-height: 20px;
+  padding: 0 15px 10px;
+}
+.style_CMFrontEncryptedValidator-toast-iconmiddle__3H8C6 .style_icn__2KezR {
+  margin-top: 43px;
+}
+@keyframes style_toastload__14ZuG {
+  0% {
+    background-position-y: 0;
+  }
+  14.28% {
+    background-position-y: -30px;
+  }
+  28.56% {
+    background-position-y: -60px;
+  }
+  42.84% {
+    background-position-y: -90px;
+  }
+  57.12% {
+    background-position-y: -120px;
+  }
+  71.4% {
+    background-position-y: -150px;
+  }
+  85.68% {
+    background-position-y: -180px;
+  }
+  100% {
+    background-position-y: -210px;
+  }
+}
+@-webkit-keyframes style_toastload__14ZuG {
+  0% {
+    background-position-y: 0;
+  }
+  14.28% {
+    background-position-y: -30px;
+  }
+  28.56% {
+    background-position-y: -60px;
+  }
+  42.84% {
+    background-position-y: -90px;
+  }
+  57.12% {
+    background-position-y: -120px;
+  }
+  71.4% {
+    background-position-y: -150px;
+  }
+  85.68% {
+    background-position-y: -180px;
+  }
+  100% {
+    background-position-y: -210px;
+  }
+}
+&lt;/style&gt;&lt;style type=&quot;text/css&quot;&gt;/* 还是需要定高点 */
+.style_wrapper__1p8NA {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-overflow-scrolling: touch;
+  z-index: 10002;
+  font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Heiti SC&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif;
+}
+.style_wrapper__1p8NA * {
+  -webkit-tap-highlight-color: transparent;
+}
+.style_wrapper__1p8NA .style_modalwrap__27JAU {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.6;
+  background-color: #000;
+}
+.style_wrapper__1p8NA .style_body__3otNa {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 270px;
+  height: auto;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 8px;
+  z-index: 1;
+}
+.style_wrapper__1p8NA .style_title__2QK1w,
+.style_wrapper__1p8NA .style_content__1tas6 {
+  font-size: 18px;
+  padding: 15px 22px 0;
+  line-height: 1.2;
+  margin: 0;
+}
+.style_wrapper__1p8NA .style_title__2QK1w {
+  font-weight: 700;
+}
+.style_wrapper__1p8NA .style_content__1tas6 {
+  overflow: hidden;
+  height: 100%;
+  padding: 0 22px;
+  margin-top: 5px;
+  min-height: 40px;
+  font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.style_wrapper__1p8NA .style_footer__3VGqx {
+  overflow: hidden;
+  position: relative;
+  margin-top: 15px;
+  height: 44px;
+  min-height: 44px;
+  line-height: 1;
+  text-align: center;
+}
+.style_wrapper__1p8NA .style_footer__3VGqx::after {
+  content: &quot; &quot;;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200%;
+  -webkit-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+      transform: scale(0.5);
+  -webkit-transform-origin: left top;
+  -ms-transform-origin: left top;
+      transform-origin: left top;
+  height: 1px;
+  background-color: #dbdbdb;
+}
+.style_wrapper__1p8NA .style_button__14tP8 {
+  cursor: pointer;
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  color: #0076ff;
+  font-size: 14px;
+  position: relative;
+  vertical-align: middle;
+}
+.style_wrapper__1p8NA .style_button__14tP8 .style_btntext__2s0cj {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.style_wrapper__1p8NA .style_button__14tP8.style_cancel__v69gK::after {
+  content: &quot; &quot;;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 200%;
+  -webkit-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+      transform: scale(0.5);
+  -webkit-transform-origin: left top;
+  -ms-transform-origin: left top;
+      transform-origin: left top;
+  background-color: #dbdbdb;
+}
+.style_wrapper__1p8NA.style_m-mobile__q2nA9 .style_body__3otNa,
+.style_wrapper__1p8NA.style_m-app__3xype .style_body__3otNa {
+  max-width: 6.48148148em;
+  border-radius: 0.22222222em;
+}
+.style_wrapper__1p8NA.style_m-mobile__q2nA9 .style_title__2QK1w,
+.style_wrapper__1p8NA.style_m-app__3xype .style_title__2QK1w {
+  font-size: 0.41666667em;
+  padding: 0.27777778em 0.2037037em 0.27777778em;
+}
+.style_wrapper__1p8NA.style_m-mobile__q2nA9 .style_content__1tas6,
+.style_wrapper__1p8NA.style_m-app__3xype .style_content__1tas6 {
+  padding: 0.09259259em 0.37037037em;
+  min-height: 0.92592593em;
+  font-size: 0.37037037em;
+  text-align: center;
+}
+.style_wrapper__1p8NA.style_m-mobile__q2nA9 .style_footer__3VGqx,
+.style_wrapper__1p8NA.style_m-app__3xype .style_footer__3VGqx {
+  margin-top: 0.46296296em;
+  height: 1.11111111em;
+  min-height: 1.11111111em;
+  line-height: 0em;
+}
+.style_wrapper__1p8NA.style_m-mobile__q2nA9 .style_button__14tP8,
+.style_wrapper__1p8NA.style_m-app__3xype .style_button__14tP8 {
+  font-size: 0.33333333em;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 3) {
+  .style_footer__3VGqx:after {
+    width: 300%;
+  }
+  .style_button__14tP8.style_cancel__v69gK:after,
+  .style_footer__3VGqx:after {
+    -webkit-transform: scale(0.33);
+    -ms-transform: scale(0.33);
+        transform: scale(0.33);
+  }
+  .style_button__14tP8.style_cancel__v69gK:after {
+    height: 300%;
+  }
+}
+&lt;/style&gt;&lt;style type=&quot;text/css&quot;&gt;.style_loadingctn__3dRwX {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.style_loadingctn__3dRwX .style_loading__1qz1r {
+  line-height: 0;
+  text-align: center;
+}
+.style_loadingctn__3dRwX .style_loadingimg__1pUq8 {
+  width: 18px;
+  height: 18px;
+}
+.style_loadingctn__3dRwX .style_icon__12G4j {
+  width: 30px;
+  height: 30px;
+  fill: #555;
+  margin: 0 auto;
+}
+.style_loadingctn__3dRwX .style_textwrapper__2XQ5y {
+  margin-top: 10px;
+}
+.style_loadingctn__3dRwX .style_text__1q5wH {
+  font-size: 13px;
+  color: #888;
+  text-indent: 6px;
+}
+.style_loadingctn__3dRwX .style_text__1q5wH.style_reloadMsg__3AV24 {
+  margin-top: 10px;
+}
+.style_loadingctn__3dRwX.style_m-mobile__33Sny .style_icon__12G4j,
+.style_loadingctn__3dRwX.style_m-app__3H8c3 .style_icon__12G4j {
+  width: 0.55555556em;
+  height: 0.55555556em;
+}
+.style_loadingctn__3dRwX.style_m-mobile__33Sny .style_loadingimg__1pUq8,
+.style_loadingctn__3dRwX.style_m-app__3H8c3 .style_loadingimg__1pUq8 {
+  width: 0.37037037em;
+  height: 0.37037037em;
+}
+.style_loadingctn__3dRwX.style_m-mobile__33Sny .style_textwrapper__2XQ5y,
+.style_loadingctn__3dRwX.style_m-app__3H8c3 .style_textwrapper__2XQ5y {
+  margin-top: 0.18518519em;
+}
+.style_loadingctn__3dRwX.style_m-mobile__33Sny .style_text__1q5wH,
+.style_loadingctn__3dRwX.style_m-app__3H8c3 .style_text__1q5wH {
+  font-size: 0.37037037em;
+  line-height: 1.3;
+}
+.style_loadingctn__3dRwX.style_m-mobile__33Sny .style_text__1q5wH.style_reloadMsg__3AV24,
+.style_loadingctn__3dRwX.style_m-app__3H8c3 .style_text__1q5wH.style_reloadMsg__3AV24 {
+  margin-top: 0.18518519em;
+}
+&lt;/style&gt;&lt;style type=&quot;text/css&quot;&gt;/* 还是需要定高点 */
+/* 透明遮罩层，防止用户可以操作 */
+.style_validatorwrapper__2pnes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+}
+.style_validatorwrapper__2pnes.style_m-mobile__3Zrin,
+.style_validatorwrapper__2pnes.style_m-app__RzjAe {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.style_closebtn__2wfqf {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  fill: #000;
+  text-align: left;
+}
+.style_closebtn__2wfqf.style_m-other__2v8MD {
+  left: 0;
+}
+.style_closebtn__2wfqf.style_m-pc__2Z_0E {
+  right: 6px;
+}
+.style_closebtn__2wfqf svg {
+  position: relative;
+  top: 19px;
+  left: 19px;
+}
+.style_closeIcon__1OXT- {
+  width: 12px !important;
+  height: 10px !important;
+}
+.style_validatorctn__3qGia.style_m-web__ZI-DV {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 380px;
+  min-height: 400px;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  z-index: 10001;
+}
+.style_validatorctn__3qGia.style_m-desktop__3naM9 {
+  width: 300px;
+  min-height: 350px;
+}
+.style_validatorctn__3qGia.style_m-mobile__3Zrin,
+.style_validatorctn__3qGia.style_m-app__RzjAe {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 80%;
+  min-height: 8.50925926em;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 0.01851852em solid rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.41666667em;
+  padding: 0.0462963em;
+  text-align: center;
+  z-index: 10001;
+  padding-bottom: 1em;
+}
+.style_validatorctn__3qGia.style_m-mobile__3Zrin .style_closebtn__2wfqf,
+.style_validatorctn__3qGia.style_m-app__RzjAe .style_closebtn__2wfqf {
+  width: 0.86111111em;
+  height: 0.86111111em;
+  bottom: -2.13888889em;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  left: 50%;
+  top: auto;
+  line-height: 1;
+}
+.style_validatorctn__3qGia.style_m-mobile__3Zrin .style_closebtn__2wfqf svg,
+.style_validatorctn__3qGia.style_m-app__RzjAe .style_closebtn__2wfqf svg {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+&lt;/style&gt;&lt;style type=&quot;text/css&quot;&gt;.style_sliderctn__PyyvO {
+  width: 100%;
+  height: 100%;
+}
+.style_sliderctn__PyyvO.style_hide__11z8Y {
+  display: none;
+}
+.style_sliderctn__PyyvO .style_title__KfPiP {
+  font-size: 22px;
+  color: #333333;
+  margin: 20px auto 40px;
+  font-weight: 500;
+}
+.style_sliderctn__PyyvO .style_loadingwrapper__1aVK6 {
+  width: 100%;
+  height: 340px;
+}
+.style_sliderctn__PyyvO.style_m-mobile__3VJvw,
+.style_sliderctn__PyyvO.style_m-app__2ZKer {
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+}
+.style_sliderctn__PyyvO.style_m-mobile__3VJvw .style_title__KfPiP,
+.style_sliderctn__PyyvO.style_m-app__2ZKer .style_title__KfPiP {
+  font-size: 0.46296296em;
+  margin-top: 1.03703704em;
+  margin-bottom: 0.55555556em;
+  line-height: 1.1;
+}
+.style_sliderctn__PyyvO.style_m-mobile__3VJvw .style_loadingwrapper__1aVK6,
+.style_sliderctn__PyyvO.style_m-app__2ZKer .style_loadingwrapper__1aVK6 {
+  height: 7.50925926em;
+}
+.style_sliderctn__PyyvO.style_m-app__2ZKer {
+  width: 85%;
+}
+.style_sliderctn__PyyvO.style_validatePage__ysWZB .style_loadingwrapper__1aVK6 {
+  height: 100%;
+}
+&lt;/style&gt;&lt;style type=&quot;text/css&quot;&gt;.style_qrcodectn__GLxAI {
+  width: 100%;
+  height: 100%;
+}
+.style_qrcodectn__GLxAI p {
+  margin: 0;
+}
+.style_qrcodectn__GLxAI .style_loadingwrapper__3TSVs {
+  width: 100%;
+  height: 340px;
+}
+.style_qrcodectn__GLxAI .style_title__3gz0o {
+  font-size: 22px;
+  color: #333333;
+  font-weight: 500;
+  margin: 20px auto 35px;
+}
+.style_qrcodectn__GLxAI .style_text__aQImb {
+  color: #fff;
+  margin: 0;
+}
+.style_qrcodectn__GLxAI .style_btn__1I6TE {
+  background: #FF3A3A;
+  border-radius: 20px;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+.style_qrcodectn__GLxAI .style_qrcode__2d7dF {
+  position: relative;
+  margin: 0 auto;
+  width: 170px;
+  height: 170px;
+}
+.style_qrcodectn__GLxAI .style_qrcode__2d7dF .style_loadingctn__2VyDG {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: #fff;
+}
+.style_qrcodectn__GLxAI img {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+}
+.style_qrcodectn__GLxAI .style_expired__JErG6 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.style_qrcodectn__GLxAI .style_expired__JErG6 .style_expiredwrapper__2Rr5A {
+  width: 100%;
+  height: 100%;
+  background-image: url(&#39;data:image/gif;base64,R0lGODdhcABwAIAAAAAAAP///ywAAAAAcABwAAAC/4yPqcvtD6OctNqLs968+w+G4kiW5olCwMq27gsj8Awwrczi9B4//O/SAW25w80ITKqSQ6RycTREA8ymo/oTZqFFaZeK3S1XmOk46PuaJ2tFO/Imvs7C8ldeu8S58zTZmWex5/UneOeHdqV2KDEIVvhIU8cXGDnptgi5RViJp9XD6Ql4mTBlykMqyjmTOuoaSkm6aYn42QeLqZnZ+Uq7CurbcCrWizfMq6hLjCu8y1pMeUxx/MysGlkdbLw77QzsSP3NWCoOSQeYDe59qx1djkyuLAmdWzmrvtxeb5uoH2+Pit6/dONkBbQWC927MwTNJfzFDh+8c/t6vZGmp6BAiv//DDpk5uiaSDbjMCIEqTHZxI21Hga7yC3jx4Fh+pl8GRNizZn8dnoEKO/nTolDc+IMarFov21FfzpNqjRliWz8qqa4SlWhvJBXO2TVabXria/Y1q000dBmybVb2Z5txlMrULUzYbatK3VkvXBIK/otizeuSoZmW508upTlYEQ3bxoGbAXyLMJ9EeuVfBBzPspzn/7tmdknyYhG7cITrXOyzHmHTfOdq/owZ8cC074my3XvQpdhIYNm93i20ce2zeLOKze3P463a3bb3NJQ5ajKY8N9e615mOes4SD/qx2LnXzhuTPFrvh62t/oWwPjyH198u/+yF4WPj0zfLnmGRf/5g0VbMPVRl9xgZ1W2m6fpdfbcQcKNaB7gtF0F4IPBkibhO35xh+BE1YB4RMqvUacVCBiyARnDbqFH10Ciqjefxq22Jhz0dXnlnzgJUjahxHiSB6LAa7oY2UlBnkhShUGNySAqf1Y45LpmXafO0iK12EjQi44Ymg2gjWahWLG5+V2WXqXZEdh3vMlh2JxaZmTaoL55px2UnmjfV3hOWOe79UJZGdyhrghdTn+6NlyUxoqZoZ3IrqooecxqaSgi3XZlJWWXpdolbLdyNyWnH6gHKWPpulpBaUy2CScpvYnXaFQmkhfqFcSSuiJuhX5oou4omjmrm+V16qbiKFG4bDGnPHYa64pamprd1H2aqCswLnEZn4VVksmr+wlGh6Ja9K6LbPO9pgYpsqWa+R82m7Knp6V6pjstEdiealm8Lq7qaPIZldmowrGKax1r2J76LU7oiuvovm69ufCLja8aqXnSURkd6kCfCDFMupL47N0gowwqpFSl7GD+/apLrLV8hloqow2yy/HYw4KaM4678xzzz7/DHTQQg9NNAkFAAA7&#39;);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  -webkit-filter: blur(3px);
+  /* Chrome, Opera */
+  -moz-filter: blur(3px);
+  -ms-filter: blur(3px);
+  filter: blur(3px);
+}
+.style_qrcodectn__GLxAI .style_expiremsg__1-GKI {
+  position: absolute;
+  top: 50px;
+  font-size: 18px;
+  color: #FFFFFF;
+  width: 100%;
+  margin: 0;
+}
+.style_qrcodectn__GLxAI .style_expirebtn__3rk3b {
+  position: absolute;
+  bottom: 50px;
+  left: 45px;
+  width: 80px;
+  height: 32px;
+  line-height: 32px;
+}
+.style_qrcodectn__GLxAI .style_float__1u9XQ {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: #000;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+}
+.style_qrcodectn__GLxAI .style_footer__3SDFM {
+  margin: 20px 33px 0;
+  font-size: 14px;
+  color: #666;
+}
+.style_qrcodectn__GLxAI .style_music163__1xS-J {
+  color: #3072a5;
+}
+.style_qrcodectn__GLxAI .style_failbtn__2Hp0l {
+  margin-top: 40px;
+  width: 220px;
+  height: 40px;
+  line-height: 40px;
+}
+.style_qrcodectn__GLxAI.style_m-mobile__wxNWK,
+.style_qrcodectn__GLxAI.style_m-app__2MG6Q {
+  width: 90%;
+  margin: 0 auto;
+}
+.style_qrcodectn__GLxAI.style_m-mobile__wxNWK .style_loadingwrapper__3TSVs,
+.style_qrcodectn__GLxAI.style_m-app__2MG6Q .style_loadingwrapper__3TSVs {
+  height: 7.32407407em;
+}
+.style_qrcodectn__GLxAI.style_m-mobile__wxNWK .style_title__3gz0o,
+.style_qrcodectn__GLxAI.style_m-app__2MG6Q .style_title__3gz0o {
+  font-size: 0.46296296em;
+  margin-top: 1.03703704em;
+  margin-bottom: 0.55555556em;
+  line-height: 1.1;
+}
+.style_qrcodectn__GLxAI.style_m-mobile__wxNWK .style_qrcode__2d7dF,
+.style_qrcodectn__GLxAI.style_m-app__2MG6Q .style_qrcode__2d7dF {
+  width: 3.62962963em;
+  height: 3.62962963em;
+}
+.style_qrcodectn__GLxAI.style_m-mobile__wxNWK .style_footer__3SDFM,
+.style_qrcodectn__GLxAI.style_m-app__2MG6Q .style_footer__3SDFM {
+  margin: 0.37037037em 0.30555556em 0em;
+  font-size: 0.37037037em;
+  color: #666;
+}
+.style_qrcodectn__GLxAI.style_m-mobile__wxNWK .style_expiremsg__1-GKI,
+.style_qrcodectn__GLxAI.style_m-app__2MG6Q .style_expiremsg__1-GKI {
+  font-size: 0.55555556em;
+  top: 1.57407407em;
+}
+.style_qrcodectn__GLxAI.style_m-mobile__wxNWK .style_expirebtn__3rk3b,
+.style_qrcodectn__GLxAI.style_m-app__2MG6Q .style_expirebtn__3rk3b {
+  width: 2.40740741em;
+  font-size: 0.41666667em;
+  top: 2.77777778em;
+  left: 1.15740741em;
+  height: 0.83333333em;
+  line-height: 0.83333333em;
+}
+&lt;/style&gt;&lt;style type=&quot;text/css&quot;&gt;.captcha_captcha-ctn__NUoZl {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+}
+.captcha_captcha-ctn__NUoZl .captcha_tip__eTYs0 {
+  padding: 0.36111111em 0.44444444em;
+  background: #fffbe5;
+  color: #333;
+  font-size: 0.30555556em;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0.83333333em 0.55555556em 1.38888889em 0.44444444em;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_left__3yxAc {
+  text-align: left;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_left__3yxAc .captcha_title__1Ip4l {
+  margin-bottom: 0.27777778em;
+  color: #333;
+  font-weight: 500;
+  font-size: 0.47222222em;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_left__3yxAc .captcha_number__12Mfe {
+  color: #999;
+  font-size: 0.41666667em;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_right__2sN2h {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_right__2sN2h .captcha_text__3c8PN {
+  color: #333;
+  font-size: 0.33333333em;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_right__2sN2h .captcha_send__3Uy5f {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-width: 0.02777778em;
+  border-radius: 0.33333333em;
+  width: 1.83333333em;
+  padding: 0.16666667em 0em;
+  text-align: center;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_right__2sN2h .captcha_senderr__2c5hn {
+  padding: 2px 10px;
+  color: #ff2525;
+  font-size: 12px;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_right__2sN2h.captcha_count__1fID4 {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_right__2sN2h.captcha_count__1fID4 .captcha_count-down__3hapC {
+  font-size: 0.41666667em;
+  color: #999;
+}
+.captcha_captcha-ctn__NUoZl .captcha_capthca__sMVz3 {
+  margin: 0em 1.38888889em 0em 1.38888889em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 0.83333333em;
+}
+.captcha_captcha-ctn__NUoZl .captcha_capthca__sMVz3 .captcha_code__1lUWS {
+  position: relative;
+  width: 1.38888889em;
+  text-align: center;
+  font-size: 0.55555556em;
+}
+.captcha_captcha-ctn__NUoZl .captcha_capthca__sMVz3 .captcha_code__1lUWS::after {
+  /* 用图片方式 */
+  content: &#39; &#39;;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: 1px;
+  background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAECAYAAABP2FU6AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB5JREFUeNpiPnH8zH/GMzAxAAHTyRNn/wMEGABpvQm9g9TJ1QAAAABJRU5ErkJggg==&quot;);
+  background-repeat: repeat-x;
+  z-index: 0;
+}
+.captcha_captcha-ctn__NUoZl .captcha_capthca__sMVz3 .captcha_code__1lUWS.captcha_focus__1X-Sd {
+  color: #333;
+}
+.captcha_captcha-ctn__NUoZl .captcha_capthca__sMVz3 .captcha_code__1lUWS.captcha_focus__1X-Sd::after {
+  /* 用图片方式 */
+  background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVR4nGNiAAAABgADNjd8qAAAAABJRU5ErkJggg==&quot;);
+}
+.captcha_captcha-ctn__NUoZl .captcha_deprecated__UtPL6 {
+  text-align: center;
+  margin-top: 0.55555556em;
+  color: #999;
+  font-size: 0.36111111em;
+}
+.captcha_captcha-ctn__NUoZl .captcha_deprecated__UtPL6 .captcha_arrow__T6Cm4 {
+  display: inline-block;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  margin-left: 0.11111111em;
+  width: 0.14814815em;
+  height: 0.25em;
+  background: url(https://p1.music.126.net/bZcc9l_4cd6cKSRHkJQx5w==/109951164367908552.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.captcha_captcha-ctn__NUoZl .captcha_shadow-input__3rgUL {
+  position: absolute;
+  top: -9999px;
+  left: 0;
+  z-index: -1;
+  -webkit-tap-highlight-color: transparent;
+}
+&lt;/style&gt;&lt;style type=&quot;text/css&quot;&gt;/* 存放验证器全局样式 */
+/* 验证器根容器 */
+.global_container__10fOb * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Heiti SC&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif;
+}
+&lt;/style&gt;&lt;/head&gt;
 &lt;body&gt;
 &lt;div id=&quot;g-topbar&quot; class=&quot;g-topbar&quot; style=&quot;width: 1185px; top: 0px;&quot;&gt;
 &lt;div class=&quot;m-top&quot;&gt;
@@ -794,30 +1711,30 @@ top.location.href = targetUrl;
 &lt;span&gt;&lt;a hidefocus=&quot;true&quot; href=&quot;/store/product&quot; target=&quot;_blank&quot; data-module=&quot;store&quot;&gt;&lt;em&gt;商城&lt;/em&gt;&lt;/a&gt;&lt;/span&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;span&gt;&lt;a hidefocus=&quot;true&quot; href=&quot;/nmusician/web/recruit&quot; target=&quot;_blank&quot; data-module=&quot;musician&quot;&gt;&lt;em&gt;音乐人&lt;/em&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;span&gt;&lt;a hidefocus=&quot;true&quot; href=&quot;/musician/artist&quot; target=&quot;_blank&quot; data-module=&quot;musician&quot;&gt;&lt;em&gt;音乐人&lt;/em&gt;&lt;/a&gt;&lt;/span&gt;
 &lt;/li&gt;
 &lt;li class=&quot;lst&quot;&gt;
 &lt;span&gt;&lt;a id=&quot;topbar-download-link&quot; data-action=&quot;bilog&quot; data-log-action=&quot;page&quot; data-log-json=&quot;{&amp;quot;type&amp;quot;:&amp;quot;downloadapp&amp;quot;,&amp;quot;source&amp;quot;:&amp;quot;tab&amp;quot;}&quot; hidefocus=&quot;true&quot; href=&quot;/download&quot; data-module=&quot;download&quot;&gt;&lt;em&gt;下载客户端&lt;/em&gt;&lt;sub class=&quot;cor&quot;&gt;&amp;nbsp;&lt;/sub&gt;&lt;/a&gt;&lt;/span&gt;&lt;sup class=&quot;hot&quot;&gt;&amp;nbsp;&lt;/sup&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;m-tophead f-pr j-tflag&quot; id=&quot;auto-id-ga0y1vlXNRqLRdGc&quot;&gt;&lt;a hidefocus=&quot;true&quot; href=&quot;#&quot; class=&quot;link s-fc3&quot; data-action=&quot;login&quot;&gt;登录&lt;/a&gt;
+&lt;div class=&quot;m-tophead f-pr j-tflag&quot; id=&quot;auto-id-yhGsC9ST7VffmeBk&quot;&gt;&lt;a hidefocus=&quot;true&quot; href=&quot;#&quot; class=&quot;link s-fc3&quot; data-action=&quot;login&quot;&gt;登录&lt;/a&gt;
 &lt;div class=&quot;m-tlist j-uflag&quot; style=&quot;display:none;&quot;&gt;
 &lt;div class=&quot;inner&quot;&gt;
 &lt;/div&gt;
 &lt;i class=&quot;arr&quot;&gt;&lt;/i&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;a data-action=&quot;bilog&quot; data-log-action=&quot;click&quot; data-log-json=&quot;{&amp;quot;target&amp;quot;:&amp;quot;uploadvideo&amp;quot;,&amp;quot;page&amp;quot;:&amp;quot;homepage&amp;quot;}&quot; href=&quot;/login?targetUrl=%2Fst/creator&quot; target=&quot;_blank&quot; class=&quot;m-topvd f-pr m-creator-center&quot;&gt;创作者中心&lt;/a&gt;
+&lt;a data-action=&quot;bilog&quot; data-log-action=&quot;click&quot; data-log-json=&quot;{&amp;quot;target&amp;quot;:&amp;quot;uploadvideo&amp;quot;,&amp;quot;page&amp;quot;:&amp;quot;homepage&amp;quot;}&quot; href=&quot;/login?targetUrl=%2Fcreatorcenter&quot; target=&quot;_blank&quot; class=&quot;m-topvd f-pr m-creator-center&quot;&gt;创作者中心&lt;/a&gt;
 &lt;div class=&quot;m-srch f-pr j-suggest&quot; id=&quot;g_search&quot;&gt;
 &lt;div class=&quot;srchbg&quot;&gt;
 &lt;span class=&quot;parent&quot;&gt;
 &lt;input type=&quot;text&quot; name=&quot;srch&quot; id=&quot;srch&quot; class=&quot;txt j-flag&quot; value=&quot;&quot; style=&quot;opacity: 1;&quot;&gt;
-&lt;label class=&quot;ph j-flag&quot; id=&quot;auto-id-RC2tdHTLwwH0g1Vg&quot;&gt;音乐/视频/电台/用户&lt;/label&gt;
+&lt;label class=&quot;ph j-flag&quot; id=&quot;auto-id-M0db19LNV6yVNgix&quot;&gt;音乐/视频/电台/用户&lt;/label&gt;
 &lt;/span&gt;
 &lt;/div&gt;
 &lt;div class=&quot;j-showoff u-showoff&quot;&gt;&lt;p&gt;现在支持搜索MV啦~&lt;/p&gt;&lt;/div&gt;
-&lt;span class=&quot;j-flag&quot; style=&quot;display:none;&quot; id=&quot;auto-id-TW6UELhcr83aqKyo&quot;&gt;&amp;nbsp;&lt;/span&gt;
-&lt;div class=&quot;u-lstlay j-flag&quot; style=&quot;display:none;&quot; id=&quot;auto-id-LqDUWeIHpEK7g4Wr&quot;&gt;&lt;/div&gt;
+&lt;span class=&quot;j-flag&quot; style=&quot;display:none;&quot; id=&quot;auto-id-NaGNTdJFTsfyRMVc&quot;&gt;&amp;nbsp;&lt;/span&gt;
+&lt;div class=&quot;u-lstlay j-flag&quot; style=&quot;display:none;&quot; id=&quot;auto-id-I2DPi15z5xhkeLTv&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -851,6 +1768,36 @@ window.attachEvent(&#39;onresize&#39;, onResize)
 function onResize(){
 topbar.style.width = (document.body.clientWidth-scrollBarWidth)+&#39;px&#39;;
 };
+})();/**
+* Safari v14 render issue
+* https://g.hz.netease.com/cloudmusic-frontend/music-web-mainsite/-/issues/6
+*/
+(function () {
+var $topbar;
+function onResize() {
+try {
+$topbar = $topbar || document.getElementById(&#39;g-topbar&#39;);
+var vendor = window.navigator.vendor;
+var appVersion = window.navigator.appVersion;
+var isMac = /Apple Computer/.test(vendor);
+var isTargetVersion = /Version\/14\./.test(appVersion);
+if ($topbar &amp;&amp; $topbar.style &amp;&amp; isMac &amp;&amp; isTargetVersion) {
+$topbar.style.overflow = &#39;hidden&#39;;
+$topbar.offsetWidth;
+$topbar.style.overflow = &#39;visible&#39;;
+}
+} catch (e) {
+// nothing
+console.log(&#39;[ERROR] about g-topbar&#39;);
+}
+}
+if (window.addEventListener) {
+window.addEventListener(&#39;resize&#39;, onResize);
+window.addEventListener(&#39;load&#39;, onResize);
+} else {
+window.attachEvent(&#39;onresize&#39;, onResize);
+window.attachEvent(&#39;onload&#39;, onResize);
+}
 })();/*!
 * Copyright (c) 2009-2011 Andreas Blixt &lt;andreas@blixt.org&gt;
 * Contributors: Aaron Ogle &lt;aogle@avencia.com&gt;,
@@ -1049,6 +1996,11 @@ function _isIE10plus(){
 var _ua = window.navigator.userAgent;
 return (/msie\s+(.*?);/i.test(_ua)||/trident\/.+rv:([\d\.]+)/i.test(_ua))&amp;&amp;(parseInt(RegExp.$1)&gt;=10);
 };
+function getDiscoverUrl() {
+var GDegradeConfig = window.GDegradeConfig || {};
+var discoverUrl = GDegradeConfig.degrade &amp;&amp; GDegradeConfig.discoverUrl || &#39;/discover&#39;;
+return encodeURI(discoverUrl);
+}
 function _onHashChange(_hash){
 var _url,
 _iframe = document.getElementById(&#39;g_iframe&#39;);
@@ -1070,7 +2022,10 @@ _url = _url.replace(&#39;/member&#39;,&#39;/prime/member&#39;);
 }
 }
 }
-if(_url.indexOf(&#39;http://&#39;)&lt;0){
+if(_url === &#39;/discover&#39;) {
+_url = getDiscoverUrl();
+}
+if(!_url.match(/^https?:/)){
 _url = location.protocol+&#39;//&#39;+location.hostname+_url;
 }
 //针对ie10+ location.replace的bug做特殊处理
@@ -1112,7 +2067,7 @@ _onHashChange(_url);
 };
 })();&lt;/script&gt;
 &lt;div class=&quot;g-btmbar&quot;&gt;
-&lt;div class=&quot;m-playbar m-playbar-unlock&quot; style=&quot;top: -53px; visibility: visible;&quot; id=&quot;auto-id-ES0LplfCmNW6c3my&quot;&gt;
+&lt;div class=&quot;m-playbar m-playbar-unlock&quot; style=&quot;top: -53px; visibility: visible;&quot; id=&quot;auto-id-HyFDf7cBlkL24moI&quot;&gt;
 &lt;div class=&quot;updn&quot;&gt;
 &lt;div class=&quot;left f-fl&quot;&gt;&lt;a href=&quot;javascript:;&quot; class=&quot;btn&quot; hidefocus=&quot;true&quot; data-action=&quot;lock&quot;&gt;&lt;/a&gt;&lt;/div&gt;
 &lt;div class=&quot;right f-fl&quot;&gt;&lt;/div&gt;
@@ -1129,9 +2084,9 @@ _onHashChange(_url);
 &lt;div class=&quot;play&quot;&gt;
 &lt;div class=&quot;j-flag words&quot;&gt;&lt;/div&gt;
 &lt;div class=&quot;m-pbar&quot; data-action=&quot;noop&quot;&gt;
-&lt;div class=&quot;barbg j-flag&quot; id=&quot;auto-id-9iRLXZQ0wymx1fP2&quot;&gt;
+&lt;div class=&quot;barbg j-flag&quot; id=&quot;auto-id-974QQBP1uUb33Muf&quot;&gt;
 &lt;div class=&quot;rdy&quot; style=&quot;width:0%;&quot;&gt;&lt;/div&gt;
-&lt;div class=&quot;cur&quot; style=&quot;width:0%;&quot;&gt;&lt;span class=&quot;btn f-tdn f-alpha&quot; id=&quot;auto-id-HixNfJsi0T7vmHZA&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;cur&quot; style=&quot;width:0%;&quot;&gt;&lt;span class=&quot;btn f-tdn f-alpha&quot; id=&quot;auto-id-UOmXpzxDSHf5EJAl&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;span class=&quot;j-flag time&quot;&gt;&lt;em&gt;00:00&lt;/em&gt; / 00:00&lt;/span&gt;
 &lt;/div&gt;
@@ -1141,9 +2096,9 @@ _onHashChange(_url);
 &lt;a href=&quot;javascript:;&quot; hidefocus=&quot;true&quot; data-action=&quot;share&quot; class=&quot;icn icn-share&quot; title=&quot;分享&quot;&gt;分享&lt;/a&gt;
 &lt;/div&gt;
 &lt;div class=&quot;ctrl f-fl f-pr j-flag&quot;&gt;
-&lt;div class=&quot;m-vol&quot; style=&quot;visibility:hidden;&quot; id=&quot;auto-id-VtgmhNMMT18TEceO&quot;&gt;
+&lt;div class=&quot;m-vol&quot; style=&quot;visibility:hidden;&quot; id=&quot;auto-id-VWxKvrEmDePfiJqz&quot;&gt;
 &lt;div class=&quot;barbg&quot;&gt;&lt;/div&gt;
-&lt;div class=&quot;vbg j-t&quot; id=&quot;auto-id-KXaTXZWm8kww3iTC&quot;&gt;&lt;div class=&quot;curr j-t&quot; style=&quot;height: 74.4px;&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;vbg j-t&quot; id=&quot;auto-id-Bnsm5QqfbpX3qxnx&quot;&gt;&lt;div class=&quot;curr j-t&quot; style=&quot;height: 74.4px;&quot;&gt;&lt;/div&gt;
 &lt;span class=&quot;btn f-alpha j-t&quot; style=&quot;top: 16.2px;&quot;&gt;&lt;/span&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;a href=&quot;javascript:;&quot; hidefocus=&quot;true&quot; data-action=&quot;volume&quot; class=&quot;icn icn-vol&quot;&gt;&lt;/a&gt;
@@ -1158,7 +2113,7 @@ _onHashChange(_url);
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;script src=&quot;//s3.music.126.net/web/s/core_35747c061633f6bf06aeb7d0ac2cbf9c.js?35747c061633f6bf06aeb7d0ac2cbf9c&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&lt;iframe frameborder=&quot;0&quot; id=&quot;auto-id-TCK1EJAcVDRxwSqF&quot; style=&quot;display: none;&quot; src=&quot;about:blank&quot;&gt;&lt;/iframe&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;https://acstatic-dun.126.net/tool.min.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;//s3.music.126.net/web/s/pt_frame_index_5587c1bab4f37a9c2a617b0630e2d49b.js?5587c1bab4f37a9c2a617b0630e2d49b&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;https://acstatic-dun.126.net/tool.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//s3.music.126.net/web/s/core_3cc77f55082b4fc2264c60da20dadf09.js?3cc77f55082b4fc2264c60da20dadf09&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&lt;iframe frameborder=&quot;0&quot; id=&quot;auto-id-pwhw5ekwEo2NbNys&quot; style=&quot;display: none;&quot; src=&quot;about:blank&quot;&gt;&lt;/iframe&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;https://acstatic-dun.126.net/tool.min.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;//s3.music.126.net/web/s/pt_frame_index_da031dd0b20173ae05c7067fa93bb969.js?da031dd0b20173ae05c7067fa93bb969&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;https://acstatic-dun.126.net/tool.min.js&quot;&gt;&lt;/script&gt;
 
 &lt;script type=&quot;text/javascript&quot;&gt;
 var _gaq=_gaq||[];
@@ -1172,8 +2127,9 @@ Math.max(document.body.offsetHeight, document.documentElement.offsetHeight),
 Math.max(document.body.clientHeight, document.documentElement.clientHeight)
 );
 top.document.body.style.height = iframeHeight + 20 + &#39;px&#39;;
-}&lt;/script&gt;
-&lt;div&gt;&lt;div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;
+}
+&lt;/script&gt;
+&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div class=&quot;global_container__10fOb&quot;&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;
 </pre></div>
 </div>
 </div>
@@ -1210,9 +2166,9 @@ top.document.body.style.height = iframeHeight + 20 + &#39;px&#39;;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;21fc3d5aaada01beb11509b62e6814b7&quot;, element=&quot;7ed69e67-2c73-4045-a768-46aaedb65b17&quot;)&gt;
-&lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;21fc3d5aaada01beb11509b62e6814b7&quot;, element=&quot;7ed69e67-2c73-4045-a768-46aaedb65b17&quot;)&gt;
-&lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;21fc3d5aaada01beb11509b62e6814b7&quot;, element=&quot;7ed69e67-2c73-4045-a768-46aaedb65b17&quot;)&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;ed0d0a0ac3dc97d391cc6b916488f6d3&quot;, element=&quot;a2bf12e6-e9fe-4fb9-9af6-854bcc3d3539&quot;)&gt;
+&lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;ed0d0a0ac3dc97d391cc6b916488f6d3&quot;, element=&quot;a2bf12e6-e9fe-4fb9-9af6-854bcc3d3539&quot;)&gt;
+&lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;ed0d0a0ac3dc97d391cc6b916488f6d3&quot;, element=&quot;a2bf12e6-e9fe-4fb9-9af6-854bcc3d3539&quot;)&gt;
 </pre></div>
 </div>
 </div>
@@ -1327,7 +2283,7 @@ top.document.body.style.height = iframeHeight + 20 + &#39;px&#39;;
 <span class="n">browser</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="s1">&#39;window.scrollTo(0, document.body.scrollHeight)&#39;</span><span class="p">)</span>
 <span class="c1">#browser.execute_script(&#39;alert(&quot;To Bottom&quot;)&#39;)</span>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">browser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="c1">#browser.close()</span>
 </pre></div>
 </div>
 </div>

@@ -172,6 +172,11 @@
      The future of employment
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-grf.html">
+     Causal Forests
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
@@ -650,11 +655,24 @@ Notice</p>
 </ul>
 <p>This insensitivity to the exact behavior of distant points is one of the strengths of the SVM model.</p>
 <p>If you are running this notebook live, you can use IPython’s interactive widgets to view this feature of the SVM model interactively:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">fixed</span>
-
-<span class="n">interact</span><span class="p">(</span><span class="n">plot_svm</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">ax</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="kc">None</span><span class="p">));</span>
-<span class="c1"># https://ipywidgets.readthedocs.io/en/latest/examples/Using%20Interact.html</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">fixed</span>
 </pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">plot_svm</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">ax</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="kc">None</span><span class="p">));</span>
+<span class="c1">#https://ipywidgets.readthedocs.io/en/latest/examples/Using%20Interact.html</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "09e85941857746c8bb75fec340839a60", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 </div>
 <div class="section" id="beyond-linear-boundaries-kernel-svm">
@@ -679,7 +697,7 @@ Notice</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-07-support-vector-machines_28_0.png" src="_images/09-07-support-vector-machines_28_0.png" />
+<img alt="_images/09-07-support-vector-machines_29_0.png" src="_images/09-07-support-vector-machines_29_0.png" />
 </div>
 </div>
 <p>No linear discrimination will <em>ever</em> be able to separate this data.</p>
@@ -699,7 +717,7 @@ Notice</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.14452223, 0.71671155])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.14308403e-02, 4.91155946e-05])
 </pre></div>
 </div>
 </div>
@@ -711,7 +729,7 @@ Notice</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.861233779300179
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.011479955941199707
 </pre></div>
 </div>
 </div>
@@ -723,7 +741,7 @@ Notice</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.861233779300179
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.011479955941199707
 </pre></div>
 </div>
 </div>
@@ -759,7 +777,7 @@ Notice</p>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "c9ed4a48053c4e12a9919b21b31b83e5", "version_major": 2, "version_minor": 0}
+{"model_id": "981e1e83888840bcbabec21abad15258", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 <p>We can see that with this additional dimension, the data becomes trivially linearly separable,</p>
@@ -833,7 +851,7 @@ Notice</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-07-support-vector-machines_41_0.png" src="_images/09-07-support-vector-machines_41_0.png" />
+<img alt="_images/09-07-support-vector-machines_42_0.png" src="_images/09-07-support-vector-machines_42_0.png" />
 </div>
 </div>
 <p>Using this kernelized support vector machine, we learn a suitable nonlinear decision boundary.</p>
@@ -853,7 +871,7 @@ Notice</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-07-support-vector-machines_44_0.png" src="_images/09-07-support-vector-machines_44_0.png" />
+<img alt="_images/09-07-support-vector-machines_45_0.png" src="_images/09-07-support-vector-machines_45_0.png" />
 </div>
 </div>
 <p>The SVM implementation has a bit of a fudge-factor which “softens” the margin:</p>
@@ -886,7 +904,7 @@ Notice</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-07-support-vector-machines_46_0.png" src="_images/09-07-support-vector-machines_46_0.png" />
+<img alt="_images/09-07-support-vector-machines_47_0.png" src="_images/09-07-support-vector-machines_47_0.png" />
 </div>
 </div>
 <p>The optimal value of the <span class="math notranslate nohighlight">\(C\)</span> parameter will depend on your dataset, and should be tuned using cross-validation or a similar procedure (refer back to <strong>Hyperparameters and Model Validation</strong>).</p>
@@ -928,7 +946,7 @@ Notice</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-07-support-vector-machines_51_0.png" src="_images/09-07-support-vector-machines_51_0.png" />
+<img alt="_images/09-07-support-vector-machines_52_0.png" src="_images/09-07-support-vector-machines_52_0.png" />
 </div>
 </div>
 <p>Each image contains [62×47] or nearly 3,000 pixels.</p>
@@ -1011,7 +1029,7 @@ Wall time: 26.7 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-07-support-vector-machines_61_0.png" src="_images/09-07-support-vector-machines_61_0.png" />
+<img alt="_images/09-07-support-vector-machines_62_0.png" src="_images/09-07-support-vector-machines_62_0.png" />
 </div>
 </div>
 <p>We can get a better sense of our estimator’s performance using the classification report,</p>
@@ -1061,7 +1079,7 @@ Junichiro Koizumi       0.92      1.00      0.96        12
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-07-support-vector-machines_65_0.png" src="_images/09-07-support-vector-machines_65_0.png" />
+<img alt="_images/09-07-support-vector-machines_66_0.png" src="_images/09-07-support-vector-machines_66_0.png" />
 </div>
 </div>
 <p>For a real-world facial recognition task:</p>
