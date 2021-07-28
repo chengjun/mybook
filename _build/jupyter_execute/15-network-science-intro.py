@@ -523,7 +523,7 @@ nx.draw(Gd, pos, with_labels = True)
 
 # <img src = './img/hits2.png' width = 800>
 
-# In[4]:
+# In[1]:
 
 
 import numpy as np
@@ -533,7 +533,7 @@ edges = [('甲', '新辣道'), ('甲', '海底捞'), ('甲', '五方院'),
          ('丁', '新辣道'), ('丁', '五方院'), ('丁', '俏江南')]
 
 
-# In[4]:
+# In[2]:
 
 
 h_dic = {i:1 for i,j in edges}
@@ -857,5 +857,6 @@ print(nx.transitivity(G3))
 # 18-network-ergm-siena
 # 18-network-analysis-of-tianya-bbs
 # 19-facebook-ego-netwrok-visualization
+# reproducing_hidagos_result
 # ```
 # 

@@ -80,7 +80,7 @@
         <div class="navbar-brand-box">
 <a class="navbar-brand text-wrap" href="index.html">
   
-  <img src="_static/Socratessee.gif" class="logo" alt="logo">
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
   
   
   <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
@@ -355,6 +355,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading: &quot;https://github.com/pytorch/vision/archive/v0.6.0.zip&quot; to /Users/datalab/.cache/torch/hub/v0.6.0.zip
+Downloading: &quot;https://download.pytorch.org/models/vgg16-397923af.pth&quot; to /Users/datalab/.cache/torch/hub/checkpoints/vgg16-397923af.pth
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "f7d7289bf8db4e6fb3ce17bf9b0901f4", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 <ul class="simple">
 <li><p>Downloading: “https://github.com/pytorch/vision/archive/v0.6.0.zip” to /root/.cache/torch/hub/v0.6.0.zip</p></li>
@@ -478,13 +486,104 @@ and <code class="docutils literal notranslate"><span class="pre">std</span> <spa
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ImageNet挑战使用了一个“修剪”的1000个非重叠类的列表</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://s3.amazonaws.com/deep-learning-models/image-models/imagenet_class_index.json&#39;</span>
 <span class="n">imagenet_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imagenet_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>n01440764</td>
+      <td>tench</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>n01443537</td>
+      <td>goldfish</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>n01484850</td>
+      <td>great_white_shark</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>n01491361</td>
+      <td>tiger_shark</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>n01494475</td>
+      <td>hammerhead</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>995</th>
+      <td>n13044778</td>
+      <td>earthstar</td>
+    </tr>
+    <tr>
+      <th>996</th>
+      <td>n13052670</td>
+      <td>hen-of-the-woods</td>
+    </tr>
+    <tr>
+      <th>997</th>
+      <td>n13054560</td>
+      <td>bolete</td>
+    </tr>
+    <tr>
+      <th>998</th>
+      <td>n13133613</td>
+      <td>ear</td>
+    </tr>
+    <tr>
+      <th>999</th>
+      <td>n15075141</td>
+      <td>toilet_tissue</td>
+    </tr>
+  </tbody>
+</table>
+<p>1000 rows × 2 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

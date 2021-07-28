@@ -17,13 +17,15 @@
 # 
 # https://pantheon.world/data/datasets
 # 
-# ### pantheon.tsv
+# - pantheon.tsv
+# 
 # A tab delimited file containing a row of data per person found in the Panthon 1.0 dataset.
 # 
-# ### wikilangs.tsv
+# - wikilangs.tsv
+# 
 # A tab delimited file of all the different Wikipedia language editions that each biography has a presence in.
 # 
-# ### pageviews_2008-2013.tsv
+# - pageviews_2008-2013.tsv
 # A file containing the monthly pageview data for each individual, for all the Wikipedia language editions in which they have a presence.
 # 
 # Please refer to the methods section for more information on how this data was created. For detailed descriptions of these datasets, please refer to our data descriptor paper.

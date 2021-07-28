@@ -996,6 +996,7 @@ print( expected )
 # :titlesonly:
 # 
 # 
+# 08-02-kl-divergence
 # 08-02-linear-algebra
 # 08-03-distributions
 # 08-03-probability
@@ -1006,5 +1007,6 @@ print( expected )
 # 08-07-analyzing-titanic-dataset
 # 08-07-covid19-pew-survey
 # 08-08-covid19-grangercausality
+# 08-09-survival-analysis
 # ```
 # 

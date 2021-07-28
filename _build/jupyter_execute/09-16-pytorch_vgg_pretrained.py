@@ -164,13 +164,20 @@ torch.argmax(input_prob)
 # tensor(258, device='cuda:0')
 # ```
 
-# In[ ]:
+# In[2]:
 
 
+# ImageNet挑战使用了一个“修剪”的1000个非重叠类的列表
 import pandas as pd
 
 url = 'https://s3.amazonaws.com/deep-learning-models/image-models/imagenet_class_index.json'
 imagenet_df = pd.read_json(url).T
+
+
+# In[3]:
+
+
+imagenet_df
 
 
 # In[ ]:

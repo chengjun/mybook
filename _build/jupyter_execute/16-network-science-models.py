@@ -354,26 +354,26 @@
 
 # $$\int \frac{1}{k_i} d k_i = \int \frac{1}{2t} dt$$
 # 
-# ![image.png](images/network9.png)
+# ![image.png](images/network999.png)
 # 
 # https://www.wolframalpha.com/input/?i=integrate+1%2F%282x%29+dx+
 # 
 # 积分结果
 # 
-# $$k_i = C (2t) ^ {0.5}   （公式1）$$  
+# $$k_i = C (t) ^ {0.5}   （公式1）$$  
 # 
 # 
 # 
 
 # ### 积分结果
 # 
-# $$k_i = C (2t) ^ {0.5}   （公式1）$$    
+# $$k_i = C (t) ^ {0.5}   （公式1）$$    
 # 
 # 此时，根据模型的初始条件，每个新加入节点获得的度是m：
 # 
 # $k_i(t_i) = m $  代入公式（1）
 # 
-# 可以得到$C =\frac{m}{(2t_i)^{0.5}}$ 公式（2）
+# 可以得到$C =\frac{m}{(t_i)^{0.5}}$ 公式（2）
 # 
 # 代入公式（1），得到：
 # 

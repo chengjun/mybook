@@ -12,7 +12,7 @@
 # 
 # https://networkx.github.io/documentation/stable/tutorial.html
 
-# In[2]:
+# In[1]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
@@ -21,7 +21,7 @@ import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 
 
-# In[3]:
+# In[2]:
 
 
 import networkx as nx
@@ -37,7 +37,7 @@ print(G.nodes())
 print(G.edges())
 
 
-# In[4]:
+# In[3]:
 
 
 # 绘制网络
@@ -89,7 +89,7 @@ nx.info(G)
 
 # 我们从karate_club_graph开始，探索网络的基本性质。
 
-# In[5]:
+# In[6]:
 
 
 G = nx.karate_club_graph()
@@ -105,20 +105,20 @@ for j in clubs:
 nx.draw(G,  with_labels = True, node_color = colors)
 
 
-# In[6]:
+# In[7]:
 
 
 G.nodes[1], G.nodes[9] # 节点1的属性 # 节点1的属性
 
 
-# In[7]:
+# In[8]:
 
 
 G.edges# 前三条边的id
 #dir(G)
 
 
-# In[8]:
+# In[9]:
 
 
 nx.info(G)
@@ -136,13 +136,13 @@ G.nodes()
 list(G.edges())[:3]
 
 
-# In[11]:
+# In[10]:
 
 
 print(*G.neighbors(1))
 
 
-# In[12]:
+# In[11]:
 
 
 nx.average_shortest_path_length(G) 
@@ -150,7 +150,7 @@ nx.average_shortest_path_length(G)
 
 # ### 网络直径
 
-# In[13]:
+# In[12]:
 
 
 nx.diameter(G)#返回图G的直径（最长最短路径的长度）
@@ -158,13 +158,13 @@ nx.diameter(G)#返回图G的直径（最长最短路径的长度）
 
 # ### 密度
 
-# In[16]:
+# In[13]:
 
 
 nx.density(G)
 
 
-# In[17]:
+# In[14]:
 
 
 nodeNum = len(G.nodes())
@@ -178,14 +178,14 @@ edgeNum = len(G.edges())
 
 # ### 聚集系数
 
-# In[18]:
+# In[15]:
 
 
 cc = nx.clustering(G)
 cc.items()
 
 
-# In[19]:
+# In[16]:
 
 
 plt.hist(cc.values(), bins = 15)
@@ -215,14 +215,14 @@ plt.show()
 # 
 # 
 
-# In[20]:
+# In[17]:
 
 
 # M. E. J. Newman, Mixing patterns in networks Physical Review E, 67 026126, 2003
 nx.degree_assortativity_coefficient(G) #计算一个图的度匹配性。
 
 
-# In[21]:
+# In[18]:
 
 
 Ge=nx.Graph()
@@ -306,7 +306,7 @@ plt.show()
 # - 𝜎(𝑠,𝑡|𝑣) is the number of those paths passing through some node 𝑣 other than 𝑠,𝑡. 
 # 
 
-# In[22]:
+# In[19]:
 
 
 dc = nx.degree_centrality(G)
@@ -314,7 +314,7 @@ closeness = nx.closeness_centrality(G)
 betweenness= nx.betweenness_centrality(G)
 
 
-# In[38]:
+# In[20]:
 
 
 fig = plt.figure(figsize=(15, 4),facecolor='white')
@@ -334,10 +334,11 @@ plt.tight_layout()
 plt.show() 
 
 
-# In[40]:
+# In[21]:
 
 
 fig = plt.figure(figsize=(15, 8),facecolor='white')
+plt.style.use('ggplot')
 
 for k in betweenness:
     plt.scatter(dc[k], closeness[k], s = betweenness[k]*10000)
@@ -349,7 +350,7 @@ plt.show()
 
 # ## 度分布
 
-# In[23]:
+# In[3]:
 
 
 from collections import defaultdict
@@ -381,7 +382,7 @@ plotDegreeDistribution(G)
 
 # ### 规则网络
 
-# In[29]:
+# In[33]:
 
 
 import networkx as nx
@@ -395,7 +396,7 @@ nx.draw(RG,pos,with_labels=False,node_size = range(1, 201))
 plt.show()  #显示图形
 
 
-# In[30]:
+# In[34]:
 
 
 plotDegreeDistribution(RG)
@@ -403,12 +404,12 @@ plotDegreeDistribution(RG)
 
 # ### ER随机网络
 
-# In[34]:
+# In[8]:
 
 
 import networkx as nx
 import matplotlib.pyplot as plt
-ER = nx.random_graphs.erdos_renyi_graph(200,0.1)  
+ER = nx.random_graphs.erdos_renyi_graph(1000,0.01)  
 #生成包含20个节点、以概率0.2连接的随机图
 pos = nx.spring_layout(ER)          
 #定义一个布局，此处采用了shell布局方式
@@ -416,16 +417,16 @@ nx.draw(ER,pos,with_labels=False,node_size = 30)
 plt.show()
 
 
-# In[37]:
+# In[9]:
 
 
-ER = nx.random_graphs.erdos_renyi_graph(10000,0.1)  
+ER = nx.random_graphs.erdos_renyi_graph(1000,0.01)  
 plotDegreeDistribution(ER)
 
 
 # ### 小世界网络
 
-# In[39]:
+# In[10]:
 
 
 import networkx as nx
@@ -439,19 +440,19 @@ nx.draw(WS,pos,with_labels=False,node_size = 30)
 plt.show()
 
 
-# In[40]:
+# In[11]:
 
 
 plotDegreeDistribution(WS)
 
 
-# In[41]:
+# In[43]:
 
 
 nx.diameter(WS)
 
 
-# In[42]:
+# In[44]:
 
 
 cc = nx.clustering(WS)
@@ -461,7 +462,7 @@ plt.ylabel('$Frequency, \, F$', fontsize = 20)
 plt.show()
 
 
-# In[43]:
+# In[45]:
 
 
 import numpy as np
@@ -470,12 +471,12 @@ np.mean(list(cc.values()))
 
 # ### BA网络
 
-# In[44]:
+# In[16]:
 
 
 import networkx as nx
 import matplotlib.pyplot as plt
-BA= nx.random_graphs.barabasi_albert_graph(200,2)  
+BA= nx.random_graphs.barabasi_albert_graph(500,2)  
 #生成n=200、m=2的BA无标度网络
 pos = nx.spring_layout(BA)          
 #定义一个布局，此处采用了spring布局方式
@@ -484,13 +485,13 @@ nx.draw(BA,pos,with_labels=False,node_size = 30)
 plt.show()
 
 
-# In[45]:
+# In[17]:
 
 
 plotDegreeDistribution(BA)
 
 
-# In[46]:
+# In[48]:
 
 
 BA= nx.random_graphs.barabasi_albert_graph(20000,2)  
@@ -498,7 +499,7 @@ BA= nx.random_graphs.barabasi_albert_graph(20000,2)
 plotDegreeDistribution(BA) 
 
 
-# In[47]:
+# In[49]:
 
 
 import networkx as nx
@@ -509,22 +510,22 @@ pos = nx.spring_layout(BA)
 #定义一个布局，此处采用了spring布局方式
 nx.draw(BA,pos,with_labels=False,node_size = 30)  
 #绘制图形
-plt.show() 
+plt.show()  
 
 
-# In[53]:
+# In[50]:
 
 
 nx.degree_histogram(BA)[:10]
 
 
-# In[55]:
+# In[51]:
 
 
 list(dict(BA.degree()).items())[:10]  
 
 
-# In[58]:
+# In[52]:
 
 
 plt.hist( list(dict(BA.degree()).values()) , bins = 100)
@@ -533,7 +534,7 @@ plt.hist( list(dict(BA.degree()).values()) , bins = 100)
 plt.show()
 
 
-# In[59]:
+# In[53]:
 
 
 from collections import defaultdict
@@ -557,7 +558,7 @@ BA= nx.random_graphs.barabasi_albert_graph(5000,2)
 plotDegreeDistributionLongTail(BA)
 
 
-# In[60]:
+# In[54]:
 
 
 def plotDegreeDistribution(G):
