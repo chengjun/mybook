@@ -26,11 +26,18 @@ jobs:
         uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Deploy 🚀
-        uses: chengjun/mybook@main
-        with:
-          branch: gh-pages
-          folder: _build
-          github_token: ${{ secrets.MYBOOK_SECRET }}
+      - name: Github Pages Deploy Action
+      # You may pin to the exact commit or the version.
+      # uses: avinal/github-pages-deploy-action@7702e2ad1f82097323b08b428c8f57cb21dd965b
+      uses: avinal/github-pages-deploy-action@v0.9
+      with:
+        # GitHub access token with Repo Access
+        GITHUB_TOKEN: ${{ github.token }}
+        # Deploy pages to which branch
+        PAGES_BRANCH: gh-pages
+        # Generate Site from which branch
+        BUILD_FROM: main
+        # folder in which generated files are stored
+        DOCS_FOLDER: _build
 
       
