@@ -721,6 +721,7 @@ plotEvolution(u'马克思主义', 'b', '-', 's')
 # 
 # 
 # 10-word2vec
+# 10-doc2vec
 # 11-1-sentiment-analysis-with-dict
 # 11-2-emotion-dict
 # 11-3-NRC-Chinese-dict
