@@ -1,0 +1,919 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>抓取历届政府工作报告 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="抓取江苏省政协十年提案" href="04-crawler-cppcc.html" />
+    <link rel="prev" title="使用requests + Xpath抓取豆瓣电影数据" href="04-crawler-douban.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-fact-checking.html">
+     抓取实时辟谣数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-13chambers.html">
+     抓取网络小说
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-wechat.html">
+     抓取微信公众号文章内容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-douban.html">
+     使用requests + Xpath抓取豆瓣电影数据
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     抓取历届政府工作报告
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-cppcc.html">
+     抓取江苏省政协十年提案
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-netease-music.html">
+     抓取网易云音乐热门评论
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium.html">
+     使用Selenium操纵浏览器
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-music-history.html">
+     抓取网易云音乐用户的听歌记录
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-people-com-search.html">
+     使用Selenium提取人民网搜索数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-tripadvisor.html">
+     使用Selenium抓取TripAdvisor用户评论
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/04-crawler-gov-report.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F04-crawler-gov-report.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/04-crawler-gov-report.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/04-crawler-gov-report.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inspect">
+   Inspect
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#encoding">
+     Encoding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decode">
+     decode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#html-parser">
+     html.parser
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Inspect 下一页
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>抓取历届政府工作报告<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>www.hprc.org.cn/wxzl/wxysl/lczf/</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;no&quot;</span> <span class="na">border</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">marginwidth</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">marginheight</span><span class="o">=</span><span class="s">&quot;0&quot;</span> 
+    <span class="na">width</span><span class="o">=</span><span class="s">900</span> <span class="na">height</span><span class="o">=</span><span class="s">600</span> 
+    <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://www.hprc.org.cn/wxzl/wxysl/lczf/&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" 
+    width=900 height=600 
+    src="http://www.hprc.org.cn/wxzl/wxysl/lczf/">
+</iframe>
+</div></div>
+</div>
+<div class="section" id="inspect">
+<h2>Inspect<a class="headerlink" href="#inspect" title="Permalink to this headline">¶</a></h2>
+<td width="274" class="bl">·&nbsp;<a href="./d12qgrdzfbg/201603/t20160318_369509.html" target="_blank" title="2016年政府工作报告">2016年政府工作报告</a></td>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;td width=&quot;274&quot; class=&quot;bl&quot;&gt;·&amp;nbsp;&lt;a href=&quot;./d12qgrdzfbg/201603/t20160318_369509.html&quot; target=&quot;_blank&quot; title=&quot;2016年政府工作报告&quot;&gt;2016年政府工作报告&lt;/a&gt;&lt;/td&gt;
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the link for each year</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://www.hprc.org.cn/wxzl/wxysl/lczf/&quot;</span> 
+<span class="n">content</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">content</span><span class="o">.</span><span class="n">encoding</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ISO-8859-1&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="encoding">
+<h3>Encoding<a class="headerlink" href="#encoding" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>ASCII</p>
+<ul>
+<li><p>7位字符集</p></li>
+<li><p>美国标准信息交换代码（American Standard Code for Information Interchange）的缩写, 为美国英语通信所设计。</p></li>
+<li><p>它由128个字符组成，包括大小写字母、数字0-9、标点符号、非打印字符（换行符、制表符等4个）以及控制字符（退格、响铃等）组成。</p></li>
+</ul>
+</li>
+<li><p>iso8859-1 通常叫做Latin-1。</p>
+<ul>
+<li><p>和ascii编码相似。</p></li>
+<li><p>属于单字节编码，最多能表示的字符范围是0-255，应用于英文系列。比如，字母a的编码为0x61=97。</p></li>
+<li><p>无法表示中文字符。</p></li>
+<li><p>单字节编码，和计算机最基础的表示单位一致，所以很多时候，仍旧使用iso8859-1编码来表示。在很多协议上，默认使用该编码。</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>gb2312/gbk/gb18030</p>
+<ul>
+<li><p>是汉字的国标码，专门用来表示汉字，是双字节编码，而英文字母和iso8859-1一致（兼容iso8859-1编码）。</p></li>
+<li><p>其中gbk编码能够用来同时表示繁体字和简体字,K 为汉语拼音 Kuo Zhan（扩展）中“扩”字的声母</p></li>
+<li><p>gb2312只能表示简体字，gbk是兼容gb2312编码的。</p></li>
+<li><p>gb18030，全称：国家标准 GB 18030-2005《信息技术中文编码字符集》，是中华人民共和国现时最新的内码字集</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>unicode</p>
+<ul>
+<li><p>最统一的编码，用来表示所有语言的字符。</p></li>
+<li><p>占用更多的空间，定长双字节（也有四字节的）编码，包括英文字母在内。</p></li>
+<li><p>不兼容iso8859-1等其它编码。相对于iso8859-1编码来说，uniocode编码只是在前面增加了一个0字节，比如字母a为”00 61”。</p></li>
+<li><p>定长编码便于计算机处理（注意GB2312/GBK不是定长编码），unicode又可以用来表示所有字符，所以在很多软件内部是使用unicode编码来处理的，比如java。</p></li>
+</ul>
+</li>
+<li><p>UTF</p>
+<ul>
+<li><p>unicode不便于传输和存储，产生了utf编码</p></li>
+<li><p>utf编码兼容iso8859-1编码，同时也可以用来表示所有语言的字符</p></li>
+<li><p>utf编码是不定长编码，每一个字符的长度从1-6个字节不等。</p></li>
+<li><p>其中，utf8（8-bit Unicode Transformation Format）是一种针对Unicode的可变长度字符编码，又称万国码。</p>
+<ul>
+<li><p>由Ken Thompson于1992年创建。现在已经标准化为RFC 3629。</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="decode">
+<h3>decode<a class="headerlink" href="#decode" title="Permalink to this headline">¶</a></h3>
+<p><del>urllib2.urlopen(url).read().decode(‘gb18030’) </del></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>content.encoding = &#39;gb18030&#39;
+
+content = content.text
+</pre></div>
+</div>
+<p>Or</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>content = content.text.encode(content.encoding).decode(&#39;gb18030&#39;)
+</pre></div>
+</div>
+</div>
+<div class="section" id="html-parser">
+<h3>html.parser<a class="headerlink" href="#html-parser" title="Permalink to this headline">¶</a></h3>
+<p>BeautifulSoup(content, ‘html.parser’)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the encoding</span>
+<span class="n">content</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf8&#39;</span> <span class="c1"># &#39;gb18030&#39;</span>
+<span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span> 
+<span class="c1"># links = soup.find_all(&#39;td&#39;, {&#39;class&#39;, &#39;bl&#39;})   </span>
+<span class="n">links</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;.bl a&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">links</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;a href=&quot;./dssjqgrmdbdh_1/202103/t20210316_5318622.html&quot; target=&quot;_blank&quot; title=&quot;2021年政府工作报告&quot;&gt;2021年政府工作报告&lt;/a&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>52
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">links</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;./dishiyijie_10/200908/t20090818_3955459.html&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">links</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;href&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;./&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;dssjqgrmdbdh_1/202103/t20210316_5318622.html&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">+</span> <span class="n">links</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;href&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;./&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dssjqgrmdbdh_1/202103/t20210316_5318622.html&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hyperlinks</span> <span class="o">=</span> <span class="p">[</span><span class="n">url</span> <span class="o">+</span> <span class="n">i</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;./&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">links</span><span class="p">]</span>
+<span class="n">hyperlinks</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dssjqgrmdbdh_1/202103/t20210316_5318622.html&#39;,
+ &#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dssjqgrmdbdh_1/202006/t20200604_5138985.html&#39;,
+ &#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dssjqgrmdbdh_1/201903/t20190318_4849567.html&#39;,
+ &#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dssjqgrmdbdh_1/201803/t20180323_4240852.html&#39;,
+ &#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/d12qgrdzfbg/201703/t20170317_4144138.html&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hyperlinks</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_9/200908/t20090818_3955464.html&#39;,
+ &#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_10/200908/t20090818_3955462.html&#39;,
+ &#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_10/200908/t20090818_3955461.html&#39;,
+ &#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_10/200908/t20090818_3955460.html&#39;,
+ &#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_10/200908/t20090818_3955459.html&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hyperlinks</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="c1"># 2007年有分页</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie/200908/t20090817_3955455.html&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display_html</span><span class="p">,</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">IFrame</span>
+
+<span class="n">IFrame</span><span class="p">(</span><span class="n">src</span> <span class="o">=</span> <span class="s1">&#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_1/200908/t20090818_3955570.html&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="c1">#HTML(&#39;&lt;iframe src=http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_1/200908/t20090818_3955570.html width=1000 height=500&gt;&lt;/iframe&gt;&#39;)</span>
+<span class="c1"># 2007年有分页</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="1000"
+    height="500"
+    src="http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_1/200908/t20090818_3955570.html"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Inspect 下一页<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p><a href="t20090818_27775_1.html"><span style="color:#0033FF;font-weight:bold">下一页</span></a></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;a href=&quot;t20090818_27775_1.html&quot;&gt;&lt;span style=&quot;color:#0033FF;font-weight:bold&quot;&gt;下一页&lt;/span&gt;&lt;/a&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>a</p>
+<ul>
+<li><p>script</p>
+<ul>
+<li><p>td</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url_i</span> <span class="o">=</span> <span class="s1">&#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_1/200908/t20090818_3955570.html&#39;</span>
+<span class="n">content</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_i</span><span class="p">)</span>
+<span class="n">content</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf8&#39;</span>
+<span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">text</span>
+<span class="c1">#content = content.text.encode(content.encoding).decode(&#39;gb18030&#39;)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span> 
+<span class="c1">#scripts = soup.find_all(&#39;script&#39;)</span>
+<span class="c1">#scripts[0]</span>
+<span class="n">scripts</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;td script&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scripts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;script&gt;
+	var currentPage = 0;//所在页从0开始
+	var prevPage = currentPage-1//上一页
+	var 下一页Page = currentPage+1//下一页
+	var countPage = 4//共多少页
+	//document.write(&quot;共&quot;+countPage+&quot;页&amp;nbsp;&amp;nbsp;&quot;);
+	
+	//循环
+	var num = 17;
+	for(var i=0+(currentPage-1-(currentPage-1)%num) ; i&lt;=(num+(currentPage-1-(currentPage-1)%num))&amp;&amp;(i&lt;countPage) ; i++){
+		if(countPage &gt;1){
+			if(currentPage==i)
+				document.write(&quot;【&lt;span style=\&quot;color:#FF0000;\&quot; class=\&quot;hui14_30_h\&quot;&gt;&quot;+(i+1)+&quot;&lt;/span&gt;】&amp;nbsp;&quot;);
+			else if(i==0)
+				document.write(&quot;&lt;a href=\&quot;t20090818_3955570.html\&quot; class=\&quot;hui14_30_h\&quot;&gt;【&quot;+(i+1)+&quot;】&lt;/a&gt;&amp;nbsp;&quot;);
+			else
+				document.write(&quot;&lt;a href=\&quot;t20090818_3955570&quot;+&quot;_&quot; + i + &quot;.&quot;+&quot;html\&quot; class=\&quot;hui14_30_h\&quot;&gt;【&quot;+(i+1)+&quot;】&lt;/a&gt;&amp;nbsp;&quot;);
+		}	
+	}
+	
+	document.write(&quot;&lt;br&gt;&lt;br&gt;&quot;);
+	//设置上一页代码
+	if(countPage&gt;1&amp;&amp;currentPage!=0&amp;&amp;currentPage!=1)
+		document.write(&quot;&lt;a href=\&quot;t20090818_3955570&quot;+&quot;_&quot; + prevPage + &quot;.&quot;+&quot;html\&quot;&gt;&lt;span style=\&quot;color:#0033FF;font-weight:bold\&quot;&gt;上一页&lt;/span&gt;&lt;/a&gt;&amp;nbsp;&quot;);
+	else if(countPage&gt;1&amp;&amp;currentPage!=0&amp;&amp;currentPage==1)
+		document.write(&quot;&lt;a href=\&quot;t20090818_3955570.html\&quot;&gt;&lt;span style=\&quot;color:#0033FF;font-weight:bold\&quot;&gt;上一页&lt;/span&gt;&lt;/a&gt;&amp;nbsp;&quot;);
+	//else
+	//	document.write(&quot;上一页 &amp;nbsp;&quot;);
+	
+	
+	//设置下一页代码 
+	if(countPage&gt;1&amp;&amp;currentPage!=(countPage-1))
+		document.write(&quot;&lt;a href=\&quot;t20090818_3955570&quot;+&quot;_&quot; + 下一页Page + &quot;.&quot;+&quot;html\&quot; &gt;&lt;span style=\&quot;color:#0033FF;font-weight:bold\&quot;&gt;下一页&lt;/span&gt;&lt;/a&gt; &amp;nbsp;&quot;);
+	//else
+	//	document.write(&quot;下一页 &amp;nbsp;&quot;);
+					 
+	&lt;/script&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scripts</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;\n\tvar currentPage = 0;//所在页从0开始\n\tvar prevPage = currentPage-1//上一页\n\tvar 下一页Page = currentPage+1//下一页\n\tvar countPage = 4//共多少页\n\t//document.write(&quot;共&quot;+countPage+&quot;页&amp;nbsp;&amp;nbsp;&quot;);\n\t\n\t//循环\n\tvar num = 17;\n\tfor(var i=0+(currentPage-1-(currentPage-1)%num) ; i&lt;=(num+(currentPage-1-(currentPage-1)%num))&amp;&amp;(i&lt;countPage) ; i++){\n\t\tif(countPage &gt;1){\n\t\t\tif(currentPage==i)\n\t\t\t\tdocument.write(&quot;【&lt;span style=\\&quot;color:#FF0000;\\&quot; class=\\&quot;hui14_30_h\\&quot;&gt;&quot;+(i+1)+&quot;&lt;/span&gt;】&amp;nbsp;&quot;);\n\t\t\telse if(i==0)\n\t\t\t\tdocument.write(&quot;&lt;a href=\\&quot;t20090818_3955570.html\\&quot; class=\\&quot;hui14_30_h\\&quot;&gt;【&quot;+(i+1)+&quot;】&lt;/a&gt;&amp;nbsp;&quot;);\n\t\t\telse\n\t\t\t\tdocument.write(&quot;&lt;a href=\\&quot;t20090818_3955570&quot;+&quot;_&quot; + i + &quot;.&quot;+&quot;html\\&quot; class=\\&quot;hui14_30_h\\&quot;&gt;【&quot;+(i+1)+&quot;】&lt;/a&gt;&amp;nbsp;&quot;);\n\t\t}\t\n\t}\n\t\n\tdocument.write(&quot;&lt;br&gt;&lt;br&gt;&quot;);\n\t//设置上一页代码\n\tif(countPage&gt;1&amp;&amp;currentPage!=0&amp;&amp;currentPage!=1)\n\t\tdocument.write(&quot;&lt;a href=\\&quot;t20090818_3955570&quot;+&quot;_&quot; + prevPage + &quot;.&quot;+&quot;html\\&quot;&gt;&lt;span style=\\&quot;color:#0033FF;font-weight:bold\\&quot;&gt;上一页&lt;/span&gt;&lt;/a&gt;&amp;nbsp;&quot;);\n\telse if(countPage&gt;1&amp;&amp;currentPage!=0&amp;&amp;currentPage==1)\n\t\tdocument.write(&quot;&lt;a href=\\&quot;t20090818_3955570.html\\&quot;&gt;&lt;span style=\\&quot;color:#0033FF;font-weight:bold\\&quot;&gt;上一页&lt;/span&gt;&lt;/a&gt;&amp;nbsp;&quot;);\n\t//else\n\t//\tdocument.write(&quot;上一页 &amp;nbsp;&quot;);\n\t\n\t\n\t//设置下一页代码 \n\tif(countPage&gt;1&amp;&amp;currentPage!=(countPage-1))\n\t\tdocument.write(&quot;&lt;a href=\\&quot;t20090818_3955570&quot;+&quot;_&quot; + 下一页Page + &quot;.&quot;+&quot;html\\&quot; &gt;&lt;span style=\\&quot;color:#0033FF;font-weight:bold\\&quot;&gt;下一页&lt;/span&gt;&lt;/a&gt; &amp;nbsp;&quot;);\n\t//else\n\t//\tdocument.write(&quot;下一页 &amp;nbsp;&quot;);\n\t\t\t\t\t \n\t&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># countPage = int(&#39;&#39;.join(scripts).split(&#39;countPage = &#39;)\</span>
+<span class="c1">#                 [1].split(&#39;//&#39;)[0])</span>
+<span class="c1"># countPage</span>
+
+<span class="n">countPage</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">scripts</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;countPage = &#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;//&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">countPage</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">def</span> <span class="nf">flushPrint</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+    
+<span class="k">def</span> <span class="nf">crawler</span><span class="p">(</span><span class="n">url_i</span><span class="p">):</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_i</span><span class="p">)</span>
+    <span class="n">content</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf8&#39;</span>  
+    <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">text</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span> 
+    <span class="n">year</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;huang16c&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">))</span>
+    <span class="c1"># 找到分页信息</span>
+    <span class="n">scripts</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)</span>
+    <span class="n">countPage</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">scripts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;countPage = &#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;//&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">countPage</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">countPage</span><span class="p">):</span>
+            <span class="n">url_child</span> <span class="o">=</span> <span class="n">url_i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.html&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.html&#39;</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_child</span><span class="p">)</span>
+            <span class="n">content</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;gb18030&#39;</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span> 
+            <span class="n">report_child</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">))</span>
+            <span class="n">report</span> <span class="o">=</span> <span class="n">report</span> <span class="o">+</span> <span class="n">report_child</span>
+    <span class="k">return</span> <span class="n">year</span><span class="p">,</span> <span class="n">report</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 抓取52年政府工作报告内容</span>
+<span class="n">reports</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">hyperlinks</span><span class="p">:</span>
+    <span class="n">year</span><span class="p">,</span> <span class="n">report</span> <span class="o">=</span> <span class="n">crawler</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+    <span class="n">flushPrint</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+    <span class="n">reports</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">report</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1954
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./data/gov_reports1954-2021.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">reports</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">reports</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;./data/gov_reports1954-2021.txt&#39;</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;report&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>report</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021</td>
+      <td>各位代表：　　现在，我代表国务院，向大会报告政府工作，请予审议，并请全国政协委员提出意见。　...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020</td>
+      <td>新华社北京5月29日电　　政府工作报告　　——2020年5月22日在第十三届全国人民代表...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2019</td>
+      <td>新华社北京3月16日电　　 政府工作报告　　——2019年3月5日在第十三届全国人民代表...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2018</td>
+      <td>各位代表：　　现在，我代表国务院，向大会报告过去五年政府工作，对今年工作提出建议，请予审...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2017</td>
+      <td>各位代表：　　现在，我代表国务院，向大会报告政府工作，请予审议，并请全国政协各位委员提出...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><img alt="" src="_images/end.png" /></p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="04-crawler-douban.html" title="previous page">使用requests + Xpath抓取豆瓣电影数据</a>
+    <a class='right-next' id="next-link" href="04-crawler-cppcc.html" title="next page">抓取江苏省政协十年提案</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

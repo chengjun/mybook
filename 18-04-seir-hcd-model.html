@@ -1,0 +1,1720 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>SEIR-HCD Model &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Social Network Analysis" href="18-network-ergm-siena.html" />
+    <link rel="prev" title="Epidemics on Networks" href="18-03-network-epidemics.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="16-network-science-models.html">
+     网络科学模型
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="17-networkx.html">
+     使用NetworkX分析网络
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-02-network-diffusion.html">
+     Simulating Network Diffusion With NDlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-03-network-epidemics.html">
+     Epidemics on Networks
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     SEIR-HCD Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-network-ergm-siena.html">
+     Social Network Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">
+     天涯论坛的回帖网络分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">
+     可视化Facebook社交网络
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reproducing_hidagos_result.html">
+     4 digit sitc trade data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reproducing_hidagos_result.html#sitc-digit-2-data">
+     sitc digit-2 data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/18-04-seir-hcd-model.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F18-04-seir-hcd-model.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/18-04-seir-hcd-model.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/18-04-seir-hcd-model.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parameters-used-in-the-model">
+   Parameters used in the model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-without-intervention">
+   Model without intervention
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-with-intervention">
+   Model with intervention
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fitting-the-model-to-data">
+   Fitting the model to data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculate-for-all-countries">
+   Calculate for all countries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#todo-ideas">
+   Todo/ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#thoughts-on-compartment-models">
+   Thoughts on compartment models
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="seir-hcd-model">
+<h1>SEIR-HCD Model<a class="headerlink" href="#seir-hcd-model" title="Permalink to this headline">¶</a></h1>
+<p><img alt="image.png" src="_images/network21.png" /></p>
+<p>https://www.kaggle.com/anjum48/seir-hcd-model</p>
+<p>This is a working example of a <a class="reference external" href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SEIR_model">SIER</a> model with added compartments for HCD. The letters stand for:</p>
+<ul class="simple">
+<li><p>Susceptible, Exposed, Infected, Recovered</p></li>
+<li><p>Hospitalized, Critical, Death</p></li>
+</ul>
+<p>The author had adapted the equations from these great web apps:</p>
+<ul class="simple">
+<li><p>http://gabgoh.github.io/COVID/index.html</p></li>
+<li><p>https://neherlab.org/covid19</p></li>
+</ul>
+<p><img alt="image.png" src="_images/network22.png" /></p>
+<p>http://gabgoh.github.io/COVID/index.html</p>
+<p><img alt="image.png" src="_images/network23.png" /></p>
+<p>https://covid19-scenarios.org/</p>
+<p>https://neherlab.org/covid19</p>
+<p><img alt="image.png" src="_images/network24.png" /></p>
+<p>https://pbs.twimg.com/media/EUJNQQDXsAwz0tK?format=jpg</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_log_error</span><span class="p">,</span> <span class="n">mean_squared_error</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># solve_ivp?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This function numerically integrates a system of ordinary differential
+equations given an initial value::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dy / dt = f(t, y)
+y(t0) = y0
+</pre></div>
+</div>
+<p>Here</p>
+<ul class="simple">
+<li><p>t is a one-dimensional independent variable (time),</p></li>
+<li><p>y(t) is an
+n-dimensional vector-valued function (state), and</p></li>
+<li><p>f(t, y) is an n-dimensional
+vector-valued function that determines the differential equations.</p></li>
+</ul>
+<p>The goal is to find y(t) approximately satisfying the differential equations, given an initial value y(t0)=y0.</p>
+<div class="section" id="parameters-used-in-the-model">
+<h2>Parameters used in the model<a class="headerlink" href="#parameters-used-in-the-model" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">R_t</span></code> = reproduction number at time t. Typical 3.6* at t=0</p>
+<p><strong>Transition times</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">T_inc</span></code> = average incubation period. Typical 5.6* days</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_inf</span></code> = average infectious period. Typical 2.9 days</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_hosp</span></code> = average time a patient is in hospital before either recovering or becoming critical. Typical 4 days</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T_crit</span></code> = average time a patient is in a critical state (either recover or die). Typical 14 days</p></li>
+</ul>
+<p><strong>Fractions</strong>
+These constants are likely to be age specific (hence the subscript a):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">m_a</span></code> = fraction of infections that are asymptomatic or mild. Assumed 80% (i.e. 20% severe)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">c_a</span></code> = fraction of severe cases that turn critical. Assumed 10%</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f_a</span></code> = fraction of critical cases that are fatal. Assumed 30%</p></li>
+<li><p>Averages taken from https://www.kaggle.com/covid-19-contributions</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Susceptible equation</span>
+<span class="k">def</span> <span class="nf">dS_dt</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">R_t</span><span class="p">,</span> <span class="n">t_inf</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="n">R_t</span> <span class="o">/</span> <span class="n">t_inf</span><span class="p">)</span> <span class="o">*</span> <span class="n">I</span> <span class="o">*</span> <span class="n">S</span>
+<span class="c1"># number of susceptible is always decreasing</span>
+<span class="c1"># and it&#39;s proportional to the number of infected, existing susceptible, and rate of reproduction</span>
+
+<span class="c1"># Exposed equation</span>
+<span class="k">def</span> <span class="nf">dE_dt</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">R_t</span><span class="p">,</span> <span class="n">t_inf</span><span class="p">,</span> <span class="n">t_inc</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">R_t</span> <span class="o">/</span> <span class="n">t_inf</span><span class="p">)</span> <span class="o">*</span> <span class="n">I</span> <span class="o">*</span> <span class="n">S</span> <span class="o">-</span> <span class="p">(</span><span class="n">E</span> <span class="o">/</span> <span class="n">t_inc</span><span class="p">)</span>
+<span class="c1">#  = -Ds_dt - infected</span>
+<span class="c1"># it&#39;s proportion to the newly exposed minus the infected (in a small time period)</span>
+
+<span class="c1"># Infected equation</span>
+<span class="k">def</span> <span class="nf">dI_dt</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">t_inc</span><span class="p">,</span> <span class="n">t_inf</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">E</span> <span class="o">/</span> <span class="n">t_inc</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">I</span> <span class="o">/</span> <span class="n">t_inf</span><span class="p">)</span>
+<span class="c1"># number of infected is proportion to newly infected minus those become other states</span>
+
+
+<span class="c1"># Hospialized equation</span>
+<span class="k">def</span> <span class="nf">dH_dt</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">t_inf</span><span class="p">,</span> <span class="n">t_hosp</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">,</span> <span class="n">m_a</span><span class="p">,</span> <span class="n">f_a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">m_a</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">I</span> <span class="o">/</span> <span class="n">t_inf</span><span class="p">))</span> <span class="o">+</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">f_a</span><span class="p">)</span> <span class="o">*</span> <span class="n">C</span> <span class="o">/</span> <span class="n">t_crit</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">H</span> <span class="o">/</span> <span class="n">t_hosp</span><span class="p">)</span>
+
+<span class="c1"># Critical equation</span>
+<span class="k">def</span> <span class="nf">dC_dt</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">t_hosp</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">,</span> <span class="n">c_a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">c_a</span> <span class="o">*</span> <span class="n">H</span> <span class="o">/</span> <span class="n">t_hosp</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">C</span> <span class="o">/</span> <span class="n">t_crit</span><span class="p">)</span>
+
+
+<span class="c1"># Recovered equation</span>
+<span class="k">def</span> <span class="nf">dR_dt</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">t_inf</span><span class="p">,</span> <span class="n">t_hosp</span><span class="p">,</span> <span class="n">m_a</span><span class="p">,</span> <span class="n">c_a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">m_a</span> <span class="o">*</span> <span class="n">I</span> <span class="o">/</span> <span class="n">t_inf</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">c_a</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">H</span> <span class="o">/</span> <span class="n">t_hosp</span><span class="p">)</span>
+
+
+<span class="c1"># Deaths equation</span>
+<span class="k">def</span> <span class="nf">dD_dt</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">,</span> <span class="n">f_a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">f_a</span> <span class="o">*</span> <span class="n">C</span> <span class="o">/</span> <span class="n">t_crit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">SEIR_HCD_model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">R_t</span><span class="p">,</span> <span class="n">t_inc</span><span class="o">=</span><span class="mf">2.9</span><span class="p">,</span> <span class="n">t_inf</span><span class="o">=</span><span class="mf">5.2</span><span class="p">,</span> <span class="n">t_hosp</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">t_crit</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">m_a</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">c_a</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">f_a</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param t: Time step for solve_ivp</span>
+<span class="sd">    :param y: Previous solution or initial values</span>
+<span class="sd">    :param R_t: Reproduction number</span>
+<span class="sd">    :param t_inc: Average incubation period. Default 5.2 days</span>
+<span class="sd">    :param t_inf: Average infectious period. Default 2.9 days</span>
+<span class="sd">    :param t_hosp: Average time a patient is in hospital before either recovering or becoming critical. Default 4 days</span>
+<span class="sd">    :param t_crit: Average time a patient is in a critical state (either recover or die). Default 14 days</span>
+<span class="sd">    :param m_a: Fraction of infections that are asymptomatic or mild. Default 0.8</span>
+<span class="sd">    :param c_a: Fraction of severe cases that turn critical. Default 0.1</span>
+<span class="sd">    :param f_a: Fraction of critical cases that are fatal. Default 0.3</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">R_t</span><span class="p">):</span>
+        <span class="n">reprod</span> <span class="o">=</span> <span class="n">R_t</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">reprod</span> <span class="o">=</span> <span class="n">R_t</span>
+        
+    <span class="n">S</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">y</span>
+    
+    <span class="n">S_out</span> <span class="o">=</span> <span class="n">dS_dt</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">reprod</span><span class="p">,</span> <span class="n">t_inf</span><span class="p">)</span>
+    <span class="n">E_out</span> <span class="o">=</span> <span class="n">dE_dt</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">reprod</span><span class="p">,</span> <span class="n">t_inf</span><span class="p">,</span> <span class="n">t_inc</span><span class="p">)</span>
+    <span class="n">I_out</span> <span class="o">=</span> <span class="n">dI_dt</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">t_inc</span><span class="p">,</span> <span class="n">t_inf</span><span class="p">)</span>
+    <span class="n">R_out</span> <span class="o">=</span> <span class="n">dR_dt</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">t_inf</span><span class="p">,</span> <span class="n">t_hosp</span><span class="p">,</span> <span class="n">m_a</span><span class="p">,</span> <span class="n">c_a</span><span class="p">)</span>
+    <span class="n">H_out</span> <span class="o">=</span> <span class="n">dH_dt</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">t_inf</span><span class="p">,</span> <span class="n">t_hosp</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">,</span> <span class="n">m_a</span><span class="p">,</span> <span class="n">f_a</span><span class="p">)</span>
+    <span class="n">C_out</span> <span class="o">=</span> <span class="n">dC_dt</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">t_hosp</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">,</span> <span class="n">c_a</span><span class="p">)</span>
+    <span class="n">D_out</span> <span class="o">=</span> <span class="n">dD_dt</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">,</span> <span class="n">f_a</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">S_out</span><span class="p">,</span> <span class="n">E_out</span><span class="p">,</span> <span class="n">I_out</span><span class="p">,</span> <span class="n">R_out</span><span class="p">,</span> <span class="n">H_out</span><span class="p">,</span> <span class="n">C_out</span><span class="p">,</span> <span class="n">D_out</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_model</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;SEIR+HCD model&#39;</span><span class="p">):</span>
+    <span class="n">sus</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="n">rec</span><span class="p">,</span> <span class="n">hosp</span><span class="p">,</span> <span class="n">crit</span><span class="p">,</span> <span class="n">death</span> <span class="o">=</span> <span class="n">solution</span><span class="o">.</span><span class="n">y</span>
+    
+    <span class="n">cases</span> <span class="o">=</span> <span class="n">inf</span> <span class="o">+</span> <span class="n">rec</span> <span class="o">+</span> <span class="n">hosp</span> <span class="o">+</span> <span class="n">crit</span> <span class="o">+</span> <span class="n">death</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sus</span><span class="p">,</span> <span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Susceptible&#39;</span><span class="p">);</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">exp</span><span class="p">,</span> <span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exposed&#39;</span><span class="p">);</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inf</span><span class="p">,</span> <span class="s1">&#39;tab:red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Infected&#39;</span><span class="p">);</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rec</span><span class="p">,</span> <span class="s1">&#39;tab:green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Recovered&#39;</span><span class="p">);</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hosp</span><span class="p">,</span> <span class="s1">&#39;tab:purple&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Hospitalised&#39;</span><span class="p">);</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">crit</span><span class="p">,</span> <span class="s1">&#39;tab:brown&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Critical&#39;</span><span class="p">);</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">death</span><span class="p">,</span> <span class="s1">&#39;tab:cyan&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Deceased&#39;</span><span class="p">);</span>
+    
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Days&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Fraction of population&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">);</span>
+    
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cases</span><span class="p">,</span> <span class="s1">&#39;tab:red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cases&#39;</span><span class="p">);</span>    
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Days&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Fraction of population (Cases)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:red&#39;</span><span class="p">);</span>
+    
+    <span class="n">ax3</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">death</span><span class="p">,</span> <span class="s1">&#39;tab:cyan&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Deceased&#39;</span><span class="p">);</span>    
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Days&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Fraction of population (Fatalities)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:cyan&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="model-without-intervention">
+<h2>Model without intervention<a class="headerlink" href="#model-without-intervention" title="Permalink to this headline">¶</a></h2>
+<p>Let’s see what the model looks like without any intervention, i.e. <code class="docutils literal notranslate"><span class="pre">R_0</span></code> is a contant value</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">100000</span>  <span class="c1"># Population size</span>
+<span class="n">n_infected</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">max_days</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># State at time = 0 for SEIR_HCD model</span>
+<span class="c1"># The numbers correspond to the number of people in each of the SEIRHCD compartments</span>
+<span class="n">initial_state</span> <span class="o">=</span> <span class="p">[(</span><span class="n">N</span> <span class="o">-</span> <span class="n">n_infected</span><span class="p">)</span><span class="o">/</span> <span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n_infected</span> <span class="o">/</span> <span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">R_0</span> <span class="o">=</span> <span class="mf">3.6</span>
+<span class="n">t_inc</span> <span class="o">=</span> <span class="mf">5.6</span>
+<span class="n">t_inf</span> <span class="o">=</span> <span class="mf">2.9</span>
+<span class="n">t_hosp</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">t_crit</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">m_a</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">c_a</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">f_a</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">R_0</span><span class="p">,</span> <span class="n">t_inc</span><span class="p">,</span> <span class="n">t_inf</span><span class="p">,</span> <span class="n">t_hosp</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">,</span> <span class="n">m_a</span><span class="p">,</span> <span class="n">c_a</span><span class="p">,</span> <span class="n">f_a</span><span class="p">)</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">SEIR_HCD_model</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_days</span><span class="p">],</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">max_days</span><span class="p">))</span>
+
+<span class="n">plot_model</span><span class="p">(</span><span class="n">sol</span><span class="p">,</span> <span class="s1">&#39;SEIR-HCD Model (without intervention)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-04-seir-hcd-model_13_0.png" src="_images/18-04-seir-hcd-model_13_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="model-with-intervention">
+<h2>Model with intervention<a class="headerlink" href="#model-with-intervention" title="Permalink to this headline">¶</a></h2>
+<p>Lets assume that there is some intervention that causes the reproduction number (<code class="docutils literal notranslate"><span class="pre">R_0</span></code>) to fall to a lower value (<code class="docutils literal notranslate"><span class="pre">R_t</span></code>) at a certain time (e.g. physical distancing). Note that the actual drop will occur some time after the intervention measures are implemented.</p>
+<p>This could be modified to take any function of <code class="docutils literal notranslate"><span class="pre">R_t(t)</span></code> values to model the reproduction number as a time varying variable</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R_0</span> <span class="o">=</span> <span class="mf">3.6</span> <span class="c1"># reproduction number without intervention</span>
+<span class="n">R_t</span> <span class="o">=</span> <span class="mf">0.7</span>  <span class="c1"># reproduction number after intervention</span>
+<span class="n">intervention_day</span> <span class="o">=</span> <span class="mi">45</span>
+
+<span class="k">def</span> <span class="nf">time_varying_reproduction</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">intervention_day</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">R_t</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">R_0</span>
+    
+<span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">time_varying_reproduction</span><span class="p">,</span> <span class="n">t_inc</span><span class="p">,</span> <span class="n">t_inf</span><span class="p">,</span> <span class="n">t_hosp</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">,</span> <span class="n">m_a</span><span class="p">,</span> <span class="n">c_a</span><span class="p">,</span> <span class="n">f_a</span><span class="p">)</span>
+
+<span class="n">sol2</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">SEIR_HCD_model</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_days</span><span class="p">],</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">max_days</span><span class="p">))</span>
+
+<span class="n">plot_model</span><span class="p">(</span><span class="n">sol2</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;SEIR-HCD Model (with intervention on day </span><span class="si">{intervention_day}</span><span class="s1">)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-04-seir-hcd-model_15_0.png" src="_images/18-04-seir-hcd-model_15_0.png" />
+</div>
+</div>
+<p>Let’s compare the infection rate between the two cases</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sus</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="n">rec</span><span class="p">,</span> <span class="n">hosp</span><span class="p">,</span> <span class="n">crit</span><span class="p">,</span> <span class="n">deaths</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span>
+<span class="n">sus2</span><span class="p">,</span> <span class="n">exp2</span><span class="p">,</span> <span class="n">inf2</span><span class="p">,</span> <span class="n">rec2</span><span class="p">,</span> <span class="n">hosp2</span><span class="p">,</span> <span class="n">crit2</span><span class="p">,</span> <span class="n">deaths2</span> <span class="o">=</span> <span class="n">sol2</span><span class="o">.</span><span class="n">y</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span> 
+<span class="c1"># plt.plot(exp, &#39;tab:orange&#39;, label=&#39;Exposed&#39;, linestyle=&#39;:&#39;);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inf</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Infected&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">deaths</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Deceased&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hosp</span><span class="p">,</span> <span class="s1">&#39;tab:purple&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Hospitalised&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">);</span>
+<span class="c1"># plt.plot(exp2, &#39;tab:orange&#39;, label=&#39;Exposed with intervention&#39;);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inf2</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Infected with intervention&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">deaths2</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Deceased with intervention&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hosp2</span><span class="p">,</span> <span class="s1">&#39;tab:purple&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Hospitalised with intervention&#39;</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Comparison of the effect of the intervention on day </span><span class="si">{intervention_day}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Days&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Fraction of population&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-04-seir-hcd-model_17_0.png" src="_images/18-04-seir-hcd-model_17_0.png" />
+</div>
+</div>
+<p>You can see that after the intervention on day 45, the peak infections is lower than if there was no intervention and there are less than half as many deaths. You can see how powerful self-isolation is from this chart</p>
+</div>
+<div class="section" id="fitting-the-model-to-data">
+<h2>Fitting the model to data<a class="headerlink" href="#fitting-the-model-to-data" title="Permalink to this headline">¶</a></h2>
+<p>There are certain variables that we can play with to fit the model to real data:</p>
+<ul class="simple">
+<li><p>Average incubation period, <code class="docutils literal notranslate"><span class="pre">t_inc</span></code></p></li>
+<li><p>Average infection period, <code class="docutils literal notranslate"><span class="pre">t_inf</span></code></p></li>
+<li><p>Average hospitalization period, <code class="docutils literal notranslate"><span class="pre">t_hosp</span></code></p></li>
+<li><p>Average critital period, <code class="docutils literal notranslate"><span class="pre">t_crit</span></code></p></li>
+<li><p>The fraction of mild/asymptomatic cases, <code class="docutils literal notranslate"><span class="pre">m_a</span></code></p></li>
+<li><p>The fraction of severe cases that turn critical, <code class="docutils literal notranslate"><span class="pre">c_a</span></code></p></li>
+<li><p>The fraction of critical cases that result in a fatality, <code class="docutils literal notranslate"><span class="pre">f_a</span></code></p></li>
+<li><p>Reproduction number, <code class="docutils literal notranslate"><span class="pre">R_0</span></code> or <code class="docutils literal notranslate"><span class="pre">R_t</span></code></p></li>
+</ul>
+<p>The some of these are likely to be constants specific to the virus and some are likely to be time dependent variables dependent on factors such as:</p>
+<ul class="simple">
+<li><p>When a government intervened</p></li>
+<li><p>Peoples behaviours (do people actively self-isolate, not visit religious shrines etc.)</p></li>
+<li><p>Population demographic of a country (is a significant proportion of the population old?). This is the <code class="docutils literal notranslate"><span class="pre">a</span></code> subscript</p></li>
+<li><p>Heathcare system capacity (hostpital beds per capita)</p></li>
+<li><p>Number of testing kits available</p></li>
+</ul>
+<p>We have already used two different reproduction numbers above. Let’s see if we can derive a time-dependent <code class="docutils literal notranslate"><span class="pre">R_t</span></code> from the data. We will also try and optimize a handful of the parameters above to match the data.</p>
+<p>We will also compare this to just using a single reproduction number. This might actaully be more suitable in countries where the outbreak has just started or they are struggling to limit the spread.</p>
+<p>There are lots of ways to decay a parameter in epidemiology. I’m going to use a Hill decay, which has 2 parameters, <code class="docutils literal notranslate"><span class="pre">k</span></code> and <code class="docutils literal notranslate"><span class="pre">L</span></code> (the half decay constant):</p>
+<p><img alt="image.png" src="_images/network25.png" /></p>
+<p>https://raw.githubusercontent.com/wiki/SwissTPH/openmalaria/img/graphs/decay-functions.png</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DATE_BORDER</span> <span class="o">=</span> <span class="s1">&#39;2020-04-08&#39;</span>
+
+<span class="n">data_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/Users/datalab/bigdata/covid19-global-forecasting-week-3/&#39;</span><span class="p">)</span>
+
+<span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_path</span> <span class="o">/</span> <span class="s1">&#39;train.csv&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_path</span> <span class="o">/</span><span class="s1">&#39;test.csv&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
+<span class="n">submission</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_path</span> <span class="o">/</span><span class="s1">&#39;submission.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ForecastId&#39;</span><span class="p">])</span>
+
+<span class="c1"># Load the population data into lookup dicts</span>
+<span class="c1"># https://www.kaggle.com/anjum48/covid19-population-data</span>
+<span class="n">pop_info</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/Users/datalab/bigdata/covid19-global-forecasting-week-3/population_data.csv&#39;</span><span class="p">)</span>
+<span class="n">country_pop</span> <span class="o">=</span> <span class="n">pop_info</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;Type == &quot;Country/Region&quot;&#39;</span><span class="p">)</span>
+<span class="n">province_pop</span> <span class="o">=</span> <span class="n">pop_info</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;Type == &quot;Province/State&quot;&#39;</span><span class="p">)</span>
+<span class="n">country_lookup</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">country_pop</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">],</span> <span class="n">country_pop</span><span class="p">[</span><span class="s1">&#39;Population&#39;</span><span class="p">]))</span>
+<span class="n">province_lookup</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">province_pop</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">],</span> <span class="n">province_pop</span><span class="p">[</span><span class="s1">&#39;Population&#39;</span><span class="p">]))</span>
+
+<span class="c1"># Fix the Georgia State/Country confusion - probably a better was of doing this :)</span>
+<span class="n">train</span><span class="p">[</span><span class="s1">&#39;Province_State&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;Province_State&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Georgia&#39;</span><span class="p">,</span> <span class="s1">&#39;Georgia (State)&#39;</span><span class="p">)</span>
+<span class="n">test</span><span class="p">[</span><span class="s1">&#39;Province_State&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;Province_State&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Georgia&#39;</span><span class="p">,</span> <span class="s1">&#39;Georgia (State)&#39;</span><span class="p">)</span>
+<span class="n">province_lookup</span><span class="p">[</span><span class="s1">&#39;Georgia (State)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">province_lookup</span><span class="p">[</span><span class="s1">&#39;Georgia&#39;</span><span class="p">]</span>
+
+<span class="n">train</span><span class="p">[</span><span class="s1">&#39;Area&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;Province_State&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Country_Region&#39;</span><span class="p">])</span>
+<span class="n">test</span><span class="p">[</span><span class="s1">&#39;Area&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;Province_State&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;Country_Region&#39;</span><span class="p">])</span>
+
+<span class="c1"># https://www.kaggle.com/c/covid19-global-forecasting-week-1/discussion/139172</span>
+<span class="n">train</span><span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Area&#39;</span><span class="p">)[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cummax</span><span class="p">()</span>
+<span class="n">train</span><span class="p">[</span><span class="s1">&#39;Fatalities&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Area&#39;</span><span class="p">)[</span><span class="s1">&#39;Fatalities&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cummax</span><span class="p">()</span>
+
+<span class="c1"># Remove the leaking data</span>
+<span class="n">train_full</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">valid</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()]</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()]</span>
+
+<span class="c1"># Split the test into public &amp; private</span>
+<span class="n">test_public</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">DATE_BORDER</span><span class="p">]</span>
+<span class="n">test_private</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">DATE_BORDER</span><span class="p">]</span>
+
+<span class="c1"># Use a multi-index for easier slicing</span>
+<span class="n">train_full</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;Area&#39;</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">train</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;Area&#39;</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">valid</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;Area&#39;</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_public</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;Area&#39;</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_private</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;Area&#39;</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">submission</span><span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">submission</span><span class="p">[</span><span class="s1">&#39;Fatalities&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">train_full</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">valid</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">test_public</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">test_private</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">submission</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((22338, 5), (19584, 5), (2754, 5), (4284, 3), (8874, 3), (13158, 2))
+</pre></div>
+</div>
+</div>
+</div>
+<p>The function below evaluates a model with a constant <code class="docutils literal notranslate"><span class="pre">R</span></code> number as well as <code class="docutils literal notranslate"><span class="pre">t_hosp</span></code>, <code class="docutils literal notranslate"><span class="pre">t_crit</span></code>, <code class="docutils literal notranslate"><span class="pre">m</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code>, <code class="docutils literal notranslate"><span class="pre">f</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">OPTIM_DAYS</span> <span class="o">=</span> <span class="mi">14</span>  <span class="c1"># Number of days to use for the optimisation evaluation</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use a constant reproduction number</span>
+<span class="k">def</span> <span class="nf">eval_model_const</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="n">return_solution</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">forecast_days</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">R_0</span><span class="p">,</span> <span class="n">t_hosp</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">params</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">population</span>
+    <span class="n">n_infected</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">max_days</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">forecast_days</span>
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="p">[(</span><span class="n">N</span> <span class="o">-</span> <span class="n">n_infected</span><span class="p">)</span><span class="o">/</span> <span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n_infected</span> <span class="o">/</span> <span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">R_0</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="n">t_hosp</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+               
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">SEIR_HCD_model</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_days</span><span class="p">],</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_days</span><span class="p">))</span>
+    
+    <span class="n">sus</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="n">rec</span><span class="p">,</span> <span class="n">hosp</span><span class="p">,</span> <span class="n">crit</span><span class="p">,</span> <span class="n">deaths</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span>
+    
+    <span class="n">y_pred_cases</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">inf</span> <span class="o">+</span> <span class="n">rec</span> <span class="o">+</span> <span class="n">hosp</span> <span class="o">+</span> <span class="n">crit</span> <span class="o">+</span> <span class="n">deaths</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span> <span class="o">*</span> <span class="n">population</span>
+    <span class="n">y_true_cases</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">y_pred_fat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">deaths</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span> <span class="o">*</span> <span class="n">population</span>
+    <span class="n">y_true_fat</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Fatalities&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    
+    <span class="n">optim_days</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">OPTIM_DAYS</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>  <span class="c1"># Days to optimise for</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">optim_days</span><span class="o">+</span><span class="mi">1</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Recent data is more heavily weighted</span>
+    <span class="n">msle_cases</span> <span class="o">=</span> <span class="n">mean_squared_log_error</span><span class="p">(</span><span class="n">y_true_cases</span><span class="p">[</span><span class="o">-</span><span class="n">optim_days</span><span class="p">:],</span> <span class="n">y_pred_cases</span><span class="p">[</span><span class="o">-</span><span class="n">optim_days</span><span class="p">:],</span> <span class="n">weights</span><span class="p">)</span>
+    <span class="n">msle_fat</span> <span class="o">=</span> <span class="n">mean_squared_log_error</span><span class="p">(</span><span class="n">y_true_fat</span><span class="p">[</span><span class="o">-</span><span class="n">optim_days</span><span class="p">:],</span> <span class="n">y_pred_fat</span><span class="p">[</span><span class="o">-</span><span class="n">optim_days</span><span class="p">:],</span> <span class="n">weights</span><span class="p">)</span>
+    
+    <span class="n">msle_final</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">msle_cases</span><span class="p">,</span> <span class="n">msle_fat</span><span class="p">])</span>
+    
+    <span class="k">if</span> <span class="n">return_solution</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">msle_final</span><span class="p">,</span> <span class="n">sol</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">msle_final</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The function below is essentially the same as above, by R is decayed using a Hill decay function. This model requires 2 additional parameters to be optimized, <code class="docutils literal notranslate"><span class="pre">k</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">L</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use a Hill decayed reproduction number</span>
+<span class="k">def</span> <span class="nf">eval_model_decay</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="n">return_solution</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">forecast_days</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">R_0</span><span class="p">,</span> <span class="n">t_hosp</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">params</span>  
+    <span class="n">N</span> <span class="o">=</span> <span class="n">population</span>
+    <span class="n">n_infected</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">max_days</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">forecast_days</span>
+    
+    <span class="c1"># https://github.com/SwissTPH/openmalaria/wiki/ModelDecayFunctions   </span>
+    <span class="c1"># Hill decay. Initial values: R_0=2.2, k=2, L=50</span>
+    <span class="k">def</span> <span class="nf">time_varying_reproduction</span><span class="p">(</span><span class="n">t</span><span class="p">):</span> 
+        <span class="k">return</span> <span class="n">R_0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">**</span><span class="n">k</span><span class="p">)</span>
+    
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="p">[(</span><span class="n">N</span> <span class="o">-</span> <span class="n">n_infected</span><span class="p">)</span><span class="o">/</span> <span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n_infected</span> <span class="o">/</span> <span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">time_varying_reproduction</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="n">t_hosp</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+            
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">SEIR_HCD_model</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_days</span><span class="p">],</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_days</span><span class="p">))</span>
+    
+    <span class="n">sus</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="n">rec</span><span class="p">,</span> <span class="n">hosp</span><span class="p">,</span> <span class="n">crit</span><span class="p">,</span> <span class="n">deaths</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span>
+    
+    <span class="n">y_pred_cases</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">inf</span> <span class="o">+</span> <span class="n">rec</span> <span class="o">+</span> <span class="n">hosp</span> <span class="o">+</span> <span class="n">crit</span> <span class="o">+</span> <span class="n">deaths</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span> <span class="o">*</span> <span class="n">population</span>
+    <span class="n">y_true_cases</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">y_pred_fat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">deaths</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span> <span class="o">*</span> <span class="n">population</span>
+    <span class="n">y_true_fat</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Fatalities&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    
+    <span class="n">optim_days</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">OPTIM_DAYS</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>  <span class="c1"># Days to optimise for</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">optim_days</span><span class="o">+</span><span class="mi">1</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Recent data is more heavily weighted</span>
+    
+    <span class="n">msle_cases</span> <span class="o">=</span> <span class="n">mean_squared_log_error</span><span class="p">(</span><span class="n">y_true_cases</span><span class="p">[</span><span class="o">-</span><span class="n">optim_days</span><span class="p">:],</span> <span class="n">y_pred_cases</span><span class="p">[</span><span class="o">-</span><span class="n">optim_days</span><span class="p">:],</span> <span class="n">weights</span><span class="p">)</span>
+    <span class="n">msle_fat</span> <span class="o">=</span> <span class="n">mean_squared_log_error</span><span class="p">(</span><span class="n">y_true_fat</span><span class="p">[</span><span class="o">-</span><span class="n">optim_days</span><span class="p">:],</span> <span class="n">y_pred_fat</span><span class="p">[</span><span class="o">-</span><span class="n">optim_days</span><span class="p">:],</span> <span class="n">weights</span><span class="p">)</span>
+    <span class="n">msle_final</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">msle_cases</span><span class="p">,</span> <span class="n">msle_fat</span><span class="p">])</span>
+    
+    <span class="k">if</span> <span class="n">return_solution</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">msle_final</span><span class="p">,</span> <span class="n">sol</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">msle_final</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">use_last_value</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">valid_data</span><span class="p">,</span> <span class="n">test_data</span><span class="p">):</span>
+    <span class="n">lv</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">,</span> <span class="s1">&#39;Fatalities&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    
+    <span class="n">forecast_ids</span> <span class="o">=</span> <span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;ForecastId&#39;</span><span class="p">]</span>
+    <span class="n">submission</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">forecast_ids</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">,</span> <span class="s1">&#39;Fatalities&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">lv</span>
+    
+    <span class="k">if</span> <span class="n">valid_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">y_pred_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">valid_data</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="n">lv</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">y_true_valid</span> <span class="o">=</span> <span class="n">valid_data</span><span class="p">[[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">,</span> <span class="s1">&#39;Fatalities&#39;</span><span class="p">]]</span>
+
+        <span class="n">msle_cases</span> <span class="o">=</span> <span class="n">mean_squared_log_error</span><span class="p">(</span><span class="n">y_true_valid</span><span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">],</span> <span class="n">y_pred_valid</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">msle_fat</span> <span class="o">=</span> <span class="n">mean_squared_log_error</span><span class="p">(</span><span class="n">y_true_valid</span><span class="p">[</span><span class="s1">&#39;Fatalities&#39;</span><span class="p">],</span> <span class="n">y_pred_valid</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">msle_final</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">msle_cases</span><span class="p">,</span> <span class="n">msle_fat</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">msle_final</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_model_results</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">train_data</span><span class="p">,</span> <span class="n">valid_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+    
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Confirmed Cases&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Fatalities&#39;</span><span class="p">)</span>
+    
+    <span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Confirmed Cases (train)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+    <span class="n">y_pred</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Modeled Cases&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+    <span class="n">ax3</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="s1">&#39;R&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Reproduction number&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">secondary_y</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Reproduction number&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">);</span>
+        
+    <span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;Fatalities&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fatalities (train)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+    <span class="n">y_pred</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;Fatalities&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Modeled Fatalities&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">valid_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">valid_data</span><span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Confirmed Cases (valid)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+        <span class="n">valid_data</span><span class="p">[</span><span class="s1">&#39;Fatalities&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fatalities (valid)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+        <span class="n">y_pred</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">valid_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Modeled Cases (forecast)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+        <span class="n">y_pred</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">valid_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;Fatalities&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Modeled Fatalities (forecast)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">y_pred</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Modeled Cases (forecast)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+        <span class="n">y_pred</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;Fatalities&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Modeled Fatalities (forecast)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+        
+    <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>The function below fits a SEIR-HCD model for each area, either using a constant R or a decayed R, whichever is better. If the total cases/1M pop is below 1, then the last value is used.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit_model_public</span><span class="p">(</span><span class="n">area_name</span><span class="p">,</span> 
+                     <span class="n">initial_guess</span><span class="o">=</span><span class="p">[</span><span class="mf">3.6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+                     <span class="n">bounds</span><span class="o">=</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="c1"># R bounds</span>
+                             <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="c1"># transition time param bounds</span>
+                             <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)),</span> <span class="c1"># fraction time param bounds</span>
+                     <span class="n">make_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        
+    <span class="n">train_data</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">area_name</span><span class="p">]</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;ConfirmedCases &gt; 0&#39;</span><span class="p">)</span>
+    <span class="n">valid_data</span> <span class="o">=</span> <span class="n">valid</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">area_name</span><span class="p">]</span>
+    <span class="n">test_data</span> <span class="o">=</span> <span class="n">test_public</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">area_name</span><span class="p">]</span>  
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">population</span> <span class="o">=</span> <span class="n">province_lookup</span><span class="p">[</span><span class="n">area_name</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">population</span> <span class="o">=</span> <span class="n">country_lookup</span><span class="p">[</span><span class="n">area_name</span><span class="p">]</span>
+        
+    <span class="n">cases_per_million</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span> <span class="o">/</span> <span class="n">population</span>
+    <span class="n">n_infected</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+    <span class="k">if</span> <span class="n">cases_per_million</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">use_last_value</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">valid_data</span><span class="p">,</span> <span class="n">test_data</span><span class="p">)</span>
+                
+    <span class="n">res_const</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">eval_model_const</span><span class="p">,</span> <span class="n">initial_guess</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span>
+                         <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+                         <span class="n">method</span><span class="o">=</span><span class="s1">&#39;L-BFGS-B&#39;</span><span class="p">)</span>
+    
+    <span class="n">res_decay</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">eval_model_decay</span><span class="p">,</span> <span class="n">initial_guess</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
+                         <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+                         <span class="n">method</span><span class="o">=</span><span class="s1">&#39;L-BFGS-B&#39;</span><span class="p">)</span>
+    
+    <span class="n">dates_all</span> <span class="o">=</span> <span class="n">train_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="n">dates_val</span> <span class="o">=</span> <span class="n">train_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">valid_data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    
+    
+    <span class="c1"># If using a constant R number is better, use that model</span>
+    <span class="k">if</span> <span class="n">res_const</span><span class="o">.</span><span class="n">fun</span> <span class="o">&lt;</span> <span class="n">res_decay</span><span class="o">.</span><span class="n">fun</span><span class="p">:</span>
+        <span class="n">msle</span><span class="p">,</span> <span class="n">sol</span> <span class="o">=</span> <span class="n">eval_model_const</span><span class="p">(</span><span class="n">res_const</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">train_data</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">))</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">res_const</span>
+        <span class="n">R_t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">res_const</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dates_val</span><span class="p">),</span> <span class="n">dates_val</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">msle</span><span class="p">,</span> <span class="n">sol</span> <span class="o">=</span> <span class="n">eval_model_decay</span><span class="p">(</span><span class="n">res_decay</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">train_data</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">))</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">res_decay</span>
+        
+        <span class="c1"># Calculate the R_t values</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dates_val</span><span class="p">))</span>
+        <span class="n">R_0</span><span class="p">,</span> <span class="n">t_hosp</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span>  
+        <span class="n">R_t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">R_0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">**</span><span class="n">k</span><span class="p">),</span> <span class="n">dates_val</span><span class="p">)</span>
+        
+    <span class="n">sus</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="n">rec</span><span class="p">,</span> <span class="n">hosp</span><span class="p">,</span> <span class="n">crit</span><span class="p">,</span> <span class="n">deaths</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span>
+    
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">inf</span> <span class="o">+</span> <span class="n">rec</span> <span class="o">+</span> <span class="n">hosp</span> <span class="o">+</span> <span class="n">crit</span> <span class="o">+</span> <span class="n">deaths</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span> <span class="o">*</span> <span class="n">population</span><span class="p">,</span>
+        <span class="s1">&#39;Fatalities&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">deaths</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span> <span class="o">*</span> <span class="n">population</span><span class="p">,</span>
+        <span class="s1">&#39;R&#39;</span><span class="p">:</span> <span class="n">R_t</span><span class="p">,</span>
+    <span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">dates_all</span><span class="p">)</span>
+    
+    <span class="n">y_pred_valid</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">train_data</span><span class="p">):</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">valid_data</span><span class="p">)]</span>
+    <span class="n">y_pred_test</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">train_data</span><span class="p">):]</span>
+    <span class="n">y_true_valid</span> <span class="o">=</span> <span class="n">valid_data</span><span class="p">[[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">,</span> <span class="s1">&#39;Fatalities&#39;</span><span class="p">]]</span>
+        
+    <span class="n">valid_msle_cases</span> <span class="o">=</span> <span class="n">mean_squared_log_error</span><span class="p">(</span><span class="n">y_true_valid</span><span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">],</span> <span class="n">y_pred_valid</span><span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">])</span>
+    <span class="n">valid_msle_fat</span> <span class="o">=</span> <span class="n">mean_squared_log_error</span><span class="p">(</span><span class="n">y_true_valid</span><span class="p">[</span><span class="s1">&#39;Fatalities&#39;</span><span class="p">],</span> <span class="n">y_pred_valid</span><span class="p">[</span><span class="s1">&#39;Fatalities&#39;</span><span class="p">])</span>
+    <span class="n">valid_msle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">valid_msle_cases</span><span class="p">,</span> <span class="n">valid_msle_fat</span><span class="p">])</span>
+    
+    <span class="k">if</span> <span class="n">make_plot</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Validation MSLE: </span><span class="si">{valid_msle:0.5f}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R: </span><span class="si">{res.x[0]:0.3f}</span><span class="s1">, t_hosp: </span><span class="si">{res.x[1]:0.3f}</span><span class="s1">, t_crit: </span><span class="si">{res.x[2]:0.3f}</span><span class="s1">, &#39;</span>
+              <span class="sa">f</span><span class="s1">&#39;m: </span><span class="si">{res.x[3]:0.3f}</span><span class="s1">, c: </span><span class="si">{res.x[4]:0.3f}</span><span class="s1">, f: </span><span class="si">{res.x[5]:0.3f}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">plot_model_results</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">train_data</span><span class="p">,</span> <span class="n">valid_data</span><span class="p">)</span>
+        
+    <span class="c1"># Put the forecast in the submission</span>
+    <span class="n">forecast_ids</span> <span class="o">=</span> <span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;ForecastId&#39;</span><span class="p">]</span>
+    <span class="n">submission</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">forecast_ids</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">,</span> <span class="s1">&#39;Fatalities&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">y_pred_test</span><span class="p">[[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">,</span> <span class="s1">&#39;Fatalities&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+    
+    <span class="k">return</span> <span class="n">valid_msle</span>
+            
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit a model on the full dataset (i.e. no validation)</span>
+<span class="k">def</span> <span class="nf">fit_model_private</span><span class="p">(</span><span class="n">area_name</span><span class="p">,</span> 
+                      <span class="n">initial_guess</span><span class="o">=</span><span class="p">[</span><span class="mf">3.6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+                      <span class="n">bounds</span><span class="o">=</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="c1"># R bounds</span>
+                              <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="c1"># transition time param bounds</span>
+                              <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)),</span> <span class="c1"># fraction time param bounds</span>
+                      <span class="n">make_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        
+    <span class="n">train_data</span> <span class="o">=</span> <span class="n">train_full</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">area_name</span><span class="p">]</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;ConfirmedCases &gt; 0&#39;</span><span class="p">)</span>
+    <span class="n">test_data</span> <span class="o">=</span> <span class="n">test_private</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">area_name</span><span class="p">]</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">population</span> <span class="o">=</span> <span class="n">province_lookup</span><span class="p">[</span><span class="n">area_name</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">population</span> <span class="o">=</span> <span class="n">country_lookup</span><span class="p">[</span><span class="n">area_name</span><span class="p">]</span>
+        
+    <span class="n">cases_per_million</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span> <span class="o">/</span> <span class="n">population</span>
+    <span class="n">n_infected</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+    <span class="k">if</span> <span class="n">cases_per_million</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">use_last_value</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">test_data</span><span class="p">)</span>
+                
+    <span class="n">res_const</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">eval_model_const</span><span class="p">,</span> <span class="n">initial_guess</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span>
+                         <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+                         <span class="n">method</span><span class="o">=</span><span class="s1">&#39;L-BFGS-B&#39;</span><span class="p">)</span>
+    
+    <span class="n">res_decay</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">eval_model_decay</span><span class="p">,</span> <span class="n">initial_guess</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
+                         <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+                         <span class="n">method</span><span class="o">=</span><span class="s1">&#39;L-BFGS-B&#39;</span><span class="p">)</span>
+    
+    <span class="n">dates_all</span> <span class="o">=</span> <span class="n">train_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    
+    
+    <span class="c1"># If using a constant R number is better, use that model</span>
+    <span class="k">if</span> <span class="n">res_const</span><span class="o">.</span><span class="n">fun</span> <span class="o">&lt;</span> <span class="n">res_decay</span><span class="o">.</span><span class="n">fun</span><span class="p">:</span>
+        <span class="n">msle</span><span class="p">,</span> <span class="n">sol</span> <span class="o">=</span> <span class="n">eval_model_const</span><span class="p">(</span><span class="n">res_const</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">train_data</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">))</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">res_const</span>
+        <span class="n">R_t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">res_const</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dates_all</span><span class="p">),</span> <span class="n">dates_all</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">msle</span><span class="p">,</span> <span class="n">sol</span> <span class="o">=</span> <span class="n">eval_model_decay</span><span class="p">(</span><span class="n">res_decay</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">train_data</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">))</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">res_decay</span>
+        
+        <span class="c1"># Calculate the R_t values</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dates_all</span><span class="p">))</span>
+        <span class="n">R_0</span><span class="p">,</span> <span class="n">t_hosp</span><span class="p">,</span> <span class="n">t_crit</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span>  
+        <span class="n">R_t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">R_0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">**</span><span class="n">k</span><span class="p">),</span> <span class="n">dates_all</span><span class="p">)</span>
+        
+    <span class="n">sus</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="n">rec</span><span class="p">,</span> <span class="n">hosp</span><span class="p">,</span> <span class="n">crit</span><span class="p">,</span> <span class="n">deaths</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span>
+    
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">inf</span> <span class="o">+</span> <span class="n">rec</span> <span class="o">+</span> <span class="n">hosp</span> <span class="o">+</span> <span class="n">crit</span> <span class="o">+</span> <span class="n">deaths</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span> <span class="o">*</span> <span class="n">population</span><span class="p">,</span>
+        <span class="s1">&#39;Fatalities&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">deaths</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span> <span class="o">*</span> <span class="n">population</span><span class="p">,</span>
+        <span class="s1">&#39;R&#39;</span><span class="p">:</span> <span class="n">R_t</span><span class="p">,</span>
+    <span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">dates_all</span><span class="p">)</span>
+    
+    <span class="n">y_pred_test</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">train_data</span><span class="p">):]</span>
+    
+    <span class="k">if</span> <span class="n">make_plot</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R: </span><span class="si">{res.x[0]:0.3f}</span><span class="s1">, t_hosp: </span><span class="si">{res.x[1]:0.3f}</span><span class="s1">, t_crit: </span><span class="si">{res.x[2]:0.3f}</span><span class="s1">, &#39;</span>
+              <span class="sa">f</span><span class="s1">&#39;m: </span><span class="si">{res.x[3]:0.3f}</span><span class="s1">, c: </span><span class="si">{res.x[4]:0.3f}</span><span class="s1">, f: </span><span class="si">{res.x[5]:0.3f}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">plot_model_results</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">train_data</span><span class="p">)</span>
+        
+    <span class="c1"># Put the forecast in the submission</span>
+    <span class="n">forecast_ids</span> <span class="o">=</span> <span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;ForecastId&#39;</span><span class="p">]</span>
+    <span class="n">submission</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">forecast_ids</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">,</span> <span class="s1">&#39;Fatalities&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">y_pred_test</span><span class="p">[[</span><span class="s1">&#39;ConfirmedCases&#39;</span><span class="p">,</span> <span class="s1">&#39;Fatalities&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+            
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_model_public</span><span class="p">(</span><span class="s1">&#39;Italy&#39;</span><span class="p">)</span>
+<span class="n">fit_model_private</span><span class="p">(</span><span class="s1">&#39;Italy&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Validation MSLE: 0.01854
+R: 3.832, t_hosp: 0.823, t_crit: 12.281, m: 0.542, c: 0.799, f: 1.000
+R: 4.333, t_hosp: 0.502, t_crit: 3.916, m: 0.500, c: 0.351, f: 1.000
+</pre></div>
+</div>
+<img alt="_images/18-04-seir-hcd-model_34_1.png" src="_images/18-04-seir-hcd-model_34_1.png" />
+<img alt="_images/18-04-seir-hcd-model_34_2.png" src="_images/18-04-seir-hcd-model_34_2.png" />
+</div>
+</div>
+<p>Above you can see the model optimized on the last 14 days of data from Italy which has been weighted to put more importance on recent data</p>
+<p>The numbers show that <code class="docutils literal notranslate"><span class="pre">R_0</span></code> was around 3.5 and a decayed value is a better fit to the data. This is good news for Italy as it shows its measures are working.</p>
+<p>Let’s try Iran, South Korea and Japan. I chose these countries since they are probably the most challenging to model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_model_public</span><span class="p">(</span><span class="s1">&#39;Iran&#39;</span><span class="p">)</span>
+<span class="n">fit_model_private</span><span class="p">(</span><span class="s1">&#39;Iran&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Validation MSLE: 0.08769
+R: 9.729, t_hosp: 0.500, t_crit: 2.000, m: 0.616, c: 0.284, f: 0.947
+R: 17.751, t_hosp: 0.541, t_crit: 2.000, m: 0.810, c: 0.477, f: 1.000
+</pre></div>
+</div>
+<img alt="_images/18-04-seir-hcd-model_36_1.png" src="_images/18-04-seir-hcd-model_36_1.png" />
+<img alt="_images/18-04-seir-hcd-model_36_2.png" src="_images/18-04-seir-hcd-model_36_2.png" />
+</div>
+</div>
+<p>An unusual feature of the Iranian data is how high the R value needs to be for the model to fit. Iran was criticised for not closing religious shrines and locking down earlier, so the virus was extremely contagious. The data also appears of have multiple inflection points</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_model_public</span><span class="p">(</span><span class="s1">&#39;Korea, South&#39;</span><span class="p">)</span>
+<span class="n">fit_model_private</span><span class="p">(</span><span class="s1">&#39;Korea, South&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Validation MSLE: 0.05582
+R: 3.080, t_hosp: 3.490, t_crit: 13.857, m: 0.575, c: 0.104, f: 0.966
+R: 3.538, t_hosp: 0.830, t_crit: 11.987, m: 0.612, c: 0.060, f: 1.000
+</pre></div>
+</div>
+<img alt="_images/18-04-seir-hcd-model_38_1.png" src="_images/18-04-seir-hcd-model_38_1.png" />
+<img alt="_images/18-04-seir-hcd-model_38_2.png" src="_images/18-04-seir-hcd-model_38_2.png" />
+</div>
+</div>
+<p>South Korea is unusual due to the incredible efforts to stop the spread</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_model_public</span><span class="p">(</span><span class="s1">&#39;Japan&#39;</span><span class="p">)</span>
+<span class="n">fit_model_private</span><span class="p">(</span><span class="s1">&#39;Japan&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Validation MSLE: 0.03857
+R: 2.580, t_hosp: 3.999, t_crit: 13.999, m: 0.539, c: 0.380, f: 0.489
+R: 2.858, t_hosp: 3.890, t_crit: 13.966, m: 0.505, c: 0.194, f: 0.738
+</pre></div>
+</div>
+<img alt="_images/18-04-seir-hcd-model_40_1.png" src="_images/18-04-seir-hcd-model_40_1.png" />
+<img alt="_images/18-04-seir-hcd-model_40_2.png" src="_images/18-04-seir-hcd-model_40_2.png" />
+</div>
+</div>
+<p>I’m not sure why the red line is so wiggly for Japan ¯\<em>(ツ)</em>/¯</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_model_public</span><span class="p">(</span><span class="s1">&#39;Hubei&#39;</span><span class="p">)</span>
+<span class="n">fit_model_private</span><span class="p">(</span><span class="s1">&#39;Hubei&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Validation MSLE: 0.08612
+R: 2.136, t_hosp: 3.908, t_crit: 13.967, m: 0.500, c: 0.210, f: 0.941
+R: 2.759, t_hosp: 0.501, t_crit: 2.000, m: 0.915, c: 0.556, f: 0.999
+</pre></div>
+</div>
+<img alt="_images/18-04-seir-hcd-model_42_1.png" src="_images/18-04-seir-hcd-model_42_1.png" />
+<img alt="_images/18-04-seir-hcd-model_42_2.png" src="_images/18-04-seir-hcd-model_42_2.png" />
+</div>
+</div>
+<p>The plot for Hubei looks really good. In fact the data for most of the Chinese provinces fit well to compartment models</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit_model_public</span><span class="p">(</span><span class="s1">&#39;United Kingdom&#39;</span><span class="p">)</span>
+<span class="n">fit_model_private</span><span class="p">(</span><span class="s1">&#39;United Kingdom&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Validation MSLE: 0.24951
+R: 2.642, t_hosp: 4.003, t_crit: 13.992, m: 0.500, c: 0.924, f: 0.567
+R: 2.682, t_hosp: 3.890, t_crit: 13.947, m: 0.500, c: 0.977, f: 0.998
+</pre></div>
+</div>
+<img alt="_images/18-04-seir-hcd-model_44_1.png" src="_images/18-04-seir-hcd-model_44_1.png" />
+<img alt="_images/18-04-seir-hcd-model_44_2.png" src="_images/18-04-seir-hcd-model_44_2.png" />
+</div>
+</div>
+<p>Things are not looking good for the UK. Let’s hope the lockdown starts bringing the R number down soon</p>
+</div>
+<div class="section" id="calculate-for-all-countries">
+<h2>Calculate for all countries<a class="headerlink" href="#calculate-for-all-countries" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Public Leaderboard</span>
+<span class="n">validation_scores</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">test_public</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="n">fit_model_public</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">make_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">validation_scores</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;Country&#39;</span><span class="p">:</span> <span class="n">c</span><span class="p">,</span> <span class="s1">&#39;MSLE&#39;</span><span class="p">:</span> <span class="n">score</span><span class="p">})</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{c}</span><span class="s1"> </span><span class="si">{score:0.5f}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">IndexError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;has no cases in train&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+<span class="n">validation_scores</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">validation_scores</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean validation score: {np.sqrt(validation_scores[&quot;MSLE&quot;].mean()):0.5f}&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "d8a007bb72bc4832abcb0190270c5752", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Afghanistan 0.12743
+Alabama 0.72514
+Alaska 0.09241
+Albania 0.51119
+Alberta 0.06648
+Algeria 0.13221
+Andorra 0.33393
+Angola 0.56596
+Anguilla has no cases in train
+Anhui 0.11927
+Antigua and Barbuda 0.17268
+Argentina 0.02215
+Arizona 0.10757
+Arkansas 0.01253
+Armenia 0.88906
+Aruba 0.09779
+Australian Capital Territory 0.73338
+Austria 0.08769
+Azerbaijan 0.08695
+Bahamas 0.37651
+Bahrain 0.07500
+Bangladesh 0.03315
+Barbados 0.02815
+Beijing 2.41455
+Belarus 0.35242
+Belgium 0.31902
+Belize 2.25297
+Benin 0.06801
+Bermuda 0.02297
+Bhutan 0.10333
+Bolivia 1.28864
+Bosnia and Herzegovina 0.06837
+Botswana has no cases in train
+Brazil 0.49535
+British Columbia 0.01736
+British Virgin Islands has no cases in train
+Brunei 0.18483
+Bulgaria 0.07416
+Burkina Faso 1.52207
+Burma has no cases in train
+Burundi has no cases in train
+Cabo Verde 0.06396
+California 0.04217
+Cambodia 0.02214
+Cameroon 0.30591
+Cayman Islands 0.26609
+Central African Republic 0.00000
+Chad 0.11143
+Channel Islands 0.62658
+Chile 0.03205
+Chongqing 1.89328
+Colombia 0.62988
+Colorado 0.18060
+Congo (Brazzaville) 0.70144
+Congo (Kinshasa) 0.65394
+Connecticut 0.16657
+Costa Rica 0.38812
+Cote d&#39;Ivoire 0.29531
+Croatia 0.18554
+Cuba 0.10131
+Curacao 0.24441
+Cyprus 0.07476
+Czechia 0.41217
+Delaware 1.93817
+Denmark 0.90012
+Diamond Princess 0.00092
+District of Columbia 0.04494
+Djibouti 0.11526
+Dominica 5.24321
+Dominican Republic 0.11935
+Ecuador 0.08528
+Egypt 0.03193
+El Salvador 0.31165
+Equatorial Guinea 0.44533
+Eritrea 0.45002
+Estonia 0.41415
+Eswatini 0.05699
+Ethiopia 0.17059
+Faroe Islands 0.04382
+Fiji 0.86042
+Finland 1.01845
+Florida 0.20914
+France 0.10769
+French Guiana 0.01435
+French Polynesia 0.18811
+Fujian 0.00566
+Gabon 0.24361
+Gambia 0.13557
+Gansu 0.60360
+Georgia 0.00235
+Georgia (State) 0.30753
+Germany 0.20845
+Ghana 0.95307
+Gibraltar 0.16464
+Greece 0.55200
+Greenland 0.11858
+Grenada 0.80539
+Guadeloupe 0.10206
+Guam 0.77077
+Guangdong 2.41459
+Guangxi 0.00654
+Guatemala 0.21338
+Guinea 0.98431
+Guinea-Bissau 0.03865
+Guizhou 0.00966
+Guyana 1.01050
+Hainan 1.89328
+Haiti 0.11263
+Hawaii 0.63963
+Hebei 0.07986
+Heilongjiang 0.00270
+Henan 0.00528
+Holy See 0.12816
+Honduras 1.79433
+Hong Kong 0.13896
+Hubei 0.07748
+Hunan 0.33991
+Hungary 0.15512
+Iceland 1.46830
+Idaho 1.91254
+Illinois 0.00430
+India 0.82211
+Indiana 0.14152
+Indonesia 0.57203
+Inner Mongolia 0.04602
+Iowa 0.38892
+Iran 0.06727
+Iraq 0.07056
+Ireland 0.26026
+Isle of Man 0.13505
+Israel 0.19562
+Italy 0.01375
+Jamaica 0.15535
+Japan 0.03857
+Jiangsu 0.00012
+Jiangxi 0.37052
+Jilin 0.24093
+Jordan 1.33479
+Kansas 0.09904
+Kazakhstan 0.85740
+Kentucky 0.12370
+Kenya 0.57979
+Korea, South 0.05582
+Kosovo has no cases in train
+Kuwait 0.03037
+Kyrgyzstan 0.97073
+Laos 0.34284
+Latvia 0.00086
+Lebanon 0.09737
+Liaoning 0.60798
+Liberia 0.03915
+Libya 0.90676
+Liechtenstein 0.32708
+Lithuania 0.06698
+Louisiana 0.25759
+Luxembourg 0.51418
+MS Zaandam has no cases in train
+Macau 0.04072
+Madagascar 0.29935
+Maine 1.08531
+Malaysia 0.26058
+Maldives 0.02276
+Mali 2.34126
+Malta 0.00321
+Manitoba 0.41790
+Martinique 0.17515
+Maryland 0.07188
+Massachusetts 0.40826
+Mauritania 0.35515
+Mauritius 2.64983
+Mayotte 0.76334
+Mexico 0.09908
+Michigan 1.69823
+Minnesota 0.54377
+Mississippi 1.81861
+Missouri 1.68964
+Moldova 0.47530
+Monaco 0.16118
+Mongolia 0.00190
+Montana 0.97386
+Montenegro 3.22150
+Montserrat 0.47326
+Morocco 0.10903
+Mozambique 0.09737
+Namibia 0.00506
+Nebraska 0.83634
+Nepal 0.07406
+Netherlands 0.04488
+Nevada 0.12397
+New Brunswick 0.54344
+New Caledonia 1.21304
+New Hampshire 0.15590
+New Jersey 0.83307
+New Mexico 0.07984
+New South Wales 0.18020
+New York 0.52314
+New Zealand 0.25058
+Newfoundland and Labrador 0.43716
+Nicaragua 0.34921
+Niger 1.18147
+Nigeria 0.41103
+Ningxia 0.00000
+North Carolina 0.34852
+North Dakota 0.64453
+North Macedonia 0.08234
+Northern Territory 0.33617
+Northwest Territories has no cases in train
+Norway 0.07513
+Nova Scotia 0.03640
+Ohio 0.45557
+Oklahoma 0.04166
+Oman 0.10189
+Ontario 1.02257
+Oregon 0.14181
+Pakistan 0.29874
+Panama 0.11088
+Papua New Guinea 0.00000
+Paraguay 0.47218
+Pennsylvania 0.19818
+Peru 0.12140
+Philippines 0.57713
+Poland 0.04293
+Portugal 0.02244
+Prince Edward Island 0.11331
+Puerto Rico 0.11795
+Qatar 0.40275
+Qinghai 0.00153
+Quebec 0.06114
+Queensland 0.59571
+Reunion 0.04432
+Rhode Island 1.47861
+Romania 0.27696
+Russia 3.46854
+Rwanda 0.89259
+Saint Barthelemy 0.04034
+Saint Kitts and Nevis 0.03932
+Saint Lucia 0.16478
+Saint Vincent and the Grenadines 0.01102
+San Marino 0.02950
+Saskatchewan 0.42101
+Saudi Arabia 0.55216
+Senegal 0.11559
+Serbia 0.05675
+Seychelles 0.00738
+Shaanxi 0.04003
+Shandong 0.08495
+Shanghai 1.68161
+Shanxi 0.00021
+Sichuan 0.04025
+Sierra Leone has no cases in train
+Singapore 0.04932
+Sint Maarten 0.13071
+Slovakia 1.56356
+Slovenia 0.05741
+Somalia 0.35669
+South Africa 1.03612
+South Australia 0.16676
+South Carolina 0.20578
+South Dakota 0.30670
+Spain 0.16603
+Sri Lanka 0.50197
+St Martin 0.13419
+Sudan 0.19168
+Suriname 0.29944
+Sweden 0.34320
+Switzerland 0.03825
+Syria 0.48475
+Taiwan* 0.08788
+Tanzania 0.14528
+Tasmania 0.19882
+Tennessee 0.37046
+Texas 0.02742
+Thailand 2.56193
+Tianjin 0.96472
+Tibet 0.00000
+Timor-Leste 0.00000
+Togo 0.31896
+Trinidad and Tobago 0.03965
+Tunisia 0.18126
+Turkey 3.64505
+Turks and Caicos Islands has no cases in train
+Uganda 0.35980
+Ukraine 0.17316
+United Arab Emirates 0.38550
+United Kingdom 0.24951
+Uruguay 0.36832
+Utah 0.03863
+Uzbekistan 1.53152
+Venezuela 2.42317
+Vermont 0.87986
+Victoria 1.29814
+Vietnam 0.02202
+Virgin Islands 0.89751
+Virginia 0.13047
+Washington 0.09858
+West Bank and Gaza 0.41464
+West Virginia 1.02550
+Western Australia 0.14752
+Wisconsin 0.64225
+Wyoming 0.18819
+Xinjiang 0.96091
+Yukon has no cases in train
+Yunnan 0.60884
+Zambia 0.41583
+Zhejiang 0.24028
+Zimbabwe 0.23504
+
+Mean validation score: 0.67788
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find which areas are not being predicted well</span>
+<span class="n">validation_scores</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MSLE&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country</th>
+      <th>MSLE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>63</th>
+      <td>Dominica</td>
+      <td>5.243210</td>
+    </tr>
+    <tr>
+      <th>270</th>
+      <td>Turkey</td>
+      <td>3.645047</td>
+    </tr>
+    <tr>
+      <th>224</th>
+      <td>Russia</td>
+      <td>3.468539</td>
+    </tr>
+    <tr>
+      <th>173</th>
+      <td>Montenegro</td>
+      <td>3.221502</td>
+    </tr>
+    <tr>
+      <th>162</th>
+      <td>Mauritius</td>
+      <td>2.649826</td>
+    </tr>
+    <tr>
+      <th>263</th>
+      <td>Thailand</td>
+      <td>2.561927</td>
+    </tr>
+    <tr>
+      <th>278</th>
+      <td>Venezuela</td>
+      <td>2.423165</td>
+    </tr>
+    <tr>
+      <th>94</th>
+      <td>Guangdong</td>
+      <td>2.414593</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Beijing</td>
+      <td>2.414552</td>
+    </tr>
+    <tr>
+      <th>155</th>
+      <td>Mali</td>
+      <td>2.341258</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Belize</td>
+      <td>2.252969</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>Delaware</td>
+      <td>1.938166</td>
+    </tr>
+    <tr>
+      <th>114</th>
+      <td>Idaho</td>
+      <td>1.912542</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>Hainan</td>
+      <td>1.893284</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Chongqing</td>
+      <td>1.893284</td>
+    </tr>
+    <tr>
+      <th>167</th>
+      <td>Mississippi</td>
+      <td>1.818614</td>
+    </tr>
+    <tr>
+      <th>108</th>
+      <td>Honduras</td>
+      <td>1.794326</td>
+    </tr>
+    <tr>
+      <th>165</th>
+      <td>Michigan</td>
+      <td>1.698233</td>
+    </tr>
+    <tr>
+      <th>168</th>
+      <td>Missouri</td>
+      <td>1.689643</td>
+    </tr>
+    <tr>
+      <th>238</th>
+      <td>Shanghai</td>
+      <td>1.681608</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Private Leaderboard</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">test_private</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="n">fit_model_private</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">make_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">IndexError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="s1">&#39;has no cases in train&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "49dc85cd97ab4457ac3a8c16139ff6f1", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">submission</span><span class="o">.</span><span class="n">round</span><span class="p">()</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;submission.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">submission</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;ForecastId&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Date &gt; &quot;</span><span class="si">{DATE_BORDER}</span><span class="s1">&quot;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">()</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;forecast.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="todo-ideas">
+<h2>Todo/ideas<a class="headerlink" href="#todo-ideas" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Some of the search boundaries boundaries are dependent on each other (e.g. <code class="docutils literal notranslate"><span class="pre">t_hosp</span></code> should always be less than <code class="docutils literal notranslate"><span class="pre">t_crit</span></code>). Using <code class="docutils literal notranslate"><span class="pre">NonlinearConstraint</span></code> may solve this</p></li>
+<li><p>Time dependence of other parameters, e.g. <code class="docutils literal notranslate"><span class="pre">f</span></code> as hospitals get overwhelmed</p></li>
+<li><p>Mix in other sources of data (e.g. number of hospital beds, age demographics)</p></li>
+<li><p>Global optmisation of virus specific parameters</p></li>
+<li><p>Use as features into a different model</p></li>
+</ul>
+</div>
+<div class="section" id="thoughts-on-compartment-models">
+<h2>Thoughts on compartment models<a class="headerlink" href="#thoughts-on-compartment-models" title="Permalink to this headline">¶</a></h2>
+<p>I think compartment models are very powerful toy models and add lots of value for scenario testing, e.g. when a healthcare system might be overwhelmed, the impact of various interventions etc.. They can also be easily bootstrapped using population demographics to generate uncertainty estimates on those scenarios.</p>
+<p><img alt="image.png" src="_images/plane.png" /></p>
+<p>The hospitalization compartment in this model is tricky to work with as I had to set the lower bounds for these transition times quite low (<code class="docutils literal notranslate"><span class="pre">t_hosp</span></code>, <code class="docutils literal notranslate"><span class="pre">t_crit</span></code>). I think the reason for this is that many countries are telling people to stay away from the hospitals unless they are experiencing severe symptoms, meaning that once a patient is in a hospital, there are likely to already be very sick. This means when I optimize the transition times to go from hospitalized &gt; severe, the times are often very small.</p>
+<p>However, I think that for this particular forecasting exercise and metric, there are more accurate methods that can be used. One could also use a compartment model like this to generate features for another model.</p>
+</div>
+</div>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"176913bda28b484aa335bef836b7d78e": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_1b77bb55a75d4fa5a3a2cbf3721842a4", "max": 306, "min": 0, "orientation": "horizontal", "style": "IPY_MODEL_af5662d82be841d98009db0f733c37b0", "value": 306}}, "1b77bb55a75d4fa5a3a2cbf3721842a4": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "1ff30be85a6845f5900e1fafc8538c39": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "2a7646975de747eda9cf488d3c5f3716": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "317f467a108d4c7ea890aacf22b823db": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "49dc85cd97ab4457ac3a8c16139ff6f1": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_176913bda28b484aa335bef836b7d78e", "IPY_MODEL_72aa0d662442499dbdc448894d12bfac"], "layout": "IPY_MODEL_9b108a1367144e969f4b02f183f4a27b"}}, "72aa0d662442499dbdc448894d12bfac": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_d788278c812c4a5ebd037dc1ef5dca89", "placeholder": "\u200b", "style": "IPY_MODEL_2a7646975de747eda9cf488d3c5f3716", "value": " 306/306 [34:32&lt;00:00,  6.77s/it]"}}, "9b108a1367144e969f4b02f183f4a27b": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "af5662d82be841d98009db0f733c37b0": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "b7c830a331314259a824b1502eaceabd": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_cb8cc3404e9b4ab08313a295f74e63b8", "placeholder": "\u200b", "style": "IPY_MODEL_1ff30be85a6845f5900e1fafc8538c39", "value": " 306/306 [32:04&lt;00:00,  6.29s/it]"}}, "b800b56c24734526a7a5bfc5165e0025": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_d36c8da6a78341449cd75b1664a46931", "max": 306, "min": 0, "orientation": "horizontal", "style": "IPY_MODEL_317f467a108d4c7ea890aacf22b823db", "value": 306}}, "cb8cc3404e9b4ab08313a295f74e63b8": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d36c8da6a78341449cd75b1664a46931": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d788278c812c4a5ebd037dc1ef5dca89": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d8a007bb72bc4832abcb0190270c5752": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_b800b56c24734526a7a5bfc5165e0025", "IPY_MODEL_b7c830a331314259a824b1502eaceabd"], "layout": "IPY_MODEL_f7cd42c293ea487daeb73b46da7d6bdf"}}, "f7cd42c293ea487daeb73b46da7d6bdf": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="18-03-network-epidemics.html" title="previous page">Epidemics on Networks</a>
+    <a class='right-next' id="next-link" href="18-network-ergm-siena.html" title="next page">Social Network Analysis</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

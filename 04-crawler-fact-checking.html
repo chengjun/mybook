@@ -1,0 +1,735 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>抓取实时辟谣数据 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="抓取网络小说" href="04-crawler-13chambers.html" />
+    <link rel="prev" title="第三章 数据抓取" href="04-crawler-beautifulsoup.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     抓取实时辟谣数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-13chambers.html">
+     抓取网络小说
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-wechat.html">
+     抓取微信公众号文章内容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-douban.html">
+     使用requests + Xpath抓取豆瓣电影数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-gov-report.html">
+     抓取历届政府工作报告
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-cppcc.html">
+     抓取江苏省政协十年提案
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-netease-music.html">
+     抓取网易云音乐热门评论
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium.html">
+     使用Selenium操纵浏览器
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-music-history.html">
+     抓取网易云音乐用户的听歌记录
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-people-com-search.html">
+     使用Selenium提取人民网搜索数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-tripadvisor.html">
+     使用Selenium抓取TripAdvisor用户评论
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/04-crawler-fact-checking.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F04-crawler-fact-checking.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/04-crawler-fact-checking.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/04-crawler-fact-checking.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>抓取实时辟谣数据<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>https://vp.fact.qq.com/home</p>
+<p><img alt="image.png" src="_images/fact.png" /></p>
+<p>https://vp.fact.qq.com/article?id=be3aea585b07c193778985e180cf164b</p>
+<p>https://vp.fact.qq.com/loadmore?artnum=0&amp;page=0</p>
+<p><img alt="image.png" src="_images/fact2.png" /></p>
+<p>https://vp.fact.qq.com/loadmore?artnum=0&amp;page=0</p>
+<p><img alt="image.png" src="_images/fact3.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://vp.fact.qq.com/loadmore?artnum=0&amp;token=U2FsdGVkX18vf24Ll8I4bLXafIv7BY3GfCU0q9PJ</span><span class="si">%252F</span><span class="s1">hM2kTmyPKf78WYKL5KP%252BGx4&amp;page=&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">content</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;现阶段接种新冠疫苗后就不需要再戴口罩了&#39;,
+ &#39;author&#39;: &#39;健康中国&#39;,
+ &#39;authordesc&#39;: &#39;健康中国&#39;,
+ &#39;id&#39;: &#39;6883746aa79c6203d57d6553f2626927&#39;,
+ &#39;date&#39;: &#39;2021-05-06&#39;,
+ &#39;markstyle&#39;: &#39;fake&#39;,
+ &#39;result&#39;: &#39;假&#39;,
+ &#39;explain&#39;: &#39;谣言&#39;,
+ &#39;abstract&#39;: &#39;对于个人来说，接种疫苗的保护效果不是100％，并且产生保护性抗体也需要一定的时间；对于群体来说，在没有形成免疫屏障的情况下，新冠病毒依然容易传播。\n要防止新冠肺炎疫情反弹，现阶段一些防控措施仍然要坚持，包括戴口罩、保持社交距离、勤洗手、通风等防护措施。&#39;,
+ &#39;tag&#39;: [&#39;新冠疫苗&#39;, &#39;口罩&#39;],
+ &#39;type&#39;: 1,
+ &#39;videourl&#39;: &#39;&#39;,
+ &#39;cover&#39;: &#39;//jiaozhen-70111.picnjc.qpic.cn/6ZBozQyyqzBtWuzCUHjazX?imageView2/2/w/150/h/90&#39;,
+ &#39;coverrect&#39;: &#39;//jiaozhen-70111.picnjc.qpic.cn/6ZBozQyyqzBtWuzCUHjazX&#39;,
+ &#39;coversqual&#39;: &#39;//jiaozhen-70111.picnjc.qpic.cn/6ZBozQyyqzBtWuzCUHjazX?imageView2/2/w/300/h/300&#39;,
+ &#39;section&#39;: &#39;&#39;,
+ &#39;iscolled&#39;: False,
+ &#39;arttype&#39;: &#39;normal&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="mi">74</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8587583054308262
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">jsons</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">74</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://vp.fact.qq.com/loadmore?artnum=0&amp;token=U2FsdGVkX18vf24Ll8I4bLXafIv7BY3GfCU0q9PJ</span><span class="si">%252F</span><span class="s1">hM2kTmyPKf78WYKL5KP%252BGx4&amp;page=&#39;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]:</span>
+        <span class="n">jsons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">jsons</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>730
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">jsons</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>author</th>
+      <th>authordesc</th>
+      <th>id</th>
+      <th>date</th>
+      <th>markstyle</th>
+      <th>result</th>
+      <th>explain</th>
+      <th>abstract</th>
+      <th>tag</th>
+      <th>type</th>
+      <th>videourl</th>
+      <th>cover</th>
+      <th>coverrect</th>
+      <th>coversqual</th>
+      <th>section</th>
+      <th>iscolled</th>
+      <th>arttype</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>现阶段接种新冠疫苗后就不需要再戴口罩了</td>
+      <td>健康中国</td>
+      <td>健康中国</td>
+      <td>6883746aa79c6203d57d6553f2626927</td>
+      <td>2021-05-06</td>
+      <td>fake</td>
+      <td>假</td>
+      <td>谣言</td>
+      <td>对于个人来说，接种疫苗的保护效果不是100％，并且产生保护性抗体也需要一定的时间；对于群体来...</td>
+      <td>[新冠疫苗, 口罩]</td>
+      <td>1</td>
+      <td></td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/6ZBozQyyqzBtWu...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/6ZBozQyyqzBtWu...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/6ZBozQyyqzBtWu...</td>
+      <td></td>
+      <td>False</td>
+      <td>normal</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>国内新冠疫情已经平息，接种疫苗意义不大</td>
+      <td>健康中国</td>
+      <td>健康中国</td>
+      <td>be8eb254c795d6058f3ff9f0c923b8ff</td>
+      <td>2021-05-06</td>
+      <td>fake</td>
+      <td>假</td>
+      <td>谣言</td>
+      <td>在全球新冠肺炎疫情仍在流行的背景下，尽管国内感染风险较低，但疫情输入传播风险依然存在，所以还...</td>
+      <td>[新冠疫情, 新冠疫苗]</td>
+      <td>1</td>
+      <td></td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/9Hm7Y9hVRN6Qmc...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/9Hm7Y9hVRN6Qmc...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/9Hm7Y9hVRN6Qmc...</td>
+      <td></td>
+      <td>False</td>
+      <td>normal</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>别人都接种了疫苗，我就没必要接种了</td>
+      <td>健康中国</td>
+      <td>健康中国</td>
+      <td>7aa217ce6dd76992c2138083f7a7f69a</td>
+      <td>2021-05-06</td>
+      <td>fake</td>
+      <td>假</td>
+      <td>谣言</td>
+      <td>接种疫苗后，绝大部分人可以获得免疫力，从而有效降低发病、重症和死亡的风险。接种疫苗的人越多，...</td>
+      <td>[新冠疫苗, 免疫]</td>
+      <td>1</td>
+      <td></td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/gXJ6jgfvojbk9w...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/gXJ6jgfvojbk9w...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/gXJ6jgfvojbk9w...</td>
+      <td></td>
+      <td>False</td>
+      <td>normal</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>接种新冠病毒疫苗期间，不能注射狂犬病等其他疫苗</td>
+      <td>健康中国</td>
+      <td>健康中国</td>
+      <td>6175da06e58d1a2bb2f0e2d8b915791f</td>
+      <td>2021-05-06</td>
+      <td>doubt</td>
+      <td>疑</td>
+      <td>有失实</td>
+      <td>新冠病毒疫苗是新疫苗，为了便于识别或区别可能出现的疑似疫苗不良反应，目前不建议新冠病毒疫苗与...</td>
+      <td>[新冠疫苗, 免疫]</td>
+      <td>1</td>
+      <td></td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/s6Tmxe2U6vk22s...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/s6Tmxe2U6vk22s...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/s6Tmxe2U6vk22s...</td>
+      <td></td>
+      <td>False</td>
+      <td>normal</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>加拿大禁止航班进出，每日新冠死亡人数超1000</td>
+      <td>福建日报社东南网承办</td>
+      <td>福建日报社东南网承办</td>
+      <td>820277109aad5a7a708f7e8b0607f4bc</td>
+      <td>2021-04-29</td>
+      <td>fake</td>
+      <td>假</td>
+      <td>谣言</td>
+      <td>加拿大并没有禁止航班的进出，只是根据疫情防控的需要，某个时间段内暂停部分国家的航班。\n20...</td>
+      <td>[加拿大, 新冠病毒]</td>
+      <td>1</td>
+      <td></td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/emJa9jbrvoF1Xy...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/emJa9jbrvoF1Xy...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/emJa9jbrvoF1Xy...</td>
+      <td></td>
+      <td>False</td>
+      <td>normal</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s1">&#39;./data/vpqq2021-05-15.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="04-crawler-beautifulsoup.html" title="previous page">第三章 数据抓取</a>
+    <a class='right-next' id="next-link" href="04-crawler-13chambers.html" title="next page">抓取网络小说</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,1492 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Latent Factor Recommender System &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="使用Surprise构建推荐系统" href="13-recsys-intro-surprise.html" />
+    <link rel="prev" title="第九章 推荐系统简介" href="13-recsys-intro.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Latent Factor Recommender System
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13-recsys-intro-surprise.html">
+     使用Surprise构建推荐系统
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14-millionsong.html">
+     使用Turicreate进行音乐推荐
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14-movielens.html">
+     使用Turicreate进行电影推荐
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/13-recsys-latent-factor-model.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F13-recsys-latent-factor-model.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/13-recsys-latent-factor-model.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/13-recsys-latent-factor-model.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#including-bias">
+   Including bias
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#further-reading">
+   Further reading:
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="latent-factor-recommender-system">
+<h1>Latent Factor Recommender System<a class="headerlink" href="#latent-factor-recommender-system" title="Permalink to this headline">¶</a></h1>
+<p><img alt="image.png" src="_images/author.png" /></p>
+<p>The NetFlix Challenge</p>
+<p><strong>Training data</strong>  100 million ratings, 480,000 users, 17,770 movies. 6 years of data: 2000-2005</p>
+<p><strong>Test data</strong>  Last few ratings of each user (2.8 million)</p>
+<p><strong>Competition</strong>  2,700+ teams, $1 million prize for 10% improvement on Netflix</p>
+<ul class="simple">
+<li><p>Evaluation criterion: Root Mean Square Error (RMSE)</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-5ae95911-5d72-4111-a1cb-abce3e775ca7">
+<span class="eqno">(6)<a class="headerlink" href="#equation-5ae95911-5d72-4111-a1cb-abce3e775ca7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  RMSE =  \frac{1}{|R|} \sqrt{\sum_{(i, x)\in R}(\hat{r}_{xi} - r_{xi})^2}
+\end{equation}\]</div>
+<ul class="simple">
+<li><p>Netflix’s system RMSE: 0.9514</p></li>
+</ul>
+<p><img alt="image.png" src="_images/latent.png" /></p>
+<p><img alt="image.png" src="_images/latent2.png" /></p>
+<p><img alt="image.png" src="_images/latent3.png" /></p>
+<p><img alt="image.png" src="_images/latent4.png" /></p>
+<p><img alt="image.png" src="_images/latent5.png" /></p>
+<p>U (m x m) , <span class="math notranslate nohighlight">\(\Sigma\)</span>(m x n),   <span class="math notranslate nohighlight">\(V^T\)</span> (n x n)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="c1"># Singular-value decomposition</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">VT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="c1"># create n x n Sigma matrix</span>
+<span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="c1"># reconstruct matrix</span>
+<span class="n">PT</span> <span class="o">=</span> <span class="n">Sigma</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">VT</span><span class="p">)</span>
+<span class="c1">#B = U.dot(Sigma.dot(VT))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">PT</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+[[-8.08154958e+00 -9.64331175e+00 -1.12050739e+01]
+ [-8.29792976e-01 -8.08611173e-02  6.68070742e-01]
+ [-1.36140716e-16  2.72281431e-16 -1.36140716e-16]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(\Sigma\)</span>本来应该跟A矩阵的大小一样，但linalg.svd()只返回了一个行向量的<span class="math notranslate nohighlight">\(\Sigma\)</span>，并且舍弃值为0的奇异值。因此，必须先将<span class="math notranslate nohighlight">\(\Sigma\)</span>转化为矩阵。</p>
+<p><img alt="image.png" src="_images/latent6.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Singular-value decomposition </span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">VT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="c1"># create n x n Sigma matrix</span>
+<span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="c1"># populate Sigma with n x n diagonal matrix</span>
+<span class="n">Sigma</span><span class="p">[:</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">:</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="c1"># reconstruct matrix</span>
+<span class="n">PT</span> <span class="o">=</span> <span class="n">Sigma</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">VT</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">PT</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A = </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;U = </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sigma = </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">Sigma</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;VT = </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">VT</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;PT = </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">PT</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;B = </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A = 
+ [[1 2]
+ [3 4]
+ [5 6]] 
+
+U = 
+ [[-0.2298477   0.88346102  0.40824829]
+ [-0.52474482  0.24078249 -0.81649658]
+ [-0.81964194 -0.40189603  0.40824829]] 
+
+Sigma = 
+ [[9.52551809 0.        ]
+ [0.         0.51430058]
+ [0.         0.        ]] 
+
+VT = 
+ [[-0.61962948 -0.78489445]
+ [-0.78489445  0.61962948]] 
+
+PT = 
+ [[-5.90229186 -7.47652631]
+ [-0.40367167  0.3186758 ]
+ [ 0.          0.        ]] 
+
+B = 
+ [[1. 2.]
+ [3. 4.]
+ [5. 6.]] 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Singular-value decomposition</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="n">U</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">VT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="c1"># create n x n Sigma matrix</span>
+<span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="c1"># populate Sigma with n x n diagonal matrix</span>
+<span class="k">if</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">Sigma</span><span class="p">[:</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">:</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+
+<span class="n">PT</span><span class="o">=</span> <span class="n">Sigma</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">VT</span><span class="p">)</span>
+<span class="n">PT</span> <span class="o">=</span> <span class="n">PT</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">PT</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A = </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;U = </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sigma = </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">Sigma</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;VT = </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">VT</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;PT = </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">PT</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;B = </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A = 
+ [[1 2 3]
+ [4 5 6]] 
+
+U = 
+ [[-0.3863177  -0.92236578]
+ [-0.92236578  0.3863177 ]] 
+
+Sigma = 
+ [[9.508032   0.         0.        ]
+ [0.         0.77286964 0.        ]
+ [0.         0.         0.        ]] 
+
+VT = 
+ [[-0.42866713 -0.56630692 -0.7039467 ]
+ [ 0.80596391  0.11238241 -0.58119908]
+ [ 0.40824829 -0.81649658  0.40824829]] 
+
+PT = 
+ [[-4.07578082 -5.38446431 -6.69314779]
+ [ 0.62290503  0.08685696 -0.44919112]] 
+
+B = 
+ [[1. 2. 3.]
+ [4. 5. 6.]] 
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="image.png" src="_images/latent7.png" /></p>
+<p><img alt="image.png" src="_images/latent8.png" /></p>
+<p>SVD gives minimum reconstruction error (Sum of Squared Errors, <strong>SSE</strong>)</p>
+<p>SSE and RMSE are monotonically related:<span class="math notranslate nohighlight">\(RMSE=\frac{1}{c}\sqrt{SSE}\)</span></p>
+<p>Great news: SVD is minimizing RMSE</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># https://beckernick.github.io/matrix-factorization-recommender/</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">ratings_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;::&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/datalab/bigdata/cjc/ml-1m/ratings.dat&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+<span class="n">users_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;::&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/datalab/bigdata/cjc/ml-1m/users.dat&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+<span class="n">movies_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;::&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/datalab/bigdata/cjc/ml-1m/movies.dat&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;iso-8859-15&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+
+<span class="n">ratings_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ratings_list</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;UserID&#39;</span><span class="p">,</span> <span class="s1">&#39;MovieID&#39;</span><span class="p">,</span> <span class="s1">&#39;Rating&#39;</span><span class="p">,</span> <span class="s1">&#39;Timestamp&#39;</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">int</span><span class="p">)</span>
+<span class="n">movies_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">movies_list</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MovieID&#39;</span><span class="p">,</span> <span class="s1">&#39;Title&#39;</span><span class="p">,</span> <span class="s1">&#39;Genres&#39;</span><span class="p">])</span>
+
+<span class="n">movies_df</span><span class="p">[</span><span class="s1">&#39;MovieID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">movies_df</span><span class="p">[</span><span class="s1">&#39;MovieID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
+<span class="n">ratings_df</span><span class="p">[</span><span class="s1">&#39;UserID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ratings_df</span><span class="p">[</span><span class="s1">&#39;UserID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
+<span class="n">ratings_df</span><span class="p">[</span><span class="s1">&#39;MovieID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ratings_df</span><span class="p">[</span><span class="s1">&#39;MovieID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">movies_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MovieID</th>
+      <th>Title</th>
+      <th>Genres</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Toy Story (1995)</td>
+      <td>Animation|Children's|Comedy</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Jumanji (1995)</td>
+      <td>Adventure|Children's|Fantasy</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Grumpier Old Men (1995)</td>
+      <td>Comedy|Romance</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Waiting to Exhale (1995)</td>
+      <td>Comedy|Drama</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Father of the Bride Part II (1995)</td>
+      <td>Comedy</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ratings_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>UserID</th>
+      <th>MovieID</th>
+      <th>Rating</th>
+      <th>Timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1193</td>
+      <td>5</td>
+      <td>978300760</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>661</td>
+      <td>3</td>
+      <td>978302109</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>914</td>
+      <td>3</td>
+      <td>978301968</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>3408</td>
+      <td>4</td>
+      <td>978300275</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>2355</td>
+      <td>5</td>
+      <td>978824291</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 注意：使用0填充缺失值</span>
+<span class="n">R_df</span> <span class="o">=</span> <span class="n">ratings_df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="s1">&#39;UserID&#39;</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span><span class="s1">&#39;MovieID&#39;</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="s1">&#39;Rating&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">R_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>MovieID</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>...</th>
+      <th>3943</th>
+      <th>3944</th>
+      <th>3945</th>
+      <th>3946</th>
+      <th>3947</th>
+      <th>3948</th>
+      <th>3949</th>
+      <th>3950</th>
+      <th>3951</th>
+      <th>3952</th>
+    </tr>
+    <tr>
+      <th>UserID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 3706 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="n">R_df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+<span class="n">user_ratings_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">R_demeaned</span> <span class="o">=</span> <span class="n">R</span> <span class="o">-</span> <span class="n">user_ratings_mean</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">svds</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="n">svds</span><span class="p">(</span><span class="n">R_demeaned</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+
+<span class="n">all_user_predicted_ratings</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span> <span class="n">sigma</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Vt</span><span class="p">))</span> <span class="o">+</span> <span class="n">user_ratings_mean</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">preds_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">all_user_predicted_ratings</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">R_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preds_df</span>
+<span class="c1"># each row is a user</span>
+<span class="c1"># each column is a movie</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>MovieID</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>...</th>
+      <th>3943</th>
+      <th>3944</th>
+      <th>3945</th>
+      <th>3946</th>
+      <th>3947</th>
+      <th>3948</th>
+      <th>3949</th>
+      <th>3950</th>
+      <th>3951</th>
+      <th>3952</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4.288861</td>
+      <td>0.143055</td>
+      <td>-0.195080</td>
+      <td>-0.018843</td>
+      <td>0.012232</td>
+      <td>-0.176604</td>
+      <td>-0.074120</td>
+      <td>0.141358</td>
+      <td>-0.059553</td>
+      <td>-0.195950</td>
+      <td>...</td>
+      <td>0.027807</td>
+      <td>0.001640</td>
+      <td>0.026395</td>
+      <td>-0.022024</td>
+      <td>-0.085415</td>
+      <td>0.403529</td>
+      <td>0.105579</td>
+      <td>0.031912</td>
+      <td>0.050450</td>
+      <td>0.088910</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.744716</td>
+      <td>0.169659</td>
+      <td>0.335418</td>
+      <td>0.000758</td>
+      <td>0.022475</td>
+      <td>1.353050</td>
+      <td>0.051426</td>
+      <td>0.071258</td>
+      <td>0.161601</td>
+      <td>1.567246</td>
+      <td>...</td>
+      <td>-0.056502</td>
+      <td>-0.013733</td>
+      <td>-0.010580</td>
+      <td>0.062576</td>
+      <td>-0.016248</td>
+      <td>0.155790</td>
+      <td>-0.418737</td>
+      <td>-0.101102</td>
+      <td>-0.054098</td>
+      <td>-0.140188</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.818824</td>
+      <td>0.456136</td>
+      <td>0.090978</td>
+      <td>-0.043037</td>
+      <td>-0.025694</td>
+      <td>-0.158617</td>
+      <td>-0.131778</td>
+      <td>0.098977</td>
+      <td>0.030551</td>
+      <td>0.735470</td>
+      <td>...</td>
+      <td>0.040481</td>
+      <td>-0.005301</td>
+      <td>0.012832</td>
+      <td>0.029349</td>
+      <td>0.020866</td>
+      <td>0.121532</td>
+      <td>0.076205</td>
+      <td>0.012345</td>
+      <td>0.015148</td>
+      <td>-0.109956</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.408057</td>
+      <td>-0.072960</td>
+      <td>0.039642</td>
+      <td>0.089363</td>
+      <td>0.041950</td>
+      <td>0.237753</td>
+      <td>-0.049426</td>
+      <td>0.009467</td>
+      <td>0.045469</td>
+      <td>-0.111370</td>
+      <td>...</td>
+      <td>0.008571</td>
+      <td>-0.005425</td>
+      <td>-0.008500</td>
+      <td>-0.003417</td>
+      <td>-0.083982</td>
+      <td>0.094512</td>
+      <td>0.057557</td>
+      <td>-0.026050</td>
+      <td>0.014841</td>
+      <td>-0.034224</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.574272</td>
+      <td>0.021239</td>
+      <td>-0.051300</td>
+      <td>0.246884</td>
+      <td>-0.032406</td>
+      <td>1.552281</td>
+      <td>-0.199630</td>
+      <td>-0.014920</td>
+      <td>-0.060498</td>
+      <td>0.450512</td>
+      <td>...</td>
+      <td>0.110151</td>
+      <td>0.046010</td>
+      <td>0.006934</td>
+      <td>-0.015940</td>
+      <td>-0.050080</td>
+      <td>-0.052539</td>
+      <td>0.507189</td>
+      <td>0.033830</td>
+      <td>0.125706</td>
+      <td>0.199244</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>6035</th>
+      <td>2.392388</td>
+      <td>0.233964</td>
+      <td>0.413676</td>
+      <td>0.443726</td>
+      <td>-0.083641</td>
+      <td>2.192294</td>
+      <td>1.168936</td>
+      <td>0.145237</td>
+      <td>-0.046551</td>
+      <td>0.560895</td>
+      <td>...</td>
+      <td>0.188493</td>
+      <td>-0.004439</td>
+      <td>-0.042271</td>
+      <td>-0.090101</td>
+      <td>0.276312</td>
+      <td>0.133806</td>
+      <td>0.732374</td>
+      <td>0.271234</td>
+      <td>0.244983</td>
+      <td>0.734771</td>
+    </tr>
+    <tr>
+      <th>6036</th>
+      <td>2.070760</td>
+      <td>0.139294</td>
+      <td>-0.012666</td>
+      <td>-0.176990</td>
+      <td>0.261243</td>
+      <td>1.074234</td>
+      <td>0.083999</td>
+      <td>0.013814</td>
+      <td>-0.030179</td>
+      <td>-0.084956</td>
+      <td>...</td>
+      <td>-0.161548</td>
+      <td>0.001184</td>
+      <td>-0.029223</td>
+      <td>-0.047087</td>
+      <td>0.099036</td>
+      <td>-0.192653</td>
+      <td>-0.091265</td>
+      <td>0.050798</td>
+      <td>-0.113427</td>
+      <td>0.033283</td>
+    </tr>
+    <tr>
+      <th>6037</th>
+      <td>0.619089</td>
+      <td>-0.161769</td>
+      <td>0.106738</td>
+      <td>0.007048</td>
+      <td>-0.074701</td>
+      <td>-0.079953</td>
+      <td>0.100220</td>
+      <td>-0.034013</td>
+      <td>0.007671</td>
+      <td>0.001280</td>
+      <td>...</td>
+      <td>-0.053546</td>
+      <td>0.005835</td>
+      <td>0.007551</td>
+      <td>-0.024082</td>
+      <td>-0.010739</td>
+      <td>-0.008863</td>
+      <td>-0.099774</td>
+      <td>-0.013369</td>
+      <td>-0.030354</td>
+      <td>-0.114936</td>
+    </tr>
+    <tr>
+      <th>6038</th>
+      <td>1.503605</td>
+      <td>-0.036208</td>
+      <td>-0.161268</td>
+      <td>-0.083401</td>
+      <td>-0.081617</td>
+      <td>-0.143517</td>
+      <td>0.106668</td>
+      <td>-0.054404</td>
+      <td>-0.008826</td>
+      <td>0.205801</td>
+      <td>...</td>
+      <td>-0.006104</td>
+      <td>0.008933</td>
+      <td>0.007595</td>
+      <td>-0.037800</td>
+      <td>0.050743</td>
+      <td>0.024052</td>
+      <td>-0.172466</td>
+      <td>-0.010904</td>
+      <td>-0.038647</td>
+      <td>-0.168359</td>
+    </tr>
+    <tr>
+      <th>6039</th>
+      <td>1.996248</td>
+      <td>-0.185987</td>
+      <td>-0.156478</td>
+      <td>0.104143</td>
+      <td>-0.030001</td>
+      <td>0.105521</td>
+      <td>-0.168477</td>
+      <td>-0.058174</td>
+      <td>0.122714</td>
+      <td>-0.119716</td>
+      <td>...</td>
+      <td>0.238088</td>
+      <td>-0.047046</td>
+      <td>-0.043259</td>
+      <td>0.038256</td>
+      <td>0.055693</td>
+      <td>0.149593</td>
+      <td>0.587989</td>
+      <td>-0.006641</td>
+      <td>0.127067</td>
+      <td>0.285001</td>
+    </tr>
+  </tbody>
+</table>
+<p>6040 rows × 3706 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">recommend_movies</span><span class="p">(</span><span class="n">preds_df</span><span class="p">,</span> <span class="n">user_row_number</span><span class="p">,</span> <span class="n">movies_df</span><span class="p">,</span> <span class="n">ratings_df</span><span class="p">,</span> <span class="n">num_recommendations</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="c1"># Get and sort the user&#39;s predictions</span>
+    <span class="n">sorted_user_predictions</span> <span class="o">=</span> <span class="n">preds_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">user_row_number</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="c1"># Get the user&#39;s data and merge in the movie information.</span>
+    <span class="n">userID</span> <span class="o">=</span> <span class="n">user_row_number</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">user_data</span> <span class="o">=</span> <span class="n">ratings_df</span><span class="p">[</span><span class="n">ratings_df</span><span class="o">.</span><span class="n">UserID</span> <span class="o">==</span> <span class="n">userID</span><span class="p">]</span>
+    <span class="n">user_full</span> <span class="o">=</span> <span class="p">(</span><span class="n">user_data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">movies_df</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">left_on</span> <span class="o">=</span> <span class="s1">&#39;MovieID&#39;</span><span class="p">,</span> <span class="n">right_on</span> <span class="o">=</span> <span class="s1">&#39;MovieID&#39;</span><span class="p">)</span><span class="o">.</span>
+                     <span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;Rating&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                 <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;UserID </span><span class="si">{0}</span><span class="s1"> has already rated </span><span class="si">{1}</span><span class="s1"> movies.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">userID</span><span class="p">,</span> <span class="n">user_full</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Recommending the highest </span><span class="si">{0}</span><span class="s1"> predicted ratings movies not already rated.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num_recommendations</span><span class="p">))</span>
+    
+    <span class="c1"># Recommend the highest predicted rating movies that the user hasn&#39;t seen yet.</span>
+    <span class="n">potential_movie_df</span><span class="o">=</span> <span class="n">movies_df</span><span class="p">[</span><span class="o">~</span><span class="n">movies_df</span><span class="p">[</span><span class="s1">&#39;MovieID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">user_full</span><span class="p">[</span><span class="s1">&#39;MovieID&#39;</span><span class="p">])]</span>
+    <span class="n">predicted_movie_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sorted_user_predictions</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">predicted_movie_df</span><span class="p">[</span><span class="s1">&#39;MovieID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">predicted_movie_df</span><span class="p">[</span><span class="s1">&#39;MovieID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
+    <span class="n">recommendations</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">potential_movie_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">predicted_movie_df</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">&#39;MovieID&#39;</span><span class="p">)</span><span class="o">.</span>
+         <span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="n">user_row_number</span><span class="p">:</span> <span class="s1">&#39;Predictions&#39;</span><span class="p">})</span><span class="o">.</span>
+         <span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Predictions&#39;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span>
+                       <span class="n">iloc</span><span class="p">[:</span><span class="n">num_recommendations</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                      <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">user_full</span><span class="p">,</span> <span class="n">recommendations</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">already_rated</span><span class="p">,</span> <span class="n">predictions</span> <span class="o">=</span> <span class="n">recommend_movies</span><span class="p">(</span><span class="n">preds_df</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">movies_df</span><span class="p">,</span> <span class="n">ratings_df</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>UserID 1 has already rated 53 movies.
+Recommending the highest 10 predicted ratings movies not already rated.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">already_rated</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>UserID</th>
+      <th>MovieID</th>
+      <th>Rating</th>
+      <th>Timestamp</th>
+      <th>Title</th>
+      <th>Genres</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1193</td>
+      <td>5</td>
+      <td>978300760</td>
+      <td>One Flew Over the Cuckoo's Nest (1975)</td>
+      <td>Drama</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>1</td>
+      <td>1029</td>
+      <td>5</td>
+      <td>978302205</td>
+      <td>Dumbo (1941)</td>
+      <td>Animation|Children's|Musical</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>1</td>
+      <td>1</td>
+      <td>5</td>
+      <td>978824268</td>
+      <td>Toy Story (1995)</td>
+      <td>Animation|Children's|Comedy</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MovieID</th>
+      <th>Title</th>
+      <th>Genres</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>311</th>
+      <td>318</td>
+      <td>Shawshank Redemption, The (1994)</td>
+      <td>Drama</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>34</td>
+      <td>Babe (1995)</td>
+      <td>Children's|Comedy|Drama</td>
+    </tr>
+    <tr>
+      <th>356</th>
+      <td>364</td>
+      <td>Lion King, The (1994)</td>
+      <td>Animation|Children's|Musical</td>
+    </tr>
+    <tr>
+      <th>1975</th>
+      <td>2081</td>
+      <td>Little Mermaid, The (1989)</td>
+      <td>Animation|Children's|Comedy|Musical|Romance</td>
+    </tr>
+    <tr>
+      <th>1235</th>
+      <td>1282</td>
+      <td>Fantasia (1940)</td>
+      <td>Animation|Children's|Musical</td>
+    </tr>
+    <tr>
+      <th>1974</th>
+      <td>2080</td>
+      <td>Lady and the Tramp (1955)</td>
+      <td>Animation|Children's|Comedy|Musical|Romance</td>
+    </tr>
+    <tr>
+      <th>1972</th>
+      <td>2078</td>
+      <td>Jungle Book, The (1967)</td>
+      <td>Animation|Children's|Comedy|Musical</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>2096</td>
+      <td>Sleeping Beauty (1959)</td>
+      <td>Animation|Children's|Musical</td>
+    </tr>
+    <tr>
+      <th>1981</th>
+      <td>2087</td>
+      <td>Peter Pan (1953)</td>
+      <td>Animation|Children's|Fantasy|Musical</td>
+    </tr>
+    <tr>
+      <th>348</th>
+      <td>356</td>
+      <td>Forrest Gump (1994)</td>
+      <td>Comedy|Romance|War</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>比较三种矩阵分解的方法</p>
+<ul class="simple">
+<li><p>特征值分解 Eigen value decomposition</p>
+<ul>
+<li><p>只能用于方阵</p></li>
+</ul>
+</li>
+<li><p>奇异值分解 Singular value decomposition</p>
+<ul>
+<li><p>需要填充稀疏矩阵中的缺失元素</p></li>
+<li><p>计算复杂度高 <span class="math notranslate nohighlight">\(O(mn^2)\)</span></p></li>
+</ul>
+</li>
+<li><p>梯度下降 Gradient Descent</p>
+<ul>
+<li><p>广泛使用！</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png" src="_images/latent9.png" /></p>
+<div class="section" id="including-bias">
+<h2>Including bias<a class="headerlink" href="#including-bias" title="Permalink to this headline">¶</a></h2>
+<p><img alt="image.png" src="_images/latent10.png" /></p>
+<div class="amsmath math notranslate nohighlight" id="equation-daf2c7b1-7a69-4568-a9e1-6e7eb958b80b">
+<span class="eqno">(7)<a class="headerlink" href="#equation-daf2c7b1-7a69-4568-a9e1-6e7eb958b80b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  \hat{r}_{xi}= u + b_x + b_i + q_i p_x^{T}
+\end{equation}\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u\)</span> is the global bias, measured by the overall mean rating</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_x\)</span> is the bias for user x, measured by the mean rating given by user x.</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_i\)</span> is the bias for movie i, measured by the mean ratings of movie i.</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_i p_{x}^{T}\)</span> is the user-movie interaction</p></li>
+</ul>
+<p><img alt="image.png" src="_images/latent11.png" /></p>
+<p><img alt="image.png" src="_images/latent12.png" /></p>
+<p><img alt="image.png" src="_images/latent13.png" /></p>
+<div><img src=attachment:image.png width = 800></div></div>
+<div class="section" id="further-reading">
+<h2>Further reading:<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<p>Y. Koren, Collaborative filtering with temporal dynamics, KDD ’09</p>
+<ul class="simple">
+<li><p>http://www2.research.att.com/~volinsky/netflix/bpc.html</p></li>
+<li><p>http://www.the-ensemble.com/</p></li>
+</ul>
+<p><img alt="" src="_images/recsys14.png" /></p>
+<p><img alt="image.png" src="_images/end1.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="13-recsys-intro.html" title="previous page">第九章 推荐系统简介</a>
+    <a class='right-next' id="next-link" href="13-recsys-intro-surprise.html" title="next page">使用Surprise构建推荐系统</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

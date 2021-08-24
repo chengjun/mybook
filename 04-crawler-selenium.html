@@ -1,0 +1,2420 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>使用Selenium操纵浏览器 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="抓取网易云音乐用户的听歌记录" href="04-crawler-selenium-music-history.html" />
+    <link rel="prev" title="抓取网易云音乐热门评论" href="04-crawler-netease-music.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-fact-checking.html">
+     抓取实时辟谣数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-13chambers.html">
+     抓取网络小说
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-wechat.html">
+     抓取微信公众号文章内容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-douban.html">
+     使用requests + Xpath抓取豆瓣电影数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-gov-report.html">
+     抓取历届政府工作报告
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-cppcc.html">
+     抓取江苏省政协十年提案
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-netease-music.html">
+     抓取网易云音乐热门评论
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     使用Selenium操纵浏览器
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-music-history.html">
+     抓取网易云音乐用户的听歌记录
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-people-com-search.html">
+     使用Selenium提取人民网搜索数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-tripadvisor.html">
+     使用Selenium抓取TripAdvisor用户评论
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/04-crawler-selenium.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F04-crawler-selenium.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/04-crawler-selenium.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/04-crawler-selenium.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#webdriver">
+   Webdriver
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     下载和设置Webdriver
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   访问页面
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   查找元素
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   常用的查找元素方法：
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   多个元素查找
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   元素交互操作
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#javascript">
+   执行JavaScript
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="selenium">
+<h1>使用Selenium操纵浏览器<a class="headerlink" href="#selenium" title="Permalink to this headline">¶</a></h1>
+<p>王成军</p>
+<p><img alt="" src="_images/author1.png" /></p>
+<p>Selenium 是一套完整的web应用程序测试系统，包含了</p>
+<ul class="simple">
+<li><p>测试的录制（selenium IDE）</p></li>
+<li><p>编写及运行（Selenium Remote Control）</p></li>
+<li><p>测试的并行处理（Selenium Grid）。</p></li>
+</ul>
+<p>Selenium的核心Selenium Core基于JsUnit，完全由JavaScript编写，因此可以用于任何支持JavaScript的浏览器上。selenium可以模拟真实浏览器，自动化测试工具，支持多种浏览器，爬虫中主要用来解决JavaScript渲染问题。https://www.cnblogs.com/zhaof/p/6953241.html</p>
+<p>上面我们知道了selenium支持很多的浏览器，但是如果想要声明并调用浏览器则需要：
+https://pypi.org/project/selenium/</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">selenium</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already up-to-date: selenium in /opt/anaconda3/lib/python3.7/site-packages (3.141.0)
+Requirement already satisfied, skipping upgrade: urllib3 in /opt/anaconda3/lib/python3.7/site-packages (from selenium) (1.25.8)
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="webdriver">
+<h2>Webdriver<a class="headerlink" href="#webdriver" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>主要用的是selenium的Webdriver</p></li>
+<li><p>我们可以通过下面的方式先看看Selenium.Webdriver支持哪些浏览器</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">webdriver</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on package selenium.webdriver in selenium:
+
+NAME
+    selenium.webdriver
+
+DESCRIPTION
+    # Licensed to the Software Freedom Conservancy (SFC) under one
+    # or more contributor license agreements.  See the NOTICE file
+    # distributed with this work for additional information
+    # regarding copyright ownership.  The SFC licenses this file
+    # to you under the Apache License, Version 2.0 (the
+    # &quot;License&quot;); you may not use this file except in compliance
+    # with the License.  You may obtain a copy of the License at
+    #
+    #   http://www.apache.org/licenses/LICENSE-2.0
+    #
+    # Unless required by applicable law or agreed to in writing,
+    # software distributed under the License is distributed on an
+    # &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    # KIND, either express or implied.  See the License for the
+    # specific language governing permissions and limitations
+    # under the License.
+
+PACKAGE CONTENTS
+    android (package)
+    blackberry (package)
+    chrome (package)
+    common (package)
+    edge (package)
+    firefox (package)
+    ie (package)
+    opera (package)
+    phantomjs (package)
+    remote (package)
+    safari (package)
+    support (package)
+    webkitgtk (package)
+
+VERSION
+    3.14.1
+
+FILE
+    /opt/anaconda3/lib/python3.7/site-packages/selenium/webdriver/__init__.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>下载和设置Webdriver<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>对于Chrome需要的webdriver下载地址，<strong>一定要确保版本正确</strong>。</p></li>
+</ol>
+<p>http://chromedriver.storage.googleapis.com/index.html</p>
+<ol class="simple">
+<li><p>需要将webdriver放在系统路径下：</p>
+<ul class="simple">
+<li><p>比如,把下载的webdriver 放在<code class="docutils literal notranslate"><span class="pre">Anaconda的bin文件夹</span></code>下</p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="image.png" src="_images/selenium.png" /></p>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>访问页面<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from selenium import webdriver</span>
+<span class="c1">#browser = webdriver.Chrome(executable_path = &#39;/opt/anaconda3/bin/chromedriver&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">executable_path</span> <span class="o">=</span> <span class="s1">&#39;/opt/anaconda3/bin/chromedriver&#39;</span><span class="p">)</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://music.163.com&quot;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">browser</span><span class="o">.</span><span class="n">page_source</span><span class="p">)</span>
+<span class="c1">#browser.close() </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;html&gt;&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;baidu_ssp_verify&quot; content=&quot;39f14c78c537175eb4b5192c72d002c1&quot;&gt;
+&lt;meta name=&quot;baidu-site-verification&quot; content=&quot;cNhJHKEzsD&quot;&gt;
+&lt;meta name=&quot;360-site-verification&quot; content=&quot;e37aef53e3922913e2a6a4682e479b84&quot;&gt;
+&lt;meta name=&quot;sogou_site_verification&quot; content=&quot;7zFjYjJaMq&quot;&gt;
+&lt;meta name=&quot;msvalidate.01&quot; content=&quot;0CA3171633345524D8CBED5E95C75FFF&quot;&gt;
+&lt;meta name=&quot;google-site-verification&quot; content=&quot;rh2irYN2Lu028orAseOD3aXd5u7Eu1mqTfhoVaw2Ihg&quot;&gt;
+&lt;meta name=&quot;shenma-site-verification&quot; content=&quot;12da4afc02bfe908ed0667f287167d11_1555581349&quot;&gt;
+&lt;meta property=&quot;qc:admins&quot; content=&quot;27354635321361636375&quot;&gt;
+&lt;link rel=&quot;canonical&quot; href=&quot;https://music.163.com/&quot;&gt;
+&lt;meta name=&quot;applicable-device&quot; content=&quot;pc,mobile&quot;&gt;
+&lt;title&gt;网易云音乐&lt;/title&gt;
+&lt;meta name=&quot;keywords&quot; content=&quot;网易云音乐，音乐，播放器，网易，下载，播放，DJ，免费，明星，精选，歌单，识别音乐，收藏，分享音乐，音乐互动，高音质，320K，音乐社交，官网，music.163.com&quot;&gt;
+&lt;meta name=&quot;description&quot; content=&quot;网易云音乐是一款专注于发现与分享的音乐产品，依托专业音乐人、DJ、好友推荐及社交功能，为用户打造全新的音乐生活。&quot;&gt;
+&lt;meta property=&quot;og:title&quot; content=&quot;网易云音乐&quot;&gt;
+&lt;meta property=&quot;og:type&quot; content=&quot;website&quot;&gt;
+&lt;meta property=&quot;og:image&quot; content=&quot;http://p3.music.126.net/tBTNafgjNnTL1KlZMt7lVA==/18885211718935735.jpg&quot;&gt;
+&lt;meta property=&quot;og:url&quot; content=&quot;https://music.163.com/&quot;&gt;
+&lt;meta property=&quot;og:site_name&quot; content=&quot;网易云音乐&quot;&gt;
+&lt;script src=&quot;https://st.music.163.com/encrypt-validator/musicfrontencryptvalidator.min.js&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;script&gt;(function(){
+    if (window.CMFrontEncryptedValidator) {
+        var validatorOptions = {
+&quot;captchaOptions&quot;: {
+  &quot;qrSize&quot;: 150
+},
+&quot;whiteAPIs&quot;: [&quot;ac.dun.163yun.com/v3/d&quot;, &quot;ac.dun.163.com/v2/config/js&quot;, &quot;ac.dun.163yun.com/v3/b&quot;, &quot;ac.dun.163yun.com/v2/b&quot;,&quot;ac.dun.163yun.com/v2/d&quot;]
+} || {};
+        var env = &#39;prod&#39; || &#39;prod&#39;;
+        var sampleRate = 1 || 1;
+        var isBubbleEncryptResult = true || false;
+        var disable = false || false;
+        var businessType = &#39;music&#39; || &#39;music&#39;;
+        var grayReleaseRate = Number(1) || 1;
+        var grayReleaseUserIds = &#39;&#39; || &#39;&#39;;
+        
+        validatorOptions.grayReleaseUserIds = grayReleaseUserIds;
+        validatorOptions.grayReleaseRate = grayReleaseRate;
+        validatorOptions.env = env;
+        validatorOptions.businessType = businessType;
+        validatorOptions.sampleRate = sampleRate;
+        validatorOptions.isBubbleEncryptResult = isBubbleEncryptResult;
+        validatorOptions.disable = disable;
+        validatorOptions.whiteAPIs = validatorOptions.whiteAPIs || [];
+        
+        window.CMFrontEncryptedValidator(validatorOptions);
+    }
+    })()&lt;/script&gt;&lt;script src=&quot;https://st.music.163.com/encrypt-sdk/musicfrontencryptsdk.min.js&quot; async=&quot;&quot;&gt;&lt;/script&gt;&lt;script&gt;(function(){
+if (window.CMFrontEncryptedSDK) {
+    var disable = false;
+    var injectData = {
+&quot;WEVNSM&quot;: &quot;1.0.0&quot;
+}  || {};
+    var crawlerVersion = &#39;01&#39; || {};
+    var cookieOption = {
+  &quot;sameSite&quot;: &quot;strict&quot;
+} || {};
+    var env = &#39;prod&#39; || &#39;prod&#39;;
+    var options = {
+        env: env,
+       disable: disable,
+       injectData: injectData,
+       crawlerVersion: crawlerVersion,
+       cookieOption: cookieOption
+    };
+    window.CMFrontEncryptedSDK.init(options);
+}
+})()&lt;/script&gt;&lt;script async=&quot;&quot; src=&quot;https://s6.music.126.net/puzzle/puzzle@0002A4.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;
+&quot;0&quot;;
+&quot;0&quot;;
+&quot;1621061527794&quot;;
+&quot;false&quot;;
+&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+if (location.pathname.indexOf(&quot;outchain&quot;) === -1) {
+if (document.domain.match(/music.163.com$/)) {
+document.domain = &quot;music.163.com&quot;;
+} else {
+document.domain = document.domain;
+}
+}
+var GDownloadLink=&quot;&quot;;
+var GDevice = &quot;phone&quot;;
+var GFrom=&quot;&quot;;
+var GClient=&quot;&quot;;
+var GPlatform=&quot;other&quot;;
+var GRef = &#39;&#39;;
+var GInApp = false;
+var GMobile = false;
+var GAbroad = false;
+var GUser={};
+var GAllowRejectComment = false;
+var GEnc = true;
+var GEnvType = &quot;online&quot;;
+var GWebpSupport = &quot;1&quot;;
+var vipWebCashierRedirect = &quot;1&quot;;
+window.NEJ_CONF = {p_csrf:{cookie:&#39;__csrf&#39;,param:&#39;csrf_token&#39;}};
+GUtil = {
+getBase:function(){
+return location.protocol+&#39;//&#39;+location.hostname;
+},
+getPathAndHash:function(_url){//获取URL path 之后的所有内容,并将/#/替换成/m/使之成为path的一部分
+if(!_url) return &#39;&#39;;
+var _reg0 = /^https?:\/\/.*?\//i,
+_reg1 = /\/?#\/?/i;
+return _url.replace(_reg0,&#39;/&#39;).replace(_reg1,&#39;/m/&#39;);
+},
+composeRefer:function(_url,_ref){//对所有的页面请求都加上ref参数表示被嵌套的来源
+if(!_ref) return _url;
+var _hi = _url.indexOf(&#39;#&#39;),
+_si = _url.indexOf(&#39;?&#39;);
+if(_si&gt;0&amp;&amp;(_si&lt;_hi||_hi&lt;0)){
+return _url.substring(0,_si+1)+&#39;ref=&#39;+_ref+&#39;&amp;&#39;+_url.substring(_si+1);
+}else if(_hi&gt;0&amp;&amp;(_si&lt;0||_si&gt;_hi)){
+return _url.substring(0,_hi)+&#39;?ref=&#39;+_ref+_url.substring(_hi);
+}else{
+return _url+&#39;?ref=&#39;+_ref;
+}
+}
+};(function(){
+var _ua = window.navigator.userAgent,
+_isMobile = /(mobile|mobi|wap|iphone)/i.test(_ua),
+_isAndroid = /android/i.test(_ua),
+_isIpad = /(ipad)/i.test(_ua),
+_igList = [/^\/xiami$/,/^\/live$/],//不需要以单页面打开的列表，比如某些活动页面
+_pn = location.pathname,
+_ydomainPath = [&#39;home&#39;, &#39;activity&#39;,&#39;album&#39;,&#39;artist&#39;,&#39;djradio&#39;,&#39;radio&#39;,&#39;dj&#39;,&#39;login&#39;,&#39;mv&#39;,&#39;playlist&#39;,&#39;program&#39;,&#39;song&#39;,&#39;tiktoksong&#39;, &#39;uniplaylist&#39;,&#39;unisong&#39;,&#39;user&#39;,&#39;video&#39;,&#39;event&#39;,&#39;discover/toplist&#39;,&#39;user/home&#39;],
+_idx = _pn.lastIndexOf(&#39;/&#39;),
+_pReg = /\s*(\w+)\s*=\s*(\d+)\s*/,
+_isOnCDN = function(type) {
+return _ydomainPath.indexOf(type) !== -1;
+},
+_isOnline = function() {
+return location.host.indexOf(&#39;music.163.com&#39;) !== -1
+},
+_getBase = function(type) {
+return location.protocol + &#39;//&#39; + ((_isOnCDN(type) &amp;&amp; _isOnline()) ? &#39;y.music.163.com&#39; : location.hostname);
+},
+_redirect2mobile = function() {
+var _type,_murl,
+_id = 0,
+_hash = location.hash,
+_mReg = /^#\/?m?\/(share|song|playlist|djradio|dj|program|album|mv|artist|topic|radio|zysf|drqp|qp|activity|store|user|event|video|discover\/toplist|login)(\/(\d+))?/,
+_base = location.protocol+&#39;//&#39;+location.hostname,
+_sindex = _hash.lastIndexOf(&#39;?&#39;),
+_search = _sindex&gt;-1?_hash.substring(_sindex+1):&#39;&#39;,
+_match = _mReg.exec(_hash);
+// 用户等级页特殊处理
+if (_hash === &#39;#/user/level&#39;) {
+location.href = _base + &#39;/store/m/gain/mylevel&#39;;
+return;
+}
+// 网易音乐人手册特殊处理
+if (/^#\/series\b/.test(_hash)) {
+var _seriesQuery = _search.replace(&#39;id&#39;, &#39;seriesId&#39;);
+location.href = _base + &#39;/m/topic/all?&#39; + _seriesQuery;
+return;
+}
+// 无hash || 不匹配 || 匹配但是商品之外不带参数 || 匹配且是排行榜
+if (!_hash.length || !_match || (_match[1] != &#39;store&#39; &amp;&amp; !_search) || /share|discover\/toplist/.test(_match[1])) {
+// 有hash &amp;&amp; (没有参数 || 排行榜)
+if ((!_search || /share|discover\/toplist/.test(_match[1])) &amp;&amp; _hash.length) {
+location.href = ((_match &amp;&amp; _match[1]) ? _getBase(_match[1]) : _base) + &#39;/&#39; + _hash.replace(&#39;#&#39;, &#39;m&#39;);
+} else {
+location.href = _getBase(&#39;home&#39;) + &#39;/m/&#39;;
+}
+return;
+}
+_type = _match[1];
+_id = _match[3];
+if (_type == &#39;dj&#39;) _type = &#39;program&#39;;
+if (_type == &#39;store&#39;) {
+_murl = /^#\/store\/(product|concert)\/detail/.test(_hash) ? _hash.replace(&#39;#/store&#39;, &#39;/store/m&#39;) : &#39;/store/m/product/index&#39;;
+} else {
+_murl = &#39;/&#39; + _type + &#39;?&#39; + (_id ? &#39;id=&#39; + _id + &#39;&amp;&#39; : &#39;&#39;) + _search;
+}
+location.href = _getBase(_type) + (_isOnCDN(_type) ? &#39;/m&#39; : &#39;&#39;) + _murl;
+};
+if(_isMobile || _isAndroid || _isIpad){
+_redirect2mobile();
+return;
+}
+if(!_pn||_pn==&#39;/&#39;) return;
+for(var i in _igList){
+if(_igList[i].test(_pn)) return;
+}
+if(top==self){
+location.href = &#39;/#&#39;+GUtil.getPathAndHash(location.href);
+return;
+}
+//搜索引擎过来的内容页连接
+if(top==self&amp;&amp;/^\/static\/(song|playlist|album|artist)/i.test(_pn)){
+location.href = &#39;/#&#39;+_pn.substring(0,_idx).replace(&#39;/static/&#39;,&#39;/&#39;)+&#39;?id=&#39;+_pn.substring(_idx+1);
+}
+})();
+(function(){
+var _addEvent = function(_node,_type,_cb){
+if(_node.addEventListener){
+_node.addEventListener(_type,_cb);
+}else if(_node.attachEvent){
+_node.attachEvent(&#39;on&#39;+_type,_cb);
+}
+},
+_pathPrefixArray = [
+&#39;/store/&#39;, // 商城
+&#39;/m/at/&#39;, // 活动
+&#39;/prime/m/&#39;, // 会员移动端页面
+&#39;/oauth2/&#39;, // 授权
+&#39;/m/oauth2/&#39;, // 授权
+&#39;/octave/&#39;, // 新数字专辑
+&#39;/v/&#39;, // 新数字专辑
+&#39;/st/&#39;, // 静态页面
+&#39;/nmusician/&#39;,// 音乐人
+&#39;/nact/&#39;, // 新活动
+&#39;/m/topic/&#39;, // 专栏移动端
+&#39;/show/m/&#39;, //演出移动端
+],
+_isNotMainsitePagePath = function(_pagePath){
+// 对于非主站内的页面的跳转 需要排除
+var _path = (_pagePath||&#39;&#39;).replace(/^https?:\/\/.*?\//i, &#39;/&#39;).split(/[?#]/)[0];
+for(var i=0;i&lt;_pathPrefixArray.length;i++){
+if(_path.indexOf(_pathPrefixArray[i])===0) return true;
+}
+return false;
+},
+_onAnchorClick = function(_event){//截获所有&lt;a&gt;标签的点击事件，自定义页面的跳转
+_event = _event||window.event;
+var _el = _event.target||_event.srcElement,
+_base = location.protocol+&#39;//&#39;+location.host;
+while(_el&amp;&amp;_el!=document){
+if(_el.tagName&amp;&amp;_el.tagName.toLowerCase()==&#39;a&#39;){
+//fix ie6下有时javascript:;不能阻止默认事件的bug.
+if(_el.href.indexOf(&#39;javascript:&#39;)&gt;=0){
+!!_event.preventDefault
+? _event.preventDefault()
+: _event.returnValue = !1;
+return;
+}
+if(_event.button==2) return;//ff 右键会触发click事件
+//商城有独立地顶栏了，排除掉。但会员、数字专辑、单曲的商品、订单页仍保持主站frame，
+//这些url往往是通过/vip2, /payfee这样的地址跳转的，也没有问题，如果真的有，URL用#配置就好了
+if(_isNotMainsitePagePath(_el.href)) return;
+//新窗口打开的链接、云音乐单页面形式的链接、站外的链接不做拦截处理。
+if(_el.target==&#39;_blank&#39;
+||_el.target==&#39;blank&#39;
+||_isNotSameHost(_el.href)
+||_el.href==_base
+||_el.href.indexOf(_base+&#39;/#&#39;)&gt;=0) return;
+!!_event.preventDefault
+? _event.preventDefault()
+: _event.returnValue = !1;
+location.dispatch2(_el.href);
+break;
+}else{
+_el = _el.parentNode;
+}
+}
+},
+_isNotSameHost = function(_href){
+var _same = true;
+if(_href.charAt(0)!=&#39;/&#39;){
+var _index = _href.indexOf(&#39;//&#39;+location.hostname);
+if(_index &gt; 0){
+var _index2 = _href.indexOf(&#39;?&#39;);
+if(_index2 &gt; 0 &amp;&amp; _index2 &lt; _index){
+_same = false;
+}
+}else{
+_same = false;
+}
+}
+return !_same;
+};
+_addEvent(document,&#39;click&#39;,_onAnchorClick);
+//扩展一个js中直接使用的页面跳转的方法，以拦截js中的页面跳转行为
+location.dispatch2 = function(_url,_replace){
+var delegate = false;
+try{
+delegate = !!top.GDispatcher;
+}catch(e){
+delegate = false;
+}
+// 处理对于非主站内的页面的跳转
+if(_isNotMainsitePagePath(_url)){
+if(delegate &amp;&amp; top.location &amp;&amp; top.location.href){
+top.location.href = _url;
+}else{
+location.href = _url;
+}
+return;
+}
+if(delegate){
+top.GDispatcher.dispatch(_url,_replace);
+}else{
+_url = GUtil.composeRefer(_url,GRef);
+//邮箱音乐盒中，每次链接的跳转都要将proxy.html的地址合并到hash中
+if(GRef&amp;&amp;GRef==&#39;mail&#39;){
+var _hindex,_sindex,
+_reg = /(https?:\/\/.+\/proxy.html)/,
+_hreg = /#(.*?)$/,
+_href = decodeURIComponent(location.href);
+if(!_reg.test(decodeURIComponent(_url))&amp;&amp;_reg.test(_href)){
+_hindex = _url.indexOf(&#39;#&#39;);
+_sindex = _url.lastIndexOf(&#39;?&#39;);
+if(_hindex&gt;0){
+_url = _url+(_sindex&gt;_hindex?&#39;&amp;&#39;:&#39;?&#39;)+&#39;proxy=&#39;+encodeURIComponent(RegExp.$1);
+}else{
+_url = _url+&#39;#proxy=&#39;+encodeURIComponent(RegExp.$1);
+}
+}
+}
+if(_replace){
+location.replace(_url);
+}else{
+location.href = _url;
+}
+}
+};
+})();
+(function start() {
+var targetUrl = &#39;https://music.163.com&#39;;
+// 首先检测hash规则, 在白名单内才进行跳转
+var hashWhite = /^(\/discover|\/download|\/login)/ig;
+// 如果当前域不是163域名，那么强制跳转到163.com
+var siteReg = /^(https?:\/\/)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\.){1,}?(163\.com)$/ig;
+if(hashWhite.test(window.location.pathname) &amp;&amp; !siteReg.test(window.location.hostname)){
+top.location.href = targetUrl;
+}
+})();&lt;/script&gt;
+&lt;link rel=&quot;shortcut icon&quot; href=&quot;//s1.music.126.net/style/favicon.ico?v20180823&quot;&gt;
+&lt;link href=&quot;//s2.music.126.net/web/s/core_b1ff0c489f4c43876c6635180aef5c49.css?b1ff0c489f4c43876c6635180aef5c49&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;&gt;&lt;link href=&quot;//s2.music.126.net/web/s/pt_frame_6b2f42ff3c3cf17e3462a100a22e062a.css?6b2f42ff3c3cf17e3462a100a22e062a&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;style&gt;html,body{overflow:hidden;}&lt;/style&gt;
+&lt;script&gt;if(top!=self)top.location=self.location;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+(function(){
+var GDegradeConfig = {}; // 降级配置默认值
+try {
+GDegradeConfig = JSON.parse(&quot;{\&quot;apiList\&quot;:{\&quot;_api_topic_user_info\&quot;:{\&quot;type\&quot;:0},\&quot;_api_copyright_pay_fee_message_config\&quot;:{\&quot;result\&quot;:\&quot;{\\\&quot;code\\\&quot;:200,\\\&quot;config\\\&quot;:{\\\&quot;ipadvip\\\&quot;:\\\&quot;版权方要求，当前歌曲需付费使用。您可以到iPhone/Android/网页版购买后使用\\\&quot;,\\\&quot;headpic_lossless\\\&quot;:\\\&quot;109951163349949354\\\&quot;,\\\&quot;vip2\\\&quot;:\\\&quot;版权方要求，当前歌曲仅限开通VIP使用\\\&quot;,\\\&quot;commonQuality2link\\\&quot;:\\\&quot;2元购买此单曲\\\&quot;,\\\&quot;vipCacheOnlyRenewLink\\\&quot;:\\\&quot;单曲购买\\\&quot;,\\\&quot;unknow\\\&quot;:\\\&quot;版权方要求，当前资源需付费使用\\\&quot;,\\\&quot;upgradeVipPro\\\&quot;:\\\&quot;该权益仅限黑胶VIP使用，立即升级畅享特权\\\&quot;,\\\&quot;superQuality\\\&quot;:\\\&quot;无损品质需付费使用，开通VIP即可自由畅享\\\&quot;,\\\&quot;upgradeVipProButton\\\&quot;:\\\&quot;升级为黑胶VIP\\\&quot;,\\\&quot;headpic_general\\\&quot;:\\\&quot;109951163349949354\\\&quot;,\\\&quot;albumbutton\\\&quot;:\\\&quot;购买专辑\\\&quot;,\\\&quot;headpic_download\\\&quot;:\\\&quot;109951163349949354\\\&quot;,\\\&quot;downloadOnly\\\&quot;:\\\&quot;版权方要求，当前歌曲仅限开通VIP使用\\\&quot;,\\\&quot;vipbutton\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;unknowbutton\\\&quot;:\\\&quot;现在去订购\\\&quot;,\\\&quot;downloadOnlyButton\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;vipCacheOnlyRenew\\\&quot;:\\\&quot;VIP已过期，当前歌曲无法离线播放，应版权方要求，开通VIP即可继续使用\\\&quot;,\\\&quot;vipDownloadLink\\\&quot;:\\\&quot;2元购买此单曲\\\&quot;,\\\&quot;superQualitybutton\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;entryNotVip\\\&quot;:\\\&quot;会员中心\\\&quot;,\\\&quot;headpic_quality\\\&quot;:\\\&quot;109951163349949354\\\&quot;,\\\&quot;exclusive\\\&quot;:\\\&quot;版权方要求，会员专属曲库仅限开通VIP下载，开通即可畅享\\\&quot;,\\\&quot;commonQuality\\\&quot;:\\\&quot;版权方要求，当前歌曲该音质需付费使用，开通VIP即可自由畅享\\\&quot;,\\\&quot;vip\\\&quot;:\\\&quot;版权方要求，当前歌曲需付费使用，开通VIP即可自由畅享\\\&quot;,\\\&quot;buyVipPro\\\&quot;:\\\&quot;该权益仅限黑胶VIP使用，立即开通畅享特权\\\&quot;,\\\&quot;downloadOnlyLink\\\&quot;:\\\&quot;单曲购买\\\&quot;,\\\&quot;commonQuality2button\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;buyVipProButton\\\&quot;:\\\&quot;开通黑胶VIP\\\&quot;,\\\&quot;vip2link\\\&quot;:\\\&quot;2元购买此单曲\\\&quot;,\\\&quot;vipCacheOnlyRenewButton\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;album\\\&quot;:\\\&quot;版权方要求，当前专辑需单独付费，购买数字专辑即可无限畅享\\\&quot;,\\\&quot;commonQuality2\\\&quot;:\\\&quot;版权方要求，当前歌曲该音质仅限开通VIP使用\\\&quot;,\\\&quot;vipDownload\\\&quot;:\\\&quot;版权方要求，当前歌曲需付费下载，开通VIP即可畅享\\\&quot;,\\\&quot;vipCacheOnlyLink\\\&quot;:\\\&quot;2元购买此单曲\\\&quot;,\\\&quot;vip2button\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;vipCacheOnlyButton\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;vipCacheOnly\\\&quot;:\\\&quot;版权方要求，当前歌曲需付费下载，下载后可在VIP有效期内离线使用\\\&quot;,\\\&quot;ipadvipaudit\\\&quot;:\\\&quot;版权方要求，当前歌曲需付费使用。您可以到iPhone版网易云音乐购买后使用\\\&quot;,\\\&quot;vipDownloadButton\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;payFeeTableName\\\&quot;:\\\&quot;会员中心\\\&quot;,\\\&quot;entryVip\\\&quot;:\\\&quot;我的会员\\\&quot;}}\&quot;,\&quot;type\&quot;:1},\&quot;_api_reward_user_showicon\&quot;:{\&quot;type\&quot;:0},\&quot;_api_privacy_info_get_v2\&quot;:{\&quot;type\&quot;:0},\&quot;_api_cdns\&quot;:{\&quot;type\&quot;:0},\&quot;_api_feedback_weblog\&quot;:{\&quot;type\&quot;:0},\&quot;_api_activity_p2p_flow_switch_get\&quot;:{\&quot;result\&quot;:\&quot;{\\\&quot;code\\\&quot;:200,\\\&quot;data\\\&quot;:\\\&quot;{\\\\n \\\\\\\&quot;xysdk\\\\\\\&quot;:\\\\\\\&quot;//s5.music.126.net/static_public/5a1b70ea0180f6ca7295a59d/js/p2p-xy-sdk.2.1.12.1.min.js\\\\\\\&quot;,\\\\n \\\\\\\&quot;yfsdk\\\\\\\&quot;:\\\\\\\&quot;//s5.music.126.net/static_public/5a1b70ea0180f6ca7295a59d/js/p2p-yf-sdk.1.0.0.53.min.js\\\\\\\&quot;,\\\\n \\\\\\\&quot;audio\\\\\\\&quot;:{\\\\n \\\\\\\&quot;turnon\\\\\\\&quot;:false,\\\\n \\\\\\\&quot;init\\\\\\\&quot;:0,\\\\n \\\\\\\&quot;xy\\\\\\\&quot;:1,\\\\n \\\\\\\&quot;yf\\\\\\\&quot;:0\\\\n },\\\\n \\\\\\\&quot;video\\\\\\\&quot;:{\\\\n \\\\\\\&quot;turnon\\\\\\\&quot;:false,\\\\n \\\\\\\&quot;init\\\\\\\&quot;:0,\\\\n \\\\\\\&quot;xy\\\\\\\&quot;:1,\\\\n \\\\\\\&quot;yf\\\\\\\&quot;:0\\\\n }\\\\n}\\\&quot;}\&quot;,\&quot;type\&quot;:1},\&quot;_api_login_token_refresh\&quot;:{\&quot;type\&quot;:0},\&quot;_api_web_banner\&quot;:{\&quot;type\&quot;:1},\&quot;_api_pl_count\&quot;:{\&quot;type\&quot;:0},\&quot;_api_discovery_recommend_resource\&quot;:{\&quot;type\&quot;:0},\&quot;_api_event_user_permission\&quot;:{\&quot;result\&quot;:\&quot;{\\\&quot;code\\\&quot;:200,\\\&quot;topEventPermission\\\&quot;:false,\\\&quot;pubEventWithPictureForbiddenNotice\\\&quot;:\\\&quot;等级达到Lv.0，即可添加图片\\\&quot;,\\\&quot;LongMsgNum\\\&quot;:400,\\\&quot;eventVideoUploadNosType\\\&quot;:1,\\\&quot;pubEventWithPics\\\&quot;:true,\\\&quot;pubEventWithoutResource\\\&quot;:false,\\\&quot;lotteryEventPermission\\\&quot;:false,\\\&quot;pubLongMsgEvent\\\&quot;:false}\&quot;,\&quot;type\&quot;:1},\&quot;_api_privilege_message_mv\&quot;:{\&quot;result\&quot;:\&quot;{\\\&quot;code\\\&quot;:200,\\\&quot;data\\\&quot;:{\\\&quot;mvOnlyMusicPackageButton\\\&quot;:\\\&quot;开通音乐包\\\&quot;,\\\&quot;mvOnlyVinylVipButton\\\&quot;:\\\&quot;开通黑胶VIP\\\&quot;,\\\&quot;onlyBuyMv\\\&quot;:\\\&quot;版权方要求，当前资源需单独付费使用\\\&quot;,\\\&quot;unauthorizedMv\\\&quot;:\\\&quot;版权方要求，当前资源暂时无法使用\\\&quot;,\\\&quot;mvOnlyVinylVip\\\&quot;:\\\&quot;版权方要求，当前资源仅限黑胶VIP使用\\\&quot;,\\\&quot;onlyBuyMvButton\\\&quot;:\\\&quot;去购买\\\&quot;,\\\&quot;mvOnlyDownload\\\&quot;:\\\&quot;版权方要求，当前资源需下载后播放\\\&quot;,\\\&quot;mvOnlyPlay\\\&quot;:\\\&quot;版权方要求，当前资源不能下载\\\&quot;,\\\&quot;mvOnlyMusicPackage\\\&quot;:\\\&quot;版权方要求，当前资源仅限音乐包用户使用\\\&quot;}}\&quot;,\&quot;type\&quot;:1}},\&quot;degrade\&quot;:false,\&quot;degradeLogin\&quot;:false,\&quot;degradeUserList\&quot;:[64970269],\&quot;discoverUrl\&quot;:\&quot;https://y.music.163.com/discover\&quot;,\&quot;vipUserList\&quot;:[]}&quot;);
+if (GDegradeConfig.apiList) {
+// 预处理所有数据
+for (var attr in GDegradeConfig.apiList) {
+if (GDegradeConfig.apiList[attr]
+&amp;&amp; GDegradeConfig.apiList[attr].result) {
+try {
+GDegradeConfig.apiList[attr].result = JSON.parse(GDegradeConfig.apiList[attr].result);
+} catch(e) {
+GDegradeConfig.apiList[attr].result = null;
+}
+}
+}
+}
+} catch (e) {
+console.log(e);
+}
+window.GDegradeConfig = GDegradeConfig;
+// console.log(window.GDegradeConfig);
+})();
+&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; charset=&quot;UTF-8&quot; async=&quot;&quot; src=&quot;https://acstatic-dun.126.net/2.7.1_a02527b8/watchman.min.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot; charset=&quot;UTF-8&quot; async=&quot;&quot; src=&quot;https://acstatic-dun.126.net/2.7.1_a02527b8/watchman.min.js&quot;&gt;&lt;/script&gt;&lt;style type=&quot;text/css&quot;&gt;/* 还是需要定高点 */
+.style_openmask__1Iqoy {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 10004;
+}
+.style_openmask__1Iqoy .style_opentip__3Z4Df {
+  position: fixed;
+  top: 0;
+  left: 10px;
+  right: 10px;
+  height: 144px;
+}
+.style_openmask__1Iqoy .style_opentip__3Z4Df .style_lay__1ovDQ {
+  width: 100%;
+  height: 120px;
+  border-radius: 0 0 8px 8px;
+  background: #f9f9f9 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP4AAACgCAMAAAAbzCHkAAAAOVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0DekkdAAAAEnRSTlMA8ietERxLacmDeNa5oVuRNeAOJcWwAAADUUlEQVR42u2dy5KjMAxFJeMnYB73/z92CJlMkpqqnsequw9nkyKVjWIhXUvC2PcgGplVXgxL1sFoVGbdyMYk6aQak1UCL390eVolzUakSd3iLmkzHum2+GYZuvyDVOygI+/+Rep2UoHBP/kvl4+TRNN+VTXa035nif/1bn0oy3azv6obiFHDewAYSNFvUXv8DVrtZN0x7r9M21P2jo8vKck/Lfagv8T8wNv5zm+KB6d9K1PvP3ApGRfJjUuQJuOSmXvdB0UssfubAmggrXtx8ULtPKH7ZGPnPXjgX3k1vlcqscL9xCVMied3Nmk3LkUajEtnR74dXepJ7FrHNqE3+2Yp2AWTtIAlj9koNeNSpcWwRKEF/wIc6HlhIM8ym7kEzvqZXebr7LTH9v2F7fuNHfctjeSpDjbspc/s5tYgrYYlCJ30V/ZAk6M7m4Xd2tvRva2F3dyZ0FvdLNpTW2+EgSx5DgJY8IP9/iB7I/8B7LBf0GE/OrrE19BqPzm6pz2gm7oZekTLT3Z0ha+hk56FmVzlOAAX+DJ4m2cW3MEZ3yq6n98k56b8DX0iZ5zQXa0uOTfwF+R5fA82J2v9OKFznjU5eJbBLHNvfLDpZ9gDyx1LLk3YEkecRA57s+Tce7+LXNZf0du8JrLWHYU+maKgt/igY3d/p6D7GSN6arWB3zVzz/czVuh36JtGTuJMzvepCvyQ1raLPLaYHZ3yrGD393FYwQPbAfhqoSeLg4Ne7AKX9bZJUqW2sEcH17VSJTu+xZ3r+CGYZWzEb17NDLr0eQc3MtKgg8rsYMbmEvbt6cV10KF3/ayDyhzSjffTN5h+n2s1s8p8EHmZwAOqZdKBI1N9an4avxLDfRx0A3n4wG29d0l7ARq/zMpmTTMw5OXukgbiixTiMrgkaMd21p2JdrBmWnoym07bG8vpt9L3+zDqqjp+ZtvD4D6EDy7+kVTW6rrTzdLn9vlwV2Hhg4u/JOSyjmZZP/F5/Pyb2UEnw8cX78T4+AzBzErrc911YzILOtiH8vlNv+E68Q8v3hn0Qrr98ImZ9fELPWX/H+bPeiGY7TrZax+/3OD9fzj/6rrjvk/BbGxl2b7Ogv9D6Pv+T9H8IfF9c+svLi4uLi4uLhj8AJRKMdjUtWgaAAAAAElFTkSuQmCC) 100% 4px no-repeat;
+  background-size: 127px auto;
+}
+.style_openmask__1Iqoy .style_opentip__3Z4Df .style_lay__1ovDQ .style_note__10dvC {
+  float: right;
+  margin: 14px 58px 0 0;
+  width: 167px;
+  line-height: 20px;
+  color: #222;
+}
+.style_openmask__1Iqoy .style_opentip__3Z4Df .style_lay__1ovDQ h3 {
+  margin-bottom: 6px;
+  font-size: 20px;
+  font-weight: normal;
+}
+.style_openmask__1Iqoy .style_opentip__3Z4Df .style_lay__1ovDQ p {
+  font-size: 14px;
+}
+&lt;/style&gt;&lt;style type=&quot;text/css&quot;&gt;/* 还是需要定高点 */
+/* 中间显示toast */
+.style_CMFrontEncryptedValidator-toast__2hRBW {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 10003;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  min-width: 70px;
+  min-height: 30px;
+  text-align: center;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 1;
+  -webkit-transition: all 200ms linear;
+  -o-transition: all 200ms linear;
+  transition: all 200ms linear;
+  /* 动画设置 */
+}
+.style_CMFrontEncryptedValidator-toast__2hRBW.style_toast-entering__2f54c {
+  opacity: 0;
+}
+.style_CMFrontEncryptedValidator-toast__2hRBW.style_toast-entered__1M1Hx {
+  opacity: 1;
+}
+.style_CMFrontEncryptedValidator-toast__2hRBW.style_toast-exiting__LG8YG {
+  opacity: 1;
+}
+.style_CMFrontEncryptedValidator-toast__2hRBW.style_toast-exited__1vYPC {
+  opacity: 0;
+}
+.style_CMFrontEncryptedValidator-toast__2hRBW .style_text__1FTZu {
+  padding: 10px 15px;
+  line-height: 30px;
+  font-size: 15px;
+  color: #fff;
+}
+.style_CMFrontEncryptedValidator-toast-center__1xkCf {
+  width: 180px;
+  min-height: 116px;
+  border-radius: 6px;
+}
+.style_CMFrontEncryptedValidator-toast-center__1xkCf .style_icn__2KezR {
+  display: block;
+  width: 35px;
+  height: 35px;
+  margin: 10px auto 15px;
+}
+.style_CMFrontEncryptedValidator-toast-center__1xkCf .style_text__1FTZu {
+  line-height: 20px;
+  padding: 0 15px 0;
+  margin: 15px 0;
+}
+.style_CMFrontEncryptedValidator-toast-loading__1Av04 {
+  margin-top: -100px;
+  width: 180px;
+  min-height: 116px;
+  border-radius: 6px;
+}
+.style_CMFrontEncryptedValidator-toast-loading__1Av04 .style_icn__2KezR {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: 27px 0 6px;
+  background: url(&quot;//p3.music.126.net/C9tJEnwLhYm4dvTdsukD0g==/19106213556354168.jpg&quot;) no-repeat;
+  background-size: 30px 240px;
+  background-position: 0 0;
+  -webkit-animation: style_toastload__14ZuG 0.72s infinite step-start;
+          animation: style_toastload__14ZuG 0.72s infinite step-start;
+}
+.style_CMFrontEncryptedValidator-toast-loading__1Av04 .style_text__1FTZu {
+  line-height: 20px;
+  padding: 0 15px 10px;
+}
+.style_CMFrontEncryptedValidator-toast-iconmiddle__3H8C6 .style_icn__2KezR {
+  margin-top: 43px;
+}
+@keyframes style_toastload__14ZuG {
+  0% {
+    background-position-y: 0;
+  }
+  14.28% {
+    background-position-y: -30px;
+  }
+  28.56% {
+    background-position-y: -60px;
+  }
+  42.84% {
+    background-position-y: -90px;
+  }
+  57.12% {
+    background-position-y: -120px;
+  }
+  71.4% {
+    background-position-y: -150px;
+  }
+  85.68% {
+    background-position-y: -180px;
+  }
+  100% {
+    background-position-y: -210px;
+  }
+}
+@-webkit-keyframes style_toastload__14ZuG {
+  0% {
+    background-position-y: 0;
+  }
+  14.28% {
+    background-position-y: -30px;
+  }
+  28.56% {
+    background-position-y: -60px;
+  }
+  42.84% {
+    background-position-y: -90px;
+  }
+  57.12% {
+    background-position-y: -120px;
+  }
+  71.4% {
+    background-position-y: -150px;
+  }
+  85.68% {
+    background-position-y: -180px;
+  }
+  100% {
+    background-position-y: -210px;
+  }
+}
+&lt;/style&gt;&lt;style type=&quot;text/css&quot;&gt;/* 还是需要定高点 */
+.style_wrapper__1p8NA {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-overflow-scrolling: touch;
+  z-index: 10002;
+  font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Heiti SC&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif;
+}
+.style_wrapper__1p8NA * {
+  -webkit-tap-highlight-color: transparent;
+}
+.style_wrapper__1p8NA .style_modalwrap__27JAU {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.6;
+  background-color: #000;
+}
+.style_wrapper__1p8NA .style_body__3otNa {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 270px;
+  height: auto;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 8px;
+  z-index: 1;
+}
+.style_wrapper__1p8NA .style_title__2QK1w,
+.style_wrapper__1p8NA .style_content__1tas6 {
+  font-size: 18px;
+  padding: 15px 22px 0;
+  line-height: 1.2;
+  margin: 0;
+}
+.style_wrapper__1p8NA .style_title__2QK1w {
+  font-weight: 700;
+}
+.style_wrapper__1p8NA .style_content__1tas6 {
+  overflow: hidden;
+  height: 100%;
+  padding: 0 22px;
+  margin-top: 5px;
+  min-height: 40px;
+  font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.style_wrapper__1p8NA .style_footer__3VGqx {
+  overflow: hidden;
+  position: relative;
+  margin-top: 15px;
+  height: 44px;
+  min-height: 44px;
+  line-height: 1;
+  text-align: center;
+}
+.style_wrapper__1p8NA .style_footer__3VGqx::after {
+  content: &quot; &quot;;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200%;
+  -webkit-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+      transform: scale(0.5);
+  -webkit-transform-origin: left top;
+  -ms-transform-origin: left top;
+      transform-origin: left top;
+  height: 1px;
+  background-color: #dbdbdb;
+}
+.style_wrapper__1p8NA .style_button__14tP8 {
+  cursor: pointer;
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  color: #0076ff;
+  font-size: 14px;
+  position: relative;
+  vertical-align: middle;
+}
+.style_wrapper__1p8NA .style_button__14tP8 .style_btntext__2s0cj {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.style_wrapper__1p8NA .style_button__14tP8.style_cancel__v69gK::after {
+  content: &quot; &quot;;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 200%;
+  -webkit-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+      transform: scale(0.5);
+  -webkit-transform-origin: left top;
+  -ms-transform-origin: left top;
+      transform-origin: left top;
+  background-color: #dbdbdb;
+}
+.style_wrapper__1p8NA.style_m-mobile__q2nA9 .style_body__3otNa,
+.style_wrapper__1p8NA.style_m-app__3xype .style_body__3otNa {
+  max-width: 6.48148148em;
+  border-radius: 0.22222222em;
+}
+.style_wrapper__1p8NA.style_m-mobile__q2nA9 .style_title__2QK1w,
+.style_wrapper__1p8NA.style_m-app__3xype .style_title__2QK1w {
+  font-size: 0.41666667em;
+  padding: 0.27777778em 0.2037037em 0.27777778em;
+}
+.style_wrapper__1p8NA.style_m-mobile__q2nA9 .style_content__1tas6,
+.style_wrapper__1p8NA.style_m-app__3xype .style_content__1tas6 {
+  padding: 0.09259259em 0.37037037em;
+  min-height: 0.92592593em;
+  font-size: 0.37037037em;
+  text-align: center;
+}
+.style_wrapper__1p8NA.style_m-mobile__q2nA9 .style_footer__3VGqx,
+.style_wrapper__1p8NA.style_m-app__3xype .style_footer__3VGqx {
+  margin-top: 0.46296296em;
+  height: 1.11111111em;
+  min-height: 1.11111111em;
+  line-height: 0em;
+}
+.style_wrapper__1p8NA.style_m-mobile__q2nA9 .style_button__14tP8,
+.style_wrapper__1p8NA.style_m-app__3xype .style_button__14tP8 {
+  font-size: 0.33333333em;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 3) {
+  .style_footer__3VGqx:after {
+    width: 300%;
+  }
+  .style_button__14tP8.style_cancel__v69gK:after,
+  .style_footer__3VGqx:after {
+    -webkit-transform: scale(0.33);
+    -ms-transform: scale(0.33);
+        transform: scale(0.33);
+  }
+  .style_button__14tP8.style_cancel__v69gK:after {
+    height: 300%;
+  }
+}
+&lt;/style&gt;&lt;style type=&quot;text/css&quot;&gt;.style_loadingctn__3dRwX {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.style_loadingctn__3dRwX .style_loading__1qz1r {
+  line-height: 0;
+  text-align: center;
+}
+.style_loadingctn__3dRwX .style_loadingimg__1pUq8 {
+  width: 18px;
+  height: 18px;
+}
+.style_loadingctn__3dRwX .style_icon__12G4j {
+  width: 30px;
+  height: 30px;
+  fill: #555;
+  margin: 0 auto;
+}
+.style_loadingctn__3dRwX .style_textwrapper__2XQ5y {
+  margin-top: 10px;
+}
+.style_loadingctn__3dRwX .style_text__1q5wH {
+  font-size: 13px;
+  color: #888;
+  text-indent: 6px;
+}
+.style_loadingctn__3dRwX .style_text__1q5wH.style_reloadMsg__3AV24 {
+  margin-top: 10px;
+}
+.style_loadingctn__3dRwX.style_m-mobile__33Sny .style_icon__12G4j,
+.style_loadingctn__3dRwX.style_m-app__3H8c3 .style_icon__12G4j {
+  width: 0.55555556em;
+  height: 0.55555556em;
+}
+.style_loadingctn__3dRwX.style_m-mobile__33Sny .style_loadingimg__1pUq8,
+.style_loadingctn__3dRwX.style_m-app__3H8c3 .style_loadingimg__1pUq8 {
+  width: 0.37037037em;
+  height: 0.37037037em;
+}
+.style_loadingctn__3dRwX.style_m-mobile__33Sny .style_textwrapper__2XQ5y,
+.style_loadingctn__3dRwX.style_m-app__3H8c3 .style_textwrapper__2XQ5y {
+  margin-top: 0.18518519em;
+}
+.style_loadingctn__3dRwX.style_m-mobile__33Sny .style_text__1q5wH,
+.style_loadingctn__3dRwX.style_m-app__3H8c3 .style_text__1q5wH {
+  font-size: 0.37037037em;
+  line-height: 1.3;
+}
+.style_loadingctn__3dRwX.style_m-mobile__33Sny .style_text__1q5wH.style_reloadMsg__3AV24,
+.style_loadingctn__3dRwX.style_m-app__3H8c3 .style_text__1q5wH.style_reloadMsg__3AV24 {
+  margin-top: 0.18518519em;
+}
+&lt;/style&gt;&lt;style type=&quot;text/css&quot;&gt;/* 还是需要定高点 */
+/* 透明遮罩层，防止用户可以操作 */
+.style_validatorwrapper__2pnes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+}
+.style_validatorwrapper__2pnes.style_m-mobile__3Zrin,
+.style_validatorwrapper__2pnes.style_m-app__RzjAe {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.style_closebtn__2wfqf {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  fill: #000;
+  text-align: left;
+}
+.style_closebtn__2wfqf.style_m-other__2v8MD {
+  left: 0;
+}
+.style_closebtn__2wfqf.style_m-pc__2Z_0E {
+  right: 6px;
+}
+.style_closebtn__2wfqf svg {
+  position: relative;
+  top: 19px;
+  left: 19px;
+}
+.style_closeIcon__1OXT- {
+  width: 12px !important;
+  height: 10px !important;
+}
+.style_validatorctn__3qGia.style_m-web__ZI-DV {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 380px;
+  min-height: 400px;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  z-index: 10001;
+}
+.style_validatorctn__3qGia.style_m-desktop__3naM9 {
+  width: 300px;
+  min-height: 350px;
+}
+.style_validatorctn__3qGia.style_m-mobile__3Zrin,
+.style_validatorctn__3qGia.style_m-app__RzjAe {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 80%;
+  min-height: 8.50925926em;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 0.01851852em solid rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.41666667em;
+  padding: 0.0462963em;
+  text-align: center;
+  z-index: 10001;
+  padding-bottom: 1em;
+}
+.style_validatorctn__3qGia.style_m-mobile__3Zrin .style_closebtn__2wfqf,
+.style_validatorctn__3qGia.style_m-app__RzjAe .style_closebtn__2wfqf {
+  width: 0.86111111em;
+  height: 0.86111111em;
+  bottom: -2.13888889em;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  left: 50%;
+  top: auto;
+  line-height: 1;
+}
+.style_validatorctn__3qGia.style_m-mobile__3Zrin .style_closebtn__2wfqf svg,
+.style_validatorctn__3qGia.style_m-app__RzjAe .style_closebtn__2wfqf svg {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+&lt;/style&gt;&lt;style type=&quot;text/css&quot;&gt;.style_sliderctn__PyyvO {
+  width: 100%;
+  height: 100%;
+}
+.style_sliderctn__PyyvO.style_hide__11z8Y {
+  display: none;
+}
+.style_sliderctn__PyyvO .style_title__KfPiP {
+  font-size: 22px;
+  color: #333333;
+  margin: 20px auto 40px;
+  font-weight: 500;
+}
+.style_sliderctn__PyyvO .style_loadingwrapper__1aVK6 {
+  width: 100%;
+  height: 340px;
+}
+.style_sliderctn__PyyvO.style_m-mobile__3VJvw,
+.style_sliderctn__PyyvO.style_m-app__2ZKer {
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+}
+.style_sliderctn__PyyvO.style_m-mobile__3VJvw .style_title__KfPiP,
+.style_sliderctn__PyyvO.style_m-app__2ZKer .style_title__KfPiP {
+  font-size: 0.46296296em;
+  margin-top: 1.03703704em;
+  margin-bottom: 0.55555556em;
+  line-height: 1.1;
+}
+.style_sliderctn__PyyvO.style_m-mobile__3VJvw .style_loadingwrapper__1aVK6,
+.style_sliderctn__PyyvO.style_m-app__2ZKer .style_loadingwrapper__1aVK6 {
+  height: 7.50925926em;
+}
+.style_sliderctn__PyyvO.style_m-app__2ZKer {
+  width: 85%;
+}
+.style_sliderctn__PyyvO.style_validatePage__ysWZB .style_loadingwrapper__1aVK6 {
+  height: 100%;
+}
+&lt;/style&gt;&lt;style type=&quot;text/css&quot;&gt;.style_qrcodectn__GLxAI {
+  width: 100%;
+  height: 100%;
+}
+.style_qrcodectn__GLxAI p {
+  margin: 0;
+}
+.style_qrcodectn__GLxAI .style_loadingwrapper__3TSVs {
+  width: 100%;
+  height: 340px;
+}
+.style_qrcodectn__GLxAI .style_title__3gz0o {
+  font-size: 22px;
+  color: #333333;
+  font-weight: 500;
+  margin: 20px auto 35px;
+}
+.style_qrcodectn__GLxAI .style_text__aQImb {
+  color: #fff;
+  margin: 0;
+}
+.style_qrcodectn__GLxAI .style_btn__1I6TE {
+  background: #FF3A3A;
+  border-radius: 20px;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+.style_qrcodectn__GLxAI .style_qrcode__2d7dF {
+  position: relative;
+  margin: 0 auto;
+  width: 170px;
+  height: 170px;
+}
+.style_qrcodectn__GLxAI .style_qrcode__2d7dF .style_loadingctn__2VyDG {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: #fff;
+}
+.style_qrcodectn__GLxAI img {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+}
+.style_qrcodectn__GLxAI .style_expired__JErG6 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.style_qrcodectn__GLxAI .style_expired__JErG6 .style_expiredwrapper__2Rr5A {
+  width: 100%;
+  height: 100%;
+  background-image: url(&#39;data:image/gif;base64,R0lGODdhcABwAIAAAAAAAP///ywAAAAAcABwAAAC/4yPqcvtD6OctNqLs968+w+G4kiW5olCwMq27gsj8Awwrczi9B4//O/SAW25w80ITKqSQ6RycTREA8ymo/oTZqFFaZeK3S1XmOk46PuaJ2tFO/Imvs7C8ldeu8S58zTZmWex5/UneOeHdqV2KDEIVvhIU8cXGDnptgi5RViJp9XD6Ql4mTBlykMqyjmTOuoaSkm6aYn42QeLqZnZ+Uq7CurbcCrWizfMq6hLjCu8y1pMeUxx/MysGlkdbLw77QzsSP3NWCoOSQeYDe59qx1djkyuLAmdWzmrvtxeb5uoH2+Pit6/dONkBbQWC927MwTNJfzFDh+8c/t6vZGmp6BAiv//DDpk5uiaSDbjMCIEqTHZxI21Hga7yC3jx4Fh+pl8GRNizZn8dnoEKO/nTolDc+IMarFov21FfzpNqjRliWz8qqa4SlWhvJBXO2TVabXria/Y1q000dBmybVb2Z5txlMrULUzYbatK3VkvXBIK/otizeuSoZmW508upTlYEQ3bxoGbAXyLMJ9EeuVfBBzPspzn/7tmdknyYhG7cITrXOyzHmHTfOdq/owZ8cC074my3XvQpdhIYNm93i20ce2zeLOKze3P463a3bb3NJQ5ajKY8N9e615mOes4SD/qx2LnXzhuTPFrvh62t/oWwPjyH198u/+yF4WPj0zfLnmGRf/5g0VbMPVRl9xgZ1W2m6fpdfbcQcKNaB7gtF0F4IPBkibhO35xh+BE1YB4RMqvUacVCBiyARnDbqFH10Ciqjefxq22Jhz0dXnlnzgJUjahxHiSB6LAa7oY2UlBnkhShUGNySAqf1Y45LpmXafO0iK12EjQi44Ymg2gjWahWLG5+V2WXqXZEdh3vMlh2JxaZmTaoL55px2UnmjfV3hOWOe79UJZGdyhrghdTn+6NlyUxoqZoZ3IrqooecxqaSgi3XZlJWWXpdolbLdyNyWnH6gHKWPpulpBaUy2CScpvYnXaFQmkhfqFcSSuiJuhX5oou4omjmrm+V16qbiKFG4bDGnPHYa64pamprd1H2aqCswLnEZn4VVksmr+wlGh6Ja9K6LbPO9pgYpsqWa+R82m7Knp6V6pjstEdiealm8Lq7qaPIZldmowrGKax1r2J76LU7oiuvovm69ufCLja8aqXnSURkd6kCfCDFMupL47N0gowwqpFSl7GD+/apLrLV8hloqow2yy/HYw4KaM4678xzzz7/DHTQQg9NNAkFAAA7&#39;);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  -webkit-filter: blur(3px);
+  /* Chrome, Opera */
+  -moz-filter: blur(3px);
+  -ms-filter: blur(3px);
+  filter: blur(3px);
+}
+.style_qrcodectn__GLxAI .style_expiremsg__1-GKI {
+  position: absolute;
+  top: 50px;
+  font-size: 18px;
+  color: #FFFFFF;
+  width: 100%;
+  margin: 0;
+}
+.style_qrcodectn__GLxAI .style_expirebtn__3rk3b {
+  position: absolute;
+  bottom: 50px;
+  left: 45px;
+  width: 80px;
+  height: 32px;
+  line-height: 32px;
+}
+.style_qrcodectn__GLxAI .style_float__1u9XQ {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: #000;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+}
+.style_qrcodectn__GLxAI .style_footer__3SDFM {
+  margin: 20px 33px 0;
+  font-size: 14px;
+  color: #666;
+}
+.style_qrcodectn__GLxAI .style_music163__1xS-J {
+  color: #3072a5;
+}
+.style_qrcodectn__GLxAI .style_failbtn__2Hp0l {
+  margin-top: 40px;
+  width: 220px;
+  height: 40px;
+  line-height: 40px;
+}
+.style_qrcodectn__GLxAI.style_m-mobile__wxNWK,
+.style_qrcodectn__GLxAI.style_m-app__2MG6Q {
+  width: 90%;
+  margin: 0 auto;
+}
+.style_qrcodectn__GLxAI.style_m-mobile__wxNWK .style_loadingwrapper__3TSVs,
+.style_qrcodectn__GLxAI.style_m-app__2MG6Q .style_loadingwrapper__3TSVs {
+  height: 7.32407407em;
+}
+.style_qrcodectn__GLxAI.style_m-mobile__wxNWK .style_title__3gz0o,
+.style_qrcodectn__GLxAI.style_m-app__2MG6Q .style_title__3gz0o {
+  font-size: 0.46296296em;
+  margin-top: 1.03703704em;
+  margin-bottom: 0.55555556em;
+  line-height: 1.1;
+}
+.style_qrcodectn__GLxAI.style_m-mobile__wxNWK .style_qrcode__2d7dF,
+.style_qrcodectn__GLxAI.style_m-app__2MG6Q .style_qrcode__2d7dF {
+  width: 3.62962963em;
+  height: 3.62962963em;
+}
+.style_qrcodectn__GLxAI.style_m-mobile__wxNWK .style_footer__3SDFM,
+.style_qrcodectn__GLxAI.style_m-app__2MG6Q .style_footer__3SDFM {
+  margin: 0.37037037em 0.30555556em 0em;
+  font-size: 0.37037037em;
+  color: #666;
+}
+.style_qrcodectn__GLxAI.style_m-mobile__wxNWK .style_expiremsg__1-GKI,
+.style_qrcodectn__GLxAI.style_m-app__2MG6Q .style_expiremsg__1-GKI {
+  font-size: 0.55555556em;
+  top: 1.57407407em;
+}
+.style_qrcodectn__GLxAI.style_m-mobile__wxNWK .style_expirebtn__3rk3b,
+.style_qrcodectn__GLxAI.style_m-app__2MG6Q .style_expirebtn__3rk3b {
+  width: 2.40740741em;
+  font-size: 0.41666667em;
+  top: 2.77777778em;
+  left: 1.15740741em;
+  height: 0.83333333em;
+  line-height: 0.83333333em;
+}
+&lt;/style&gt;&lt;style type=&quot;text/css&quot;&gt;.captcha_captcha-ctn__NUoZl {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+}
+.captcha_captcha-ctn__NUoZl .captcha_tip__eTYs0 {
+  padding: 0.36111111em 0.44444444em;
+  background: #fffbe5;
+  color: #333;
+  font-size: 0.30555556em;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0.83333333em 0.55555556em 1.38888889em 0.44444444em;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_left__3yxAc {
+  text-align: left;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_left__3yxAc .captcha_title__1Ip4l {
+  margin-bottom: 0.27777778em;
+  color: #333;
+  font-weight: 500;
+  font-size: 0.47222222em;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_left__3yxAc .captcha_number__12Mfe {
+  color: #999;
+  font-size: 0.41666667em;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_right__2sN2h {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_right__2sN2h .captcha_text__3c8PN {
+  color: #333;
+  font-size: 0.33333333em;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_right__2sN2h .captcha_send__3Uy5f {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-width: 0.02777778em;
+  border-radius: 0.33333333em;
+  width: 1.83333333em;
+  padding: 0.16666667em 0em;
+  text-align: center;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_right__2sN2h .captcha_senderr__2c5hn {
+  padding: 2px 10px;
+  color: #ff2525;
+  font-size: 12px;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_right__2sN2h.captcha_count__1fID4 {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+.captcha_captcha-ctn__NUoZl .captcha_phone-number__1rQy2 .captcha_right__2sN2h.captcha_count__1fID4 .captcha_count-down__3hapC {
+  font-size: 0.41666667em;
+  color: #999;
+}
+.captcha_captcha-ctn__NUoZl .captcha_capthca__sMVz3 {
+  margin: 0em 1.38888889em 0em 1.38888889em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 0.83333333em;
+}
+.captcha_captcha-ctn__NUoZl .captcha_capthca__sMVz3 .captcha_code__1lUWS {
+  position: relative;
+  width: 1.38888889em;
+  text-align: center;
+  font-size: 0.55555556em;
+}
+.captcha_captcha-ctn__NUoZl .captcha_capthca__sMVz3 .captcha_code__1lUWS::after {
+  /* 用图片方式 */
+  content: &#39; &#39;;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: 1px;
+  background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAECAYAAABP2FU6AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB5JREFUeNpiPnH8zH/GMzAxAAHTyRNn/wMEGABpvQm9g9TJ1QAAAABJRU5ErkJggg==&quot;);
+  background-repeat: repeat-x;
+  z-index: 0;
+}
+.captcha_captcha-ctn__NUoZl .captcha_capthca__sMVz3 .captcha_code__1lUWS.captcha_focus__1X-Sd {
+  color: #333;
+}
+.captcha_captcha-ctn__NUoZl .captcha_capthca__sMVz3 .captcha_code__1lUWS.captcha_focus__1X-Sd::after {
+  /* 用图片方式 */
+  background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVR4nGNiAAAABgADNjd8qAAAAABJRU5ErkJggg==&quot;);
+}
+.captcha_captcha-ctn__NUoZl .captcha_deprecated__UtPL6 {
+  text-align: center;
+  margin-top: 0.55555556em;
+  color: #999;
+  font-size: 0.36111111em;
+}
+.captcha_captcha-ctn__NUoZl .captcha_deprecated__UtPL6 .captcha_arrow__T6Cm4 {
+  display: inline-block;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  margin-left: 0.11111111em;
+  width: 0.14814815em;
+  height: 0.25em;
+  background: url(https://p1.music.126.net/bZcc9l_4cd6cKSRHkJQx5w==/109951164367908552.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.captcha_captcha-ctn__NUoZl .captcha_shadow-input__3rgUL {
+  position: absolute;
+  top: -9999px;
+  left: 0;
+  z-index: -1;
+  -webkit-tap-highlight-color: transparent;
+}
+&lt;/style&gt;&lt;style type=&quot;text/css&quot;&gt;/* 存放验证器全局样式 */
+/* 验证器根容器 */
+.global_container__10fOb * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Heiti SC&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif;
+}
+&lt;/style&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;g-topbar&quot; class=&quot;g-topbar&quot; style=&quot;width: 1185px; top: 0px;&quot;&gt;
+&lt;div class=&quot;m-top&quot;&gt;
+&lt;div class=&quot;wrap f-cb&quot;&gt;
+&lt;h1 class=&quot;logo&quot;&gt;&lt;a hidefocus=&quot;true&quot; href=&quot;/#&quot;&gt;网易云音乐&lt;/a&gt;&lt;/h1&gt;
+&lt;ul class=&quot;m-nav j-tflag&quot;&gt;
+&lt;li class=&quot;fst&quot;&gt;
+&lt;span&gt;&lt;a hidefocus=&quot;true&quot; href=&quot;/#&quot; data-module=&quot;discover&quot; class=&quot;z-slt&quot;&gt;&lt;em&gt;发现音乐&lt;/em&gt;&lt;sub class=&quot;cor&quot;&gt;&amp;nbsp;&lt;/sub&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;span&gt;&lt;a data-action=&quot;bilog&quot; data-log-action=&quot;page&quot; data-log-json=&quot;{&amp;quot;type&amp;quot;:&amp;quot;my&amp;quot;}&quot; hidefocus=&quot;true&quot; href=&quot;/my/&quot; data-module=&quot;my&quot;&gt;&lt;em&gt;我的音乐&lt;/em&gt;&lt;sub class=&quot;cor&quot;&gt;&amp;nbsp;&lt;/sub&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;span&gt;&lt;a hidefocus=&quot;true&quot; href=&quot;/friend&quot; data-module=&quot;friend&quot;&gt;&lt;em&gt;朋友&lt;/em&gt;&lt;sub class=&quot;cor&quot;&gt;&amp;nbsp;&lt;/sub&gt;&lt;i class=&quot;dot j-t&quot; style=&quot;display:none;&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;span&gt;&lt;a hidefocus=&quot;true&quot; href=&quot;/store/product&quot; target=&quot;_blank&quot; data-module=&quot;store&quot;&gt;&lt;em&gt;商城&lt;/em&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;span&gt;&lt;a hidefocus=&quot;true&quot; href=&quot;/musician/artist&quot; target=&quot;_blank&quot; data-module=&quot;musician&quot;&gt;&lt;em&gt;音乐人&lt;/em&gt;&lt;/a&gt;&lt;/span&gt;
+&lt;/li&gt;
+&lt;li class=&quot;lst&quot;&gt;
+&lt;span&gt;&lt;a id=&quot;topbar-download-link&quot; data-action=&quot;bilog&quot; data-log-action=&quot;page&quot; data-log-json=&quot;{&amp;quot;type&amp;quot;:&amp;quot;downloadapp&amp;quot;,&amp;quot;source&amp;quot;:&amp;quot;tab&amp;quot;}&quot; hidefocus=&quot;true&quot; href=&quot;/download&quot; data-module=&quot;download&quot;&gt;&lt;em&gt;下载客户端&lt;/em&gt;&lt;sub class=&quot;cor&quot;&gt;&amp;nbsp;&lt;/sub&gt;&lt;/a&gt;&lt;/span&gt;&lt;sup class=&quot;hot&quot;&gt;&amp;nbsp;&lt;/sup&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;m-tophead f-pr j-tflag&quot; id=&quot;auto-id-yhGsC9ST7VffmeBk&quot;&gt;&lt;a hidefocus=&quot;true&quot; href=&quot;#&quot; class=&quot;link s-fc3&quot; data-action=&quot;login&quot;&gt;登录&lt;/a&gt;
+&lt;div class=&quot;m-tlist j-uflag&quot; style=&quot;display:none;&quot;&gt;
+&lt;div class=&quot;inner&quot;&gt;
+&lt;/div&gt;
+&lt;i class=&quot;arr&quot;&gt;&lt;/i&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;a data-action=&quot;bilog&quot; data-log-action=&quot;click&quot; data-log-json=&quot;{&amp;quot;target&amp;quot;:&amp;quot;uploadvideo&amp;quot;,&amp;quot;page&amp;quot;:&amp;quot;homepage&amp;quot;}&quot; href=&quot;/login?targetUrl=%2Fcreatorcenter&quot; target=&quot;_blank&quot; class=&quot;m-topvd f-pr m-creator-center&quot;&gt;创作者中心&lt;/a&gt;
+&lt;div class=&quot;m-srch f-pr j-suggest&quot; id=&quot;g_search&quot;&gt;
+&lt;div class=&quot;srchbg&quot;&gt;
+&lt;span class=&quot;parent&quot;&gt;
+&lt;input type=&quot;text&quot; name=&quot;srch&quot; id=&quot;srch&quot; class=&quot;txt j-flag&quot; value=&quot;&quot; style=&quot;opacity: 1;&quot;&gt;
+&lt;label class=&quot;ph j-flag&quot; id=&quot;auto-id-M0db19LNV6yVNgix&quot;&gt;音乐/视频/电台/用户&lt;/label&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class=&quot;j-showoff u-showoff&quot;&gt;&lt;p&gt;现在支持搜索MV啦~&lt;/p&gt;&lt;/div&gt;
+&lt;span class=&quot;j-flag&quot; style=&quot;display:none;&quot; id=&quot;auto-id-NaGNTdJFTsfyRMVc&quot;&gt;&amp;nbsp;&lt;/span&gt;
+&lt;div class=&quot;u-lstlay j-flag&quot; style=&quot;display:none;&quot; id=&quot;auto-id-I2DPi15z5xhkeLTv&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;m-subnav m-subnav-up f-pr j-tflag f-hide&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;g_nav2&quot; class=&quot;m-subnav j-tflag&quot;&gt;
+&lt;div class=&quot;wrap f-pr&quot;&gt;
+&lt;ul class=&quot;nav&quot;&gt;
+&lt;li&gt;&lt;a hidefocus=&quot;true&quot; data-module=&quot;discover&quot; href=&quot;/discover&quot; class=&quot;z-slt&quot;&gt;&lt;em&gt;推荐&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a hidefocus=&quot;true&quot; data-module=&quot;toplist&quot; href=&quot;/discover/toplist&quot;&gt;&lt;em&gt;排行榜&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a hidefocus=&quot;true&quot; data-module=&quot;playlist&quot; href=&quot;/discover/playlist&quot;&gt;&lt;em class=&quot;f-pr&quot; style=&quot;padding: 0 15px 0 11px;&quot;&gt;歌单&lt;span class=&quot;f-pa f-r-white-icon&quot; style=&quot;display:inline-block;width:8px;height:8px;top:2px;background-size:cover;&quot;&gt;&lt;/span&gt;&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a hidefocus=&quot;true&quot; data-module=&quot;djradio&quot; href=&quot;/discover/djradio&quot;&gt;&lt;em&gt;主播电台&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a hidefocus=&quot;true&quot; data-module=&quot;artist&quot; href=&quot;/discover/artist&quot;&gt;&lt;em&gt;歌手&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a hidefocus=&quot;true&quot; data-module=&quot;album&quot; href=&quot;/discover/album&quot;&gt;&lt;em&gt;新碟上架&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;iframe name=&quot;contentFrame&quot; id=&quot;g_iframe&quot; class=&quot;g-iframe&quot; scrolling=&quot;auto&quot; frameborder=&quot;0&quot; src=&quot;about:blank&quot; allowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+var GUserAcc={topic:1, reward:false};
+(function(){
+var topbar = document.getElementById(&#39;g-topbar&#39;),
+scrollBarWidth = document.body.clientWidth - topbar.clientWidth;
+topbar.style.width = topbar.clientWidth+&#39;px&#39;;
+topbar.className = &#39;g-topbar&#39;;
+if(window.addEventListener){
+window.addEventListener(&#39;resize&#39;, onResize)
+}else{
+window.attachEvent(&#39;onresize&#39;, onResize)
+}
+function onResize(){
+topbar.style.width = (document.body.clientWidth-scrollBarWidth)+&#39;px&#39;;
+};
+})();/**
+* Safari v14 render issue
+* https://g.hz.netease.com/cloudmusic-frontend/music-web-mainsite/-/issues/6
+*/
+(function () {
+var $topbar;
+function onResize() {
+try {
+$topbar = $topbar || document.getElementById(&#39;g-topbar&#39;);
+var vendor = window.navigator.vendor;
+var appVersion = window.navigator.appVersion;
+var isMac = /Apple Computer/.test(vendor);
+var isTargetVersion = /Version\/14\./.test(appVersion);
+if ($topbar &amp;&amp; $topbar.style &amp;&amp; isMac &amp;&amp; isTargetVersion) {
+$topbar.style.overflow = &#39;hidden&#39;;
+$topbar.offsetWidth;
+$topbar.style.overflow = &#39;visible&#39;;
+}
+} catch (e) {
+// nothing
+console.log(&#39;[ERROR] about g-topbar&#39;);
+}
+}
+if (window.addEventListener) {
+window.addEventListener(&#39;resize&#39;, onResize);
+window.addEventListener(&#39;load&#39;, onResize);
+} else {
+window.attachEvent(&#39;onresize&#39;, onResize);
+window.attachEvent(&#39;onload&#39;, onResize);
+}
+})();/*!
+* Copyright (c) 2009-2011 Andreas Blixt &lt;andreas@blixt.org&gt;
+* Contributors: Aaron Ogle &lt;aogle@avencia.com&gt;,
+* Matti Virkkunen &lt;mvirkkunen@gmail.com&gt;,
+* Simon Chester &lt;simonches@gmail.com&gt;
+* http://github.com/blixt/js-hash
+* MIT License: http://www.opensource.org/licenses/mit-license.php
+*
+* Hash handler
+* Keeps track of the history of changes to the hash part in the address bar.
+*/
+/* WARNING for Internet Explorer 7 and below:
+* If an element on the page has the same ID as the hash used, the history will
+* get messed up.
+*
+* Does not support history in Safari 2 and below.
+*
+* Example:
+* function handler(newHash, initial) {
+* if (initial)
+* alert(&#39;Hash is &quot;&#39; + newHash + &#39;&quot;&#39;);
+* else
+* alert(&#39;Hash changed to &quot;&#39; + newHash + &#39;&quot;&#39;);
+* }
+* Hash.init(handler);
+* Hash.go(&#39;abc123&#39;);
+*
+*
+* Updated by Simon Chester (simonches@gmail.com) on 2011-05-16:
+* - Removed the need for blank.html and the iframe argument by creating the
+* iframe on initialization.
+*
+* Updated by Matti Virkkunen (mvirkkunen@gmail.com) on 2009-11-16:
+* - Added second argument to callback that indicates whether the callback is
+* due to initial state (true) or due to an actual change to the hash
+* (false).
+*
+* Updated by Aaron Ogle (aogle@avencia.com) on 2009-08-11:
+* - Fixed bug where Firefox automatically unescapes location.hash but no
+* other browsers do. Always get the hash by parsing location.href and
+* never use location.hash.
+*/
+var Hash = (function () {
+var
+// Import globals
+window = this,
+documentMode = document.documentMode,
+history = window.history,
+// Plugin variables
+callback, hash,
+// IE-specific
+iframe,
+getHash = function () {
+// Internet Explorer 6 (and possibly other browsers) extracts the query
+// string out of the location.hash property into the location.search
+// property, so we can&#39;t rely on it. The location.search property can&#39;t be
+// relied on either, since if the URL contains a real query string, that&#39;s
+// what it will be set to. The only way to get the whole hash is to parse
+// it from the location.href property.
+//
+// Another thing to note is that in Internet Explorer 6 and 7 (and possibly
+// other browsers), subsequent hashes are removed from the location.href
+// (and location.hash) property if the location.search property is set.
+//
+// Via Aaron: Firefox 3.5 (and below?) always unescape location.hash which
+// causes poll to fire the hashchange event twice on escaped hashes. This
+// is because the hash variable (escaped) will not match location.hash
+// (unescaped.) The only consistent option is to rely completely on
+// location.href.
+var index = window.location.href.indexOf(&#39;#&#39;);
+return (index == -1 ? &#39;&#39; : window.location.href.substr(index + 1));
+},
+// Used by all browsers except Internet Explorer 7 and below.
+poll = function () {
+var curHash = getHash();
+if (curHash != hash) {
+hash = curHash;
+callback(curHash, false);
+}
+},
+// From:
+// http://perfectionkills.com/detecting-event-support-without-browser-sniffing/
+isHashChangeSupported = function() {
+var eventName = &#39;onhashchange&#39;;
+var isSupported = (eventName in document.body);
+if (!isSupported) {
+document.body.setAttribute(eventName, &#39;return;&#39;);
+isSupported = typeof document.body[eventName] == &#39;function&#39;;
+}
+// documentMode logic from YUI to filter out IE8 Compat Mode (which
+// generates false positives).
+return isSupported &amp;&amp; (document.documentMode === undefined ||
+document.documentMode &gt; 7);
+},
+createIframe = function () {
+var tempEl = document.createElement();
+tempEl.innerHTML = &#39;&lt;iframe src=&quot;javascript:void(0)&quot; tabindex=&quot;-1&quot; &#39; +
+&#39;style=&quot;display: none;&quot;&gt;&lt;/iframe&gt;&#39;;
+var frame = tempEl.childNodes[0];
+document.body.appendChild(frame);
+return frame;
+},
+// Used to create a history entry with a value in the iframe.
+setIframe = function (newHash) {
+try {
+var doc = iframe.contentWindow.document;
+doc.open();
+doc.write(&#39;&lt;html&gt;&lt;body&gt;&#39; + newHash + &#39;&lt;/body&gt;&lt;/html&gt;&#39;);
+doc.close();
+hash = newHash;
+} catch (e) {
+setTimeout(function () { setIframe(newHash); }, 10);
+}
+},
+// Used by Internet Explorer 7 and below to set up an iframe that keeps track
+// of history changes.
+setUpIframe = function () {
+// Don&#39;t run until access to the body is allowed.
+try {
+iframe = createIframe();
+} catch (e) {
+setTimeout(setUpIframe, 10);
+return;
+}
+// Create a history entry for the initial state.
+setIframe(hash);
+var data = hash;
+setInterval(function () {
+var curData, curHash;
+try {
+curData = iframe.contentWindow.document.body.innerText;
+if (curData != data) {
+data = curData;
+window.location.hash = hash = curData;
+callback(curData, true);
+} else {
+curHash = getHash();
+if (curHash != hash) setIframe(curHash);
+}
+} catch (e) {
+}
+}, 50);
+};
+return {
+init: function (cb) {
+// init can only be called once.
+if (callback) return;
+callback = cb;
+// Keep track of the hash value.
+hash = getHash();
+cb(hash, true);
+if (isHashChangeSupported()) {
+if (window.addEventListener){
+window.addEventListener(&#39;hashchange&#39;, poll, false);
+} else if (window.attachEvent){
+window.attachEvent(&#39;onhashchange&#39;, poll);
+}
+} else {
+// Run specific code for Internet Explorer.
+if (window.ActiveXObject) {
+if (!documentMode || documentMode &lt; 8) {
+// Internet Explorer 5.5/6/7 need an iframe for history
+// support.
+setUpIframe();
+}
+} else {
+// Change Opera navigation mode to improve history support.
+if (history.navigationMode) {
+history.navigationMode = &#39;compatible&#39;;
+}
+setInterval(poll, 50);
+}
+}
+},
+go: function (newHash) {
+// Cancel if the new hash is the same as the current one, since there
+// is no cross-browser way to keep track of navigation to the exact
+// same hash multiple times in a row. A wrapper can handle this by
+// adding an incrementing counter to the end of the hash.
+if (newHash == hash) return;
+if (iframe) {
+setIframe(newHash);
+} else {
+window.location.hash = hash = newHash;
+callback(newHash, false);
+}
+}
+};
+})();var GDispatcher = (function(){
+var _lastPage = &#39;&#39;,
+_igReg = /f=(.*?)/,
+_hReg = /\/?#.*/,
+_xssReg = /(java|vb)script/,//xss注入
+_default = &#39;/discover&#39;;
+function _isIE10plus(){
+var _ua = window.navigator.userAgent;
+return (/msie\s+(.*?);/i.test(_ua)||/trident\/.+rv:([\d\.]+)/i.test(_ua))&amp;&amp;(parseInt(RegExp.$1)&gt;=10);
+};
+function getDiscoverUrl() {
+var GDegradeConfig = window.GDegradeConfig || {};
+var discoverUrl = GDegradeConfig.degrade &amp;&amp; GDegradeConfig.discoverUrl || &#39;/discover&#39;;
+return encodeURI(discoverUrl);
+}
+function _onHashChange(_hash){
+var _url,
+_iframe = document.getElementById(&#39;g_iframe&#39;);
+if(!_hash||_igReg.test(_hash)||_xssReg.test(_hash)){//忽略统计来源的hash
+_url = _default;
+}else{
+if(_hash.indexOf(&#39;/&#39;) !== 0) {
+_hash = &#39;/&#39; + _hash;
+}
+_hash = _hash.replace(/\/+/g, &#39;/&#39;);//#29664 http://music.163.com/#// 会死循环
+var _midx = -1;
+if((_midx=_hash.indexOf(&#39;store/m/&#39;))&gt;=0){
+_url = _hash.substring(0, _midx+8)+(_hash.substring(_midx+8).replace(&#39;/m/&#39;,&#39;/#/&#39;));
+}else{
+_url = _hash.replace(&#39;/m/&#39;,&#39;/#/&#39;);
+// debugger;
+if(/^\/member\/?(\?[\s\S]*)?$/.test(_url) &amp;&amp; typeof vipWebCashierRedirect !== &#39;undefined&#39; &amp;&amp; &#39;&#39; + vipWebCashierRedirect === &#39;1&#39;) {
+_url = _url.replace(&#39;/member&#39;,&#39;/prime/member&#39;);
+}
+}
+}
+if(_url === &#39;/discover&#39;) {
+_url = getDiscoverUrl();
+}
+if(!_url.match(/^https?:/)){
+_url = location.protocol+&#39;//&#39;+location.hostname+_url;
+}
+//针对ie10+ location.replace的bug做特殊处理
+if(_isIE10plus()){
+if(_lastPage.replace(_hReg,&#39;&#39;)==_url.replace(_hReg,&#39;&#39;)){//只是hash的改变
+_iframe.contentWindow.location.replace(_url);
+} else{
+_iframe.parentNode.removeChild(_iframe);
+_iframe = document.createElement(&#39;iframe&#39;);
+_iframe.id = &#39;g_iframe&#39;;
+_iframe.src = &#39;about:blank&#39;;
+_iframe.className = &#39;g-iframe&#39;;
+_iframe.setAttribute(&#39;allowfullscreen&#39;, true);
+document.body.insertAdjacentElement(&#39;afterBegin&#39;,_iframe);
+_iframe.contentWindow.location.href = _url;
+}
+}else{
+_iframe.contentWindow.location.replace(_url);
+}
+_lastPage = _url;
+if(typeof window.onHashChange==&#39;function&#39;){
+window.onHashChange(_hash);
+}
+};
+Hash.init(_onHashChange);
+return {
+dispatch:function(_url,_replace){
+var _ph = GUtil.getPathAndHash(_url);
+if(!_ph) return;
+if(_replace){
+location.replace(GUtil.getBase()+&#39;#&#39;+_ph);
+}else{
+location.hash = _ph;
+}
+},
+refreshIFrame:function(_url){
+_onHashChange(_url);
+}
+};
+})();&lt;/script&gt;
+&lt;div class=&quot;g-btmbar&quot;&gt;
+&lt;div class=&quot;m-playbar m-playbar-unlock&quot; style=&quot;top: -53px; visibility: visible;&quot; id=&quot;auto-id-HyFDf7cBlkL24moI&quot;&gt;
+&lt;div class=&quot;updn&quot;&gt;
+&lt;div class=&quot;left f-fl&quot;&gt;&lt;a href=&quot;javascript:;&quot; class=&quot;btn&quot; hidefocus=&quot;true&quot; data-action=&quot;lock&quot;&gt;&lt;/a&gt;&lt;/div&gt;
+&lt;div class=&quot;right f-fl&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;bg&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;hand&quot; title=&quot;展开播放条&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;wrap&quot; id=&quot;g_player&quot; style=&quot;margin-left: -497.5px;&quot;&gt;
+&lt;div class=&quot;btns&quot;&gt;
+&lt;a href=&quot;javascript:;&quot; hidefocus=&quot;true&quot; data-action=&quot;prev&quot; class=&quot;prv&quot; title=&quot;上一首(ctrl+←)&quot;&gt;上一首&lt;/a&gt;
+&lt;a href=&quot;javascript:;&quot; hidefocus=&quot;true&quot; data-action=&quot;play&quot; class=&quot;ply j-flag&quot; title=&quot;播放/暂停(p)&quot;&gt;播放/暂停&lt;/a&gt;
+&lt;a href=&quot;javascript:;&quot; hidefocus=&quot;true&quot; data-action=&quot;next&quot; class=&quot;nxt&quot; title=&quot;下一首(ctrl+→)&quot;&gt;下一首&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;head j-flag&quot;&gt;&lt;img src=&quot;http://s4.music.126.net/style/web2/img/default/default_album.jpg&quot;&gt;&lt;a href=&quot;javascript:;&quot; hidefocus=&quot;true&quot; class=&quot;mask&quot;&gt;&lt;/a&gt;&lt;/div&gt;
+&lt;div class=&quot;play&quot;&gt;
+&lt;div class=&quot;j-flag words&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;m-pbar&quot; data-action=&quot;noop&quot;&gt;
+&lt;div class=&quot;barbg j-flag&quot; id=&quot;auto-id-974QQBP1uUb33Muf&quot;&gt;
+&lt;div class=&quot;rdy&quot; style=&quot;width:0%;&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;cur&quot; style=&quot;width:0%;&quot;&gt;&lt;span class=&quot;btn f-tdn f-alpha&quot; id=&quot;auto-id-UOmXpzxDSHf5EJAl&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;span class=&quot;j-flag time&quot;&gt;&lt;em&gt;00:00&lt;/em&gt; / 00:00&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;oper f-fl&quot;&gt;
+&lt;a href=&quot;javascript:;&quot; hidefocus=&quot;true&quot; data-action=&quot;like&quot; class=&quot;icn icn-add j-flag&quot; title=&quot;收藏&quot;&gt;收藏&lt;/a&gt;
+&lt;a href=&quot;javascript:;&quot; hidefocus=&quot;true&quot; data-action=&quot;share&quot; class=&quot;icn icn-share&quot; title=&quot;分享&quot;&gt;分享&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ctrl f-fl f-pr j-flag&quot;&gt;
+&lt;div class=&quot;m-vol&quot; style=&quot;visibility:hidden;&quot; id=&quot;auto-id-VWxKvrEmDePfiJqz&quot;&gt;
+&lt;div class=&quot;barbg&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;vbg j-t&quot; id=&quot;auto-id-Bnsm5QqfbpX3qxnx&quot;&gt;&lt;div class=&quot;curr j-t&quot; style=&quot;height: 74.4px;&quot;&gt;&lt;/div&gt;
+&lt;span class=&quot;btn f-alpha j-t&quot; style=&quot;top: 16.2px;&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;a href=&quot;javascript:;&quot; hidefocus=&quot;true&quot; data-action=&quot;volume&quot; class=&quot;icn icn-vol&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;javascript:;&quot; hidefocus=&quot;true&quot; data-action=&quot;mode&quot; class=&quot;icn icn-loop&quot; title=&quot;循环&quot;&gt;&lt;/a&gt;
+&lt;span class=&quot;add f-pr&quot;&gt;
+&lt;span class=&quot;tip&quot; style=&quot;display:none;&quot;&gt;已添加到播放列表&lt;/span&gt;
+&lt;a href=&quot;javascript:;&quot; title=&quot;播放列表&quot; hidefocus=&quot;true&quot; data-action=&quot;panel&quot; class=&quot;icn icn-list s-fc3&quot;&gt;0&lt;/a&gt;
+&lt;/span&gt;
+&lt;div class=&quot;tip tip-1&quot; style=&quot;display:none;&quot;&gt;循环&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;//s3.music.126.net/web/s/core_3cc77f55082b4fc2264c60da20dadf09.js?3cc77f55082b4fc2264c60da20dadf09&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&lt;iframe frameborder=&quot;0&quot; id=&quot;auto-id-pwhw5ekwEo2NbNys&quot; style=&quot;display: none;&quot; src=&quot;about:blank&quot;&gt;&lt;/iframe&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;https://acstatic-dun.126.net/tool.min.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;//s3.music.126.net/web/s/pt_frame_index_da031dd0b20173ae05c7067fa93bb969.js?da031dd0b20173ae05c7067fa93bb969&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;https://acstatic-dun.126.net/tool.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+var _gaq=_gaq||[];
+_gaq.push([&#39;_setAccount&#39;,&#39;UA-38766552-1&#39;],[&#39;_setLocalGifPath&#39;,&#39;/UA-38766552-1/__utm.gif&#39;],[&#39;_setLocalRemoteServerMode&#39;]);
+_gaq.push([&#39;_trackPageview&#39;]);
+//fix ipad下的一个bug
+if (navigator.userAgent.indexOf(&#39;iPad&#39;) != -1) {
+iframeHeight = Math.max(
+Math.max(document.body.scrollHeight, document.documentElement.scrollHeight),
+Math.max(document.body.offsetHeight, document.documentElement.offsetHeight),
+Math.max(document.body.clientHeight, document.documentElement.clientHeight)
+);
+top.document.body.style.height = iframeHeight + 20 + &#39;px&#39;;
+}
+&lt;/script&gt;
+&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div class=&quot;global_container__10fOb&quot;&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">browser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>查找元素<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>单个元素查找</p>
+<p>这里我们通过三种不同的方式去获取响应的元素，第一种是通过id的方式，第二个是CSS选择器，第三种是xpath选择器，结果都是相同的。</p>
+<p><img alt="image.png" src="_images/selenium2.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from selenium import webdriver</span>
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://music.163.com&quot;</span><span class="p">)</span>
+<span class="c1"># &lt;input type=&quot;text&quot; name=&quot;srch&quot; id=&quot;srch&quot; class=&quot;txt j-flag&quot; value=&quot;&quot; style=&quot;opacity: 1;&quot;&gt;</span>
+<span class="n">input_first</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s2">&quot;srch&quot;</span><span class="p">)</span> 
+<span class="c1">#srch</span>
+<span class="n">input_second</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s2">&quot;#srch&quot;</span><span class="p">)</span>
+<span class="c1"># //*[@id=&quot;srch&quot;]</span>
+<span class="n">input_third</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;srch&quot;]&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">input_first</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">input_second</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">input_third</span><span class="p">)</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;ed0d0a0ac3dc97d391cc6b916488f6d3&quot;, element=&quot;a2bf12e6-e9fe-4fb9-9af6-854bcc3d3539&quot;)&gt;
+&lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;ed0d0a0ac3dc97d391cc6b916488f6d3&quot;, element=&quot;a2bf12e6-e9fe-4fb9-9af6-854bcc3d3539&quot;)&gt;
+&lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;ed0d0a0ac3dc97d391cc6b916488f6d3&quot;, element=&quot;a2bf12e6-e9fe-4fb9-9af6-854bcc3d3539&quot;)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>常用的查找元素方法：<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>find_element_by_name</p></li>
+<li><p>find_element_by_id</p></li>
+<li><p>find_element_by_xpath</p></li>
+<li><p>find_element_by_link_text</p></li>
+<li><p>find_element_by_partial_link_text</p></li>
+<li><p>find_element_by_tag_name</p></li>
+<li><p>find_element_by_class_name</p></li>
+<li><p>find_element_by_css_selector</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 下面这种方式是比较通用的一种方式：这里需要记住By模块所以需要导入</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://music.163.com&quot;</span><span class="p">)</span>
+<span class="c1">#&lt;input type=&quot;text&quot; name=&quot;srch&quot; id=&quot;srch&quot; class=&quot;txt j-flag&quot; value=&quot;&quot; style=&quot;opacity: 1;&quot;&gt;</span>
+<span class="n">input_first</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span><span class="s2">&quot;srch&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">input_first</span><span class="p">)</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;2f0c13bf52dac8cba589d2cd7ce234d3&quot;, element=&quot;0.35054462499434424-1&quot;)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>多个元素查找<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>其实多个元素和单个元素的区别，举个例子：find_elements,单个元素是find_element,其他使用上没什么区别，通过其中的一个例子演示：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://music.163.com&quot;</span><span class="p">)</span>
+<span class="n">lis</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_elements_by_css_selector</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lis</span><span class="p">)</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;e8807f76eb4bc9d7c2e9ab5463db6525&quot;, element=&quot;0.6131512247820263-1&quot;)&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>当然上面的方式也是可以通过导入<code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">selenium.webdriver.common.by</span> <span class="pre">import</span> <span class="pre">By</span></code> 这种方式实现</p>
+<blockquote>
+<div><p>lis = browser.find_elements(By.CSS_SELECTOR,’.service-bd li’)</p>
+</div></blockquote>
+<p>同样的在单个元素中查找的方法在多个元素查找中同样存在：</p>
+<ul class="simple">
+<li><p>find_elements_by_name</p></li>
+<li><p>find_elements_by_id</p></li>
+<li><p>find_elements_by_xpath</p></li>
+<li><p>find_elements_by_link_text</p></li>
+<li><p>find_elements_by_partial_link_text</p></li>
+<li><p>find_elements_by_tag_name</p></li>
+<li><p>find_elements_by_class_name</p></li>
+<li><p>find_elements_by_css_selector</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h2>元素交互操作<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>对于获取的元素调用交互方法</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
+
+<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://music.163.com/&quot;</span><span class="p">)</span>
+<span class="n">input_str</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s1">&#39;srch&#39;</span><span class="p">)</span>
+<span class="n">input_str</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s2">&quot;周杰伦&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#休眠，模仿人工搜索</span>
+<span class="n">input_str</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">input_str</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s2">&quot;林俊杰&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1">#browser.close()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>运行的结果可以看出程序会自动打开Chrome浏览器并打开淘宝输入ipad,然后删除，重新输入MacBook pro，并点击搜索</p>
+<p>Selenium所有的api文档：http://selenium-python.readthedocs.io/api.html#module-selenium.webdriver.common.action_chains</p>
+</div>
+<div class="section" id="javascript">
+<h2>执行JavaScript<a class="headerlink" href="#javascript" title="Permalink to this headline">¶</a></h2>
+<p>这是一个非常有用的方法，这里就可以直接调用js方法来实现一些操作，
+下面的例子是通过登录知乎然后通过js翻到页面底部，并弹框提示</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://www.zhihu.com/explore/&quot;</span><span class="p">)</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="s1">&#39;window.scrollTo(0, document.body.scrollHeight)&#39;</span><span class="p">)</span>
+<span class="c1">#browser.execute_script(&#39;alert(&quot;To Bottom&quot;)&#39;)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1">#browser.close()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="discuss.gif" src="_images/end.png" /></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://www.privco.com/home/login&quot;</span><span class="p">)</span> <span class="c1">#需要翻墙打开网址</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;fake_username&#39;</span>
+<span class="n">password</span> <span class="o">=</span>  <span class="s1">&#39;fake_password&#39;</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s2">&quot;username&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s2">&quot;username&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">username</span><span class="p">)</span> 
+<span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s2">&quot;#login-form &gt; div:nth-child(5) &gt; div &gt; button&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># url = &quot;https://www.privco.com/private-company/329463&quot;</span>
+<span class="k">def</span> <span class="nf">download_excel</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">title</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">page_source</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;.html&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+        <span class="n">url_new</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;profile-name&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+        <span class="n">url_excel</span> <span class="o">=</span> <span class="n">url_new</span> <span class="o">+</span> <span class="s1">&#39;/export&#39;</span>
+        <span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_excel</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;no excel&#39;</span><span class="p">)</span>
+        <span class="k">pass</span>
+        
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">urls</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;https://www.privco.com/private-company/1135789&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;https://www.privco.com/private-company/542756&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;https://www.privco.com/private-company/137908&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;https://www.privco.com/private-company/137138&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">url</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">urls</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">download_excel</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+https://www.privco.com/private-company/1135789 no excel
+1
+https://www.privco.com/private-company/542756 no excel
+2
+https://www.privco.com/private-company/137908 no excel
+3
+https://www.privco.com/private-company/137138 no excel
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="04-crawler-netease-music.html" title="previous page">抓取网易云音乐热门评论</a>
+    <a class='right-next' id="next-link" href="04-crawler-selenium-music-history.html" title="next page">抓取网易云音乐用户的听歌记录</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,966 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>基于NRC字典的情感分析 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="利用textblob进行情感分析" href="11-3-textblob.html" />
+    <link rel="prev" title="大连理工大学中文情感词汇" href="11-2-emotion-dict.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-word2vec.html">
+     词向量模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-doc2vec.html">
+     Doc2Vec
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">
+     基于字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-2-emotion-dict.html">
+     大连理工大学中文情感词汇
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     基于NRC字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-textblob.html">
+     利用textblob进行情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-4-sentiment-classifier.html">
+     基于机器学习的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-5-LIWC.html">
+     LIWC: Linguistic Inquiry and Word Count  analyzer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-update.html">
+     主题模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-with-turicreate.html">
+     使用Turicreate建立主题模型
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/11-3-NRC-Chinese-dict.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F11-3-NRC-Chinese-dict.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/11-3-NRC-Chinese-dict.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/11-3-NRC-Chinese-dict.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="nrc">
+<h1>基于NRC字典的情感分析<a class="headerlink" href="#nrc" title="Permalink to this headline">¶</a></h1>
+<p>NRC词典为加拿大国家研究委员会信息技术研究所(Institute for Information Technology, National Research Council Canada. )组织制作的基于众包方式标注出的词典。</p>
+<p>Mohammad, Saif M., and Peter D. Turney. “Crowdsourcing a word–emotion association lexicon.” Computational Intelligence 29, no. 3 (2013): 436-465.</p>
+<p>http://sentiment.nrc.ca/lexicons-for-research/</p>
+<p>THE SENTIMENT AND EMOTION LEXICONS (click to download the complete bundle, 100Mb)</p>
+<p>Individual lexicons for download:</p>
+<ul class="simple">
+<li><p>Manually created lexicons:NRC Emotion LexiconNRC Emotion Intensity LexiconNRC Valence, Arousal, and Dominance (VAD) LexiconNRC Sentiment Composition Lexicons (SCL-NMA, SCL-OPP, SemEval-2015 English Twitter, SemEval-2016 Arabic Twitter)NRC Word-Colour Association Lexicon</p></li>
+<li><p>Automatically generated lexicons:NRC Hashtag Emotion LexiconNRC Hashtag Sentiment LexiconNRC Hashtag Affirmative Context Sentiment Lexicon and NRC Hashtag Negated Context Sentiment LexiconNRC Emoticon Lexicon (a.k.a. Sentiment140 Lexicon)NRC Emoticon Affirmative Context Lexicon and NRC Emoticon Negated Context Lexicon</p></li>
+</ul>
+<p>Vosoughi et al., The spread of true and false news online. Science  359, 1146–1151 (2018) 9 March 2018</p>
+<blockquote>
+<div><p>We categorized the emotion in the replies by using the leading lexicon curated by the National Research Council Canada (NRC), which provides a comprehensive list of ~140,000 English words and their associations with eight emotions</p>
+</div></blockquote>
+<p>False news was more novel than true news, which suggests that people were more likely to share novel information. Whereas false stories inspired fear, disgust, and surprise in replies, true stories inspired anticipation, sadness, joy, and trust.</p>
+<p><img alt="image.png" src="_images/NRC.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lexion_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;./Textmining/NRC-Emotion-Lexicon-v0.92-In105Languages-Nov2017Translations.xlsx&#39;</span><span class="p">)</span>
+<span class="n">lexion_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>English (en)</th>
+      <th>Afrikaans (af)</th>
+      <th>Albanian (sq)</th>
+      <th>Amharic (am)</th>
+      <th>Arabic (ar)</th>
+      <th>Armenian (hy)</th>
+      <th>Azeerbaijani (az)</th>
+      <th>Basque (eu)</th>
+      <th>Belarusian (be)</th>
+      <th>Bengali (bn)</th>
+      <th>...</th>
+      <th>Positive</th>
+      <th>Negative</th>
+      <th>Anger</th>
+      <th>Anticipation</th>
+      <th>Disgust</th>
+      <th>Fear</th>
+      <th>Joy</th>
+      <th>Sadness</th>
+      <th>Surprise</th>
+      <th>Trust</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>aback</td>
+      <td>uit die veld geslaan</td>
+      <td>prapa</td>
+      <td>ተጭኗል</td>
+      <td>الى الوراء</td>
+      <td>շեղում</td>
+      <td>sanki</td>
+      <td>aback</td>
+      <td>ззаду</td>
+      <td>পশ্চাতে</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>abacus</td>
+      <td>abakus</td>
+      <td>numërator</td>
+      <td>abacus</td>
+      <td>طبلية تاج</td>
+      <td>անբավարարություն</td>
+      <td>abacus</td>
+      <td>abako</td>
+      <td>абака</td>
+      <td>গণনা-যন্ত্রবিশেষ</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>abandon</td>
+      <td>verlaat</td>
+      <td>braktis</td>
+      <td>ውጣ</td>
+      <td>تخلى</td>
+      <td>լքել</td>
+      <td>tərk et</td>
+      <td>bertan behera</td>
+      <td>адмовіцца ад</td>
+      <td>বর্জিত করা</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>abandoned</td>
+      <td>verlate</td>
+      <td>braktisur</td>
+      <td>ተትቷል</td>
+      <td>مهجور</td>
+      <td>լքված</td>
+      <td>tərk etdi</td>
+      <td>abandonatutako</td>
+      <td>закінуты</td>
+      <td>পরিত্যক্ত</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>abandonment</td>
+      <td>verlating</td>
+      <td>braktisje</td>
+      <td>ማቋረጥ</td>
+      <td>التخلي عن</td>
+      <td>հրաժարվելով</td>
+      <td>ləğv</td>
+      <td>abandono</td>
+      <td>пакіданне</td>
+      <td>বিসর্জন</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 115 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lexion_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;English (en)&#39;,
+ &#39;Afrikaans (af)&#39;,
+ &#39;Albanian (sq)&#39;,
+ &#39;Amharic (am)&#39;,
+ &#39;Arabic (ar)&#39;,
+ &#39;Armenian (hy)&#39;,
+ &#39;Azeerbaijani (az)&#39;,
+ &#39;Basque (eu)&#39;,
+ &#39;Belarusian (be)&#39;,
+ &#39;Bengali (bn)&#39;,
+ &#39;Bosnian (bs)&#39;,
+ &#39;Bulgarian (bg)&#39;,
+ &#39;Catalan (ca)&#39;,
+ &#39;Cebuano (ceb)&#39;,
+ &#39;Chinese (Simplified) (zh-CN)&#39;,
+ &#39;Chinese (Traditional) (zh-TW)&#39;,
+ &#39;Corsican (co)&#39;,
+ &#39;Croatian (hr)&#39;,
+ &#39;Czech (cs)&#39;,
+ &#39;Danish (da)&#39;,
+ &#39;Dutch (nl)&#39;,
+ &#39;English (en).1&#39;,
+ &#39;Esperanto (eo)&#39;,
+ &#39;Estonian (et)&#39;,
+ &#39;Finnish (fi)&#39;,
+ &#39;French (fr)&#39;,
+ &#39;Frisian (fy)&#39;,
+ &#39;Galician (gl)&#39;,
+ &#39;Georgian (ka)&#39;,
+ &#39;German (de)&#39;,
+ &#39;Greek (el)&#39;,
+ &#39;Gujarati (gu)&#39;,
+ &#39;Haitian Creole (ht)&#39;,
+ &#39;Hausa (ha)&#39;,
+ &#39;Hawaiian (haw)&#39;,
+ &#39;Hebrew (iw)&#39;,
+ &#39;Hindi (hi)&#39;,
+ &#39;Hmong (hmn)&#39;,
+ &#39;Hungarian (hu)&#39;,
+ &#39;Icelandic (is)&#39;,
+ &#39;Igbo (ig)&#39;,
+ &#39;Indonesian (id)&#39;,
+ &#39;Irish (ga)&#39;,
+ &#39;Italian (it)&#39;,
+ &#39;Japanese (ja)&#39;,
+ &#39;Javanese (jw)&#39;,
+ &#39;Kannada (kn)&#39;,
+ &#39;Kazakh (kk)&#39;,
+ &#39;Khmer (km)&#39;,
+ &#39;Korean (ko)&#39;,
+ &#39;Kurdish (ku)&#39;,
+ &#39;Kyrgyz (ky)&#39;,
+ &#39;Lao (lo)&#39;,
+ &#39;Latin (la)&#39;,
+ &#39;Latvian (lv)&#39;,
+ &#39;Lithuanian (lt)&#39;,
+ &#39;Luxembourgish (lb)&#39;,
+ &#39;Macedonian (mk)&#39;,
+ &#39;Malagasy (mg)&#39;,
+ &#39;Malay (ms)&#39;,
+ &#39;Malayalam (ml)&#39;,
+ &#39;Maltese (mt)&#39;,
+ &#39;Maori (mi)&#39;,
+ &#39;Marathi (mr)&#39;,
+ &#39;Mongolian (mn)&#39;,
+ &#39;Myanmar (Burmese) (my)&#39;,
+ &#39;Nepali (ne)&#39;,
+ &#39;Norwegian (no)&#39;,
+ &#39;Nyanja (Chichewa) (ny)&#39;,
+ &#39;Pashto (ps)&#39;,
+ &#39;Persian (fa)&#39;,
+ &#39;Polish (pl)&#39;,
+ &#39;Portuguese (Portugal, Brazil) (pt)&#39;,
+ &#39;Punjabi (pa)&#39;,
+ &#39;Romanian (ro)&#39;,
+ &#39;Russian (ru)&#39;,
+ &#39;Samoan (sm)&#39;,
+ &#39;Scots Gaelic (gd)&#39;,
+ &#39;Serbian (sr)&#39;,
+ &#39;Sesotho (st)&#39;,
+ &#39;Shona (sn)&#39;,
+ &#39;Sindhi (sd)&#39;,
+ &#39;Sinhala (Sinhalese) (si)&#39;,
+ &#39;Slovak (sk)&#39;,
+ &#39;Slovenian (sl)&#39;,
+ &#39;Somali (so)&#39;,
+ &#39;Spanish (es)&#39;,
+ &#39;Sundanese (su)&#39;,
+ &#39;Swahili (sw)&#39;,
+ &#39;Swedish (sv)&#39;,
+ &#39;Tagalog (Filipino) (tl)&#39;,
+ &#39;Tajik (tg)&#39;,
+ &#39;Tamil (ta)&#39;,
+ &#39;Telugu (te)&#39;,
+ &#39;Thai (th)&#39;,
+ &#39;Turkish (tr)&#39;,
+ &#39;Ukrainian (uk)&#39;,
+ &#39;Urdu (ur)&#39;,
+ &#39;Uzbek (uz)&#39;,
+ &#39;Vietnamese (vi)&#39;,
+ &#39;Welsh (cy)&#39;,
+ &#39;Xhosa (xh)&#39;,
+ &#39;Yiddish (yi)&#39;,
+ &#39;Yoruba (yo)&#39;,
+ &#39;Zulu (zu)&#39;,
+ &#39;Positive&#39;,
+ &#39;Negative&#39;,
+ &#39;Anger&#39;,
+ &#39;Anticipation&#39;,
+ &#39;Disgust&#39;,
+ &#39;Fear&#39;,
+ &#39;Joy&#39;,
+ &#39;Sadness&#39;,
+ &#39;Surprise&#39;,
+ &#39;Trust&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chinese_df</span> <span class="o">=</span> <span class="n">lexion_df</span><span class="p">[[</span><span class="s1">&#39;Chinese (Simplified) (zh-CN)&#39;</span><span class="p">,</span> <span class="s1">&#39;Positive&#39;</span><span class="p">,</span> <span class="s1">&#39;Negative&#39;</span><span class="p">,</span> 
+                 <span class="s1">&#39;Anger&#39;</span><span class="p">,</span><span class="s1">&#39;Anticipation&#39;</span><span class="p">,</span> <span class="s1">&#39;Disgust&#39;</span><span class="p">,</span> <span class="s1">&#39;Fear&#39;</span><span class="p">,</span> <span class="s1">&#39;Joy&#39;</span><span class="p">,</span> <span class="s1">&#39;Sadness&#39;</span><span class="p">,</span> <span class="s1">&#39;Surprise&#39;</span><span class="p">,</span> <span class="s1">&#39;Trust&#39;</span><span class="p">]]</span>
+<span class="n">chinese_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Chinese (Simplified) (zh-CN)</th>
+      <th>Positive</th>
+      <th>Negative</th>
+      <th>Anger</th>
+      <th>Anticipation</th>
+      <th>Disgust</th>
+      <th>Fear</th>
+      <th>Joy</th>
+      <th>Sadness</th>
+      <th>Surprise</th>
+      <th>Trust</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>吓了一跳</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>算盘</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>放弃</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>弃</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>放弃</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 构建情感词列表</span>
+
+<span class="n">Positive</span><span class="p">,</span> <span class="n">Negative</span><span class="p">,</span> <span class="n">Anger</span><span class="p">,</span> <span class="n">Anticipation</span><span class="p">,</span> <span class="n">Disgust</span><span class="p">,</span> <span class="n">Fear</span><span class="p">,</span> <span class="n">Joy</span><span class="p">,</span> <span class="n">Sadness</span><span class="p">,</span> <span class="n">Surprise</span><span class="p">,</span> <span class="n">Trust</span><span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">chinese_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Positive&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">Positive</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Chinese (Simplified) (zh-CN)&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Negative&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">Negative</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Chinese (Simplified) (zh-CN)&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Anger&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">Anger</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Chinese (Simplified) (zh-CN)&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Anticipation&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">Anticipation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Chinese (Simplified) (zh-CN)&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Disgust&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">Disgust</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Chinese (Simplified) (zh-CN)&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Fear&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">Fear</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Chinese (Simplified) (zh-CN)&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Joy&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">Joy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Chinese (Simplified) (zh-CN)&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Sadness&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">Sadness</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Chinese (Simplified) (zh-CN)&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Surprise&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">Surprise</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Chinese (Simplified) (zh-CN)&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Trust&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">Trust</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Chinese (Simplified) (zh-CN)&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;词语列表构建完成&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>词语列表构建完成
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Anger</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;弃&#39;, &#39;放弃&#39;, &#39;痛恨&#39;, &#39;可恶&#39;, &#39;废除&#39;, &#39;厌恶&#39;, &#39;滥用&#39;, &#39;诅咒&#39;, &#39;指控&#39;, &#39;被告&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">positive</span><span class="p">,</span> <span class="n">negative</span><span class="p">,</span> <span class="n">anger</span><span class="p">,</span> <span class="n">anticipation</span><span class="p">,</span> <span class="n">disgust</span><span class="p">,</span> <span class="n">fear</span><span class="p">,</span> <span class="n">joy</span><span class="p">,</span> <span class="n">sadness</span><span class="p">,</span> <span class="n">surprise</span><span class="p">,</span> <span class="n">trust</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">positive</span><span class="p">,</span> <span class="n">negative</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jieba</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<span class="k">def</span> <span class="nf">emotion_caculate</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">positive</span><span class="p">,</span> <span class="n">negative</span><span class="p">,</span> <span class="n">anger</span><span class="p">,</span> <span class="n">anticipation</span><span class="p">,</span> <span class="n">disgust</span><span class="p">,</span> <span class="n">fear</span><span class="p">,</span> <span class="n">joy</span><span class="p">,</span> <span class="n">sadness</span><span class="p">,</span> <span class="n">surprise</span><span class="p">,</span> <span class="n">trust</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+    
+    <span class="n">wordlist</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">lcut</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">wordset</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">wordlist</span><span class="p">)</span>
+    <span class="n">wordfreq</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">wordset</span><span class="p">:</span>
+        <span class="n">freq</span> <span class="o">=</span> <span class="n">wordlist</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">Positive</span><span class="p">:</span>
+            <span class="n">positive</span><span class="o">+=</span><span class="n">freq</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">Negative</span><span class="p">:</span>
+            <span class="n">negative</span><span class="o">+=</span><span class="n">freq</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">Anger</span><span class="p">:</span>
+            <span class="n">anger</span><span class="o">+=</span><span class="n">freq</span>  
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">Anticipation</span><span class="p">:</span>
+            <span class="n">anticipation</span><span class="o">+=</span><span class="n">freq</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">Disgust</span><span class="p">:</span>
+            <span class="n">disgust</span><span class="o">+=</span><span class="n">freq</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">Fear</span><span class="p">:</span>
+            <span class="n">fear</span><span class="o">+=</span><span class="n">freq</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">Joy</span><span class="p">:</span>
+            <span class="n">joy</span><span class="o">+=</span><span class="n">freq</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">Sadness</span><span class="p">:</span>
+            <span class="n">sadness</span><span class="o">+=</span><span class="n">freq</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">Surprise</span><span class="p">:</span>
+            <span class="n">surprise</span><span class="o">+=</span><span class="n">freq</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">Trust</span><span class="p">:</span>
+            <span class="n">trust</span><span class="o">+=</span><span class="n">freq</span>
+            
+    <span class="n">emotion_info</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;positive&#39;</span><span class="p">:</span> <span class="n">positive</span><span class="p">,</span>
+        <span class="s1">&#39;negative&#39;</span><span class="p">:</span> <span class="n">negative</span><span class="p">,</span>
+        <span class="s1">&#39;anger&#39;</span><span class="p">:</span> <span class="n">anger</span><span class="p">,</span>
+        <span class="s1">&#39;anticipation&#39;</span><span class="p">:</span> <span class="n">anticipation</span><span class="p">,</span>
+        <span class="s1">&#39;disgust&#39;</span><span class="p">:</span> <span class="n">disgust</span><span class="p">,</span>
+        <span class="s1">&#39;fear&#39;</span><span class="p">:</span><span class="n">fear</span><span class="p">,</span>
+        <span class="s1">&#39;joy&#39;</span><span class="p">:</span><span class="n">joy</span><span class="p">,</span>
+        <span class="s1">&#39;sadness&#39;</span><span class="p">:</span><span class="n">sadness</span><span class="p">,</span>
+        <span class="s1">&#39;surprise&#39;</span><span class="p">:</span><span class="n">surprise</span><span class="p">,</span>
+        <span class="s1">&#39;trust&#39;</span><span class="p">:</span><span class="n">trust</span><span class="p">,</span>
+        <span class="s1">&#39;length&#39;</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">wordlist</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">indexs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;length&#39;</span><span class="p">,</span> <span class="s1">&#39;positive&#39;</span><span class="p">,</span> <span class="s1">&#39;negative&#39;</span><span class="p">,</span> <span class="s1">&#39;anger&#39;</span><span class="p">,</span> <span class="s1">&#39;anticipation&#39;</span><span class="p">,</span><span class="s1">&#39;disgust&#39;</span><span class="p">,</span><span class="s1">&#39;fear&#39;</span><span class="p">,</span><span class="s1">&#39;joy&#39;</span><span class="p">,</span><span class="s1">&#39;sadness&#39;</span><span class="p">,</span><span class="s1">&#39;surprise&#39;</span><span class="p">,</span><span class="s1">&#39;trust&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">emotion_info</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">indexs</span><span class="p">)</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">emotion_caculate</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;这个国家再对这些制造假冒伪劣食品药品的人手软的话，那后果真的会相当糟糕。坐牢？从快判个死刑&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Building prefix dict from the default dictionary ...
+Loading model from cache /var/folders/8b/hhnbt0nd4zsg2qhxc28q23w80000gn/T/jieba.cache
+Loading model cost 0.730 seconds.
+Prefix dict has been built successfully.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>length          25
+positive         1
+negative         2
+anger            1
+anticipation     0
+disgust          1
+fear             1
+joy              0
+sadness          1
+surprise         0
+trust            3
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="11-2-emotion-dict.html" title="previous page">大连理工大学中文情感词汇</a>
+    <a class='right-next' id="next-link" href="11-3-textblob.html" title="next page">利用textblob进行情感分析</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

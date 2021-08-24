@@ -1,0 +1,813 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>使用Turicreate进行音乐推荐 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="使用Turicreate进行电影推荐" href="14-movielens.html" />
+    <link rel="prev" title="使用Surprise构建推荐系统" href="13-recsys-intro-surprise.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="13-recsys-latent-factor-model.html">
+     Latent Factor Recommender System
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13-recsys-intro-surprise.html">
+     使用Surprise构建推荐系统
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     使用Turicreate进行音乐推荐
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14-movielens.html">
+     使用Turicreate进行电影推荐
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/14-millionsong.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F14-millionsong.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/14-millionsong.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/14-millionsong.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="turicreate">
+<h1>使用Turicreate进行音乐推荐<a class="headerlink" href="#turicreate" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install turicreate
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting turicreate
+  Downloading turicreate-6.3-cp37-cp37m-macosx_10_12_intel.macosx_10_12_x86_64.macosx_10_13_intel.macosx_10_13_x86_64.macosx_10_14_intel.macosx_10_14_x86_64.whl (33.1 MB)
+     |████████████████████████████████| 33.1 MB 13 kB/s eta 0:00:0197   |████████▍                       | 8.6 MB 19 kB/s eta 0:20:35     |███████████████████▌            | 20.2 MB 24 kB/s eta 0:08:42     |███████████████████▊            | 20.4 MB 12 kB/s eta 0:16:49     |██████████████████████████████▉ | 31.8 MB 39 kB/s eta 0:00:32
+?25hCollecting coremltools==3.3
+  Downloading coremltools-3.3-cp37-none-macosx_10_14_intel.whl (3.5 MB)
+     |████████████████████████████████| 3.5 MB 18 kB/s eta 0:00:0115   |███████▋                        | 829 kB 12 kB/s eta 0:03:30
+?25hRequirement already satisfied: requests&gt;=2.9.1 in /opt/anaconda3/lib/python3.7/site-packages (from turicreate) (2.22.0)
+Requirement already satisfied: pandas&gt;=0.23.2 in /opt/anaconda3/lib/python3.7/site-packages (from turicreate) (1.0.1)
+Requirement already satisfied: numpy in /opt/anaconda3/lib/python3.7/site-packages (from turicreate) (1.18.1)
+Requirement already satisfied: decorator&gt;=4.0.9 in /opt/anaconda3/lib/python3.7/site-packages (from turicreate) (4.4.1)
+Requirement already satisfied: pillow&gt;=5.2.0 in /opt/anaconda3/lib/python3.7/site-packages (from turicreate) (7.0.0)
+Requirement already satisfied: prettytable==0.7.2 in /opt/anaconda3/lib/python3.7/site-packages (from turicreate) (0.7.2)
+Requirement already satisfied: six&gt;=1.10.0 in /opt/anaconda3/lib/python3.7/site-packages (from turicreate) (1.14.0)
+Collecting resampy==0.2.1
+  Using cached resampy-0.2.1.tar.gz (322 kB)
+Collecting tensorflow&gt;=2.0.0
+  Downloading tensorflow-2.2.0-cp37-cp37m-macosx_10_11_x86_64.whl (175.3 MB)
+     |████████████████████████████████| 175.3 MB 8.8 kB/s ta 0:00:018   |██▏                             | 12.0 MB 62 kB/s eta 0:43:16     |████████▎                       | 45.2 MB 21 kB/s eta 1:39:12     |████████▎                       | 45.5 MB 17 kB/s eta 2:07:02     |█████████                       | 48.7 MB 36 kB/s eta 0:58:32     |█████████▍                      | 51.2 MB 40 kB/s eta 0:50:59     |██████████▍                     | 56.8 MB 14 kB/s eta 2:11:51     |██████████████▊                 | 81.0 MB 30 kB/s eta 0:51:49     |███████████████▉                | 86.8 MB 36 kB/s eta 0:40:44     |████████████████▍               | 90.1 MB 34 kB/s eta 0:40:50     |█████████████████               | 92.9 MB 35 kB/s eta 0:38:29     |██████████████████              | 99.0 MB 60 kB/s eta 0:20:57     |██████████████████▋             | 102.1 MB 76 kB/s eta 0:16:01     |██████████████████▉             | 103.4 MB 35 kB/s eta 0:33:33     |████████████████████▏           | 110.3 MB 23 kB/s eta 0:46:13     |████████████████████▏           | 110.5 MB 23 kB/s eta 0:45:17     |████████████████████▍           | 111.7 MB 53 kB/s eta 0:19:58     |██████████████████████▍         | 122.5 MB 91 kB/s eta 0:09:39     |███████████████████████         | 125.9 MB 119 kB/s eta 0:06:54     |██████████████████████████▋     | 145.9 MB 91 kB/s eta 0:05:22     |███████████████████████████▍    | 149.7 MB 22 kB/s eta 0:19:01     |████████████████████████████████| 175.3 MB 54 kB/s eta 0:00:01
+?25hRequirement already satisfied: scipy&gt;=1.1.0 in /opt/anaconda3/lib/python3.7/site-packages (from turicreate) (1.4.1)
+Collecting protobuf&gt;=3.1.0
+  Downloading protobuf-3.12.2-cp37-cp37m-macosx_10_9_x86_64.whl (1.3 MB)
+     |████████████████████████████████| 1.3 MB 38 kB/s eta 0:00:01
+?25hRequirement already satisfied: chardet&lt;3.1.0,&gt;=3.0.2 in /opt/anaconda3/lib/python3.7/site-packages (from requests&gt;=2.9.1-&gt;turicreate) (3.0.4)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,&lt;1.26,&gt;=1.21.1 in /opt/anaconda3/lib/python3.7/site-packages (from requests&gt;=2.9.1-&gt;turicreate) (1.25.8)
+Requirement already satisfied: idna&lt;2.9,&gt;=2.5 in /opt/anaconda3/lib/python3.7/site-packages (from requests&gt;=2.9.1-&gt;turicreate) (2.8)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /opt/anaconda3/lib/python3.7/site-packages (from requests&gt;=2.9.1-&gt;turicreate) (2019.11.28)
+Requirement already satisfied: pytz&gt;=2017.2 in /opt/anaconda3/lib/python3.7/site-packages (from pandas&gt;=0.23.2-&gt;turicreate) (2019.3)
+Requirement already satisfied: python-dateutil&gt;=2.6.1 in /opt/anaconda3/lib/python3.7/site-packages (from pandas&gt;=0.23.2-&gt;turicreate) (2.8.1)
+Requirement already satisfied: numba&gt;=0.32 in /opt/anaconda3/lib/python3.7/site-packages (from resampy==0.2.1-&gt;turicreate) (0.48.0)
+Collecting termcolor&gt;=1.1.0
+  Downloading termcolor-1.1.0.tar.gz (3.9 kB)
+Collecting tensorflow-estimator&lt;2.3.0,&gt;=2.2.0
+  Downloading tensorflow_estimator-2.2.0-py2.py3-none-any.whl (454 kB)
+     |████████████████████████████████| 454 kB 49 kB/s eta 0:00:01
+?25hRequirement already satisfied: wheel&gt;=0.26; python_version &gt;= &quot;3&quot; in /opt/anaconda3/lib/python3.7/site-packages (from tensorflow&gt;=2.0.0-&gt;turicreate) (0.34.2)
+Requirement already satisfied: wrapt&gt;=1.11.1 in /opt/anaconda3/lib/python3.7/site-packages (from tensorflow&gt;=2.0.0-&gt;turicreate) (1.11.2)
+Collecting keras-preprocessing&gt;=1.1.0
+  Downloading Keras_Preprocessing-1.1.2-py2.py3-none-any.whl (42 kB)
+     |████████████████████████████████| 42 kB 67 kB/s eta 0:00:01
+?25hCollecting google-pasta&gt;=0.1.8
+  Downloading google_pasta-0.2.0-py3-none-any.whl (57 kB)
+     |████████████████████████████████| 57 kB 53 kB/s eta 0:00:01
+?25hCollecting astunparse==1.6.3
+  Downloading astunparse-1.6.3-py2.py3-none-any.whl (12 kB)
+Collecting grpcio&gt;=1.8.6
+  Downloading grpcio-1.29.0-cp37-cp37m-macosx_10_9_x86_64.whl (2.8 MB)
+     |████████████████████████████████| 2.8 MB 95 kB/s eta 0:00:011
+?25hCollecting gast==0.3.3
+  Downloading gast-0.3.3-py2.py3-none-any.whl (9.7 kB)
+Collecting opt-einsum&gt;=2.3.2
+  Downloading opt_einsum-3.2.1-py3-none-any.whl (63 kB)
+     |████████████████████████████████| 63 kB 71 kB/s eta 0:00:011
+?25hCollecting tensorboard&lt;2.3.0,&gt;=2.2.0
+  Downloading tensorboard-2.2.2-py3-none-any.whl (3.0 MB)
+     |████████████████████████████████| 3.0 MB 31 kB/s eta 0:00:01
+?25hRequirement already satisfied: h5py&lt;2.11.0,&gt;=2.10.0 in /opt/anaconda3/lib/python3.7/site-packages (from tensorflow&gt;=2.0.0-&gt;turicreate) (2.10.0)
+Collecting absl-py&gt;=0.7.0
+  Downloading absl-py-0.9.0.tar.gz (104 kB)
+     |████████████████████████████████| 104 kB 23 kB/s eta 0:00:01
+?25hRequirement already satisfied: setuptools in /opt/anaconda3/lib/python3.7/site-packages (from protobuf&gt;=3.1.0-&gt;coremltools==3.3-&gt;turicreate) (46.0.0.post20200309)
+Requirement already satisfied: llvmlite&lt;0.32.0,&gt;=0.31.0dev0 in /opt/anaconda3/lib/python3.7/site-packages (from numba&gt;=0.32-&gt;resampy==0.2.1-&gt;turicreate) (0.31.0)
+Collecting tensorboard-plugin-wit&gt;=1.6.0
+  Downloading tensorboard_plugin_wit-1.6.0.post3-py3-none-any.whl (777 kB)
+     |████████████████████████████████| 777 kB 40 kB/s eta 0:00:01
+?25hCollecting google-auth-oauthlib&lt;0.5,&gt;=0.4.1
+  Downloading google_auth_oauthlib-0.4.1-py2.py3-none-any.whl (18 kB)
+Collecting google-auth&lt;2,&gt;=1.6.3
+  Downloading google_auth-1.17.2-py2.py3-none-any.whl (90 kB)
+     |████████████████████████████████| 90 kB 65 kB/s eta 0:00:01
+?25hRequirement already satisfied: werkzeug&gt;=0.11.15 in /opt/anaconda3/lib/python3.7/site-packages (from tensorboard&lt;2.3.0,&gt;=2.2.0-&gt;tensorflow&gt;=2.0.0-&gt;turicreate) (1.0.0)
+Collecting markdown&gt;=2.6.8
+  Downloading Markdown-3.2.2-py3-none-any.whl (88 kB)
+     |████████████████████████████████| 88 kB 49 kB/s eta 0:00:01
+?25hCollecting requests-oauthlib&gt;=0.7.0
+  Downloading requests_oauthlib-1.3.0-py2.py3-none-any.whl (23 kB)
+Collecting pyasn1-modules&gt;=0.2.1
+  Downloading pyasn1_modules-0.2.8-py2.py3-none-any.whl (155 kB)
+     |████████████████████████████████| 155 kB 38 kB/s eta 0:00:01
+?25hCollecting rsa&lt;5,&gt;=3.1.4; python_version &gt;= &quot;3&quot;
+  Downloading rsa-4.6-py2.py3-none-any.whl (34 kB)
+Requirement already satisfied: cachetools&lt;5.0,&gt;=2.0.0 in /opt/anaconda3/lib/python3.7/site-packages (from google-auth&lt;2,&gt;=1.6.3-&gt;tensorboard&lt;2.3.0,&gt;=2.2.0-&gt;tensorflow&gt;=2.0.0-&gt;turicreate) (3.1.1)
+Requirement already satisfied: importlib-metadata; python_version &lt; &quot;3.8&quot; in /opt/anaconda3/lib/python3.7/site-packages (from markdown&gt;=2.6.8-&gt;tensorboard&lt;2.3.0,&gt;=2.2.0-&gt;tensorflow&gt;=2.0.0-&gt;turicreate) (1.5.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting oauthlib&gt;=3.0.0
+  Downloading oauthlib-3.1.0-py2.py3-none-any.whl (147 kB)
+     |████████████████████████████████| 147 kB 37 kB/s eta 0:00:01    |███████████████▋                | 71 kB 37 kB/s eta 0:00:03
+?25hCollecting pyasn1&lt;0.5.0,&gt;=0.4.6
+  Downloading pyasn1-0.4.8-py2.py3-none-any.whl (77 kB)
+     |████████████████████████████████| 77 kB 59 kB/s eta 0:00:01
+?25hRequirement already satisfied: zipp&gt;=0.5 in /opt/anaconda3/lib/python3.7/site-packages (from importlib-metadata; python_version &lt; &quot;3.8&quot;-&gt;markdown&gt;=2.6.8-&gt;tensorboard&lt;2.3.0,&gt;=2.2.0-&gt;tensorflow&gt;=2.0.0-&gt;turicreate) (2.2.0)
+Building wheels for collected packages: resampy, termcolor, absl-py
+  Building wheel for resampy (setup.py) ... ?25ldone
+?25h  Created wheel for resampy: filename=resampy-0.2.1-py3-none-any.whl size=320848 sha256=13ea513477f71d513b03a44efe8db091cffc1adaab907123f0fa8d5babfdbeaf
+  Stored in directory: /Users/datalab/Library/Caches/pip/wheels/71/74/53/d5ceb7c5ee7a168c7d106041863e71ac3273f4a4677743a284
+  Building wheel for termcolor (setup.py) ... ?25ldone
+?25h  Created wheel for termcolor: filename=termcolor-1.1.0-py3-none-any.whl size=4830 sha256=f6234bda25caf8e0d32efe0478ea409a20565a1652f05830529936dabbebc345
+  Stored in directory: /Users/datalab/Library/Caches/pip/wheels/3f/e3/ec/8a8336ff196023622fbcb36de0c5a5c218cbb24111d1d4c7f2
+  Building wheel for absl-py (setup.py) ... ?25ldone
+?25h  Created wheel for absl-py: filename=absl_py-0.9.0-py3-none-any.whl size=121931 sha256=a0b4551addb6f776d7d3404e842ec5243b8894947bba6be78bc66c56963d37b5
+  Stored in directory: /Users/datalab/Library/Caches/pip/wheels/cc/af/1a/498a24d0730ef484019e007bb9e8cef3ac00311a672c049a3e
+Successfully built resampy termcolor absl-py
+Installing collected packages: protobuf, coremltools, resampy, termcolor, tensorflow-estimator, keras-preprocessing, google-pasta, astunparse, grpcio, gast, opt-einsum, tensorboard-plugin-wit, pyasn1, pyasn1-modules, rsa, google-auth, oauthlib, requests-oauthlib, google-auth-oauthlib, absl-py, markdown, tensorboard, tensorflow, turicreate
+Successfully installed absl-py-0.9.0 astunparse-1.6.3 coremltools-3.3 gast-0.3.3 google-auth-1.17.2 google-auth-oauthlib-0.4.1 google-pasta-0.2.0 grpcio-1.29.0 keras-preprocessing-1.1.2 markdown-3.2.2 oauthlib-3.1.0 opt-einsum-3.2.1 protobuf-3.12.2 pyasn1-0.4.8 pyasn1-modules-0.2.8 requests-oauthlib-1.3.0 resampy-0.2.1 rsa-4.6 tensorboard-2.2.2 tensorboard-plugin-wit-1.6.0.post3 tensorflow-2.2.0 tensorflow-estimator-2.2.0 termcolor-1.1.0 turicreate-6.3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>下载数据
+http://s3.amazonaws.com/dato-datasets/millionsong/10000.txt</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#train_file = &#39;http://s3.amazonaws.com/dato-datasets/millionsong/10000.txt&#39;</span>
+<span class="n">train_file</span> <span class="o">=</span> <span class="s1">&#39;/Users/datalab/bigdata/cjc/millionsong/song_usage_10000.txt&#39;</span>
+<span class="n">sf</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">SFrame</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">train_file</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sf</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;X1&#39;</span><span class="p">:</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;X2&#39;</span><span class="p">:</span><span class="s1">&#39;music_id&#39;</span><span class="p">,</span> <span class="s1">&#39;X3&#39;</span><span class="p">:</span><span class="s1">&#39;rating&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_set</span><span class="p">,</span> <span class="n">test_set</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">random_split</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">popularity_model</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">popularity_recommender</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> 
+                                                    <span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;music_id&#39;</span><span class="p">,</span> 
+                                                    <span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;rating&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre>Preparing data set.</pre></div><div class="output text_html"><pre>    Data has 1599753 observations with 76085 users and 10000 items.</pre></div><div class="output text_html"><pre>    Data prepared in: 4.15079s</pre></div><div class="output text_html"><pre>1599753 observations to process; with 10000 unique items.</pre></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">item_sim_model</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">item_similarity_recommender</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> 
+                                                       <span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;music_id&#39;</span><span class="p">,</span> 
+                                                       <span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;rating&#39;</span><span class="p">,</span> 
+                                                       <span class="n">similarity_type</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre>Preparing data set.</pre></div><div class="output text_html"><pre>    Data has 1599753 observations with 76085 users and 10000 items.</pre></div><div class="output text_html"><pre>    Data prepared in: 3.7942s</pre></div><div class="output text_html"><pre>Training model from provided data.</pre></div><div class="output text_html"><pre>Gathering per-item and per-user statistics.</pre></div><div class="output text_html"><pre>+--------------------------------+------------+</pre></div><div class="output text_html"><pre>| Elapsed Time (Item Statistics) | % Complete |</pre></div><div class="output text_html"><pre>+--------------------------------+------------+</pre></div><div class="output text_html"><pre>| 7.569ms                        | 2.5        |</pre></div><div class="output text_html"><pre>| 90.88ms                        | 100        |</pre></div><div class="output text_html"><pre>+--------------------------------+------------+</pre></div><div class="output text_html"><pre>Setting up lookup tables.</pre></div><div class="output text_html"><pre>Processing data in one pass using dense lookup tables.</pre></div><div class="output text_html"><pre>+-------------------------------------+------------------+-----------------+</pre></div><div class="output text_html"><pre>| Elapsed Time (Constructing Lookups) | Total % Complete | Items Processed |</pre></div><div class="output text_html"><pre>+-------------------------------------+------------------+-----------------+</pre></div><div class="output text_html"><pre>| 605.016ms                           | 0                | 0               |</pre></div><div class="output text_html"><pre>| 4.01s                               | 100              | 10000           |</pre></div><div class="output text_html"><pre>+-------------------------------------+------------------+-----------------+</pre></div><div class="output text_html"><pre>Finalizing lookup tables.</pre></div><div class="output text_html"><pre>Generating candidate set for working with new users.</pre></div><div class="output text_html"><pre>Finished training in 5.31028s</pre></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">factorization_machine_model</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">recommender</span><span class="o">.</span><span class="n">factorization_recommender</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> 
+                                                                              <span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;music_id&#39;</span><span class="p">,</span>
+                                                                              <span class="n">target</span><span class="o">=</span><span class="s1">&#39;rating&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre>Preparing data set.</pre></div><div class="output text_html"><pre>    Data has 1599753 observations with 76085 users and 10000 items.</pre></div><div class="output text_html"><pre>    Data prepared in: 4.32575s</pre></div><div class="output text_html"><pre>Training factorization_recommender for recommendations.</pre></div><div class="output text_html"><pre>+--------------------------------+--------------------------------------------------+----------+</pre></div><div class="output text_html"><pre>| Parameter                      | Description                                      | Value    |</pre></div><div class="output text_html"><pre>+--------------------------------+--------------------------------------------------+----------+</pre></div><div class="output text_html"><pre>| num_factors                    | Factor Dimension                                 | 8        |</pre></div><div class="output text_html"><pre>| regularization                 | L2 Regularization on Factors                     | 1e-08    |</pre></div><div class="output text_html"><pre>| solver                         | Solver used for training                         | sgd      |</pre></div><div class="output text_html"><pre>| linear_regularization          | L2 Regularization on Linear Coefficients         | 1e-10    |</pre></div><div class="output text_html"><pre>| max_iterations                 | Maximum Number of Iterations                     | 50       |</pre></div><div class="output text_html"><pre>+--------------------------------+--------------------------------------------------+----------+</pre></div><div class="output text_html"><pre>  Optimizing model using SGD; tuning step size.</pre></div><div class="output text_html"><pre>  Using 199969 / 1599753 points for tuning the step size.</pre></div><div class="output text_html"><pre>+---------+-------------------+------------------------------------------+</pre></div><div class="output text_html"><pre>| Attempt | Initial Step Size | Estimated Objective Value                |</pre></div><div class="output text_html"><pre>+---------+-------------------+------------------------------------------+</pre></div><div class="output text_html"><pre>| 0       | 25                | No Decrease (230.933 >= 43.5401)         |</pre></div><div class="output text_html"><pre>| 1       | 6.25              | No Decrease (219.447 >= 43.5401)         |</pre></div><div class="output text_html"><pre>| 2       | 1.5625            | No Decrease (191.895 >= 43.5401)         |</pre></div><div class="output text_html"><pre>| 3       | 0.390625          | No Decrease (89.356 >= 43.5401)          |</pre></div><div class="output text_html"><pre>| 4       | 0.0976562         | 16.0024                                  |</pre></div><div class="output text_html"><pre>| 5       | 0.0488281         | 11.4371                                  |</pre></div><div class="output text_html"><pre>| 6       | 0.0244141         | 24.5498                                  |</pre></div><div class="output text_html"><pre>+---------+-------------------+------------------------------------------+</pre></div><div class="output text_html"><pre>| Final   | 0.0488281         | 11.4371                                  |</pre></div><div class="output text_html"><pre>+---------+-------------------+------------------------------------------+</pre></div><div class="output text_html"><pre>Starting Optimization.</pre></div><div class="output text_html"><pre>+---------+--------------+-------------------+-----------------------+-------------+</pre></div><div class="output text_html"><pre>| Iter.   | Elapsed Time | Approx. Objective | Approx. Training RMSE | Step Size   |</pre></div><div class="output text_html"><pre>+---------+--------------+-------------------+-----------------------+-------------+</pre></div><div class="output text_html"><pre>| Initial | 387us        | 43.795            | 6.61778               |             |</pre></div><div class="output text_html"><pre>+---------+--------------+-------------------+-----------------------+-------------+</pre></div><div class="output text_html"><pre>| 1       | 681.41ms     | 43.5465           | 6.59858               | 0.0488281   |</pre></div><div class="output text_html"><pre>| 2       | 1.25s        | 40.8911           | 6.39426               | 0.0290334   |</pre></div><div class="output text_html"><pre>| 3       | 1.97s        | 37.9926           | 6.16345               | 0.0214205   |</pre></div><div class="output text_html"><pre>| 4       | 2.74s        | 35.4229           | 5.95132               | 0.0172633   |</pre></div><div class="output text_html"><pre>| 5       | 3.26s        | 32.7792           | 5.72487               | 0.014603    |</pre></div><div class="output text_html"><pre>| 10      | 5.91s        | 24.5046           | 4.94956               | 0.008683    |</pre></div><div class="output text_html"><pre>| 15      | 9.07s        | 20.0943           | 4.48185               | 0.00640622  |</pre></div><div class="output text_html"><pre>| 20      | 11.83s       | 17.639            | 4.19895               | 0.00516295  |</pre></div><div class="output text_html"><pre>| 25      | 14.27s       | 15.7055           | 3.96197               | 0.00436732  |</pre></div><div class="output text_html"><pre>| 30      | 16.57s       | 14.3953           | 3.79299               | 0.00380916  |</pre></div><div class="output text_html"><pre>| 35      | 18.71s       | 13.3639           | 3.65445               | 0.00339327  |</pre></div><div class="output text_html"><pre>| 40      | 20.92s       | 12.5027           | 3.53463               | 0.00306991  |</pre></div><div class="output text_html"><pre>| 45      | 23.89s       | 11.8108           | 3.43534               | 0.00281035  |</pre></div><div class="output text_html"><pre>| 50      | 26.34s       | 9.85419           | 3.13763               | 0.00154408  |</pre></div><div class="output text_html"><pre>+---------+--------------+-------------------+-----------------------+-------------+</pre></div><div class="output text_html"><pre>Optimization Complete: Maximum number of passes through the data reached.</pre></div><div class="output text_html"><pre>Computing final objective value and training RMSE.</pre></div><div class="output text_html"><pre>       Final objective value: 8.8282</pre></div><div class="output text_html"><pre>       Final training RMSE: 2.96963</pre></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">train_set</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1599753
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">recommender</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">compare_models</span><span class="p">(</span><span class="n">test_set</span><span class="p">,</span> 
+                                            <span class="p">[</span><span class="n">popularity_model</span><span class="p">,</span> <span class="n">item_sim_model</span><span class="p">,</span> <span class="n">factorization_machine_model</span><span class="p">],</span>
+                                            <span class="n">user_sample</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">skip_set</span><span class="o">=</span><span class="n">train_set</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>compare_models: using 34354 users to estimate model performance
+PROGRESS: Evaluate model M0
+</pre></div>
+</div>
+<div class="output text_html"><pre>recommendations finished on 1000/34354 queries. users per second: 5393.6</pre></div><div class="output text_html"><pre>recommendations finished on 2000/34354 queries. users per second: 5901.05</pre></div><div class="output text_html"><pre>recommendations finished on 3000/34354 queries. users per second: 5891.65</pre></div><div class="output text_html"><pre>recommendations finished on 4000/34354 queries. users per second: 5752.93</pre></div><div class="output text_html"><pre>recommendations finished on 5000/34354 queries. users per second: 5841.69</pre></div><div class="output text_html"><pre>recommendations finished on 6000/34354 queries. users per second: 5762.33</pre></div><div class="output text_html"><pre>recommendations finished on 7000/34354 queries. users per second: 5834.76</pre></div><div class="output text_html"><pre>recommendations finished on 8000/34354 queries. users per second: 5904.72</pre></div><div class="output text_html"><pre>recommendations finished on 9000/34354 queries. users per second: 5766.33</pre></div><div class="output text_html"><pre>recommendations finished on 10000/34354 queries. users per second: 5748.05</pre></div><div class="output text_html"><pre>recommendations finished on 11000/34354 queries. users per second: 5619.56</pre></div><div class="output text_html"><pre>recommendations finished on 12000/34354 queries. users per second: 5600.83</pre></div><div class="output text_html"><pre>recommendations finished on 13000/34354 queries. users per second: 5659.63</pre></div><div class="output text_html"><pre>recommendations finished on 14000/34354 queries. users per second: 5537.91</pre></div><div class="output text_html"><pre>recommendations finished on 15000/34354 queries. users per second: 5566.55</pre></div><div class="output text_html"><pre>recommendations finished on 16000/34354 queries. users per second: 5566.55</pre></div><div class="output text_html"><pre>recommendations finished on 17000/34354 queries. users per second: 5541.39</pre></div><div class="output text_html"><pre>recommendations finished on 18000/34354 queries. users per second: 5537.43</pre></div><div class="output text_html"><pre>recommendations finished on 19000/34354 queries. users per second: 5494.31</pre></div><div class="output text_html"><pre>recommendations finished on 20000/34354 queries. users per second: 5540.8</pre></div><div class="output text_html"><pre>recommendations finished on 21000/34354 queries. users per second: 5567.68</pre></div><div class="output text_html"><pre>recommendations finished on 22000/34354 queries. users per second: 5596</pre></div><div class="output text_html"><pre>recommendations finished on 23000/34354 queries. users per second: 5594.48</pre></div><div class="output text_html"><pre>recommendations finished on 24000/34354 queries. users per second: 5551.09</pre></div><div class="output text_html"><pre>recommendations finished on 25000/34354 queries. users per second: 5561.67</pre></div><div class="output text_html"><pre>recommendations finished on 26000/34354 queries. users per second: 5526.95</pre></div><div class="output text_html"><pre>recommendations finished on 27000/34354 queries. users per second: 5465.2</pre></div><div class="output text_html"><pre>recommendations finished on 28000/34354 queries. users per second: 5437.18</pre></div><div class="output text_html"><pre>recommendations finished on 29000/34354 queries. users per second: 5444.31</pre></div><div class="output text_html"><pre>recommendations finished on 30000/34354 queries. users per second: 5452.98</pre></div><div class="output text_html"><pre>recommendations finished on 31000/34354 queries. users per second: 5430.37</pre></div><div class="output text_html"><pre>recommendations finished on 32000/34354 queries. users per second: 5407.57</pre></div><div class="output text_html"><pre>recommendations finished on 33000/34354 queries. users per second: 5386.39</pre></div><div class="output text_html"><pre>recommendations finished on 34000/34354 queries. users per second: 5405.75</pre></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Precision and recall summary statistics by cutoff
++--------+------------------------+------------------------+
+| cutoff |     mean_precision     |      mean_recall       |
++--------+------------------------+------------------------+
+|   1    | 0.00040752168597543237 | 7.081875226074056e-05  |
+|   2    | 0.0004075216859754322  | 0.00011226035987334286 |
+|   3    | 0.0003104927131241391  | 0.00012739048212345128 |
+|   4    | 0.00034202712930080884 | 0.0002353030396709293  |
+|   5    | 0.00046573906968620603 | 0.00046444872494981606 |
+|   6    | 0.0004414818264733844  | 0.0005228618282305431  |
+|   7    |  0.00043247199328005   | 0.0005736297245772213  |
+|   8    | 0.0004075216859754325  | 0.0006087229198555468  |
+|   9    | 0.0004528018733060353  | 0.0007391431080220185  |
+|   10   | 0.00043080863945974164 | 0.0007735092654785608  |
++--------+------------------------+------------------------+
+[10 rows x 3 columns]
+
+
+Overall RMSE: 5.9110406201585715
+
+Per User RMSE (best)
++-------------------------------+------+-------+
+|            user_id            | rmse | count |
++-------------------------------+------+-------+
+| cafbf96566378466408b7b3c76... | 0.0  |   1   |
++-------------------------------+------+-------+
+[1 rows x 3 columns]
+
+
+Per User RMSE (worst)
++-------------------------------+-------------------+-------+
+|            user_id            |        rmse       | count |
++-------------------------------+-------------------+-------+
+| 38767872c514c1b43bab5c7b21... | 341.2071760874715 |   2   |
++-------------------------------+-------------------+-------+
+[1 rows x 3 columns]
+
+
+Per Item RMSE (best)
++--------------------+---------------------+-------+
+|      music_id      |         rmse        | count |
++--------------------+---------------------+-------+
+| SOXDPFW12A81C2319B | 0.07352941176470584 |   5   |
++--------------------+---------------------+-------+
+[1 rows x 3 columns]
+
+
+Per Item RMSE (worst)
++--------------------+--------------------+-------+
+|      music_id      |        rmse        | count |
++--------------------+--------------------+-------+
+| SOPKTFQ12A67021600 | 124.75180499529567 |   9   |
++--------------------+--------------------+-------+
+[1 rows x 3 columns]
+
+PROGRESS: Evaluate model M1
+</pre></div>
+</div>
+<div class="output text_html"><pre>recommendations finished on 1000/34354 queries. users per second: 5825.84</pre></div><div class="output text_html"><pre>recommendations finished on 2000/34354 queries. users per second: 5301.82</pre></div><div class="output text_html"><pre>recommendations finished on 3000/34354 queries. users per second: 5419.21</pre></div><div class="output text_html"><pre>recommendations finished on 4000/34354 queries. users per second: 5627.83</pre></div><div class="output text_html"><pre>recommendations finished on 5000/34354 queries. users per second: 5771.93</pre></div><div class="output text_html"><pre>recommendations finished on 6000/34354 queries. users per second: 5585.3</pre></div><div class="output text_html"><pre>recommendations finished on 7000/34354 queries. users per second: 5365.4</pre></div><div class="output text_html"><pre>recommendations finished on 8000/34354 queries. users per second: 5147.5</pre></div><div class="output text_html"><pre>recommendations finished on 9000/34354 queries. users per second: 5252.85</pre></div><div class="output text_html"><pre>recommendations finished on 10000/34354 queries. users per second: 5301.11</pre></div><div class="output text_html"><pre>recommendations finished on 11000/34354 queries. users per second: 5257.75</pre></div><div class="output text_html"><pre>recommendations finished on 12000/34354 queries. users per second: 5181.17</pre></div><div class="output text_html"><pre>recommendations finished on 13000/34354 queries. users per second: 5139.25</pre></div><div class="output text_html"><pre>recommendations finished on 14000/34354 queries. users per second: 5155.66</pre></div><div class="output text_html"><pre>recommendations finished on 15000/34354 queries. users per second: 4967.57</pre></div><div class="output text_html"><pre>recommendations finished on 16000/34354 queries. users per second: 4921.83</pre></div><div class="output text_html"><pre>recommendations finished on 17000/34354 queries. users per second: 4990.4</pre></div><div class="output text_html"><pre>recommendations finished on 18000/34354 queries. users per second: 5068.35</pre></div><div class="output text_html"><pre>recommendations finished on 19000/34354 queries. users per second: 5140.77</pre></div><div class="output text_html"><pre>recommendations finished on 20000/34354 queries. users per second: 5213.8</pre></div><div class="output text_html"><pre>recommendations finished on 21000/34354 queries. users per second: 5184.08</pre></div><div class="output text_html"><pre>recommendations finished on 22000/34354 queries. users per second: 5094.51</pre></div><div class="output text_html"><pre>recommendations finished on 23000/34354 queries. users per second: 5146.65</pre></div><div class="output text_html"><pre>recommendations finished on 24000/34354 queries. users per second: 5170.89</pre></div><div class="output text_html"><pre>recommendations finished on 25000/34354 queries. users per second: 5200.77</pre></div><div class="output text_html"><pre>recommendations finished on 26000/34354 queries. users per second: 5183.28</pre></div><div class="output text_html"><pre>recommendations finished on 27000/34354 queries. users per second: 5222.37</pre></div><div class="output text_html"><pre>recommendations finished on 28000/34354 queries. users per second: 5251.88</pre></div><div class="output text_html"><pre>recommendations finished on 29000/34354 queries. users per second: 5272.72</pre></div><div class="output text_html"><pre>recommendations finished on 30000/34354 queries. users per second: 5288.9</pre></div><div class="output text_html"><pre>recommendations finished on 31000/34354 queries. users per second: 5280.69</pre></div><div class="output text_html"><pre>recommendations finished on 32000/34354 queries. users per second: 5272.44</pre></div><div class="output text_html"><pre>recommendations finished on 33000/34354 queries. users per second: 5320.29</pre></div><div class="output text_html"><pre>recommendations finished on 34000/34354 queries. users per second: 5353.61</pre></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Precision and recall summary statistics by cutoff
++--------+----------------------+----------------------+
+| cutoff |    mean_precision    |     mean_recall      |
++--------+----------------------+----------------------+
+|   1    | 0.12356639692612195  | 0.027394188372094497 |
+|   2    | 0.10617395354252777  |  0.0450683741242837  |
+|   3    | 0.09521453105897464  | 0.059418188595173727 |
+|   4    | 0.08673662455609242  | 0.07079052813704197  |
+|   5    | 0.08053792862548775  | 0.08078157252034639  |
+|   6    | 0.07570685606722138  | 0.09033226689608059  |
+|   7    | 0.07142441304402039  | 0.09836168110578075  |
+|   8    | 0.06780869767712655  | 0.10631301678527204  |
+|   9    | 0.06465687320900597  |  0.1134367927631828  |
+|   10   | 0.061861791931070574 | 0.11986145197856829  |
++--------+----------------------+----------------------+
+[10 rows x 3 columns]
+
+
+Overall RMSE: 6.6935880472475
+
+Per User RMSE (best)
++-------------------------------+--------------------+-------+
+|            user_id            |        rmse        | count |
++-------------------------------+--------------------+-------+
+| f015c8ec1487d172a76e8af6fd... | 0.0991658329963685 |   1   |
++-------------------------------+--------------------+-------+
+[1 rows x 3 columns]
+
+
+Per User RMSE (worst)
++-------------------------------+-------------------+-------+
+|            user_id            |        rmse       | count |
++-------------------------------+-------------------+-------+
+| 38767872c514c1b43bab5c7b21... | 346.8117700274172 |   2   |
++-------------------------------+-------------------+-------+
+[1 rows x 3 columns]
+
+
+Per Item RMSE (best)
++--------------------+--------------------+-------+
+|      music_id      |        rmse        | count |
++--------------------+--------------------+-------+
+| SOAVQRP12A8C13120B | 0.8293558937901314 |   4   |
++--------------------+--------------------+-------+
+[1 rows x 3 columns]
+
+
+Per Item RMSE (worst)
++--------------------+-------------------+-------+
+|      music_id      |        rmse       | count |
++--------------------+-------------------+-------+
+| SOPKTFQ12A67021600 | 128.8226138396836 |   9   |
++--------------------+-------------------+-------+
+[1 rows x 3 columns]
+
+PROGRESS: Evaluate model M2
+</pre></div>
+</div>
+<div class="output text_html"><pre>recommendations finished on 1000/34354 queries. users per second: 5658.25</pre></div><div class="output text_html"><pre>recommendations finished on 2000/34354 queries. users per second: 6360.82</pre></div><div class="output text_html"><pre>recommendations finished on 3000/34354 queries. users per second: 6111.59</pre></div><div class="output text_html"><pre>recommendations finished on 4000/34354 queries. users per second: 5757.38</pre></div><div class="output text_html"><pre>recommendations finished on 5000/34354 queries. users per second: 5756.7</pre></div><div class="output text_html"><pre>recommendations finished on 6000/34354 queries. users per second: 5927.31</pre></div><div class="output text_html"><pre>recommendations finished on 7000/34354 queries. users per second: 6043.27</pre></div><div class="output text_html"><pre>recommendations finished on 8000/34354 queries. users per second: 6053.29</pre></div><div class="output text_html"><pre>recommendations finished on 9000/34354 queries. users per second: 6008.53</pre></div><div class="output text_html"><pre>recommendations finished on 10000/34354 queries. users per second: 6029.76</pre></div><div class="output text_html"><pre>recommendations finished on 11000/34354 queries. users per second: 5973.13</pre></div><div class="output text_html"><pre>recommendations finished on 12000/34354 queries. users per second: 5982.24</pre></div><div class="output text_html"><pre>recommendations finished on 13000/34354 queries. users per second: 5945.1</pre></div><div class="output text_html"><pre>recommendations finished on 14000/34354 queries. users per second: 5940.6</pre></div><div class="output text_html"><pre>recommendations finished on 15000/34354 queries. users per second: 5976.12</pre></div><div class="output text_html"><pre>recommendations finished on 16000/34354 queries. users per second: 5915.28</pre></div><div class="output text_html"><pre>recommendations finished on 17000/34354 queries. users per second: 5818.41</pre></div><div class="output text_html"><pre>recommendations finished on 18000/34354 queries. users per second: 5838.5</pre></div><div class="output text_html"><pre>recommendations finished on 19000/34354 queries. users per second: 5876.56</pre></div><div class="output text_html"><pre>recommendations finished on 20000/34354 queries. users per second: 5943.82</pre></div><div class="output text_html"><pre>recommendations finished on 21000/34354 queries. users per second: 5952.95</pre></div><div class="output text_html"><pre>recommendations finished on 22000/34354 queries. users per second: 5934.66</pre></div><div class="output text_html"><pre>recommendations finished on 23000/34354 queries. users per second: 5937.77</pre></div><div class="output text_html"><pre>recommendations finished on 24000/34354 queries. users per second: 5984.55</pre></div><div class="output text_html"><pre>recommendations finished on 25000/34354 queries. users per second: 5983.3</pre></div><div class="output text_html"><pre>recommendations finished on 26000/34354 queries. users per second: 5979.39</pre></div><div class="output text_html"><pre>recommendations finished on 27000/34354 queries. users per second: 5971.13</pre></div><div class="output text_html"><pre>recommendations finished on 28000/34354 queries. users per second: 6012.81</pre></div><div class="output text_html"><pre>recommendations finished on 29000/34354 queries. users per second: 6001.44</pre></div><div class="output text_html"><pre>recommendations finished on 30000/34354 queries. users per second: 6024.65</pre></div><div class="output text_html"><pre>recommendations finished on 31000/34354 queries. users per second: 5997.94</pre></div><div class="output text_html"><pre>recommendations finished on 32000/34354 queries. users per second: 5964.91</pre></div><div class="output text_html"><pre>recommendations finished on 33000/34354 queries. users per second: 5996.43</pre></div><div class="output text_html"><pre>recommendations finished on 34000/34354 queries. users per second: 6000.34</pre></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Precision and recall summary statistics by cutoff
++--------+-----------------------+------------------------+
+| cutoff |     mean_precision    |      mean_recall       |
++--------+-----------------------+------------------------+
+|   1    |  0.000611282528963149 | 0.00015967112604116908 |
+|   2    | 0.0005094021074692894 | 0.00020969792246105614 |
+|   3    | 0.0005142535561118539 | 0.0002897975387832757  |
+|   4    | 0.0005312336263608328 | 0.0004549968288297451  |
+|   5    | 0.0005414216685102181 | 0.0005703895459784241  |
+|   6    |  0.000548213696609806 | 0.0007142050704628652  |
+|   7    | 0.0005738570680062202 | 0.0008314573503625282  |
+|   8    | 0.0005930895965535321 | 0.0009602957110903129  |
+|   9    | 0.0006015796316780176 | 0.0011215295194248998  |
+|   10   | 0.0005967281830354553 | 0.0012125256843862468  |
++--------+-----------------------+------------------------+
+[10 rows x 3 columns]
+
+
+Overall RMSE: 7.641661679566184
+
+Per User RMSE (best)
++-------------------------------+-----------------------+-------+
+|            user_id            |          rmse         | count |
++-------------------------------+-----------------------+-------+
+| 220f26b368277020c4e685351a... | 5.398923054400484e-06 |   1   |
++-------------------------------+-----------------------+-------+
+[1 rows x 3 columns]
+
+
+Per User RMSE (worst)
++-------------------------------+-------------------+-------+
+|            user_id            |        rmse       | count |
++-------------------------------+-------------------+-------+
+| 38767872c514c1b43bab5c7b21... | 360.3407134339816 |   2   |
++-------------------------------+-------------------+-------+
+[1 rows x 3 columns]
+
+
+Per Item RMSE (best)
++--------------------+----------------------+-------+
+|      music_id      |         rmse         | count |
++--------------------+----------------------+-------+
+| SOAESGK12A8C138488 | 0.028188730543956098 |   1   |
++--------------------+----------------------+-------+
+[1 rows x 3 columns]
+
+
+Per Item RMSE (worst)
++--------------------+--------------------+-------+
+|      music_id      |        rmse        | count |
++--------------------+--------------------+-------+
+| SOPKTFQ12A67021600 | 126.00562214029682 |   9   |
++--------------------+--------------------+-------+
+[1 rows x 3 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">users</span> <span class="o">=</span> <span class="n">gl</span><span class="o">.</span><span class="n">SArray</span><span class="p">(</span><span class="n">sf</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recs</span> <span class="o">=</span> <span class="n">item_sim_model</span><span class="o">.</span><span class="n">recommend</span><span class="p">(</span><span class="n">users</span><span class="o">=</span><span class="n">users</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">K</span><span class="p">)</span>
+<span class="n">recs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="max-height:1000px;max-width:1500px;overflow:auto;"><table frame="box" rules="cols">
+    <tr>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">user_id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">music_id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">score</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">rank</th>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">279292bb36dbfc7f505e36ebf<br>038c81eb1d1d63e ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">SOXUQNR12AF72A69D6</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3.022422651449839</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">279292bb36dbfc7f505e36ebf<br>038c81eb1d1d63e ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">SOUFAZA12AC3DFAB20</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1.3368427753448486</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">279292bb36dbfc7f505e36ebf<br>038c81eb1d1d63e ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">SOSFSTC12A8C141219</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1.091982126235962</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">279292bb36dbfc7f505e36ebf<br>038c81eb1d1d63e ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">SOVIWFP12A58A7D1BD</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1.045163869857788</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">279292bb36dbfc7f505e36ebf<br>038c81eb1d1d63e ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">SOBMTQD12AB01833D0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1.0294516881306965</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">279292bb36dbfc7f505e36ebf<br>038c81eb1d1d63e ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">SOCMNRG12AB0189D3F</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0.9756437937418619</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">6</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">279292bb36dbfc7f505e36ebf<br>038c81eb1d1d63e ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">SOXOHUM12A67ADC826</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0.9506873289744059</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">7</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">279292bb36dbfc7f505e36ebf<br>038c81eb1d1d63e ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">SOWBFVW12A6D4F612B</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0.9092370669047037</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">8</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">279292bb36dbfc7f505e36ebf<br>038c81eb1d1d63e ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">SOXFYTY127E9433E7D</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0.8977278073628744</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">9</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">279292bb36dbfc7f505e36ebf<br>038c81eb1d1d63e ...</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">SOYBLYP12A58A79D32</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0.8970928192138672</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">10</td>
+    </tr>
+</table>
+[10 rows x 4 columns]<br/>
+</div></div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="13-recsys-intro-surprise.html" title="previous page">使用Surprise构建推荐系统</a>
+    <a class='right-next' id="next-link" href="14-movielens.html" title="next page">使用Turicreate进行电影推荐</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

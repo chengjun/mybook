@@ -1,0 +1,1223 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hyperparameters and Model Validation &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Feature Engineering" href="09-04-feature-engineering.html" />
+    <link rel="prev" title="第六章 社会科学家的机器学习" href="09-01-machine-learning-with-sklearn.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Hyperparameters and Model Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-04-feature-engineering.html">
+     Feature Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-05-naive-bayes.html">
+     In Depth: Naive Bayes Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-06-linear-regression.html">
+     In Depth: Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-07-support-vector-machines.html">
+     In-Depth: Support Vector Machines
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-08-random-forests.html">
+     In-Depth: Decision Trees and Random Forests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-09-googleflustudy.html">
+     Forecasting and nowcasting with Google Flu Trends
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-10-future-employment.html">
+     The future of employment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-grf.html">
+     Causal Forests
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/09-03-hyperparameters-and-model-validation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F09-03-hyperparameters-and-model-validation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/09-03-hyperparameters-and-model-validation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/09-03-hyperparameters-and-model-validation.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#thinking-about-model-validation">
+   Thinking about Model Validation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-validation-the-wrong-way">
+     Model validation the wrong way
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-validation-the-right-way-holdout-sets">
+     Model validation the right way: Holdout sets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-validation-via-cross-validation">
+     Model validation via cross-validation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Model validation via cross-validation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#selecting-the-best-model">
+   Selecting the Best Model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-if-our-estimator-is-underperforming-how-should-we-move-forward">
+     Question:
+     <em>
+      if our estimator is underperforming, how should we move forward?
+     </em>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   Selecting the Best Model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-bias-variance-trade-off">
+     The Bias-variance trade-off
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     The Bias-variance trade-off
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     The Bias-variance trade-off
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tuning-the-model-complexity-varies-from-model-to-model">
+   Tuning the model complexity varies from model to model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#validation-curves-in-scikit-learn">
+     Validation curves in Scikit-Learn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#question">
+   Question
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-curves">
+   Learning Curves
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-curves-in-scikit-learn">
+     Learning curves in Scikit-Learn
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#validation-in-practice-grid-search">
+   Validation in Practice: Grid Search
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   Validation in Practice: Grid Search
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="hyperparameters-and-model-validation">
+<h1>Hyperparameters and Model Validation<a class="headerlink" href="#hyperparameters-and-model-validation" title="Permalink to this headline">¶</a></h1>
+<!--BOOK_INFORMATION-->
+<p><em>This notebook contains an excerpt from the <a class="reference external" href="http://shop.oreilly.com/product/0636920034919.do">Python Data Science Handbook</a> by Jake VanderPlas; the content is available <a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook">on GitHub</a>.</em></p>
+<p><em>The text is released under the <a class="reference external" href="https://creativecommons.org/licenses/by-nc-nd/3.0/us/legalcode">CC-BY-NC-ND license</a>, and code is released under the <a class="reference external" href="https://opensource.org/licenses/MIT">MIT license</a>. If you find this content useful, please consider supporting the work by <a class="reference external" href="http://shop.oreilly.com/product/0636920034919.do">buying the book</a>!</em></p>
+<p>In the previous section, we saw the basic recipe for applying a supervised machine learning model:</p>
+<ol class="simple">
+<li><p>Choose a class of model</p></li>
+<li><p>Choose model hyperparameters</p></li>
+<li><p>Fit the model to the training data</p></li>
+<li><p>Use the model to predict labels for new data</p></li>
+</ol>
+<p>The choice of model and choice of hyperparameters are perhaps <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">most</span> <span class="pre">important</span> <span class="pre">part</span></code>.</p>
+<ul class="simple">
+<li><p>we need a way to <em>validate</em> that our model and our hyperparameters are a good fit to the data.</p></li>
+</ul>
+<p>There are some pitfalls that you must avoid to do this effectively.</p>
+<div class="section" id="thinking-about-model-validation">
+<h2>Thinking about Model Validation<a class="headerlink" href="#thinking-about-model-validation" title="Permalink to this headline">¶</a></h2>
+<p>Model validation is very simple:</p>
+<ul class="simple">
+<li><p>Applying the trained model to test data,</p></li>
+<li><p>Comparing the prediction to the known values.</p>
+<ul>
+<li><p>The use of <code class="docutils literal notranslate"><span class="pre">holdout</span> <span class="pre">sets</span></code></p></li>
+<li><p>The use of <code class="docutils literal notranslate"><span class="pre">cross-validation</span></code></p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="model-validation-the-wrong-way">
+<h3>Model validation the wrong way<a class="headerlink" href="#model-validation-the-wrong-way" title="Permalink to this headline">¶</a></h3>
+<p>Let’s demonstrate the naive approach to validation using the Iris data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we choose a model and hyperparameters.</p>
+<p>Here we’ll use a <em>k</em>-neighbors classifier with <code class="docutils literal notranslate"><span class="pre">n_neighbors=1</span></code>.</p>
+<ul class="simple">
+<li><p>This is a very simple and intuitive model</p>
+<ul>
+<li><p>“the label of an unknown point is the same as the label of its closest training point”</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then</p>
+<ul class="simple">
+<li><p>we train the model, and</p></li>
+<li><p>use it to predict labels for data we already know:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">y_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we compute the fraction of correctly labeled points:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see an accuracy score of 1.0, which indicates that 100% of points were correctly labeled by our model!</p>
+<ul class="simple">
+<li><p>In fact, this approach contains a fundamental flaw:</p>
+<ul>
+<li><p><em>it trains and evaluates the model on the same data</em>.</p></li>
+</ul>
+</li>
+<li><p>Furthermore, the nearest neighbor model is an <em>instance-based</em> estimator that simply stores the training data,</p>
+<ul>
+<li><p>it predicts labels by comparing new data to these stored points:</p></li>
+<li><p>except in contrived cases, it will get 100% accuracy <em>every time!</em></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="model-validation-the-right-way-holdout-sets">
+<h3>Model validation the right way: Holdout sets<a class="headerlink" href="#model-validation-the-right-way-holdout-sets" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>We hold back some subset of the data from the training of the model, and then</p></li>
+<li><p>use this holdout set to check the model performance.</p></li>
+</ul>
+<p>This splitting can be done using the <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> utility in Scikit-Learn:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="c1"># split the data with 50% in each set</span>
+<span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                  <span class="n">train_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># fit the model on one set of data</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">y1</span><span class="p">)</span>
+
+<span class="c1"># evaluate the model on the second set of data</span>
+<span class="n">y2_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X2</span><span class="p">)</span>
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">y2</span><span class="p">,</span> <span class="n">y2_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9066666666666666
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see here a more reasonable result:</p>
+<ul class="simple">
+<li><p>the nearest-neighbor classifier is about 90% accurate on this hold-out set.</p></li>
+<li><p>The hold-out set is similar to unknown data, because the model has not “seen” it before.</p></li>
+</ul>
+</div>
+<div class="section" id="model-validation-via-cross-validation">
+<h3>Model validation via cross-validation<a class="headerlink" href="#model-validation-via-cross-validation" title="Permalink to this headline">¶</a></h3>
+<p>One disadvantage of using a holdout set for model validation</p>
+<ul class="simple">
+<li><p>we have lost a portion of our data to the model training.</p>
+<ul>
+<li><p>In the above case, half the dataset does not contribute to the training of the model!</p></li>
+<li><p>This is not optimal, and can cause problems</p>
+<ul>
+<li><p>especially if the initial set of training data is small.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><em>cross-validation</em> does a sequence of fits where each subset of the data is used both as a training set and as a validation set.</p>
+</div>
+<div class="section" id="id1">
+<h3>Model validation via cross-validation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Visually, it might look something like this:</p>
+<p><img alt="" src="_images/05.03-2-fold-CV.png" />
+<a class="reference external" href="06.00-Figure-Code.ipynb#2-Fold-Cross-Validation">figure source in Appendix</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we do two validation trials, </span>
+<span class="c1"># alternately using each half of the data as a holdout set.</span>
+<span class="c1"># Using the split data from before, we could implement it like this:</span>
+<span class="n">y2_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">y1</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X2</span><span class="p">)</span>
+<span class="n">y1_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X1</span><span class="p">)</span>
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y1_model</span><span class="p">),</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y2</span><span class="p">,</span> <span class="n">y2_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.96, 0.9066666666666666)
+</pre></div>
+</div>
+</div>
+</div>
+<p>What comes out are two accuracy scores, which</p>
+<ul class="simple">
+<li><p>we could calculate the mean value to get a better measure of the global model performance.</p></li>
+<li><p>This particular form of cross-validation is a <em>two-fold cross-validation</em></p>
+<ul>
+<li><p>that is, one in which we have split the data into two sets and used each in turn as a validation set.</p></li>
+</ul>
+</li>
+</ul>
+<p>We could expand on this idea to use even more trials, and more folds in the data—for example, here is a visual depiction of five-fold cross-validation:</p>
+<p><img alt="" src="_images/05.03-5-fold-CV.png" />
+<a class="reference external" href="06.00-Figure-Code.ipynb#5-Fold-Cross-Validation">figure source in Appendix</a></p>
+<p>Here we split the data into five groups, and use each of them in turn to evaluate the model fit on the other 4/5 of the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  We can use Scikit-Learn&#39;s ``cross_val_score`` convenience routine to do it succinctly:</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.96666667, 0.96666667, 0.93333333, 0.93333333, 1.        ])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Repeating the validation across different subsets of the data gives us an even better idea of the performance of the algorithm.</p>
+<p>Scikit-Learn implements a number of useful cross-validation schemes that are useful in particular situations;</p>
+<ul class="simple">
+<li><p>these are implemented via iterators in the <code class="docutils literal notranslate"><span class="pre">cross_validation</span></code> module.</p>
+<ul>
+<li><p>For example, we might wish to go to the extreme case in which our number of folds is equal to the number of data points:</p>
+<ul>
+<li><p>we train on all points but one in each trial.</p></li>
+</ul>
+</li>
+<li><p>This type of cross-validation is known as <em>leave-one-out</em> cross validation</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">LeaveOneOut</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">LeaveOneOut</span><span class="p">())</span>
+<span class="n">scores</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+       1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+       1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+       1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+       1., 1., 0., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1.,
+       1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+       1., 1., 1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+       0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 1., 1.,
+       1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because we have 150 samples, the leave one out cross-validation yields scores for 150 trials, and</p>
+<ul class="simple">
+<li><p>the score indicates either successful (1.0) or unsuccessful (0.0) prediction.</p></li>
+<li><p>Taking the mean of these gives an estimate of the error rate:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.96
+</pre></div>
+</div>
+</div>
+</div>
+<p>Other cross-validation schemes can be used similarly.</p>
+<ul class="simple">
+<li><p>use IPython to explore the <code class="docutils literal notranslate"><span class="pre">sklearn.cross_validation</span></code> submodule, or</p></li>
+<li><p>take a look at Scikit-Learn’s online <a class="reference external" href="http://scikit-learn.org/stable/modules/cross_validation.html">cross-validation documentation</a>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="selecting-the-best-model">
+<h2>Selecting the Best Model<a class="headerlink" href="#selecting-the-best-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="question-if-our-estimator-is-underperforming-how-should-we-move-forward">
+<h3>Question: <em>if our estimator is underperforming, how should we move forward?</em><a class="headerlink" href="#question-if-our-estimator-is-underperforming-how-should-we-move-forward" title="Permalink to this headline">¶</a></h3>
+</div>
+<ul class="simple">
+<li><p>Use a more complicated/more flexible model</p></li>
+<li><p>Use a less complicated/less flexible model</p></li>
+<li><p>Gather more training samples</p></li>
+<li><p>Gather more data to add features to each sample</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>Selecting the Best Model<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>The answer to this question is often counter-intuitive.</p>
+<p>In particular, sometimes</p>
+<ul class="simple">
+<li><p>using a more complicated model will give worse results</p></li>
+<li><p>adding more training samples may not improve your results!</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">ability</span> <span class="pre">to</span> <span class="pre">determine</span> <span class="pre">what</span> <span class="pre">steps</span> <span class="pre">will</span> <span class="pre">improve</span> <span class="pre">your</span> <span class="pre">model</span></code> is what separates the successful machine learning practitioners from the unsuccessful.</p>
+<div class="section" id="the-bias-variance-trade-off">
+<h3>The Bias-variance trade-off<a class="headerlink" href="#the-bias-variance-trade-off" title="Permalink to this headline">¶</a></h3>
+<p>Fundamentally, the question of “the best model” is about finding a sweet spot in the tradeoff between <em>bias</em> and <em>variance</em>.</p>
+<p>Consider the following figure, which presents two regression fits to the same dataset:</p>
+<p><img alt="" src="_images/05.03-bias-variance.png" />
+<a class="reference external" href="06.00-Figure-Code.ipynb#Bias-Variance-Tradeoff">figure source in Appendix</a></p>
+</div>
+<div class="section" id="id3">
+<h3>The Bias-variance trade-off<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>The model on the left</p>
+<ul class="simple">
+<li><p>The data are intrinsically more complicated than a straight line, the straight-line model will never be able to describe this dataset well.</p></li>
+<li><p>Such a model is said to <em>underfit</em> the data:</p>
+<ul>
+<li><p>it does not have enough model flexibility to suitably account for all the features in the data;</p></li>
+<li><p>the model has high <em>bias</em>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>The Bias-variance trade-off<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>The model on the right</p>
+<ul class="simple">
+<li><p>Here the model fit has enough flexibility to nearly perfectly account for the fine features in the data,</p></li>
+<li><p>but even though it very accurately describes the training data, its precise form seems to be more reflective of the particular noise properties of the data rather than the intrinsic properties of whatever process generated that data.</p></li>
+<li><p>Such a model is said to <em>overfit</em> the data:</p>
+<ul>
+<li><p>it has so much model flexibility that the model ends up accounting for random errors as well as the underlying data distribution;</p></li>
+<li><p>the model has high <em>variance</em>.</p></li>
+</ul>
+</li>
+</ul>
+<p>To look at this in another light, consider what happens if we use these two models to predict the y-value for some new data.
+In the following diagrams, the red/lighter points indicate data that is omitted from the training set:</p>
+<p><img alt="" src="_images/05.03-bias-variance-2.png" />
+<a class="reference external" href="06.00-Figure-Code.ipynb#Bias-Variance-Tradeoff-Metrics">figure source in Appendix</a></p>
+<p><span class="math notranslate nohighlight">\(R^2\)</span> score, or <a class="reference external" href="https://en.wikipedia.org/wiki/Coefficient_of_determination">coefficient of determination</a></p>
+<ul class="simple">
+<li><p>which measures how well a model performs relative to a simple mean of the target values.</p></li>
+<li><p><span class="math notranslate nohighlight">\(R^2=1\)</span> indicates a perfect match</p></li>
+<li><p><span class="math notranslate nohighlight">\(R^2=0\)</span> indicates the model does no better <code class="docutils literal notranslate"><span class="pre">than</span> <span class="pre">simply</span> <span class="pre">taking</span> <span class="pre">the</span> <span class="pre">mean</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">data</span></code></p></li>
+<li><p><span class="math notranslate nohighlight">\(R^2&lt;0\)</span> negative values mean even worse models.</p></li>
+</ul>
+<p>From the scores associated with these two models, we can make an observation that holds more generally:</p>
+<ul class="simple">
+<li><p>For high-bias models, the performance of the model on the validation set is similar to the performance on the training set.</p></li>
+<li><p>For high-variance models, the performance of the model on the validation set is far worse than the performance on the training set.</p></li>
+</ul>
+<p>If we imagine that we have some ability to tune the model complexity, we would expect the training score and validation score to behave as illustrated in the following figure:</p>
+<p><img alt="" src="_images/05.03-validation-curve.png" />
+<a class="reference external" href="06.00-Figure-Code.ipynb#Validation-Curve">figure source in Appendix</a></p>
+<p>The diagram is often called a <em>validation curve</em>:</p>
+<ul class="simple">
+<li><p>The training score is everywhere higher than the validation score. This is generally the case:</p>
+<ul>
+<li><p>the model will be a better fit to data it has seen than to data it has not seen.</p></li>
+</ul>
+</li>
+<li><p>For very low model complexity (<strong>a high-bias model</strong>), the training data is <strong>under-fit</strong></p>
+<ul>
+<li><p>the model is a poor predictor both for the training data and for any previously unseen data.</p></li>
+</ul>
+</li>
+<li><p>For very high model complexity (<strong>a high-variance model</strong>), the training data is <strong>over-fit</strong></p>
+<ul>
+<li><p>the model predicts the training data very well, but fails for any previously unseen data.</p></li>
+</ul>
+</li>
+<li><p>For some intermediate value, the validation curve has a maximum.</p>
+<ul>
+<li><p>This level of complexity indicates a suitable trade-off between bias and variance.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="tuning-the-model-complexity-varies-from-model-to-model">
+<h2>Tuning the model complexity varies from model to model<a class="headerlink" href="#tuning-the-model-complexity-varies-from-model-to-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="validation-curves-in-scikit-learn">
+<h3>Validation curves in Scikit-Learn<a class="headerlink" href="#validation-curves-in-scikit-learn" title="Permalink to this headline">¶</a></h3>
+<p>using cross-validation to compute the validation curve.</p>
+<p>a <em>polynomial regression</em> model:</p>
+<ul class="simple">
+<li><p>a generalized linear model in which the degree of the polynomial is a tunable parameter.</p></li>
+</ul>
+<p>For example, a degree-1 polynomial fits a straight line to the data; for model parameters <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+y = ax + b
+\]</div>
+<p>A degree-3 polynomial fits a cubic curve to the data; for model parameters <span class="math notranslate nohighlight">\(a, b, c, d\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+y = ax^3 + bx^2 + cx + d
+\]</div>
+<p>In Scikit-Learn, we can implement this with a simple linear regression combined with the polynomial preprocessor.</p>
+<p>We will use a <em>pipeline</em> to string these operations together (we will discuss polynomial features and pipelines more fully in <strong>Feature Engineering</strong>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+
+<span class="k">def</span> <span class="nf">PolynomialRegression</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="p">),</span>
+                         <span class="n">LinearRegression</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s create some data to which we will fit our model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">make_data</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">err</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">rseed</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="c1"># randomly sample the data</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">rseed</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">-</span> <span class="mf">1.</span> <span class="o">/</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">err</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">y</span> <span class="o">+=</span> <span class="n">err</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_data</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now visualize our data, along with polynomial fits of several degrees:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span><span class="p">;</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>  <span class="c1"># plot formatting</span>
+
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mi">500</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">axis</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">degree</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]:</span>
+    <span class="n">y_test</span> <span class="o">=</span> <span class="n">PolynomialRegression</span><span class="p">(</span><span class="n">degree</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;degree=</span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">degree</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-03-hyperparameters-and-model-validation_43_0.png" src="_images/09-03-hyperparameters-and-model-validation_43_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question">
+<h2>Question<a class="headerlink" href="#question" title="Permalink to this headline">¶</a></h2>
+<p>The knob controlling model complexity in this case is the degree of the polynomial</p>
+<p>what degree of polynomial provides a suitable trade-off between bias (under-fitting) and variance (over-fitting)?</p>
+<p>We can make progress in this by visualizing the validation curve for this particular data and model;</p>
+<ul class="simple">
+<li><p>this can be done straightforwardly using the <code class="docutils literal notranslate"><span class="pre">validation_curve</span></code> convenience routine provided by Scikit-Learn.</p></li>
+<li><p>Given a model, data, parameter name, and a range to explore, this function will automatically compute both the training score and validation score across the range:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.learning_curve</span> <span class="kn">import</span> <span class="n">validation_curve</span>
+<span class="n">degree</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+<span class="n">train_score</span><span class="p">,</span> <span class="n">val_score</span> <span class="o">=</span> <span class="n">validation_curve</span><span class="p">(</span><span class="n">PolynomialRegression</span><span class="p">(),</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+                                          <span class="s1">&#39;polynomialfeatures__degree&#39;</span><span class="p">,</span> 
+                                          <span class="n">degree</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">train_score</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;training score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">val_score</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;validation score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;degree&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;score&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-03-hyperparameters-and-model-validation_45_0.png" src="_images/09-03-hyperparameters-and-model-validation_45_0.png" />
+</div>
+</div>
+<p>This shows precisely the qualitative behavior we expect:</p>
+<ul class="simple">
+<li><p>the training score is everywhere higher than the validation score;</p></li>
+<li><p>the training score is monotonically improving with increased model complexity;</p></li>
+<li><p>the validation score reaches a maximum before dropping off as the model becomes over-fit.</p></li>
+</ul>
+<p>The optimal trade-off between bias and variance is found for a third-order polynomial;</p>
+<ul class="simple">
+<li><p>we can compute and display this fit over the original data as follows:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">lim</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">()</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">PolynomialRegression</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y_test</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="n">lim</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-03-hyperparameters-and-model-validation_47_0.png" src="_images/09-03-hyperparameters-and-model-validation_47_0.png" />
+</div>
+</div>
+<p>Notice that finding this optimal model did not actually require us to compute the training score,</p>
+<ul class="simple">
+<li><p>but examining the relationship between the training score and validation score can give us useful insight into the performance of the model.</p></li>
+</ul>
+</div>
+<div class="section" id="learning-curves">
+<h2>Learning Curves<a class="headerlink" href="#learning-curves" title="Permalink to this headline">¶</a></h2>
+<p>One important aspect of model complexity is that the optimal model will generally depend on the size of your training data.</p>
+<p>For example, let’s generate a new dataset with a factor of five more points:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">make_data</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X2</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-03-hyperparameters-and-model-validation_50_0.png" src="_images/09-03-hyperparameters-and-model-validation_50_0.png" />
+</div>
+</div>
+<p>We will duplicate the preceding code to plot the validation curve for this larger dataset;</p>
+<ul class="simple">
+<li><p>for reference let’s over-plot the previous results as well:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">degree</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
+<span class="n">train_score2</span><span class="p">,</span> <span class="n">val_score2</span> <span class="o">=</span> <span class="n">validation_curve</span><span class="p">(</span><span class="n">PolynomialRegression</span><span class="p">(),</span> <span class="n">X2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span>
+                                            <span class="s1">&#39;polynomialfeatures__degree&#39;</span><span class="p">,</span> <span class="n">degree</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">train_score2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;training score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">val_score2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;validation score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">train_score</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">val_score</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;degree&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;score&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-03-hyperparameters-and-model-validation_52_0.png" src="_images/09-03-hyperparameters-and-model-validation_52_0.png" />
+</div>
+</div>
+<p>The solid lines show the new results, while the fainter dashed lines show the results of the previous smaller dataset.</p>
+<ul class="simple">
+<li><p>It is clear from the validation curve that the larger dataset can support a much more complicated model:</p>
+<ul>
+<li><p>the peak here is around a degree of 6, but a degree-20 model is not seriously over-fitting the data</p></li>
+<li><p>the validation and training scores remain very close.</p></li>
+</ul>
+</li>
+</ul>
+<p>Thus we see that the behavior of the validation curve has not one but two important inputs:</p>
+<ul class="simple">
+<li><p>the model complexity</p></li>
+<li><p>the number of training points.</p></li>
+</ul>
+<p>A plot of the training/validation score with respect to the size of the training set is known as a <strong>learning curve</strong>.</p>
+<p>The general behavior we would expect from a learning curve is this:</p>
+<ul class="simple">
+<li><p>A model of a given complexity will <em>overfit</em> a small dataset:</p>
+<ul>
+<li><p>the training score will be relatively high, while the validation score will be relatively low.</p></li>
+</ul>
+</li>
+<li><p>A model of a given complexity will <em>underfit</em> a large dataset:</p>
+<ul>
+<li><p>the training score will decrease, but the validation score will increase.</p></li>
+</ul>
+</li>
+<li><p>A model will never, except by chance, give a better score to the validation set than the training set:</p>
+<ul>
+<li><p>the curves should keep getting closer together but never cross.</p></li>
+</ul>
+</li>
+</ul>
+<p>With these features in mind, we would expect a learning curve to look qualitatively like that shown in the following figure:</p>
+<p><img alt="" src="_images/05.03-learning-curve.png" />
+<a class="reference external" href="06.00-Figure-Code.ipynb#Learning-Curve">figure source in Appendix</a></p>
+<p>The notable feature of the learning curve</p>
+<ul class="simple">
+<li><p>The convergence to a particular score as the number of training samples grows.</p>
+<ul>
+<li><p>once you have enough points that a particular model has converged, <em>adding more training data will not help you!</em></p>
+<ul>
+<li><p>The only way to increase model performance in this case is to use another (often more complex) model.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="learning-curves-in-scikit-learn">
+<h3>Learning curves in Scikit-Learn<a class="headerlink" href="#learning-curves-in-scikit-learn" title="Permalink to this headline">¶</a></h3>
+<p>Scikit-Learn offers a convenient utility for computing such learning curves from your models;</p>
+<p>here we will compute a learning curve for our original dataset with a second-order polynomial model and a ninth-order polynomial:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.learning_curve</span> <span class="kn">import</span> <span class="n">learning_curve</span>
+<span class="kn">import</span> <span class="nn">warnings</span>  
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>  
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.0625</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">degree</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">]):</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">train_lc</span><span class="p">,</span> <span class="n">val_lc</span> <span class="o">=</span> <span class="n">learning_curve</span><span class="p">(</span><span class="n">PolynomialRegression</span><span class="p">(</span><span class="n">degree</span><span class="p">),</span>
+                                         <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+                                         <span class="n">train_sizes</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">train_lc</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;training score&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">val_lc</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;validation score&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">train_lc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">val_lc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]),</span> <span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">N</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">N</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;training size&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;degree = </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">degree</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span>
+<span class="c1">#fig.savefig(&#39;figures/05.03-learning-curve2.png&#39;)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-03-hyperparameters-and-model-validation_58_0.png" src="_images/09-03-hyperparameters-and-model-validation_58_0.png" />
+</div>
+</div>
+<p>&lt;img src = ‘./img/figures/05.03-learning-curve2.png’, width = 800px&gt;</p>
+<p>This is a valuable diagnostic</p>
+<ul class="simple">
+<li><p>it gives us a visual depiction of how our model responds to increasing training data.</p></li>
+</ul>
+<p>When your learning curve has already converged</p>
+<ul class="simple">
+<li><p><em>adding more training data will not significantly improve the fit!</em></p></li>
+<li><p>in the left panel, with the learning curve for the degree-2 model.</p></li>
+</ul>
+<p>The only way to increase the converged score is to use a different (usually more complicated) model.</p>
+<ul class="simple">
+<li><p>in the right panel: by moving to a much more complicated model, we increase the score of convergence (indicated by the dashed line)</p></li>
+<li><p>at the expense of higher model variance (indicated by the difference between the training and validation scores).</p></li>
+</ul>
+<p>If we were to add even more data points, the learning curve for the more complicated model would eventually converge.</p>
+<p>Plotting a learning curve for your particular choice of model and dataset can help you to make this type of decision about how to move forward in improving your analysis.</p>
+</div>
+</div>
+<div class="section" id="validation-in-practice-grid-search">
+<h2>Validation in Practice: Grid Search<a class="headerlink" href="#validation-in-practice-grid-search" title="Permalink to this headline">¶</a></h2>
+<p>The trade-off between bias and variance, and its dependence on model complexity and training set size.</p>
+<p>In practice, models generally have more than one knob to turn</p>
+<ul class="simple">
+<li><p>plots of <code class="docutils literal notranslate"><span class="pre">validation</span> <span class="pre">and</span> <span class="pre">learning</span> <span class="pre">curves</span></code> change from lines to multi-dimensional surfaces.</p>
+<ul>
+<li><p>such visualizations are difficult</p></li>
+<li><p>we would rather simply find the particular model that maximizes the validation score.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>Validation in Practice: Grid Search<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>Scikit-Learn provides automated tools to do this in the <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">search</span> <span class="pre">module</span></code>.</p>
+<p>Here is an example of using grid search to find the optimal polynomial model.</p>
+<p>We will explore a three-dimensional grid of model features;</p>
+<ul class="simple">
+<li><p>the polynomial degree,</p></li>
+<li><p>the flag telling us whether to fit the intercept</p></li>
+<li><p>the flag telling us whether to normalize the problem.</p></li>
+</ul>
+<p>This can be set up using Scikit-Learn’s <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> meta-estimator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;polynomialfeatures__degree&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">21</span><span class="p">),</span>
+              <span class="s1">&#39;linearregression__fit_intercept&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+              <span class="s1">&#39;linearregression__normalize&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]}</span>
+
+<span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">PolynomialRegression</span><span class="p">(),</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that like a normal estimator, this has not yet been applied to any data.</p>
+<p>Calling the <code class="docutils literal notranslate"><span class="pre">fit()</span></code> method will fit the model at each grid point, keeping track of the scores along the way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that this is fit, we can ask for the best parameters as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;linearregression__fit_intercept&#39;: False,
+ &#39;linearregression__normalize&#39;: True,
+ &#39;polynomialfeatures__degree&#39;: 4}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, if we wish, we can use the best model and show the fit to our data using code from before:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">best_estimator_</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">lim</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">()</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">hold</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="n">lim</span><span class="p">);</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-03-hyperparameters-and-model-validation_70_0.png" src="_images/09-03-hyperparameters-and-model-validation_70_0.png" />
+</div>
+</div>
+<p>The grid search provides many more options, including the ability</p>
+<ul class="simple">
+<li><p>to specify a custom scoring function,</p></li>
+<li><p>to parallelize the computations,</p></li>
+<li><p>to do randomized searches, and more.</p></li>
+</ul>
+<p>For information, see the examples in <strong>In-Depth: Kernel Density Estimation</strong> and <strong>Feature Engineering: Working with Images</strong>, or refer to Scikit-Learn’s <a class="reference external" href="http://Scikit-Learn.org/stable/modules/grid_search.html">grid search documentation</a>.</p>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this section, we have begun to explore the concept of model validation and hyperparameter optimization, focusing on intuitive aspects of the bias–variance trade-off and how it comes into play when fitting models to data.</p>
+<p>In particular, we found that the use of a validation set or cross-validation approach is <em>vital</em> when tuning parameters in order to avoid over-fitting for more complex/flexible models.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="09-01-machine-learning-with-sklearn.html" title="previous page">第六章 社会科学家的机器学习</a>
+    <a class='right-next' id="next-link" href="09-04-feature-engineering.html" title="next page">Feature Engineering</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

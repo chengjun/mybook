@@ -1,0 +1,1373 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>使用requests + Xpath抓取豆瓣电影数据 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="抓取历届政府工作报告" href="04-crawler-gov-report.html" />
+    <link rel="prev" title="抓取微信公众号文章内容" href="04-crawler-wechat.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-fact-checking.html">
+     抓取实时辟谣数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-13chambers.html">
+     抓取网络小说
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-wechat.html">
+     抓取微信公众号文章内容
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     使用requests + Xpath抓取豆瓣电影数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-gov-report.html">
+     抓取历届政府工作报告
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-cppcc.html">
+     抓取江苏省政协十年提案
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-netease-music.html">
+     抓取网易云音乐热门评论
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium.html">
+     使用Selenium操纵浏览器
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-music-history.html">
+     抓取网易云音乐用户的听歌记录
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-people-com-search.html">
+     使用Selenium提取人民网搜索数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-tripadvisor.html">
+     使用Selenium抓取TripAdvisor用户评论
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/04-crawler-douban.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F04-crawler-douban.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/04-crawler-douban.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/04-crawler-douban.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#douban-api">
+   Douban API
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#top-250">
+   作业：抓取豆瓣电影 Top 250
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   作业：
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#requests-post">
+   requests.post模拟登录豆瓣（包括获取验证码）
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="requests-xpath">
+<h1>使用requests + Xpath抓取豆瓣电影数据<a class="headerlink" href="#requests-xpath" title="Permalink to this headline">¶</a></h1>
+<p>Xpath 即为 XML 路径语言（XML Path Language），它是一种用来确定 XML 文档中某部分位置的语言。</p>
+<p>Xpath 基于 XML 的树状结构，提供在数据结构树中找寻节点的能力。起初 Xpath 的提出的初衷是将其作为一个通用的、介于 Xpointer 与 XSL 间的语法模型。但是Xpath 很快的被开发者采用来当作小型查询语言。</p>
+<p>获取元素的Xpath信息并获得文本：
+这里的“元素的Xpath信息”是需要我们手动获取的，获取方式为：</p>
+<ul class="simple">
+<li><p>定位目标元素</p></li>
+<li><p>在网站上依次点击：右键 &gt; 检查</p></li>
+<li><p>copy xpath</p></li>
+<li><p>xpath + ‘/text()’</p></li>
+</ul>
+<p>参考：https://mp.weixin.qq.com/s/zx3_eflBCrrfOqFEWjAUJw</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://movie.douban.com/subject/26611804/&#39;</span>
+<span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Response [418]&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>如果不加headers，响应状态：418， 正常返回状态应该是 200</p>
+<ul class="simple">
+<li><p>418啥意思？就是你爬取的网站有反爬虫机制，我们要向服务器发出爬虫请求，需要添加请求头：headers</p></li>
+<li><p>如何加请求头headers?</p>
+<ul>
+<li><p>网页右键“检查元素”-Network-Doc 如上图</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png" src="_images/headers.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://movie.douban.com/subject/26611804/&#39;</span>
+
+<span class="n">headers</span> <span class="o">=</span><span class="p">{</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36&#39;</span><span class="p">}</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  
+</pre></div>
+</div>
+</div>
+</div>
+<p>豆瓣电影的名称对应的的xpath为xpath_title，那么title表达为：</p>
+<p><code class="docutils literal notranslate"><span class="pre">title</span> <span class="pre">=</span> <span class="pre">s.xpath('xpath_info/text()')</span></code></p>
+<p>其中，xpath_info为：</p>
+<p><code class="docutils literal notranslate"><span class="pre">//*[&#64;id=&quot;content&quot;]/h1/span[1]</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">title</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;content&quot;]/h1/span[1]/text()&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">director</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;info&quot;]/span[1]/span[2]/a/text()&#39;</span><span class="p">)</span>
+<span class="n">actors</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;info&quot;]/span[3]/span[2]/a/text()&#39;</span><span class="p">)</span>
+<span class="n">type1</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;info&quot;]/span[5]/text()&#39;</span><span class="p">)</span>
+<span class="n">type2</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;info&quot;]/span[6]/text()&#39;</span><span class="p">)</span>
+<span class="n">type3</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;info&quot;]/span[7]/text()&#39;</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;info&quot;]/span[11]/text()&#39;</span><span class="p">)</span>
+<span class="n">length</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;info&quot;]/span[13]/text()&#39;</span><span class="p">)</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;interest_sectl&quot;]/div[1]/div[2]/strong/text()&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">director</span><span class="p">,</span> <span class="n">actors</span><span class="p">,</span> <span class="n">type1</span><span class="p">,</span> <span class="n">type2</span><span class="p">,</span> <span class="n">type3</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>三块广告牌 Three Billboards Outside Ebbing, Missouri [&#39;马丁·麦克唐纳&#39;] [&#39;弗兰西斯·麦克多蒙德&#39;, &#39;伍迪·哈里森&#39;, &#39;山姆·洛克威尔&#39;, &#39;艾比·考尼什&#39;, &#39;卢卡斯·赫奇斯&#39;, &#39;彼特·丁拉基&#39;, &#39;约翰·浩克斯&#39;, &#39;卡赖伯·兰德里·琼斯&#39;, &#39;凯瑟琳·纽顿&#39;, &#39;凯瑞·康顿&#39;, &#39;泽利科·伊万内克&#39;, &#39;萨玛拉·维文&#39;, &#39;克拉克·彼得斯&#39;, &#39;尼克·瑟西&#39;, &#39;阿曼达·沃伦&#39;, &#39;玛拉雅·瑞沃拉·德鲁 &#39;, &#39;布兰登·萨克斯顿&#39;, &#39;迈克尔·艾伦·米利甘&#39;] [&#39;剧情&#39;] [&#39;犯罪&#39;] [&#39;官方网站:&#39;] [&#39;2018-03-02(中国大陆)&#39;] [&#39;2017-12-01(美国)&#39;] 8.7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="douban-api">
+<h2>Douban API<a class="headerlink" href="#douban-api" title="Permalink to this headline">¶</a></h2>
+<p>https://developers.douban.com/wiki/?title=guide</p>
+<p>https://github.com/computational-class/douban-api-docs</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import requests</span>
+<span class="c1"># # https://movie.douban.com/subject/26611804/</span>
+<span class="c1"># url = &#39;https://api.douban.com/v2/movie/subject/26611804?apikey=0b2bdeda43b5688921839c8ecb20399b&amp;start=0&amp;count=20&amp;client=&amp;udid=&#39;</span>
+<span class="c1"># jsonm = requests.get(url).json()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jsonm</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;msg&#39;, &#39;code&#39;, &#39;request&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jsonm</span><span class="p">[</span><span class="s1">&#39;msg&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;invalid_credencial2&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#jsonm.values()</span>
+<span class="n">jsonm</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(dict_keys([&#39;schedule_url&#39;, &#39;title&#39;, &#39;aka&#39;, &#39;photos_count&#39;, &#39;languages&#39;, &#39;year&#39;, &#39;tags&#39;, &#39;blooper_urls&#39;, &#39;images&#39;, &#39;trailers&#39;, &#39;popular_reviews&#39;, &#39;videos&#39;, &#39;summary&#39;, &#39;clip_urls&#39;, &#39;do_count&#39;, &#39;comments_count&#39;, &#39;has_ticket&#39;, &#39;ratings_count&#39;, &#39;countries&#39;, &#39;has_video&#39;, &#39;collect_count&#39;, &#39;wish_count&#39;, &#39;writers&#39;, &#39;directors&#39;, &#39;id&#39;, &#39;mainland_pubdate&#39;, &#39;popular_comments&#39;, &#39;episodes_count&#39;, &#39;website&#39;, &#39;clips&#39;, &#39;casts&#39;, &#39;genres&#39;, &#39;reviews_count&#39;, &#39;douban_site&#39;, &#39;alt&#39;, &#39;pubdate&#39;, &#39;trailer_urls&#39;, &#39;mobile_url&#39;, &#39;share_url&#39;, &#39;durations&#39;, &#39;seasons_count&#39;, &#39;photos&#39;, &#39;pubdates&#39;, &#39;subtype&#39;, &#39;current_season&#39;, &#39;has_schedule&#39;, &#39;bloopers&#39;, &#39;collection&#39;, &#39;rating&#39;, &#39;original_title&#39;]),
+ {&#39;average&#39;: 7.5,
+  &#39;details&#39;: {&#39;1&#39;: 206.0,
+   &#39;2&#39;: 1590.0,
+   &#39;3&#39;: 15843.0,
+   &#39;4&#39;: 21556.0,
+   &#39;5&#39;: 7558.0},
+  &#39;max&#39;: 10,
+  &#39;min&#39;: 0,
+  &#39;stars&#39;: &#39;40&#39;})
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jsonm</span><span class="p">[</span><span class="s1">&#39;alt&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;https://movie.douban.com/subject/1764796/&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jsonm</span><span class="p">[</span><span class="s1">&#39;casts&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;alt&#39;: &#39;https://movie.douban.com/celebrity/1010548/&#39;,
+ &#39;avatars&#39;: {&#39;large&#39;: &#39;https://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1436865941.42.jpg&#39;,
+  &#39;medium&#39;: &#39;https://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1436865941.42.jpg&#39;,
+  &#39;small&#39;: &#39;https://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1436865941.42.jpg&#39;},
+ &#39;id&#39;: &#39;1010548&#39;,
+ &#39;name&#39;: &#39;弗兰西斯·麦克多蒙德&#39;,
+ &#39;name_en&#39;: &#39;Frances McDormand&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jsonm</span><span class="p">[</span><span class="s1">&#39;directors&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;alt&#39;: &#39;https://movie.douban.com/celebrity/1000304/&#39;,
+  &#39;avatars&#39;: {&#39;large&#39;: &#39;https://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1406649730.61.jpg&#39;,
+   &#39;medium&#39;: &#39;https://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1406649730.61.jpg&#39;,
+   &#39;small&#39;: &#39;https://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1406649730.61.jpg&#39;},
+  &#39;id&#39;: &#39;1000304&#39;,
+  &#39;name&#39;: &#39;马丁·麦克唐纳&#39;,
+  &#39;name_en&#39;: &#39;Martin McDonagh&#39;}]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jsonm</span><span class="p">[</span><span class="s1">&#39;genres&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;剧情&#39;, &#39;犯罪&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="top-250">
+<h2>作业：抓取豆瓣电影 Top 250<a class="headerlink" href="#top-250" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+
+<span class="n">url0</span> <span class="o">=</span> <span class="s1">&#39;https://movie.douban.com/top250?start=0&amp;filter=&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url0</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">//*</span><span class="p">[</span><span class="nd">@id</span><span class="o">=</span><span class="s2">&quot;content&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">div</span><span class="o">/</span><span class="n">div</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">ol</span><span class="o">/</span><span class="n">li</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">div</span><span class="o">/</span><span class="n">div</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">div</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">a</span><span class="o">/</span><span class="n">span</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">body</span><span class="o">/</span><span class="n">div</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="n">div</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">div</span><span class="o">/</span><span class="n">div</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">ol</span><span class="o">/</span><span class="n">li</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">div</span><span class="o">/</span><span class="n">div</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">div</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">a</span><span class="o">/</span><span class="n">span</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">str1</span> <span class="o">=</span> <span class="s1">&#39;//*[@id=&quot;content&quot;]/div/div[1]/ol/li[&#39;</span>
+<span class="n">str2</span> <span class="o">=</span> <span class="s1">&#39;]/div/div[2]/div[1]/a/span[1]/text()&#39;</span>
+
+<span class="n">xstr_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">str1</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span><span class="n">str2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">)]</span>
+<span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xstr_list</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;肖申克的救赎&#39;,
+ &#39;霸王别姬&#39;,
+ &#39;阿甘正传&#39;,
+ &#39;这个杀手不太冷&#39;,
+ &#39;泰坦尼克号&#39;,
+ &#39;美丽人生&#39;,
+ &#39;千与千寻&#39;,
+ &#39;辛德勒的名单&#39;,
+ &#39;盗梦空间&#39;,
+ &#39;忠犬八公的故事&#39;,
+ &#39;海上钢琴师&#39;,
+ &#39;星际穿越&#39;,
+ &#39;楚门的世界&#39;,
+ &#39;三傻大闹宝莱坞&#39;,
+ &#39;机器人总动员&#39;,
+ &#39;放牛班的春天&#39;,
+ &#39;大话西游之大圣娶亲&#39;,
+ &#39;熔炉&#39;,
+ &#39;疯狂动物城&#39;,
+ &#39;无间道&#39;,
+ &#39;教父&#39;,
+ &#39;龙猫&#39;,
+ &#39;当幸福来敲门&#39;,
+ &#39;怦然心动&#39;,
+ &#39;触不可及&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;content&quot;]/div/div[1]/ol/li[1]/div/div[2]/div[1]/a/span[1]/text()&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;肖申克的救赎&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;content&quot;]/div/div[1]/ol/li[2]/div/div[2]/div[1]/a/span[1]/text()&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;霸王别姬&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;content&quot;]/div/div[1]/ol/li[3]/div/div[2]/div[1]/a/span[1]/text()&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;这个杀手不太冷&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">url0</span> <span class="o">=</span> <span class="s1">&#39;https://movie.douban.com/top250?start=0&amp;filter=&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url0</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">movies</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">movies</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">movies</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;https://movie.douban.com/subject/1292052/&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">movies</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;肖申克的救赎&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">movies</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;star&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;div class=&quot;star&quot;&gt;
+&lt;span class=&quot;rating5-t&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;rating_num&quot; property=&quot;v:average&quot;&gt;9.7&lt;/span&gt;
+&lt;span content=&quot;10.0&quot; property=&quot;v:best&quot;&gt;&lt;/span&gt;
+&lt;span&gt;2349702人评价&lt;/span&gt;
+&lt;/div&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">movies</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;rating_num&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;9.7&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">people_num</span> <span class="o">=</span> <span class="n">movies</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;star&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">people_num</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;人评价&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2349702&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">movies</span><span class="p">:</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
+    <span class="n">des</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;star&#39;</span><span class="p">})</span>
+    <span class="n">rating</span> <span class="o">=</span> <span class="n">des</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;rating_num&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
+    <span class="n">rating_num</span> <span class="o">=</span> <span class="n">des</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;人评价&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">rating</span><span class="p">,</span> <span class="n">rating_num</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://movie.douban.com/subject/1292052/ 肖申克的救赎 9.7 2349702
+https://movie.douban.com/subject/1291546/ 霸王别姬 9.6 1748540
+https://movie.douban.com/subject/1292720/ 阿甘正传 9.5 1769679
+https://movie.douban.com/subject/1295644/ 这个杀手不太冷 9.4 1944460
+https://movie.douban.com/subject/1292722/ 泰坦尼克号 9.4 1731080
+https://movie.douban.com/subject/1292063/ 美丽人生 9.5 1089008
+https://movie.douban.com/subject/1291561/ 千与千寻 9.4 1846954
+https://movie.douban.com/subject/1295124/ 辛德勒的名单 9.5 903524
+https://movie.douban.com/subject/3541415/ 盗梦空间 9.3 1709013
+https://movie.douban.com/subject/3011091/ 忠犬八公的故事 9.4 1173854
+https://movie.douban.com/subject/1889243/ 星际穿越 9.3 1381846
+https://movie.douban.com/subject/1292064/ 楚门的世界 9.3 1297696
+https://movie.douban.com/subject/1292001/ 海上钢琴师 9.3 1388360
+https://movie.douban.com/subject/3793023/ 三傻大闹宝莱坞 9.2 1560202
+https://movie.douban.com/subject/2131459/ 机器人总动员 9.3 1097784
+https://movie.douban.com/subject/1291549/ 放牛班的春天 9.3 1081510
+https://movie.douban.com/subject/1292213/ 大话西游之大圣娶亲 9.2 1262613
+https://movie.douban.com/subject/25662329/ 疯狂动物城 9.2 1526196
+https://movie.douban.com/subject/1307914/ 无间道 9.2 1050879
+https://movie.douban.com/subject/5912992/ 熔炉 9.3 766645
+https://movie.douban.com/subject/1291841/ 教父 9.3 768085
+https://movie.douban.com/subject/1849031/ 当幸福来敲门 9.1 1253991
+https://movie.douban.com/subject/1291560/ 龙猫 9.2 1045985
+https://movie.douban.com/subject/3319755/ 怦然心动 9.1 1482767
+https://movie.douban.com/subject/1296141/ 控方证人 9.6 367459
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">25</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;https://movie.douban.com/top250?start=</span><span class="si">%d</span><span class="s1">&amp;filter=&#39;</span><span class="o">%</span> <span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://movie.douban.com/top250?start=0&amp;filter=
+https://movie.douban.com/top250?start=25&amp;filter=
+https://movie.douban.com/top250?start=50&amp;filter=
+https://movie.douban.com/top250?start=75&amp;filter=
+https://movie.douban.com/top250?start=100&amp;filter=
+https://movie.douban.com/top250?start=125&amp;filter=
+https://movie.douban.com/top250?start=150&amp;filter=
+https://movie.douban.com/top250?start=175&amp;filter=
+https://movie.douban.com/top250?start=200&amp;filter=
+https://movie.douban.com/top250?start=225&amp;filter=
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="n">dat</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">25</span><span class="p">):</span>
+    <span class="n">urli</span> <span class="o">=</span> <span class="s1">&#39;https://movie.douban.com/top250?start=</span><span class="si">%d</span><span class="s1">&amp;filter=&#39;</span><span class="o">%</span> <span class="n">j</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">urli</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">urli</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+    <span class="n">movies</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">})</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">movies</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">des</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;star&#39;</span><span class="p">})</span>
+        <span class="n">rating</span> <span class="o">=</span> <span class="n">des</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;rating_num&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">rating_num</span> <span class="o">=</span> <span class="n">des</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;人评价&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">listi</span> <span class="o">=</span> <span class="p">[</span><span class="n">url</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">rating</span><span class="p">,</span> <span class="n">rating_num</span><span class="p">]</span>
+        <span class="n">dat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">listi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://movie.douban.com/top250?start=0&amp;filter=
+https://movie.douban.com/top250?start=25&amp;filter=
+https://movie.douban.com/top250?start=50&amp;filter=
+https://movie.douban.com/top250?start=75&amp;filter=
+https://movie.douban.com/top250?start=100&amp;filter=
+https://movie.douban.com/top250?start=125&amp;filter=
+https://movie.douban.com/top250?start=150&amp;filter=
+https://movie.douban.com/top250?start=175&amp;filter=
+https://movie.douban.com/top250?start=200&amp;filter=
+https://movie.douban.com/top250?start=225&amp;filter=
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;rating&#39;</span><span class="p">,</span> <span class="s1">&#39;rating_num&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rating</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;rating_num&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rating_num</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>url</th>
+      <th>title</th>
+      <th>rating</th>
+      <th>rating_num</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>https://movie.douban.com/subject/1292052/</td>
+      <td>肖申克的救赎</td>
+      <td>9.7</td>
+      <td>2349702</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>https://movie.douban.com/subject/1291546/</td>
+      <td>霸王别姬</td>
+      <td>9.6</td>
+      <td>1748540</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>https://movie.douban.com/subject/1292720/</td>
+      <td>阿甘正传</td>
+      <td>9.5</td>
+      <td>1769679</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>https://movie.douban.com/subject/1295644/</td>
+      <td>这个杀手不太冷</td>
+      <td>9.4</td>
+      <td>1944460</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>https://movie.douban.com/subject/1292722/</td>
+      <td>泰坦尼克号</td>
+      <td>9.4</td>
+      <td>1731080</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">rating_num</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/04-crawler-douban_38_0.png" src="_images/04-crawler-douban_38_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">rating</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/04-crawler-douban_39_0.png" src="_images/04-crawler-douban_39_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># viz</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">rating_num</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">rating</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">rating_num</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">rating</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">title</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> 
+             <span class="n">fontsize</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rating</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> 
+             <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/04-crawler-douban_40_0.png" src="_images/04-crawler-douban_40_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">rating</span> <span class="o">&gt;</span> <span class="mf">9.4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>url</th>
+      <th>title</th>
+      <th>rating</th>
+      <th>rating_num</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>https://movie.douban.com/subject/1292052/</td>
+      <td>肖申克的救赎</td>
+      <td>9.6</td>
+      <td>1004428</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>https://movie.douban.com/subject/1291546/</td>
+      <td>霸王别姬</td>
+      <td>9.5</td>
+      <td>730274</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>https://movie.douban.com/subject/1292063/</td>
+      <td>美丽人生</td>
+      <td>9.5</td>
+      <td>469332</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>https://movie.douban.com/subject/1296141/</td>
+      <td>控方证人</td>
+      <td>9.6</td>
+      <td>108598</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alist</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="n">alist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">rating_num</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">rating</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">title</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">])</span>
+
+<span class="n">blist</span> <span class="o">=</span><span class="p">[[</span><span class="n">df</span><span class="o">.</span><span class="n">rating_num</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">rating</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">title</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">]</span> 
+
+<span class="n">alist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1021383, 9.5999999999999996, &#39;肖申克的救赎&#39;],
+ [742984, 9.5, &#39;霸王别姬&#39;],
+ [957578, 9.4000000000000004, &#39;这个杀手不太冷&#39;],
+ [814634, 9.4000000000000004, &#39;阿甘正传&#39;],
+ [475813, 9.5, &#39;美丽人生&#39;],
+ [762619, 9.3000000000000007, &#39;千与千寻&#39;],
+ [754309, 9.3000000000000007, &#39;泰坦尼克号&#39;],
+ [433191, 9.4000000000000004, &#39;辛德勒的名单&#39;],
+ [853620, 9.3000000000000007, &#39;盗梦空间&#39;],
+ [559729, 9.3000000000000007, &#39;机器人总动员&#39;],
+ [657670, 9.1999999999999993, &#39;海上钢琴师&#39;],
+ [767473, 9.1999999999999993, &#39;三傻大闹宝莱坞&#39;],
+ [529473, 9.1999999999999993, &#39;忠犬八公的故事&#39;],
+ [513071, 9.1999999999999993, &#39;放牛班的春天&#39;],
+ [561091, 9.1999999999999993, &#39;大话西游之大圣娶亲&#39;],
+ [533017, 9.0999999999999996, &#39;楚门的世界&#39;],
+ [473631, 9.0999999999999996, &#39;龙猫&#39;],
+ [385130, 9.1999999999999993, &#39;教父&#39;],
+ [309138, 9.1999999999999993, &#39;熔炉&#39;],
+ [560855, 9.1999999999999993, &#39;星际穿越&#39;],
+ [299301, 9.1999999999999993, &#39;乱世佳人&#39;],
+ [416073, 9.0999999999999996, &#39;触不可及&#39;],
+ [458107, 9.0, &#39;无间道&#39;],
+ [606767, 8.9000000000000004, &#39;当幸福来敲门&#39;],
+ [337952, 9.0999999999999996, &#39;天堂电影院&#39;],
+ [633995, 8.9000000000000004, &#39;怦然心动&#39;],
+ [190977, 9.4000000000000004, &#39;十二怒汉&#39;],
+ [434420, 9.0, &#39;搏击俱乐部&#39;],
+ [640800, 9.0, &#39;少年派的奇幻漂流&#39;],
+ [260089, 9.1999999999999993, &#39;鬼子来了&#39;],
+ [367866, 9.0999999999999996, &#39;蝙蝠侠：黑暗骑士&#39;],
+ [314885, 9.0999999999999996, &#39;指环王3：王者无敌&#39;],
+ [306344, 9.0999999999999996, &#39;活着&#39;],
+ [369956, 9.0, &#39;天空之城&#39;],
+ [585740, 9.1999999999999993, &#39;疯狂动物城&#39;],
+ [426150, 8.9000000000000004, &#39;罗马假日&#39;],
+ [451703, 8.9000000000000004, &#39;大话西游之月光宝盒&#39;],
+ [554642, 8.9000000000000004, &#39;飞屋环游记&#39;],
+ [249586, 9.0999999999999996, &#39;窃听风暴&#39;],
+ [296760, 9.0999999999999996, &#39;两杆大烟枪&#39;],
+ [111737, 9.5999999999999996, &#39;控方证人&#39;],
+ [301329, 9.0, &#39;飞越疯人院&#39;],
+ [358755, 8.9000000000000004, &#39;闻香识女人&#39;],
+ [393556, 8.9000000000000004, &#39;哈尔的移动城堡&#39;],
+ [196094, 9.3000000000000007, &#39;海豚湾&#39;],
+ [464601, 8.8000000000000007, &#39;V字仇杀队&#39;],
+ [237421, 9.0999999999999996, &#39;辩护人&#39;],
+ [309071, 9.0, &#39;死亡诗社&#39;],
+ [207619, 9.0999999999999996, &#39;教父2&#39;],
+ [333942, 8.9000000000000004, &#39;美丽心灵&#39;],
+ [296196, 9.0, &#39;指环王2：双塔奇兵&#39;],
+ [331529, 8.9000000000000004, &#39;指环王1：魔戒再现&#39;],
+ [411534, 8.8000000000000007, &#39;情书&#39;],
+ [223469, 9.0999999999999996, &#39;饮食男女&#39;],
+ [517803, 9.0999999999999996, &#39;摔跤吧！爸爸&#39;],
+ [191667, 9.0999999999999996, &#39;美国往事&#39;],
+ [309325, 8.9000000000000004, &#39;狮子王&#39;],
+ [220420, 9.0, &#39;钢琴家&#39;],
+ [520325, 8.6999999999999993, &#39;天使爱美丽&#39;],
+ [205704, 9.0999999999999996, &#39;素媛&#39;],
+ [469032, 8.6999999999999993, &#39;七宗罪&#39;],
+ [153673, 9.1999999999999993, &#39;小鞋子&#39;],
+ [320506, 8.9000000000000004, &#39;被嫌弃的松子的一生&#39;],
+ [375951, 8.8000000000000007, &#39;致命魔术&#39;],
+ [378652, 8.8000000000000007, &#39;看不见的客人&#39;],
+ [251308, 8.9000000000000004, &#39;音乐之声&#39;],
+ [315215, 8.8000000000000007, &#39;勇敢的心&#39;],
+ [523686, 8.6999999999999993, &#39;剪刀手爱德华&#39;],
+ [425844, 8.8000000000000007, &#39;本杰明·巴顿奇事&#39;],
+ [365086, 8.8000000000000007, &#39;低俗小说&#39;],
+ [385562, 8.6999999999999993, &#39;西西里的美丽传说&#39;],
+ [307307, 8.8000000000000007, &#39;黑客帝国&#39;],
+ [262404, 8.9000000000000004, &#39;拯救大兵瑞恩&#39;],
+ [383825, 8.6999999999999993, &#39;沉默的羔羊&#39;],
+ [338488, 8.8000000000000007, &#39;入殓师&#39;],
+ [414361, 8.6999999999999993, &#39;蝴蝶效应&#39;],
+ [677352, 8.6999999999999993, &#39;让子弹飞&#39;],
+ [270494, 8.8000000000000007, &#39;春光乍泄&#39;],
+ [244643, 8.9000000000000004, &#39;玛丽和马克思&#39;],
+ [111733, 9.1999999999999993, &#39;大闹天宫&#39;],
+ [295606, 8.8000000000000007, &#39;心灵捕手&#39;],
+ [189568, 8.9000000000000004, &#39;末代皇帝&#39;],
+ [292721, 8.8000000000000007, &#39;阳光灿烂的日子&#39;],
+ [254400, 8.8000000000000007, &#39;幽灵公主&#39;],
+ [252833, 8.8000000000000007, &#39;第六感&#39;],
+ [359281, 8.6999999999999993, &#39;重庆森林&#39;],
+ [389844, 8.6999999999999993, &#39;禁闭岛&#39;],
+ [345885, 8.8000000000000007, &#39;布达佩斯大饭店&#39;],
+ [271656, 8.6999999999999993, &#39;大鱼&#39;],
+ [142601, 9.0, &#39;狩猎&#39;],
+ [284871, 8.6999999999999993, &#39;哈利·波特与魔法石&#39;],
+ [296911, 8.6999999999999993, &#39;射雕英雄传之东成西就&#39;],
+ [344355, 8.5999999999999996, &#39;致命ID&#39;],
+ [248165, 8.8000000000000007, &#39;甜蜜蜜&#39;],
+ [344588, 8.5999999999999996, &#39;断背山&#39;],
+ [251749, 8.6999999999999993, &#39;猫鼠游戏&#39;],
+ [166973, 8.9000000000000004, &#39;一一&#39;],
+ [367791, 8.6999999999999993, &#39;告白&#39;],
+ [289385, 8.8000000000000007, &#39;阳光姐妹淘&#39;],
+ [373118, 8.5999999999999996, &#39;加勒比海盗&#39;],
+ [166903, 8.9000000000000004, &#39;上帝之城&#39;],
+ [97659, 9.1999999999999993, &#39;摩登时代&#39;],
+ [162190, 8.9000000000000004, &#39;穿条纹睡衣的男孩&#39;],
+ [565530, 8.5999999999999996, &#39;阿凡达&#39;],
+ [237864, 8.6999999999999993, &#39;爱在黎明破晓前&#39;],
+ [385266, 8.6999999999999993, &#39;消失的爱人&#39;],
+ [188690, 8.8000000000000007, &#39;风之谷&#39;],
+ [212467, 8.6999999999999993, &#39;爱在日落黄昏时&#39;],
+ [181917, 8.8000000000000007, &#39;侧耳倾听&#39;],
+ [275127, 8.5999999999999996, &#39;倩女幽魂&#39;],
+ [146507, 8.9000000000000004, &#39;红辣椒&#39;],
+ [241887, 8.6999999999999993, &#39;恐怖直播&#39;],
+ [185888, 8.8000000000000007, &#39;超脱&#39;],
+ [217398, 8.6999999999999993, &#39;萤火虫之墓&#39;],
+ [304866, 8.6999999999999993, &#39;驯龙高手&#39;],
+ [239308, 8.5999999999999996, &#39;幸福终点站&#39;],
+ [195650, 8.6999999999999993, &#39;菊次郎的夏天&#39;],
+ [144405, 8.9000000000000004, &#39;小森林 夏秋篇&#39;],
+ [341432, 8.5, &#39;喜剧之王&#39;],
+ [323425, 8.5999999999999996, &#39;岁月神偷&#39;],
+ [232077, 8.6999999999999993, &#39;借东西的小人阿莉埃蒂&#39;],
+ [82623, 9.1999999999999993, &#39;七武士&#39;],
+ [405200, 8.5, &#39;神偷奶爸&#39;],
+ [222549, 8.6999999999999993, &#39;杀人回忆&#39;],
+ [102681, 9.0, &#39;海洋&#39;],
+ [332455, 8.5, &#39;真爱至上&#39;],
+ [210611, 8.6999999999999993, &#39;电锯惊魂&#39;],
+ [415291, 8.5, &#39;贫民窟的百万富翁&#39;],
+ [191225, 8.6999999999999993, &#39;谍影重重3&#39;],
+ [149579, 8.8000000000000007, &#39;喜宴&#39;],
+ [266681, 8.5999999999999996, &#39;东邪西毒&#39;],
+ [295660, 8.5, &#39;记忆碎片&#39;],
+ [220414, 8.5999999999999996, &#39;雨人&#39;],
+ [257769, 8.5999999999999996, &#39;怪兽电力公司&#39;],
+ [440539, 8.5, &#39;黑天鹅&#39;],
+ [391224, 8.6999999999999993, &#39;疯狂原始人&#39;],
+ [179698, 8.6999999999999993, &#39;英雄本色&#39;],
+ [154659, 8.6999999999999993, &#39;燃情岁月&#39;],
+ [127219, 8.8000000000000007, &#39;卢旺达饭店&#39;],
+ [112345, 8.9000000000000004, &#39;虎口脱险&#39;],
+ [189074, 8.6999999999999993, &#39;7号房的礼物&#39;],
+ [300454, 8.5, &#39;恋恋笔记本&#39;],
+ [125724, 8.9000000000000004, &#39;小森林 冬春篇&#39;],
+ [320997, 8.5, &#39;傲慢与偏见&#39;],
+ [208380, 8.5999999999999996, &#39;海边的曼彻斯特&#39;],
+ [290089, 8.6999999999999993, &#39;哈利·波特与死亡圣器(下)&#39;],
+ [168987, 8.6999999999999993, &#39;萤火之森&#39;],
+ [138798, 8.8000000000000007, &#39;教父3&#39;],
+ [86319, 9.0, &#39;完美的世界&#39;],
+ [156471, 8.6999999999999993, &#39;纵横四海&#39;],
+ [151799, 8.8000000000000007, &#39;荒蛮故事&#39;],
+ [105774, 8.8000000000000007, &#39;二十二&#39;],
+ [135526, 8.8000000000000007, &#39;魂断蓝桥&#39;],
+ [259388, 8.5, &#39;猜火车&#39;],
+ [194663, 8.5999999999999996, &#39;穿越时空的少女&#39;],
+ [201714, 8.8000000000000007, &#39;玩具总动员3&#39;],
+ [260957, 8.5, &#39;花样年华&#39;],
+ [97486, 9.0, &#39;雨中曲&#39;],
+ [183786, 8.5999999999999996, &#39;心迷宫&#39;],
+ [214531, 8.5999999999999996, &#39;时空恋旅人&#39;],
+ [351836, 8.4000000000000004, &#39;唐伯虎点秋香&#39;],
+ [392857, 8.5999999999999996, &#39;超能陆战队&#39;],
+ [110358, 8.8000000000000007, &#39;我是山姆&#39;],
+ [309924, 8.5999999999999996, &#39;蝙蝠侠：黑暗骑士崛起&#39;],
+ [199924, 8.5999999999999996, &#39;人工智能&#39;],
+ [139242, 8.6999999999999993, &#39;浪潮&#39;],
+ [285601, 8.4000000000000004, &#39;冰川时代&#39;],
+ [289504, 8.4000000000000004, &#39;香水&#39;],
+ [288650, 8.5, &#39;朗读者&#39;],
+ [132226, 8.6999999999999993, &#39;罗生门&#39;],
+ [174301, 8.8000000000000007, &#39;请以你的名字呼唤我&#39;],
+ [251364, 8.5999999999999996, &#39;爆裂鼓手&#39;],
+ [85770, 8.9000000000000004, &#39;追随&#39;],
+ [138571, 8.6999999999999993, &#39;一次别离&#39;],
+ [104317, 8.8000000000000007, &#39;未麻的部屋&#39;],
+ [181166, 8.5999999999999996, &#39;撞车&#39;],
+ [334741, 8.6999999999999993, &#39;血战钢锯岭&#39;],
+ [135259, 8.6999999999999993, &#39;可可西里&#39;],
+ [182221, 8.5, &#39;战争之王&#39;],
+ [343703, 8.3000000000000007, &#39;恐怖游轮&#39;],
+ [89868, 8.8000000000000007, &#39;地球上的星星&#39;],
+ [116667, 8.6999999999999993, &#39;梦之安魂曲&#39;],
+ [176988, 8.6999999999999993, &#39;达拉斯买家俱乐部&#39;],
+ [270993, 8.5999999999999996, &#39;被解救的姜戈&#39;],
+ [192717, 8.5, &#39;阿飞正传&#39;],
+ [112326, 8.6999999999999993, &#39;牯岭街少年杀人事件&#39;],
+ [200329, 8.5, &#39;谍影重重&#39;],
+ [166328, 8.5, &#39;谍影重重2&#39;],
+ [204653, 8.5, &#39;魔女宅急便&#39;],
+ [240090, 8.6999999999999993, &#39;头脑特工队&#39;],
+ [164479, 8.8000000000000007, &#39;房间&#39;],
+ [63374, 9.0, &#39;忠犬八公物语&#39;],
+ [87474, 8.9000000000000004, &#39;惊魂记&#39;],
+ [110499, 8.6999999999999993, &#39;碧海蓝天&#39;],
+ [179269, 8.5, &#39;再次出发之纽约遇见你&#39;],
+ [231647, 8.4000000000000004, &#39;青蛇&#39;],
+ [157071, 8.5999999999999996, &#39;小萝莉的猴神大叔&#39;],
+ [53476, 9.1999999999999993, &#39;东京物语&#39;],
+ [312322, 8.3000000000000007, &#39;秒速5厘米&#39;],
+ [84575, 8.9000000000000004, &#39;哪吒闹海&#39;],
+ [109454, 8.6999999999999993, &#39;末路狂花&#39;],
+ [169778, 8.5999999999999996, &#39;海盗电台&#39;],
+ [111040, 8.6999999999999993, &#39;绿里奇迹&#39;],
+ [147035, 8.5999999999999996, &#39;终结者2：审判日&#39;],
+ [424177, 8.3000000000000007, &#39;源代码&#39;],
+ [267159, 8.5999999999999996, &#39;模仿游戏&#39;],
+ [192005, 8.5, &#39;新龙门客栈&#39;],
+ [162903, 8.5, &#39;黑客帝国3：矩阵革命&#39;],
+ [147043, 8.5, &#39;勇闯夺命岛&#39;],
+ [189831, 8.5, &#39;这个男人来自地球&#39;],
+ [125973, 8.6999999999999993, &#39;一个叫欧维的男人决定去死&#39;],
+ [129304, 8.5999999999999996, &#39;卡萨布兰卡&#39;],
+ [494602, 8.4000000000000004, &#39;你的名字。&#39;],
+ [46323, 9.1999999999999993, &#39;城市之光&#39;],
+ [221714, 8.4000000000000004, &#39;变脸&#39;],
+ [132083, 8.5999999999999996, &#39;荒野生存&#39;],
+ [53099, 9.0999999999999996, &#39;迁徙的鸟&#39;],
+ [159426, 8.5, &#39;E.T. 外星人&#39;],
+ [192409, 8.4000000000000004, &#39;发条橙&#39;],
+ [231469, 8.4000000000000004, &#39;无耻混蛋&#39;],
+ [479894, 8.3000000000000007, &#39;初恋这件小事&#39;],
+ [53709, 9.0999999999999996, &#39;黄金三镖客&#39;],
+ [191992, 8.4000000000000004, &#39;美国丽人&#39;],
+ [121427, 8.8000000000000007, &#39;爱在午夜降临前&#39;],
+ [178607, 8.4000000000000004, &#39;英国病人&#39;],
+ [60049, 9.0, &#39;无人知晓&#39;],
+ [110300, 8.5999999999999996, &#39;燕尾蝶&#39;],
+ [120585, 8.5999999999999996, &#39;非常嫌疑犯&#39;],
+ [328162, 8.3000000000000007, &#39;疯狂的石头&#39;],
+ [112286, 8.5999999999999996, &#39;叫我第一名&#39;],
+ [90201, 8.9000000000000004, &#39;勇士&#39;],
+ [242926, 8.3000000000000007, &#39;穆赫兰道&#39;],
+ [190730, 8.5999999999999996, &#39;无敌破坏王&#39;],
+ [352129, 8.3000000000000007, &#39;国王的演讲&#39;],
+ [77399, 8.8000000000000007, &#39;步履不停&#39;],
+ [137843, 8.5, &#39;血钻&#39;],
+ [99101, 8.5999999999999996, &#39;上帝也疯狂&#39;],
+ [186988, 8.4000000000000004, &#39;彗星来的那一夜&#39;],
+ [103282, 8.5999999999999996, &#39;枪火&#39;],
+ [278772, 8.3000000000000007, &#39;蓝色大门&#39;],
+ [97025, 8.5999999999999996, &#39;大卫·戈尔的一生&#39;],
+ [134046, 8.5, &#39;遗愿清单&#39;],
+ [59825, 9.0, &#39;我爱你&#39;],
+ [89377, 8.6999999999999993, &#39;千钧一发&#39;],
+ [139223, 8.5, &#39;荒岛余生&#39;],
+ [48744, 9.0, &#39;爱·回家&#39;],
+ [119390, 8.5, &#39;黑鹰坠落&#39;],
+ [131277, 8.8000000000000007, &#39;聚焦&#39;],
+ [131618, 8.5, &#39;麦兜故事&#39;],
+ [148685, 8.4000000000000004, &#39;暖暖内含光&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from IPython.display import display_html, HTML</span>
+<span class="c1"># HTML(&#39;&lt;iframe src=http://nbviewer.jupyter.org/github/computational-class/bigdata/blob/gh-pages/vis/douban250bubble.html \</span>
+<span class="c1">#      width=1000 height=500&gt;&lt;/iframe&gt;&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>作业：<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>抓取复旦新媒体微信公众号最新一期的内容</p></li>
+</ul>
+</div>
+<div class="section" id="requests-post">
+<h2>requests.post模拟登录豆瓣（包括获取验证码）<a class="headerlink" href="#requests-post" title="Permalink to this headline">¶</a></h2>
+<p>https://blog.csdn.net/zhuzuwei/article/details/80875538</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="04-crawler-wechat.html" title="previous page">抓取微信公众号文章内容</a>
+    <a class='right-next' id="next-link" href="04-crawler-gov-report.html" title="next page">抓取历届政府工作报告</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

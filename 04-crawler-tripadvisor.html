@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>使用Selenium抓取TripAdvisor用户评论 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="第四章 数据清洗" href="06-data-cleaning-intro.html" />
+    <link rel="prev" title="使用Selenium提取人民网搜索数据" href="04-crawler-selenium-people-com-search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-fact-checking.html">
+     抓取实时辟谣数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-13chambers.html">
+     抓取网络小说
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-wechat.html">
+     抓取微信公众号文章内容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-douban.html">
+     使用requests + Xpath抓取豆瓣电影数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-gov-report.html">
+     抓取历届政府工作报告
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-cppcc.html">
+     抓取江苏省政协十年提案
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-netease-music.html">
+     抓取网易云音乐热门评论
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium.html">
+     使用Selenium操纵浏览器
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-music-history.html">
+     抓取网易云音乐用户的听歌记录
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-people-com-search.html">
+     使用Selenium提取人民网搜索数据
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     使用Selenium抓取TripAdvisor用户评论
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/04-crawler-tripadvisor.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F04-crawler-tripadvisor.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/04-crawler-tripadvisor.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/04-crawler-tripadvisor.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="seleniumtripadvisor">
+<h1>使用Selenium抓取TripAdvisor用户评论<a class="headerlink" href="#seleniumtripadvisor" title="Permalink to this headline">¶</a></h1>
+<p>tripadvisor中文网站叫做猫途鹰 <a class="reference external" href="https://www.tripadvisor.cn/">www.tripadvisor.cn/</a> 。</p>
+<ul class="simple">
+<li><p>对于酒店和景点的用户评论。</p></li>
+<li><p>但是默认只显示中文评论！</p></li>
+<li><p>需要点击所有评论才能显示其它语言的用户评论。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.tripadvisor.cn/Hotel_Review-g294213-d1459920-Reviews-Somerset_Jiefangbei_Chongqing-Chongqing.html#REVIEWS&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://www.tripadvisor.cn/Hotel_Review-g294213-d1459920-Reviews-Somerset_Jiefangbei_Chongqing-Chongqing.html#REVIEWS
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.tripadvisor.cn/Hotel_Review-g294213-d1459920-Reviews-Somerset_Jiefangbei_Chongqing-Chongqing.html#REVIEWS&#39;</span>
+
+<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> 
+
+<span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;#component_10 &gt; div &gt; div:nth-child(3) &gt; div.location-review-filters-hr-ReviewFilters__filters_wrap--3zsVa &gt; div.ui_columns &gt; div.ui_column.is-3-tablet.is-shown-at-tablet &gt; ul &gt; li:nth-child(1) &gt; label &gt; span.location-review-review-list-parts-LanguageFilter__no_wrap--2Dckv&#39;</span>
+
+<span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">page_source</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+<span class="n">comments</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;hotels-community-tab-common-Card__card--ihfZB hotels-community-tab-common-Card__section--4r93H&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;div class=&quot;hotels-community-tab-common-Card__card--ihfZB hotels-community-tab-common-Card__section--4r93H&quot; data-test-target=&quot;HR_CC_CARD&quot;&gt;&lt;div class=&quot;location-review-review-list-parts-MachineTranslationHeader__mt_wrap--2uRXX&quot;&gt;&lt;span class=&quot;location-review-review-list-parts-MachineTranslationHeader__qtext--2lhyR&quot;&gt;这些点评为英文的机器翻译。 显示机器翻译？&lt;/span&gt; &lt;div class=&quot;ui_radio&quot;&gt;&lt;input checked=&quot;&quot; id=&quot;autoTranslateYes&quot; type=&quot;radio&quot; value=&quot;true&quot;/&gt;&lt;label for=&quot;autoTranslateYes&quot;&gt;是&lt;/label&gt;&lt;/div&gt;&lt;div class=&quot;ui_radio&quot;&gt;&lt;input id=&quot;autoTranslateNo&quot; type=&quot;radio&quot; value=&quot;false&quot;/&gt;&lt;label for=&quot;autoTranslateNo&quot;&gt;否&lt;/label&gt;&lt;/div&gt;&lt;span class=&quot;ui_icon information-circle-fill location-review-review-list-parts-MachineTranslationHeader__tip--2EQEh&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;social-member-event-MemberEventOnObjectBlock__member_event_block--1Kusx&quot;&gt;&lt;a class=&quot;styleguide-avatar-Avatar__avatar--2NStU ui_social_avatar inline&quot; href=&quot;https://www.tripadvisor.com/Profile/kimlette&quot; target=&quot;_self&quot;&gt;&lt;img src=&quot;https://ccm.ddcdn.com/ext/photo-t/01/2e/70/81/avatar002.jpg&quot;/&gt;&lt;/a&gt;&lt;div class=&quot;social-member-event-MemberEventOnObjectBlock__event_wrap--1YkeG&quot;&gt;&lt;div class=&quot;social-member-event-MemberEventOnObjectBlock__member_actions--2uzIM&quot;&gt;&lt;div class=&quot;overflow&quot;&gt;&lt;span class=&quot;_3-zQ1eyd _4nIC4qqF&quot;&gt;&lt;span class=&quot;_35pfga6W _2HBN-k68&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;social-section-overflow-SectionOverflowMenu__float--3mJ5J&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;social-member-event-MemberEventOnObjectBlock__event_type--3njyv&quot;&gt;&lt;span&gt;&lt;a class=&quot;ui_header_link social-member-event-MemberEventOnObjectBlock__member--35-jC&quot; href=&quot;https://www.tripadvisor.com/Profile/kimlette&quot;&gt;kimlette&lt;/a&gt; 写了一条点评 12月12日 &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;social-member-MemberHeaderStats__event_info--30wFs&quot;&gt;&lt;span class=&quot;social-member-MemberHeaderStats__hometown_stat_item--231iN&quot;&gt;&lt;span class=&quot;default social-member-common-MemberHometown__hometown--3kM9S small&quot;&gt;&lt;span class=&quot;ui_icon map-pin-fill social-member-common-MemberHometown__icon--3WpeC&quot;&gt;&lt;/span&gt;新加坡新加坡&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;location-review-review-list-parts-SingleReview__mainCol--1hApa&quot; data-reviewid=&quot;671457443&quot;&gt;&lt;div class=&quot;location-review-review-list-parts-RatingLine__container--2bjtw&quot;&gt;&lt;div class=&quot;location-review-review-list-parts-RatingLine__bubbles--GcJvM&quot; data-test-target=&quot;review-rating&quot;&gt;&lt;span class=&quot;ui_bubble_rating bubble_10&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;location-review-review-list-parts-ReviewTitle__reviewTitle--2GO9Z&quot; data-test-target=&quot;review-title&quot; dir=&quot;ltr&quot;&gt;&lt;a class=&quot;location-review-review-list-parts-ReviewTitle__reviewTitleText--2tFRT&quot; href=&quot;/ShowUserReviews-g294213-d1459920-r671457443-Somerset_Jiefangbei_Chongqing-Chongqing.html&quot;&gt;&lt;span lang=&quot;zh-x-mtfrom-en&quot;&gt;&lt;span&gt;不要留在这里：在线图片欺骗&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=&quot;location-review-review-list-parts-ExpandableReview__containerStyles--1G0AE&quot;&gt;&lt;div class=&quot;_2f_ruteS _1bona3Pu _2uD5bLZZ&quot;&gt;&lt;div class=&quot;cPQsENeY&quot; style=&quot;max-height: initial;&quot;&gt;&lt;q class=&quot;location-review-review-list-parts-ExpandableReview__reviewText--gOmRC&quot; lang=&quot;zh-x-mtfrom-en&quot;&gt;&lt;span&gt;入住3晚，但在12月第一周晚1晚后退房。 Somerset ppty真是太可惜了，房间简朴而舒适。我们已经预订了3间客房，所以我们没有。房间布局中，只有一个可行的是09堆栈。所有级别只有一个09型单位。布局不好的是03面，所以如果不幸的话避免呆在这里。大堂和餐厅/餐厅的日子已经好过了，管理层需要尽快对其进行翻新。早餐太可悲了。我们有了早餐券，但是晚上睡不好后就没有吃。第二天早上尽快退房。不要留在这里！在公共区域也有难闻的气味。  唯一的好处是-接待女士们确实很有帮助和理解。在我们急忙离开的时候，我忘了问他们的名字了！&lt;/span&gt;&lt;/q&gt;&lt;/div&gt;&lt;span class=&quot;_36B4Vw6t&quot; style=&quot;line-height: 20px;&quot;&gt;&lt;div class=&quot;location-review-review-list-parts-ExpandableReview__ctaLine--24Qlb&quot; data-test-target=&quot;expand-review&quot;&gt;&lt;span class=&quot;location-review-review-list-parts-ExpandableReview__cta--2mR2g&quot;&gt;阅读更多&lt;/span&gt;&lt;span class=&quot;ui_icon caret-down location-review-review-list-parts-ExpandableReview__caret--3Ud_i&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;hotels-community-tab-reviews-ReviewsTabContent__footer--2FHIK&quot;&gt;&lt;span class=&quot;location-review-review-list-parts-EventDate__event_date--1epHa&quot;&gt;&lt;span class=&quot;location-review-review-list-parts-EventDate__bold--3b3PE&quot;&gt;入住日期：&lt;/span&gt;2019年12月&lt;/span&gt;&lt;span class=&quot;hotels-community-tab-reviews-ReviewsTabContent__hiddenReviewContent--FCrPr&quot;&gt;&lt;span class=&quot;location-review-review-list-parts-TripType__trip_type--3w17i&quot;&gt;&lt;span class=&quot;trip_type_label&quot;&gt;旅行类型： &lt;/span&gt;结伴旅行&lt;/span&gt;&lt;/span&gt;&lt;div class=&quot;hotels-rate-mt-footer-rate-mt-footer__mtFooter--vvI3I&quot;&gt;&lt;span class=&quot;public-reviews-MTProviderLogo__provider_img--1z6u0&quot;&gt;&lt;img alt=&quot;Google&quot; src=&quot;/img2/langs/zh/branding/partners/powered_by_google_translate.png&quot;/&gt;&lt;/span&gt;&lt;div class=&quot;hotels-rate-mt-footer-rate-mt-footer__inlinify--2w_D9&quot;&gt;&lt;div class=&quot;ui_button small ui_link standard hotels-rate-mt-footer-rate-mt-footer__rateButton--1mDkC&quot;&gt;为译文打分 &lt;span class=&quot;ui_icon caret-down&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;location-review-social-bar-SocialBar__bar--3YwG5&quot;&gt;&lt;span class=&quot;social-statistics-bar-SocialStatisticsBar__bar--L8RDK&quot;&gt;&lt;/span&gt;&lt;div class=&quot;social-actions-SocialActionBar__social_action_bar--2_j8Y&quot;&gt;&lt;span class=&quot;social-actions-SocialAction__social_action--1RrZ-&quot;&gt;&lt;span class=&quot;ui_icon thumbs-up-fill social-actions-SocialAction__icon--2WCF0&quot;&gt;&lt;/span&gt;&lt;span class=&quot;ui_link social-actions-SocialAction__text--1yJuk&quot;&gt;推荐&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;social-actions-NestedSocialAction__nested_social_action--2mhpU&quot;&gt;&lt;div&gt;&lt;span&gt;&lt;div class=&quot;public-share-cta-ShareCta__social_action--2yJtr&quot;&gt;&lt;span&gt;&lt;span class=&quot;ui_icon repost-fill public-share-cta-ShareCta__icon--1Bvb0&quot;&gt;&lt;/span&gt;&lt;span class=&quot;ui_link public-share-cta-ShareCta__text--1tWKH socialCTA&quot;&gt;分享 &lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;location-review-review-list-parts-OwnerResponse__containerStyles--1wv-S&quot;&gt;&lt;span class=&quot;styleguide-avatar-Avatar__avatar--2NStU ui_social_avatar small inline location-review-review-list-parts-OwnerResponse__ownerAvatar--3bb01&quot;&gt;&lt;span class=&quot;ui_icon member-fill&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;div class=&quot;location-review-review-list-parts-OwnerResponse__header--2jRig&quot;&gt;回复来自重庆盛捷解放碑服务公寓的前厅部经理SomersetChongqing&lt;div class=&quot;location-review-review-list-parts-OwnerResponse__responseDate--4i8wE&quot; title=&quot;2019-12-15&quot;&gt;回复时间：3天前&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;location-review-review-list-parts-GoogleTranslateButton__buttonDiv--3bQd_&quot;&gt;&lt;button class=&quot;ui_button secondary small&quot;&gt;Google翻译&lt;/button&gt;&lt;/div&gt;&lt;div class=&quot;_2f_ruteS _1bona3Pu location-review-review-list-parts-OwnerResponse__responseReadMore--eB9_V _2uD5bLZZ&quot;&gt;&lt;div class=&quot;cPQsENeY&quot; style=&quot;max-height: 60px;&quot;&gt;&lt;span class=&quot;location-review-review-list-parts-OwnerResponse__reviewText--108-V&quot;&gt;&lt;span&gt;I have noted your observations and recommendations for improvements to the breakfast and refurbishment. Please be assured that I will coordinate the plans for these enhancements with the respective departments.  We seek your patience and understanding as the recommendations may require time to be implemented, we will continue in our improvement efforts to provide excellent service and products to our residents. &lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;_36B4Vw6t&quot; style=&quot;line-height: 20px;&quot;&gt;&lt;span class=&quot;location-review-review-list-parts-OwnerResponse__cta--2QSGH&quot;&gt;阅读更多&lt;/span&gt;&lt;span class=&quot;ui_icon caret-down location-review-review-list-parts-OwnerResponse__caret--1-bUW&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># user id</span>
+<span class="c1"># https://www.tripadvisor.com/Profile/kimlette</span>
+<span class="n">comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;ui_header_link social-member-event-MemberEventOnObjectBlock__member--35-jC&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;kimlette&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;default social-member-common-MemberHometown__hometown--3kM9S small&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;新加坡新加坡&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># comment title</span>
+<span class="n">comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;location-review-review-list-parts-ReviewTitle__reviewTitleText--2tFRT&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;不要留在这里：在线图片欺骗&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># comment body text</span>
+<span class="n">comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;location-review-review-list-parts-ExpandableReview__reviewText--gOmRC&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;入住3晚，但在12月第一周晚1晚后退房。 Somerset ppty真是太可惜了，房间简朴而舒适。我们已经预订了3间客房，所以我们没有。房间布局中，只有一个可行的是09堆栈。所有级别只有一个09型单位。布局不好的是03面，所以如果不幸的话避免呆在这里。大堂和餐厅/餐厅的日子已经好过了，管理层需要尽快对其进行翻新。早餐太可悲了。我们有了早餐券，但是晚上睡不好后就没有吃。第二天早上尽快退房。不要留在这里！在公共区域也有难闻的气味。  唯一的好处是-接待女士们确实很有帮助和理解。在我们急忙离开的时候，我忘了问他们的名字了！&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="04-crawler-selenium-people-com-search.html" title="previous page">使用Selenium提取人民网搜索数据</a>
+    <a class='right-next' id="next-link" href="06-data-cleaning-intro.html" title="next page">第四章 数据清洗</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

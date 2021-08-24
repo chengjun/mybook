@@ -1,0 +1,1470 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>抓取网易云音乐热门评论 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="使用Selenium操纵浏览器" href="04-crawler-selenium.html" />
+    <link rel="prev" title="抓取江苏省政协十年提案" href="04-crawler-cppcc.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-fact-checking.html">
+     抓取实时辟谣数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-13chambers.html">
+     抓取网络小说
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-wechat.html">
+     抓取微信公众号文章内容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-douban.html">
+     使用requests + Xpath抓取豆瓣电影数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-gov-report.html">
+     抓取历届政府工作报告
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-cppcc.html">
+     抓取江苏省政协十年提案
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     抓取网易云音乐热门评论
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium.html">
+     使用Selenium操纵浏览器
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-music-history.html">
+     抓取网易云音乐用户的听歌记录
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-people-com-search.html">
+     使用Selenium提取人民网搜索数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-tripadvisor.html">
+     使用Selenium抓取TripAdvisor用户评论
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/04-crawler-netease-music.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F04-crawler-netease-music.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/04-crawler-netease-music.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/04-crawler-netease-music.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#artists-py">
+   爬取所有的歌手信息（artists.py）
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#album-by-artist-py">
+   爬取所有的专辑信息（album_by _artist.py）
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#music-by-album-py">
+   根据专辑信息爬取所有的歌曲信息（music_by _album.py）
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comments-by-music-py">
+   根据歌曲信息爬取其评论条数（comments_by _music.py
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   翻页的实现
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   另外一种方法
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>抓取网易云音乐热门评论<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>https://github.com/RitterHou/music-163</p>
+<p>爬取网易云音乐的所有的歌曲的评论数。以下为主要思路：</p>
+<ul class="simple">
+<li><p>爬取所有的歌手信息（artists.py）；</p></li>
+<li><p>根据上一步爬取到的歌手信息去爬取所有的专辑信息（album_by _artist.py）；</p></li>
+<li><p>根据专辑信息爬取所有的歌曲信息（music_by _album.py）；</p></li>
+<li><p>根据歌曲信息爬取其评论条数（comments_by _music.py）</p></li>
+</ul>
+<div class="section" id="artists-py">
+<h2>爬取所有的歌手信息（artists.py）<a class="headerlink" href="#artists-py" title="Permalink to this headline">¶</a></h2>
+<p>观察网易云音乐官网页面HTML结构</p>
+<p>http://music.163.com/</p>
+<p>http://music.163.com/#/discover/artist/cat</p>
+<p>http://music.163.com/#/discover/artist/cat?id=4003&amp;initial=0</p>
+<p><img alt="" src="_images/netease.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Accept-Encoding&#39;</span><span class="p">:</span> <span class="s1">&#39;gzip, deflate, sdch&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Accept-Language&#39;</span><span class="p">:</span> <span class="s1">&#39;zh-CN,zh;q=0.8,en;q=0.6&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Cache-Control&#39;</span><span class="p">:</span> <span class="s1">&#39;no-cache&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Connection&#39;</span><span class="p">:</span> <span class="s1">&#39;keep-alive&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Cookie&#39;</span><span class="p">:</span> <span class="s1">&#39;_ntes_nnid=7eced19b27ffae35dad3f8f2bf5885cd,1476521011210; _ntes_nuid=7eced19b27ffae35dad3f8f2bf5885cd; usertrack=c+5+hlgB7TgnsAmACnXtAg==; Province=025; City=025; NTES_PASSPORT=6n9ihXhbWKPi8yAqG.i2kETSCRa.ug06Txh8EMrrRsliVQXFV_orx5HffqhQjuGHkNQrLOIRLLotGohL9s10wcYSPiQfI2wiPacKlJ3nYAXgM; P_INFO=hourui93@163.com|1476523293|1|study|11&amp;12|jis&amp;1476511733&amp;mail163#jis&amp;320100#10#0#0|151889&amp;0|g37_client_check&amp;mailsettings&amp;mail163&amp;study&amp;blog|hourui93@163.com; NTES_SESS=Fa2uk.YZsGoj59AgD6tRjTXGaJ8_1_4YvGfXUkS7C1NwtMe.tG1Vzr255TXM6yj2mKqTZzqFtoEKQrgewi9ZK60ylIqq5puaG6QIaNQ7EK5MTcRgHLOhqttDHfaI_vsBzB4bibfamzx1.fhlpqZh_FcnXUYQFw5F5KIBUmGJg7xdasvGf_EgfICWV; S_INFO=1476597594|1|0&amp;80##|hourui93; NETEASE_AUTH_SOURCE=space; NETEASE_AUTH_USERNAME=hourui93; _ga=GA1.2.1405085820.1476521280; JSESSIONID-WYYY=cbd082d2ce2cffbcd5c085d8bf565a95aee3173ddbbb00bfa270950f93f1d8bb4cb55a56a4049fa8c828373f630c78f4a43d6c3d252c4c44f44b098a9434a7d8fc110670a6e1e9af992c78092936b1e19351435ecff76a181993780035547fa5241a5afb96e8c665182d0d5b911663281967d675ff2658015887a94b3ee1575fa1956a5a%3A1476607977016; _iuqxldmzr_=25; __utma=94650624.1038096298.1476521011.1476595468.1476606177.8; __utmb=94650624.20.10.1476606177; __utmc=94650624; __utmz=94650624.1476521011.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DNT&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Host&#39;</span><span class="p">:</span> <span class="s1">&#39;music.163.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Pragma&#39;</span><span class="p">:</span> <span class="s1">&#39;no-cache&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Referer&#39;</span><span class="p">:</span> <span class="s1">&#39;http://music.163.com/&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Upgrade-Insecure-Requests&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_id</span> <span class="o">=</span> <span class="mi">1001</span>
+<span class="n">initial</span> <span class="o">=</span> <span class="mi">67</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">group_id</span><span class="p">,</span> <span class="s1">&#39;initial&#39;</span><span class="p">:</span> <span class="n">initial</span><span class="p">}</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://music.163.com/discover/artist/cat&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+<span class="c1"># 网页解析</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+<span class="n">body</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">body</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hotartist_dic</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">hot_artists</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;msk&#39;</span><span class="p">})</span>
+<span class="k">for</span> <span class="n">artist</span> <span class="ow">in</span> <span class="n">hot_artists</span><span class="p">:</span>
+    <span class="n">artist_id</span> <span class="o">=</span> <span class="n">artist</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/artist?id=&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">artist_name</span> <span class="o">=</span> <span class="n">artist</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;的音乐&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">hotartist_dic</span><span class="p">[</span><span class="n">artist_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">artist_name</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="c1"># 打印错误日志</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">artist_dic</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">artists</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;nm nm-icn f-thide s-fc0&#39;</span><span class="p">})</span>
+<span class="k">for</span> <span class="n">artist</span> <span class="ow">in</span> <span class="n">artists</span><span class="p">:</span>
+        <span class="n">artist_id</span> <span class="o">=</span> <span class="n">artist</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/artist?id=&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">artist_name</span> <span class="o">=</span> <span class="n">artist</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;的音乐&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">artist_dic</span><span class="p">[</span><span class="n">artist_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">artist_name</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># 打印错误日志</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">artist_dic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;2116&#39;: &#39;陈奕迅&#39;,
+ &#39;32897995&#39;: &#39;Copy&#39;,
+ &#39;28083351&#39;: &#39;CORSAK胡梦周&#39;,
+ &#39;34172520&#39;: &#39;C.HØPE&#39;,
+ &#39;12157336&#39;: &#39;CMJ&#39;,
+ &#39;28602303&#39;: &#39;陈阳&#39;,
+ &#39;1058228&#39;: &#39;陈鸿宇&#39;,
+ &#39;2112&#39;: &#39;陈小春&#39;,
+ &#39;2127&#39;: &#39;陈柏宇&#39;,
+ &#39;12932368&#39;: &#39;蔡徐坤&#39;,
+ &#39;963431&#39;: &#39;陈致逸&#39;,
+ &#39;12147170&#39;: &#39;澄海伯伯&#39;,
+ &#39;29234568&#39;: &#39;陈亦洺&#39;,
+ &#39;32720055&#39;: &#39;Crazy Donkey&#39;,
+ &#39;30377220&#39;: &#39;陈麒名&#39;,
+ &#39;12519065&#39;: &#39;程安&#39;,
+ &#39;32973587&#39;: &#39;陈大本事&#39;,
+ &#39;34097618&#39;: &#39;ChenXi&#39;,
+ &#39;1140028&#39;: &#39;承利&#39;,
+ &#39;2115&#39;: &#39;陈百强&#39;,
+ &#39;12193174&#39;: &#39;Capper&#39;,
+ &#39;189955&#39;: &#39;蔡翊昇&#39;,
+ &#39;14420803&#39;: &#39;陈雪燃&#39;,
+ &#39;2110&#39;: &#39;曹格&#39;,
+ &#39;34918869&#39;: &#39;Cheng橙zzzz&#39;,
+ &#39;12174110&#39;: &#39;崔开潮&#39;,
+ &#39;12276430&#39;: &#39;Cubi&#39;,
+ &#39;12131566&#39;: &#39;CLOUDWANG 王云&#39;,
+ &#39;2118&#39;: &#39;成龙&#39;,
+ &#39;2117&#39;: &#39;侧田&#39;,
+ &#39;14608268&#39;: &#39;Corki宗鑫&#39;,
+ &#39;12095299&#39;: &#39;陈柯宇&#39;,
+ &#39;1084178&#39;: &#39;Candy_Wind&#39;,
+ &#39;13447762&#39;: &#39;陈亦云&#39;,
+ &#39;13056440&#39;: &#39;陈立农&#39;,
+ &#39;13681463&#39;: &#39;崔铭嘉&#39;,
+ &#39;31005762&#39;: &#39;冲矢昴&#39;,
+ &#39;2331&#39;: &#39;陈翔&#39;,
+ &#39;31252052&#39;: &#39;春野杉卉&#39;,
+ &#39;33238413&#39;: &#39;陈智凌&#39;,
+ &#39;33320567&#39;: &#39;苍弟（半吨兄弟）&#39;,
+ &#39;34318343&#39;: &#39;Cc椿&#39;,
+ &#39;2124&#39;: &#39;陈楚生&#39;,
+ &#39;12434106&#39;: &#39;陈尤利&#39;,
+ &#39;47136983&#39;: &#39;陈恻&#39;,
+ &#39;2201&#39;: &#39;陈势安&#39;,
+ &#39;34564181&#39;: &#39;菜篮中的菜&#39;,
+ &#39;1038074&#39;: &#39;茶茶&#39;,
+ &#39;33950188&#39;: &#39;CHENYI&#39;,
+ &#39;31052925&#39;: &#39;川屿&#39;,
+ &#39;32440237&#39;: &#39;蔡少铭&#39;,
+ &#39;34318335&#39;: &#39;ChenYueLong.&#39;,
+ &#39;46632613&#39;: &#39;陈小潇&#39;,
+ &#39;963409&#39;: &#39;陈学冬&#39;,
+ &#39;12536599&#39;: &#39;迟柏林&#39;,
+ &#39;12079044&#39;: &#39;陈硕子&#39;,
+ &#39;2153&#39;: &#39;常石磊&#39;,
+ &#39;2150&#39;: &#39;陈冠蒲&#39;,
+ &#39;32264375&#39;: &#39;从和文&#39;,
+ &#39;47060485&#39;: &#39;晨晨没错了&#39;,
+ &#39;30000267&#39;: &#39;蔡耀轩&#39;,
+ &#39;31087528&#39;: &#39;陈奕辰Kane&#39;,
+ &#39;4092&#39;: &#39;春风哥&#39;,
+ &#39;2130&#39;: &#39;蔡国权&#39;,
+ &#39;47383136&#39;: &#39;陈宇鸣&#39;,
+ &#39;12177051&#39;: &#39;C.A.R.L&#39;,
+ &#39;1047298&#39;: &#39;CADY&#39;,
+ &#39;2121&#39;: &#39;蔡旻佑&#39;,
+ &#39;2111&#39;: &#39;崔健&#39;,
+ &#39;2113&#39;: &#39;车继铃&#39;,
+ &#39;31665914&#39;: &#39;Cackle Joyful&#39;,
+ &#39;29414807&#39;: &#39;陈冬霖&#39;,
+ &#39;12185665&#39;: &#39;C.vo&#39;,
+ &#39;12291202&#39;: &#39;陈曦&#39;,
+ &#39;33394182&#39;: &#39;陈志林Mega&#39;,
+ &#39;33123519&#39;: &#39;潮音锦式&#39;,
+ &#39;34038223&#39;: &#39;初梦&#39;,
+ &#39;30437389&#39;: &#39;Chanlex&#39;,
+ &#39;2294&#39;: &#39;陈光荣&#39;,
+ &#39;12490206&#39;: &#39;Credit&#39;,
+ &#39;30117214&#39;: &#39;CrapBoy&#39;,
+ &#39;12193309&#39;: &#39;CREAM D&#39;,
+ &#39;33390699&#39;: &#39;潮音铭帝&#39;,
+ &#39;2338&#39;: &#39;船长&#39;,
+ &#39;33711050&#39;: &#39;CFrie木焱&#39;,
+ &#39;34915098&#39;: &#39;常泽浩&#39;,
+ &#39;31093206&#39;: &#39;Cas14&#39;,
+ &#39;27728315&#39;: &#39;唇釉&#39;,
+ &#39;1043290&#39;: &#39;传琦SAMA&#39;,
+ &#39;12459163&#39;: &#39;陈嘉俊是这个嘉&#39;,
+ &#39;2159&#39;: &#39;曹轩宾&#39;,
+ &#39;31055&#39;: &#39;Cee&#39;,
+ &#39;36621645&#39;: &#39;CHANGAN&#39;,
+ &#39;12700520&#39;: &#39;CJ 周密&#39;,
+ &#39;2135&#39;: &#39;陈勋奇&#39;,
+ &#39;46507954&#39;: &#39;川上島&#39;,
+ &#39;31050529&#39;: &#39;陈茗&#39;,
+ &#39;2122&#39;: &#39;陈冠希&#39;,
+ &#39;2125&#39;: &#39;陈晓东&#39;,
+ &#39;12226597&#39;: &#39;痴笑&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">save_artist</span><span class="p">(</span><span class="n">group_id</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">hot_artist_dic</span><span class="p">,</span> <span class="n">artisti_dic</span><span class="p">):</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">group_id</span><span class="p">,</span> <span class="s1">&#39;initial&#39;</span><span class="p">:</span> <span class="n">initial</span><span class="p">}</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://music.163.com/discover/artist/cat&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="c1"># 网页解析</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">body</span>
+
+    <span class="n">hot_artists</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;msk&#39;</span><span class="p">})</span>
+    <span class="n">artists</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;nm nm-icn f-thide s-fc0&#39;</span><span class="p">})</span>
+    <span class="k">for</span> <span class="n">artist</span> <span class="ow">in</span> <span class="n">hot_artists</span><span class="p">:</span>
+        <span class="n">artist_id</span> <span class="o">=</span> <span class="n">artist</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/artist?id=&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">artist_name</span> <span class="o">=</span> <span class="n">artist</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;的音乐&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">hot_artist_dic</span><span class="p">[</span><span class="n">artist_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">artist_name</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># 打印错误日志</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">artist</span> <span class="ow">in</span> <span class="n">artists</span><span class="p">:</span>
+        <span class="n">artist_id</span> <span class="o">=</span> <span class="n">artist</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/artist?id=&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">artist_name</span> <span class="o">=</span> <span class="n">artist</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;的音乐&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">artist_dic</span><span class="p">[</span><span class="n">artist_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">artist_name</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># 打印错误日志</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="c1">#return artist_dic, hot_artist_dic</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gg</span> <span class="o">=</span> <span class="mi">1001</span>
+<span class="n">initial</span> <span class="o">=</span> <span class="mi">67</span>
+<span class="n">artist_dic</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">hot_artist_dic</span> <span class="o">=</span> <span class="p">{}</span> 
+<span class="n">save_artist</span><span class="p">(</span><span class="n">gg</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">hot_artist_dic</span><span class="p">,</span> <span class="n">artist_dic</span>  <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">artist_dic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;2116&#39;: &#39;陈奕迅&#39;,
+ &#39;32897995&#39;: &#39;Copy&#39;,
+ &#39;28083351&#39;: &#39;CORSAK胡梦周&#39;,
+ &#39;34172520&#39;: &#39;C.HØPE&#39;,
+ &#39;12157336&#39;: &#39;CMJ&#39;,
+ &#39;28602303&#39;: &#39;陈阳&#39;,
+ &#39;1058228&#39;: &#39;陈鸿宇&#39;,
+ &#39;2112&#39;: &#39;陈小春&#39;,
+ &#39;2127&#39;: &#39;陈柏宇&#39;,
+ &#39;12932368&#39;: &#39;蔡徐坤&#39;,
+ &#39;963431&#39;: &#39;陈致逸&#39;,
+ &#39;12147170&#39;: &#39;澄海伯伯&#39;,
+ &#39;29234568&#39;: &#39;陈亦洺&#39;,
+ &#39;32720055&#39;: &#39;Crazy Donkey&#39;,
+ &#39;30377220&#39;: &#39;陈麒名&#39;,
+ &#39;12519065&#39;: &#39;程安&#39;,
+ &#39;32973587&#39;: &#39;陈大本事&#39;,
+ &#39;34097618&#39;: &#39;ChenXi&#39;,
+ &#39;1140028&#39;: &#39;承利&#39;,
+ &#39;2115&#39;: &#39;陈百强&#39;,
+ &#39;12193174&#39;: &#39;Capper&#39;,
+ &#39;189955&#39;: &#39;蔡翊昇&#39;,
+ &#39;14420803&#39;: &#39;陈雪燃&#39;,
+ &#39;2110&#39;: &#39;曹格&#39;,
+ &#39;34918869&#39;: &#39;Cheng橙zzzz&#39;,
+ &#39;12174110&#39;: &#39;崔开潮&#39;,
+ &#39;12276430&#39;: &#39;Cubi&#39;,
+ &#39;12131566&#39;: &#39;CLOUDWANG 王云&#39;,
+ &#39;2118&#39;: &#39;成龙&#39;,
+ &#39;2117&#39;: &#39;侧田&#39;,
+ &#39;14608268&#39;: &#39;Corki宗鑫&#39;,
+ &#39;12095299&#39;: &#39;陈柯宇&#39;,
+ &#39;1084178&#39;: &#39;Candy_Wind&#39;,
+ &#39;13447762&#39;: &#39;陈亦云&#39;,
+ &#39;13056440&#39;: &#39;陈立农&#39;,
+ &#39;13681463&#39;: &#39;崔铭嘉&#39;,
+ &#39;31005762&#39;: &#39;冲矢昴&#39;,
+ &#39;2331&#39;: &#39;陈翔&#39;,
+ &#39;31252052&#39;: &#39;春野杉卉&#39;,
+ &#39;33238413&#39;: &#39;陈智凌&#39;,
+ &#39;33320567&#39;: &#39;苍弟（半吨兄弟）&#39;,
+ &#39;34318343&#39;: &#39;Cc椿&#39;,
+ &#39;2124&#39;: &#39;陈楚生&#39;,
+ &#39;12434106&#39;: &#39;陈尤利&#39;,
+ &#39;47136983&#39;: &#39;陈恻&#39;,
+ &#39;2201&#39;: &#39;陈势安&#39;,
+ &#39;34564181&#39;: &#39;菜篮中的菜&#39;,
+ &#39;1038074&#39;: &#39;茶茶&#39;,
+ &#39;33950188&#39;: &#39;CHENYI&#39;,
+ &#39;31052925&#39;: &#39;川屿&#39;,
+ &#39;32440237&#39;: &#39;蔡少铭&#39;,
+ &#39;34318335&#39;: &#39;ChenYueLong.&#39;,
+ &#39;46632613&#39;: &#39;陈小潇&#39;,
+ &#39;963409&#39;: &#39;陈学冬&#39;,
+ &#39;12536599&#39;: &#39;迟柏林&#39;,
+ &#39;12079044&#39;: &#39;陈硕子&#39;,
+ &#39;2153&#39;: &#39;常石磊&#39;,
+ &#39;2150&#39;: &#39;陈冠蒲&#39;,
+ &#39;32264375&#39;: &#39;从和文&#39;,
+ &#39;47060485&#39;: &#39;晨晨没错了&#39;,
+ &#39;30000267&#39;: &#39;蔡耀轩&#39;,
+ &#39;31087528&#39;: &#39;陈奕辰Kane&#39;,
+ &#39;4092&#39;: &#39;春风哥&#39;,
+ &#39;2130&#39;: &#39;蔡国权&#39;,
+ &#39;47383136&#39;: &#39;陈宇鸣&#39;,
+ &#39;12177051&#39;: &#39;C.A.R.L&#39;,
+ &#39;1047298&#39;: &#39;CADY&#39;,
+ &#39;2121&#39;: &#39;蔡旻佑&#39;,
+ &#39;2111&#39;: &#39;崔健&#39;,
+ &#39;2113&#39;: &#39;车继铃&#39;,
+ &#39;31665914&#39;: &#39;Cackle Joyful&#39;,
+ &#39;29414807&#39;: &#39;陈冬霖&#39;,
+ &#39;12185665&#39;: &#39;C.vo&#39;,
+ &#39;12291202&#39;: &#39;陈曦&#39;,
+ &#39;33394182&#39;: &#39;陈志林Mega&#39;,
+ &#39;33123519&#39;: &#39;潮音锦式&#39;,
+ &#39;34038223&#39;: &#39;初梦&#39;,
+ &#39;30437389&#39;: &#39;Chanlex&#39;,
+ &#39;2294&#39;: &#39;陈光荣&#39;,
+ &#39;12490206&#39;: &#39;Credit&#39;,
+ &#39;30117214&#39;: &#39;CrapBoy&#39;,
+ &#39;12193309&#39;: &#39;CREAM D&#39;,
+ &#39;33390699&#39;: &#39;潮音铭帝&#39;,
+ &#39;2338&#39;: &#39;船长&#39;,
+ &#39;33711050&#39;: &#39;CFrie木焱&#39;,
+ &#39;34915098&#39;: &#39;常泽浩&#39;,
+ &#39;31093206&#39;: &#39;Cas14&#39;,
+ &#39;27728315&#39;: &#39;唇釉&#39;,
+ &#39;1043290&#39;: &#39;传琦SAMA&#39;,
+ &#39;12459163&#39;: &#39;陈嘉俊是这个嘉&#39;,
+ &#39;2159&#39;: &#39;曹轩宾&#39;,
+ &#39;31055&#39;: &#39;Cee&#39;,
+ &#39;36621645&#39;: &#39;CHANGAN&#39;,
+ &#39;12700520&#39;: &#39;CJ 周密&#39;,
+ &#39;2135&#39;: &#39;陈勋奇&#39;,
+ &#39;46507954&#39;: &#39;川上島&#39;,
+ &#39;31050529&#39;: &#39;陈茗&#39;,
+ &#39;2122&#39;: &#39;陈冠希&#39;,
+ &#39;2125&#39;: &#39;陈晓东&#39;,
+ &#39;12226597&#39;: &#39;痴笑&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">artist_dic</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">hot_artist_dic</span> <span class="o">=</span> <span class="p">{}</span> 
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">65</span><span class="p">,</span> <span class="mi">91</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">save_artist</span><span class="p">(</span><span class="n">gg</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">hot_artist_dic</span><span class="p">,</span> <span class="n">artist_dic</span>  <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">hot_artist_dic</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>260
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">artist_dic</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2600
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="album-by-artist-py">
+<h2>爬取所有的专辑信息（album_by _artist.py）<a class="headerlink" href="#album-by-artist-py" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">hot_artist_dic</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;12174057&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>http://music.163.com/#/artist/album?id=89659&amp;limit=400</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Accept-Encoding&#39;</span><span class="p">:</span> <span class="s1">&#39;gzip, deflate, sdch&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Accept-Language&#39;</span><span class="p">:</span> <span class="s1">&#39;zh-CN,zh;q=0.8,en;q=0.6&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Cache-Control&#39;</span><span class="p">:</span> <span class="s1">&#39;no-cache&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Connection&#39;</span><span class="p">:</span> <span class="s1">&#39;keep-alive&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Cookie&#39;</span><span class="p">:</span> <span class="s1">&#39;_ntes_nnid=7eced19b27ffae35dad3f8f2bf5885cd,1476521011210; _ntes_nuid=7eced19b27ffae35dad3f8f2bf5885cd; usertrack=c+5+hlgB7TgnsAmACnXtAg==; Province=025; City=025; _ga=GA1.2.1405085820.1476521280; NTES_PASSPORT=6n9ihXhbWKPi8yAqG.i2kETSCRa.ug06Txh8EMrrRsliVQXFV_orx5HffqhQjuGHkNQrLOIRLLotGohL9s10wcYSPiQfI2wiPacKlJ3nYAXgM; P_INFO=hourui93@163.com|1476523293|1|study|11&amp;12|jis&amp;1476511733&amp;mail163#jis&amp;320100#10#0#0|151889&amp;0|g37_client_check&amp;mailsettings&amp;mail163&amp;study&amp;blog|hourui93@163.com; JSESSIONID-WYYY=189f31767098c3bd9d03d9b968c065daf43cbd4c1596732e4dcb471beafe2bf0605b85e969f92600064a977e0b64a24f0af7894ca898b696bd58ad5f39c8fce821ec2f81f826ea967215de4d10469e9bd672e75d25f116a9d309d360582a79620b250625859bc039161c78ab125a1e9bf5d291f6d4e4da30574ccd6bbab70b710e3f358f%3A1476594130342; _iuqxldmzr_=25; __utma=94650624.1038096298.1476521011.1476588849.1476592408.6; __utmb=94650624.11.10.1476592408; __utmc=94650624; __utmz=94650624.1476521011.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DNT&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Host&#39;</span><span class="p">:</span> <span class="s1">&#39;music.163.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Pragma&#39;</span><span class="p">:</span> <span class="s1">&#39;no-cache&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Referer&#39;</span><span class="p">:</span> <span class="s1">&#39;http://music.163.com/&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Upgrade-Insecure-Requests&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">save_albums</span><span class="p">(</span><span class="n">artist_id</span><span class="p">,</span> <span class="n">albume_dic</span><span class="p">):</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">artist_id</span><span class="p">,</span> <span class="s1">&#39;limit&#39;</span><span class="p">:</span> <span class="s1">&#39;200&#39;</span><span class="p">}</span>
+    <span class="c1"># 获取歌手个人主页</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://music.163.com/artist/album&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="c1"># 网页解析</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">body</span>
+
+    <span class="n">albums</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;tit s-fc0&#39;</span><span class="p">})</span>  <span class="c1"># 获取所有专辑</span>
+
+    <span class="k">for</span> <span class="n">album</span> <span class="ow">in</span> <span class="n">albums</span><span class="p">:</span>
+        <span class="n">albume_id</span> <span class="o">=</span> <span class="n">album</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/album?id=&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">albume_dic</span><span class="p">[</span><span class="n">albume_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">artist_id</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">albume_dic</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">save_albums</span><span class="p">(</span><span class="s1">&#39;2116&#39;</span><span class="p">,</span> <span class="n">albume_dic</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">albume_dic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;98517711&#39;: &#39;2116&#39;,
+ &#39;97079895&#39;: &#39;2116&#39;,
+ &#39;95509227&#39;: &#39;2116&#39;,
+ &#39;92392526&#39;: &#39;2116&#39;,
+ &#39;87540898&#39;: &#39;2116&#39;,
+ &#39;80538760&#39;: &#39;2116&#39;,
+ &#39;80235030&#39;: &#39;2116&#39;,
+ &#39;74268947&#39;: &#39;2116&#39;,
+ &#39;38296010&#39;: &#39;2116&#39;,
+ &#39;36304576&#39;: &#39;2116&#39;,
+ &#39;35835294&#39;: &#39;2116&#39;,
+ &#39;35643233&#39;: &#39;2116&#39;,
+ &#39;35520072&#39;: &#39;2116&#39;,
+ &#39;34961173&#39;: &#39;2116&#39;,
+ &#39;34923261&#39;: &#39;2116&#39;,
+ &#39;34881554&#39;: &#39;2116&#39;,
+ &#39;34735139&#39;: &#39;2116&#39;,
+ &#39;3404003&#39;: &#39;2116&#39;,
+ &#39;3319407&#39;: &#39;2116&#39;,
+ &#39;3279818&#39;: &#39;2116&#39;,
+ &#39;3184340&#39;: &#39;2116&#39;,
+ &#39;3279543&#39;: &#39;2116&#39;,
+ &#39;35406784&#39;: &#39;2116&#39;,
+ &#39;3109376&#39;: &#39;2116&#39;,
+ &#39;2801259&#39;: &#39;2116&#39;,
+ &#39;2793003&#39;: &#39;2116&#39;,
+ &#39;2786670&#39;: &#39;2116&#39;,
+ &#39;2767144&#39;: &#39;2116&#39;,
+ &#39;2732645&#39;: &#39;2116&#39;,
+ &#39;2518003&#39;: &#39;2116&#39;,
+ &#39;2532179&#39;: &#39;2116&#39;,
+ &#39;2499005&#39;: &#39;2116&#39;,
+ &#39;2465020&#39;: &#39;2116&#39;,
+ &#39;2302128&#39;: &#39;2116&#39;,
+ &#39;2261058&#39;: &#39;2116&#39;,
+ &#39;2261147&#39;: &#39;2116&#39;,
+ &#39;2261091&#39;: &#39;2116&#39;,
+ &#39;6335&#39;: &#39;2116&#39;,
+ &#39;6338&#39;: &#39;2116&#39;,
+ &#39;6339&#39;: &#39;2116&#39;,
+ &#39;6341&#39;: &#39;2116&#39;,
+ &#39;6343&#39;: &#39;2116&#39;,
+ &#39;2692242&#39;: &#39;2116&#39;,
+ &#39;2692238&#39;: &#39;2116&#39;,
+ &#39;6355&#39;: &#39;2116&#39;,
+ &#39;35663692&#39;: &#39;2116&#39;,
+ &#39;6360&#39;: &#39;2116&#39;,
+ &#39;6362&#39;: &#39;2116&#39;,
+ &#39;6365&#39;: &#39;2116&#39;,
+ &#39;6375&#39;: &#39;2116&#39;,
+ &#39;6378&#39;: &#39;2116&#39;,
+ &#39;35398900&#39;: &#39;2116&#39;,
+ &#39;6388&#39;: &#39;2116&#39;,
+ &#39;3211014&#39;: &#39;2116&#39;,
+ &#39;3102567&#39;: &#39;2116&#39;,
+ &#39;34611604&#39;: &#39;2116&#39;,
+ &#39;6394&#39;: &#39;2116&#39;,
+ &#39;3170625&#39;: &#39;2116&#39;,
+ &#39;2339617&#39;: &#39;2116&#39;,
+ &#39;6410&#39;: &#39;2116&#39;,
+ &#39;2692239&#39;: &#39;2116&#39;,
+ &#39;6404&#39;: &#39;2116&#39;,
+ &#39;3391071&#39;: &#39;2116&#39;,
+ &#39;6423&#39;: &#39;2116&#39;,
+ &#39;6429&#39;: &#39;2116&#39;,
+ &#39;6434&#39;: &#39;2116&#39;,
+ &#39;6437&#39;: &#39;2116&#39;,
+ &#39;6451&#39;: &#39;2116&#39;,
+ &#39;6452&#39;: &#39;2116&#39;,
+ &#39;6454&#39;: &#39;2116&#39;,
+ &#39;6462&#39;: &#39;2116&#39;,
+ &#39;6475&#39;: &#39;2116&#39;,
+ &#39;6479&#39;: &#39;2116&#39;,
+ &#39;6491&#39;: &#39;2116&#39;,
+ &#39;6483&#39;: &#39;2116&#39;,
+ &#39;6498&#39;: &#39;2116&#39;,
+ &#39;35411774&#39;: &#39;2116&#39;,
+ &#39;6510&#39;: &#39;2116&#39;,
+ &#39;6522&#39;: &#39;2116&#39;,
+ &#39;6530&#39;: &#39;2116&#39;,
+ &#39;3070638&#39;: &#39;2116&#39;,
+ &#39;6543&#39;: &#39;2116&#39;,
+ &#39;6548&#39;: &#39;2116&#39;,
+ &#39;6551&#39;: &#39;2116&#39;,
+ &#39;6555&#39;: &#39;2116&#39;,
+ &#39;6559&#39;: &#39;2116&#39;,
+ &#39;6562&#39;: &#39;2116&#39;,
+ &#39;6565&#39;: &#39;2116&#39;,
+ &#39;6567&#39;: &#39;2116&#39;,
+ &#39;6572&#39;: &#39;2116&#39;,
+ &#39;6581&#39;: &#39;2116&#39;,
+ &#39;2374009&#39;: &#39;2116&#39;,
+ &#39;6584&#39;: &#39;2116&#39;,
+ &#39;2374010&#39;: &#39;2116&#39;,
+ &#39;6590&#39;: &#39;2116&#39;,
+ &#39;2336647&#39;: &#39;2116&#39;,
+ &#39;6595&#39;: &#39;2116&#39;,
+ &#39;6599&#39;: &#39;2116&#39;,
+ &#39;2621232&#39;: &#39;2116&#39;,
+ &#39;2374011&#39;: &#39;2116&#39;,
+ &#39;6604&#39;: &#39;2116&#39;,
+ &#39;2374012&#39;: &#39;2116&#39;,
+ &#39;6607&#39;: &#39;2116&#39;,
+ &#39;6612&#39;: &#39;2116&#39;,
+ &#39;2374013&#39;: &#39;2116&#39;,
+ &#39;2374014&#39;: &#39;2116&#39;,
+ &#39;6620&#39;: &#39;2116&#39;,
+ &#39;6624&#39;: &#39;2116&#39;,
+ &#39;2332713&#39;: &#39;2116&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="music-by-album-py">
+<h2>根据专辑信息爬取所有的歌曲信息（music_by _album.py）<a class="headerlink" href="#music-by-album-py" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">save_music</span><span class="p">(</span><span class="n">album_id</span><span class="p">,</span> <span class="n">music_dic</span><span class="p">):</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">album_id</span><span class="p">}</span>
+    <span class="c1"># 获取专辑对应的页面</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://music.163.com/album&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+    <span class="c1"># 网页解析</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">body</span>
+    <span class="n">musics</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;f-hide&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)</span>  <span class="c1"># 获取专辑的所有音乐</span>
+    <span class="k">for</span> <span class="n">music</span> <span class="ow">in</span> <span class="n">musics</span><span class="p">:</span>
+        <span class="n">music</span> <span class="o">=</span> <span class="n">music</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+        <span class="n">music_id</span> <span class="o">=</span> <span class="n">music</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/song?id=&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">music_name</span> <span class="o">=</span> <span class="n">music</span><span class="o">.</span><span class="n">getText</span><span class="p">()</span>
+        <span class="n">music_dic</span><span class="p">[</span><span class="n">music_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">music_name</span><span class="p">,</span> <span class="n">album_id</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">albume_dic</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;98517711&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">music_dic</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">save_music</span><span class="p">(</span><span class="s1">&#39;6423&#39;</span><span class="p">,</span> <span class="n">music_dic</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">music_dic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;65321&#39;: [&#39;兄妹&#39;, &#39;6423&#39;],
+ &#39;65326&#39;: [&#39;十年&#39;, &#39;6423&#39;],
+ &#39;65334&#39;: [&#39;你的背包&#39;, &#39;6423&#39;],
+ &#39;65337&#39;: [&#39;K歌之王&#39;, &#39;6423&#39;],
+ &#39;65342&#39;: [&#39;Shall We Talk&#39;, &#39;6423&#39;],
+ &#39;65347&#39;: [&#39;低等动物&#39;, &#39;6423&#39;],
+ &#39;65350&#39;: [&#39;寂寞让你更快乐&#39;, &#39;6423&#39;],
+ &#39;65355&#39;: [&#39;圣诞结&#39;, &#39;6423&#39;],
+ &#39;65360&#39;: [&#39;想哭&#39;, &#39;6423&#39;],
+ &#39;65365&#39;: [&#39;不如这样&#39;, &#39;6423&#39;],
+ &#39;65369&#39;: [&#39;你会不会&#39;, &#39;6423&#39;],
+ &#39;65373&#39;: [&#39;Last Order&#39;, &#39;6423&#39;],
+ &#39;65377&#39;: [&#39;冤家&#39;, &#39;6423&#39;],
+ &#39;65381&#39;: [&#39;全世界失眠&#39;, &#39;6423&#39;],
+ &#39;65385&#39;: [&#39;我们都寂寞&#39;, &#39;6423&#39;],
+ &#39;65389&#39;: [&#39;阿怪&#39;, &#39;6423&#39;],
+ &#39;65393&#39;: [&#39;谢谢侬&#39;, &#39;6423&#39;],
+ &#39;65397&#39;: [&#39;爱是怀疑&#39;, &#39;6423&#39;],
+ &#39;65400&#39;: [&quot;Because You&#39;re Good To Me&quot;, &#39;6423&#39;],
+ &#39;65403&#39;: [&#39;Good Times&#39;, &#39;6423&#39;],
+ &#39;65406&#39;: [&#39;要你的&#39;, &#39;6423&#39;],
+ &#39;65410&#39;: [&#39;像一句广告&#39;, &#39;6423&#39;],
+ &#39;65414&#39;: [&#39;我也不会那样做&#39;, &#39;6423&#39;],
+ &#39;65418&#39;: [&#39;人造卫星&#39;, &#39;6423&#39;],
+ &#39;65421&#39;: [&#39;狂人日记&#39;, &#39;6423&#39;],
+ &#39;65425&#39;: [&#39;没有手机的日子&#39;, &#39;6423&#39;],
+ &#39;65429&#39;: [&#39;跳蚤市场&#39;, &#39;6423&#39;],
+ &#39;65433&#39;: [&#39;故事&#39;, &#39;6423&#39;],
+ &#39;65437&#39;: [&#39;男人的错&#39;, &#39;6423&#39;],
+ &#39;65441&#39;: [&#39;没有你&#39;, &#39;6423&#39;]}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="comments-by-music-py">
+<h2>根据歌曲信息爬取其评论条数（comments_by _music.py<a class="headerlink" href="#comments-by-music-py" title="Permalink to this headline">¶</a></h2>
+<p>http://music.163.com/#/song?id=516997458</p>
+<p>很遗憾的是评论数虽然也在详情页内，但是网易云音乐做了防爬处理，</p>
+<ul class="simple">
+<li><p>采用AJAX调用评论数API的方式填充评论相关数据，</p></li>
+<li><p>异步的特性导致我们爬到的页面中评论数是空，</p></li>
+</ul>
+<p>我们就找一找这个API吧，通关观察XHR请求发现是下面这个家伙..</p>
+<p>响应结果很丰富呢，所有评论相关的数据都有，不过经过观察发现这个API是经过加密处理的，不过没关系…</p>
+<p>https://blog.csdn.net/python233/article/details/72825003</p>
+<p>https://www.zhihu.com/question/36081767</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;csrf_token&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+<span class="p">}</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="s1">&#39;5L+s/X1qDy33tb2sjT6to2T4oxv89Fjg1aYRkjgzpNPR6hgCpp0YVjNoTLQAwWu9VYvKROPZQj6qTpBK+sUeJovyNHsnU9/StEfZwCOcKfECFFtAvoNIpulj1TDOtBir&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;encSecKey&#39;</span><span class="p">:</span> <span class="s1">&#39;59079f3e07d6e240410018dc871bf9364f122b720c0735837d7916ac78d48a79ec06c6307e6a0e576605d6228bd0b377a96e1a7fc7c7ddc8f6a3dc6cc50746933352d4ec5cbe7bddd6dcb94de085a3b408d895ebfdf2f43a7c72fc783512b3c9efb860679a88ef21ccec5ff13592be450a1edebf981c0bf779b122ddbd825492&#39;</span>
+    
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">music_id</span> <span class="o">=</span> <span class="s1">&#39;65337&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://music.163.com/api/v1/resource/comments/R_SO_4_&#39;</span><span class="o">+</span> <span class="n">music_id</span> <span class="o">+</span> <span class="s1">&#39;?limit=20&amp;offset=&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">cj</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="n">cj</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;isMusician&#39;, &#39;userId&#39;, &#39;topComments&#39;, &#39;moreHot&#39;, &#39;hotComments&#39;, &#39;commentBanner&#39;, &#39;code&#39;, &#39;comments&#39;, &#39;total&#39;, &#39;more&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cj</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">],</span><span class="nb">len</span><span class="p">(</span><span class="n">cj</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">cj</span><span class="p">[</span><span class="s1">&#39;hotComments&#39;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">cj</span><span class="p">[</span><span class="s1">&#39;topComments&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(18942, 20, 15, 0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cj</span><span class="p">[</span><span class="s1">&#39;hotComments&#39;</span><span class="p">][</span><span class="mi">11</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;user&#39;: {&#39;locationInfo&#39;: None,
+  &#39;liveInfo&#39;: None,
+  &#39;anonym&#39;: 0,
+  &#39;userId&#39;: 130378562,
+  &#39;avatarDetail&#39;: None,
+  &#39;userType&#39;: 0,
+  &#39;followed&#39;: False,
+  &#39;mutual&#39;: False,
+  &#39;remarkName&#39;: None,
+  &#39;vipRights&#39;: None,
+  &#39;nickname&#39;: &#39;富士山下钟无艳-&#39;,
+  &#39;avatarUrl&#39;: &#39;http://p2.music.126.net/AlUvuBnyf32Qs1bhtWQpvw==/109951163540816255.jpg&#39;,
+  &#39;authStatus&#39;: 0,
+  &#39;expertTags&#39;: None,
+  &#39;experts&#39;: None,
+  &#39;vipType&#39;: 0,
+  &#39;commonIdentity&#39;: None},
+ &#39;beReplied&#39;: [],
+ &#39;pendantData&#39;: None,
+ &#39;showFloorComment&#39;: None,
+ &#39;status&#39;: 0,
+ &#39;commentId&#39;: 310484149,
+ &#39;content&#39;: &#39;这是那天她哭着唱的歌  因此这是我一辈子记得的歌@豆芽小张 &#39;,
+ &#39;time&#39;: 1487199594599,
+ &#39;likedCount&#39;: 1811,
+ &#39;expressionUrl&#39;: None,
+ &#39;commentLocationType&#39;: 0,
+ &#39;parentCommentId&#39;: 0,
+ &#39;decoration&#39;: None,
+ &#39;repliedMark&#39;: None,
+ &#39;liked&#39;: False}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>翻页的实现<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>limit是一页的数量，offset往后的偏移。</p>
+<ul class="simple">
+<li><p>比如limit是20，offset是40，就展示第三页的</p></li>
+</ul>
+<p>http://music.163.com/api/v1/resource/comments/R_SO_4_516997458?limit=20&amp;offset=0</p>
+<p>http://music.163.com/api/v1/resource/comments/R_SO_4_516997458?limit=20&amp;offset=20</p>
+<p>http://music.163.com/api/v1/resource/comments/R_SO_4_516997458?limit=20&amp;offset=40</p>
+</div>
+<div class="section" id="id3">
+<h2>另外一种方法<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">AES</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># headers</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Host&#39;</span><span class="p">:</span> <span class="s1">&#39;music.163.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Connection&#39;</span><span class="p">:</span> <span class="s1">&#39;keep-alive&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Content-Length&#39;</span><span class="p">:</span> <span class="s1">&#39;484&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Cache-Control&#39;</span><span class="p">:</span> <span class="s1">&#39;max-age=0&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Origin&#39;</span><span class="p">:</span> <span class="s1">&#39;http://music.163.com&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/x-www-form-urlencoded&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;*/*&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DNT&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Accept-Encoding&#39;</span><span class="p">:</span> <span class="s1">&#39;gzip, deflate&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Accept-Language&#39;</span><span class="p">:</span> <span class="s1">&#39;zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Cookie&#39;</span><span class="p">:</span> <span class="s1">&#39;JSESSIONID-WYYY=b66d89ed74ae9e94ead89b16e475556e763dd34f95e6ca357d06830a210abc7b685e82318b9d1d5b52ac4f4b9a55024c7a34024fddaee852404ed410933db994dcc0e398f61e670bfeea81105cbe098294e39ac566e1d5aa7232df741870ba1fe96e5cede8372ca587275d35c1a5d1b23a11e274a4c249afba03e20fa2dafb7a16eebdf6%3A1476373826753; _iuqxldmzr_=25; _ntes_nnid=7fa73e96706f26f3ada99abba6c4a6b2,1476372027128; _ntes_nuid=7fa73e96706f26f3ada99abba6c4a6b2; __utma=94650624.748605760.1476372027.1476372027.1476372027.1; __utmb=94650624.4.10.1476372027; __utmc=94650624; __utmz=94650624.1476372027.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+
+<span class="c1">#获取params</span>
+<span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="n">first_param</span><span class="p">,</span> <span class="n">forth_param</span><span class="p">):</span>
+    <span class="n">iv</span> <span class="o">=</span> <span class="s2">&quot;0102030405060708&quot;</span>
+    <span class="n">first_key</span> <span class="o">=</span> <span class="n">forth_param</span>
+    <span class="n">second_key</span> <span class="o">=</span> <span class="mi">16</span> <span class="o">*</span> <span class="s1">&#39;F&#39;</span>
+    <span class="n">h_encText</span> <span class="o">=</span> <span class="n">AES_encrypt</span><span class="p">(</span><span class="n">first_param</span><span class="p">,</span> <span class="n">first_key</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">iv</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+    <span class="n">h_encText</span> <span class="o">=</span> <span class="n">AES_encrypt</span><span class="p">(</span><span class="n">h_encText</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span> <span class="n">second_key</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">iv</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">h_encText</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+
+
+<span class="c1"># 获取encSecKey</span>
+<span class="k">def</span> <span class="nf">get_encSecKey</span><span class="p">():</span>
+    <span class="n">encSecKey</span> <span class="o">=</span> <span class="s2">&quot;257348aecb5e556c066de214e531faadd1c55d814f9be95fd06d6bff9f4c7a41f831f6394d5a3fd2e3881736d94a02ca919d952872e7d0a50ebfa1769a7a62d512f5f1ca21aec60bc3819a9c3ffca5eca9a0dba6d6f7249b06f5965ecfff3695b54e1c28f3f624750ed39e7de08fc8493242e26dbc4484a01c76f739e135637c&quot;</span>
+    <span class="k">return</span> <span class="n">encSecKey</span>
+
+
+<span class="c1"># 解AES秘</span>
+<span class="k">def</span> <span class="nf">AES_encrypt</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">iv</span><span class="p">):</span>
+    <span class="n">pad</span> <span class="o">=</span> <span class="mi">16</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">%</span> <span class="mi">16</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span> <span class="o">+</span> <span class="n">pad</span> <span class="o">*</span> <span class="nb">chr</span><span class="p">(</span><span class="n">pad</span><span class="p">)</span>
+    <span class="n">encryptor</span> <span class="o">=</span> <span class="n">AES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">AES</span><span class="o">.</span><span class="n">MODE_CBC</span><span class="p">,</span> <span class="n">iv</span><span class="p">)</span>
+    <span class="n">encrypt_text</span> <span class="o">=</span> <span class="n">encryptor</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+    <span class="n">encrypt_text</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">encrypt_text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">encrypt_text</span>
+
+
+<span class="c1"># 获取json数据</span>
+<span class="k">def</span> <span class="nf">get_json</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+
+
+<span class="c1"># 传入post数据</span>
+<span class="k">def</span> <span class="nf">crypt_api</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://music.163.com/weapi/v1/resource/comments/R_SO_4_</span><span class="si">%s</span><span class="s2">/?csrf_token=&quot;</span> <span class="o">%</span> <span class="nb">id</span>
+    <span class="n">first_param</span> <span class="o">=</span> <span class="s2">&quot;{rid:</span><span class="se">\&quot;\&quot;</span><span class="s2">, offset:</span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s2">, total:</span><span class="se">\&quot;</span><span class="s2">true</span><span class="se">\&quot;</span><span class="s2">, limit:</span><span class="se">\&quot;</span><span class="s2">20</span><span class="se">\&quot;</span><span class="s2">, csrf_token:</span><span class="se">\&quot;\&quot;</span><span class="s2">}&quot;</span> <span class="o">%</span> <span class="n">offset</span>
+    <span class="n">forth_param</span> <span class="o">=</span> <span class="s2">&quot;0CoJUm6Qyw8W8jud&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">get_params</span><span class="p">(</span><span class="n">first_param</span><span class="p">,</span> <span class="n">forth_param</span><span class="p">)</span>
+    <span class="n">encSecKey</span> <span class="o">=</span> <span class="n">get_encSecKey</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="n">params</span><span class="p">,</span>
+        <span class="s2">&quot;encSecKey&quot;</span><span class="p">:</span> <span class="n">encSecKey</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;516997458&#39;</span>
+<span class="n">url</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">crypt_api</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span>
+<span class="n">json_text</span> <span class="o">=</span> <span class="n">get_json</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">json_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_text</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+<span class="n">comments_sum</span> <span class="o">=</span> <span class="n">json_dict</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">]</span>
+<span class="n">comments_sum</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8054
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">json_dict</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">json_dict</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;beReplied&#39;: [],
+ &#39;commentId&#39;: 1112523641,
+ &#39;content&#39;: &#39;喜欢双笙，喜欢这首歌&#39;,
+ &#39;isRemoveHotComment&#39;: False,
+ &#39;liked&#39;: False,
+ &#39;likedCount&#39;: 1,
+ &#39;pendantData&#39;: None,
+ &#39;time&#39;: 1525904882188,
+ &#39;user&#39;: {&#39;authStatus&#39;: 0,
+  &#39;avatarUrl&#39;: &#39;http://p1.music.126.net/Eklu6D8QoR1Hb5UhLhCzPw==/109951163288324813.jpg&#39;,
+  &#39;expertTags&#39;: None,
+  &#39;experts&#39;: None,
+  &#39;locationInfo&#39;: None,
+  &#39;nickname&#39;: &#39;狂妄嘻嘻&#39;,
+  &#39;remarkName&#39;: None,
+  &#39;userId&#39;: 1451756393,
+  &#39;userType&#39;: 0,
+  &#39;vipType&#39;: 0}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">json_dict</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;beReplied&#39;: [{&#39;content&#39;: &#39;我们历史老师是一个年轻的小伙子。那是个阳光明媚的中午，他拖堂拖了很久，喇叭里响起了学校广播“校园之声”的开场白，接着就是这首歌。老师听到这首歌前奏后，自以为是地说一定是播音员自己唱的。我们都在下面反驳他，说人家歌就是这样的。。\n而现在，距中考只有58天了，毕业后，就回不去了。&#39;,
+   &#39;status&#39;: 0,
+   &#39;user&#39;: {&#39;authStatus&#39;: 0,
+    &#39;avatarUrl&#39;: &#39;http://p1.music.126.net/gm976KYbWTvYvExzjBNeaw==/109951163217371336.jpg&#39;,
+    &#39;expertTags&#39;: None,
+    &#39;experts&#39;: None,
+    &#39;locationInfo&#39;: None,
+    &#39;nickname&#39;: &#39;惴洛&#39;,
+    &#39;remarkName&#39;: None,
+    &#39;userId&#39;: 1325932231,
+    &#39;userType&#39;: 0,
+    &#39;vipType&#39;: 0}}],
+ &#39;commentId&#39;: 1112261542,
+ &#39;content&#39;: &#39;还有不到一个月了高一学姐祝你考试加油哦&#39;,
+ &#39;isRemoveHotComment&#39;: False,
+ &#39;liked&#39;: False,
+ &#39;likedCount&#39;: 0,
+ &#39;pendantData&#39;: None,
+ &#39;time&#39;: 1525876023865,
+ &#39;user&#39;: {&#39;authStatus&#39;: 0,
+  &#39;avatarUrl&#39;: &#39;http://p1.music.126.net/kAuCCkW-fcC7yu4wix9z5Q==/109951163144186242.jpg&#39;,
+  &#39;expertTags&#39;: None,
+  &#39;experts&#39;: None,
+  &#39;locationInfo&#39;: None,
+  &#39;nickname&#39;: &#39;土园yy&#39;,
+  &#39;remarkName&#39;: None,
+  &#39;userId&#39;: 275653796,
+  &#39;userType&#39;: 0,
+  &#39;vipType&#39;: 0}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">offset</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;516997458&#39;</span>
+<span class="n">url</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">crypt_api</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span>
+<span class="n">json_text</span> <span class="o">=</span> <span class="n">get_json</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">json_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_text</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+<span class="n">comments_sum</span> <span class="o">=</span> <span class="n">json_dict</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">]</span>
+<span class="n">json_dict</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;beReplied&#39;: [],
+ &#39;commentId&#39;: 1107837178,
+ &#39;content&#39;: &#39;冥月声音好听好温柔[爱心]表白&#39;,
+ &#39;isRemoveHotComment&#39;: False,
+ &#39;liked&#39;: False,
+ &#39;likedCount&#39;: 3,
+ &#39;pendantData&#39;: None,
+ &#39;time&#39;: 1525515089450,
+ &#39;user&#39;: {&#39;authStatus&#39;: 0,
+  &#39;avatarUrl&#39;: &#39;http://p1.music.126.net/suhvzXk2pEUOaeHUPU0aQQ==/109951163173870029.jpg&#39;,
+  &#39;expertTags&#39;: None,
+  &#39;experts&#39;: None,
+  &#39;locationInfo&#39;: None,
+  &#39;nickname&#39;: &#39;黴祇&#39;,
+  &#39;remarkName&#39;: None,
+  &#39;userId&#39;: 619018018,
+  &#39;userType&#39;: 0,
+  &#39;vipType&#39;: 0}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">offset</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;516997458&#39;</span>
+<span class="n">url</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">crypt_api</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span>
+<span class="n">json_text</span> <span class="o">=</span> <span class="n">get_json</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">json_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_text</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+<span class="n">comments_sum</span> <span class="o">=</span> <span class="n">json_dict</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">]</span>
+<span class="n">json_dict</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;beReplied&#39;: [],
+ &#39;commentId&#39;: 1102303635,
+ &#39;content&#39;: &#39;找这首歌找了好久了！！无厘头的找，今天无意居然听到了(*^▽^)/★*☆&#39;,
+ &#39;isRemoveHotComment&#39;: False,
+ &#39;liked&#39;: False,
+ &#39;likedCount&#39;: 1,
+ &#39;pendantData&#39;: None,
+ &#39;time&#39;: 1525072647936,
+ &#39;user&#39;: {&#39;authStatus&#39;: 0,
+  &#39;avatarUrl&#39;: &#39;http://p1.music.126.net/fU8tvMVN2f5WkSUZehQ21Q==/3274345636764863.jpg&#39;,
+  &#39;expertTags&#39;: None,
+  &#39;experts&#39;: None,
+  &#39;locationInfo&#39;: None,
+  &#39;nickname&#39;: &#39;黎诺0&#39;,
+  &#39;remarkName&#39;: None,
+  &#39;userId&#39;: 129375977,
+  &#39;userType&#39;: 0,
+  &#39;vipType&#39;: 0}}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="04-crawler-cppcc.html" title="previous page">抓取江苏省政协十年提案</a>
+    <a class='right-next' id="next-link" href="04-crawler-selenium.html" title="next page">使用Selenium操纵浏览器</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

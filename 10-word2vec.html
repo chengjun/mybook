@@ -1,0 +1,1714 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>词向量模型简介 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Doc2Vec" href="10-doc2vec.html" />
+    <link rel="prev" title="第八章 文本挖掘" href="10-text-minning-gov-report.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     词向量模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-doc2vec.html">
+     Doc2Vec
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">
+     基于字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-2-emotion-dict.html">
+     大连理工大学中文情感词汇
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-NRC-Chinese-dict.html">
+     基于NRC字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-textblob.html">
+     利用textblob进行情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-4-sentiment-classifier.html">
+     基于机器学习的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-5-LIWC.html">
+     LIWC: Linguistic Inquiry and Word Count  analyzer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-update.html">
+     主题模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-with-turicreate.html">
+     使用Turicreate建立主题模型
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/10-word2vec.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F10-word2vec.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/10-word2vec.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/10-word2vec.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-geometry-of-culture">
+   The Geometry of Culture
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#histwords">
+   HistWords
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#word-embeddings-quantify-100-years-of-gender-and-ethnic-stereotypes">
+   Word embeddings quantify 100 years of gender and ethnic stereotypes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-illustrated-word2vec">
+   The Illustrated Word2vec
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#personality-embeddings">
+   Personality Embeddings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cosine-similarity">
+   Cosine Similarity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#word-embeddings">
+   Word Embeddings
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#google-news-word2vec">
+     Google News Word2Vec
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-neural-language-model">
+   The neural language model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#language-model-training">
+     Language Model Training
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#skip-gram">
+     Skip-gram
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#negative-sampling">
+     Negative Sampling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#word2vec-training-process">
+     Word2vec Training Process
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pytorch-word2vec">
+   Pytorch word2vec
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ngram">
+   NGram词向量模型
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gensim-word2vec">
+   Gensim Word2vec
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>词向量模型简介<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>Introduction to Word Embeddings: Analyzing Meaning through Word Embeddings</p>
+<p><strong>Using vectors to represent things</strong></p>
+<ul class="simple">
+<li><p>one of the most fascinating ideas in machine learning.</p></li>
+<li><p>Word2vec is a method to efficiently create word embeddings.</p>
+<ul>
+<li><p>Mikolov et al. (2013). <a class="reference external" href="https://arxiv.org/pdf/1301.3781.pdf">Efficient Estimation of Word Representations in Vector Space</a></p></li>
+<li><p>Mikolov et al. (2013). <a class="reference external" href="https://arxiv.org/pdf/1310.4546.pdf">Distributed representations of words and phrases and their compositionality</a></p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="the-geometry-of-culture">
+<h2>The Geometry of Culture<a class="headerlink" href="#the-geometry-of-culture" title="Permalink to this headline">¶</a></h2>
+<p>Analyzing Meaning through Word Embeddings</p>
+<p>Austin C. Kozlowski; Matt Taddy; James A. Evans</p>
+<p>https://arxiv.org/abs/1803.09288</p>
+<p>Word embeddings represent <strong>semantic relations</strong> between words as <strong>geometric relationships</strong> between vectors in a high-dimensional space, operationalizing a relational model of meaning consistent with contemporary theories of identity and culture.</p>
+<ul class="simple">
+<li><p>Dimensions induced by word differences (e.g. man - woman, rich - poor, black - white, liberal - conservative) in these vector spaces closely correspond to dimensions of cultural meaning,</p></li>
+<li><p>Macro-cultural investigation with a longitudinal analysis of the coevolution of gender and class associations in the United States over the 20th century</p></li>
+</ul>
+<p>The success of these high-dimensional models motivates a move towards “high-dimensional theorizing” of meanings, identities and cultural processes.</p>
+<a class="reference internal image-reference" href="_images/gender_class.png"><img alt="_images/gender_class.png" src="_images/gender_class.png" style="width: 700px;" /></a>
+</div>
+<div class="section" id="histwords">
+<h2>HistWords<a class="headerlink" href="#histwords" title="Permalink to this headline">¶</a></h2>
+<p>HistWords is a collection of tools and datasets for analyzing language change using word vector embeddings.</p>
+<ul class="simple">
+<li><p>The goal of this project is to facilitate quantitative research in diachronic linguistics, history, and the digital humanities.</p></li>
+<li><p>We used the historical word vectors in HistWords to study the semantic evolution of more than 30,000 words across 4 languages.</p></li>
+<li><p>This study led us to propose two statistical laws that govern the evolution of word meaning</p></li>
+</ul>
+<p>https://nlp.stanford.edu/projects/histwords/</p>
+<p>https://github.com/williamleif/histwords</p>
+<p><strong>Diachronic Word Embeddings Reveal Statistical Laws of Semantic Change</strong></p>
+<a class="reference internal image-reference" href="_images/wordpaths-final.png"><img alt="_images/wordpaths-final.png" src="_images/wordpaths-final.png" style="width: 900px;" /></a>
+</div>
+<div class="section" id="word-embeddings-quantify-100-years-of-gender-and-ethnic-stereotypes">
+<h2>Word embeddings quantify 100 years of gender and ethnic stereotypes<a class="headerlink" href="#word-embeddings-quantify-100-years-of-gender-and-ethnic-stereotypes" title="Permalink to this headline">¶</a></h2>
+<p>http://www.pnas.org/content/early/2018/03/30/1720347115</p>
+<a class="reference internal image-reference" href="_images/sex.png"><img alt="_images/sex.png" src="_images/sex.png" style="width: 500px;" /></a>
+</div>
+<div class="section" id="the-illustrated-word2vec">
+<h2>The Illustrated Word2vec<a class="headerlink" href="#the-illustrated-word2vec" title="Permalink to this headline">¶</a></h2>
+<p>Jay Alammar.  https://jalammar.github.io/illustrated-word2vec/</p>
+</div>
+<div class="section" id="personality-embeddings">
+<h2>Personality Embeddings<a class="headerlink" href="#personality-embeddings" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>What are you like?</p>
+</div></blockquote>
+<p><strong>Big Five personality traits</strong>: openness to experience, conscientiousness, extraversion, agreeableness, and neuroticism</p>
+<ul class="simple">
+<li><p>the five-factor model (FFM)</p></li>
+<li><p><strong>the OCEAN model</strong></p></li>
+</ul>
+<ul class="simple">
+<li><p>开放性（openness）：具有想象、审美、情感丰富、求异、创造、智能等特质。</p></li>
+<li><p>责任心（conscientiousness）：显示胜任、公正、条理、尽职、成就、自律、谨慎、克制等特点。</p></li>
+<li><p>外倾性（extraversion）：表现出热情、社交、果断、活跃、冒险、乐观等特质。</p></li>
+<li><p>宜人性（agreeableness）：具有信任、利他、直率、依从、谦虚、移情等特质。</p></li>
+<li><p>神经质或情绪稳定性（neuroticism）：具有平衡焦虑、敌对、压抑、自我意识、冲动、脆弱等情绪的特质，即具有保持情绪稳定的能力。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Personality Embeddings: What are you like?</span>
+<span class="n">jay</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]</span>
+<span class="n">john</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]</span>
+<span class="n">mike</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="cosine-similarity">
+<h2>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Permalink to this headline">¶</a></h2>
+<p>The cosine of two non-zero vectors can be derived by using the Euclidean dot product formula:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{A}\cdot\mathbf{B}
+=\left\|\mathbf{A}\right\|\left\|\mathbf{B}\right\|\cos\theta
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{similarity} = \cos(\theta) = {\mathbf{A} \cdot \mathbf{B} \over \|\mathbf{A}\| \|\mathbf{B}\|} = \frac{ \sum\limits_{i=1}^{n}{A_i  B_i} }{ \sqrt{\sum\limits_{i=1}^{n}{A_i^2}}  \sqrt{\sum\limits_{i=1}^{n}{B_i^2}} },
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(A_i\)</span> and <span class="math notranslate nohighlight">\(B_i\)</span> are components of vector <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">dot</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span>
+
+<span class="k">def</span> <span class="nf">cos_sim</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">norm</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+
+<span class="n">cos_sim</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.4999999999999999
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+
+<span class="n">cosine_similarity</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.5]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="math notranslate nohighlight">
+\[CosineDistance = 1- CosineSimilarity\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">spatial</span>
+<span class="c1"># spatial.distance.cosine computes </span>
+<span class="c1"># the Cosine distance between 1-D arrays.</span>
+<span class="mi">1</span><span class="o">-</span><span class="n">spatial</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">cosine</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cos_sim</span><span class="p">(</span><span class="n">jay</span><span class="p">,</span> <span class="n">john</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6582337075311759
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cos_sim</span><span class="p">(</span><span class="n">jay</span><span class="p">,</span> <span class="n">mike</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.3683509554826695
+</pre></div>
+</div>
+</div>
+</div>
+<p>Cosine similarity works for any number of dimensions.</p>
+<ul class="simple">
+<li><p>We can represent people (and things) as vectors of numbers (which is great for machines!).</p></li>
+<li><p>We can easily calculate how similar vectors are to each other.</p></li>
+</ul>
+</div>
+<div class="section" id="word-embeddings">
+<h2>Word Embeddings<a class="headerlink" href="#word-embeddings" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="google-news-word2vec">
+<h3>Google News Word2Vec<a class="headerlink" href="#google-news-word2vec" title="Permalink to this headline">¶</a></h3>
+<p>You can download Google’s pre-trained model here.</p>
+<ul class="simple">
+<li><p>It’s 1.5GB!</p></li>
+<li><p>It includes word vectors for a vocabulary of 3 million words and phrases</p></li>
+<li><p>It is trained on roughly 100 billion words from a Google News dataset.</p></li>
+<li><p>The vector length is 300 features.</p></li>
+</ul>
+<p>http://mccormickml.com/2016/04/12/googles-pretrained-word2vec-model-in-python/</p>
+<p>Using the <strong>Gensim</strong> library in python, we can</p>
+<ul class="simple">
+<li><p>find the most similar words to the resulting vector.</p></li>
+<li><p>add and subtract word vectors,</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gensim</span>
+<span class="c1"># Load Google&#39;s pre-trained Word2Vec model.</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;/Users/datalab/bigdata/GoogleNews-vectors-negative300.bin&#39;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">gensim</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">KeyedVectors</span><span class="o">.</span><span class="n">load_word2vec_format</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;woman&#39;</span><span class="p">][:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.24316406, -0.07714844, -0.10302734], dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s1">&#39;woman&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;man&#39;, 0.7664012312889099),
+ (&#39;girl&#39;, 0.7494640946388245),
+ (&#39;teenage_girl&#39;, 0.7336829900741577),
+ (&#39;teenager&#39;, 0.631708562374115),
+ (&#39;lady&#39;, 0.6288785934448242),
+ (&#39;teenaged_girl&#39;, 0.6141784191131592),
+ (&#39;mother&#39;, 0.607630729675293),
+ (&#39;policewoman&#39;, 0.6069462299346924),
+ (&#39;boy&#39;, 0.5975908041000366),
+ (&#39;Woman&#39;, 0.5770983099937439)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">similarity</span><span class="p">(</span><span class="s1">&#39;woman&#39;</span><span class="p">,</span> <span class="s1">&#39;man&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.76640123
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cos_sim</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;woman&#39;</span><span class="p">],</span> <span class="n">model</span><span class="p">[</span><span class="s1">&#39;man&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.76640123
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;woman&#39;</span><span class="p">,</span> <span class="s1">&#39;king&#39;</span><span class="p">],</span> <span class="n">negative</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;man&#39;</span><span class="p">],</span> <span class="n">topn</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;queen&#39;, 0.7118192911148071),
+ (&#39;monarch&#39;, 0.6189674139022827),
+ (&#39;princess&#39;, 0.5902431607246399),
+ (&#39;crown_prince&#39;, 0.5499460697174072),
+ (&#39;prince&#39;, 0.5377321243286133)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="math notranslate nohighlight">
+\[King- Queen = Man - Woman\]</div>
+<a class="reference internal image-reference" href="_images/word2vec.png"><img alt="_images/word2vec.png" src="_images/word2vec.png" style="width: 700px;" /></a>
+<p>Now that we’ve looked at trained word embeddings,</p>
+<ul class="simple">
+<li><p>let’s learn more about the training process.</p></li>
+<li><p>But before we get to word2vec, we need to look at a conceptual parent of word embeddings: <strong>the neural language model</strong>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="the-neural-language-model">
+<h2>The neural language model<a class="headerlink" href="#the-neural-language-model" title="Permalink to this headline">¶</a></h2>
+<p>“You shall know a word by the company it keeps” J.R. Firth</p>
+<blockquote>
+<div><p>Bengio 2003 A Neural Probabilistic Language Model. Journal of Machine Learning Research. 3:1137–1155</p>
+</div></blockquote>
+<p>After being trained, early neural language models (Bengio 2003) would calculate a prediction in three steps:</p>
+<a class="reference internal image-reference" href="_images/neural-language-model-prediction.png"><img alt="_images/neural-language-model-prediction.png" src="_images/neural-language-model-prediction.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/bengio.png"><img alt="_images/bengio.png" src="_images/bengio.png" style="width: 400px;" /></a>
+<p>The output of the neural language model is a probability score for all the words the model knows.</p>
+<ul class="simple">
+<li><p>We’re referring to the probability as a percentage here,</p></li>
+<li><p>but 40% would actually be represented as 0.4 in the output vector.</p></li>
+</ul>
+<div class="section" id="language-model-training">
+<h3>Language Model Training<a class="headerlink" href="#language-model-training" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>We get a lot of text data (say, all Wikipedia articles, for example). then</p></li>
+<li><p>We have a window (say, of three words) that we slide against all of that text.</p></li>
+<li><p>The sliding window generates training samples for our model</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/lm-sliding-window-4.png"><img alt="_images/lm-sliding-window-4.png" src="_images/lm-sliding-window-4.png" style="width: 700px;" /></a>
+<p>As this window slides against the text, we (virtually) generate a dataset that we use to train a model.</p>
+<p>Instead of only looking two words before the target word, we can also look at two words after it.</p>
+<a class="reference internal image-reference" href="_images/continuous-bag-of-words-example.png"><img alt="_images/continuous-bag-of-words-example.png" src="_images/continuous-bag-of-words-example.png" style="width: 700px;" /></a>
+<p>If we do this, the dataset we’re virtually building and training the model against would look like this:</p>
+<a class="reference internal image-reference" href="_images/continuous-bag-of-words-dataset.png"><img alt="_images/continuous-bag-of-words-dataset.png" src="_images/continuous-bag-of-words-dataset.png" style="width: 700px;" /></a>
+<p>This is called a <strong>Continuous Bag of Words</strong> (CBOW) https://arxiv.org/pdf/1301.3781.pdf</p>
+</div>
+<div class="section" id="skip-gram">
+<h3>Skip-gram<a class="headerlink" href="#skip-gram" title="Permalink to this headline">¶</a></h3>
+<p>Instead of guessing a word based on its context (the words before and after it), this other architecture tries to guess neighboring words using the current word.</p>
+<a class="reference internal image-reference" href="_images/skipgram.png"><img alt="_images/skipgram.png" src="_images/skipgram.png" style="width: 700px;" /></a>
+<p>https://arxiv.org/pdf/1301.3781.pdf</p>
+<a class="reference internal image-reference" href="_images/cbow.png"><img alt="_images/cbow.png" src="_images/cbow.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/skipgram-sliding-window-samples.png"><img alt="_images/skipgram-sliding-window-samples.png" src="_images/skipgram-sliding-window-samples.png" style="width: 700px;" /></a>
+<p>The pink boxes are in different shades because this sliding window actually creates four separate samples in our training dataset.</p>
+<ul class="simple">
+<li><p>We then slide our window to the next position:</p></li>
+<li><p>Which generates our next four examples:</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/skipgram-language-model-training.png"><img alt="_images/skipgram-language-model-training.png" src="_images/skipgram-language-model-training.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/skipgram-language-model-training-4.png"><img alt="_images/skipgram-language-model-training-4.png" src="_images/skipgram-language-model-training-4.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/skipgram-language-model-training-5.png"><img alt="_images/skipgram-language-model-training-5.png" src="_images/skipgram-language-model-training-5.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/language-model-expensive.png"><img alt="_images/language-model-expensive.png" src="_images/language-model-expensive.png" style="width: 700px;" /></a>
+</div>
+<div class="section" id="negative-sampling">
+<h3>Negative Sampling<a class="headerlink" href="#negative-sampling" title="Permalink to this headline">¶</a></h3>
+<p>And switch it to a model that takes the input and output word, and outputs a score indicating <strong>if they’re neighbors or not</strong></p>
+<ul class="simple">
+<li><p>0 for “not neighbors”, 1 for “neighbors”.</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/are-the-words-neighbors.png"><img alt="_images/are-the-words-neighbors.png" src="_images/are-the-words-neighbors.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/word2vec-negative-sampling-2.png"><img alt="_images/word2vec-negative-sampling-2.png" src="_images/word2vec-negative-sampling-2.png" style="width: 700px;" /></a>
+<p>we need to introduce negative samples to our dataset</p>
+<ul class="simple">
+<li><p>samples of words that are not neighbors.</p></li>
+<li><p>Our model needs to return 0 for those samples.</p></li>
+<li><p>This leads to a great tradeoff of computational and statistical efficiency.</p></li>
+</ul>
+<p><strong>Skipgram with Negative Sampling (SGNS)</strong></p>
+</div>
+<div class="section" id="word2vec-training-process">
+<h3>Word2vec Training Process<a class="headerlink" href="#word2vec-training-process" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/word2vec-training-update.png"><img alt="_images/word2vec-training-update.png" src="_images/word2vec-training-update.png" style="width: 700px;" /></a>
+</div>
+</div>
+<div class="section" id="pytorch-word2vec">
+<h2>Pytorch word2vec<a class="headerlink" href="#pytorch-word2vec" title="Permalink to this headline">¶</a></h2>
+<p>https://github.com/jojonki/word2vec-pytorch/blob/master/word2vec.ipynb</p>
+<p>https://github.com/bamtercelboo/pytorch_word2vec/blob/master/model.py</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># see http://pytorch.org/tutorials/beginner/nlp/word_embeddings_tutorial.html</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="kn">import</span> <span class="n">Variable</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;torch._C.Generator at 0x116c571d0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;We are about to study the idea of a computational process.</span>
+<span class="s2">Computational processes are abstract beings that inhabit computers.</span>
+<span class="s2">As they evolve, processes manipulate other abstract things called data.</span>
+<span class="s2">The evolution of a process is directed by a pattern of rules</span>
+<span class="s2">called a program. People create programs to direct processes. In effect,</span>
+<span class="s2">we conjure the spirits of the computer with our spells.&quot;&quot;&quot;</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># By deriving a set from `raw_text`, we deduplicate the array</span>
+<span class="n">vocab</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="n">vocab_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;vocab_size:&#39;</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">)</span>
+
+<span class="n">w2i</span> <span class="o">=</span> <span class="p">{</span><span class="n">w</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vocab</span><span class="p">)}</span>
+<span class="n">i2w</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">w</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vocab</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vocab_size: 44
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># context window size is two</span>
+<span class="k">def</span> <span class="nf">create_cbow_dataset</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">[</span><span class="n">text</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">],</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
+                   <span class="n">text</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]]</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">context</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="n">cbow_train</span> <span class="o">=</span> <span class="n">create_cbow_dataset</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;cbow sample&#39;</span><span class="p">,</span> <span class="n">cbow_train</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cbow sample ([&#39;we&#39;, &#39;are&#39;, &#39;to&#39;, &#39;study&#39;], &#39;about&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_skipgram_dataset</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">random</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="c1"># negative sampling</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">rand_id</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">rand_id</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">text</span><span class="p">[</span><span class="n">rand_id</span><span class="p">],</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="n">skipgram_train</span> <span class="o">=</span> <span class="n">create_skipgram_dataset</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;skipgram sample&#39;</span><span class="p">,</span> <span class="n">skipgram_train</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>skipgram sample (&#39;about&#39;, &#39;we&#39;, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CBOW</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">embd_size</span><span class="p">,</span> <span class="n">context_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CBOW</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embd_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">context_size</span><span class="o">*</span><span class="n">embd_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="n">embedded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">hid</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear1</span><span class="p">(</span><span class="n">embedded</span><span class="p">))</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear2</span><span class="p">(</span><span class="n">hid</span><span class="p">)</span>
+        <span class="n">log_probs</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">log_probs</span>
+    
+    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="n">embeds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">embeds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SkipGram</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">embd_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SkipGram</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embd_size</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">focus</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="n">embed_focus</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">focus</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># input</span>
+        <span class="n">embed_ctx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">context</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># output</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">embed_focus</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="n">embed_ctx</span><span class="p">))</span> <span class="c1"># input*output</span>
+        <span class="n">log_probs</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">logsigmoid</span><span class="p">(</span><span class="n">score</span><span class="p">)</span> <span class="c1"># sigmoid</span>
+        <span class="k">return</span> <span class="n">log_probs</span>
+    
+    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">focus</span><span class="p">):</span>
+        <span class="n">embed_focus</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">focus</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">embed_focus</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">torch.mm</span></code> Performs a matrix multiplication of the matrices</p>
+<p><code class="docutils literal notranslate"><span class="pre">torch.t</span></code> Expects :attr:<code class="docutils literal notranslate"><span class="pre">input</span></code> to be a matrix (2-D tensor) and transposes dimensions 0
+and 1. Can be seen as a short-hand function for <code class="docutils literal notranslate"><span class="pre">transpose(input,</span> <span class="pre">0,</span> <span class="pre">1)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">embd_size</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">n_epoch</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">CONTEXT_SIZE</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 2 words to the left, 2 to the right</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train_cbow</span><span class="p">():</span>
+    <span class="n">hidden_size</span> <span class="o">=</span> <span class="mi">64</span>
+    <span class="n">losses</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">NLLLoss</span><span class="p">()</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">CBOW</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embd_size</span><span class="p">,</span> <span class="n">CONTEXT_SIZE</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epoch</span><span class="p">):</span>
+        <span class="n">total_loss</span> <span class="o">=</span> <span class="o">.</span><span class="mi">0</span>
+        <span class="k">for</span> <span class="n">context</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">cbow_train</span><span class="p">:</span>
+            <span class="n">ctx_idxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">w2i</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">context</span><span class="p">]</span>
+            <span class="n">ctx_var</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">ctx_idxs</span><span class="p">))</span>
+
+            <span class="n">model</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+            <span class="n">log_probs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">ctx_var</span><span class="p">)</span>
+
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">log_probs</span><span class="p">,</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span><span class="n">w2i</span><span class="p">[</span><span class="n">target</span><span class="p">]])))</span>
+
+            <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+            <span class="n">total_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="n">losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_loss</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">losses</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train_skipgram</span><span class="p">():</span>
+    <span class="n">losses</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">SkipGram</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embd_size</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epoch</span><span class="p">):</span>
+        <span class="n">total_loss</span> <span class="o">=</span> <span class="o">.</span><span class="mi">0</span>
+        <span class="k">for</span> <span class="n">in_w</span><span class="p">,</span> <span class="n">out_w</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">skipgram_train</span><span class="p">:</span>
+            <span class="n">in_w_var</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span><span class="n">w2i</span><span class="p">[</span><span class="n">in_w</span><span class="p">]]))</span>
+            <span class="n">out_w_var</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span><span class="n">w2i</span><span class="p">[</span><span class="n">out_w</span><span class="p">]]))</span>
+            
+            <span class="n">model</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+            <span class="n">log_probs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">in_w_var</span><span class="p">,</span> <span class="n">out_w_var</span><span class="p">)</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">log_probs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="n">target</span><span class="p">])))</span>
+            
+            <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+            <span class="n">total_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="n">losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_loss</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">losses</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cbow_model</span><span class="p">,</span> <span class="n">cbow_losses</span> <span class="o">=</span> <span class="n">train_cbow</span><span class="p">()</span>
+<span class="n">sg_model</span><span class="p">,</span> <span class="n">sg_losses</span> <span class="o">=</span> <span class="n">train_skipgram</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CBOW(
+  (embeddings): Embedding(44, 100)
+  (linear1): Linear(in_features=400, out_features=64, bias=True)
+  (linear2): Linear(in_features=64, out_features=44, bias=True)
+)
+SkipGram(
+  (embeddings): Embedding(44, 100)
+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_epoch</span><span class="p">),</span> <span class="n">cbow_losses</span><span class="p">,</span> <span class="s1">&#39;r-o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;CBOW Losses&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_epoch</span><span class="p">),</span> <span class="n">sg_losses</span><span class="p">,</span> <span class="s1">&#39;g-s&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;SkipGram Losses&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-word2vec_68_0.png" src="_images/10-word2vec_68_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cbow_vec</span> <span class="o">=</span> <span class="n">cbow_model</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">w2i</span><span class="o">.</span><span class="n">values</span><span class="p">()])))</span>
+<span class="n">cbow_vec</span> <span class="o">=</span> <span class="n">cbow_vec</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">cbow_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sg_vec</span> <span class="o">=</span> <span class="n">sg_model</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">w2i</span><span class="o">.</span><span class="n">values</span><span class="p">()])))</span>
+<span class="n">sg_vec</span> <span class="o">=</span> <span class="n">sg_vec</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">sg_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 利用PCA算法进行降维</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="n">X_reduced</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">sg_vec</span><span class="p">)</span>
+
+<span class="c1"># 绘制所有单词向量的二维空间投影</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_reduced</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_reduced</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="c1"># 绘制几个特殊单词的向量</span>
+<span class="n">words</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">w2i</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="c1"># 设置中文字体，否则无法在图形上显示中文</span>
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">w2i</span><span class="p">:</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">w2i</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="n">X_reduced</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-word2vec_71_0.png" src="_images/10-word2vec_71_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="ngram">
+<h2>NGram词向量模型<a class="headerlink" href="#ngram" title="Permalink to this headline">¶</a></h2>
+<p>本文件是集智AI学园http://campus.swarma.org 出品的“火炬上的深度学习”第VI课的配套源代码</p>
+<p>原理：利用一个人工神经网络来根据前N个单词来预测下一个单词，从而得到每个单词的词向量</p>
+<p>以刘慈欣著名的科幻小说《三体》为例，来展示利用NGram模型训练词向量的方法</p>
+<ul class="simple">
+<li><p>预处理分为两个步骤：1、读取文件、2、分词、3、将语料划分为N＋1元组，准备好训练用数据</p></li>
+<li><p>在这里，我们并没有去除标点符号，一是为了编程简洁，而是考虑到分词会自动将标点符号当作一个单词处理，因此不需要额外考虑。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../data/3body.txt&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jieba</span><span class="o">,</span> <span class="nn">re</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">lcut</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="n">words</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">temp</span><span class="p">:</span>
+    <span class="c1">#过滤掉所有的标点符号</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;[\s+\.\!\/_,$%^*(+</span><span class="se">\&quot;\&#39;</span><span class="s2">””《》]+|[+——！，。？、~@#￥%……&amp;*（）：]+&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7754
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;八万五千三体时（约8.6个地球年）后。\n\n元首下令召开三体世界全体执政官紧急会议，这很不寻常，一定有什么重大的事件发生。\n\n两万三体时前，三体舰队启航了，它们只知道目标的大致方向，却不知道它的距离。也&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">words</span><span class="p">[:</span><span class="mi">50</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>八万五千 三体 时 约 86 个 地球 年 后 元首 下令 召开 三体 世界 全体 执政官 紧急会议 这 很 不 寻常 一定 有 什么 重大 的 事件 发生 两万 三体 时前 三体 舰队 启航 了 它们 只 知道 目标 的 大致 方向 却 不 知道 它 的 距离 也许 目标
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trigrams</span> <span class="o">=</span> <span class="p">[([</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">words</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)]</span>
+<span class="c1"># 打印出前三个元素看看</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">trigrams</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[([&#39;八万五千&#39;, &#39;三体&#39;], &#39;时&#39;), ([&#39;三体&#39;, &#39;时&#39;], &#39;约&#39;), ([&#39;时&#39;, &#39;约&#39;], &#39;86&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 得到词汇表</span>
+<span class="n">vocab</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">))</span>
+<span class="n">word_to_idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:[</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vocab</span><span class="p">)}</span> 
+<span class="n">idx_to_word</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span><span class="n">i</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vocab</span><span class="p">)}</span>
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+     <span class="n">word_to_idx</span><span class="p">[</span><span class="n">w</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2000
+</pre></div>
+</div>
+</div>
+</div>
+<p>构造NGram神经网络模型 (三层的网络)</p>
+<ol class="simple">
+<li><p>输入层：embedding层，这一层的作用是：先将输入单词的编号映射为一个one hot编码的向量，形如：001000，维度为单词表大小。
+然后，embedding会通过一个线性的神经网络层映射到这个词的向量表示，输出为embedding_dim</p></li>
+<li><p>线性层，从embedding_dim维度到128维度，然后经过非线性ReLU函数</p></li>
+<li><p>线性层：从128维度到单词表大小维度，然后log softmax函数，给出预测每个单词的概率</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="kn">import</span> <span class="n">Variable</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="k">class</span> <span class="nc">NGram</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">,</span> <span class="n">context_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">NGram</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">)</span>  <span class="c1">#嵌入层</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">context_size</span> <span class="o">*</span> <span class="n">embedding_dim</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span> <span class="c1">#线性层</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">)</span> <span class="c1">#线性层</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="c1">#嵌入运算，嵌入运算在内部分为两步：将输入的单词编码映射为one hot向量表示，然后经过一个线性层得到单词的词向量</span>
+        <span class="n">embeds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># 线性层加ReLU</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear1</span><span class="p">(</span><span class="n">embeds</span><span class="p">))</span>
+        
+        <span class="c1"># 线性层加Softmax</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear2</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">log_probs</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">log_probs</span>
+    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="n">embeds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">embeds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">losses</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#纪录每一步的损失函数</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">NLLLoss</span><span class="p">()</span> <span class="c1">#运用负对数似然函数作为目标函数（常用于多分类问题的目标函数）</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">NGram</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">),</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">#定义NGram模型，向量嵌入维数为10维，N（窗口大小）为2</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span> <span class="c1">#使用随机梯度下降算法作为优化器 </span>
+<span class="c1">#循环100个周期</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">total_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">context</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">trigrams</span><span class="p">:</span>
+        <span class="c1"># 准备好输入模型的数据，将词汇映射为编码</span>
+        <span class="n">context_idxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">word_to_idx</span><span class="p">[</span><span class="n">w</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">context</span><span class="p">]</span>
+        <span class="c1"># 包装成PyTorch的Variable</span>
+        <span class="n">context_var</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">context_idxs</span><span class="p">))</span>
+        <span class="c1"># 清空梯度：注意PyTorch会在调用backward的时候自动积累梯度信息，故而每隔周期要清空梯度信息一次。</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="c1"># 用神经网络做计算，计算得到输出的每个单词的可能概率对数值</span>
+        <span class="n">log_probs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">context_var</span><span class="p">)</span>
+        <span class="c1"># 计算损失函数，同样需要把目标数据转化为编码，并包装为Variable</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">log_probs</span><span class="p">,</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span><span class="n">word_to_idx</span><span class="p">[</span><span class="n">target</span><span class="p">][</span><span class="mi">0</span><span class="p">]])))</span>
+        <span class="c1"># 梯度反传</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="c1"># 对网络进行优化</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="c1"># 累加损失函数值</span>
+        <span class="n">total_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_loss</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;第</span><span class="si">{}</span><span class="s1">轮，损失函数为：</span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">total_loss</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>第0轮，损失函数为：56704.61
+第1轮，损失函数为：53935.28
+第2轮，损失函数为：52241.16
+第3轮，损失函数为：51008.51
+第4轮，损失函数为：50113.76
+第5轮，损失函数为：49434.07
+第6轮，损失函数为：48879.33
+第7轮，损失函数为：48404.71
+第8轮，损失函数为：47983.95
+第9轮，损失函数为：47600.01
+第10轮，损失函数为：47240.32
+第11轮，损失函数为：46897.53
+第12轮，损失函数为：46566.24
+第13轮，损失函数为：46241.59
+第14轮，损失函数为：45920.18
+第15轮，损失函数为：45599.50
+第16轮，损失函数为：45277.74
+第17轮，损失函数为：44953.10
+第18轮，损失函数为：44624.41
+第19轮，损失函数为：44290.34
+第20轮，损失函数为：43950.63
+第21轮，损失函数为：43604.48
+第22轮，损失函数为：43251.90
+第23轮，损失函数为：42891.99
+第24轮，损失函数为：42524.64
+第25轮，损失函数为：42149.46
+第26轮，损失函数为：41766.14
+第27轮，损失函数为：41374.89
+第28轮，损失函数为：40975.62
+第29轮，损失函数为：40568.36
+第30轮，损失函数为：40153.31
+第31轮，损失函数为：39730.61
+第32轮，损失函数为：39300.70
+第33轮，损失函数为：38863.39
+第34轮，损失函数为：38419.11
+第35轮，损失函数为：37968.16
+第36轮，损失函数为：37510.99
+第37轮，损失函数为：37048.06
+第38轮，损失函数为：36579.82
+第39轮，损失函数为：36106.78
+第40轮，损失函数为：35629.46
+第41轮，损失函数为：35148.57
+第42轮，损失函数为：34665.39
+第43轮，损失函数为：34180.25
+第44轮，损失函数为：33693.93
+第45轮，损失函数为：33207.48
+第46轮，损失函数为：32721.72
+第47轮，损失函数为：32237.36
+第48轮，损失函数为：31755.00
+第49轮，损失函数为：31275.05
+第50轮，损失函数为：30798.38
+第51轮，损失函数为：30325.62
+第52轮，损失函数为：29857.59
+第53轮，损失函数为：29394.65
+第54轮，损失函数为：28937.08
+第55轮，损失函数为：28485.72
+第56轮，损失函数为：28041.07
+第57轮，损失函数为：27603.33
+第58轮，损失函数为：27173.14
+第59轮，损失函数为：26750.82
+第60轮，损失函数为：26336.92
+第61轮，损失函数为：25931.60
+第62轮，损失函数为：25534.87
+第63轮，损失函数为：25147.07
+第64轮，损失函数为：24768.02
+第65轮，损失函数为：24397.92
+第66轮，损失函数为：24036.68
+第67轮，损失函数为：23684.69
+第68轮，损失函数为：23341.30
+第69轮，损失函数为：23006.46
+第70轮，损失函数为：22680.18
+第71轮，损失函数为：22361.95
+第72轮，损失函数为：22051.86
+第73轮，损失函数为：21749.46
+第74轮，损失函数为：21454.48
+第75轮，损失函数为：21167.06
+第76轮，损失函数为：20886.72
+第77轮，损失函数为：20613.04
+第78轮，损失函数为：20346.13
+第79轮，损失函数为：20085.52
+第80轮，损失函数为：19831.27
+第81轮，损失函数为：19583.16
+第82轮，损失函数为：19341.03
+第83轮，损失函数为：19104.43
+第84轮，损失函数为：18873.11
+第85轮，损失函数为：18646.91
+第86轮，损失函数为：18425.87
+第87轮，损失函数为：18209.80
+第88轮，损失函数为：17998.34
+第89轮，损失函数为：17791.97
+第90轮，损失函数为：17589.94
+第91轮，损失函数为：17392.24
+第92轮，损失函数为：17199.04
+第93轮，损失函数为：17009.97
+第94轮，损失函数为：16824.82
+第95轮，损失函数为：16643.87
+第96轮，损失函数为：16466.76
+第97轮，损失函数为：16293.54
+第98轮，损失函数为：16123.99
+第99轮，损失函数为：15957.75
+</pre></div>
+</div>
+</div>
+</div>
+<p>12m 24s!!!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 从训练好的模型中提取每个单词的向量</span>
+<span class="n">vec</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">word_to_idx</span><span class="o">.</span><span class="n">values</span><span class="p">()])))</span>
+<span class="n">vec</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+<span class="c1"># 利用PCA算法进行降维</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="n">X_reduced</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 绘制所有单词向量的二维空间投影</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_reduced</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_reduced</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="c1"># 绘制几个特殊单词的向量</span>
+<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;智子&#39;</span><span class="p">,</span> <span class="s1">&#39;地球&#39;</span><span class="p">,</span> <span class="s1">&#39;三体&#39;</span><span class="p">,</span> <span class="s1">&#39;质子&#39;</span><span class="p">,</span> <span class="s1">&#39;科学&#39;</span><span class="p">,</span> <span class="s1">&#39;世界&#39;</span><span class="p">,</span> <span class="s1">&#39;文明&#39;</span><span class="p">,</span> <span class="s1">&#39;太空&#39;</span><span class="p">,</span> <span class="s1">&#39;加速器&#39;</span><span class="p">,</span> <span class="s1">&#39;平面&#39;</span><span class="p">,</span> <span class="s1">&#39;宇宙&#39;</span><span class="p">,</span> <span class="s1">&#39;信息&#39;</span><span class="p">]</span>
+<span class="c1"># 设置中文字体，否则无法在图形上显示中文</span>
+<span class="n">zhfont1</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">font_manager</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;/Library/Fonts/华文仿宋.ttf&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">35</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">word_to_idx</span><span class="p">:</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">word_to_idx</span><span class="p">[</span><span class="n">w</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="n">X_reduced</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">w</span><span class="p">,</span> <span class="n">fontproperties</span> <span class="o">=</span> <span class="n">zhfont1</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-word2vec_84_0.png" src="_images/10-word2vec_84_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 定义计算cosine相似度的函数</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="k">def</span> <span class="nf">cos_similarity</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">):</span>
+    <span class="n">norm1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec1</span><span class="p">)</span>
+    <span class="n">norm2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec2</span><span class="p">)</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">norm1</span> <span class="o">*</span> <span class="n">norm2</span>
+    <span class="n">dot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">dot</span> <span class="o">/</span> <span class="n">norm</span> <span class="k">if</span> <span class="n">norm</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">result</span>
+    
+<span class="c1"># 在所有的词向量中寻找到与目标词（word）相近的向量，并按相似度进行排列</span>
+<span class="k">def</span> <span class="nf">find_most_similar</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">vectors</span><span class="p">,</span> <span class="n">word_idx</span><span class="p">):</span>
+    <span class="n">vector</span> <span class="o">=</span> <span class="n">vectors</span><span class="p">[</span><span class="n">word_to_idx</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">simi</span> <span class="o">=</span> <span class="p">[[</span><span class="n">cos_similarity</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">vectors</span><span class="p">[</span><span class="n">num</span><span class="p">]),</span> <span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">num</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">word_idx</span><span class="o">.</span><span class="n">keys</span><span class="p">())]</span>
+    <span class="n">sort</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">simi</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sort</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">words</span>
+
+<span class="c1"># 与智子靠近的词汇</span>
+<span class="n">find_most_similar</span><span class="p">(</span><span class="s1">&#39;智子&#39;</span><span class="p">,</span> <span class="n">vec</span><span class="p">,</span> <span class="n">word_to_idx</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;局部&#39;, &#39;一场&#39;, &#39;来&#39;, &#39;错误&#39;, &#39;一生&#39;, &#39;正中&#39;, &#39;航行&#39;, &#39;地面&#39;, &#39;只是&#39;, &#39;政府&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="gensim-word2vec">
+<h2>Gensim Word2vec<a class="headerlink" href="#gensim-word2vec" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gensim</span> <span class="k">as</span> <span class="nn">gensim</span>
+<span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
+<span class="kn">from</span> <span class="nn">gensim.models.keyedvectors</span> <span class="kn">import</span> <span class="n">KeyedVectors</span>
+<span class="kn">from</span> <span class="nn">gensim.models.word2vec</span> <span class="kn">import</span> <span class="n">LineSentence</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./data/三体.txt&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="kn">import</span> <span class="nn">jieba</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">lcut</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">temp</span><span class="p">:</span>
+        <span class="c1">#过滤掉所有的标点符号</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;[\s+\.\!\/_,$%^*(+</span><span class="se">\&quot;\&#39;</span><span class="s2">””《》]+|[+——！，。？、~@#￥%……&amp;*（）：；‘]+&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 调用gensim Word2Vec的算法进行训练。</span>
+<span class="c1"># 参数分别为：size: 嵌入后的词向量维度；window: 上下文的宽度，min_count为考虑计算的单词的最低词频阈值</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">window</span> <span class="o">=</span> <span class="mi">2</span> <span class="p">,</span> <span class="n">min_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s1">&#39;三体&#39;</span><span class="p">,</span> <span class="n">topn</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;号&#39;, 0.9991474151611328),
+ (&#39;仍&#39;, 0.9990677237510681),
+ (&#39;背景&#39;, 0.9989785552024841),
+ (&#39;中&#39;, 0.9989073276519775),
+ (&#39;和&#39;, 0.9988664388656616),
+ (&#39;下&#39;, 0.9988356232643127),
+ (&#39;与&#39;, 0.998835027217865),
+ (&#39;时代&#39;, 0.9988163709640503),
+ (&#39;被&#39;, 0.998814582824707),
+ (&#39;上&#39;, 0.9987987875938416),
+ (&#39;设备&#39;, 0.9987902641296387),
+ (&#39;这个&#39;, 0.9987789392471313),
+ (&#39;在&#39;, 0.9987666010856628),
+ (&#39;出&#39;, 0.998758852481842),
+ (&#39;计算&#39;, 0.9987345337867737),
+ (&#39;确实&#39;, 0.9986939430236816),
+ (&#39;地球&#39;, 0.9986928701400757),
+ (&#39;开始&#39;, 0.9986846446990967),
+ (&#39;研究&#39;, 0.9986833930015564),
+ (&#39;目前&#39;, 0.9986788034439087),
+ (&#39;计算机&#39;, 0.9986657500267029),
+ (&#39;一个&#39;, 0.9986624717712402),
+ (&#39;使&#39;, 0.998661994934082),
+ (&#39;的&#39;, 0.9986578226089478),
+ (&#39;出现&#39;, 0.9986552000045776),
+ (&#39;真实&#39;, 0.9986495971679688),
+ (&#39;信息&#39;, 0.9986458420753479),
+ (&#39;那样&#39;, 0.9986419677734375),
+ (&#39;毁灭&#39;, 0.9986330270767212),
+ (&#39;存在&#39;, 0.9986319541931152),
+ (&#39;生命&#39;, 0.9986208081245422),
+ (&#39;太阳&#39;, 0.9986128807067871),
+ (&#39;外星&#39;, 0.9986080527305603),
+ (&#39;宇宙&#39;, 0.9985974431037903),
+ (&#39;技术&#39;, 0.9985949397087097),
+ (&#39;内&#39;, 0.9985937476158142),
+ (&#39;不同&#39;, 0.9985873699188232),
+ (&#39;对&#39;, 0.9985859990119934),
+ (&#39;’&#39;, 0.9985852241516113),
+ (&#39;但&#39;, 0.9985851645469666),
+ (&#39;或&#39;, 0.998579740524292),
+ (&#39;以&#39;, 0.9985793828964233),
+ (&#39;确定&#39;, 0.9985712766647339),
+ (&#39;已&#39;, 0.9985640048980713),
+ (&#39;监听&#39;, 0.9985599517822266),
+ (&#39;产生&#39;, 0.9985580444335938),
+ (&#39;一名&#39;, 0.998555064201355),
+ (&#39;曾&#39;, 0.9985499382019043),
+ (&#39;控制&#39;, 0.9985296726226807),
+ (&#39;质子&#39;, 0.9985259771347046),
+ (&#39;那些&#39;, 0.9985222816467285),
+ (&#39;对于&#39;, 0.9985181093215942),
+ (&#39;人&#39;, 0.9985091686248779),
+ (&#39;很&#39;, 0.9984890222549438),
+ (&#39;状态&#39;, 0.9984877705574036),
+ (&#39;将&#39;, 0.9984877705574036),
+ (&#39;其&#39;, 0.9984660744667053),
+ (&#39;甚至&#39;, 0.9984593987464905),
+ (&#39;并&#39;, 0.998455286026001),
+ (&#39;两个&#39;, 0.9984530806541443),
+ (&#39;为&#39;, 0.9984517097473145),
+ (&#39;一些&#39;, 0.9984512329101562),
+ (&#39;到&#39;, 0.9984411597251892),
+ (&#39;时&#39;, 0.9984337091445923),
+ (&#39;成为&#39;, 0.9984302520751953),
+ (&#39;只有&#39;, 0.9984236359596252),
+ (&#39;人类&#39;, 0.9984211325645447),
+ (&#39;操作&#39;, 0.9984169006347656),
+ (&#39;以前&#39;, 0.9984143972396851),
+ (&#39;有&#39;, 0.998409628868103),
+ (&#39;于&#39;, 0.9984070062637329),
+ (&#39;精确&#39;, 0.9984040260314941),
+ (&#39;材料&#39;, 0.9984034895896912),
+ (&#39;工作&#39;, 0.9984033107757568),
+ (&#39;发射&#39;, 0.9983908534049988),
+ (&#39;撞击&#39;, 0.9983891248703003),
+ (&#39;向&#39;, 0.9983859062194824),
+ (&#39;需要&#39;, 0.9983782768249512),
+ (&#39;金字塔&#39;, 0.9983758926391602),
+ (&#39;周围&#39;, 0.9983750581741333),
+ (&#39;还有&#39;, 0.9983642101287842),
+ (&#39;这种&#39;, 0.9983606338500977),
+ (&#39;部分&#39;, 0.998336911201477),
+ (&#39;从&#39;, 0.9983317852020264),
+ (&#39;人们&#39;, 0.9983276128768921),
+ (&#39;三个&#39;, 0.9983229637145996),
+ (&#39;已经&#39;, 0.9983162879943848),
+ (&#39;太空&#39;, 0.9983103275299072),
+ (&#39;小&#39;, 0.9982970356941223),
+ (&#39;刚刚&#39;, 0.998295783996582),
+ (&#39;一片&#39;, 0.9982841610908508),
+ (&#39;一&#39;, 0.9982807636260986),
+ (&#39;还是&#39;, 0.9982765913009644),
+ (&#39;变成&#39;, 0.9982757568359375),
+ (&#39;科学&#39;, 0.9982727766036987),
+ (&#39;也&#39;, 0.9982692003250122),
+ (&#39;最后&#39;, 0.9982669949531555),
+ (&#39;一颗&#39;, 0.9982632398605347),
+ (&#39;其他&#39;, 0.9982585906982422),
+ (&#39;一下&#39;, 0.9982539415359497)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 将词向量投影到二维空间</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="n">rawWordVec</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">word2ind</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">vocab</span><span class="p">):</span>
+    <span class="n">rawWordVec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
+    <span class="n">word2ind</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+<span class="n">rawWordVec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rawWordVec</span><span class="p">)</span>
+<span class="n">X_reduced</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">rawWordVec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:8: DeprecationWarning: Call to deprecated `__getitem__` (Method will be removed in 4.0.0, use self.wv.__getitem__() instead).
+  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 绘制星空图</span>
+<span class="c1"># 绘制所有单词向量的二维空间投影</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_reduced</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_reduced</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="c1"># 绘制几个特殊单词的向量</span>
+<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;智子&#39;</span><span class="p">,</span> <span class="s1">&#39;地球&#39;</span><span class="p">,</span> <span class="s1">&#39;三体&#39;</span><span class="p">,</span> <span class="s1">&#39;质子&#39;</span><span class="p">,</span> <span class="s1">&#39;科学&#39;</span><span class="p">,</span> <span class="s1">&#39;世界&#39;</span><span class="p">,</span> <span class="s1">&#39;文明&#39;</span><span class="p">,</span> <span class="s1">&#39;太空&#39;</span><span class="p">,</span> <span class="s1">&#39;加速器&#39;</span><span class="p">,</span> <span class="s1">&#39;平面&#39;</span><span class="p">,</span> <span class="s1">&#39;宇宙&#39;</span><span class="p">,</span> <span class="s1">&#39;进展&#39;</span><span class="p">,</span><span class="s1">&#39;的&#39;</span><span class="p">]</span>
+<span class="c1"># 设置中文字体，否则无法在图形上显示中文</span>
+<span class="c1">#zhfont1 = matplotlib.font_manager.FontProperties(fname=&#39;/Library/Fonts/华文仿宋.ttf&#39;, size=26)</span>
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">word2ind</span><span class="p">:</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">word2ind</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="n">X_reduced</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+        <span class="c1">#plt.text(xy[0], xy[1], w, fontproperties = zhfont1, alpha = 1, color = &#39;yellow&#39;)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-word2vec_92_0.png" src="_images/10-word2vec_92_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 绘制星空图</span>
+<span class="c1"># 绘制所有单词向量的二维空间投影</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_reduced</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_reduced</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="c1"># 绘制几个特殊单词的向量</span>
+<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;智子&#39;</span><span class="p">,</span> <span class="s1">&#39;地球&#39;</span><span class="p">,</span> <span class="s1">&#39;三体&#39;</span><span class="p">,</span> <span class="s1">&#39;质子&#39;</span><span class="p">,</span> <span class="s1">&#39;科学&#39;</span><span class="p">,</span> <span class="s1">&#39;世界&#39;</span><span class="p">,</span> <span class="s1">&#39;文明&#39;</span><span class="p">,</span> <span class="s1">&#39;太空&#39;</span><span class="p">,</span> <span class="s1">&#39;加速器&#39;</span><span class="p">,</span> <span class="s1">&#39;平面&#39;</span><span class="p">,</span> <span class="s1">&#39;宇宙&#39;</span><span class="p">,</span> <span class="s1">&#39;进展&#39;</span><span class="p">,</span><span class="s1">&#39;的&#39;</span><span class="p">]</span>
+<span class="c1"># 设置中文字体，否则无法在图形上显示中文</span>
+<span class="n">zhfont1</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">font_manager</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s1">&#39;/Library/Fonts/华文仿宋.ttf&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">word2ind</span><span class="p">:</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">word2ind</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
+        <span class="n">xy</span> <span class="o">=</span> <span class="n">X_reduced</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">w</span><span class="p">,</span> <span class="n">fontproperties</span> <span class="o">=</span> <span class="n">zhfont1</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;yellow&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/10-word2vec_93_0.png" src="_images/10-word2vec_93_0.png" />
+</div>
+</div>
+<p><img alt="" src="_images/end1.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="10-text-minning-gov-report.html" title="previous page">第八章 文本挖掘</a>
+    <a class='right-next' id="next-link" href="10-doc2vec.html" title="next page">Doc2Vec</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

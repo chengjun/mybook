@@ -1,0 +1,1180 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>对占中新闻进行数据清洗 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="清洗音乐列表🎵" href="06-data-cleaning-music-list.html" />
+    <link rel="prev" title="数据清洗之推特数据" href="06-data-cleaning-tweets.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-preprocessing.html">
+     对大数据进行预处理
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-tweets.html">
+     数据清洗之推特数据
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     对占中新闻进行数据清洗
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-music-list.html">
+     清洗音乐列表🎵
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-pandas.html">
+     使用Pandas进行数据清洗
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/06-data-cleaning-occupy-central-news.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F06-data-cleaning-occupy-central-news.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/06-data-cleaning-occupy-central-news.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/06-data-cleaning-occupy-central-news.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pandas">
+   自学Pandas使用
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>对占中新闻进行数据清洗<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用with open读取每一行数据</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./data/occupycentral/zz-hk-2014-10.rtf&quot;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;gb18030&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">news</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 查看总共有多少行</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">news</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16541
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 注意：标题和版面之间存在一个空行！所以title是block的第4个元素。</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">80</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">news</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>~~~~~~~~~~~~~~~~~~~~~~~~~~  #1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~ \par
+
+am730 | 2014-10-31 \par
+
+A16| NEWS| C观点| By 施永青 \par 
+
+
+
+法治有整合社会功能 \par
+
+\par
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \par
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\par\par 前文已介绍过塔尔科特·帕森斯的AGIL理论中的Adaptation(适应)与Goal Attainment(达标)的社会功能，今天续谈Integration(整合)的功能。人类社会是一个复杂系统，大系统内还有很多次系统，这些系统既独立，又牵连；既矛盾，又互适；有时互相促进，有时互相制约。正如一个人，既是社会的成员，又是公司的雇员；既是别人的儿子，又是朋辈中的「大哥」；其言行会同时受所处的不同系统所影响。\par\par 这些错综复杂的系统之间不可能没有冲突，为了避免社会因纠纷得不到恰当的处理而分崩离析，社会必须发展出一套整合矛盾的方式，这就需要有司法制度。\par\par 按帕森斯的说法，法治的基础是先要界定产权。这样才能避免因争夺资源而产生无休止的冲突。再者，交易亦需要在产权获得界定后才能进行。有交易才有市场，才能透过市场机制进行公平竞争，推动经济发展。\par\par 另一方面，社会亦需要为人权下定义，这样，政府才能在有认受性的情况下组成，才能有效地去处理公众事务。此外，社会还需要有一套合乎公义的会议程序，以决定如何汇聚众人的意愿。\par\par 有了这些基础之后，社会就可以发展出一整套司法制度，让成员知所行止，令社会的矛盾不会恶化。\par\par 英国人为香港留下的，可不只是一套可以依据的律例，而是一整套法治的理念与司法程序。香港的回归能进行得相对平稳，与特区政府基本上原封不动地承继了原有的司法系统有莫大的关系。\par\par 回归后，虽有人危言耸听，说香港的法治已死，但世人仍公认香港的法治达国际一流水准，而港人亦可以如常在香港生活与做生意，不觉有失去法治的实质威胁。直到\loch\af0\hich\af0\dbch\f15 \b\cf6 占中\loch\af0\hich\af0\dbch\f15 \b0\cf0 运动的出现，香港人才真正感受到失去法治的害处。\par\par \loch\af0\hich\af0\dbch\f15 \b\cf6 占中\loch\af0\hich\af0\dbch\f15 \b0\cf0 运动挑战的可不只是个别「恶法」，而是侵犯了整个法治的根基——产权、人权与政府的执法权。\par\par 占领区的物业，地契上列明有Right of way，但现在占领者却不容停车场的车辆出入。这分明损害了这些物业的产权。现在政府却无法加以维护；法庭出了禁制令，\loch\af0\hich\af0\dbch\f15 \b\cf6 占中\loch\af0\hich\af0\dbch\f15 \b0\cf0 者却一样藐视。这样发展下去，谁敢在香港置业？\par\par 其实，损害产权等同损害人权，因为人权的一项重要内容，就是个人的财产应获保障。此外，人人都应有追求幸福的权利，但现在占领区生意难做，怎会不妨碍别人追求幸福？\par\par \loch\af0\hich\af0\dbch\f15 \b\cf6 占中\loch\af0\hich\af0\dbch\f15 \b0\cf0 者把自己的行为说成是公民抗命，但公民抗命只是个人行为在道德上的解释，用来拒绝遵守某些个人不认同的法令还讲得通，但绝不可以借此损害他人的产权与人权。\par\par 再者，\loch\af0\hich\af0\dbch\f15 \b\cf6 占中\loch\af0\hich\af0\dbch\f15 \b0\cf0 者现时在争取的是宪政改革，本应获社会上绝大多数人赞同才有条件实施，不宜用占领交通要津的方式去逼其他人就范。如果祭起公民抗命的旗帜就可以欲所欲为，只会天下大乱，令法治失去协调与整合作用。 \par
+
+ \par
+
+
+
+文章编号: 201410315301186 \par
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \par
+
+本内容之版权由相关传媒机构 / 版权持有人拥有。除非获得明确授权，否则严禁复制、改编、分发或发布本内容。版权持有人保留一切权利。 本内容经慧科的电子服务提供。
+
+\page
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~  #2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~ \par
+
+大公报 | 2014-10-31 \par
+
+A08| 要闻 \par 
+
+
+
+扛工仔料加薪4.5% 建筑金融好景 \par
+
+\par
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \par
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\par\par 【大公报讯】记者彩雯报道：上班族明年加薪预测调查结果陆续揭盅，香港人力资源管理学会昨日公布调查预计，明年平均加薪4.5%，高过今年的4.3%加幅，也高过雇主联会建议的4%平均加薪幅度，年尾花红金额平均相当于一至两个月薪金，预料建筑业及金融服务业雇员明年「最好景」，预测加薪幅度最高。不过， 「\loch\af0\hich\af0\dbch\f15 \b\cf6 占中\loch\af0\hich\af0\dbch\f15 \b0\cf0 」持续逾一个月以及沪港通押后的影响，尚未反映在今次调查结果，有待今年底的跟进调查才能确定。\par\par 人力资源管理学会向101间公司调查，涉及聘用雇员总数达13.7万人。当中84间公司于今年有整体加薪，两间冻薪，今年平均加薪4.3%。展望明年，80间公司打算明年一至四月将调整基本薪金，其中52间更已落实明年预算调整幅度，当中，50间公司预期会整体加薪，两间公司冻薪，没公司打算减薪，预计明年整体加薪4.5%。调整薪酬主要考虑公司业绩、个人工作表现及通胀等因素。\par\par 至于年底花红，设有固定花红制度的47间公司，近40%雇员符合发放固定花红的资格，平均金额为1.01个月基本薪金。设有非固定花红的71间公司中，68%雇员获发非固定花红，平均金额为1.62个月薪金，去年有超过70%雇员获发非固定花红，平均金额为1.58个月。\par\par 各行业当中，金融服务业雇员可望「最好景」，调查预测今年底的非固定花红金额相当于6.3个月薪金，明年可望加薪5.9%。建筑业雇员明年加薪也可望达5.9%，但预测今年底非固定花红金额只有大约1.4个月薪金。零售业今年底非固定花红金额可望达4.72个月薪金，但明年加薪幅度预测只有4.2%，低过整体4.5%的加幅。\par\par 学会：调查未计\loch\af0\hich\af0\dbch\f15 \b\cf6 占中\loch\af0\hich\af0\dbch\f15 \b0\cf0 \par\par 人力资源管理学会前任会长莫家麟表示，受访公司只计算今年一至九月份的薪金调整，当时未发生「\loch\af0\hich\af0\dbch\f15 \b\cf6 占中\loch\af0\hich\af0\dbch\f15 \b0\cf0 」行动， 「\loch\af0\hich\af0\dbch\f15 \b\cf6 占中\loch\af0\hich\af0\dbch\f15 \b0\cf0 」行动已踏入第二个月，影响情况陆续浮现，但未知行动何时结束，难以预计影响的深度，他亦不便揣测。他指，沪港通会对香港带来好处，但现时通车无期，可能会将好处延后，而香港未来亦受很多不明朗因素影响。\par\par 香港人才管理协会与浸会大学工商管理学院早前公布薪酬调查显示，过去一年香港地区的薪酬加幅为4.2%至4.5%，由于经济情况未明朗，明年加薪幅度或放缓为4%至4.5%。雇主联会近日向逾500家企业发出加薪指引，建议明年平均加薪4%，其中建筑、医疗保健行业加幅较高。 \par
+
+ \par
+
+
+
+文章编号: 201410315308873 \par
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \par
+
+本内容之版权由相关传媒机构 / 版权持有人拥有。除非获得明确授权，否则严禁复制、改编、分发或发布本内容。版权持有人保留一切权利。 本内容经慧科的电子服务提供。
+
+\page
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~  #3 ~~~~~~~~~~~~~~~~~~~~~~~~~~~ \par
+
+头条日报 | 2014-10-31 \par
+
+P60| 港闻| 「虎」学英语| By 汤锦标 \par 
+
+
+
+「大嘴巴」英揆闯祸记 \par
+
+\par
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \par
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\par\par 本栏写过苏格兰公投，结果有惊无险，大英帝国完好无缺，英国首相卡梅伦肯定饮得杯落，原来连女皇殿下亦喜上眉梢，甚至喜极而泣。\par\par 　　苏公投独立失败，女皇喜极而泣，听落几夸张，我不是女皇肚里条虫，我讲你可以不信，但如泄密者是卡梅伦，情况自然不同。\par\par 　　话说「大嘴巴」卡梅伦在一次公众场合，同来访的前纽约市长彭博（Michael Bloomberg）咬耳仔，怎料搞出个大头佛，对话被麦克风收录，卡向彭披露女皇得悉公投结果后的一刻，直情开心到喊──Microphones picked up him saying that the Queen &#39;purred&#39; a noise of contentment and had even wept for joy when Cameron called her with the news.\par\par 　　就这段公投小插曲，《英文虎报》写了一篇八卦新闻，题为 Cameron sorry for letting cat out of the bag，讲到卡梅伦「不小心」泄了女皇机密，公投一事，女皇人前扮中立，人后却喊住想保留威士忌国，卡因此要向女皇道歉──the revelation was a breach of protocol which saw a red-faced Cameron apologizing to the monarch for his big mouth.\par\par 　　To let the cat out of the bag （让猫走了出袋子） 是成语，不小心泄漏别人秘密的意思，一般指无恶意，属无心之失──the idiom means to reveal a secret, usually unwittingly, and suggests thoughtlessness rather than malice.\par\par 　　除卡梅伦失礼事件外，亦可举一例。有一大班人正准备为朋友举办惊喜派对（surprise party），当事人不知情正在回家途中，给巧遇的友人抛出一句──「我会准时到你的派对」──惊喜派对马上玩完。当英国工党人士知道卡犯错后，即作出批评──It&#39;s disrespectful to let the cat out of the bag. 这句话仍有多一层意思，就是指卡不应将一些内幕消息向外界披露，亦是对女皇的不尊重。\par\par 　　英语世界中，同猫咪相关的惯用语多如牛毛，简单如raining cats and dogs, fighting like cats and dogs, when the cat&#39;s away, the mice will play 等，或者复杂少少如 a catty remark （不饶人的骂人语，多指出自女人） 、put the cat among the pigeons （刻意做出事情引起骚动）、Has the cat got your tongue?（指被人追问时保持沉默）等。\par\par 　　另一英文流行语──open a can of worms，或比 let the cat out of the bag更加广泛使用。打开罐子发现满罐都是虫子，比喻做了某件事把问题更加复杂化，举一例子（\loch\af0\hich\af0\dbch\f15 \b\cf6 占中\loch\af0\hich\af0\dbch\f15 \b0\cf0 运动支持者可能不爱听）──当\loch\af0\hich\af0\dbch\f15 \b\cf6 占中\loch\af0\hich\af0\dbch\f15 \b0\cf0 三子宣布启动\loch\af0\hich\af0\dbch\f15 \b\cf6 占中\loch\af0\hich\af0\dbch\f15 \b0\cf0 行动那刻钟，a can of worms has been opened，并引致一个困难并且失控的局面。\par\par 　　欲回看《虎报》相关文章，请用以下连结。http︰//goo.gl/ul3OLJ\par\par 汤锦标\par\par 《英文虎报》The Standard总编辑逢周五见报 \par
+
+ \par
+
+
+
+文章编号: 201410315308918 \par
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \par
+
+本内容之版权由相关传媒机构 / 版权持有人拥有。除非获得明确授权，否则严禁复制、改编、分发或发布本内容。版权持有人保留一切权利。 本内容经慧科的电子服务提供。
+
+\page
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~  #4 ~~~~~~~~~~~~~~~~~~~~~~~~~~~ \par
+
+都市日报 | 2014-10-31 \par
+
+P50| 娱乐 \par 
+
+
+
+《华尔街日报》指周润发击败成龙 \par
+
+\par
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \par
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 需要对中文编码的对象使用中文的方式进行解码</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">news</span><span class="p">[</span><span class="mi">17</span><span class="p">][:</span><span class="mi">500</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\par\par 前文已介绍过塔尔科特·帕森斯的AGIL理论中的Adaptation(适应)与Goal Attainment(达标)的社会功能，今天续谈Integration(整合)的功能。人类社会是一个复杂系统，大系统内还有很多次系统，这些系统既独立，又牵连；既矛盾，又互适；有时互相促进，有时互相制约。正如一个人，既是社会的成员，又是公司的雇员；既是别人的儿子，又是朋辈中的「大哥」；其言行会同时受所处的不同系统所影响。\par\par 这些错综复杂的系统之间不可能没有冲突，为了避免社会因纠纷得不到恰当的处理而分崩离析，社会必须发展出一套整合矛盾的方式，这就需要有司法制度。\par\par 按帕森斯的说法，法治的基础是先要界定产权。这样才能避免因争夺资源而产生无休止的冲突。再者，交易亦需要在产权获得界定后才能进行。有交易才有市场，才能透过市场机制进行公平竞争，推动经济发展。\par\par 另一方面，社会亦需要为人权下定义，这样，政府才能在有认受性的情况下组成，才能有效地去处理公众事务。此外，社会还需要有一套合乎公义的会议程序，以决定如何汇聚众人的意愿。\par\par 有了这些基础之
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 定义一个函数：实现解码、编码、清洗效果</span>
+<span class="k">def</span> <span class="nf">stringclean</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="c1">#s = s.decode(&#39;gb18030&#39;).encode(&#39;utf8&#39;)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\loch\af0\hich\af0\dbch\f15 \b\cf6 &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\loch\af0\hich\af0\dbch\f15 \b0\cf0 &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;\par&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;aabbccaadd ee aa&#39;</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;bbccaadd ee &#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;aabbccdd ee&#39;</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;ab&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ccdd ee&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;aabbccdd ee&#39;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;ab&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;abccdd ee&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 调用stringclean函数</span>
+<span class="n">stringclean</span><span class="p">(</span><span class="n">news</span><span class="p">[</span><span class="mi">17</span><span class="p">])</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; 前文已介绍过塔尔科特·帕森斯的AGIL理论中的Adaptation(适应)与Goal Attainment(达标)的社会功能，今天续谈Integration(整合)的功能。人类社会是一个复杂系统，大系统内还有很多次系统，这些系统既独立，又牵连；既矛盾，又互适；有时互相促进，有时互相制约。正如一个人，既是社会的成员，又是公司的雇员；既是别人的儿子，又是朋辈中的「大哥」；其言行会同时受所处的不同系统所影响。 这些错综复杂的系统之间不可能没有冲突，为了避免社会因纠纷得不到恰当的处理而分崩离析，社会必须发展出一套整合矛盾的方式，这就需要有司法制度。 按帕森斯的说法，法治的基础是先要界定产权。这样才能避免因争夺资源而产生无休止的冲突。再者，交易亦需要在产权获得界定后才能进行。有交易才有市场，才能透过市场机制进行公平竞争，推动经济发展。 另一方面，社会亦需要为人权下定义，这样，政府才能在有认受性的情况下组成，才能有效地去处理公众事务。此外，社会还需要有一套合乎公义的会议程序，以决定如何汇聚众人的意愿。 有了这些基础之后，社会就可以发展出一整套司法制度，让成员知所行止，令社会的矛盾不会恶化。 英国人为香港留下的，可不只是一套可以依据的律例，而是一整套法治的理念与司法程序。香港的回归能进行得相对平稳，与特区政府基本上原封不动地承继了原有的司法系统有莫大的关系。 回归后，虽有人危言耸听，说香港的法治已死，但世人仍公认香港的法治达国际一流水准，而港人亦可以如常在香港生活与做生意，不觉有失去法治的实质威胁。直到占中运动的出现，香港人才真正感受到失去法治的害处。 占中运动挑战的可不只是个别「恶法」，而是侵犯了整个法治的根基——产权、人权与政府的执法权。 占领区的物业，地契上列明有Right of way，但现在占领者却不容停车场的车辆出入。这分明损害了这些物业的产权。现在政府却无法加以维护；法庭出了禁制令，占中者却一样藐视。这样发展下去，谁敢在香港置业？ 其实，损害产权等同损害人权，因为人权的一项重要内容，就是个人的财产应获保障。此外，人人都应有追求幸福的权利，但现在占领区生意难做，怎会不妨碍别人追求幸福？ 占中者把自己的行为说成是公民抗命，但公民抗命只是个人行为在道德上的解释，用来拒绝遵守某些个人不认同的法令还讲得通，但绝不可以借此损害他人的产权与人权。 再者，占中者现时在争取的是宪政改革，本应获社会上绝大多数人赞同才有条件实施，不宜用占领交通要津的方式去逼其他人就范。如果祭起公民抗命的旗帜就可以欲所欲为，只会天下大乱，令法治失去协调与整合作用。 &#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 列表内的for循环</span>
+<span class="n">news_clean</span> <span class="o">=</span> <span class="p">[</span><span class="n">stringclean</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">news</span><span class="p">]</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">news_clean</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16541
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">news_clean</span><span class="p">[</span><span class="mi">17</span><span class="p">][:</span><span class="mi">120</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; 前文已介绍过塔尔科特·帕森斯的AGIL理论中的Adaptation(适应)与Goal Attainment(达标)的社会功能，今天续谈Integration(整合)的功能。人类社会是一个复杂系统，大系统内还有很多次系统，这些系统既独立，又&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 定义两个函数</span>
+<span class="k">def</span> <span class="nf">deletetab</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">def</span> <span class="nf">flushPrint</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span> <span class="c1"># 清洗掉 </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on OutStream in module ipykernel.iostream object:
+
+class OutStream(io.TextIOBase)
+ |  A file like object that publishes the stream to a 0MQ PUB socket.
+ |  
+ |  Output is handed off to an IO Thread
+ |  
+ |  Method resolution order:
+ |      OutStream
+ |      io.TextIOBase
+ |      _io._TextIOBase
+ |      io.IOBase
+ |      _io._IOBase
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, session, pub_thread, name, pipe=None)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  close(self)
+ |      Flush and close the IO object.
+ |      
+ |      This method has no effect if the file is already closed.
+ |  
+ |  flush(self)
+ |      trigger actual zmq send
+ |      
+ |      send will happen in the background thread
+ |  
+ |  set_parent(self, parent)
+ |  
+ |  write(self, string)
+ |      Write string to stream.
+ |      Returns the number of characters written (which is always equal to
+ |      the length of the string).
+ |  
+ |  writelines(self, sequence)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  closed
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  __abstractmethods__ = frozenset()
+ |  
+ |  encoding = &#39;UTF-8&#39;
+ |  
+ |  flush_interval = 0.2
+ |  
+ |  flush_timeout = 10
+ |  
+ |  topic = None
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from _io._TextIOBase:
+ |  
+ |  detach(...)
+ |      Separate the underlying buffer from the TextIOBase and return it.
+ |      
+ |      After the underlying buffer has been detached, the TextIO is in an
+ |      unusable state.
+ |  
+ |  read(...)
+ |      Read at most n characters from stream.
+ |      
+ |      Read from underlying buffer until we have n characters or we hit EOF.
+ |      If n is negative or omitted, read until EOF.
+ |  
+ |  readline(...)
+ |      Read until newline or EOF.
+ |      
+ |      Returns an empty string if EOF is hit immediately.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from _io._TextIOBase:
+ |  
+ |  errors
+ |      The error setting of the decoder or encoder.
+ |      
+ |      Subclasses should override.
+ |  
+ |  newlines
+ |      Line endings translated so far.
+ |      
+ |      Only line endings translated during reading are considered.
+ |      
+ |      Subclasses should override.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from _io._IOBase:
+ |  
+ |  __del__(...)
+ |  
+ |  __enter__(...)
+ |  
+ |  __exit__(...)
+ |  
+ |  __iter__(self, /)
+ |      Implement iter(self).
+ |  
+ |  __new__(*args, **kwargs) from builtins.type
+ |      Create and return a new object.  See help(type) for accurate signature.
+ |  
+ |  __next__(self, /)
+ |      Implement next(self).
+ |  
+ |  fileno(self, /)
+ |      Returns underlying file descriptor if one exists.
+ |      
+ |      OSError is raised if the IO object does not use a file descriptor.
+ |  
+ |  isatty(self, /)
+ |      Return whether this is an &#39;interactive&#39; stream.
+ |      
+ |      Return False if it can&#39;t be determined.
+ |  
+ |  readable(self, /)
+ |      Return whether object was opened for reading.
+ |      
+ |      If False, read() will raise OSError.
+ |  
+ |  readlines(self, hint=-1, /)
+ |      Return a list of lines from the stream.
+ |      
+ |      hint can be specified to control the number of lines read: no more
+ |      lines will be read if the total size (in bytes/characters) of all
+ |      lines so far exceeds hint.
+ |  
+ |  seek(...)
+ |      Change stream position.
+ |      
+ |      Change the stream position to the given byte offset. The offset is
+ |      interpreted relative to the position indicated by whence.  Values
+ |      for whence are:
+ |      
+ |      * 0 -- start of stream (the default); offset should be zero or positive
+ |      * 1 -- current stream position; offset may be negative
+ |      * 2 -- end of stream; offset is usually negative
+ |      
+ |      Return the new absolute position.
+ |  
+ |  seekable(self, /)
+ |      Return whether object supports random access.
+ |      
+ |      If False, seek(), tell() and truncate() will raise OSError.
+ |      This method may need to do a test seek().
+ |  
+ |  tell(self, /)
+ |      Return current stream position.
+ |  
+ |  truncate(...)
+ |      Truncate file to size bytes.
+ |      
+ |      File pointer is left unchanged.  Size defaults to the current IO
+ |      position as reported by tell().  Returns the new size.
+ |  
+ |  writable(self, /)
+ |      Return whether object was opened for writing.
+ |      
+ |      If False, write() will raise OSError.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from _io._IOBase:
+ |  
+ |  __dict__
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 调用deletetab</span>
+<span class="n">deletetab</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">a&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;a&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 演示：flushPrint</span>
+<span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">random</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+    <span class="n">flushPrint</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="k">def</span> <span class="nf">readblocks</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">copy</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">block</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">chunk</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:[])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;~~~~~~~~~~~~~~~~~~~~~~~~~~  #&quot;</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+                <span class="n">copy</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">elif</span> <span class="s2">&quot;文章编号:&quot;</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+                <span class="n">ids</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;文章编号: &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+                <span class="n">source</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">info</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="n">deletetab</span><span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="c1"># </span>
+                <span class="n">body</span> <span class="o">=</span> <span class="p">[</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">block</span><span class="p">[</span><span class="mi">6</span><span class="p">:]</span> <span class="k">if</span> <span class="n">j</span> <span class="o">!=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">]</span>
+                <span class="n">body</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+                <span class="n">body</span> <span class="o">=</span> <span class="n">deletetab</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+                <span class="n">body</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="n">body</span>  <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">ids</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">body</span><span class="p">])</span>
+                <span class="n">chunk</span><span class="p">[</span><span class="n">ids</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span>
+                <span class="n">block</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">n</span><span class="o">%</span><span class="k">10</span> == 0:
+                    <span class="n">flushPrint</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+                <span class="n">copy</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="c1"># copy must be here.</span>
+            <span class="k">elif</span> <span class="n">copy</span><span class="p">:</span>
+                <span class="n">block</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="k">pass</span>
+    <span class="k">return</span> <span class="n">chunk</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 注意：标题和版面之间存在一个空行！所以title是block的第4个元素。</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">news</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="mi">500</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>~~~~~~~~~~~~~~~~~~~~~~~~~~  #1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~ \par
+
+am730 | 2014-10-31 \par
+
+A16| NEWS| C观点| By 施永青 \par 
+
+
+
+法治有整合社会功能 \par
+
+\par
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \par
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 按block清洗新闻报道</span>
+<span class="n">news_result</span> <span class="o">=</span> <span class="n">readblocks</span><span class="p">(</span><span class="n">news_clean</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>710
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 新闻的数量</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">news_result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>719
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 查看字典的keys</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">news_result</span><span class="o">.</span><span class="n">keys</span><span class="p">())[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;201410315301186 &#39;,
+ &#39;201410315308873 &#39;,
+ &#39;201410315308918 &#39;,
+ &#39;201410315301765 &#39;,
+ &#39;201410310050132 &#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 查看字典的values</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">news_result</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">90</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;201410270050110 \t文汇报 \tB04| 投资理财| 专家分析| By 邓声兴  \t强泰环保水务毛利率高 \t&quot;          AMTD证券及财富管理业务部总经理 邓声兴 港股上周走势窄幅上落，虽然内地第三季通胀数据及汇丰中国10月制造业采购经理指数较预期佳，及美股造好，但因市场观望占中局势及沪港通通车仍未有确实日期，令港股升幅有限。恒指全周升278点，每日平均成交减至530亿元，料恒指本周于23,100至23,500区间上落。 股份推介：强泰环保(1395)自9月上市以来股价表现强劲，集团于江苏省拥有三座污水处理设施，并以BOT形式经营，未来盈利增长动力主要来自设施改造后提升收益率，以及重金属污水处理业务。集团去年营业额增加38.8%至6,509万元，盈利增长26.6%至3,226万元，毛利率达76%，虽然早前集团发盈警，预期今年首6个月溢利会大减，但主要是由于上市产生的一次性费用所致。集团毛利率较其他水务股优胜，加上内地积极推进环保强泰环保发展，相信公司未来可保持优势。目标1.50元(1.38元)，止蚀1.20元。 比亚迪(1211)。中国工信部大力推动京津冀公文的公共服务领域的新能源汽车应用，提出2014至2015年，在京津地区公共交通服务领域推广逾2万辆新能源汽车，至2015年底，京津冀地区公交车中新能源汽车比例不低于16%。政策反映中央持续支持新能源汽车发展。比亚迪于9月推出新能源汽车，第四季度将有更多K9电动巴士交付，而电动车电池产量于9月明显增加，相信有助今年的收入增长。比亚迪将于本周公布第三季度盈利及展望，料可成为股价催化剂。目标57元(上周五收市52.15元)，止蚀49元。(笔者为证监会持牌人，未持有上述股份)     &quot;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">news_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">news_result</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+<span class="n">df_news</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">news_list</span><span class="p">,</span>
+                       <span class="n">columns</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ids&#39;</span><span class="p">,</span> <span class="s1">&#39;source&#39;</span><span class="p">,</span>\
+                                 <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">])</span>
+<span class="n">df_news</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ids</th>
+      <th>source</th>
+      <th>info</th>
+      <th>title</th>
+      <th>body</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>201410315301186</td>
+      <td>am730</td>
+      <td>A16| NEWS| C观点| By 施永青</td>
+      <td>法治有整合社会功能</td>
+      <td>"          前文已介绍过塔尔科特·帕森斯的AGIL理论中的Adaptation(适...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>201410315308873</td>
+      <td>大公报</td>
+      <td>A08| 要闻</td>
+      <td>扛工仔料加薪4.5% 建筑金融好景</td>
+      <td>"          【大公报讯】记者彩雯报道：上班族明年加薪预测调查结果陆续揭盅，香港人力...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>201410315308918</td>
+      <td>头条日报</td>
+      <td>P60| 港闻| 「虎」学英语| By 汤锦标</td>
+      <td>「大嘴巴」英揆闯祸记</td>
+      <td>"          本栏写过苏格兰公投，结果有惊无险，大英帝国完好无缺，英国首相卡梅伦肯定...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存数据：将数据写入硬盘</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/zz-hk-2014-9-clean.txt&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+     <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">news_result</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">record</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用pandas读取数据，并查看。</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span> <span class="s1">&#39;../data/zz-hk-2014-9-clean.txt&#39;</span><span class="p">,</span> 
+                 <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ids&#39;</span><span class="p">,</span> <span class="s1">&#39;source&#39;</span><span class="p">,</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ids</th>
+      <th>source</th>
+      <th>info</th>
+      <th>title</th>
+      <th>body</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>201409015325665</td>
+      <td>南华早报</td>
+      <td>EDT13| EDT</td>
+      <td>Pain of stasis</td>
+      <td>没有文字档。</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>201409055305251</td>
+      <td>大公报</td>
+      <td>A20| 专版</td>
+      <td>坚决支持和拥护 全国人大常委会对香港政改的决定</td>
+      <td>一、本会坚决支持全国人大常委会关于香港特别行政区行政长官普选问题和201...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>201409165304250</td>
+      <td>大公报</td>
+      <td>B02| 经济．航运</td>
+      <td>粤投1.8亿入股中超</td>
+      <td>【大公报记者毛丽娟深圳十五日电】中国水业（01129）与粤海投资（002...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用os改变默认的工作路径</span>
+<span class="c1">#import os</span>
+<span class="c1">#os.chdir(&#39;../data/occupycentral/&#39;)</span>
+
+<span class="c1"># 使用glob读取某一类文件的所有名称</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="n">filenames</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;./data/occupycentral/*.rtf&#39;</span><span class="p">)</span>
+<span class="n">filenames</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;./data/occupycentral/zz-hk-2014-10.rtf&#39;,
+ &#39;./data/occupycentral/zz-hk-2014-9.rtf&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;gb18030&#39;</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="s1">&#39;ignore&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># for windows users: errors = &#39;ignore&#39;</span>
+        <span class="n">news</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">news</span> <span class="o">=</span> <span class="p">[</span><span class="n">stringclean</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">news</span><span class="p">]</span>
+        <span class="n">news_result</span> <span class="o">=</span> <span class="n">readblocks</span><span class="p">(</span><span class="n">news</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/zz-hk-all-clean2018.txt&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">news_result</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="n">p</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">record</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../data/occupycentral/zz-hk-2014-10.rtf
+710../data/occupycentral/zz-hk-2014-9.rtf
+410
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pandas">
+<h2>自学Pandas使用<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h2>
+<p>《Python Data Science Handbook》第三章 by Jake VanderPlas</p>
+<p>https://github.com/computational-class/datascience/blob/gh-pages/4.datasci/notebooks/03.00-Introduction-to-Pandas.ipynb</p>
+<p><img alt="" src="_images/end.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="06-data-cleaning-tweets.html" title="previous page">数据清洗之推特数据</a>
+    <a class='right-next' id="next-link" href="06-data-cleaning-music-list.html" title="next page">清洗音乐列表🎵</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

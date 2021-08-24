@@ -1,0 +1,952 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Introduction to Gradient Descent &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Linear Regression" href="08-06-regression.html" />
+    <link rel="prev" title="Statistical Hypothesis Testing" href="08-04-hypothesis-inference.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-02-kl-divergence.html">
+     KL Divergence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-02-linear-algebra.html">
+     Linear algebra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-03-distributions.html">
+     Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-03-probability.html">
+     Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-04-hypothesis-inference.html">
+     Statistical Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Introduction to Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-06-regression.html">
+     Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-06-statsmodels.html">
+     Statistical Modeling with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-07-analyzing-titanic-dataset.html">
+     Logistic Regression of Titanic Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-07-covid19-pew-survey.html">
+     Analysing the Pew Survey Data of COVID19
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-08-covid19-grangercausality.html">
+     社交媒体可以预测新冠疫情吗？
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-09-survival-analysis.html">
+     Survival Analysis with Python
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/08-05-gradient-descent.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F08-05-gradient-descent.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/08-05-gradient-descent.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/08-05-gradient-descent.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mathematics-behind-gradient-descent">
+   Mathematics behind Gradient Descent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#estimating-the-gradient">
+   Estimating the Gradient
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-the-gradient">
+     Using the Gradient
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choosing-the-right-step-size">
+     Choosing the Right Step Size
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#putting-it-all-together">
+     Putting It All Together
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stochastic-gradient-descent">
+   Stochastic Gradient Descent
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-to-gradient-descent">
+<h1>Introduction to Gradient Descent<a class="headerlink" href="#introduction-to-gradient-descent" title="Permalink to this headline">¶</a></h1>
+<p>The Idea Behind Gradient Descent 梯度下降</p>
+<p><img alt="" src="_images/gradient_descent.gif" /></p>
+<p><img alt="" src="_images/gradient2.png" /></p>
+<p><strong>如何找到最快下山的路？</strong></p>
+<ul class="simple">
+<li><p>假设此时山上的浓雾很大，下山的路无法确定;</p></li>
+<li><p>假设你摔不死！</p>
+<ul>
+<li><p>你只能利用自己周围的信息去找到下山的路径。</p></li>
+<li><p>以你当前的位置为基准，寻找这个位置最陡峭的方向，从这个方向向下走。</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="_images/gradient.png" /></p>
+<p><strong>Gradient is the vector of partial derivatives</strong></p>
+<p>One approach to maximizing a function is to</p>
+<ul class="simple">
+<li><p>pick a random starting point,</p></li>
+<li><p>compute the gradient,</p></li>
+<li><p>take a small step in the direction of the gradient, and</p></li>
+<li><p>repeat with a new staring point.</p></li>
+</ul>
+<p><img alt="" src="_images/gd.webp" /></p>
+<p>Let’s represent parameters as <span class="math notranslate nohighlight">\(\Theta\)</span>, learning rate as <span class="math notranslate nohighlight">\(\alpha\)</span>, and gradient as <span class="math notranslate nohighlight">\(\bigtriangledown J(\Theta)\)</span>,</p>
+<p>To the find the best model is an optimization problem</p>
+<ul class="simple">
+<li><p>“minimizes the error of the model”</p></li>
+<li><p>“maximizes the likelihood of the data.”</p></li>
+</ul>
+<p>We’ll frequently need to maximize (or minimize)  functions.</p>
+<ul class="simple">
+<li><p>to find the input vector v that produces the largest (or smallest) possible value.</p></li>
+</ul>
+<div class="section" id="mathematics-behind-gradient-descent">
+<h2>Mathematics behind Gradient Descent<a class="headerlink" href="#mathematics-behind-gradient-descent" title="Permalink to this headline">¶</a></h2>
+<p>A simple mathematical intuition behind one of the commonly used optimisation algorithms in Machine Learning.</p>
+<p>https://www.douban.com/note/713353797/</p>
+<p>The cost or loss function:</p>
+<div class="math notranslate nohighlight">
+\[Cost = \frac{1}{N} \sum_{i = 1}^N (Y' -Y)^2\]</div>
+<p><img alt="" src="_images/x2.webp" /></p>
+<p>Parameters with small changes:
+$<span class="math notranslate nohighlight">\( m_1 = m_0 - \delta m,  b_1 = b_0 - \delta b\)</span>$</p>
+<p>The cost function J is a function of m and b:</p>
+<div class="math notranslate nohighlight">
+\[J_{m, b} = \frac{1}{N} \sum_{i = 1}^N (Y' -Y)^2 = \frac{1}{N} \sum_{i = 1}^N Error_i^2\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J}{\partial m} = 2 Error \frac{\partial}{\partial m}Error\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J}{\partial b} = 2 Error \frac{\partial}{\partial b}Error\]</div>
+<p>Let’s fit the data with linear regression:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial}{\partial m}Error = \frac{\partial}{\partial m}(Y' - Y) = \frac{\partial}{\partial m}(mX + b - Y)\]</div>
+<p>Since <span class="math notranslate nohighlight">\(X, b, Y\)</span> are constant:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial}{\partial m}Error = X\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{\partial}{\partial b}Error = \frac{\partial}{\partial b}(Y' - Y) = \frac{\partial}{\partial b}(mX + b - Y)\]</div>
+<p>Since <span class="math notranslate nohighlight">\(X, m, Y\)</span> are constant:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial}{\partial m}Error = 1\]</div>
+<p>Thus:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J}{\partial m} = 2 * Error * X\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J}{\partial b} = 2 * Error\]</div>
+<p>Let’s get rid of the constant 2 and multiplying the learning rate  <span class="math notranslate nohighlight">\(\alpha\)</span>, who determines how large a step to take:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J}{\partial m} = Error * X *  \alpha\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J}{\partial b} = Error * \alpha\]</div>
+<p>Since <span class="math notranslate nohighlight">\( m_1 = m_0 - \delta m,  b_1 = b_0 - \delta b\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ m_1 = m_0 -  Error * X * \alpha\]</div>
+<div class="math notranslate nohighlight">
+\[b_1 = b_0 - Error * \alpha\]</div>
+<p><strong>Notice</strong> that the slope b can be viewed as the beta value for X = 1. Thus, the above two equations are in essence the same.</p>
+<p>Let’s represent parameters as <span class="math notranslate nohighlight">\(\Theta\)</span>, learning rate as <span class="math notranslate nohighlight">\(\alpha\)</span>, and gradient as <span class="math notranslate nohighlight">\(\bigtriangledown J(\Theta)\)</span>, we have:</p>
+<div class="math notranslate nohighlight">
+\[\Theta_1 = \Theta_0 - \alpha \bigtriangledown J(\Theta)\]</div>
+<a class="reference internal image-reference" href="_images/gd.webp"><img alt="_images/gd.webp" class="align-center" src="_images/gd.webp" style="width: 800px;" /></a>
+<p>Hence,to solve for the gradient, we iterate through our data points using our new <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(b\)</span> values and compute the partial derivatives.</p>
+<p>This new gradient tells us</p>
+<ul class="simple">
+<li><p>the slope of our cost function at our current position</p></li>
+<li><p>the direction we should move to update our parameters.</p></li>
+<li><p>The size of our update is controlled by the learning rate.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Size of the points dataset.</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="c1"># Points x-coordinate and dummy value (x0, x1).</span>
+<span class="n">X0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">X1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">X0</span><span class="p">,</span> <span class="n">X1</span><span class="p">))</span>
+<span class="c1"># Points y-coordinate</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">21</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># The Learning Rate alpha.</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.01</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">error_function</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Error function J definition.&#39;&#39;&#39;</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">diff</span><span class="p">),</span> <span class="n">diff</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">gradient_function</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Gradient of the function J definition.&#39;&#39;&#39;</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">diff</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Perform gradient descent.&#39;&#39;&#39;</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">gradient</span> <span class="o">=</span> <span class="n">gradient_function</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">gradient</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">1e-5</span><span class="p">):</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">gradient</span>
+        <span class="n">gradient</span> <span class="o">=</span> <span class="n">gradient_function</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">theta</span>
+
+<span class="c1"># source：https://www.jianshu.com/p/c7e642877b0e</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimal</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Optimal parameters Theta:&#39;</span><span class="p">,</span> <span class="n">optimal</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">optimal</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error function:&#39;</span><span class="p">,</span> <span class="n">error_function</span><span class="p">(</span><span class="n">optimal</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal parameters Theta: 0.5158328581734093 0.9699216324486175
+Error function: 405.98496249324046
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="" src="_images/end.png" /></p>
+</div>
+<div class="section" id="estimating-the-gradient">
+<h2>Estimating the Gradient<a class="headerlink" href="#estimating-the-gradient" title="Permalink to this headline">¶</a></h2>
+<p>If f is a function of one variable, its derivative at a point x measures how f(x) changes when we make a very small change to x.</p>
+<blockquote>
+<div><p>It is defined as the limit of the difference quotients:</p>
+</div></blockquote>
+<p>差商（difference quotient）就是因变量的改变量与自变量的改变量两者相除的商。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">difference_quotient</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">h</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="n">h</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For many functions it’s easy to exactly calculate derivatives.</p>
+<p>For example, the square function:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    def square(x): 
+        return x * x
+</pre></div>
+</div>
+<p>has the derivative:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    def derivative(x): 
+        return 2 * x
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+
+<span class="k">def</span> <span class="nf">derivative</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+
+<span class="n">derivative_estimate</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">difference_quotient</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sum_of_squares</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;computes the sum of squared elements in v&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">v_i</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">v_i</span> <span class="ow">in</span> <span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot to show they&#39;re basically the same</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">derivative</span><span class="p">,</span> <span class="n">x</span><span class="p">)),</span> <span class="s1">&#39;rx&#39;</span><span class="p">)</span>           <span class="c1"># red  x</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">derivative_estimate</span><span class="p">,</span> <span class="n">x</span><span class="p">)),</span> <span class="s1">&#39;b+&#39;</span><span class="p">)</span>  <span class="c1"># blue +</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-05-gradient-descent_29_0.png" src="_images/08-05-gradient-descent_29_0.png" />
+</div>
+</div>
+<p>When f is a function of many variables, it has multiple partial derivatives.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">partial_difference_quotient</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+    <span class="c1"># add h to just the i-th element of v</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="p">[</span><span class="n">v_j</span> <span class="o">+</span> <span class="p">(</span><span class="n">h</span> <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="n">i</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+         <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">v_j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">v</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">/</span> <span class="n">h</span>
+
+<span class="k">def</span> <span class="nf">estimate_gradient</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">partial_difference_quotient</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">v</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="using-the-gradient">
+<h3>Using the Gradient<a class="headerlink" href="#using-the-gradient" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">step_size</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;move step_size in the direction from v&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">v_i</span> <span class="o">+</span> <span class="n">step_size</span> <span class="o">*</span> <span class="n">direction_i</span>
+            <span class="k">for</span> <span class="n">v_i</span><span class="p">,</span> <span class="n">direction_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">direction</span><span class="p">)]</span>
+
+<span class="k">def</span> <span class="nf">sum_of_squares_gradient</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">v_i</span> <span class="k">for</span> <span class="n">v_i</span> <span class="ow">in</span> <span class="n">v</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">from</span> <span class="nn">linear_algebra</span> <span class="kn">import</span> <span class="n">distance</span><span class="p">,</span> <span class="n">vector_subtract</span><span class="p">,</span> <span class="n">scalar_multiply</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<span class="kn">import</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">random</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;using the gradient&quot;</span><span class="p">)</span>
+
+<span class="c1"># generate 3 numbers </span>
+<span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">tolerance</span> <span class="o">=</span> <span class="mf">0.0000001</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">gradient</span> <span class="o">=</span> <span class="n">sum_of_squares_gradient</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>   <span class="c1"># compute the gradient at v</span>
+    <span class="k">if</span> <span class="n">n</span><span class="o">%</span><span class="k">50</span> ==0:
+        <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">sum_of_squares</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+    <span class="n">next_v</span> <span class="o">=</span> <span class="n">step</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.01</span><span class="p">)</span>       <span class="c1"># take a negative gradient step</span>
+    <span class="k">if</span> <span class="n">distance</span><span class="p">(</span><span class="n">next_v</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tolerance</span><span class="p">:</span>     <span class="c1"># stop if we&#39;re converging</span>
+        <span class="k">break</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">next_v</span>                              <span class="c1"># continue if we&#39;re not</span>
+    <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;minimum v&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;minimum value&quot;</span><span class="p">,</span> <span class="n">sum_of_squares</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>using the gradient
+[-4, 10, 6]
+[-4, 10, 6] 152
+[-1.4566787203484681, 3.641696800871171, 2.1850180805227026] 20.15817249600249
+[-0.5304782235790126, 1.3261955589475318, 0.7957173353685193] 2.6733678840696777
+[-0.19318408497395115, 0.482960212434878, 0.28977612746092685] 0.35454086152861664
+[-0.07035178642288623, 0.17587946605721566, 0.10552767963432938] 0.04701905160246833
+[-0.025619987555179666, 0.0640499688879492, 0.03842998133276951] 0.006235645742111834
+[-0.0093300226718057, 0.023325056679514268, 0.013995034007708552] 0.0008269685690358806
+[-0.0033977113715970304, 0.008494278428992584, 0.005096567057395551] 0.00010967220436445803
+[-0.0012373434632228497, 0.003093358658057131, 0.0018560151948342769] 1.4544679036813049e-05
+[-0.0004506029731597509, 0.0011265074328993788, 0.0006759044597396269] 1.9289088744938724e-06
+[-0.00016409594058189027, 0.00041023985145472635, 0.00024614391087283554] 2.558110382968256e-07
+[-5.975876618530154e-05, 0.00014939691546325416, 8.963814927795238e-05] 3.3925546291900725e-08
+[-2.1762330764102098e-05, 5.440582691025532e-05, 3.264349614615315e-05] 4.499190882718763e-09
+[-7.925181032313087e-06, 1.9812952580782747e-05, 1.1887771548469638e-05] 5.96680696751885e-10
+[-2.8861106411699463e-06, 7.215276602924873e-06, 4.32916596175492e-06] 7.913152901420692e-11
+minimum v [-1.6064572436336709e-06, 4.0161431090841815e-06, 2.409685865450507e-06]
+minimum value 2.4516696318419405e-11
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="choosing-the-right-step-size">
+<h3>Choosing the Right Step Size<a class="headerlink" href="#choosing-the-right-step-size" title="Permalink to this headline">¶</a></h3>
+<p>Although the rationale for moving against the gradient is clear,</p>
+<ul class="simple">
+<li><p>how far to move is not.</p>
+<ul>
+<li><p>Indeed, choosing the right step size is more of an art than a science.</p></li>
+</ul>
+</li>
+</ul>
+<p>Methods:</p>
+<ol class="simple">
+<li><p>Using a fixed step size</p></li>
+<li><p>Gradually shrinking the step size over time</p></li>
+<li><p>At each step, choosing the step size that minimizes the value of the objective function</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">step_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.00001</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is possible that certain step sizes will result in invalid inputs for our function.</p>
+<p>So we’ll need to create a “safe apply” function</p>
+<ul class="simple">
+<li><p>returns infinity for invalid inputs:</p>
+<ul>
+<li><p>which should never be the minimum of anything</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">safe</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;define a new function that wraps f and return it&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">safe_f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>  <span class="c1"># this means &quot;infinity&quot; in Python</span>
+    <span class="k">return</span> <span class="n">safe_f</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="putting-it-all-together">
+<h3>Putting It All Together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>target_fn</strong> that we want to minimize</p></li>
+<li><p><strong>gradient_fn</strong>.</p></li>
+</ul>
+<p>For example, the target_fn could represent the errors in a model as a function of its parameters,</p>
+<p>To choose a starting value for the parameters <code class="docutils literal notranslate"><span class="pre">theta_0</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">minimize_batch</span><span class="p">(</span><span class="n">target_fn</span><span class="p">,</span> <span class="n">gradient_fn</span><span class="p">,</span> <span class="n">theta_0</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.000001</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;use gradient descent to find theta that minimizes target function&quot;&quot;&quot;</span>
+
+    <span class="n">step_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.00001</span><span class="p">]</span>
+
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">theta_0</span>                           <span class="c1"># set theta to initial value</span>
+    <span class="n">target_fn</span> <span class="o">=</span> <span class="n">safe</span><span class="p">(</span><span class="n">target_fn</span><span class="p">)</span>               <span class="c1"># safe version of target_fn</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">target_fn</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>                  <span class="c1"># value we&#39;re minimizing</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">gradient</span> <span class="o">=</span> <span class="n">gradient_fn</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+        <span class="n">next_thetas</span> <span class="o">=</span> <span class="p">[</span><span class="n">step</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="o">-</span><span class="n">step_size</span><span class="p">)</span>
+                       <span class="k">for</span> <span class="n">step_size</span> <span class="ow">in</span> <span class="n">step_sizes</span><span class="p">]</span>
+
+        <span class="c1"># choose the one that minimizes the error function</span>
+        <span class="n">next_theta</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">next_thetas</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">target_fn</span><span class="p">)</span>
+        <span class="n">next_value</span> <span class="o">=</span> <span class="n">target_fn</span><span class="p">(</span><span class="n">next_theta</span><span class="p">)</span>
+
+        <span class="c1"># stop if we&#39;re &quot;converging&quot;</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">value</span> <span class="o">-</span> <span class="n">next_value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tolerance</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">theta</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">theta</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">next_theta</span><span class="p">,</span> <span class="n">next_value</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># minimize_batch&quot;</span>
+<span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">minimize_batch</span><span class="p">(</span><span class="n">sum_of_squares</span><span class="p">,</span> <span class="n">sum_of_squares_gradient</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;minimum v&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;minimum value&quot;</span><span class="p">,</span> <span class="n">sum_of_squares</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>minimum v [0.0009304595970494407, -0.001196305196206424, -0.00026584559915698326]
+minimum value 2.367575066803034e-06
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sometimes we’ll instead want to maximize a function, which we can do by minimizing its negative</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">negate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;return a function that for any input x returns -f(x)&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="o">-</span><span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">negate_all</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;the same when f returns a list of numbers&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)]</span>
+
+<span class="k">def</span> <span class="nf">maximize_batch</span><span class="p">(</span><span class="n">target_fn</span><span class="p">,</span> <span class="n">gradient_fn</span><span class="p">,</span> <span class="n">theta_0</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.000001</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">minimize_batch</span><span class="p">(</span><span class="n">negate</span><span class="p">(</span><span class="n">target_fn</span><span class="p">),</span>
+                          <span class="n">negate_all</span><span class="p">(</span><span class="n">gradient_fn</span><span class="p">),</span>
+                          <span class="n">theta_0</span><span class="p">,</span>
+                          <span class="n">tolerance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using the batch approach, each gradient step requires us to make a prediction and compute the gradient for the whole data set, which makes each step take a long time.</p>
+<p>Error functions are additive</p>
+<ul class="simple">
+<li><p>The predictive error on the whole data set is simply the sum of the predictive errors for each data point.</p></li>
+</ul>
+<p>When this is the case, we can instead apply a technique called <strong>stochastic gradient descent</strong></p>
+<ul class="simple">
+<li><p>which computes the gradient (and takes a step) for only one point at a time.</p></li>
+<li><p>It cycles over our data repeatedly until it reaches a stopping point.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="stochastic-gradient-descent">
+<h2>Stochastic Gradient Descent<a class="headerlink" href="#stochastic-gradient-descent" title="Permalink to this headline">¶</a></h2>
+<p>During each cycle, we’ll want to iterate through our data in a random order:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">in_random_order</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;generator that returns the elements of data in random order&quot;&quot;&quot;</span>
+    <span class="n">indexes</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">)]</span>  <span class="c1"># create a list of indexes</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">indexes</span><span class="p">)</span>                    <span class="c1"># shuffle them</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indexes</span><span class="p">:</span>                          <span class="c1"># return the data in that order</span>
+        <span class="k">yield</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This approach avoids circling around near a minimum forever</p>
+<ul class="simple">
+<li><p>whenever we stop getting improvements we’ll decrease the step size and eventually quit.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">minimize_stochastic</span><span class="p">(</span><span class="n">target_fn</span><span class="p">,</span> <span class="n">gradient_fn</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta_0</span><span class="p">,</span> <span class="n">alpha_0</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">theta_0</span>                             <span class="c1"># initial guess</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha_0</span>                             <span class="c1"># initial step size</span>
+    <span class="n">min_theta</span><span class="p">,</span> <span class="n">min_value</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>   <span class="c1"># the minimum so far</span>
+    <span class="n">iterations_with_no_improvement</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># if we ever go 100 iterations with no improvement, stop</span>
+    <span class="k">while</span> <span class="n">iterations_with_no_improvement</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">target_fn</span><span class="p">(</span><span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="n">data</span> <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">min_value</span><span class="p">:</span>
+            <span class="c1"># if we&#39;ve found a new minimum, remember it</span>
+            <span class="c1"># and go back to the original step size</span>
+            <span class="n">min_theta</span><span class="p">,</span> <span class="n">min_value</span> <span class="o">=</span> <span class="n">theta</span><span class="p">,</span> <span class="n">value</span>
+            <span class="n">iterations_with_no_improvement</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha_0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># otherwise we&#39;re not improving, so try shrinking the step size</span>
+            <span class="n">iterations_with_no_improvement</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">alpha</span> <span class="o">*=</span> <span class="mf">0.9</span>
+
+        <span class="c1"># and take a gradient step for each of the data points</span>
+        <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="n">in_random_order</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+            <span class="n">gradient_i</span> <span class="o">=</span> <span class="n">gradient_fn</span><span class="p">(</span><span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+            <span class="n">theta</span> <span class="o">=</span> <span class="n">vector_subtract</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">scalar_multiply</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">gradient_i</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">min_theta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">maximize_stochastic</span><span class="p">(</span><span class="n">target_fn</span><span class="p">,</span> <span class="n">gradient_fn</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta_0</span><span class="p">,</span> <span class="n">alpha_0</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">minimize_stochastic</span><span class="p">(</span><span class="n">negate</span><span class="p">(</span><span class="n">target_fn</span><span class="p">),</span>
+                               <span class="n">negate_all</span><span class="p">(</span><span class="n">gradient_fn</span><span class="p">),</span>
+                               <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta_0</span><span class="p">,</span> <span class="n">alpha_0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;using minimize_stochastic_batch&quot;</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">101</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="o">*</span><span class="n">x_i</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+<span class="n">theta_0</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> 
+<span class="n">v</span> <span class="o">=</span> <span class="n">minimize_stochastic</span><span class="p">(</span><span class="n">sum_of_squares</span><span class="p">,</span> <span class="n">sum_of_squares_gradient</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta_0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;minimum v&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;minimum value&quot;</span><span class="p">,</span> <span class="n">sum_of_squares</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>Scikit-learn has a Stochastic Gradient Descent module  http://scikit-learn.org/stable/modules/sgd.html</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="08-04-hypothesis-inference.html" title="previous page">Statistical Hypothesis Testing</a>
+    <a class='right-next' id="next-link" href="08-06-regression.html" title="next page">Linear Regression</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

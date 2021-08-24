@@ -1,0 +1,1631 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>第十章 网络科学简介 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="网络科学模型" href="16-network-science-models.html" />
+    <link rel="prev" title="使用Turicreate进行电影推荐" href="14-movielens.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   第十章 网络科学简介
+  </a>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="16-network-science-models.html">
+     网络科学模型
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="17-networkx.html">
+     使用NetworkX分析网络
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-02-network-diffusion.html">
+     Simulating Network Diffusion With NDlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-03-network-epidemics.html">
+     Epidemics on Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-04-seir-hcd-model.html">
+     SEIR-HCD Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-network-ergm-siena.html">
+     Social Network Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">
+     天涯论坛的回帖网络分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">
+     可视化Facebook社交网络
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reproducing_hidagos_result.html">
+     4 digit sitc trade data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reproducing_hidagos_result.html#sitc-digit-2-data">
+     sitc digit-2 data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/15-network-science-intro.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F15-network-science-intro.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/15-network-science-intro.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/15-network-science-intro.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#from-saddam-hussein-to-network-theory">
+   FROM SADDAM HUSSEIN TO NETWORK THEORY
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-about-osama-bin-laden">
+   How about Osama bin Laden?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-simple-story-2-august-15-2003-blackout">
+   A SIMPLE STORY (2): August 15, 2003 blackout.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vulnerability">
+   VULNERABILITY
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#complex-systems">
+   COMPLEX SYSTEMS
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#complexity">
+   Complexity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   COMPLEX SYSTEMS
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-history-of-network-analysis">
+   THE HISTORY OF NETWORK ANALYSIS
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#health-from-drug-design-to-metabolic-engineering">
+   Health: From drug design to metabolic engineering.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#security-fighting-terrorism">
+   Security: Fighting Terrorism.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#epidemics-from-forecasting-to-halting-deadly-viruses">
+   Epidemics: From forecasting to halting deadly viruses.
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-first-major-mobile-epidemic-outbreak">
+     The first major mobile epidemic outbreak
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#brain-research-mapping-neural-network">
+   Brain Research: Mapping neural network.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-bridges-of-konigsberg">
+   The Bridges of Konigsberg
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eulers-theorem-1735">
+     Euler’s theorem (1735):
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choosing-a-proper-representation">
+     CHOOSING A PROPER REPRESENTATION
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#undirected-vs-directed-networks">
+   UNDIRECTED VS. DIRECTED NETWORKS
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#undirected">
+     Undirected
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#directed">
+     Directed
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#degree-average-degree-and-degree-distribution">
+   Degree, Average Degree and Degree Distribution
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#undirected-network">
+     Undirected network:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#directed-network">
+     Directed network
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#average-degree">
+   Average Degree
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Undirected
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Directed
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#degree-distribution">
+   Degree distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adjacency-matrix">
+   Adjacency matrix
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Undirected
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Undirected
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Directed
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Directed
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#weighted-and-unweighted-networks">
+   WEIGHTED AND UNWEIGHTED NETWORKS
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bipartite-networks">
+   BIPARTITE NETWORKS
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#link-analysis">
+   Link Analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pagerank">
+     PageRank
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#path">
+   Path 路径
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shortest-path">
+     Shortest Path  最短路径
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distance">
+     Distance  距离
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#diameter">
+     Diameter 直径
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#average-path-length-distance-d">
+     Average path length/distance,
+     <span class="math notranslate nohighlight">
+      \(&lt;d&gt;\)
+     </span>
+     平均路径长度
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cycle">
+   Cycle  环
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connectedness">
+   CONNECTEDNESS
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#connected-undirected-graph">
+     Connected (undirected) graph
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bridge">
+     Bridge 桥
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     结构洞
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#strongly-connected-directed-graph">
+     Strongly connected
+     <em>
+      directed
+     </em>
+     graph 强连通有向图
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weakly-connected-directed-graph">
+     Weakly connected directed graph  弱连接有向图
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-component-scc-out-component">
+     In-component -&gt; SCC -&gt;Out-component
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clustering-coefficient">
+   Clustering coefficient 聚集系数
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     节点的
+     <strong>
+      聚集系数
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#global-clustering-coefficient-i-e-transtivity">
+     Global Clustering Coefficient 全局聚集系数（i.e., Transtivity 传递性)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#typical-network-science-research">
+   Typical Network Science Research
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#typical-math-style">
+   Typical Math Style
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#typical-physical-style">
+   Typical Physical Style
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#typical-computer-science-style">
+   Typical Computer Science Style
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#typical-control-sytle">
+   Typical control sytle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   阅读材料
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>第十章 网络科学简介<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><strong>Network Science</strong>, a textbook for network science, is freely available under the Creative Commons license. http://networksciencebook.com/</p>
+<a class="reference internal image-reference" href="_images/network.png"><img alt="_images/network.png" class="align-right" src="_images/network.png" style="width: 250px;" /></a>
+<ol class="simple">
+<li><p>Introduction</p></li>
+<li><p>Graph Theory</p></li>
+<li><p>Random Networks</p></li>
+<li><p>The Scale-Free Property</p></li>
+<li><p>The Barabási-Albert Model</p></li>
+<li><p>Evolving Networks</p></li>
+<li><p>Degree Correlations</p></li>
+<li><p>Network Robustness</p></li>
+<li><p>Communities</p></li>
+<li><p>Spreading Phenomena
+Preface</p></li>
+</ol>
+<div class="section" id="from-saddam-hussein-to-network-theory">
+<h2>FROM SADDAM HUSSEIN TO NETWORK THEORY<a class="headerlink" href="#from-saddam-hussein-to-network-theory" title="Permalink to this headline">¶</a></h2>
+<p>SADDAM HUSSEIN: the fifth President of <strong>Iraq</strong>, serving in this capacity from 16 July 1979 until 9 April <strong>2003</strong>. Invasion that started in March 19,  2003. Many of the regime’s high ranking officials, including Saddam Hussein, avoided capture. Hussein was last spotted kissing a baby in Baghdad in April 2003, and then his trace went cold.</p>
+<ul class="simple">
+<li><p>Designed a deck of cards, each card engraved with the images of the 55 most wanted.</p>
+<ul>
+<li><p>It worked: by May 1, 2003, 15 men on the cards were captured, and by the end of the month another 12 were under custody.</p></li>
+<li><p>Yet, the ace of spades, i.e. Hussein himself, remained at large.</p></li>
+</ul>
+</li>
+</ul>
+<a class="reference internal image-reference" href="_images/saddam.png"><img alt="_images/saddam.png" class="align-right" src="_images/saddam.png" style="width: 300px;" /></a>
+<p>It demonstrates the remarkable <strong>stability of these networks</strong>.</p>
+<p>The capture of Hussein was not based on fresh intelligence, but rather on his <strong>pre-invasion social links</strong>, unearthed from old photos stacked in his family album.</p>
+<p>It shows that the choice of network we focus on makes a huge difference:
+the <strong>hierarchical tree</strong> captured the official organization of the Iraqi government, was of no use when it came to Saddam Hussein’s whereabouts.</p>
+</div>
+<div class="section" id="how-about-osama-bin-laden">
+<h2>How about Osama bin Laden?<a class="headerlink" href="#how-about-osama-bin-laden" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>the founder of al-Qaeda, the organization that claimed responsibility for the September 11 attacks on the United States.</p></li>
+</ul>
+<blockquote>
+<div><p>2005年9月1日，中情局内部关于猎杀本·拉登任务的布告栏上贴出了如下信息：由于关押囚犯的强化刑讯已经没有任何意义，“我们只能继续跟踪科威特”。<code class="docutils literal notranslate"><span class="pre">中情局自此开始了对科威特长达数年的跟踪，最终成功窃听到了他本·拉登之间的移动电话，从确定了他的位置并顺藤摸瓜找到了本·拉登在巴基斯坦的豪宅</span></code>，再经过9个月的证实、部署，于2011年5月1日由海豹突击队发动突袭、击毙本·拉登。</p>
+</div></blockquote>
+</div>
+<div class="section" id="a-simple-story-2-august-15-2003-blackout">
+<h2>A SIMPLE STORY (2): August 15, 2003 blackout.<a class="headerlink" href="#a-simple-story-2-august-15-2003-blackout" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="_images/blackout.png"><img alt="_images/blackout.png" src="_images/blackout.png" style="width: 1000px;" /></a>
+</div>
+<div class="section" id="vulnerability">
+<h2>VULNERABILITY<a class="headerlink" href="#vulnerability" title="Permalink to this headline">¶</a></h2>
+<p>DUE TO INTERCONNECTIVITY</p>
+<ul class="simple">
+<li><p>The 2003 blackout is a typical example of a cascading failure.</p></li>
+<li><p>1997, when the International Monetary Fund pressured the central banks of several Pacific nations to limit their credit.</p></li>
+<li><p>2009-2011 financial melt-down</p></li>
+</ul>
+<p>An important theme of this class:</p>
+<ul class="simple">
+<li><p>we must understand <strong>how network structure affects the robustness of a complex system</strong>.</p></li>
+<li><p>develop quantitative tools to assess the interplay between network structure and the dynamical processes on the networks, and their impact on failures.</p></li>
+<li><p>We will learn that failures reality failures follow reproducible laws, that can be quantified and even predicted using the tools of network science.</p></li>
+</ul>
+<p>NETWORKS AT THE HEART OF</p>
+</div>
+<div class="section" id="complex-systems">
+<h2>COMPLEX SYSTEMS<a class="headerlink" href="#complex-systems" title="Permalink to this headline">¶</a></h2>
+<p>Complex</p>
+<p>[adj., v. kuh m-pleks, kom-pleks; n. kom-pleks]
+–adjective</p>
+<ul class="simple">
+<li><p>composed of many interconnected parts; compound; composite: a complex highway system.</p></li>
+<li><p>characterized by a very complicated or involved arrangement of parts, units, etc.: complex machinery.</p></li>
+<li><p>so complicated or intricate as to be hard to understand or deal with: a complex problem.
+Source: Dictionary.com</p></li>
+</ul>
+</div>
+<div class="section" id="complexity">
+<h2>Complexity<a class="headerlink" href="#complexity" title="Permalink to this headline">¶</a></h2>
+<p>a scientific theory which asserts that some systems display behavioral phenomena that are completely inexplicable by any conventional analysis of the systems’ constituent parts. These phenomena, commonly referred to as emergent behaviour, seem to occur in many complex systems involving living organisms, such as a stock market or the human brain.
+ 
+Source: John L. Casti, Encyclopædia Britannica</p>
+</div>
+<div class="section" id="id2">
+<h2>COMPLEX SYSTEMS<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>society</p></li>
+<li><p>brain</p></li>
+<li><p>market</p></li>
+<li><p>cell</p></li>
+</ul>
+<p>Stephen Hawking: I think the next century will be the century of complexity.</p>
+<blockquote>
+<div><p>Behind each complex system there is a network, that defines the interactions between the component.</p>
+</div></blockquote>
+<a class="reference internal image-reference" href="_images/facebook.png"><img alt="_images/facebook.png" src="_images/facebook.png" style="width: 1000px;" /></a>
+<ul class="simple">
+<li><p>Social graph</p></li>
+<li><p>Organization</p></li>
+<li><p>Brain</p></li>
+<li><p>finantial network</p></li>
+<li><p>business</p></li>
+<li><p>Internet</p></li>
+<li><p>Genes</p></li>
+</ul>
+<p>Behind each system studied in complexity there is an intricate wiring diagram, or a network, that defines the interactions between the component.</p>
+<p>We will never understand complex system unless we map out and understand the networks behind them.</p>
+</div>
+<div class="section" id="the-history-of-network-analysis">
+<h2>THE HISTORY OF NETWORK ANALYSIS<a class="headerlink" href="#the-history-of-network-analysis" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Graph theory: 1735, Euler</p></li>
+<li><p>Social Network Research:  1930s, Moreno</p></li>
+<li><p>Communication networks/internet: 1960s</p></li>
+<li><p>Ecological Networks: May, 1979.</p></li>
+</ul>
+<p>While the study of networks has a long history from graph theory to sociology, <strong>the modern chapter of network science emerged only during the first decade of the 21st century, following the publication of two seminal papers in 1998 and 1999</strong>.</p>
+<p>The explosive interest in network science is well documented by the citation pattern of two classic network papers, the 1959 paper by Paul Erdos and Alfréd Rényi that marks the beginning of the study of random networks in graph theory [4] and the 1973 paper by Mark Granovetter, the most cited social network paper [5].</p>
+<p>Both papers were hardly or only moderately cited before 2000. The explosive growth of citations to these papers in the 21st century documents the emergence of network science, drawing a new, interdisciplinary audience to these classic publications.</p>
+<a class="reference internal image-reference" href="_images/citation.png"><img alt="_images/citation.png" src="_images/citation.png" style="width: 800px;" /></a>
+<p>THE EMERGENCE OF NETWORK SCIENCE</p>
+<ul class="simple">
+<li><p>Movie Actor Network,  1998;</p></li>
+<li><p>World Wide Web,  1999.</p></li>
+<li><p>C elegans neural wiring diagram 1990</p></li>
+<li><p>Citation Network,  1998</p></li>
+<li><p>Metabolic Network, 2000;</p></li>
+<li><p>PPI network, 2001</p></li>
+</ul>
+<p>The universality of network characteristics:</p>
+<p>The architecture of networks emerging in various domains of science, nature, and technology are more similar to each other than one would have expected.</p>
+<p>THE CHARACTERISTICS OF NETWORK SCIENCE</p>
+<ul class="simple">
+<li><p>Interdisciplinary</p></li>
+<li><p>Empirical</p></li>
+<li><p>Quantitative and Mathematical</p></li>
+<li><p>Computational</p></li>
+</ul>
+<p>THE IMPACT OF NETWORK SCIENCE</p>
+<ul class="simple">
+<li><p><strong>Google</strong>
+Market Cap(2010 Jan 1):
+$189 billion</p></li>
+<li><p><strong>Cisco Systems</strong>
+networking gear Market cap (Jan 1, 2919):
+$112 billion</p></li>
+<li><p><strong>Facebook</strong>
+market cap:
+$50 billion</p></li>
+</ul>
+</div>
+<div class="section" id="health-from-drug-design-to-metabolic-engineering">
+<h2>Health: From drug design to metabolic engineering.<a class="headerlink" href="#health-from-drug-design-to-metabolic-engineering" title="Permalink to this headline">¶</a></h2>
+<p>The human genome project, completed in 2001, offered the first comprehensive list of all human genes.</p>
+<ul class="simple">
+<li><p>Yet, to fully understand how our cells function, and the origin of disease,</p></li>
+<li><p>we need accurate maps that tell us how these genes and other cellular components interact with each other.</p></li>
+</ul>
+</div>
+<div class="section" id="security-fighting-terrorism">
+<h2>Security: Fighting Terrorism.<a class="headerlink" href="#security-fighting-terrorism" title="Permalink to this headline">¶</a></h2>
+<p>Terrorism is one of the maladies of the 21st century, absorbing significant resources to combat it worldwide.</p>
+<ul class="simple">
+<li><p><strong>Network thinking</strong> is increasingly present in the arsenal of various law enforcement agencies in charge of limiting terrorist activities.</p>
+<ul>
+<li><p>To disrupt the financial network of terrorist organizations</p></li>
+<li><p>to map terrorist networks</p></li>
+<li><p>to uncover the role of their members and their capabilities.</p></li>
+</ul>
+</li>
+<li><p>Using social networks to capture Saddam Hussein</p></li>
+<li><p>Capturing of the individuals behind the March 11, 2004 Madrid train bombings <strong>through the examination of the mobile call network</strong>.</p></li>
+</ul>
+</div>
+<div class="section" id="epidemics-from-forecasting-to-halting-deadly-viruses">
+<h2>Epidemics: From forecasting to halting deadly viruses.<a class="headerlink" href="#epidemics-from-forecasting-to-halting-deadly-viruses" title="Permalink to this headline">¶</a></h2>
+<p>While the <strong>H1N1 pandemic</strong> was not as devastating as it was feared at the beginning of the outbreak in 2009, it gained a special role in the history of epidemics: it was <strong>the first pandemic whose course and time evolution was accurately predicted months before the pandemic reached its peak</strong>.</p>
+<ul class="simple">
+<li><p>Before 2000 epidemic modeling was dominated by <strong>compartment models</strong>, assuming that everyone can infect everyone else one word the same socio-physical compartment.</p></li>
+<li><p>The emergence of a network-based framework has fundamentally changed this, offering a new level of predictability in epidemic phenomena.</p></li>
+</ul>
+<div class="section" id="the-first-major-mobile-epidemic-outbreak">
+<h3>The first major mobile epidemic outbreak<a class="headerlink" href="#the-first-major-mobile-epidemic-outbreak" title="Permalink to this headline">¶</a></h3>
+<p>In January 2010 network science tools have predicted the conditions necessary for the emergence of viruses spreading through mobile phones.</p>
+<p>in the fall of 2010 in China, infecting over 300,000 phones each day, closely followed the predicted scenario.</p>
+</div>
+</div>
+<div class="section" id="brain-research-mapping-neural-network">
+<h2>Brain Research: Mapping neural network.<a class="headerlink" href="#brain-research-mapping-neural-network" title="Permalink to this headline">¶</a></h2>
+<p>The human brain, consisting of hundreds of billions of interlinked neurons, is one of the least understood networks from the perspective of network science.</p>
+<p>The reason is simple:</p>
+<ul class="simple">
+<li><p>we lack maps telling us which neurons link to each other.</p></li>
+<li><p>The only fully mapped neural map available for research is that of the C.Elegans worm, with only 300 neurons.</p></li>
+</ul>
+<p>Driven by the potential impact of such maps, in 2010 the <strong>National Institutes of Health</strong> has initiated the Connectome project, aimed at developing the technologies that could provide an accurate neuron-level map of mammalian brains.</p>
+</div>
+<div class="section" id="the-bridges-of-konigsberg">
+<h2>The Bridges of Konigsberg<a class="headerlink" href="#the-bridges-of-konigsberg" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="_images/konigsberg.png"><img alt="_images/konigsberg.png" src="_images/konigsberg.png" style="width: 500px;" /></a>
+<p>Can one walk across the seven bridges and never cross the same bridge twice and get back to the starting place?</p>
+<a class="reference internal image-reference" href="_images/euler.png"><img alt="_images/euler.png" src="_images/euler.png" style="width: 600px;" /></a>
+<div class="section" id="eulers-theorem-1735">
+<h3>Euler’s theorem (1735):<a class="headerlink" href="#eulers-theorem-1735" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>If a graph has more than two nodes of odd degree, there is no path.</p></li>
+<li><p>If a graph is connected and has no odd degree nodes, it has at least one path.</p></li>
+</ul>
+<p>COMPONENTS OF A COMPLEX SYSTEM</p>
+<p>Networks and graphs</p>
+<ul class="simple">
+<li><p>components: nodes, vertices		  N</p></li>
+<li><p>interactions:  links, edges			   L</p></li>
+<li><p>system:  	  network, graph		G(N,L)</p></li>
+</ul>
+<p>network often refers to real systems</p>
+<ul class="simple">
+<li><p>www,</p></li>
+<li><p>social network</p></li>
+<li><p>metabolic network.</p></li>
+</ul>
+<p>Language: (Network, node, link)</p>
+<p>graph: mathematical representation of a network</p>
+<ul class="simple">
+<li><p>web graph,</p></li>
+<li><p>social graph (a Facebook term)</p></li>
+</ul>
+<p>Language: (Graph, vertex, edge) <strong>G(N, L)</strong></p>
+<a class="reference internal image-reference" href="_images/net.png"><img alt="_images/net.png" src="_images/net.png" style="width: 800px;" /></a>
+</div>
+<div class="section" id="choosing-a-proper-representation">
+<h3>CHOOSING A PROPER REPRESENTATION<a class="headerlink" href="#choosing-a-proper-representation" title="Permalink to this headline">¶</a></h3>
+<p>The choice of the proper network representation determines our ability to use network theory successfully.</p>
+<p>In some cases there is a unique, unambiguous representation.
+In other cases, the representation is by no means unique.
+ 
+For example, the way we assign the links between a group of individuals will determine the nature of the question we can study.</p>
+<p>If you connect individuals that work with each other, you will explore the professional network. http://www.theyrule.net</p>
+<p>If you connect those that have a romantic and sexual relationship, you will be exploring the sexual networks.</p>
+<p>If you connect individuals based on their first name (all Peters connected to each other), you will be exploring what? It is a network, nevertheless.</p>
+</div>
+</div>
+<div class="section" id="undirected-vs-directed-networks">
+<h2>UNDIRECTED VS. DIRECTED NETWORKS<a class="headerlink" href="#undirected-vs-directed-networks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="undirected">
+<h3>Undirected<a class="headerlink" href="#undirected" title="Permalink to this headline">¶</a></h3>
+<p>Links: undirected</p>
+<ul class="simple">
+<li><p>co-authorship</p></li>
+<li><p>actor network</p></li>
+<li><p>protein interactions</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="n">Gu</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]:</span>
+    <span class="n">Gu</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">Gu</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-network-science-intro_41_0.png" src="_images/15-network-science-intro_41_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="directed">
+<h3>Directed<a class="headerlink" href="#directed" title="Permalink to this headline">¶</a></h3>
+<p>Links: directed</p>
+<ul class="simple">
+<li><p>urls on the www</p></li>
+<li><p>phone calls</p></li>
+<li><p>metabolic reactions</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="n">Gd</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]:</span>
+    <span class="n">Gd</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">Gd</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">Gd</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-network-science-intro_43_0.png" src="_images/15-network-science-intro_43_0.png" />
+</div>
+</div>
+<a class="reference internal image-reference" href="_images/networks.png"><img alt="_images/networks.png" src="_images/networks.png" style="width: 1000px;" /></a>
+</div>
+</div>
+<div class="section" id="degree-average-degree-and-degree-distribution">
+<h2>Degree, Average Degree and Degree Distribution<a class="headerlink" href="#degree-average-degree-and-degree-distribution" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">Gu</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-network-science-intro_46_0.png" src="_images/15-network-science-intro_46_0.png" />
+</div>
+</div>
+<div class="section" id="undirected-network">
+<h3>Undirected network:<a class="headerlink" href="#undirected-network" title="Permalink to this headline">¶</a></h3>
+<p>Node degree: the number of links connected to the node.</p>
+<p><span class="math notranslate nohighlight">\(k_1 = k_2 = 2, k_3 = 3, k_4 = 1\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">Gd</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">Gd</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-network-science-intro_48_0.png" src="_images/15-network-science-intro_48_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="directed-network">
+<h3>Directed network<a class="headerlink" href="#directed-network" title="Permalink to this headline">¶</a></h3>
+<p>In directed networks we can define an in-degree and out-degree. The (total) degree is the sum of in-and out-degree.</p>
+<p><span class="math notranslate nohighlight">\(k_3^{in} = 2, k_3^{out} = 1, k_3 = 3\)</span></p>
+<p>Source: a node with <span class="math notranslate nohighlight">\(k^{in}= 0\)</span>; Sink: a node with <span class="math notranslate nohighlight">\(k^{out}= 0\)</span>.</p>
+<p>For a sample of N values: <span class="math notranslate nohighlight">\(x_1, x_2, ..., x_N\)</span>:</p>
+<p>Average(mean):</p>
+<p><span class="math notranslate nohighlight">\(&lt;x&gt; = \frac{x_1 +x_2 + ...+x_N}{N} = \frac{1}{N}\sum_{i = 1}^{N} x_i\)</span></p>
+<p>For a sample of N values: <span class="math notranslate nohighlight">\(x_1, x_2, ..., x_N\)</span>:</p>
+<p>The nth moment:</p>
+<p><span class="math notranslate nohighlight">\(&lt;x^n&gt; = \frac{x_1^n +x_2^n + ...+x_N^n}{N} = \frac{1}{N}\sum_{i = 1}^{N} x_i^n\)</span></p>
+<p>For a sample of N values: <span class="math notranslate nohighlight">\(x_1, x_2, ..., x_N\)</span>:</p>
+<p>Standard deviation:</p>
+<p><span class="math notranslate nohighlight">\(\sigma_x = \sqrt{\frac{1}{N}\sum_{i = 1}^{N} (x_i - &lt;x&gt;)^2}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.6666666666666667, 10, 0.7453559924999299)
+</pre></div>
+</div>
+</div>
+</div>
+<p>For a sample of N values: <span class="math notranslate nohighlight">\(x_1, x_2, ..., x_N\)</span>:</p>
+<p>Distribution of x:</p>
+<p><span class="math notranslate nohighlight">\(p_x = \frac{The \: frequency \: of \: x}{The\: Number \:of\: Observations}\)</span></p>
+<p>其中，<span class="math notranslate nohighlight">\(p_x 满足 \sum_i p_x = 1\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 直方图</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-network-science-intro_55_0.png" src="_images/15-network-science-intro_55_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
+<span class="n">freq</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+    <span class="n">freq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span><span class="mi">1</span>
+
+<span class="n">freq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>defaultdict(int, {1: 3, 2: 2, 3: 1})
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">freq_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">freq</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">freq_sum</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">px</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">freq_sum</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">freq</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+<span class="n">px</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.5, 0.3333333333333333, 0.16666666666666666]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">freq</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">px</span><span class="p">,</span> <span class="s1">&#39;r-o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-network-science-intro_59_0.png" src="_images/15-network-science-intro_59_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="average-degree">
+<h2>Average Degree<a class="headerlink" href="#average-degree" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>Undirected<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(&lt;k&gt; = \frac{1}{N} \sum_{i = 1}^{N} k_i  = \frac{2L}{N}\)</span></p>
+</div>
+<div class="section" id="id4">
+<h3>Directed<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(&lt;k^{in}&gt; = \frac{1}{N} \sum_{i=1}^N k_i^{in}= &lt;k^{out}&gt; = \frac{1}{N} \sum_{i=1}^N k_i^{out} = \frac{L}{N}\)</span></p>
+</div>
+</div>
+<div class="section" id="degree-distribution">
+<h2>Degree distribution<a class="headerlink" href="#degree-distribution" title="Permalink to this headline">¶</a></h2>
+<p>P(k): probability that a randomly selected node  has degree k</p>
+<p><span class="math notranslate nohighlight">\(N_k = The \:number\: of \:nodes\:with \:degree\: k\)</span></p>
+<p><span class="math notranslate nohighlight">\(P(k) = \frac{N_k}{N}\)</span></p>
+</div>
+<div class="section" id="adjacency-matrix">
+<h2>Adjacency matrix<a class="headerlink" href="#adjacency-matrix" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(A_{ij} =1\)</span> if there is a link between node i and j</p>
+<p><span class="math notranslate nohighlight">\(A_{ij} =0\)</span> if there is no link between node i and j</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">Gu</span><span class="p">)</span>  <span class="c1">#定义一个布局，此处采用了spring布局方式</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">Gu</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">Gd</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-network-science-intro_65_0.png" src="_images/15-network-science-intro_65_0.png" />
+</div>
+</div>
+<div class="section" id="id5">
+<h3>Undirected<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(A_{ij} =1\)</span> if there is a link between node i and j</p>
+<p><span class="math notranslate nohighlight">\(A_{ij} =0\)</span> if there is no link between node i and j</p>
+<p><span class="math notranslate nohighlight">\(A_{ij}=\begin{bmatrix} 0&amp;1  &amp;0  &amp;1 \\ 1&amp;0  &amp;0  &amp;1 \\ 0 &amp;0  &amp;0  &amp;1 \\ 1&amp;1  &amp;1  &amp; 0 \end{bmatrix}\)</span></p>
+</div>
+<div class="section" id="id6">
+<h3>Undirected<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>无向网络的矩阵是对称的。</p>
+<p><span class="math notranslate nohighlight">\(A_{ij} = A_{ji} , \: A_{ii} = 0\)</span></p>
+<p><span class="math notranslate nohighlight">\(k_i = \sum_{j=1}^N A_{ij}, \: k_j = \sum_{i=1}^N A_{ij} \)</span></p>
+<p>网络中的链接数量<span class="math notranslate nohighlight">\(L\)</span>可以表达为：</p>
+<p><span class="math notranslate nohighlight">\( L = \frac{1}{2}\sum_{i=1}^N k_i = \frac{1}{2}\sum_{ij}^N A_{ij} \)</span></p>
+</div>
+<div class="section" id="id7">
+<h3>Directed<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(A_{ij} =1\)</span> if there is a link between node i and j</p>
+<p><span class="math notranslate nohighlight">\(A_{ij} =0\)</span> if there is no link between node i and j</p>
+<p><span class="math notranslate nohighlight">\(A_{ij}=\begin{bmatrix} 0&amp;0  &amp;0  &amp;0 \\ 1&amp;0  &amp;0  &amp;1 \\ 0 &amp;0  &amp;0  &amp;1 \\ 1&amp;0  &amp;0  &amp; 0 \end{bmatrix}\)</span></p>
+<p>Note that for a directed graph the matrix is not symmetric.</p>
+</div>
+<div class="section" id="id8">
+<h3>Directed<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(A_{ij} \neq A_{ji}, \: A_{ii} = 0\)</span></p>
+<p><span class="math notranslate nohighlight">\(k_i^{in} = \sum_{j=1}^N A_{ji}, \: k_i^{out} = \sum_{j=1}^N A_{ij} \)</span></p>
+<p><span class="math notranslate nohighlight">\( L = \sum_{i=1}^N k_i^{in} = \sum_{j=1}^N k_j^{out}= \sum_{i,j}^N A_{ij} \)</span></p>
+</div>
+</div>
+<div class="section" id="weighted-and-unweighted-networks">
+<h2>WEIGHTED AND UNWEIGHTED NETWORKS<a class="headerlink" href="#weighted-and-unweighted-networks" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(A_{ij} = W_{ij}\)</span></p>
+</div>
+<div class="section" id="bipartite-networks">
+<h2>BIPARTITE NETWORKS<a class="headerlink" href="#bipartite-networks" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Bipartite</span> <span class="pre">graph</span></code> (or bigraph) is a graph whose nodes can be divided into two disjoint sets U and V such that every link connects a node in U to one in V; that is, U and V are independent sets.</p>
+<ul class="simple">
+<li><p>Hits algorithm</p></li>
+<li><p>recommendation system</p></li>
+</ul>
+<p>Ingredient-Flavor Bipartite Network</p>
+<a class="reference internal image-reference" href="_images/bipartite.png"><img alt="_images/bipartite.png" src="_images/bipartite.png" style="width: 800px;" /></a>
+</div>
+<div class="section" id="link-analysis">
+<h2>Link Analysis<a class="headerlink" href="#link-analysis" title="Permalink to this headline">¶</a></h2>
+<p>餐馆推荐问题</p>
+<p><img alt="image.png" src="_images/hits.png" /></p>
+<p>Credit: 李晓明</p>
+<a class="reference internal image-reference" href="_images/hits2.png"><img alt="_images/hits2.png" src="_images/hits2.png" style="width: 800px;" /></a>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;甲&#39;</span><span class="p">,</span> <span class="s1">&#39;新辣道&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;甲&#39;</span><span class="p">,</span> <span class="s1">&#39;海底捞&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;甲&#39;</span><span class="p">,</span> <span class="s1">&#39;五方院&#39;</span><span class="p">),</span> 
+         <span class="p">(</span><span class="s1">&#39;乙&#39;</span><span class="p">,</span> <span class="s1">&#39;海底捞&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;乙&#39;</span><span class="p">,</span> <span class="s1">&#39;麦当劳&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;乙&#39;</span><span class="p">,</span> <span class="s1">&#39;俏江南&#39;</span><span class="p">),</span>
+         <span class="p">(</span><span class="s1">&#39;丙&#39;</span><span class="p">,</span> <span class="s1">&#39;新辣道&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;丙&#39;</span><span class="p">,</span> <span class="s1">&#39;海底捞&#39;</span><span class="p">),</span>
+         <span class="p">(</span><span class="s1">&#39;丁&#39;</span><span class="p">,</span> <span class="s1">&#39;新辣道&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;丁&#39;</span><span class="p">,</span> <span class="s1">&#39;五方院&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;丁&#39;</span><span class="p">,</span> <span class="s1">&#39;俏江南&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h_dic</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="s1">&#39;steps&#39;</span><span class="p">)</span>
+    <span class="n">a_dic</span> <span class="o">=</span> <span class="p">{</span><span class="n">j</span><span class="p">:</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+            <span class="n">a_dic</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span><span class="n">h_dic</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a_dic</span><span class="p">)</span>
+    <span class="n">h_dic</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+        <span class="n">h_dic</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">a_dic</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">h_dic</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 steps
+{&#39;新辣道&#39;: 3, &#39;海底捞&#39;: 3, &#39;五方院&#39;: 2, &#39;麦当劳&#39;: 1, &#39;俏江南&#39;: 2}
+{&#39;甲&#39;: 8, &#39;乙&#39;: 6, &#39;丙&#39;: 6, &#39;丁&#39;: 7}
+1 steps
+{&#39;新辣道&#39;: 21, &#39;海底捞&#39;: 20, &#39;五方院&#39;: 15, &#39;麦当劳&#39;: 6, &#39;俏江南&#39;: 13}
+{&#39;甲&#39;: 56, &#39;乙&#39;: 39, &#39;丙&#39;: 41, &#39;丁&#39;: 49}
+2 steps
+{&#39;新辣道&#39;: 146, &#39;海底捞&#39;: 136, &#39;五方院&#39;: 105, &#39;麦当劳&#39;: 39, &#39;俏江南&#39;: 88}
+{&#39;甲&#39;: 387, &#39;乙&#39;: 263, &#39;丙&#39;: 282, &#39;丁&#39;: 339}
+3 steps
+{&#39;新辣道&#39;: 1008, &#39;海底捞&#39;: 932, &#39;五方院&#39;: 726, &#39;麦当劳&#39;: 263, &#39;俏江南&#39;: 602}
+{&#39;甲&#39;: 2666, &#39;乙&#39;: 1797, &#39;丙&#39;: 1940, &#39;丁&#39;: 2336}
+4 steps
+{&#39;新辣道&#39;: 6942, &#39;海底捞&#39;: 6403, &#39;五方院&#39;: 5002, &#39;麦当劳&#39;: 1797, &#39;俏江南&#39;: 4133}
+{&#39;甲&#39;: 18347, &#39;乙&#39;: 12333, &#39;丙&#39;: 13345, &#39;丁&#39;: 16077}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">norm_dic</span><span class="p">(</span><span class="n">dic</span><span class="p">):</span>
+    <span class="n">sumd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">dic</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">i</span> <span class="p">:</span> <span class="n">dic</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">sumd</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dic</span><span class="p">}</span>
+    
+<span class="n">h</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">}</span>
+<span class="n">h_dic</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">h</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">a_dic</span> <span class="o">=</span> <span class="p">{</span><span class="n">j</span><span class="p">:</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span> 
+            <span class="n">a_dic</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span><span class="n">h_dic</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">a_dic</span> <span class="o">=</span> <span class="n">norm_dic</span><span class="p">(</span><span class="n">a_dic</span><span class="p">)</span>
+    <span class="n">h_dic</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+        <span class="n">h_dic</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">a_dic</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="n">h_dic</span> <span class="o">=</span> <span class="n">norm_dic</span><span class="p">(</span><span class="n">h_dic</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a_dic</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;新辣道&#39;: 0.2861876476571226, &#39;海底捞&#39;: 0.2636544282409802, &#39;五方院&#39;: 0.20624908818768029, &#39;麦当劳&#39;: 0.07379187216602481, &#39;俏江南&#39;: 0.17011696374819205}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">users</span><span class="p">,</span> <span class="n">items</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">},</span> <span class="p">{</span><span class="n">j</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+    <span class="n">B</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+<span class="n">h</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">hits</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">({</span><span class="n">i</span><span class="p">:</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">items</span><span class="p">}</span> <span class="p">)</span>
+<span class="c1"># {j:h[j] for j in users}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;麦当劳&#39;: 0.036895936147322755, &#39;新辣道&#39;: 0.14309382376113222, &#39;五方院&#39;: 0.10312454403576715, &#39;海底捞&#39;: 0.13182721414423623, &#39;俏江南&#39;: 0.0850584819115415}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pagerank">
+<h3>PageRank<a class="headerlink" href="#pagerank" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/pagerank.png"><img alt="_images/pagerank.png" src="_images/pagerank.png" style="width: 800px;" /></a>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="n">Gp</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+    <span class="n">Gp</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">Gp</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">font_size</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span> <span class="n">font_color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">kamada_kawai_layout</span><span class="p">(</span><span class="n">Gp</span><span class="p">))</span>
+        <span class="c1">#pos=nx.spring_layout(Gp, iterations = 5000))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-network-science-intro_80_0.png" src="_images/15-network-science-intro_80_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">steps</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.0</span><span class="o">/</span><span class="n">n</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> 
+    <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 : 0.5 0.0625 0.0625 0.0625 0.0625 0.0625 0.0625 0.125
+2 : 0.3125 0.25 0.25 0.03125 0.03125 0.03125 0.03125 0.0625
+3 : 0.15625 0.15625 0.15625 0.125 0.125 0.125 0.125 0.03125
+4 : 0.40625 0.078125 0.078125 0.078125 0.078125 0.078125 0.078125 0.125
+5 : 0.359375 0.203125 0.203125 0.0390625 0.0390625 0.0390625 0.0390625 0.078125
+6 : 0.1953125 0.1796875 0.1796875 0.1015625 0.1015625 0.1015625 0.1015625 0.0390625
+7 : 0.34375 0.09765625 0.09765625 0.08984375 0.08984375 0.08984375 0.08984375 0.1015625
+8 : 0.37109375 0.171875 0.171875 0.048828125 0.048828125 0.048828125 0.048828125 0.08984375
+9 : 0.236328125 0.185546875 0.185546875 0.0859375 0.0859375 0.0859375 0.0859375 0.048828125
+10 : 0.306640625 0.1181640625 0.1181640625 0.0927734375 0.0927734375 0.0927734375 0.0927734375 0.0859375
+</pre></div>
+</div>
+</div>
+</div>
+<p>流量作弊</p>
+<a class="reference internal image-reference" href="_images/pagerank_trap.png"><img alt="_images/pagerank_trap.png" src="_images/pagerank_trap.png" style="width: 800px;" /></a>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">path_graph</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">pr</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">pr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: 0.06181813973848581,
+ 1: 0.11515299000945314,
+ 2: 0.1100340840842764,
+ 3: 0.10714737750289352,
+ 4: 0.10584740866489117,
+ 5: 0.10584740866489117,
+ 6: 0.10714737750289352,
+ 7: 0.11003408408427638,
+ 8: 0.11515299000945314,
+ 9: 0.061818139738485794}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="path">
+<h2>Path 路径<a class="headerlink" href="#path" title="Permalink to this headline">¶</a></h2>
+<p>A path is a sequence of nodes in which  each node is adjacent to the next one</p>
+<ul class="simple">
+<li><p>In a directed network, the path can follow only the direction of an arrow.</p></li>
+</ul>
+<div class="section" id="shortest-path">
+<h3>Shortest Path  最短路径<a class="headerlink" href="#shortest-path" title="Permalink to this headline">¶</a></h3>
+<p>The path with the shortest length between two nodes (distance).</p>
+</div>
+<div class="section" id="distance">
+<h3>Distance  距离<a class="headerlink" href="#distance" title="Permalink to this headline">¶</a></h3>
+<p>The distance (shortest path, geodesic path) between two nodes is defined as the number of edges along the shortest path connecting them.</p>
+<blockquote>
+<div><p>If the two nodes are disconnected, the distance is <strong>infinity</strong>.</p>
+</div></blockquote>
+</div>
+<div class="section" id="diameter">
+<h3>Diameter 直径<a class="headerlink" href="#diameter" title="Permalink to this headline">¶</a></h3>
+<p><strong>Diameter <span class="math notranslate nohighlight">\(d_{max}\)</span></strong> is the maximum distance between any pair of nodes in the graph.</p>
+</div>
+<div class="section" id="average-path-length-distance-d">
+<h3>Average path length/distance, <span class="math notranslate nohighlight">\(&lt;d&gt;\)</span> 平均路径长度<a class="headerlink" href="#average-path-length-distance-d" title="Permalink to this headline">¶</a></h3>
+<p>The average of the shortest paths for all pairs of nodes.</p>
+<ul class="simple">
+<li><p>for a <strong>directed graph</strong>: where <span class="math notranslate nohighlight">\(d_{ij}\)</span> is the distance from node i to node j</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(&lt;d&gt; = \frac{1}{2 L }\sum_{i, j \neq i} d_{ij}\)</span></p>
+<blockquote>
+<div><p>有向网络当中的<span class="math notranslate nohighlight">\(d_{ij}\)</span>数量是链接数量L的2倍</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>In an <strong>undirected</strong> graph <span class="math notranslate nohighlight">\(d_{ij} =d_{ji}\)</span> , so we only need to count them once</p></li>
+</ul>
+<blockquote>
+<div><p>无向网络当中的<span class="math notranslate nohighlight">\(d_{ij}\)</span>数量是链接数量L</p>
+</div></blockquote>
+<p><span class="math notranslate nohighlight">\(&lt;d&gt; = \frac{1}{L }\sum_{i, j &gt; i} d_{ij}\)</span></p>
+</div>
+</div>
+<div class="section" id="cycle">
+<h2>Cycle  环<a class="headerlink" href="#cycle" title="Permalink to this headline">¶</a></h2>
+<p>A path with the same start and end node.</p>
+</div>
+<div class="section" id="connectedness">
+<h2>CONNECTEDNESS<a class="headerlink" href="#connectedness" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="connected-undirected-graph">
+<h3>Connected (undirected) graph<a class="headerlink" href="#connected-undirected-graph" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>In a connected <strong>undirected</strong> graph, any two vertices can be joined by a path.</p>
+</div></blockquote>
+<blockquote>
+<div><p>A disconnected graph is made up by two or more connected components.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Largest Component:  Giant Component</p></li>
+<li><p>The rest: Isolates</p></li>
+</ul>
+</div>
+<div class="section" id="bridge">
+<h3>Bridge 桥<a class="headerlink" href="#bridge" title="Permalink to this headline">¶</a></h3>
+<p>if  we erase it, the graph becomes disconnected.</p>
+<p>The adjacency matrix of a network with several components can be written in a block-diagonal form, so that nonzero elements are confined to squares, with all other elements being zero:</p>
+<a class="reference internal image-reference" href="_images/block.png"><img alt="_images/block.png" src="_images/block.png" style="width: 600px;" /></a>
+</div>
+<div class="section" id="id9">
+<h3>结构洞<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>洞在哪里？</p>
+<p>洞在桥下！结构“坑”</p>
+</div>
+<div class="section" id="strongly-connected-directed-graph">
+<h3>Strongly connected <em>directed</em> graph 强连通有向图<a class="headerlink" href="#strongly-connected-directed-graph" title="Permalink to this headline">¶</a></h3>
+<p>has a path from each node to every other node and vice versa (e.g. AB path and BA path).</p>
+</div>
+<div class="section" id="weakly-connected-directed-graph">
+<h3>Weakly connected directed graph  弱连接有向图<a class="headerlink" href="#weakly-connected-directed-graph" title="Permalink to this headline">¶</a></h3>
+<p>it is connected if we disregard the edge directions.</p>
+<p>Strongly connected components can be identified, but not every node is part of a nontrivial strongly connected component.</p>
+</div>
+<div class="section" id="in-component-scc-out-component">
+<h3>In-component -&gt; SCC -&gt;Out-component<a class="headerlink" href="#in-component-scc-out-component" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>In-component: nodes that can reach the <strong>scc</strong> (strongly connected component 强连通分量或强连通子图)</p></li>
+<li><p>Out-component: nodes that can be reached from the scc.</p></li>
+</ul>
+<blockquote>
+<div><p>万维网的蝴蝶结模型🎀 bowtie model</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="clustering-coefficient">
+<h2>Clustering coefficient 聚集系数<a class="headerlink" href="#clustering-coefficient" title="Permalink to this headline">¶</a></h2>
+<p>what fraction of your neighbors are connected? Watts &amp; Strogatz, Nature 1998.</p>
+<p>节点<span class="math notranslate nohighlight">\(i\)</span>的朋友之间是否也是朋友？</p>
+<p>Node i with degree <span class="math notranslate nohighlight">\(k_i\)</span>  节点i有k个朋友</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(e_i\)</span> represents the number of links between the <span class="math notranslate nohighlight">\(k_i\)</span> neighbors of node i.</p>
+</div></blockquote>
+<blockquote>
+<div><p>节点i的k个朋友之间全部是朋友的数量  <span class="math notranslate nohighlight">\(\frac{k_i(k_i -1)}{2}\)</span></p>
+</div></blockquote>
+<p><span class="math notranslate nohighlight">\(C_i = \frac{2e_i}{k_i(k_i -1)}\)</span></p>
+<p><span class="math notranslate nohighlight">\(C_i\)</span> in [0,1]</p>
+<div class="section" id="id10">
+<h3>节点的<strong>聚集系数</strong><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/cc.png"><img alt="_images/cc.png" src="_images/cc.png" style="width: 500px;" /></a>
+</div>
+<div class="section" id="global-clustering-coefficient-i-e-transtivity">
+<h3>Global Clustering Coefficient 全局聚集系数（i.e., Transtivity 传递性)<a class="headerlink" href="#global-clustering-coefficient-i-e-transtivity" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>triangles 三角形
+triplets 三元组</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>A triplet consists of three connected nodes.</p></li>
+<li><p>A triangle therefore includes three closed triplets</p></li>
+<li><p>A triangle forms three <strong>connected triplets</strong></p></li>
+<li><p><strong>A connected triplet</strong> is defined to be a connected subgraph consisting of three vertices and <strong>two edges</strong>.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(C  = \frac{\mbox{number of closed triplets}}{\mbox{number of connected triplets of vertices}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(C = \frac{3 \times \mbox{number of triangles}}{\mbox{number of connected triplets of vertices}}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G1</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">complete_graph</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G1</span><span class="p">)</span>  <span class="c1">#定义一个布局，此处采用了spring布局方式</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G1</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-network-science-intro_101_0.png" src="_images/15-network-science-intro_101_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">transitivity</span><span class="p">(</span><span class="n">G1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G2</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]:</span>
+    <span class="n">G2</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G2</span><span class="p">,</span><span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-network-science-intro_103_0.png" src="_images/15-network-science-intro_103_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">transitivity</span><span class="p">(</span><span class="n">G2</span><span class="p">))</span>
+<span class="c1"># 开放三元组有5个，闭合三元组有3个</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G3</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]:</span>
+    <span class="n">G3</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G3</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span><span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-network-science-intro_105_0.png" src="_images/15-network-science-intro_105_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">transitivity</span><span class="p">(</span><span class="n">G3</span><span class="p">))</span>
+<span class="c1"># 开放三元组有3个，闭合三元组有0个</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>THREE CENTRAL QUANTITIES IN NETWORK SCIENCE</p>
+<ul class="simple">
+<li><p>A. Degree distribution: 			  <span class="math notranslate nohighlight">\(p_k\)</span></p></li>
+<li><p>B. Path length: 						<span class="math notranslate nohighlight">\(&lt;d&gt;\)</span></p></li>
+<li><p>C. Clustering coefficient: <span class="math notranslate nohighlight">\(C_i\)</span></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="typical-network-science-research">
+<h2>Typical Network Science Research<a class="headerlink" href="#typical-network-science-research" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Discovering, Modeling, Verification</p>
+<ul>
+<li><p>WATTSDJ,STROGATZSH.Collective dynamics of‘small-world’ networks. Nature, 1998, 393(6684): 440–442.</p></li>
+<li><p>BARABÁSI A-L, ALBERT R. Emergence of scaling in random networks. Science, 1999, 286(5439): 509-512.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="typical-math-style">
+<h2>Typical Math Style<a class="headerlink" href="#typical-math-style" title="Permalink to this headline">¶</a></h2>
+<p>Fan Chung &amp; Linyuan Lu, The average distance in random graphs with given expected degree,. PNAS, 19, 15879-15882 (2002).</p>
+</div>
+<div class="section" id="typical-physical-style">
+<h2>Typical Physical Style<a class="headerlink" href="#typical-physical-style" title="Permalink to this headline">¶</a></h2>
+<p>A.-L.Barabási,R.Albert,H.Jeong Mean-field theory for scale-free random networks. Physica A 272, 173–187 (1999).</p>
+</div>
+<div class="section" id="typical-computer-science-style">
+<h2>Typical Computer Science Style<a class="headerlink" href="#typical-computer-science-style" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Community detection</p></li>
+<li><p>Link prediction</p></li>
+<li><p>Recommendation algorithms</p></li>
+</ul>
+</div>
+<div class="section" id="typical-control-sytle">
+<h2>Typical control sytle<a class="headerlink" href="#typical-control-sytle" title="Permalink to this headline">¶</a></h2>
+<p>Controllability of Complex Networks</p>
+<p>Liu Y Y, Slotine J J, Barabási A L. Nature, 2011, 473(7346): 167-173.</p>
+</div>
+<div class="section" id="id11">
+<h2>阅读材料<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Barabasi 2016 Network Science. Cambridge</p></li>
+<li><p>汪小帆、李翔、陈关荣 2012 网络科学导论. 高等教育出版社</p></li>
+<li><p>梅拉妮·米歇尔 2011 复杂,湖南科学技术出版社</p></li>
+<li><p>菲利普-鲍尔 2004 预知社会：群体行为的内在法则，当代中国出版社</p></li>
+<li><p>巴拉巴西 2007 链接：网络新科学 湖南科技出版社</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="14-movielens.html" title="previous page">使用Turicreate进行电影推荐</a>
+    <a class='right-next' id="next-link" href="16-network-science-models.html" title="next page">网络科学模型</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,652 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>基于字典的情感分析 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="大连理工大学中文情感词汇" href="11-2-emotion-dict.html" />
+    <link rel="prev" title="Doc2Vec" href="10-doc2vec.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-word2vec.html">
+     词向量模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-doc2vec.html">
+     Doc2Vec
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     基于字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-2-emotion-dict.html">
+     大连理工大学中文情感词汇
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-NRC-Chinese-dict.html">
+     基于NRC字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-textblob.html">
+     利用textblob进行情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-4-sentiment-classifier.html">
+     基于机器学习的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-5-LIWC.html">
+     LIWC: Linguistic Inquiry and Word Count  analyzer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-update.html">
+     主题模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-with-turicreate.html">
+     使用Turicreate建立主题模型
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/11-1-sentiment-analysis-with-dict.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F11-1-sentiment-analysis-with-dict.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/11-1-sentiment-analysis-with-dict.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/11-1-sentiment-analysis-with-dict.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   原理
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     算法设计
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>基于字典的情感分析<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>以下内容来自<strong>邓旭东HIT</strong> https://zhuanlan.zhihu.com/p/23225934</p>
+<p>情感分析就是分析一句话说得是很主观还是客观描述，分析这句话表达的是积极的情绪还是消极的情绪。</p>
+<div class="section" id="id2">
+<h2>原理<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>比如这么一句话：</p>
+<blockquote>
+<div><p>“这手机的画面极好，操作也比较流畅。不过拍照真的太烂了！系统也不好。”</p>
+</div></blockquote>
+<p>① 情感词</p>
+<p>要分析一句话是积极的还是消极的，最简单最基础的方法就是找出句子里面的情感词，积极的情感词比如：赞，好，顺手，华丽等，消极情感词比如：差，烂，坏，坑爹等。出现一个积极词就+1，出现一个消极词就-1。
+里面就有“好”，“流畅”两个积极情感词，“烂”一个消极情感词。那它的情感分值就是1+1-1+1=2. 很明显这个分值是不合理的，下面一步步修改它。</p>
+<p>② 程度词</p>
+<p>“好”，“流畅”和‘烂“前面都有一个程度修饰词。”极好“就比”较好“或者”好“的情感更强，”太烂“也比”有点烂“情感强得多。所以需要在找到情感词后往前找一下有没有程度修饰，并给不同的程度一个权值。比如”极“，”无比“，”太“就要把情感分值<em>4，”较“，”还算“就情感分值</em>2，”只算“，”仅仅“这些就<em>0.5了。那么这句话的情感分值就是：4</em>1+1<em>2-1</em>4+1=3</p>
+<p>③ 感叹号</p>
+<p>可以发现太烂了后面有感叹号，叹号意味着情感强烈。因此发现叹号可以为情感值+2. 那么这句话的情感分值就变成了：4<em>1+1</em>2-1*4-2+1 = 1</p>
+<p>④ 否定词</p>
+<p>明眼人一眼就看出最后面那个”好“并不是表示”好“，因为前面还有一个”不“字。所以在找到情感词的时候，需要往前找否定词。比如”不“，”不能“这些词。而且还要数这些否定词出现的次数，如果是单数，情感分值就*-1，但如果是偶数，那情感就没有反转，还是<em>1。在这句话里面，可以看出”好“前面只有一个”不“，所以”好“的情感值应该反转，</em>-1。
+因此这句话的准确情感分值是：4<em>1+1</em>2-1<em>4-2+1</em>-1 = -1</p>
+<p>⑤ 积极和消极分开来</p>
+<p>再接下来，很明显就可以看出，这句话里面有褒有贬，不能用一个分值来表示它的情感倾向。而且这个权值的设置也会影响最终的情感分值，敏感度太高了。因此对这句话的最终的正确的处理，是得出这句话的一个积极分值，一个消极分值（这样消极分值也是正数，无需使用负数了）。它们同时代表了这句话的情感倾向。所以这句评论应该是”积极分值：6，消极分值：7“</p>
+<p>⑥ 以分句的情感为基础</p>
+<p>再仔细一步，详细一点，一条评论的情感分值是由不同的分句加起来的，因此要得到一条评论的情感分值，就要先计算出评论中每个句子的情感分值。这条例子评论有四个分句，因此其结构如下（[积极分值, 消极分值]）：[[4, 0], [2, 0], [0, 6], [0, 1]]</p>
+<p>以上就是使用情感词典来进行情感分析的主要流程了，算法的设计也会按照这个思路来实现。</p>
+<div class="section" id="id3">
+<h3>算法设计<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>第一步：读取评论数据，对评论进行分句。</p></li>
+<li><p>第二步：查找对分句的情感词，记录积极还是消极，以及位置。</p></li>
+<li><p>第三步：往情感词前查找程度词，找到就停止搜寻。为程度词设权值，乘以情感值。</p></li>
+<li><p>第四步：往情感词前查找否定词，找完全部否定词，若数量为奇数，乘以-1，若为偶数，乘以1。</p></li>
+<li><p>第五步：判断分句结尾是否有感叹号，有叹号则往前寻找情感词，有则相应的情感值+2。</p></li>
+<li><p>第六步：计算完一条评论所有分句的情感值，用数组（list）记录起来。</p></li>
+<li><p>第七步：计算并记录所有评论的情感值。</p></li>
+<li><p>第八步：通过分句计算每条评论的积极情感均值，消极情感均值，积极情感方差，消极情感方差。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">jieba</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#打开词典文件，返回列表</span>
+<span class="k">def</span> <span class="nf">open_dict</span><span class="p">(</span><span class="n">Dict</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.txt&#39;</span> <span class="o">%</span> <span class="n">Dict</span>
+    <span class="n">dictionary</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="nb">dict</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">dict</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">dict</span>
+
+<span class="k">def</span> <span class="nf">judgeodd</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;even&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;odd&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#修改成自己的path路径。</span>
+<span class="n">deny_word</span> <span class="o">=</span> <span class="n">open_dict</span><span class="p">(</span><span class="n">Dict</span> <span class="o">=</span> <span class="s1">&#39;否定词&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;./Textmining/&#39;</span><span class="p">)</span>
+<span class="n">posdict</span> <span class="o">=</span> <span class="n">open_dict</span><span class="p">(</span><span class="n">Dict</span> <span class="o">=</span> <span class="s1">&#39;positive&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;./Textmining/&#39;</span><span class="p">)</span>
+<span class="n">negdict</span> <span class="o">=</span> <span class="n">open_dict</span><span class="p">(</span><span class="n">Dict</span> <span class="o">=</span> <span class="s1">&#39;negative&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;./Textmining/&#39;</span><span class="p">)</span>
+<span class="n">degree_word</span> <span class="o">=</span> <span class="n">open_dict</span><span class="p">(</span><span class="n">Dict</span> <span class="o">=</span> <span class="s1">&#39;程度级别词语&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;./Textmining/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">degree_word</span><span class="p">),</span> <span class="n">degree_word</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(225, [&#39;extreme&#39;, &#39;百分之百&#39;, &#39;倍加&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mostdict</span> <span class="o">=</span> <span class="n">degree_word</span><span class="p">[</span><span class="n">degree_word</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;extreme&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span> <span class="p">:</span> <span class="n">degree_word</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;very&#39;</span><span class="p">)]</span><span class="c1">#权重4，即在情感词前乘以3</span>
+<span class="n">verydict</span> <span class="o">=</span> <span class="n">degree_word</span><span class="p">[</span><span class="n">degree_word</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;very&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span> <span class="p">:</span> <span class="n">degree_word</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;more&#39;</span><span class="p">)]</span><span class="c1">#权重3</span>
+<span class="n">moredict</span> <span class="o">=</span> <span class="n">degree_word</span><span class="p">[</span><span class="n">degree_word</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;more&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span> <span class="p">:</span> <span class="n">degree_word</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;ish&#39;</span><span class="p">)]</span><span class="c1">#权重2</span>
+<span class="n">ishdict</span> <span class="o">=</span> <span class="n">degree_word</span><span class="p">[</span><span class="n">degree_word</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;ish&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span> <span class="p">:</span> <span class="n">degree_word</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;last&#39;</span><span class="p">)]</span><span class="c1">#权重0.5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mostdict</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;百分之百&#39;, &#39;倍加&#39;, &#39;备至&#39;, &#39;不得了&#39;, &#39;不堪&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sentiment_score_list</span><span class="p">(</span><span class="n">dataset</span><span class="p">):</span>
+    <span class="n">seg_sentence</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;。&#39;</span><span class="p">)</span>
+    <span class="n">count1</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">count2</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">sen</span> <span class="ow">in</span> <span class="n">seg_sentence</span><span class="p">:</span> <span class="c1">#循环遍历每一个评论</span>
+        <span class="n">segtmp</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">lcut</span><span class="p">(</span><span class="n">sen</span><span class="p">,</span> <span class="n">cut_all</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1">#把句子进行分词，以列表的形式返回</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#记录扫描到的词的位置</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#记录情感词的位置</span>
+        <span class="n">poscount</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#积极词的第一次分值</span>
+        <span class="n">poscount2</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#积极词反转后的分值</span>
+        <span class="n">poscount3</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#积极词的最后分值（包括叹号的分值）</span>
+        <span class="n">negcount</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">negcount2</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">negcount3</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">segtmp</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">posdict</span><span class="p">:</span>  <span class="c1"># 判断词语是否是情感词</span>
+                <span class="n">poscount</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">segtmp</span><span class="p">[</span><span class="n">a</span><span class="p">:</span><span class="n">i</span><span class="p">]:</span>  <span class="c1"># 扫描情感词前的程度词</span>
+                    <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">mostdict</span><span class="p">:</span>
+                        <span class="n">poscount</span> <span class="o">*=</span> <span class="mf">4.0</span>
+                    <span class="k">elif</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">verydict</span><span class="p">:</span>
+                        <span class="n">poscount</span> <span class="o">*=</span> <span class="mf">3.0</span>
+                    <span class="k">elif</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">moredict</span><span class="p">:</span>
+                        <span class="n">poscount</span> <span class="o">*=</span> <span class="mf">2.0</span>
+                    <span class="k">elif</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">ishdict</span><span class="p">:</span>
+                        <span class="n">poscount</span> <span class="o">*=</span> <span class="mf">0.5</span>
+                    <span class="k">elif</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">deny_word</span><span class="p">:</span>
+                        <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">judgeodd</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;odd&#39;</span><span class="p">:</span>  <span class="c1"># 扫描情感词前的否定词数</span>
+                    <span class="n">poscount</span> <span class="o">*=</span> <span class="o">-</span><span class="mf">1.0</span>
+                    <span class="n">poscount2</span> <span class="o">+=</span> <span class="n">poscount</span>
+                    <span class="n">poscount</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">poscount3</span> <span class="o">=</span> <span class="n">poscount</span> <span class="o">+</span> <span class="n">poscount2</span> <span class="o">+</span> <span class="n">poscount3</span>
+                    <span class="n">poscount2</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">poscount3</span> <span class="o">=</span> <span class="n">poscount</span> <span class="o">+</span> <span class="n">poscount2</span> <span class="o">+</span> <span class="n">poscount3</span>
+                    <span class="n">poscount</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># 情感词的位置变化</span>
+
+            <span class="k">elif</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">negdict</span><span class="p">:</span>  <span class="c1"># 消极情感的分析，与上面一致</span>
+                <span class="n">negcount</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">segtmp</span><span class="p">[</span><span class="n">a</span><span class="p">:</span><span class="n">i</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">mostdict</span><span class="p">:</span>
+                        <span class="n">negcount</span> <span class="o">*=</span> <span class="mf">4.0</span>
+                    <span class="k">elif</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">verydict</span><span class="p">:</span>
+                        <span class="n">negcount</span> <span class="o">*=</span> <span class="mf">3.0</span>
+                    <span class="k">elif</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">moredict</span><span class="p">:</span>
+                        <span class="n">negcount</span> <span class="o">*=</span> <span class="mf">2.0</span>
+                    <span class="k">elif</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">ishdict</span><span class="p">:</span>
+                        <span class="n">negcount</span> <span class="o">*=</span> <span class="mf">0.5</span>
+                    <span class="k">elif</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">degree_word</span><span class="p">:</span>
+                        <span class="n">d</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">judgeodd</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;odd&#39;</span><span class="p">:</span>
+                    <span class="n">negcount</span> <span class="o">*=</span> <span class="o">-</span><span class="mf">1.0</span>
+                    <span class="n">negcount2</span> <span class="o">+=</span> <span class="n">negcount</span>
+                    <span class="n">negcount</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">negcount3</span> <span class="o">=</span> <span class="n">negcount</span> <span class="o">+</span> <span class="n">negcount2</span> <span class="o">+</span> <span class="n">negcount3</span>
+                    <span class="n">negcount2</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">negcount3</span> <span class="o">=</span> <span class="n">negcount</span> <span class="o">+</span> <span class="n">negcount2</span> <span class="o">+</span> <span class="n">negcount3</span>
+                    <span class="n">negcount</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">word</span> <span class="o">==</span> <span class="s1">&#39;！&#39;</span> <span class="ow">or</span> <span class="n">word</span> <span class="o">==</span> <span class="s1">&#39;!&#39;</span><span class="p">:</span>  <span class="c1">##判断句子是否有感叹号</span>
+                <span class="k">for</span> <span class="n">w2</span> <span class="ow">in</span> <span class="n">segtmp</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>  <span class="c1"># 扫描感叹号前的情感词，发现后权值+2，然后退出循环</span>
+                    <span class="k">if</span> <span class="n">w2</span> <span class="ow">in</span> <span class="n">posdict</span> <span class="ow">or</span> <span class="n">negdict</span><span class="p">:</span>
+                        <span class="n">poscount3</span> <span class="o">+=</span> <span class="mi">2</span>
+                        <span class="n">negcount3</span> <span class="o">+=</span> <span class="mi">2</span>
+                        <span class="k">break</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># 扫描词位置前移</span>
+
+
+            <span class="c1"># 防止出现负数的情况</span>
+            <span class="n">pos_count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">neg_count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">poscount3</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">negcount3</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">neg_count</span> <span class="o">+=</span> <span class="n">negcount3</span> <span class="o">-</span> <span class="n">poscount3</span>
+                <span class="n">pos_count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">elif</span> <span class="n">negcount3</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">poscount3</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">pos_count</span> <span class="o">=</span> <span class="n">poscount3</span> <span class="o">-</span> <span class="n">negcount3</span>
+                <span class="n">neg_count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">elif</span> <span class="n">poscount3</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">negcount3</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">neg_count</span> <span class="o">=</span> <span class="o">-</span><span class="n">poscount3</span>
+                <span class="n">pos_count</span> <span class="o">=</span> <span class="o">-</span><span class="n">negcount3</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pos_count</span> <span class="o">=</span> <span class="n">poscount3</span>
+                <span class="n">neg_count</span> <span class="o">=</span> <span class="n">negcount3</span>
+
+            <span class="n">count1</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">pos_count</span><span class="p">,</span> <span class="n">neg_count</span><span class="p">])</span>
+        <span class="n">count2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count1</span><span class="p">)</span>
+        <span class="n">count1</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">return</span> <span class="n">count2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sentiment_score</span><span class="p">(</span><span class="n">senti_score_list</span><span class="p">):</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">review</span> <span class="ow">in</span> <span class="n">senti_score_list</span><span class="p">:</span>
+        <span class="n">Pos_list</span><span class="p">,</span> <span class="n">Neg_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">review</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">Pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Pos_list</span><span class="p">)</span>
+        <span class="n">Neg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Neg_list</span><span class="p">)</span>
+        <span class="n">score</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">Pos</span><span class="p">,</span> <span class="n">Neg</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">score</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;今天心情不好！股票又跌了，损失惨重,和女朋友也分手了！非常生气，我非常郁闷！！！！&#39;</span>
+<span class="n">data2</span><span class="o">=</span> <span class="s1">&#39;我好开心啊，非常非常非常高兴！今天我得了一百分，我很兴奋开心，愉快，开心!!!&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">(</span><span class="n">sentiment_score_list</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">(</span><span class="n">sentiment_score_list</span><span class="p">(</span><span class="n">data2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Building prefix dict from the default dictionary ...
+Loading model from cache /var/folders/8b/hhnbt0nd4zsg2qhxc28q23w80000gn/T/jieba.cache
+Loading model cost 0.745 seconds.
+Prefix dict has been built successfully.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[90.0, 189.0]]
+[[498.0, 48.0]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="10-doc2vec.html" title="previous page">Doc2Vec</a>
+    <a class='right-next' id="next-link" href="11-2-emotion-dict.html" title="next page">大连理工大学中文情感词汇</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

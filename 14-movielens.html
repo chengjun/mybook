@@ -1,0 +1,1408 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>使用Turicreate进行电影推荐 &#8212; 《计算传播基础》</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="第十章 网络科学简介" href="15-network-science-intro.html" />
+    <link rel="prev" title="使用Turicreate进行音乐推荐" href="14-millionsong.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">《计算传播基础》</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="13-recsys-latent-factor-model.html">
+     Latent Factor Recommender System
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13-recsys-intro-surprise.html">
+     使用Surprise构建推荐系统
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14-millionsong.html">
+     使用Turicreate进行音乐推荐
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     使用Turicreate进行电影推荐
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/14-movielens.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F14-movielens.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/14-movielens.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/14-movielens.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-similar-items">
+   Getting similar items
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-recommendations">
+   Making recommendations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recommendations-for-new-users">
+   Recommendations for new users
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saving-and-loading-models">
+   Saving and loading models
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="turicreate">
+<h1>使用Turicreate进行电影推荐<a class="headerlink" href="#turicreate" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
+<span class="c1"># set canvas to show sframes and sgraphs in ipython notebook</span>
+<span class="c1"># import matplotlib.pyplot as plt</span>
+<span class="c1"># %matplotlib inline</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># download data from: http://files.grouplens.org/datasets/movielens/ml-1m.zip</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">SFrame</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/Users/datalab/bigdata/cjc/ml-1m/ratings.dat&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> 
+                                <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s1">&#39;X1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;::&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">unpack</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">column_names</span><span class="p">():</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;X.0&#39;</span><span class="p">:</span> <span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;X.1&#39;</span><span class="p">:</span> <span class="s1">&#39;movie_id&#39;</span><span class="p">,</span> <span class="s1">&#39;X.2&#39;</span><span class="p">:</span> <span class="s1">&#39;rating&#39;</span><span class="p">,</span> <span class="s1">&#39;X.3&#39;</span><span class="p">:</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">})</span>
+<span class="c1">#data.save(&#39;ratings&#39;)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre>Finished parsing file /Users/datalab/bigdata/cjc/ml-1m/ratings.dat</pre></div><div class="output text_html"><pre>Parsing completed. Parsed 100 lines in 0.281192 secs.</pre></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------------------
+Inferred types from first 100 line(s) of file as 
+column_type_hints=[str]
+If parsing fails due to incorrect types, you can correct
+the inferred type list above and pass it to read_csv in
+the column_type_hints argument
+------------------------------------------------------
+</pre></div>
+</div>
+<div class="output text_html"><pre>Finished parsing file /Users/datalab/bigdata/cjc/ml-1m/ratings.dat</pre></div><div class="output text_html"><pre>Parsing completed. Parsed 1000209 lines in 0.372092 secs.</pre></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">users</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">SFrame</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/Users/datalab/bigdata/cjc/ml-1m/users.dat&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> 
+                                 <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s1">&#39;X1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;::&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">unpack</span><span class="p">()</span>
+<span class="n">users</span> <span class="o">=</span> <span class="n">users</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;X.0&#39;</span><span class="p">:</span> <span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;X.1&#39;</span><span class="p">:</span> <span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;X.2&#39;</span><span class="p">:</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;X.3&#39;</span><span class="p">:</span> <span class="s1">&#39;occupation&#39;</span><span class="p">,</span> <span class="s1">&#39;X.4&#39;</span><span class="p">:</span> <span class="s1">&#39;zip-code&#39;</span><span class="p">})</span>
+<span class="n">users</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">users</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">users</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre>Finished parsing file /Users/datalab/bigdata/cjc/ml-1m/users.dat</pre></div><div class="output text_html"><pre>Parsing completed. Parsed 100 lines in 0.028041 secs.</pre></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------------------
+Inferred types from first 100 line(s) of file as 
+column_type_hints=[str]
+If parsing fails due to incorrect types, you can correct
+the inferred type list above and pass it to read_csv in
+the column_type_hints argument
+------------------------------------------------------
+</pre></div>
+</div>
+<div class="output text_html"><pre>Finished parsing file /Users/datalab/bigdata/cjc/ml-1m/users.dat</pre></div><div class="output text_html"><pre>Parsing completed. Parsed 6040 lines in 0.007235 secs.</pre></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#items = tc.SFrame.read_csv(&#39;/Users/datalab/bigdata/ml-1m/movies.dat&#39;, delimiter=&#39;\n&#39;, header=False)#[&#39;X1&#39;].apply(lambda x: x.split(&#39;::&#39;)).unpack()</span>
+<span class="c1"># items = items.rename({&#39;X.0&#39;: &#39;movie_id&#39;, &#39;X.1&#39;: &#39;title&#39;, &#39;X.2&#39;: &#39;genre&#39;})</span>
+<span class="c1"># items[&#39;movie_id&#39;] = items[&#39;movie_id&#39;].astype(int)</span>
+<span class="c1"># items.save(&#39;items&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="max-height:1000px;max-width:1500px;overflow:auto;"><table frame="box" rules="cols">
+    <tr>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">user_id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">movie_id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">rating</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">timestamp</th>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1193</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978300760</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">661</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978302109</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">914</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978301968</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3408</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978300275</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2355</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978824291</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1197</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978302268</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1287</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978302039</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2804</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978300719</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">594</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978302268</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">919</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978301368</td>
+    </tr>
+</table>
+[1000209 rows x 4 columns]<br/>Note: Only the head of the SFrame is printed.<br/>You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#items</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">users</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="max-height:1000px;max-width:1500px;overflow:auto;"><table frame="box" rules="cols">
+    <tr>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">user_id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">gender</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">age</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">occupation</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">zip-code</th>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">F</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">10</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">48067</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">M</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">56</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">16</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">70072</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">M</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">25</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">15</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">55117</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">M</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">45</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">7</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">02460</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">M</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">25</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">20</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">55455</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">6</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">F</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">50</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">9</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">55117</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">7</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">M</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">35</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">06810</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">8</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">M</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">25</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">12</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">11413</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">9</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">M</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">25</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">17</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">61614</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">10</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">F</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">35</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">95370</td>
+    </tr>
+</table>
+[6040 rows x 5 columns]<br/>Note: Only the head of the SFrame is printed.<br/>You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#data = data.join(items, on=&#39;movie_id&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_set</span><span class="p">,</span> <span class="n">test_set</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">random_split</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">recommender</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;movie_id&#39;</span><span class="p">,</span> <span class="s1">&#39;rating&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre>Preparing data set.</pre></div><div class="output text_html"><pre>    Data has 949852 observations with 6040 users and 3701 items.</pre></div><div class="output text_html"><pre>    Data prepared in: 0.550091s</pre></div><div class="output text_html"><pre>Training ranking_factorization_recommender for recommendations.</pre></div><div class="output text_html"><pre>+--------------------------------+--------------------------------------------------+----------+</pre></div><div class="output text_html"><pre>| Parameter                      | Description                                      | Value    |</pre></div><div class="output text_html"><pre>+--------------------------------+--------------------------------------------------+----------+</pre></div><div class="output text_html"><pre>| num_factors                    | Factor Dimension                                 | 32       |</pre></div><div class="output text_html"><pre>| regularization                 | L2 Regularization on Factors                     | 1e-09    |</pre></div><div class="output text_html"><pre>| solver                         | Solver used for training                         | adagrad  |</pre></div><div class="output text_html"><pre>| linear_regularization          | L2 Regularization on Linear Coefficients         | 1e-09    |</pre></div><div class="output text_html"><pre>| ranking_regularization         | Rank-based Regularization Weight                 | 0.25     |</pre></div><div class="output text_html"><pre>| max_iterations                 | Maximum Number of Iterations                     | 25       |</pre></div><div class="output text_html"><pre>+--------------------------------+--------------------------------------------------+----------+</pre></div><div class="output text_html"><pre>  Optimizing model using SGD; tuning step size.</pre></div><div class="output text_html"><pre>  Using 118731 / 949852 points for tuning the step size.</pre></div><div class="output text_html"><pre>+---------+-------------------+------------------------------------------+</pre></div><div class="output text_html"><pre>| Attempt | Initial Step Size | Estimated Objective Value                |</pre></div><div class="output text_html"><pre>+---------+-------------------+------------------------------------------+</pre></div><div class="output text_html"><pre>| 0       | 16.6667           | Not Viable                               |</pre></div><div class="output text_html"><pre>| 1       | 4.16667           | Not Viable                               |</pre></div><div class="output text_html"><pre>| 2       | 1.04167           | Not Viable                               |</pre></div><div class="output text_html"><pre>| 3       | 0.260417          | Not Viable                               |</pre></div><div class="output text_html"><pre>| 4       | 0.0651042         | 1.8722                                   |</pre></div><div class="output text_html"><pre>| 5       | 0.0325521         | 1.94425                                  |</pre></div><div class="output text_html"><pre>| 6       | 0.016276          | 1.95877                                  |</pre></div><div class="output text_html"><pre>| 7       | 0.00813802        | 2.0441                                   |</pre></div><div class="output text_html"><pre>+---------+-------------------+------------------------------------------+</pre></div><div class="output text_html"><pre>| Final   | 0.0651042         | 1.8722                                   |</pre></div><div class="output text_html"><pre>+---------+-------------------+------------------------------------------+</pre></div><div class="output text_html"><pre>Starting Optimization.</pre></div><div class="output text_html"><pre>+---------+--------------+-------------------+-----------------------+-------------+</pre></div><div class="output text_html"><pre>| Iter.   | Elapsed Time | Approx. Objective | Approx. Training RMSE | Step Size   |</pre></div><div class="output text_html"><pre>+---------+--------------+-------------------+-----------------------+-------------+</pre></div><div class="output text_html"><pre>| Initial | 110us        | 2.44718           | 1.1172                |             |</pre></div><div class="output text_html"><pre>+---------+--------------+-------------------+-----------------------+-------------+</pre></div><div class="output text_html"><pre>| 1       | 536.251ms    | 2.09737           | 1.13925               | 0.0651042   |</pre></div><div class="output text_html"><pre>| 2       | 1.05s        | 1.85594           | 1.06079               | 0.0651042   |</pre></div><div class="output text_html"><pre>| 3       | 1.55s        | 1.79883           | 1.03161               | 0.0651042   |</pre></div><div class="output text_html"><pre>| 4       | 2.06s        | 1.77231           | 1.02676               | 0.0651042   |</pre></div><div class="output text_html"><pre>| 5       | 2.57s        | 1.75455           | 1.02264               | 0.0651042   |</pre></div><div class="output text_html"><pre>| 10      | 5.81s        | 1.66968           | 0.995516              | 0.0651042   |</pre></div><div class="output text_html"><pre>| 20      | 12.34s       | 1.58039           | 0.969493              | 0.0651042   |</pre></div><div class="output text_html"><pre>| 25      | 15.69s       | 1.54869           | 0.961055              | 0.0651042   |</pre></div><div class="output text_html"><pre>+---------+--------------+-------------------+-----------------------+-------------+</pre></div><div class="output text_html"><pre>Optimization Complete: Maximum number of passes through the data reached.</pre></div><div class="output text_html"><pre>Computing final objective value and training RMSE.</pre></div><div class="output text_html"><pre>       Final objective value: 1.57752</pre></div><div class="output text_html"><pre>       Final training RMSE: 0.95536</pre></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Class                            : RankingFactorizationRecommender
+
+Schema
+------
+User ID                          : user_id
+Item ID                          : movie_id
+Target                           : rating
+Additional observation features  : 1
+User side features               : []
+Item side features               : []
+
+Statistics
+----------
+Number of observations           : 949852
+Number of users                  : 6040
+Number of items                  : 3701
+
+Training summary
+----------------
+Training time                    : 21.9973
+
+Model Parameters
+----------------
+Model class                      : RankingFactorizationRecommender
+num_factors                      : 32
+binary_target                    : 0
+side_data_factorization          : 1
+solver                           : auto
+nmf                              : 0
+max_iterations                   : 25
+
+Regularization Settings
+-----------------------
+regularization                   : 0.0
+regularization_type              : normal
+linear_regularization            : 0.0
+ranking_regularization           : 0.25
+unobserved_rating_value          : -1.7976931348623157e+308
+num_sampled_negative_examples    : 4
+ials_confidence_scaling_type     : auto
+ials_confidence_scaling_factor   : 1
+
+Optimization Settings
+---------------------
+init_random_sigma                : 0.01
+sgd_convergence_interval         : 4
+sgd_convergence_threshold        : 0.0
+sgd_max_trial_iterations         : 5
+sgd_sampling_block_size          : 131072
+sgd_step_adjustment_interval     : 4
+sgd_step_size                    : 0.0
+sgd_trial_sample_minimum_size    : 10000
+sgd_trial_sample_proportion      : 0.125
+step_size_decrease_rate          : 0.75
+additional_iterations_if_unhealthy : 5
+adagrad_momentum_weighting       : 0.9
+num_tempering_iterations         : 4
+tempering_regularization_start_value : 0.0
+track_exact_loss                 : 0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m2</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">item_similarity_recommender</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> 
+                                                 <span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;movie_id&#39;</span><span class="p">,</span> <span class="s1">&#39;rating&#39;</span><span class="p">,</span>
+                                 <span class="n">similarity_type</span><span class="o">=</span><span class="s1">&#39;pearson&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre>Warning: Ignoring columns timestamp;</pre></div><div class="output text_html"><pre>    To use these columns in scoring predictions, use a model that allows the use of additional features.</pre></div><div class="output text_html"><pre>Preparing data set.</pre></div><div class="output text_html"><pre>    Data has 949852 observations with 6040 users and 3701 items.</pre></div><div class="output text_html"><pre>    Data prepared in: 0.426101s</pre></div><div class="output text_html"><pre>Training model from provided data.</pre></div><div class="output text_html"><pre>Gathering per-item and per-user statistics.</pre></div><div class="output text_html"><pre>+--------------------------------+------------+</pre></div><div class="output text_html"><pre>| Elapsed Time (Item Statistics) | % Complete |</pre></div><div class="output text_html"><pre>+--------------------------------+------------+</pre></div><div class="output text_html"><pre>| 27.234ms                       | 16.5       |</pre></div><div class="output text_html"><pre>| 42.954ms                       | 100        |</pre></div><div class="output text_html"><pre>+--------------------------------+------------+</pre></div><div class="output text_html"><pre>Setting up lookup tables.</pre></div><div class="output text_html"><pre>Processing data in one pass using dense lookup tables.</pre></div><div class="output text_html"><pre>+-------------------------------------+------------------+-----------------+</pre></div><div class="output text_html"><pre>| Elapsed Time (Constructing Lookups) | Total % Complete | Items Processed |</pre></div><div class="output text_html"><pre>+-------------------------------------+------------------+-----------------+</pre></div><div class="output text_html"><pre>| 73.627ms                            | 0                | 2               |</pre></div><div class="output text_html"><pre>| 2.79s                               | 100              | 3701            |</pre></div><div class="output text_html"><pre>+-------------------------------------+------------------+-----------------+</pre></div><div class="output text_html"><pre>Finalizing lookup tables.</pre></div><div class="output text_html"><pre>Generating candidate set for working with new users.</pre></div><div class="output text_html"><pre>Finished training in 2.82252s</pre></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Class                            : ItemSimilarityRecommender
+
+Schema
+------
+User ID                          : user_id
+Item ID                          : movie_id
+Target                           : rating
+Additional observation features  : 0
+User side features               : []
+Item side features               : []
+
+Statistics
+----------
+Number of observations           : 949852
+Number of users                  : 6040
+Number of items                  : 3701
+
+Training summary
+----------------
+Training time                    : 2.8226
+
+Model Parameters
+----------------
+Model class                      : ItemSimilarityRecommender
+threshold                        : 0.001
+similarity_type                  : pearson
+training_method                  : auto
+
+Other Settings
+--------------
+max_data_passes                  : 4096
+max_item_neighborhood_size       : 64
+nearest_neighbors_interaction_proportion_threshold : 0.05
+target_memory_usage              : 8589934592
+sparse_density_estimation_sample_size : 4096
+degree_approximation_threshold   : 4096
+seed_item_set_size               : 50
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">recommender</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">compare_models</span><span class="p">(</span><span class="n">test_set</span><span class="p">,</span> 
+                                                  <span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">m2</span><span class="p">],</span>
+                                            <span class="n">user_sample</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">skip_set</span><span class="o">=</span><span class="n">train_set</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>compare_models: using 2811 users to estimate model performance
+PROGRESS: Evaluate model M0
+</pre></div>
+</div>
+<div class="output text_html"><pre>recommendations finished on 1000/2811 queries. users per second: 10084.7</pre></div><div class="output text_html"><pre>recommendations finished on 2000/2811 queries. users per second: 10557.4</pre></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Precision and recall summary statistics by cutoff
++--------+----------------------+----------------------+
+| cutoff |     mean_recall      |    mean_precision    |
++--------+----------------------+----------------------+
+|   1    | 0.004372314245294037 | 0.03344005691924596  |
+|   2    | 0.008439255238125647 | 0.030771967271433692 |
+|   3    | 0.011792773608123091 | 0.029764022293371297 |
+|   4    | 0.014103362205887681 | 0.027303450729277888 |
+|   5    | 0.017724646480050326 | 0.026894343649946677 |
+|   6    | 0.01985047799128097  | 0.02549507885687179  |
+|   7    | 0.023037645809147193 | 0.025054632311836182 |
+|   8    | 0.02564717744662357  | 0.024101743151903235 |
+|   9    | 0.027494985038662042 | 0.023123443614372085 |
+|   10   | 0.02954846065621093  | 0.022483102098897183 |
++--------+----------------------+----------------------+
+[10 rows x 3 columns]
+
+
+Overall RMSE: 0.988323739301448
+
+Per User RMSE (best)
++---------+----------------------+-------+
+| user_id |         rmse         | count |
++---------+----------------------+-------+
+|   4695  | 0.008856667044261357 |   1   |
++---------+----------------------+-------+
+[1 rows x 3 columns]
+
+
+Per User RMSE (worst)
++---------+-------------------+-------+
+| user_id |        rmse       | count |
++---------+-------------------+-------+
+|   1102  | 2.957562522855876 |   1   |
++---------+-------------------+-------+
+[1 rows x 3 columns]
+
+
+Per Item RMSE (best)
++----------+----------------------+-------+
+| movie_id |         rmse         | count |
++----------+----------------------+-------+
+|   3674   | 0.012974611607248221 |   1   |
++----------+----------------------+-------+
+[1 rows x 3 columns]
+
+
+Per Item RMSE (worst)
++----------+--------------------+-------+
+| movie_id |        rmse        | count |
++----------+--------------------+-------+
+|   3886   | 3.4432479133103597 |   1   |
++----------+--------------------+-------+
+[1 rows x 3 columns]
+
+PROGRESS: Evaluate model M1
+</pre></div>
+</div>
+<div class="output text_html"><pre>recommendations finished on 1000/2811 queries. users per second: 23065.4</pre></div><div class="output text_html"><pre>recommendations finished on 2000/2811 queries. users per second: 24766.9</pre></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Precision and recall summary statistics by cutoff
++--------+-------------+----------------+
+| cutoff | mean_recall | mean_precision |
++--------+-------------+----------------+
+|   1    |     0.0     |      0.0       |
+|   2    |     0.0     |      0.0       |
+|   3    |     0.0     |      0.0       |
+|   4    |     0.0     |      0.0       |
+|   5    |     0.0     |      0.0       |
+|   6    |     0.0     |      0.0       |
+|   7    |     0.0     |      0.0       |
+|   8    |     0.0     |      0.0       |
+|   9    |     0.0     |      0.0       |
+|   10   |     0.0     |      0.0       |
++--------+-------------+----------------+
+[10 rows x 3 columns]
+
+
+Overall RMSE: 0.977554609754323
+
+Per User RMSE (best)
++---------+-----------------------+-------+
+| user_id |          rmse         | count |
++---------+-----------------------+-------+
+|   3872  | 4.440892098500626e-16 |   1   |
++---------+-----------------------+-------+
+[1 rows x 3 columns]
+
+
+Per User RMSE (worst)
++---------+--------------------+-------+
+| user_id |        rmse        | count |
++---------+--------------------+-------+
+|   5214  | 3.2845314102161183 |   2   |
++---------+--------------------+-------+
+[1 rows x 3 columns]
+
+
+Per Item RMSE (best)
++----------+------+-------+
+| movie_id | rmse | count |
++----------+------+-------+
+|   1842   | 0.0  |   1   |
++----------+------+-------+
+[1 rows x 3 columns]
+
+
+Per Item RMSE (worst)
++----------+------+-------+
+| movie_id | rmse | count |
++----------+------+-------+
+|   572    | 4.0  |   1   |
++----------+------+-------+
+[1 rows x 3 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="getting-similar-items">
+<h2>Getting similar items<a class="headerlink" href="#getting-similar-items" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">get_similar_items</span><span class="p">([</span><span class="mi">1287</span><span class="p">])</span>  <span class="c1"># movie_id is Ben-Hur</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="max-height:1000px;max-width:1500px;overflow:auto;"><table frame="box" rules="cols">
+    <tr>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">movie_id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">similar</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">score</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">rank</th>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1287</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1262</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0.8935538530349731</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1287</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1272</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0.8684239983558655</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1287</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2662</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0.8668187260627747</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1287</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3366</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0.8548122048377991</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1287</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2948</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0.8543752431869507</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1287</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3062</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0.8494184017181396</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">6</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1287</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2947</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0.8432653546333313</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">7</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1287</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3836</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0.8384832739830017</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">8</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1287</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1304</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0.8308332562446594</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">9</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1287</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1250</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0.8267531394958496</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">10</td>
+    </tr>
+</table>
+[10 rows x 4 columns]<br/>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">get_similar_items</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on method get_similar_items in module graphlab.toolkits.recommender.util:
+
+get_similar_items(self, items=None, k=10, verbose=False) method of graphlab.toolkits.recommender.ranking_factorization_recommender.RankingFactorizationRecommender instance
+    Get the k most similar items for each item in items.
+    
+    Each type of recommender has its own model for the similarity
+    between items. For example, the item_similarity_recommender will
+    return the most similar items according to the user-chosen
+    similarity; the factorization_recommender will return the
+    nearest items based on the cosine similarity between latent item
+    factors.
+    
+    Parameters
+    ----------
+    items : SArray or list; optional
+        An :class:`~graphlab.SArray` or list of item ids for which to get
+        similar items. If &#39;None&#39;, then return the `k` most similar items for
+        all items in the training set.
+    
+    k : int, optional
+        The number of similar items for each item.
+    
+    verbose : bool, optional
+        Progress printing is shown.
+    
+    Returns
+    -------
+    out : SFrame
+        A SFrame with the top ranked similar items for each item. The
+        columns `item`, &#39;similar&#39;, &#39;score&#39; and &#39;rank&#39;, where
+        `item` matches the item column name specified at training time.
+        The &#39;rank&#39; is between 1 and `k` and &#39;score&#39; gives the similarity
+        score of that item. The value of the score depends on the method
+        used for computing item similarities.
+    
+    Examples
+    --------
+    
+    &gt;&gt;&gt; sf = graphlab.SFrame({&#39;user_id&#39;: [&quot;0&quot;, &quot;0&quot;, &quot;0&quot;, &quot;1&quot;, &quot;1&quot;, &quot;2&quot;, &quot;2&quot;, &quot;2&quot;],
+                              &#39;item_id&#39;: [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]})
+    &gt;&gt;&gt; m = graphlab.item_similarity_recommender.create(sf)
+    &gt;&gt;&gt; nn = m.get_similar_items()
+</pre></div>
+</div>
+</div>
+</div>
+<p>‘score’ gives the similarity score of that item</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># m.get_similar_items([1287]).join(items, on={&#39;similar&#39;: &#39;movie_id&#39;}).sort(&#39;rank&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="making-recommendations">
+<h2>Making recommendations<a class="headerlink" href="#making-recommendations" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recs</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">recommend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre>recommendations finished on 1000/6040 queries. users per second: 11685.2</pre></div><div class="output text_html"><pre>recommendations finished on 2000/6040 queries. users per second: 11654.4</pre></div><div class="output text_html"><pre>recommendations finished on 3000/6040 queries. users per second: 11658.6</pre></div><div class="output text_html"><pre>recommendations finished on 4000/6040 queries. users per second: 11321.5</pre></div><div class="output text_html"><pre>recommendations finished on 5000/6040 queries. users per second: 11502.9</pre></div><div class="output text_html"><pre>recommendations finished on 6000/6040 queries. users per second: 11105.9</pre></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="max-height:1000px;max-width:1500px;overflow:auto;"><table frame="box" rules="cols">
+    <tr>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">user_id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">movie_id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">score</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">rank</th>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">318</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5.045622686663793</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1198</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4.862424055854009</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">50</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4.76625474802606</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">593</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4.766107517102884</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">858</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4.747795152286218</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1196</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4.689315832028316</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">6</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2858</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4.678970253834652</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">7</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2396</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4.5986619915758835</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">8</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">110</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4.588308471063303</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">9</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2571</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4.573408636072801</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">10</td>
+    </tr>
+</table>
+[60400 rows x 4 columns]<br/>Note: Only the head of the SFrame is printed.<br/>You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="max-height:1000px;max-width:1500px;overflow:auto;"><table frame="box" rules="cols">
+    <tr>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">user_id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">movie_id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">rating</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">timestamp</th>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3468</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978294008</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1210</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978293924</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2951</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978294282</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1214</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978294260</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1036</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978294282</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">260</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978294199</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2028</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978294230</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">480</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978294008</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1196</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978294199</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1198</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">978294199</td>
+    </tr>
+</table>
+[? rows x 4 columns]<br/>Note: Only the head of the SFrame is printed. This SFrame is lazily evaluated.<br/>You can use sf.materialize() to force materialization.
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># m.recommend(users=[4], k=20).join(items, on=&#39;movie_id&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="recommendations-for-new-users">
+<h2>Recommendations for new users<a class="headerlink" href="#recommendations-for-new-users" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recent_data</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">SFrame</span><span class="p">()</span>
+<span class="n">recent_data</span><span class="p">[</span><span class="s1">&#39;movie_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">900</span><span class="p">,</span> <span class="mi">883</span><span class="p">,</span> <span class="mi">251</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">199</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">991</span><span class="p">,</span> <span class="mi">1212</span><span class="p">]</span> 
+<span class="n">recent_data</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99999</span>
+<span class="n">recent_data</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">recent_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="max-height:1000px;max-width:1500px;overflow:auto;"><table frame="box" rules="cols">
+    <tr>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">movie_id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">user_id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">rating</th>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">30</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1000</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">900</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">883</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">251</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">200</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">0</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">199</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">180</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">120</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">991</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2</td>
+    </tr>
+</table>
+[11 rows x 3 columns]<br/>Note: Only the head of the SFrame is printed.<br/>You can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m2</span><span class="o">.</span><span class="n">recommend</span><span class="p">(</span><span class="n">users</span><span class="o">=</span><span class="p">[</span><span class="mi">99999</span><span class="p">],</span> <span class="n">new_observation_data</span><span class="o">=</span><span class="n">recent_data</span><span class="p">)</span><span class="c1">#.join(items, on=&#39;movie_id&#39;).sort(&#39;rank&#39;)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="max-height:1000px;max-width:1500px;overflow:auto;"><table frame="box" rules="cols">
+    <tr>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">user_id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">movie_id</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">score</th>
+        <th style="padding-left: 1em; padding-right: 1em; text-align: center">rank</th>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3881</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5.0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3607</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5.0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">2</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">1830</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5.0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">989</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5.0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">4</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3172</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5.0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3233</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5.0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">6</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">787</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5.0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">7</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3382</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5.0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">8</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3656</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5.0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">9</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">99999</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">3280</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">5.0</td>
+        <td style="padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top">10</td>
+    </tr>
+</table>
+[10 rows x 4 columns]<br/>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="saving-and-loading-models">
+<h2>Saving and loading models<a class="headerlink" href="#saving-and-loading-models" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;my_model&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_again</span> <span class="o">=</span> <span class="n">graphlab</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;my_model&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_again</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="14-millionsong.html" title="previous page">使用Turicreate进行音乐推荐</a>
+    <a class='right-next' id="next-link" href="15-network-science-intro.html" title="next page">第十章 网络科学简介</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
