@@ -1,5 +1,10 @@
 #!/bin/bash
 # open github master branch
+# git pull first
+# git pull origin main
+# ssh-add ~/.ssh/id_rsa
+# vim save and quit :wq
+# git remote set-url origin git@github.com:chengjun/mybook.git
 # open atom master branch
 jupyter-book build ../mybook/
 # Publish your book's HTML manually to GitHub-pages
