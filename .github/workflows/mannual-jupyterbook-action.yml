@@ -4,11 +4,24 @@ name: Deploy to gh-pages
 # and set your public key to your external repository.
 # https://github.com/wowchemy/wowchemy-hugo-modules/issues/2240
 
+# mannual trigger
 on:
-  push:
-    branches:
-      - main  # Set a branch name to trigger deployment
-  pull_request:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Person to greet'
+        required: true
+        default: 'Mona the Octocat'
+      home:
+        description: 'location'
+        required: false
+        default: 'The Octoverse'
+        
+# on: # push trigger
+#   push:
+#     branches:
+#       - main  # Set a branch name to trigger deployment
+#   pull_request:
   
 jobs:
 
