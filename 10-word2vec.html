@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -45,15 +45,13 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -86,7 +84,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -715,7 +713,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-geometry-of-culture">
@@ -836,7 +834,7 @@
 <li><p>Macro-cultural investigation with a longitudinal analysis of the coevolution of gender and class associations in the United States over the 20th century</p></li>
 </ul>
 <p>The success of these high-dimensional models motivates a move towards “high-dimensional theorizing” of meanings, identities and cultural processes.</p>
-<img src= 'img/word2vec/gender_class.png' width= "700px">
+<a class="reference internal image-reference" href="_images/gender_class.png"><img alt="_images/gender_class.png" src="_images/gender_class.png" style="width: 700px;" /></a>
 </div>
 <div class="section" id="histwords">
 <h2>HistWords<a class="headerlink" href="#histwords" title="Permalink to this headline">¶</a></h2>
@@ -849,11 +847,12 @@
 <p>https://nlp.stanford.edu/projects/histwords/</p>
 <p>https://github.com/williamleif/histwords</p>
 <p><strong>Diachronic Word Embeddings Reveal Statistical Laws of Semantic Change</strong></p>
-<img src= 'img/word2vec/wordpaths-final.png' width= "900px"></div>
+<a class="reference internal image-reference" href="_images/wordpaths-final.png"><img alt="_images/wordpaths-final.png" src="_images/wordpaths-final.png" style="width: 900px;" /></a>
+</div>
 <div class="section" id="word-embeddings-quantify-100-years-of-gender-and-ethnic-stereotypes">
 <h2>Word embeddings quantify 100 years of gender and ethnic stereotypes<a class="headerlink" href="#word-embeddings-quantify-100-years-of-gender-and-ethnic-stereotypes" title="Permalink to this headline">¶</a></h2>
 <p>http://www.pnas.org/content/early/2018/03/30/1720347115</p>
-<img src= 'img/word2vec/sex.png' width= "500px">
+<a class="reference internal image-reference" href="_images/sex.png"><img alt="_images/sex.png" src="_images/sex.png" style="width: 500px;" /></a>
 </div>
 <div class="section" id="the-illustrated-word2vec">
 <h2>The Illustrated Word2vec<a class="headerlink" href="#the-illustrated-word2vec" title="Permalink to this headline">¶</a></h2>
@@ -890,16 +889,14 @@
 <div class="section" id="cosine-similarity">
 <h2>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Permalink to this headline">¶</a></h2>
 <p>The cosine of two non-zero vectors can be derived by using the Euclidean dot product formula:</p>
-<div class="math notranslate nohighlight">
-\[
+<p>$$
 \mathbf{A}\cdot\mathbf{B}
-=\left\|\mathbf{A}\right\|\left\|\mathbf{B}\right\|\cos\theta
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-\text{similarity} = \cos(\theta) = {\mathbf{A} \cdot \mathbf{B} \over \|\mathbf{A}\| \|\mathbf{B}\|} = \frac{ \sum\limits_{i=1}^{n}{A_i  B_i} }{ \sqrt{\sum\limits_{i=1}^{n}{A_i^2}}  \sqrt{\sum\limits_{i=1}^{n}{B_i^2}} },
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(A_i\)</span> and <span class="math notranslate nohighlight">\(B_i\)</span> are components of vector <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> respectively.</p>
+=\left|\mathbf{A}\right|\left|\mathbf{B}\right|\cos\theta
+$$</p>
+<p>$$
+\text{similarity} = \cos(\theta) = {\mathbf{A} \cdot \mathbf{B} \over |\mathbf{A}| |\mathbf{B}|} = \frac{ \sum\limits_{i=1}^{n}{A_i  B_i} }{ \sqrt{\sum\limits_{i=1}^{n}{A_i^2}}  \sqrt{\sum\limits_{i=1}^{n}{B_i^2}} },
+$$</p>
+<p>where $A_i$ and $B_i$ are components of vector $A$ and $B$ respectively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">dot</span>
@@ -932,8 +929,7 @@
 </div>
 </div>
 </div>
-<div class="math notranslate nohighlight">
-\[CosineDistance = 1- CosineSimilarity\]</div>
+<p>$$CosineDistance = 1- CosineSimilarity$$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">spatial</span>
@@ -1079,9 +1075,9 @@
 </div>
 </div>
 </div>
-<div class="math notranslate nohighlight">
-\[King- Queen = Man - Woman\]</div>
-<img src= 'img/word2vec/word2vec.png' width= "700px"><p>Now that we’ve looked at trained word embeddings,</p>
+<p>$$King- Queen = Man - Woman$$</p>
+<a class="reference internal image-reference" href="_images/word2vec.png"><img alt="_images/word2vec.png" src="_images/word2vec.png" style="width: 700px;" /></a>
+<p>Now that we’ve looked at trained word embeddings,</p>
 <ul class="simple">
 <li><p>let’s learn more about the training process.</p></li>
 <li><p>But before we get to word2vec, we need to look at a conceptual parent of word embeddings: <strong>the neural language model</strong>.</p></li>
@@ -1095,8 +1091,9 @@
 <div><p>Bengio 2003 A Neural Probabilistic Language Model. Journal of Machine Learning Research. 3:1137–1155</p>
 </div></blockquote>
 <p>After being trained, early neural language models (Bengio 2003) would calculate a prediction in three steps:</p>
-<img src= 'img/word2vec/neural-language-model-prediction.png' width= "700px">
-<img src= 'img/word2vec/bengio.png' width= "400px"><p>The output of the neural language model is a probability score for all the words the model knows.</p>
+<a class="reference internal image-reference" href="_images/neural-language-model-prediction.png"><img alt="_images/neural-language-model-prediction.png" src="_images/neural-language-model-prediction.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/bengio.png"><img alt="_images/bengio.png" src="_images/bengio.png" style="width: 400px;" /></a>
+<p>The output of the neural language model is a probability score for all the words the model knows.</p>
 <ul class="simple">
 <li><p>We’re referring to the probability as a percentage here,</p></li>
 <li><p>but 40% would actually be represented as 0.4 in the output vector.</p></li>
@@ -1108,31 +1105,40 @@
 <li><p>We have a window (say, of three words) that we slide against all of that text.</p></li>
 <li><p>The sliding window generates training samples for our model</p></li>
 </ul>
-<img src= 'img/word2vec/lm-sliding-window-4.png' width= "700px"><p>As this window slides against the text, we (virtually) generate a dataset that we use to train a model.</p>
+<a class="reference internal image-reference" href="_images/lm-sliding-window-4.png"><img alt="_images/lm-sliding-window-4.png" src="_images/lm-sliding-window-4.png" style="width: 700px;" /></a>
+<p>As this window slides against the text, we (virtually) generate a dataset that we use to train a model.</p>
 <p>Instead of only looking two words before the target word, we can also look at two words after it.</p>
-<img src= 'img/word2vec/continuous-bag-of-words-example.png' width= "700px">
+<a class="reference internal image-reference" href="_images/continuous-bag-of-words-example.png"><img alt="_images/continuous-bag-of-words-example.png" src="_images/continuous-bag-of-words-example.png" style="width: 700px;" /></a>
 <p>If we do this, the dataset we’re virtually building and training the model against would look like this:</p>
-<img src= 'img/word2vec/continuous-bag-of-words-dataset.png' width= "700px">
+<a class="reference internal image-reference" href="_images/continuous-bag-of-words-dataset.png"><img alt="_images/continuous-bag-of-words-dataset.png" src="_images/continuous-bag-of-words-dataset.png" style="width: 700px;" /></a>
 <p>This is called a <strong>Continuous Bag of Words</strong> (CBOW) https://arxiv.org/pdf/1301.3781.pdf</p>
 </div>
 <div class="section" id="skip-gram">
 <h3>Skip-gram<a class="headerlink" href="#skip-gram" title="Permalink to this headline">¶</a></h3>
 <p>Instead of guessing a word based on its context (the words before and after it), this other architecture tries to guess neighboring words using the current word.</p>
-<img src= 'img/word2vec/skipgram.png' width= "700px">
+<a class="reference internal image-reference" href="_images/skipgram.png"><img alt="_images/skipgram.png" src="_images/skipgram.png" style="width: 700px;" /></a>
 <p>https://arxiv.org/pdf/1301.3781.pdf</p>
-<img src= 'img/word2vec/cbow.png' width= "700px"><img src= 'img/word2vec/skipgram-sliding-window-samples.png' width= "700px"><p>The pink boxes are in different shades because this sliding window actually creates four separate samples in our training dataset.</p>
+<a class="reference internal image-reference" href="_images/cbow.png"><img alt="_images/cbow.png" src="_images/cbow.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/skipgram-sliding-window-samples.png"><img alt="_images/skipgram-sliding-window-samples.png" src="_images/skipgram-sliding-window-samples.png" style="width: 700px;" /></a>
+<p>The pink boxes are in different shades because this sliding window actually creates four separate samples in our training dataset.</p>
 <ul class="simple">
 <li><p>We then slide our window to the next position:</p></li>
 <li><p>Which generates our next four examples:</p></li>
 </ul>
-<img src= 'img/word2vec/skipgram-language-model-training.png' width= "700px"><img src= 'img/word2vec/skipgram-language-model-training-4.png' width= "700px"><img src= 'img/word2vec/skipgram-language-model-training-5.png' width= "700px"><img src= 'img/word2vec/language-model-expensive.png' width= "700px"></div>
+<a class="reference internal image-reference" href="_images/skipgram-language-model-training.png"><img alt="_images/skipgram-language-model-training.png" src="_images/skipgram-language-model-training.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/skipgram-language-model-training-4.png"><img alt="_images/skipgram-language-model-training-4.png" src="_images/skipgram-language-model-training-4.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/skipgram-language-model-training-5.png"><img alt="_images/skipgram-language-model-training-5.png" src="_images/skipgram-language-model-training-5.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/language-model-expensive.png"><img alt="_images/language-model-expensive.png" src="_images/language-model-expensive.png" style="width: 700px;" /></a>
+</div>
 <div class="section" id="negative-sampling">
 <h3>Negative Sampling<a class="headerlink" href="#negative-sampling" title="Permalink to this headline">¶</a></h3>
 <p>And switch it to a model that takes the input and output word, and outputs a score indicating <strong>if they’re neighbors or not</strong></p>
 <ul class="simple">
 <li><p>0 for “not neighbors”, 1 for “neighbors”.</p></li>
 </ul>
-<img src= 'img/word2vec/are-the-words-neighbors.png' width= "700px"><img src= 'img/word2vec/word2vec-negative-sampling-2.png' width= "700px"><p>we need to introduce negative samples to our dataset</p>
+<a class="reference internal image-reference" href="_images/are-the-words-neighbors.png"><img alt="_images/are-the-words-neighbors.png" src="_images/are-the-words-neighbors.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/word2vec-negative-sampling-2.png"><img alt="_images/word2vec-negative-sampling-2.png" src="_images/word2vec-negative-sampling-2.png" style="width: 700px;" /></a>
+<p>we need to introduce negative samples to our dataset</p>
 <ul class="simple">
 <li><p>samples of words that are not neighbors.</p></li>
 <li><p>Our model needs to return 0 for those samples.</p></li>
@@ -1142,7 +1148,8 @@
 </div>
 <div class="section" id="word2vec-training-process">
 <h3>Word2vec Training Process<a class="headerlink" href="#word2vec-training-process" title="Permalink to this headline">¶</a></h3>
-<img src= 'img/word2vec/word2vec-training-update.png' width= "700px"></div>
+<a class="reference internal image-reference" href="_images/word2vec-training-update.png"><img alt="_images/word2vec-training-update.png" src="_images/word2vec-training-update.png" style="width: 700px;" /></a>
+</div>
 </div>
 <div class="section" id="pytorch-word2vec">
 <h2>Pytorch word2vec<a class="headerlink" href="#pytorch-word2vec" title="Permalink to this headline">¶</a></h2>
@@ -2065,12 +2072,32 @@ SkipGram(
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="10-text-minning-gov-report.html" title="previous page">第八章 文本挖掘</a>
-    <a class='right-next' id="next-link" href="10-doc2vec.html" title="next page">Doc2Vec</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="10-text-minning-gov-report.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">第八章 文本挖掘</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="10-doc2vec.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Doc2Vec</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>

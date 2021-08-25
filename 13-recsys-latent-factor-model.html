@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -45,15 +45,13 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -86,7 +84,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -715,7 +713,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#including-bias">
@@ -759,7 +757,7 @@ RMSE =  \frac{1}{|R|} \sqrt{\sum_{(i, x)\in R}(\hat{r}<em>{xi} - r</em>{xi})^2}
 <p><img alt="image.png" src="_images/latent3.png" /></p>
 <p><img alt="image.png" src="_images/latent4.png" /></p>
 <p><img alt="image.png" src="_images/latent5.png" /></p>
-<p>U (m x m) , <span class="math notranslate nohighlight">\(\Sigma\)</span>(m x n),   <span class="math notranslate nohighlight">\(V^T\)</span> (n x n)</p>
+<p>U (m x m) , $\Sigma$(m x n),   $V^T$ (n x n)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -788,7 +786,7 @@ RMSE =  \frac{1}{|R|} \sqrt{\sum_{(i, x)\in R}(\hat{r}<em>{xi} - r</em>{xi})^2}
 </div>
 </div>
 </div>
-<p><span class="math notranslate nohighlight">\(\Sigma\)</span>本来应该跟A矩阵的大小一样，但linalg.svd()只返回了一个行向量的<span class="math notranslate nohighlight">\(\Sigma\)</span>，并且舍弃值为0的奇异值。因此，必须先将<span class="math notranslate nohighlight">\(\Sigma\)</span>转化为矩阵。</p>
+<p>$\Sigma$本来应该跟A矩阵的大小一样，但linalg.svd()只返回了一个行向量的$\Sigma$，并且舍弃值为0的奇异值。因此，必须先将$\Sigma$转化为矩阵。</p>
 <p><img alt="image.png" src="_images/latent6.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -903,7 +901,7 @@ B =
 <p><img alt="image.png" src="_images/latent7.png" /></p>
 <p><img alt="image.png" src="_images/latent8.png" /></p>
 <p>SVD gives minimum reconstruction error (Sum of Squared Errors, <strong>SSE</strong>)</p>
-<p>SSE and RMSE are monotonically related:<span class="math notranslate nohighlight">\(RMSE=\frac{1}{c}\sqrt{SSE}\)</span></p>
+<p>SSE and RMSE are monotonically related:$RMSE=\frac{1}{c}\sqrt{SSE}$</p>
 <p>Great news: SVD is minimizing RMSE</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1823,7 +1821,7 @@ Recommending the highest 10 predicted ratings movies not already rated.
 <li><p>奇异值分解 Singular value decomposition</p>
 <ul>
 <li><p>需要填充稀疏矩阵中的缺失元素</p></li>
-<li><p>计算复杂度高 <span class="math notranslate nohighlight">\(O(mn^2)\)</span></p></li>
+<li><p>计算复杂度高 $O(mn^2)$</p></li>
 </ul>
 </li>
 <li><p>梯度下降 Gradient Descent</p>
@@ -1840,10 +1838,10 @@ Recommending the highest 10 predicted ratings movies not already rated.
 \hat{r}_{xi}= u + b_x + b_i + q_i p_x^{T}
 \end{equation}</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(u\)</span> is the global bias, measured by the overall mean rating</p></li>
-<li><p><span class="math notranslate nohighlight">\(b_x\)</span> is the bias for user x, measured by the mean rating given by user x.</p></li>
-<li><p><span class="math notranslate nohighlight">\(b_i\)</span> is the bias for movie i, measured by the mean ratings of movie i.</p></li>
-<li><p><span class="math notranslate nohighlight">\(q_i p_{x}^{T}\)</span> is the user-movie interaction</p></li>
+<li><p>$u$ is the global bias, measured by the overall mean rating</p></li>
+<li><p>$b_x$ is the bias for user x, measured by the mean rating given by user x.</p></li>
+<li><p>$b_i$ is the bias for movie i, measured by the mean ratings of movie i.</p></li>
+<li><p>$q_i p_{x}^{T}$ is the user-movie interaction</p></li>
 </ul>
 <p><img alt="image.png" src="_images/latent11.png" /></p>
 <p><img alt="image.png" src="_images/latent12.png" /></p>
@@ -1884,12 +1882,32 @@ Recommending the highest 10 predicted ratings movies not already rated.
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="13-recsys-intro.html" title="previous page">第九章 推荐系统简介</a>
-    <a class='right-next' id="next-link" href="13-recsys-intro-surprise.html" title="next page">使用Surprise构建推荐系统</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="13-recsys-intro.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">第九章 推荐系统简介</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="13-recsys-intro-surprise.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">使用Surprise构建推荐系统</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>

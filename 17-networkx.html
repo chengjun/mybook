@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -45,15 +45,13 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -86,7 +84,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -715,7 +713,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id1">
@@ -1185,11 +1183,9 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </ul>
 <p><strong>closeness_centrality(G[, v, weighted_edges])</strong></p>
 <p>Closeness centrality of a node u is the reciprocal of the average shortest path distance to u over all n-1 reachable nodes.</p>
-<div class="math notranslate nohighlight">
-\[C(u) = \frac{n - 1}{\sum_{v=1}^{n-1} d(v, u)}\]</div>
+<p>$$C(u) = \frac{n - 1}{\sum_{v=1}^{n-1} d(v, u)}$$</p>
 <p>For graphs with more than one connected component:</p>
-<div class="math notranslate nohighlight">
-\[C_{WF}(u) = \frac{n-1}{N-1} \frac{n - 1}{\sum_{v=1}^{n-1} d(v, u)}\]</div>
+<p>$$C_{WF}(u) = \frac{n-1}{N-1} \frac{n - 1}{\sum_{v=1}^{n-1} d(v, u)}$$</p>
 <p>Letting N denote the number of nodes in the graph</p>
 <ul class="simple">
 <li><p>Linton C. Freeman: Centrality in networks: I. Conceptual clarification. Social Networks 1:215-239, 1979.</p></li>
@@ -1198,8 +1194,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 <p><strong>betweenness_centrality(G)</strong></p>
 <p>Compute the shortest-path betweenness centrality for nodes.</p>
 <p>Betweenness centrality of a node 𝑣 is the sum of the fraction of all-pairs shortest paths that pass through 𝑣</p>
-<div class="math notranslate nohighlight">
-\[c_B(v) =\sum_{s,t \in V} \frac{\sigma(s, t|v)}{\sigma(s, t)}\]</div>
+<p>$$c_B(v) =\sum_{s,t \in V} \frac{\sigma(s, t|v)}{\sigma(s, t)}$$</p>
 <ul class="simple">
 <li><p>s, t denote a node</p></li>
 <li><p>𝑉 is the set of nodes</p></li>
@@ -1591,10 +1586,11 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 <ul class="simple">
 <li><p>阅读 Barabasi (1999)  Diameter of the world wide web.Nature.401</p></li>
 <li><p>绘制www网络的出度分布、入度分布</p></li>
-<li><p>使用BA模型生成节点数为N、幂指数为<span class="math notranslate nohighlight">\(\gamma\)</span>的网络</p></li>
+<li><p>使用BA模型生成节点数为N、幂指数为$\gamma$的网络</p></li>
 <li><p>计算平均路径长度d与节点数量的关系</p></li>
 </ul>
-<img src = './img/diameter.png' width = 10000><div class="cell docutils container">
+<a class="reference internal image-reference" href="_images/diameter.png"><img alt="_images/diameter.png" src="_images/diameter.png" style="width: 10000px;" /></a>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ns</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">10</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]]</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1663,12 +1659,32 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="16-network-science-models.html" title="previous page">网络科学模型</a>
-    <a class='right-next' id="next-link" href="18-02-network-diffusion.html" title="next page">Simulating Network Diffusion With NDlib</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="16-network-science-models.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">网络科学模型</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="18-02-network-diffusion.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Simulating Network Diffusion With NDlib</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>

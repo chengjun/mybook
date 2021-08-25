@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -45,15 +45,13 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -86,7 +84,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -715,7 +713,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#rnn-in-a-nutshell">
@@ -767,7 +765,7 @@
 <h1>Sequnce Modeling: Recurrent and Recursive Nets<a class="headerlink" href="#sequnce-modeling-recurrent-and-recursive-nets" title="Permalink to this headline">¶</a></h1>
 <p><img alt="" src="_images/author.png" /></p>
 <p><strong>Recurrent neural networks</strong>, or RNNs (Rumelhart et al., 1986a), are a family of neural networks for processing sequential data.</p>
-<p>Much as a convolutional network is a neural network that is specialized for processing a grid of values <span class="math notranslate nohighlight">\(X\)</span> such as an image, a recurrent neural network is a neural network that is specialized for processing a sequence of values <span class="math notranslate nohighlight">\(x^{(1)}\)</span>, … , <span class="math notranslate nohighlight">\(x^{(τ)}\)</span>.</p>
+<p>Much as a convolutional network is a neural network that is specialized for processing a grid of values $X$ such as an image, a recurrent neural network is a neural network that is specialized for processing a sequence of values $x^{(1)}$, … , $x^{(τ)}$.</p>
 <p>Most recurrent networks can also process sequences of <em>variable length</em>.</p>
 <p><strong>RNN Applications: series of data</strong></p>
 <ul class="simple">
@@ -1709,7 +1707,7 @@ Learning finished!
 <h2>Under the hood: GRU<a class="headerlink" href="#under-the-hood-gru" title="Permalink to this headline">¶</a></h2>
 <p><img alt="image.png" src="_images/rnn22.png" /></p>
 <p><img alt="image.png" src="_images/rnn23.png" /></p>
-<img src="images/rnn24.png" align = 'right' width = "300">
+<a class="reference internal image-reference" href="_images/rnn24.png"><img alt="_images/rnn24.png" class="align-right" src="_images/rnn24.png" style="width: 300px;" /></a>
 <p><strong>Practical PyTorch: Classifying Names with a Character-Level RNN</strong></p>
 <p>We will train a basic character-level RNN to classify words. It reads words as a series of characters - outputting a prediction and “hidden state” at each step, feeding its previous hidden state into each next step. We take the final prediction to be the output, i.e. which class the word belongs to.</p>
 <p>Specifically, we’ll train on a few thousand surnames from 18 languages of origin, and predict which language a name is from based on the spelling.</p>
@@ -1753,12 +1751,32 @@ Learning finished!
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="09-13-cnn.html" title="previous page">Convolutional Networks</a>
-    <a class='right-next' id="next-link" href="09-12-hand-written-digits.html" title="next page">Recognizing Hand-Written Digits with Neural Networks</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="09-13-cnn.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Convolutional Networks</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="09-12-hand-written-digits.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Recognizing Hand-Written Digits with Neural Networks</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>

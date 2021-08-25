@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -45,15 +45,15 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -86,7 +86,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -715,7 +715,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-si-model">
@@ -792,7 +792,7 @@
                 
   <div class="section" id="simulating-network-diffusion-with-ndlib">
 <h1>Simulating Network Diffusion With NDlib<a class="headerlink" href="#simulating-network-diffusion-with-ndlib" title="Permalink to this headline">¶</a></h1>
-<p><span><img src=images/network11.png   align='middle'/></span></p>
+<p><span></span></p>
 <p><a class="reference external" href="https://ndlib.readthedocs.io/en/latest/overview.html"><strong>NDlib</strong></a> is a Python language software package for the describing, simulate, and study diffusion processes on complex networks.</p>
 <p>NDlib is built upon the <code class="docutils literal notranslate"><span class="pre">NetworkX</span> </code> python library and is intended to provide:</p>
 <ul class="simple">
@@ -804,16 +804,12 @@ a rapid development environment for collaborative, multidisciplinary, projects.<
 <div class="section" id="the-si-model">
 <h2>The SI Model<a class="headerlink" href="#the-si-model" title="Permalink to this headline">¶</a></h2>
 <p><img alt="image.png" src="_images/network12.png" /></p>
-<div class="math notranslate nohighlight">
-\[\frac{dS}{dt} = -\beta S I\]</div>
-<div class="math notranslate nohighlight">
-\[\frac{dI}{dt} = \beta S I\]</div>
-<p>Given every individual in the system must be either susceptible or infected, <span class="math notranslate nohighlight">\(I + S = 1\)</span>. Thus, the equations above can be transformed to:</p>
-<div class="math notranslate nohighlight">
-\[\frac{dI}{dt} = \beta I (1-I)\]</div>
+<p>$$\frac{dS}{dt} = -\beta S I$$</p>
+<p>$$\frac{dI}{dt} = \beta S I$$</p>
+<p>Given every individual in the system must be either susceptible or infected, $I + S = 1$. Thus, the equations above can be transformed to:</p>
+<p>$$\frac{dI}{dt} = \beta I (1-I)$$</p>
 <p>To solve this differential equation, we can get the cumulative growth curve as a function of time:</p>
-<div class="math notranslate nohighlight">
-\[I_{t} = \frac{x_0 e^{\beta t}}{1-x_0 + x_0 e^{\beta t}}\]</div>
+<p>$$I_{t} = \frac{x_0 e^{\beta t}}{1-x_0 + x_0 e^{\beta t}}$$</p>
 <p>Interestingly, this is a logistic growth featured by its S-shaped curve. The curve grows exponentially shortly after the system is infected, and then saturates as the number of susceptible shrinks which makes it harder to find the next victims.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1141,14 +1137,11 @@ odeint(func, y0, t, args=(), Dfun=None, col_deriv=0, full_output=0, ml=None, mu=
 <div class="section" id="the-sis-model">
 <h2>The SIS Model<a class="headerlink" href="#the-sis-model" title="Permalink to this headline">¶</a></h2>
 <p>Another extension of the SI model is the one that allows for reinfection.</p>
-<div class="math notranslate nohighlight">
-\[\frac{dS}{dt} =\gamma I -\beta S I\]</div>
-<div class="math notranslate nohighlight">
-\[\frac{dI}{dt} = \beta S I - \gamma I\]</div>
+<p>$$\frac{dS}{dt} =\gamma I -\beta S I$$</p>
+<p>$$\frac{dI}{dt} = \beta S I - \gamma I$$</p>
 <p>Given S + I = 1, the differential equations have the solution:</p>
-<div class="math notranslate nohighlight">
-\[I_t = (1- \frac{\gamma}{\beta})\frac{C e^{(\beta-\gamma)t}}{1+C e^{(\beta-\gamma)t}})\]</div>
-<p>The constant <span class="math notranslate nohighlight">\(C = \frac{\beta x_0}{\beta - \gamma - \beta x_0}\)</span></p>
+<p>$$I_t = (1- \frac{\gamma}{\beta})\frac{C e^{(\beta-\gamma)t}}{1+C e^{(\beta-\gamma)t}})$$</p>
+<p>The constant $C = \frac{\beta x_0}{\beta - \gamma - \beta x_0}$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># N为人群总数</span>
@@ -1206,14 +1199,11 @@ odeint(func, y0, t, args=(), Dfun=None, col_deriv=0, full_output=0, ml=None, mu=
 </div>
 <div class="section" id="the-sir-model">
 <h2>The SIR Model<a class="headerlink" href="#the-sir-model" title="Permalink to this headline">¶</a></h2>
-<p>For many diseases, there is usually a status of recovery denoted by <span class="math notranslate nohighlight">\(R\)</span>. Let <span class="math notranslate nohighlight">\(\gamma\)</span> denote the removal or recovery rate.</p>
+<p>For many diseases, there is usually a status of recovery denoted by $R$. Let $\gamma$ denote the removal or recovery rate.</p>
 <p><img alt="image.png" src="_images/network13.png" /></p>
-<div class="math notranslate nohighlight">
-\[\frac{dS}{dt} = -\beta S I\]</div>
-<div class="math notranslate nohighlight">
-\[\frac{dI}{dt} = \beta S I - \gamma I\]</div>
-<div class="math notranslate nohighlight">
-\[\frac{dR}{dt} =  \gamma I\]</div>
+<p>$$\frac{dS}{dt} = -\beta S I$$</p>
+<p>$$\frac{dI}{dt} = \beta S I - \gamma I$$</p>
+<p>$$\frac{dR}{dt} =  \gamma I$$</p>
 <p>However, the differential equations above could not be analytically solved.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1555,7 +1545,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 </div>
-<p><span><img src=images/network16.png   width = '400px' align='middle'/></span></p>
+<p><span></span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Network Definition</span>
@@ -3744,12 +3734,32 @@ BokehDeprecationWarning: &#39;legend&#39; keyword is deprecated, use explicit &#
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="17-networkx.html" title="previous page">使用NetworkX分析网络</a>
-    <a class='right-next' id="next-link" href="18-03-network-epidemics.html" title="next page">Epidemics on Networks</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="17-networkx.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">使用NetworkX分析网络</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="18-03-network-epidemics.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Epidemics on Networks</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>

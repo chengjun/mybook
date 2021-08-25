@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -45,15 +45,13 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -86,7 +84,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -715,7 +713,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#bag-of-words-model-bow">
@@ -1119,20 +1117,18 @@ ngram_range=(2,2).</p>
 <div class="section" id="tf-idf">
 <h2>TF-IDF<a class="headerlink" href="#tf-idf" title="Permalink to this headline">¶</a></h2>
 <p>Assessing word relevancy via term frequency-inverse document frequency</p>
-<div class="math notranslate nohighlight">
-\[tf*idf(t, d) = tf(t, d) \times idf(t)\]</div>
+<p>$$tf*idf(t, d) = tf(t, d) \times idf(t)$$</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(tf(t, d)\)</span> is the term frequency of term t in document d.</p></li>
-<li><p>inverse document frequency <span class="math notranslate nohighlight">\(idf(t)\)</span> can be calculated as: <span class="math notranslate nohighlight">\(idf(t) = log \frac{n_d}{1 + df(d, t)}\)</span></p></li>
+<li><p>$tf(t, d)$ is the term frequency of term t in document d.</p></li>
+<li><p>inverse document frequency $idf(t)$ can be calculated as: $idf(t) = log \frac{n_d}{1 + df(d, t)}$</p></li>
 </ul>
 <p>Question: Why do we add the constant 1 to the denominator ?</p>
-<p>The tf-idf equation that was implemented in scikit-learn is as follows: <span class="math notranslate nohighlight">\(tf*idf(t, d) = tf(t, d) \times （idf(t, d) + 1）\)</span></p>
-<p><a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfTransformer.html#sklearn.feature_extraction.text.TfidfTransformer">SKlearn use <code class="docutils literal notranslate"><span class="pre">smooth_idf=True</span></code></a> <span class="math notranslate nohighlight">\(idf(t) = log \frac{1+n_d}{1 + df(d, t)} + 1\)</span></p>
-<p>where <span class="math notranslate nohighlight">\(n_d\)</span> is the total number of documents, and <span class="math notranslate nohighlight">\(df(d, t)\)</span> is the number of documents <span class="math notranslate nohighlight">\(d\)</span> that contain the term <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>The tf-idf equation that was implemented in scikit-learn is as follows: $tf*idf(t, d) = tf(t, d) \times （idf(t, d) + 1）$</p>
+<p><a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfTransformer.html#sklearn.feature_extraction.text.TfidfTransformer">SKlearn use <code class="docutils literal notranslate"><span class="pre">smooth_idf=True</span></code></a> $idf(t) = log \frac{1+n_d}{1 + df(d, t)} + 1$</p>
+<p>where $n_d$ is the total number of documents, and $df(d, t)$ is the number of documents $d$ that contain the term $t$.</p>
 <div class="section" id="l2-normalization">
 <h3>L2-normalization<a class="headerlink" href="#l2-normalization" title="Permalink to this headline">¶</a></h3>
-<div class="math notranslate nohighlight">
-\[l2_{x} = \frac{x} {\sqrt{\sum {x^2}}}\]</div>
+<p>$$l2_{x} = \frac{x} {\sqrt{\sum {x^2}}}$$</p>
 <p>课堂作业：请根据公式计算’is’这个词在文本2中的tfidf数值？</p>
 <p><img alt="" src="_images/ask.jpeg" /></p>
 </div>
@@ -2166,12 +2162,32 @@ Default Mode: 我/ 来到/ 北京/ 清华大学
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="09-16-pytorch_vgg_pretrained.html" title="previous page">VGG16预训练模型</a>
-    <a class='right-next' id="next-link" href="10-word2vec.html" title="next page">词向量模型简介</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="09-16-pytorch_vgg_pretrained.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">VGG16预训练模型</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="10-word2vec.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">词向量模型简介</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>

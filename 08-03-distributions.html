@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -45,15 +45,13 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -86,7 +84,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -715,7 +713,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#function-definition">
@@ -834,14 +832,13 @@
 <div class="section" id="normal-distribution">
 <h2>Normal distribution<a class="headerlink" href="#normal-distribution" title="Permalink to this headline">¶</a></h2>
 <p>Carl Friedrich Gauss discovered the normal distribution in 1809 as a way to rationalize the method of least squares.</p>
-<p>The standard normal distribution is a special case when <span class="math notranslate nohighlight">\(\mu=0\)</span> and <span class="math notranslate nohighlight">\(\sigma =1\)</span>, and it is described by this probability density function:</p>
-<div class="math notranslate nohighlight">
-\[
+<p>The standard normal distribution is a special case when $\mu=0$ and $\sigma =1$, and it is described by this probability density function:</p>
+<p>$$
 \varphi(x) = \frac 1{\sqrt{2\pi}}e^{- \frac 12 x^2}
-\]</div>
+$$</p>
 <ul class="simple">
-<li><p>The factor <span class="math notranslate nohighlight">\(1/\sqrt{2\pi}\)</span> in this expression ensures that the total area under the curve <span class="math notranslate nohighlight">\(\varphi(x)\)</span> is equal to one.</p></li>
-<li><p>The factor <span class="math notranslate nohighlight">\(1/2\)</span> in the exponent ensures that the distribution has unit variance (i.e., the variance is equal to one), and therefore also unit standard deviation.</p></li>
+<li><p>The factor $1/\sqrt{2\pi}$ in this expression ensures that the total area under the curve $\varphi(x)$ is equal to one.</p></li>
+<li><p>The factor $1/2$ in the exponent ensures that the distribution has unit variance (i.e., the variance is equal to one), and therefore also unit standard deviation.</p></li>
 </ul>
 <p><img alt="image.png" src="_images/normal_distrisbution.png" /></p>
 <div class="cell docutils container">
@@ -858,12 +855,11 @@
 <div class="section" id="exponential-distribution">
 <h3>Exponential distribution<a class="headerlink" href="#exponential-distribution" title="Permalink to this headline">¶</a></h3>
 <p>The probability density function (pdf) of an exponential distribution is</p>
-<div class="math notranslate nohighlight">
-\[\begin{split} f(x;\lambda) = \begin{cases}
-\frac{1}{\beta} e^{-\frac{1}{\beta} x} &amp; x \ge 0, \\
+<p>$$ f(x;\lambda) = \begin{cases}
+\frac{1}{\beta} e^{-\frac{1}{\beta} x} &amp; x \ge 0, \
 0 &amp; x &lt; 0.
-\end{cases}\end{split}\]</div>
-<p><span class="math notranslate nohighlight">\(\beta\)</span> is the scale parameter. Here <span class="math notranslate nohighlight">\(\frac{1}{\beta}\)</span> is often called the <strong>rate parameter</strong>.</p>
+\end{cases}$$</p>
+<p>$\beta$ is the scale parameter. Here $\frac{1}{\beta}$ is often called the <strong>rate parameter</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xs</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -898,24 +894,24 @@
 <div class="section" id="students-t-distribution">
 <h2>Students’ T-distribution<a class="headerlink" href="#students-t-distribution" title="Permalink to this headline">¶</a></h2>
 <p>William Sealy Gosset</p>
-<p>Let <span class="math notranslate nohighlight">\( X_1, \ldots, X_n \)</span> be independent and identically distributed as <span class="math notranslate nohighlight">\(N(\mu, \sigma^2)\)</span>, i.e. this is a sample of size <span class="math notranslate nohighlight">\(n\)</span> from a normally distributed population with expected mean value <span class="math notranslate nohighlight">\(\mu \)</span> and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
+<p>Let $ X_1, \ldots, X_n $ be independent and identically distributed as $N(\mu, \sigma^2)$, i.e. this is a sample of size $n$ from a normally distributed population with expected mean value $\mu $ and variance $\sigma^2$.</p>
 <ul class="simple">
-<li><p>Let <span class="math notranslate nohighlight">\( \bar X = \frac 1 n \sum_{i=1}^n X_i \)</span> be the sample mean</p></li>
-<li><p>let <span class="math notranslate nohighlight">\( S^2 = \frac 1 {n-1} \sum_{i=1}^n (X_i - \bar X)^2 \)</span> be the sample variance.</p></li>
+<li><p>Let $ \bar X = \frac 1 n \sum_{i=1}^n X_i $ be the sample mean</p></li>
+<li><p>let $ S^2 = \frac 1 {n-1} \sum_{i=1}^n (X_i - \bar X)^2 $ be the sample variance.</p></li>
 </ul>
-<p>Then the random variable <span class="math notranslate nohighlight">\( \frac{ \bar X - \mu } { \sigma /\sqrt{n}} \)</span> has a standard normal distribution (i.e. normal with expected mean 0 and variance 1),</p>
-<p>The random variable <span class="math notranslate nohighlight">\( \frac{ \bar X - \mu} {S /\sqrt{n}}, \)</span> has a Student’s <strong>t</strong>-distribution with <span class="math notranslate nohighlight">\(n - 1\)</span> degrees of freedom.</p>
+<p>Then the random variable $ \frac{ \bar X - \mu } { \sigma /\sqrt{n}} $ has a standard normal distribution (i.e. normal with expected mean 0 and variance 1),</p>
+<p>The random variable $ \frac{ \bar X - \mu} {S /\sqrt{n}}, $ has a Student’s <strong>t</strong>-distribution with $n - 1$ degrees of freedom.</p>
 <ul class="simple">
-<li><p>where <span class="math notranslate nohighlight">\(S\)</span> has been substituted for <span class="math notranslate nohighlight">\(\sigma\)</span>.</p></li>
+<li><p>where $S$ has been substituted for $\sigma$.</p></li>
 </ul>
 <p>Student’s t-distribution has the <strong>probability density function</strong> given by</p>
-<p><span class="math notranslate nohighlight">\(f(t) = \frac{\Gamma(\frac{\nu+1}{2})} {\sqrt{\nu\pi}\,\Gamma(\frac{\nu}{2})} \left(1+\frac{t^2}{\nu} \right)^{\!-\frac{\nu+1}{2}},\!\)</span></p>
-<p>where <span class="math notranslate nohighlight">\(\nu\)</span> is the number of degrees of freedom and <span class="math notranslate nohighlight">\(\Gamma\)</span> is the <strong>gamma function</strong>.</p>
+<p>$f(t) = \frac{\Gamma(\frac{\nu+1}{2})} {\sqrt{\nu\pi},\Gamma(\frac{\nu}{2})} \left(1+\frac{t^2}{\nu} \right)^{!-\frac{\nu+1}{2}},!$</p>
+<p>where $\nu$ is the number of degrees of freedom and $\Gamma$ is the <strong>gamma function</strong>.</p>
 <p>This may also be written as</p>
-<p><span class="math notranslate nohighlight">\(f(t) = \frac{1}{\sqrt{\nu}\,\mathrm{B} (\frac{1}{2}, \frac{\nu}{2})} \left(1+\frac{t^2}{\nu} \right)^{\!-\frac{\nu+1}{2}}\!,\)</span></p>
+<p>$f(t) = \frac{1}{\sqrt{\nu},\mathrm{B} (\frac{1}{2}, \frac{\nu}{2})} \left(1+\frac{t^2}{\nu} \right)^{!-\frac{\nu+1}{2}}!,$</p>
 <p>where B is the <strong>Beta function</strong>.</p>
 <p>As the number of degrees of freedom grows, the t-distribution approaches the normal distribution with mean 0 and variance 1.</p>
-<p>For this reason <span class="math notranslate nohighlight">\({\nu}\)</span> is also known as the normality parameter.</p>
+<p>For this reason ${\nu}$ is also known as the normality parameter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ... with 4, and with 10 degrees of freedom (DOF)</span>
@@ -939,7 +935,7 @@ f(x; d_1,d_2) &= \frac{\sqrt{\frac{(d_1x)^{d_1}\,\,d_2^{d_2}} {(d_1x+d_2)^{d_1+d
 &=\frac{1}{\mathrm{B}\!\left(\frac{d_1}{2},\frac{d_2}{2}\right)} \left(\frac{d_1}{d_2}\right)^{\frac{d_1}{2}} x^{\frac{d_1}{2} - 1} \left(1+\frac{d_1}{d_2}\,x\right)^{-\frac{d_1+d_2}{2}}
 \end{align}
 </math>
-<p>for real number x &gt; 0. Here <span class="math notranslate nohighlight">\(\mathrm{B}\)</span> is the beta function. In many applications, the parameters d <sub>1</sub> and d <sub>2</sub> are positive integers, but the distribution is well-defined for positive real values of these parameters.</p>
+<p>for real number x &gt; 0. Here $\mathrm{B}$ is the beta function. In many applications, the parameters d <sub>1</sub> and d <sub>2</sub> are positive integers, but the distribution is well-defined for positive real values of these parameters.</p>
 <p><img alt="image.png" src="_images/normal2.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -993,7 +989,7 @@ f(x; \mu,s)  & = \frac{e^{-(x-\mu)/s}} {s\left(1+e^{-(x-\mu)/s}\right)^2} \\[4pt
 </div>
 <div class="section" id="lognormal-distribution">
 <h2>Lognormal distribution<a class="headerlink" href="#lognormal-distribution" title="Permalink to this headline">¶</a></h2>
-<p>A positive random variable X is log-normally distributed if the logarithm of X is normally distributed, <span class="math notranslate nohighlight">\(\ln(X) \sim \mathcal N(\mu,\sigma^2).\)</span></p>
+<p>A positive random variable X is log-normally distributed if the logarithm of X is normally distributed, $\ln(X) \sim \mathcal N(\mu,\sigma^2).$</p>
 <p><img alt="image.png" src="_images/normal4.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1028,13 +1024,12 @@ f(x; \mu,s)  & = \frac{e^{-(x-\mu)/s}} {s\left(1+e^{-(x-\mu)/s}\right)^2} \\[4pt
 </div>
 <div class="section" id="binomial-distribution">
 <h2>Binomial Distribution<a class="headerlink" href="#binomial-distribution" title="Permalink to this headline">¶</a></h2>
-<p>The probability of getting exactly <span class="math notranslate nohighlight">\(k\)</span> successes in <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli trials is given by the probability density function:</p>
-<div class="math notranslate nohighlight">
-\[f(k,n,p) = \Pr(k;n,p) = \Pr(X = k) = \binom{n}{k}p^k(1-p)^{n-k}\]</div>
-<p>for k  = 0, 1, 2, …,  n, where <span class="math notranslate nohighlight">\(\binom{n}{k} =\frac{n!}{k!(n-k)!}\)</span> is the <strong>binomial coefficient</strong></p>
+<p>The probability of getting exactly $k$ successes in $n$ independent Bernoulli trials is given by the probability density function:</p>
+<p>$$f(k,n,p) = \Pr(k;n,p) = \Pr(X = k) = \binom{n}{k}p^k(1-p)^{n-k}$$</p>
+<p>for k  = 0, 1, 2, …,  n, where $\binom{n}{k} =\frac{n!}{k!(n-k)!}$ is the <strong>binomial coefficient</strong></p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(k\)</span> successes occur with probability p<sup>k</sup></p></li>
-<li><p><span class="math notranslate nohighlight">\(n-k\)</span> failures occur with probability (1 − p)<sup>n − k</sup>.</p></li>
+<li><p>$k$ successes occur with probability p<sup>k</sup></p></li>
+<li><p>$n-k$ failures occur with probability (1 − p)<sup>n − k</sup>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1061,11 +1056,9 @@ f(x; \mu,s)  & = \frac{e^{-(x-\mu)/s}} {s\left(1+e^{-(x-\mu)/s}\right)^2} \\[4pt
 <h2>Poisson Distribution<a class="headerlink" href="#poisson-distribution" title="Permalink to this headline">¶</a></h2>
 <p>The Poisson distribution is popular for modeling the number of times an event occurs in an interval of time or space.</p>
 <p>A discrete <strong>random variable</strong> X is said to have a P$oisson distribution with parameter λ &gt; 0, if, for k = 0, 1, 2, …, the <strong>probability mass function</strong> of X is given by:</p>
-<div class="math notranslate nohighlight">
-\[\!f(k; \lambda)= \Pr(X = k)= \frac{\lambda^k e^{-\lambda}}{k!},\]</div>
+<p>$$!f(k; \lambda)= \Pr(X = k)= \frac{\lambda^k e^{-\lambda}}{k!},$$</p>
 <p>The positive <strong>real number</strong> λ is equal to the <strong>expected value</strong> of X and also to its <strong>variance</strong></p>
-<div class="math notranslate nohighlight">
-\[\lambda=\operatorname{E}(X)=\operatorname{Var}(X).\]</div>
+<p>$$\lambda=\operatorname{E}(X)=\operatorname{Var}(X).$$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -1112,12 +1105,32 @@ f(x; \mu,s)  & = \frac{e^{-(x-\mu)/s}} {s\left(1+e^{-(x-\mu)/s}\right)^2} \\[4pt
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="08-02-linear-algebra.html" title="previous page">Linear algebra</a>
-    <a class='right-next' id="next-link" href="08-03-probability.html" title="next page">Probability</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="08-02-linear-algebra.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Linear algebra</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="08-03-probability.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Probability</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>

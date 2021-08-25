@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -45,15 +45,13 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -86,7 +84,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -715,7 +713,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#batch-iteration-epoch">
@@ -814,7 +812,7 @@
 <li><p>Videos: https://www.bilibili.com/video/av15823922/</p></li>
 </ul>
 <p><img alt="image.png" src="_images/neural2.png" /></p>
-<img src = './img/neuralnetwork/synapse.jpg' width = 500 align = 'right'>
+<a class="reference internal image-reference" href="_images/synapse.jpg"><img alt="_images/synapse.jpg" class="align-right" src="_images/synapse.jpg" style="width: 500px;" /></a>
 <p><strong>The Neuron: A Biological Information Processor</strong></p>
 <ul class="simple">
 <li><p>dentrites -   the receivers</p></li>
@@ -871,7 +869,7 @@
 <h2>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">¶</a></h2>
 <p><img alt="" src="_images/gradient.gif" /></p>
 <p><img alt="image.png" src="_images/neural9.png" /></p>
-<p>Let’s represent parameters as <span class="math notranslate nohighlight">\(\Theta\)</span>, learning rate as <span class="math notranslate nohighlight">\(\alpha\)</span>, and gradient as <span class="math notranslate nohighlight">\(\bigtriangledown J(\Theta)\)</span>,</p>
+<p>Let’s represent parameters as $\Theta$, learning rate as $\alpha$, and gradient as $\bigtriangledown J(\Theta)$,</p>
 <div class="section" id="mannual-gradient">
 <h3>Mannual Gradient<a class="headerlink" href="#mannual-gradient" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
@@ -1250,8 +1248,7 @@ Epoch: 400 | Loss: 0.003276776522397995
 </tr>
 </tbody>
 </table>
-<div class="math notranslate nohighlight">
-\[y = f(X) = W X\]</div>
+<p>$$y = f(X) = W X$$</p>
 <ul class="simple">
 <li><p>Calculating the prediction is simple multiplication.</p></li>
 <li><p>But before that, we need to think about the weight we’ll be multiplying by.</p></li>
@@ -1263,31 +1260,34 @@ Epoch: 400 | Loss: 0.003276776522397995
 <li><p>does a calculation,</p></li>
 <li><p>and gives an output</p></li>
 </ul>
-<img src= 'img/neuralnetwork/data_points_graph_animated.gif' width= "700px"><p>Model Evaluation</p>
+<a class="reference internal image-reference" href="_images/data_points_graph_animated.gif"><img alt="_images/data_points_graph_animated.gif" src="_images/data_points_graph_animated.gif" style="width: 700px;" /></a>
+<p>Model Evaluation</p>
 <ul class="simple">
 <li><p>If we apply our model to the three data points we have, how good of a job would it do?</p></li>
 </ul>
-<img src= 'img/neuralnetwork/data_points_error_animated.gif' width= "700px"><img src= 'img/neuralnetwork/model_evaluation.png' width= "500px"><p><strong>Loss Function</strong></p>
+<a class="reference internal image-reference" href="_images/data_points_error_animated.gif"><img alt="_images/data_points_error_animated.gif" src="_images/data_points_error_animated.gif" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/model_evaluation.png"><img alt="_images/model_evaluation.png" src="_images/model_evaluation.png" style="width: 500px;" /></a>
+<p><strong>Loss Function</strong></p>
 <p>how bad our prediction is</p>
 <ul class="simple">
 <li><p>For each point, the error is measured by the difference between the <strong>actual value</strong> and the <strong>predicted value</strong>, raised to the power of 2.</p></li>
 <li><p>This is called <strong>Mean Square Error</strong>.</p></li>
 </ul>
-<img src= 'img/neuralnetwork/lines_and_errors_animated.gif' width= "700px"><ul class="simple">
+<a class="reference internal image-reference" href="_images/lines_and_errors_animated.gif"><img alt="_images/lines_and_errors_animated.gif" src="_images/lines_and_errors_animated.gif" style="width: 700px;" /></a>
+<ul class="simple">
 <li><p>We can’t improve much on the model by varying the weight any more.</p></li>
 <li><p>But if we add a bias (intercept) we can find values that improve the model.</p></li>
 </ul>
-<img src= 'img/neuralnetwork/NNs_bias_2.png' width= "500px">
-<div class="math notranslate nohighlight">
-\[y = 0.1 X + 150\]</div>
+<a class="reference internal image-reference" href="_images/NNs_bias_2.png"><img alt="_images/NNs_bias_2.png" src="_images/NNs_bias_2.png" style="width: 500px;" /></a>
+<p>$$y = 0.1 X + 150$$</p>
 <p><strong>Gradient Descent</strong></p>
 <ul class="simple">
 <li><p>Automatically get the correct weight and bias values</p></li>
 <li><p>minimize the loss function.</p></li>
 </ul>
-<img src= 'img/neuralnetwork/gd.png' width= "700px">
+<a class="reference internal image-reference" href="_images/gd.png"><img alt="_images/gd.png" src="_images/gd.png" style="width: 700px;" /></a>
 <p>Regression</p>
-<img src= 'img/neuralnetwork/NNs_2_variables.png' width= "500px">
+<a class="reference internal image-reference" href="_images/NNs_2_variables.png"><img alt="_images/NNs_2_variables.png" src="_images/NNs_2_variables.png" style="width: 500px;" /></a>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -1326,7 +1326,7 @@ Epoch: 400 | Loss: 0.003276776522397995
 <blockquote>
 <div><p>help(nn.Linear)</p>
 </div></blockquote>
-<p>Applies a linear transformation to the incoming data: <span class="math notranslate nohighlight">\(y = xA^T + b\)</span></p>
+<p>Applies a linear transformation to the incoming data: $y = xA^T + b$</p>
 <ul class="simple">
 <li><p><strong>in_features</strong>: size of each input sample</p></li>
 <li><p><strong>out_features</strong>: size of each output sample</p></li>
@@ -1448,7 +1448,7 @@ Epoch[1000/1000], loss: 2016.177734
 </div>
 <div class="section" id="classification">
 <h2>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h2>
-<img src= 'img/neuralnetwork/softmax-regression-scalargraph.png' width= "500px">
+<a class="reference internal image-reference" href="_images/softmax-regression-scalargraph.png"><img alt="_images/softmax-regression-scalargraph.png" src="_images/softmax-regression-scalargraph.png" style="width: 500px;" /></a>
 <div class="section" id="activation-function">
 <h3>Activation Function<a class="headerlink" href="#activation-function" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
@@ -1491,8 +1491,7 @@ Epoch[1000/1000], loss: 2016.177734
 <div class="section" id="softmax">
 <h3>Softmax<a class="headerlink" href="#softmax" title="Permalink to this headline">¶</a></h3>
 <p>The softmax function, also known as softargmax or normalized exponential function, is a function that takes as input a vector of K real numbers, and normalizes it into a probability distribution consisting of K probabilities.</p>
-<div class="math notranslate nohighlight">
-\[softmax = \frac{e^x}{\sum e^x}\]</div>
+<p>$$softmax = \frac{e^x}{\sum e^x}$$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">softmax</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
@@ -1792,12 +1791,32 @@ Epoch: 1000/1000 | Loss: 0.6413
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="09-grf.html" title="previous page">Causal Forests</a>
-    <a class='right-next' id="next-link" href="09-13-cnn.html" title="next page">Convolutional Networks</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="09-grf.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Causal Forests</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="09-13-cnn.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Convolutional Networks</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>

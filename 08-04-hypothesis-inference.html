@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -45,15 +45,13 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -86,7 +84,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -715,7 +713,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-logic-of-falsification">
@@ -1190,7 +1188,7 @@ power 0.9363794803307173
 <p>How confident can we be about this estimate?</p>
 <p>If we knew the exact value of p, the <code class="docutils literal notranslate"><span class="pre">central</span> <span class="pre">limit</span> <span class="pre">theorem</span></code> tells us</p>
 <blockquote>
-<div><p>the average of those Bernoulli variables should be approximately normal, with mean p and standard deviation <span class="math notranslate nohighlight">\(\sigma = \sqrt{p(1 - p) / 1000}\)</span>:</p>
+<div><p>the average of those Bernoulli variables should be approximately normal, with mean p and standard deviation $\sigma = \sqrt{p(1 - p) / 1000}$:</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1307,20 +1305,18 @@ power 0.9363794803307173
 <ul class="simple">
 <li><p>Here’s where you’d use statistical inference.</p></li>
 </ul>
-<p>Let’s say that <span class="math notranslate nohighlight">\(N_A\)</span> people see ad A, and that <span class="math notranslate nohighlight">\(n_A\)</span> of them click it.</p>
+<p>Let’s say that $N_A$ people see ad A, and that $n_A$ of them click it.</p>
 <ul class="simple">
 <li><p>We can think of each ad view as a Bernoulli trial</p>
 <ul>
-<li><p>where <span class="math notranslate nohighlight">\(p_A\)</span> is the probability that someone clicks ad A.</p></li>
+<li><p>where $p_A$ is the probability that someone clicks ad A.</p></li>
 </ul>
 </li>
 </ul>
-<p><span class="math notranslate nohighlight">\(\frac{n_A}{N_A}\)</span> is approximately a normal random variable with mean <span class="math notranslate nohighlight">\(p_A\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma_A\)</span></p>
-<div class="math notranslate nohighlight">
-\[\sigma_A = \sqrt \frac{P_A(1-P_A)}{N_A}\]</div>
+<p>$\frac{n_A}{N_A}$ is approximately a normal random variable with mean $p_A$ and standard deviation $\sigma_A$</p>
+<p>$$\sigma_A = \sqrt \frac{P_A(1-P_A)}{N_A}$$</p>
 <p>Similarly,</p>
-<div class="math notranslate nohighlight">
-\[\sigma_B = \sqrt \frac{P_B(1-P_B)}{N_B}\]</div>
+<p>$$\sigma_B = \sqrt \frac{P_B(1-P_B)}{N_B}$$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># running an A/B test</span>
@@ -1334,10 +1330,10 @@ power 0.9363794803307173
 </div>
 <p>If we assume those two normals are independent (which seems reasonable, since the individual Bernoulli trials ought to be), then their difference should also be normal with</p>
 <ul class="simple">
-<li><p>mean <span class="math notranslate nohighlight">\(p_B − p_A\)</span></p></li>
-<li><p>standard deviation <span class="math notranslate nohighlight">\(\sqrt {\sigma_A^2 + \sigma_B^2}\)</span>.</p></li>
+<li><p>mean $p_B − p_A$</p></li>
+<li><p>standard deviation $\sqrt {\sigma_A^2 + \sigma_B^2}$.</p></li>
 </ul>
-<p>Null Hypothesis: <span class="math notranslate nohighlight">\(p_A\)</span> and <span class="math notranslate nohighlight">\(p_B\)</span> are the same, that is <span class="math notranslate nohighlight">\(p_A - p_B = 0\)</span></p>
+<p>Null Hypothesis: $p_A$ and $p_B$ are the same, that is $p_A - p_B = 0$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">a_b_test_statistic</span><span class="p">(</span><span class="n">N_A</span><span class="p">,</span> <span class="n">n_A</span><span class="p">,</span> <span class="n">N_B</span><span class="p">,</span> <span class="n">n_B</span><span class="p">):</span>
@@ -1579,12 +1575,32 @@ p-value 0.003189699706216853
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="08-03-probability.html" title="previous page">Probability</a>
-    <a class='right-next' id="next-link" href="08-05-gradient-descent.html" title="next page">Introduction to Gradient Descent</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="08-03-probability.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Probability</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="08-05-gradient-descent.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Introduction to Gradient Descent</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>

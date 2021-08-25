@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -45,15 +45,13 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -86,7 +84,7 @@
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -715,7 +713,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dependence-and-independence">
@@ -794,20 +792,16 @@
 <h2>Dependence and Independence<a class="headerlink" href="#dependence-and-independence" title="Permalink to this headline">¶</a></h2>
 <p>Roughly speaking, we say that two events E and F are dependent if knowing something about whether E happens gives us information about whether F happens (and vice versa). Otherwise they are independent.</p>
 <p>When two events E and F are independent, then by definition we have:</p>
-<div class="math notranslate nohighlight">
-\[P(E,F) =P(E)P(F)\]</div>
+<p>$$P(E,F) =P(E)P(F)$$</p>
 </div>
 <div class="section" id="conditional-probability">
 <h2>Conditional Probability<a class="headerlink" href="#conditional-probability" title="Permalink to this headline">¶</a></h2>
 <p>we define the probability of E conditional on F as:</p>
-<div class="math notranslate nohighlight">
-\[ P(E \mid F) = \frac{P(E,F)} {P(F)} \]</div>
+<p>$$ P(E \mid F) = \frac{P(E,F)} {P(F)} $$</p>
 <p>We often rewrite this as:</p>
-<div class="math notranslate nohighlight">
-\[ P(E,F) = P(E \mid F) P(F) \]</div>
+<p>$$ P(E,F) = P(E \mid F) P(F) $$</p>
 <p>When E and F are independent:</p>
-<div class="math notranslate nohighlight">
-\[ P(E \mid F)=P(E)\]</div>
+<p>$$ P(E \mid F)=P(E)$$</p>
 <p>F occurred gives us no additional information about whether E occurred.</p>
 <ul class="simple">
 <li><p>Each child is equally likely to be a boy or a girl.</p></li>
@@ -818,18 +812,15 @@
 <li><p>the event “one girl, one boy” has probability 1/2,</p></li>
 <li><p>the event “two girls” has probability 1/4.</p></li>
 </ul>
-<div class="math notranslate nohighlight">
-\[P(B, G) = P(B)\]</div>
+<p>$$P(B, G) = P(B)$$</p>
 <p>The event B and G (“both children are girls and the older child is a girl”) is just the event B.</p>
 <ul class="simple">
 <li><p>Once you know that both children are girls, it’s necessarily true that the older child is a girl.</p></li>
 </ul>
 <p>The probability of the event “both children are girls” (B) conditional on the event “the older child is a girl” (G)</p>
-<div class="math notranslate nohighlight">
-\[P(B \mid G) =\frac{P(B,G)}{P(G)} =\frac{P(B)}{P(G)} =1/2\]</div>
+<p>$$P(B \mid G) =\frac{P(B,G)}{P(G)} =\frac{P(B)}{P(G)} =1/2$$</p>
 <p>The probability of the event “both children are girls” conditional on the event “at least one of the children is a girl” (L).</p>
-<div class="math notranslate nohighlight">
-\[P(B \mid L) =\frac{P(B,L)}{P(L)} =\frac{P(B)}{P(L)} =1/3\]</div>
+<p>$$P(B \mid L) =\frac{P(B,L)}{P(L)} =\frac{P(B)}{P(L)} =1/3$$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
@@ -887,21 +878,19 @@ P(both | either):  0.33271913661489866
 <div class="section" id="bayess-theorem">
 <h2>Bayes’s Theorem<a class="headerlink" href="#bayess-theorem" title="Permalink to this headline">¶</a></h2>
 <p>Using the definition of conditional probability twice tells us that:</p>
-<div class="math notranslate nohighlight">
-\[P(E \mid F) =\frac{P(E,F)}{P(F)} =\frac{P(F \mid E)P(E)}{P(F)}\]</div>
+<p>$$P(E \mid F) =\frac{P(E,F)}{P(F)} =\frac{P(F \mid E)P(E)}{P(F)}$$</p>
 <p>The complement of an event is the “opposite” of that event.</p>
 <ul class="simple">
-<li><p>We write <span class="math notranslate nohighlight">\(E{}'\)</span> for “not E” (i.e., “E doesn’t happen”),</p></li>
+<li><p>We write $E{}’$ for “not E” (i.e., “E doesn’t happen”),</p></li>
 </ul>
 <p>The event F can be split into the two mutually exclusive events:</p>
 <ul class="simple">
 <li><p>“F and E”</p></li>
 <li><p>“F and not E.”</p></li>
 </ul>
-<div class="math notranslate nohighlight">
-\[P(F) =P(F,E) +P(F,E{}')\]</div>
+<p>$$P(F) =P(F,E) +P(F,E{}’)$$</p>
 <p><strong>Bayes’s Theorem</strong></p>
-<p><span class="math notranslate nohighlight">\( P(E \mid F) = \frac{P(F \mid E) P(E)}{ P(F \mid E) P(E) + P(F E{}') P(E{}') }\)</span></p>
+<p>$ P(E \mid F) = \frac{P(F \mid E) P(E)}{ P(F \mid E) P(E) + P(F E{}’) P(E{}’) }$</p>
 <p>** Why data scientists are smarter than doctors. **</p>
 <ul class="simple">
 <li><p>**What does a positive test mean? ** 检查结果为阳性究竟意味着什么？</p></li>
@@ -915,19 +904,18 @@ P(both | either):  0.33271913661489866
 <li><p>D for the event “you have the disease.”</p></li>
 </ul>
 <p>Then Bayes’s Theorem says that the probability that you have the disease, conditional on testing positive, is:</p>
-<div class="math notranslate nohighlight">
-\[ P(D \mid T) = \frac{P(T \mid D) P(D)}{ P(T \mid D) P(D) + P(T D{}') P(D{}') }\]</div>
+<p>$$ P(D \mid T) = \frac{P(T \mid D) P(D)}{ P(T \mid D) P(D) + P(T D{}’) P(D{}’) }$$</p>
 <p>Here we know that</p>
 <ul class="simple">
-<li><p>the probability that someone with the disease tests positive, <span class="math notranslate nohighlight">\(P(T \mid D) = 0.99\)</span>.</p></li>
-<li><p>the probability that any given person has the disease, <span class="math notranslate nohighlight">\(P(D) = 1/10,000 = 0.0001\)</span>.</p></li>
-<li><p>the probability that someone without the disease tests positive, <span class="math notranslate nohighlight">\(P(T \mid D{}') = 0.01\)</span>.</p></li>
-<li><p>the probability that any given person doesn’t have the disease, <span class="math notranslate nohighlight">\(P(D{}')= 0.9999\)</span>.</p></li>
+<li><p>the probability that someone with the disease tests positive, $P(T \mid D) = 0.99$.</p></li>
+<li><p>the probability that any given person has the disease, $P(D) = 1/10,000 = 0.0001$.</p></li>
+<li><p>the probability that someone without the disease tests positive, $P(T \mid D{}’) = 0.01$.</p></li>
+<li><p>the probability that any given person doesn’t have the disease, $P(D{}’)= 0.9999$.</p></li>
 </ul>
-<p>Question: Can you compute the probability of <span class="math notranslate nohighlight">\(P(D \mid T)\)</span>?</p>
-<p>Joke: most doctors will guess that <span class="math notranslate nohighlight">\(P(D \mid T)\)</span> is approximately 2.</p>
+<p>Question: Can you compute the probability of $P(D \mid T)$?</p>
+<p>Joke: most doctors will guess that $P(D \mid T)$ is approximately 2.</p>
 <p>If you substitute these numbers into Bayes’s Theorem, you find
-<span class="math notranslate nohighlight">\(P(D \mid T) =0.98 \% \)</span></p>
+$P(D \mid T) =0.98 % $</p>
 <p>That is, the people who test positive actually have the disease is less than 1% !!!</p>
 <blockquote>
 <div><p>This assumes that people take the test more or less at random. If only people with certain symptoms take the test we would instead have to condition on the event “positive test and symptoms” and the number would likely be a lot higher.</p>
@@ -1051,15 +1039,14 @@ P(both | either):  0.33271913661489866
 </li>
 </ul>
 <p>The probability density of the normal distribution is</p>
-<div class="math notranslate nohighlight">
-\[
+<p>$$
 f(x \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2} } e^{ -\frac{(x-\mu)^2}{2\sigma^2} }
-\]</div>
+$$</p>
 <p>where</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mu\)</span> is the mean or expectation of the distribution (and also its median and mode),</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sigma\)</span> is the standard deviation, and</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sigma^2\)</span> is the variance.</p></li>
+<li><p>$\mu$ is the mean or expectation of the distribution (and also its median and mode),</p></li>
+<li><p>$\sigma$ is the standard deviation, and</p></li>
+<li><p>$\sigma^2$ is the variance.</p></li>
 </ul>
 <p><img alt="" src="_images/bellcurve.png" /></p>
 <p>Image source: http://www.moserware.com/2010/03/computing-your-skill.html</p>
@@ -1205,28 +1192,27 @@ f(x \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2} } e^{ -\frac{(x-\mu)^2}{2
 <blockquote>
 <div><p>A random variable defined as the <strong>average</strong> of a large number of <em>independent and identically distributed (IID)</em> random variables is itself approximately normally distributed.</p>
 </div></blockquote>
-<p>In particular, if <span class="math notranslate nohighlight">\(x_1\)</span>, …, <span class="math notranslate nohighlight">\(x_n\)</span> are random variables with mean μ and standard deviation σ, and if n is large,</p>
+<p>In particular, if $x_1$, …, $x_n$ are random variables with mean μ and standard deviation σ, and if n is large,</p>
 <ul class="simple">
-<li><p>The sum <span class="math notranslate nohighlight">\(X_1+ …+ X_n\)</span> will approach that of the normal distribution <span class="math notranslate nohighlight">\(N(n\mu, n\sigma ^2)\)</span>,</p></li>
-<li><p><strong>The sample average</strong> <span class="math notranslate nohighlight">\(S_n = \frac{1}{n}(x_1 +... +x_n)\)</span> is approximately normally distributed with mean <span class="math notranslate nohighlight">\(\mu\)</span> and deviation <span class="math notranslate nohighlight">\(\sigma/\sqrt n\)</span> , and variance <span class="math notranslate nohighlight">\(\sigma ^2/ n\)</span>.</p></li>
+<li><p>The sum $X_1+ …+ X_n$ will approach that of the normal distribution $N(n\mu, n\sigma ^2)$,</p></li>
+<li><p><strong>The sample average</strong> $S_n = \frac{1}{n}(x_1 +… +x_n)$ is approximately normally distributed with mean $\mu$ and deviation $\sigma/\sqrt n$ , and variance $\sigma ^2/ n$.</p></li>
 </ul>
-<p><span class="math notranslate nohighlight">\( \frac{(x_1 +... +x_n) - \mu n}{\sigma \sqrt{n}} = \frac{ \frac{x_1 +... +x_n}{n} - \mu }{\sigma / \sqrt{n}}\)</span> is approximately normally distributed with mean 0 and standard deviation 1.</p>
+<p>$ \frac{(x_1 +… +x_n) - \mu n}{\sigma \sqrt{n}} = \frac{ \frac{x_1 +… +x_n}{n} - \mu }{\sigma / \sqrt{n}}$ is approximately normally distributed with mean 0 and standard deviation 1.</p>
 <blockquote>
 <div><p>In probability theory, the central limit theorem (CLT) establishes that, in some situations, when independent random variables are added, their properly normalized sum tends toward a normal distribution (informally a “bell curve”) <strong>even if the original variables themselves are not normally distributed</strong>.</p>
 </div></blockquote>
-<div class="math notranslate nohighlight">
-\[\sigma = \sqrt{\frac{\sum_{i=1}^N (x_i - \overline{x})^2}{N-1} }\]</div>
+<p>$$\sigma = \sqrt{\frac{\sum_{i=1}^N (x_i - \overline{x})^2}{N-1} }$$</p>
 <div class="section" id="the-example-of-binomial-random-variables">
 <h3>The example of  binomial random variables<a class="headerlink" href="#the-example-of-binomial-random-variables" title="Permalink to this headline">¶</a></h3>
 <p>Binomial random variables (二项式随机变量) have two parameters n and p.</p>
 <p>A <strong>Binomial(n,p)</strong> random variable is simply the sum of n independent Bernoulli(p) random variables, each of which equals 1 with probability p and 0 with probability 1 − p.</p>
-<p>The mean of a Bernoulli(<span class="math notranslate nohighlight">\(p\)</span>) variable is <span class="math notranslate nohighlight">\(p\)</span>, and its variance is
-<span class="math notranslate nohighlight">\(p(1-p)\)</span></p>
-<p>Central limit theorem says that as <span class="math notranslate nohighlight">\(n\)</span> gets large,</p>
+<p>The mean of a Bernoulli($p$) variable is $p$, and its variance is
+$p(1-p)$</p>
+<p>Central limit theorem says that as $n$ gets large,</p>
 <p>&lt;font size = ‘6’, color= ‘blue’&gt;a Binomial(n,p) variable is approximately a normal random variable </font></p>
 <ul class="simple">
-<li><p>with mean <span class="math notranslate nohighlight">\(\mu=np\)</span></p></li>
-<li><p>with variance <span class="math notranslate nohighlight">\(\sigma ^2= np(1-p)\)</span></p></li>
+<li><p>with mean $\mu=np$</p></li>
+<li><p>with variance $\sigma ^2= np(1-p)$</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1280,28 +1266,24 @@ f(x \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2} } e^{ -\frac{(x-\mu)^2}{2
 </div>
 <div class="section" id="proof-of-classical-clt">
 <h2>Proof of classical CLT<a class="headerlink" href="#proof-of-classical-clt" title="Permalink to this headline">¶</a></h2>
-<p>Suppose <span class="math notranslate nohighlight">\(X_1, …, X_n\)</span> are independent and identically distributed random variables, each with mean <span class="math notranslate nohighlight">\(\mu\)</span> and finite variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
-<p>The sum <span class="math notranslate nohighlight">\(X_1+ …+ X_n\)</span> has Linearity of expectation <span class="math notranslate nohighlight">\(n\mu\)</span> and Variance <span class="math notranslate nohighlight">\(n\sigma^2\)</span></p>
+<p>Suppose $X_1, …, X_n$ are independent and identically distributed random variables, each with mean $\mu$ and finite variance $\sigma^2$.</p>
+<p>The sum $X_1+ …+ X_n$ has Linearity of expectation $n\mu$ and Variance $n\sigma^2$</p>
 <p>Consider the random variable</p>
-<div class="math notranslate nohighlight">
-\[Z_n \ =\ \frac{X_1+\cdots+X_n - n \mu}{\sqrt{n \sigma^2}} \ =\ \sum_{i=1}^n \frac{X_i - \mu}{\sqrt{n \sigma^2}} \ =\ \sum_{i=1}^n \frac{1}{\sqrt{n}} Y_i,\]</div>
-<p>where in the last step we defined the new random variables <span class="math notranslate nohighlight">\(Y_i = \frac{X_i - \mu}{\sigma}\)</span>, each with zero mean and unit variance (var(Y) = 1).</p>
+<p>$$Z_n \ =\ \frac{X_1+\cdots+X_n - n \mu}{\sqrt{n \sigma^2}} \ =\ \sum_{i=1}^n \frac{X_i - \mu}{\sqrt{n \sigma^2}} \ =\ \sum_{i=1}^n \frac{1}{\sqrt{n}} Y_i,$$</p>
+<p>where in the last step we defined the new random variables $Y_i = \frac{X_i - \mu}{\sigma}$, each with zero mean and unit variance (var(Y) = 1).</p>
 <p>https://en.wikipedia.org/wiki/Central_limit_theorem#Proof_of_classical_CLT</p>
-<p>The characteristic function of <span class="math notranslate nohighlight">\(Z_n\)</span> is given by</p>
-<div class="math notranslate nohighlight">
-\[\varphi_{Z_n}\!(t) \ =\ \varphi_{\sum_{i=1}^n {\frac{1}{\sqrt{n}}Y_i}}\!(t) \ =\ \varphi_{Y_1}\!\!\left(\frac{t}{\sqrt{n}}\right) \varphi_{Y_2}\!\! \left(\frac{t}{\sqrt{n}}\right)\cdots \varphi_{Y_n}\!\! \left(\frac{t}{\sqrt{n}}\right) \ =\ \left[\varphi_{Y_1}\!\!\left(\frac{t}{\sqrt{n}}\right)\right]^n,
-\]</div>
-<p>where in the last step we used the fact that all of the <span class="math notranslate nohighlight">\(Y_i\)</span> are identically distributed. The characteristic function of <span class="math notranslate nohighlight">\(Y_1\)</span> is, by Taylor’s theorem,</p>
-<div class="math notranslate nohighlight">
-\[\varphi_{Y_1}\!\!\left(\frac{t}{\sqrt{n}}\right) \ =\ 1 - \frac{t^2}{2n} + o\!\!\left(\frac{t^2}{n}\right), \quad \bigg(\frac{t}{\sqrt{n}}\bigg) \rightarrow 0\]</div>
-<p>where <span class="math notranslate nohighlight">\(o(t^2)\)</span> is Little-o notation for some function of <span class="math notranslate nohighlight">\(t\)</span> that goes to zero more rapidly than <span class="math notranslate nohighlight">\(t^2\)</span>.</p>
-<p>By the limit of the exponential function ( <span class="math notranslate nohighlight">\( e^2 = lim(1 + \frac{x}{n})^n)\)</span>, the characteristic function of <span class="math notranslate nohighlight">\(Z_n\)</span> equals</p>
-<div class="math notranslate nohighlight">
-\[\varphi_{Z_n}(t) = \left(1 - \frac{t^2}{2n} + o\left(\frac{t^2}{n}\right) \right)^n \rightarrow e^{-\frac12 t^2}, \quad n \rightarrow \infty.\]</div>
-<p>Note that all of the higher order terms vanish in the limit <span class="math notranslate nohighlight">\( n \rightarrow \infty\)</span>.</p>
-<p>The right hand side equals the characteristic function of a standard normal distribution N(0,1), which implies through Lévy’s continuity theorem that the distribution of <span class="math notranslate nohighlight">\(Z_n\)</span> will approach N(0,1) as <span class="math notranslate nohighlight">\( n \rightarrow \infty\)</span>.</p>
-<p>Therefore, the sum <span class="math notranslate nohighlight">\(X_1+ …+ X_n\)</span> will approach that of the normal distribution <span class="math notranslate nohighlight">\(N(n\mu, n\sigma ^2)\)</span>, and the sample average <span class="math notranslate nohighlight">\(S_n = \frac{X_1+\cdots+X_n}{n}\)</span></p>
-<p>converges to the normal distribution <span class="math notranslate nohighlight">\(N(\mu, \frac{\sigma^2}{n})\)</span>, from which the central limit theorem follows.</p>
+<p>The characteristic function of $Z_n$ is given by</p>
+<p>$$\varphi_{Z_n}!(t) \ =\ \varphi_{\sum_{i=1}^n {\frac{1}{\sqrt{n}}Y_i}}!(t) \ =\ \varphi_{Y_1}!!\left(\frac{t}{\sqrt{n}}\right) \varphi_{Y_2}!! \left(\frac{t}{\sqrt{n}}\right)\cdots \varphi_{Y_n}!! \left(\frac{t}{\sqrt{n}}\right) \ =\ \left[\varphi_{Y_1}!!\left(\frac{t}{\sqrt{n}}\right)\right]^n,
+$$</p>
+<p>where in the last step we used the fact that all of the $Y_i$ are identically distributed. The characteristic function of $Y_1$ is, by Taylor’s theorem,</p>
+<p>$$\varphi_{Y_1}!!\left(\frac{t}{\sqrt{n}}\right) \ =\ 1 - \frac{t^2}{2n} + o!!\left(\frac{t^2}{n}\right), \quad \bigg(\frac{t}{\sqrt{n}}\bigg) \rightarrow 0$$</p>
+<p>where $o(t^2)$ is Little-o notation for some function of $t$ that goes to zero more rapidly than $t^2$.</p>
+<p>By the limit of the exponential function ( $ e^2 = lim(1 + \frac{x}{n})^n)$, the characteristic function of $Z_n$ equals</p>
+<p>$$\varphi_{Z_n}(t) = \left(1 - \frac{t^2}{2n} + o\left(\frac{t^2}{n}\right) \right)^n \rightarrow e^{-\frac12 t^2}, \quad n \rightarrow \infty.$$</p>
+<p>Note that all of the higher order terms vanish in the limit $ n \rightarrow \infty$.</p>
+<p>The right hand side equals the characteristic function of a standard normal distribution N(0,1), which implies through Lévy’s continuity theorem that the distribution of $Z_n$ will approach N(0,1) as $ n \rightarrow \infty$.</p>
+<p>Therefore, the sum $X_1+ …+ X_n$ will approach that of the normal distribution $N(n\mu, n\sigma ^2)$, and the sample average $S_n = \frac{X_1+\cdots+X_n}{n}$</p>
+<p>converges to the normal distribution $N(\mu, \frac{\sigma^2}{n})$, from which the central limit theorem follows.</p>
 </div>
 </div>
 
@@ -1328,12 +1310,32 @@ f(x \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2} } e^{ -\frac{(x-\mu)^2}{2
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="08-03-distributions.html" title="previous page">Distribution Functions</a>
-    <a class='right-next' id="next-link" href="08-04-hypothesis-inference.html" title="next page">Statistical Hypothesis Testing</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="08-03-distributions.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Distribution Functions</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="08-04-hypothesis-inference.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Statistical Hypothesis Testing</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
