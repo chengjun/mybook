@@ -1,4 +1,4 @@
-# 《计算传播学》在线讲义
+# 《计算传播学》讲义
 
 Elements of Computational Communication
 
