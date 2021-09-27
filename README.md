@@ -2,7 +2,7 @@
 
 Elements of Computational Communication
 
-![logo](img/logo/logo.png)
+![logo](img/tt.gif)
 
 王成军
 
