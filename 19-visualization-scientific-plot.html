@@ -719,6 +719,19 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#common-xlabel-ylabel-for-matplotlib-subplots">
+   Common xlabel/ylabel for matplotlib subplots
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -937,6 +950,121 @@ Successfully installed SciencePlots-1.0.9 cycler-0.10.0 kiwisolver-1.3.2 matplot
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/19-visualization-scientific-plot_12_0.png" src="_images/19-visualization-scientific-plot_12_0.png" />
+</div>
+</div>
+<div class="section" id="common-xlabel-ylabel-for-matplotlib-subplots">
+<h2>Common xlabel/ylabel for matplotlib subplots<a class="headerlink" href="#common-xlabel-ylabel-for-matplotlib-subplots" title="Permalink to this headline">¶</a></h2>
+<p>https://stackoverflow.com/questions/6963035/pyplot-axes-labels-for-subplots</p>
+<p><strong>New</strong> in matplotlib 3.4.0</p>
+<p>We can now use <code class="docutils literal notranslate"><span class="pre">supxlabel</span></code> and <code class="docutils literal notranslate"><span class="pre">supylabel</span></code> to set a common xlabel and ylabel.</p>
+<p>Note that these are <code class="docutils literal notranslate"><span class="pre">FigureBase</span></code> methods, so they can be used with either <code class="docutils literal notranslate"><span class="pre">Figure</span></code> and <code class="docutils literal notranslate"><span class="pre">SubFigure</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">matplotlib</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting matplotlib
+  Using cached matplotlib-3.4.3-cp37-cp37m-macosx_10_9_x86_64.whl (7.2 MB)
+Requirement already satisfied, skipping upgrade: pyparsing&gt;=2.2.1 in /opt/anaconda3/lib/python3.7/site-packages (from matplotlib) (2.4.2)
+Requirement already satisfied, skipping upgrade: numpy&gt;=1.16 in /opt/anaconda3/lib/python3.7/site-packages (from matplotlib) (1.20.3)
+Requirement already satisfied, skipping upgrade: python-dateutil&gt;=2.7 in /opt/anaconda3/lib/python3.7/site-packages (from matplotlib) (2.8.1)
+Requirement already satisfied, skipping upgrade: kiwisolver&gt;=1.0.1 in /opt/anaconda3/lib/python3.7/site-packages (from matplotlib) (1.1.0)
+Requirement already satisfied, skipping upgrade: pillow&gt;=6.2.0 in /opt/anaconda3/lib/python3.7/site-packages (from matplotlib) (8.0.0)
+Requirement already satisfied, skipping upgrade: cycler&gt;=0.10 in /opt/anaconda3/lib/python3.7/site-packages (from matplotlib) (0.10.0)
+Requirement already satisfied, skipping upgrade: six&gt;=1.5 in /opt/anaconda3/lib/python3.7/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib) (1.12.0)
+Requirement already satisfied, skipping upgrade: setuptools in /opt/anaconda3/lib/python3.7/site-packages (from kiwisolver&gt;=1.0.1-&gt;matplotlib) (58.1.0)
+<span class=" -Color -Color-Red">ERROR: pytorch-forecasting 0.9.0 has requirement scikit-learn&lt;0.25,&gt;=0.23, but you&#39;ll have scikit-learn 1.0 which is incompatible.</span>
+<span class=" -Color -Color-Red">ERROR: datapane 0.8.1 has requirement ruamel.yaml&lt;0.17.0,&gt;=0.16.5, but you&#39;ll have ruamel-yaml 0.15.87 which is incompatible.</span>
+Installing collected packages: matplotlib
+  Attempting uninstall: matplotlib
+    Found existing installation: matplotlib 3.1.3
+    Uninstalling matplotlib-3.1.3:
+      Successfully uninstalled matplotlib-3.1.3
+Successfully installed matplotlib-3.4.3
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">10.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">x</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># subplot titles</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+
+<span class="c1"># common labels</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">supxlabel</span><span class="p">(</span><span class="s1">&#39;fig.supxlabel&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">supylabel</span><span class="p">(</span><span class="s1">&#39;fig.supylabel&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/19-visualization-scientific-plot_15_0.png" src="_images/19-visualization-scientific-plot_15_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">10.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">x</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+<span class="c1"># common labels</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">supxlabel</span><span class="p">(</span><span class="s1">&#39;fig.supxlabel&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">supylabel</span><span class="p">(</span><span class="s1">&#39;fig.supylabel&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/19-visualization-scientific-plot_16_0.png" src="_images/19-visualization-scientific-plot_16_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">([</span><span class="s1">&#39;science&#39;</span><span class="p">,</span><span class="s1">&#39;nature&#39;</span><span class="p">]):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+    <span class="c1"># common labels</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">supxlabel</span><span class="p">(</span><span class="s1">&#39;fig.supxlabel&#39;</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">supylabel</span><span class="p">(</span><span class="s1">&#39;fig.supylabel&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/19-visualization-scientific-plot_17_0.png" src="_images/19-visualization-scientific-plot_17_0.png" />
+</div>
 </div>
 </div>
 </div>
