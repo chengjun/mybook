@@ -145,21 +145,6 @@
      解决Matplotlib绘图显示中文问题
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-UK-MPS-Scandal.html">
-     清洗数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-umbrella-of-love.html">
-     列联表分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-who-runs-China.html">
-     Who runs China？
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
@@ -225,6 +210,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="04-crawler-tripadvisor.html">
      使用Selenium抓取TripAdvisor用户评论
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-pyppeteer.html">
+     使用Pyppeteer实现异步抓取!
     </a>
    </li>
   </ul>
@@ -788,23 +778,8 @@
 </div>
 </div>
 <p>www.hprc.org.cn/wxzl/wxysl/lczf/</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;no&quot;</span> <span class="na">border</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">marginwidth</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">marginheight</span><span class="o">=</span><span class="s">&quot;0&quot;</span> 
-    <span class="na">width</span><span class="o">=</span><span class="s">900</span> <span class="na">height</span><span class="o">=</span><span class="s">600</span> 
-    <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://www.hprc.org.cn/wxzl/wxysl/lczf/&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" 
-    width=900 height=600 
-    src="http://www.hprc.org.cn/wxzl/wxysl/lczf/">
-</iframe>
-</div></div>
-</div>
+<p>另外一个镜像</p>
+<p>http://hprc.cssn.cn/wxzl/wxysl/lczf/</p>
 <div class="section" id="inspect">
 <h2>Inspect<a class="headerlink" href="#inspect" title="Permalink to this headline">¶</a></h2>
 <td width="274" class="bl">·&nbsp;<a href="./d12qgrdzfbg/201603/t20160318_369509.html" target="_blank" title="2016年政府工作报告">2016年政府工作报告</a></td>
@@ -956,12 +931,12 @@ content = content.text
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">+</span> <span class="n">links</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;href&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;./&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="n">links</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;href&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;./&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dssjqgrmdbdh_1/202103/t20210316_5318622.html&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>http://www.hprc.org.cn/wxzl/wxysl/lczf/dssjqgrmdbdh_1/202103/t20210316_5318622.html
 </pre></div>
 </div>
 </div>
@@ -1001,36 +976,15 @@ content = content.text
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hyperlinks</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="c1"># 2007年有分页</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hyperlinks</span><span class="p">[</span><span class="mi">14</span><span class="p">])</span> <span class="c1"># 2007年有分页</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie/200908/t20090817_3955455.html&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_1/200908/t20090818_3955570.html
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display_html</span><span class="p">,</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">IFrame</span>
-
-<span class="n">IFrame</span><span class="p">(</span><span class="n">src</span> <span class="o">=</span> <span class="s1">&#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_1/200908/t20090818_3955570.html&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
-<span class="c1">#HTML(&#39;&lt;iframe src=http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_1/200908/t20090818_3955570.html width=1000 height=500&gt;&lt;/iframe&gt;&#39;)</span>
-<span class="c1"># 2007年有分页</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-<iframe
-    width="1000"
-    height="500"
-    src="http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_1/200908/t20090818_3955570.html"
-    frameborder="0"
-    allowfullscreen
-></iframe>
-</div></div>
 </div>
 </div>
 <div class="section" id="id2">
@@ -1167,12 +1121,55 @@ content = content.text
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">countPage</span><span class="p">):</span>
             <span class="n">url_child</span> <span class="o">=</span> <span class="n">url_i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.html&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.html&#39;</span>
             <span class="n">content</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_child</span><span class="p">)</span>
-            <span class="n">content</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;gb18030&#39;</span>
+            <span class="n">content</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf8&#39;</span>
             <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">text</span>
             <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span> 
             <span class="n">report_child</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">))</span>
             <span class="n">report</span> <span class="o">=</span> <span class="n">report</span> <span class="o">+</span> <span class="n">report_child</span>
     <span class="k">return</span> <span class="n">year</span><span class="p">,</span> <span class="n">report</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hyperlinks</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_1/200908/t20090818_3955570.html&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="p">,</span> <span class="n">report</span> <span class="o">=</span> <span class="n">crawler</span><span class="p">(</span><span class="n">hyperlinks</span><span class="p">[</span><span class="mi">14</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2007
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">report</span><span class="p">[:</span><span class="mi">30</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;政府工作报告\u3000\xa0\xa0——2007年3月5日在第十届全国人民代表&#39;
 </pre></div>
 </div>
 </div>

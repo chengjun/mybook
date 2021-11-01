@@ -145,21 +145,6 @@
      解决Matplotlib绘图显示中文问题
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-UK-MPS-Scandal.html">
-     清洗数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-umbrella-of-love.html">
-     列联表分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-who-runs-China.html">
-     Who runs China？
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
@@ -225,6 +210,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="04-crawler-tripadvisor.html">
      使用Selenium抓取TripAdvisor用户评论
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-pyppeteer.html">
+     使用Pyppeteer实现异步抓取!
     </a>
    </li>
   </ul>
@@ -782,19 +772,27 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://search.people.com.cn/cnpeople/search.do?pageNum=&#39;</span>
-<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;&amp;keyword=%D0%C2%B9%DA+%D6%D0%D2%BD&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=&#39;</span>
-<span class="n">page_num</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#&lt;a href=&quot;/cnpeople/search.do?pageNum=2&amp;amp;keyword=%D0%C2%B9%DA&amp;amp;siteName=news&amp;amp;facetFlag=false&amp;amp;nodeType=belongsId&amp;amp;nodeId=&quot;&gt;2&lt;/a&gt;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://search.people.com.cn/cnpeople/search.do?pageNum=&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;&amp;keyword=%D0%C2%B9%DA&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=&#39;</span>
+<span class="n">page_num</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">urls</span> <span class="o">=</span> <span class="p">[</span><span class="n">url</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="n">path</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">page_num</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]:</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>http://search.people.com.cn/cnpeople/search.do?pageNum=1&amp;keyword=%D0%C2%B9%DA+%D6%D0%D2%BD&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
-http://search.people.com.cn/cnpeople/search.do?pageNum=2&amp;keyword=%D0%C2%B9%DA+%D6%D0%D2%BD&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>http://search.people.com.cn/cnpeople/search.do?pageNum=1&amp;keyword=%D0%C2%B9%DA&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
+http://search.people.com.cn/cnpeople/search.do?pageNum=2&amp;keyword=%D0%C2%B9%DA&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
+http://search.people.com.cn/cnpeople/search.do?pageNum=3&amp;keyword=%D0%C2%B9%DA&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
+http://search.people.com.cn/cnpeople/search.do?pageNum=4&amp;keyword=%D0%C2%B9%DA&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
+http://search.people.com.cn/cnpeople/search.do?pageNum=5&amp;keyword=%D0%C2%B9%DA&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
+http://search.people.com.cn/cnpeople/search.do?pageNum=6&amp;keyword=%D0%C2%B9%DA&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
+http://search.people.com.cn/cnpeople/search.do?pageNum=7&amp;keyword=%D0%C2%B9%DA&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
+http://search.people.com.cn/cnpeople/search.do?pageNum=8&amp;keyword=%D0%C2%B9%DA&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
+http://search.people.com.cn/cnpeople/search.do?pageNum=9&amp;keyword=%D0%C2%B9%DA&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
 </pre></div>
 </div>
 </div>
@@ -825,6 +823,10 @@ http://search.people.com.cn/cnpeople/search.do?pageNum=2&amp;keyword=%D0%C2%B9%D
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.7/site-packages/requests/__init__.py:91: RequestsDependencyWarning: urllib3 (1.26.7) or chardet (3.0.4) doesn&#39;t match a supported version!
+  RequestsDependencyWarning)
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;!DOCTYPE html&gt;
 
 &lt;html&gt;
@@ -859,11 +861,25 @@ if(error_403 == &#39;&#39;) {
 &lt;span class=&quot;r-tip01&quot;&gt;&lt;script&gt;document.write(error_403);&lt;/script&gt;&lt;/span&gt;
 &lt;span class=&quot;r-tip02&quot;&gt;如果您是网站管理员&lt;a href=&quot;http://help.365cyd.com/cyd-error-help.html?code=403&quot; target=&quot;_blank&quot;&gt;点击这里&lt;/a&gt;查看详情&lt;/span&gt;
 &lt;hr/&gt;
-&lt;center&gt;client: 202.120.235.202, server: 0abb659, time: 15/May/2021:15:31:37 +0800 [80001]&lt;/center&gt;
+&lt;center&gt;client: 36.154.208.6, server: 38ae086, time: 01/Nov/2021:15:30:10 +0800 [80001]&lt;/center&gt;
 &lt;img alt=&quot;&quot; src=&quot;/cdn-cgi/image/logo.png&quot;/&gt;
 &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>http://search.people.com.cn/cnpeople/search.do?pageNum=1&amp;keyword=%D0%C2%B9%DA+%D6%D0%D2%BD&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
+http://search.people.com.cn/cnpeople/search.do?pageNum=2&amp;keyword=%D0%C2%B9%DA+%D6%D0%D2%BD&amp;siteName=news&amp;facetFlag=null&amp;nodeType=belongsId&amp;nodeId=
 </pre></div>
 </div>
 </div>
@@ -905,9 +921,16 @@ if(error_403 == &#39;&#39;) {
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
 2
+3
+4
+5
+6
+7
+8
+9
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>450
 </pre></div>
 </div>
 </div>
@@ -1021,37 +1044,37 @@ if(error_403 == &#39;&#39;) {
     <tr>
       <th>0</th>
       <td>1</td>
-      <td>http://health.people.com.cn/n1/2020/0606/c1473...</td>
-      <td>[全国首部新型冠状病毒肺炎中医医案类专著在京举行新书首发仪式]</td>
-      <td>2020-06-06 10:33:49</td>
+      <td>http://world.people.com.cn/n1/2021/1101/c1002-...</td>
+      <td>[美国白宫新闻秘书感染新冠病毒]</td>
+      <td>2021-11-01 13:17:19</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1</td>
-      <td>http://health.people.com.cn/n1/2020/0606/c1473...</td>
-      <td>为维护人民健康提供有力保障</td>
-      <td>2020-06-06 08:48:46</td>
+      <td>http://society.people.com.cn/n1/2021/1101/c100...</td>
+      <td>[新冠疫苗第三针开打 会有第四、第五针吗]</td>
+      <td>2021-11-01 09:09:21</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1</td>
-      <td>http://politics.people.com.cn/n1/2020/0606/c10...</td>
-      <td>为维护人民健康提供有力保障</td>
-      <td>2020-06-06 05:09:28</td>
+      <td>http://society.people.com.cn/n1/2021/1101/c100...</td>
+      <td>[儿童新冠疫苗接种启动]</td>
+      <td>2021-11-01 09:04:42</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1</td>
-      <td>http://opinion.people.com.cn/n1/2020/0606/c100...</td>
-      <td>人民日报评论员：强化公共卫生体系的科技支撑</td>
-      <td>2020-06-06 05:07:22</td>
+      <td>http://health.people.com.cn/n1/2021/1101/c1473...</td>
+      <td>[改变过往新冠认知 积极引导3—11岁人群疫苗“应接尽接”]</td>
+      <td>2021-11-01 08:57:45</td>
     </tr>
     <tr>
       <th>4</th>
       <td>1</td>
-      <td>http://health.people.com.cn/n1/2020/0605/c1473...</td>
-      <td>防控疫情，中医药发挥了重要作用</td>
-      <td>2020-06-05 08:36:27</td>
+      <td>http://usa.people.com.cn/n1/2021/1101/c241376-...</td>
+      <td>[美国空军大量士兵拒绝接种新冠疫苗]</td>
+      <td>2021-11-01 08:47:21</td>
     </tr>
   </tbody>
 </table>
@@ -1064,7 +1087,7 @@ if(error_403 == &#39;&#39;) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1416
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>67
 </pre></div>
 </div>
 </div>
@@ -1081,7 +1104,7 @@ if(error_403 == &#39;&#39;) {
 <h2>Reading data with Pandas<a class="headerlink" href="#reading-data-with-pandas" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/people_com_search20200606.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./data/people_com_search20200606.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
 </pre></div>
@@ -1096,7 +1119,7 @@ if(error_403 == &#39;&#39;) {
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/people_com_search20200606.csv&#39;</span><span class="p">)</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data/people_com_search20200606.csv&#39;</span><span class="p">)</span>
 <span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
 </pre></div>
