@@ -1,0 +1,1996 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>微博热搜分析 &#8212; 计算传播学</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="天涯论坛的回帖网络分析" href="18-network-analysis-of-tianya-bbs.html" />
+    <link rel="prev" title="Social Network Analysis" href="18-network-ergm-siena.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">计算传播学</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-bigdata.html">
+     数据科学的编程工具：大数据
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="0-jupyter-notebook.html">
+     Jupyter Notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="0-slides.html">
+     使用Jupyter制作Slides的介绍
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="0-turicreate.html">
+     Turicreate: Departure from Graphlab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="0-matplotlib-chinese.html">
+     解决Matplotlib绘图显示中文问题
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-UK-MPS-Scandal.html">
+     案例：2009年英国国会议员开支丑闻
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-umbrella-of-love.html">
+     案例：《转角遇到爱》背后的数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-who-runs-China.html">
+     案例：Who runs China？背后的数据
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-fact-checking.html">
+     抓取实时辟谣数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-13chambers.html">
+     抓取网络小说
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-wechat.html">
+     抓取微信公众号文章内容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-douban.html">
+     使用requests + Xpath抓取豆瓣电影数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-gov-report.html">
+     抓取历届政府工作报告
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-cppcc.html">
+     抓取江苏省政协十年提案
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-netease-music.html">
+     抓取网易云音乐热门评论
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium.html">
+     使用Selenium操纵浏览器
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-music-history.html">
+     抓取网易云音乐用户的听歌记录
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-people-com-search.html">
+     使用Selenium提取人民网搜索数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-tripadvisor.html">
+     使用Selenium抓取TripAdvisor用户评论
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-pyppeteer.html">
+     使用Pyppeteer实现异步抓取!
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-preprocessing.html">
+     对大数据进行预处理
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-tweets.html">
+     数据清洗之推特数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-occupy-central-news.html">
+     对占中新闻进行数据清洗
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-music-list.html">
+     清洗音乐列表🎵
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-pandas.html">
+     使用Pandas进行数据清洗
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-02-kl-divergence.html">
+     KL Divergence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-02-linear-algebra.html">
+     Linear algebra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-03-distributions.html">
+     Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-03-probability.html">
+     Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-04-hypothesis-inference.html">
+     Statistical Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-05-gradient-descent.html">
+     Introduction to Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-06-regression.html">
+     Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-06-statsmodels.html">
+     Statistical Modeling with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-07-analyzing-titanic-dataset.html">
+     Logistic Regression of Titanic Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-07-covid19-pew-survey.html">
+     Analysing the Pew Survey Data of COVID19
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-08-covid19-grangercausality.html">
+     社交媒体可以预测新冠疫情吗？
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-09-survival-analysis.html">
+     Survival Analysis with Python
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-03-hyperparameters-and-model-validation.html">
+     Hyperparameters and Model Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-04-feature-engineering.html">
+     Feature Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-05-naive-bayes.html">
+     In Depth: Naive Bayes Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-06-linear-regression.html">
+     In Depth: Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-07-support-vector-machines.html">
+     In-Depth: Support Vector Machines
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-08-random-forests.html">
+     In-Depth: Decision Trees and Random Forests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-09-googleflustudy.html">
+     Forecasting and nowcasting with Google Flu Trends
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-10-future-employment.html">
+     The future of employment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-grf.html">
+     Causal Forests
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-13-cnn.html">
+     Convolutional Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-14-rnn.html">
+     Sequnce Modeling: Recurrent and Recursive Nets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-12-hand-written-digits.html">
+     Recognizing Hand-Written Digits with Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-15-cifar10.html">
+     使用CNN对CIFAR10图像进行分类
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-16-pytorch_vgg_pretrained.html">
+     VGG16预训练模型
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-word2vec.html">
+     词向量模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-doc2vec.html">
+     Doc2Vec
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">
+     基于字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-2-emotion-dict.html">
+     大连理工大学中文情感词汇
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-NRC-Chinese-dict.html">
+     基于NRC字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-textblob.html">
+     利用textblob进行情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-4-sentiment-classifier.html">
+     基于机器学习的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-5-LIWC.html">
+     LIWC: Linguistic Inquiry and Word Count  analyzer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-update.html">
+     主题模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-with-turicreate.html">
+     使用Turicreate建立主题模型
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13-recsys-latent-factor-model.html">
+     Latent Factor Recommender System
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13-recsys-intro-surprise.html">
+     使用Surprise构建推荐系统
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14-millionsong.html">
+     使用Turicreate进行音乐推荐
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14-movielens.html">
+     使用Turicreate进行电影推荐
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="16-network-science-models.html">
+     网络科学模型
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="17-networkx.html">
+     使用NetworkX分析网络
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-02-network-diffusion.html">
+     Simulating Network Diffusion With NDlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-03-network-epidemics.html">
+     Epidemics on Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-04-seir-hcd-model.html">
+     SEIR-HCD Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-network-ergm-siena.html">
+     Social Network Analysis
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     微博热搜分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">
+     天涯论坛的回帖网络分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">
+     可视化Facebook社交网络
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reproducing_hidagos_result.html">
+     4 digit sitc trade data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-scientific-plot.html">
+     Matplotlib的科学绘图样式
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-with-pyecharts.html">
+     使用PyEcharts进行可视化
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-plotly-express.html">
+     Plotly Express in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-maps-using-folium.html">
+     使用folium做地图可视化
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-datashader.html">
+     使用Datashader可视化地理信息
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-datapane.html">
+     使用Datapane制作数据报告
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Pantheon.html">
+     万神殿项目（Pantheon Project）
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/18-network-weibo-hot-search.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F18-network-weibo-hot-search.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/18-network-weibo-hot-search.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/18-network-weibo-hot-search.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   中文分词
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   语义网络
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>微博热搜分析<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Microsoft YaHei&#39;</span><span class="p">]</span>  <span class="c1"># 用来正常显示中文标签</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># 用来正常显示负号, 注意[&#39;SimHei&#39;]对应这句不行.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;./data/微博热搜数据2020.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>date</th>
+      <th>title</th>
+      <th>searchCount</th>
+      <th>rank</th>
+      <th>words_list</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>2020/01/01</td>
+      <td>快本为何炅改播出时间</td>
+      <td>9257913</td>
+      <td>1</td>
+      <td>['快本', '为何', '炅', '改', '播出', '时间']</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2020/01/01</td>
+      <td>唐一菲</td>
+      <td>4993064</td>
+      <td>2</td>
+      <td>['唐一菲']</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2020/01/01</td>
+      <td>橘子洲烟花</td>
+      <td>4712996</td>
+      <td>3</td>
+      <td>['橘子', '子洲', '橘子洲', '烟花']</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>2020/01/01</td>
+      <td>吴亦凡脖子</td>
+      <td>4426161</td>
+      <td>4</td>
+      <td>['吴亦凡', '脖子']</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>2020/01/01</td>
+      <td>吴昕状态</td>
+      <td>4209201</td>
+      <td>5</td>
+      <td>['吴昕', '状态']</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>35900
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>中文分词<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jieba</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">cut_all</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;快本&#39;, &#39;为何&#39;, &#39;炅&#39;, &#39;改&#39;, &#39;播出&#39;, &#39;时间&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install thulac
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting thulac
+  Downloading thulac-0.2.1.tar.gz (52.9 MB)
+     |████████████████████████████████| 52.9 MB 1.4 MB/s eta 0:00:012
+?25hBuilding wheels for collected packages: thulac
+  Building wheel for thulac (setup.py) ... ?25ldone
+?25h  Created wheel for thulac: filename=thulac-0.2.1-py3-none-any.whl size=53141672 sha256=4cabf5d0d053e4cc0949e50754fc81dd3a4de744e20e64cbb7549541f9da1b99
+  Stored in directory: /Users/datalab/Library/Caches/pip/wheels/97/37/f3/be4ae10faf0fbf35cc192469b737ead6f8f99404bcd82fb2e0
+Successfully built thulac
+Installing collected packages: thulac
+Successfully installed thulac-0.2.1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">thulac</span>
+
+<span class="n">thu1</span> <span class="o">=</span> <span class="n">thulac</span><span class="o">.</span><span class="n">thulac</span><span class="p">()</span>  <span class="c1">#默认模式</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">thu1</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="s2">&quot;快本为何炅改播出时间&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1">#进行一句话分词</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model loaded succeed
+快本_d 为_v 何炅_r 改播_v 出_v 时间_n
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="n">thu1</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="s2">&quot;快本为何炅改播出时间&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1">#进行一句话分词</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;快本&#39;, &#39;d&#39;], [&#39;为&#39;, &#39;v&#39;], [&#39;何炅&#39;, &#39;r&#39;], [&#39;改播&#39;, &#39;v&#39;], [&#39;出&#39;, &#39;v&#39;], [&#39;时间&#39;, &#39;n&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="n">thu1</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="s2">&quot;橘子洲烟花&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1">#进行一句话分词</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;橘子洲&#39;, &#39;ns&#39;], [&#39;烟花&#39;, &#39;n&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="n">thu1</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="s2">&quot;吴亦凡脖子&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1">#进行一句话分词</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;吴亦凡&#39;, &#39;np&#39;], [&#39;脖子&#39;, &#39;n&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="n">thu1</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="s2">&quot;吴昕状态&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1">#进行一句话分词</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;吴昕&#39;, &#39;np&#39;], [&#39;状态&#39;, &#39;n&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>n/名词 np/人名 ns/地名 ni/机构名 nz/其它专名
+m/数词 q/量词 mq/数量词 t/时间词 f/方位词 s/处所词
+v/动词 a/形容词 d/副词 h/前接成分 k/后接成分
+i/习语 j/简称 r/代词 c/连词 p/介词 u/助词 y/语气助词
+e/叹词 o/拟声词 g/语素 w/标点 x/其它</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cut_words</span><span class="p">(</span><span class="n">txt</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">thu1</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
+    <span class="n">text</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">text</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">text</span>
+
+<span class="c1"># flush print</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">def</span> <span class="nf">flushPrint</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cut_words</span><span class="p">(</span><span class="s1">&#39;快本为何炅改播出时间&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;快本&#39;, &#39;为&#39;, &#39;何炅&#39;, &#39;改播&#39;, &#39;出&#39;, &#39;时间&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wlist</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">flushPrint</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">cut_words</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">wlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>35800
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;wlist&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wlist</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,)</span>  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>title</th>
+      <th>searchCount</th>
+      <th>rank</th>
+      <th>words_list</th>
+      <th>wlist</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020/01/01</td>
+      <td>快本为何炅改播出时间</td>
+      <td>9257913</td>
+      <td>1</td>
+      <td>['快本', '为何', '炅', '改', '播出', '时间']</td>
+      <td>[快本, 为, 何炅, 改播, 出, 时间]</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020/01/01</td>
+      <td>唐一菲</td>
+      <td>4993064</td>
+      <td>2</td>
+      <td>['唐一菲']</td>
+      <td>[唐一菲]</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020/01/01</td>
+      <td>橘子洲烟花</td>
+      <td>4712996</td>
+      <td>3</td>
+      <td>['橘子', '子洲', '橘子洲', '烟花']</td>
+      <td>[橘子洲, 烟花]</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020/01/01</td>
+      <td>吴亦凡脖子</td>
+      <td>4426161</td>
+      <td>4</td>
+      <td>['吴亦凡', '脖子']</td>
+      <td>[吴亦凡, 脖子]</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020/01/01</td>
+      <td>吴昕状态</td>
+      <td>4209201</td>
+      <td>5</td>
+      <td>['吴昕', '状态']</td>
+      <td>[吴昕, 状态]</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35895</th>
+      <td>2020/12/30</td>
+      <td>如何看待大小周工作制</td>
+      <td>1108684</td>
+      <td>96</td>
+      <td>['如何', '看待', '大小', '周', '工作', '工作制']</td>
+      <td>[如何, 看待, 大小, 周工作制]</td>
+    </tr>
+    <tr>
+      <th>35896</th>
+      <td>2020/12/30</td>
+      <td>以色列两老人接种美产疫苗后死亡</td>
+      <td>1085368</td>
+      <td>97</td>
+      <td>['以色列', '两', '老人', '接种', '美产', '疫苗', '后', '死亡']</td>
+      <td>[以色列, 两, 老人, 接种, 美产, 疫苗, 后, 死亡]</td>
+    </tr>
+    <tr>
+      <th>35897</th>
+      <td>2020/12/30</td>
+      <td>沈阳全面进入战时状态</td>
+      <td>1082178</td>
+      <td>98</td>
+      <td>['沈阳', '全面', '进入', '战时', '状态']</td>
+      <td>[沈阳, 全面, 进入, 战时, 状态]</td>
+    </tr>
+    <tr>
+      <th>35898</th>
+      <td>2020/12/30</td>
+      <td>人社局介入员工连上2次厕所被罚款</td>
+      <td>1077144</td>
+      <td>99</td>
+      <td>['人', '社局', '介入', '员工', '连上', '2', '次', '厕所', ...</td>
+      <td>[人社局, 介入, 员工, 连, 上, 2, 次, 厕所, 被, 罚款]</td>
+    </tr>
+    <tr>
+      <th>35899</th>
+      <td>2020/12/30</td>
+      <td>沈阳疫情</td>
+      <td>1072987</td>
+      <td>100</td>
+      <td>['沈阳', '疫情']</td>
+      <td>[沈阳, 疫情]</td>
+    </tr>
+  </tbody>
+</table>
+<p>35900 rows × 6 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s1">&#39;./data/微博热搜数据2020.xlsx&#39;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">][:</span><span class="mi">100</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>快本为何炅改播出时间 唐一菲 橘子洲烟花 吴亦凡脖子 吴昕状态 郑爽回归微博 祝你新年王老吉 2020新年快乐 5G视频手机Reno3 王源被舞台烟花溅到眼睛 贺军翔方否认出轨 跨年收视率 42万游客上海外滩跨年 小米年货节 2020有5个神奇的星期六 香港17名反对派区议员涉暴被捕 2020together 湖南卫视乱切镜头的原因 贺军翔 北京妇产医院首个20后宝宝 小黑瓶新年限定 刘昊然解密极味馆 敢于真实 做时间的朋友 谢娜的主持 李现被机器人表白 新的十年 敢于向前 郭富城听野狼disco是什么感受 2020一起安慕希 马航一航班从大兴机场起飞后返航 我的新年第一支视频 bilibili晚会 马航回应MH319起飞后返航 YSL夜皇后精华 聚划算百亿补贴 所有闺蜜都结婚了 重庆被砸女生家属获政府20万补偿 Bella发文与高以翔告别 下一个十年会怎样 鹿晗 我就是胖着玩 假唱 宠爱暖哭了 和李现滑雪 趋势大赏 庆余年大结局 何雯娜产女 娜扎 2020年一起富哈 郑爽律师致信鲸乖乖公司 重庆被跳楼者砸死女生已安葬 赵丽颖在线发糖 开启更好2020 李宇春表演途中擦掉口红 再见2019干杯2020 iPad茅台9块9抢 学生期末将微信名改成教务处 跨年 歌手首发阵容 杨幂的RAP 感恩2019你好2020 90后超六成压力来自房和车 新年第一场升旗 吴宗宪唱到一半陌生男骑车冲上台 男粉偷亲黄子韬 日产前CEO藏乐器盒中逃离日本 宠爱票房 重庆加州花园 紧急救援预告 易烊千玺太A了 倪妮 有1说1表情包 央行决定降准0.5个百分点 关晓彤演技 杨紫30秒不眨眼 丹顶鹤冰面上滑倒淡定起身 刘涛的跨年瞬间 央视主持天团的2019 首批九零后30了 何运晨李浩源邓冰莹拿到offer 新疆和田西瓜烤肉 佳木斯东郊机场火灾 宠爱彩蛋 外国领导人发表新年贺词 王一博水中唱跳 水豚泡温泉头顶橘子一动不动 小黑瓶开启好肤质 2020年首场流星雨 华南海鲜批发市场休市整治卫生 跨年文案 看过最油腻的霸道总裁 重庆解放碑跨年 2020拼假日历 林郑月娥慰问香港警队 浙江卫视跨年节目单 死者家属不认同丽江反杀案撤诉 北京时间相约北京跨年 2020图片 迪丽热巴 唱跳 杜富国熟练使用平板电脑与战友视频 支付宝红包 D社 金莎为粉丝建脱单助攻群 公司年终奖发200万湖景房
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="mi">100</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>title</th>
+      <th>searchCount</th>
+      <th>rank</th>
+      <th>words_list</th>
+      <th>wlist</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>100</th>
+      <td>2020/01/02</td>
+      <td>张翰微博评论</td>
+      <td>5333810</td>
+      <td>1</td>
+      <td>['张翰', '微博', '评论']</td>
+      <td>[张翰微博, 评论]</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>2020/01/02</td>
+      <td>李天一</td>
+      <td>4633015</td>
+      <td>2</td>
+      <td>['李', '天一']</td>
+      <td>[李天一]</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>2020/01/02</td>
+      <td>王菲李亚鹏周迅窦靖童参加新年派对</td>
+      <td>4256117</td>
+      <td>3</td>
+      <td>['王菲', '李亚鹏', '周迅', '窦靖童', '参加', '新年', '派对']</td>
+      <td>[王菲, 李亚鹏, 周迅, 窦靖童, 参加, 新年, 派, 对]</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>2020/01/02</td>
+      <td>关晓彤穿鹿晗的卫衣</td>
+      <td>3819525</td>
+      <td>4</td>
+      <td>['关晓彤', '穿', '鹿晗', '的', '卫衣']</td>
+      <td>[关晓彤, 穿, 鹿晗, 的, 卫衣]</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>2020/01/02</td>
+      <td>杜江 努力是最不值得一提的事</td>
+      <td>3800499</td>
+      <td>5</td>
+      <td>['杜江', ' ', '努力', '是', '最', '不', '值得', '值得一提',...</td>
+      <td>[杜江,  , 努力, 是, 最, 不, 值得一提, 的, 事]</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35895</th>
+      <td>2020/12/30</td>
+      <td>如何看待大小周工作制</td>
+      <td>1108684</td>
+      <td>96</td>
+      <td>['如何', '看待', '大小', '周', '工作', '工作制']</td>
+      <td>[如何, 看待, 大小, 周工作制]</td>
+    </tr>
+    <tr>
+      <th>35896</th>
+      <td>2020/12/30</td>
+      <td>以色列两老人接种美产疫苗后死亡</td>
+      <td>1085368</td>
+      <td>97</td>
+      <td>['以色列', '两', '老人', '接种', '美产', '疫苗', '后', '死亡']</td>
+      <td>[以色列, 两, 老人, 接种, 美产, 疫苗, 后, 死亡]</td>
+    </tr>
+    <tr>
+      <th>35897</th>
+      <td>2020/12/30</td>
+      <td>沈阳全面进入战时状态</td>
+      <td>1082178</td>
+      <td>98</td>
+      <td>['沈阳', '全面', '进入', '战时', '状态']</td>
+      <td>[沈阳, 全面, 进入, 战时, 状态]</td>
+    </tr>
+    <tr>
+      <th>35898</th>
+      <td>2020/12/30</td>
+      <td>人社局介入员工连上2次厕所被罚款</td>
+      <td>1077144</td>
+      <td>99</td>
+      <td>['人', '社局', '介入', '员工', '连上', '2', '次', '厕所', ...</td>
+      <td>[人社局, 介入, 员工, 连, 上, 2, 次, 厕所, 被, 罚款]</td>
+    </tr>
+    <tr>
+      <th>35899</th>
+      <td>2020/12/30</td>
+      <td>沈阳疫情</td>
+      <td>1072987</td>
+      <td>100</td>
+      <td>['沈阳', '疫情']</td>
+      <td>[沈阳, 疫情]</td>
+    </tr>
+  </tbody>
+</table>
+<p>35800 rows × 6 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>语义网络<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">successive_list</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[[</span><span class="n">alist</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">alist</span><span class="p">[</span><span class="mi">1</span><span class="p">:][</span><span class="n">i</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">successive_list</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1, 2]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="n">G</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">slist</span> <span class="ow">in</span> <span class="n">wlist</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">slist</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">slist</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">slist</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">edgelist</span> <span class="o">=</span> <span class="n">successive_list</span><span class="p">(</span><span class="n">slist</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">e1</span><span class="p">,</span> <span class="n">e2</span> <span class="ow">in</span> <span class="n">edgelist</span><span class="p">:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Name: \nType: Graph\nNumber of nodes: 22690\nNumber of edges: 60227\nAverage degree:   5.3087&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pr</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">deg</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">degree_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
+<span class="n">dei</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">eigenvector_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
+<span class="n">dd</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">deg</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dei</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">pr</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">deg</span><span class="p">]</span>
+
+
+<span class="n">dd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;behavior&#39;</span><span class="p">,</span> <span class="s1">&#39;Centrality&#39;</span><span class="p">,</span><span class="s1">&#39;Eigenvector Centrality&#39;</span><span class="p">,</span> <span class="s1">&#39;PageRank&#39;</span><span class="p">))</span>
+<span class="n">dd</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Centrality&#39;</span><span class="p">],</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">dd</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">dd</span><span class="p">[:</span><span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>behavior</th>
+      <th>Centrality</th>
+      <th>Eigenvector Centrality</th>
+      <th>PageRank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>79</td>
+      <td>回应</td>
+      <td>0.036538</td>
+      <td>0.237855</td>
+      <td>0.005882</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>416</td>
+      <td>中国</td>
+      <td>0.030499</td>
+      <td>0.230003</td>
+      <td>0.004656</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>551</td>
+      <td>美国</td>
+      <td>0.020362</td>
+      <td>0.178964</td>
+      <td>0.003027</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2857</td>
+      <td>确诊</td>
+      <td>0.018467</td>
+      <td>0.172638</td>
+      <td>0.002789</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>370</td>
+      <td>武汉</td>
+      <td>0.017850</td>
+      <td>0.161130</td>
+      <td>0.002640</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>371</td>
+      <td>疫情</td>
+      <td>0.016263</td>
+      <td>0.155644</td>
+      <td>0.002376</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1130</td>
+      <td>口罩</td>
+      <td>0.014412</td>
+      <td>0.107177</td>
+      <td>0.002215</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>3240</td>
+      <td>冠肺炎</td>
+      <td>0.012693</td>
+      <td>0.109213</td>
+      <td>0.002071</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1000</td>
+      <td>直播</td>
+      <td>0.012032</td>
+      <td>0.050531</td>
+      <td>0.002050</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>731</td>
+      <td>发现</td>
+      <td>0.011988</td>
+      <td>0.097391</td>
+      <td>0.001920</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>569</td>
+      <td>男子</td>
+      <td>0.011592</td>
+      <td>0.101326</td>
+      <td>0.001794</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>45</td>
+      <td>北京</td>
+      <td>0.011592</td>
+      <td>0.113041</td>
+      <td>0.001665</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2129</td>
+      <td>病例</td>
+      <td>0.011503</td>
+      <td>0.097664</td>
+      <td>0.001741</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>1534</td>
+      <td>病毒</td>
+      <td>0.011107</td>
+      <td>0.095625</td>
+      <td>0.001726</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>126</td>
+      <td>学生</td>
+      <td>0.010666</td>
+      <td>0.084269</td>
+      <td>0.001597</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>984</td>
+      <td>人员</td>
+      <td>0.010446</td>
+      <td>0.084112</td>
+      <td>0.001493</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>1390</td>
+      <td>出现</td>
+      <td>0.009740</td>
+      <td>0.098497</td>
+      <td>0.001490</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>75</td>
+      <td>第一</td>
+      <td>0.009696</td>
+      <td>0.060699</td>
+      <td>0.001577</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2861</td>
+      <td>感染</td>
+      <td>0.009432</td>
+      <td>0.097261</td>
+      <td>0.001401</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>744</td>
+      <td>新增</td>
+      <td>0.008815</td>
+      <td>0.092896</td>
+      <td>0.001266</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dd</span><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">40</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>behavior</th>
+      <th>Centrality</th>
+      <th>Eigenvector Centrality</th>
+      <th>PageRank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>20</th>
+      <td>779</td>
+      <td>自己</td>
+      <td>0.008727</td>
+      <td>0.040532</td>
+      <td>0.001404</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>334</td>
+      <td>宣布</td>
+      <td>0.008550</td>
+      <td>0.077441</td>
+      <td>0.001280</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>1435</td>
+      <td>女孩</td>
+      <td>0.008462</td>
+      <td>0.065487</td>
+      <td>0.001317</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>1582</td>
+      <td>韩国</td>
+      <td>0.008418</td>
+      <td>0.088298</td>
+      <td>0.001261</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>2084</td>
+      <td>湖北</td>
+      <td>0.008330</td>
+      <td>0.097552</td>
+      <td>0.001191</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>703</td>
+      <td>全国</td>
+      <td>0.008242</td>
+      <td>0.071739</td>
+      <td>0.001210</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>372</td>
+      <td>要求</td>
+      <td>0.008242</td>
+      <td>0.075264</td>
+      <td>0.001227</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>254</td>
+      <td>患者</td>
+      <td>0.008066</td>
+      <td>0.080819</td>
+      <td>0.001158</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>151</td>
+      <td>日本</td>
+      <td>0.007977</td>
+      <td>0.096116</td>
+      <td>0.001173</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>47</td>
+      <td>医院</td>
+      <td>0.007933</td>
+      <td>0.090832</td>
+      <td>0.001175</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>269</td>
+      <td>医生</td>
+      <td>0.007801</td>
+      <td>0.072640</td>
+      <td>0.001212</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>1089</td>
+      <td>女子</td>
+      <td>0.007581</td>
+      <td>0.068957</td>
+      <td>0.001180</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>2098</td>
+      <td>全球</td>
+      <td>0.007537</td>
+      <td>0.075520</td>
+      <td>0.001160</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>481</td>
+      <td>大学</td>
+      <td>0.007449</td>
+      <td>0.068350</td>
+      <td>0.001137</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>789</td>
+      <td>女儿</td>
+      <td>0.007404</td>
+      <td>0.034150</td>
+      <td>0.001228</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>31</td>
+      <td>2020</td>
+      <td>0.007404</td>
+      <td>0.046876</td>
+      <td>0.001257</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>92</td>
+      <td>女生</td>
+      <td>0.007096</td>
+      <td>0.044459</td>
+      <td>0.001102</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>266</td>
+      <td>儿子</td>
+      <td>0.006964</td>
+      <td>0.044171</td>
+      <td>0.001142</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>348</td>
+      <td>去世</td>
+      <td>0.006920</td>
+      <td>0.029782</td>
+      <td>0.001297</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>304</td>
+      <td>妈妈</td>
+      <td>0.006920</td>
+      <td>0.039181</td>
+      <td>0.001120</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">dd</span><span class="p">[</span><span class="s1">&#39;behavior&#39;</span><span class="p">][:</span><span class="mi">500</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>回应 中国 美国 确诊 武汉 疫情 口罩 冠肺炎 直播 发现 男子 北京 病例 病毒 学生 人员 出现 第一 感染 新增 自己 宣布 女孩 韩国 湖北 全国 要求 患者 日本 医院 医生 女子 全球 大学 女儿 2020 女生 儿子 去世 妈妈 取消 没有 10 粉丝 隔离 上海 香港 所有 姐姐 王一博 公司 死亡 拒绝 暂停 11 一个 世界 建议 老师 事件 新冠 意大利 通报 视频 20 发生 特朗普 检测 高校 生活 开学 高考 英国 微博 手机 道歉 一起 孩子 发布 禁止 护士 12 恢复 小区 现场 抗疫 父亲 总统 进入 计划 参加 可能 公布 工作 钟南山 收到 免费 演员 大学生 发声 明星 教师 伊朗 成都 结婚 全面 可以 挑战 时间 电影 员工 成功 发文 全部 医护 我们 开始 航班 学校 游客 母亲 表情 生日 承认 组织 疫苗 为什 最后 今年 新型 朋友 调查 申请 支持 再次 小时 老人 第二 起诉 男孩 我国 四川 司机 退出 郑爽 部分 市长 浙江 症状 造型 正式 接受 幼儿园 境外 毕业 广东 工作室 虞书欣 儿童 使用 关闭 山东 舞台 游戏 印度 成为 政府 公开 杨幂 分钟 复工 特朗 重庆 警方 留学生 机场 16 苹果 华为 河南 防疫 医疗 肺炎 完成 感染者 爸爸 紧急 黄子韬 核酸 决定 记者 肖战 大赛 冠疫苗 少年 问题 快递 人数 美元 13 央视 50 18 需要 女童 春晚 原因 父母 入境 新年 声明 离婚 地区 广州 喜欢 14 深圳 身亡 张雨绮 每天 女性 企业 少女 提供 男生 呼吁 健康 安全 妻子 市民 最高 杭州 考生 李佳琦 回国 超过 哥哥 唯一 17 镜头 2020年 个人 进行 捐赠 15 100 飞机 限制 活动 金晨 出院 总理 易烊千玺 拜登 小学生 城市 传播 吴亦凡 离开 提醒 累计 治疗 集体 感谢 周年 演技 南京 动物 大片 假期 21 微信 网友 状态 确认 表示 俄罗斯 研究生 评论 法国 毕业生 结束 公主 青岛 90 准备 30 物资 治愈 希望 警察 如何 女友 进口 刘雨昕 乘客 国际 宁静 考试 青春 张艺兴 周杰伦 失联 地铁 病人 首相 美方 爆炸 40 信息 婚礼 蔡徐坤 事故 停止 小伙 中心 必须 白宫 3月 终于 丁真 长文 疑似 严重 以上 看到 居民 告别 主播 情况 今天 天津 调整 通过 世卫 旅游 泰国 知道 丈夫 经济 照片 冠军 恋爱 恋情 男人 李现 继续 4月 夏天 开放 解除 回归 名单 江苏 24 举报 酒店 模仿 综艺 纳入 第三 王俊凯 报告 出道 考虑 防控 受伤 嫌犯 真实 邓伦 黄晓明 考研 景区 网络 团队 放弃 分手 市场 明确 瞬间 加入 民警 张文宏 赵丽颖 已经 重新 年度 台湾 发放 奶奶 平均 夏日 地震 启动 找到 涉嫌 中方 2月 6月 合作 成员 男友 实施 火锅 存在 中央 接触 西安 部队 奥运 风险 迪丽热巴 致敬 公民 官方 10万 输入 快乐 举行 车祸 警告 到底 声音 演唱会 外交部 校园 现在 记录 弟弟 辞职 关晓彤 旅行 科比 成绩 阳性 推出 中小学 吐槽 国内 澳大利亚 70 院士 海外 爷爷 年轻 结果 宋茜 系统 1亿 19 跳舞 衣服 22 隐瞒 欧阳娜娜 举办 返校 作业 2万 超市 银行 律师 开播 医疗队 接种 无法 湖南 杨紫 最新 遗体 高三 东京 节目 淘汰 奥运会 这个 吴磊 允许 暴雨 实现 明年 奶茶 身份 28 用户 同学 表演 周震南 500 德国 卫视 国庆 王源 红毯 推迟 圣诞 60 夫妻 学习 N号房
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>    
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dd</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Centrality&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;PageRank&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$Centrality$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$PageRank$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-network-weibo-hot-search_32_0.png" src="_images/18-network-weibo-hot-search_32_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">plotDegreeDistribution</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+    <span class="n">degs</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">dict</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">():</span> <span class="n">degs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="nb">sorted</span> <span class="p">(</span> <span class="n">degs</span><span class="o">.</span><span class="n">items</span> <span class="p">()</span> <span class="p">)</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">items</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">y_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">y_sum</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">y</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="c1">#plt.legend([&#39;Degree&#39;])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$K$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$P(K)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;$Degree\,Distribution$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>   
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>    
+
+<span class="n">plotDegreeDistribution</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-network-weibo-hot-search_34_0.png" src="_images/18-network-weibo-hot-search_34_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">remove_edges_from</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">selfloop_edges</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">k_core</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Name: \nType: Graph\nNumber of nodes: 199\nNumber of edges: 2766\nAverage degree:  27.7990&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Microsoft YaHei&#39;</span><span class="p">]</span>  <span class="c1"># 用来正常显示中文标签</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># 用来正常显示负号, 注意[&#39;SimHei&#39;]对应这句不行.</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">dpi</span> <span class="o">=</span> <span class="mi">300</span><span class="p">)</span>    
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">rotate</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">node_size</span> <span class="o">=</span> <span class="mi">26</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-network-weibo-hot-search_37_0.png" src="_images/18-network-weibo-hot-search_37_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="18-network-ergm-siena.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Social Network Analysis</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="18-network-analysis-of-tianya-bbs.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">天涯论坛的回帖网络分析</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

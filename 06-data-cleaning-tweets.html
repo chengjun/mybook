@@ -572,6 +572,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="18-network-weibo-hot-search.html">
+     微博热搜分析
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">
      天涯论坛的回帖网络分析
     </a>
@@ -767,13 +772,13 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#twitter-text">
-     安装twitter_text
+    <a class="reference internal nav-link" href="#id4">
+     获得清洗过的推特文本
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     获得清洗过的推特文本
+    <a class="reference internal nav-link" href="#twitter-text">
+     安装twitter_text
     </a>
    </li>
   </ul>
@@ -1032,7 +1037,10 @@ Name: From User, dtype: object
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Microsoft YaHei&#39;</span><span class="p">]</span>  <span class="c1"># 用来正常显示中文标签</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># 用来正常显示负号, 注意[&#39;SimHei&#39;]对应这句不行.</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
@@ -1250,13 +1258,6 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 </div>
-<div class="section" id="twitter-text">
-<h3>安装twitter_text<a class="headerlink" href="#twitter-text" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://github.com/dryan/twitter-text-py/issues/21">twitter-text-py</a> could not be used for python 3</p>
-<p>Glyph debug the problem, and make <a class="reference external" href="https://github.com/glyph/twitter-text-py">a new repo of twitter-text-py3</a>.</p>
-<blockquote>
-<div><p>pip install twitter-text</p>
-</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install twitter-text</span>
@@ -1433,7 +1434,6 @@ None
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="id4">
 <h3>获得清洗过的推特文本<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>不含人名、url、各种符号（如RT &#64;等）</p>
@@ -1452,6 +1452,14 @@ None
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="twitter-text">
+<h3>安装twitter_text<a class="headerlink" href="#twitter-text" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/dryan/twitter-text-py/issues/21">twitter-text-py</a> could not be used for python 3</p>
+<p>Glyph debug the problem, and make <a class="reference external" href="https://github.com/glyph/twitter-text-py">a new repo of twitter-text-py3</a>.</p>
+<blockquote>
+<div><p>pip install twitter-text</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">twitter_text</span>
