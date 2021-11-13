@@ -46,7 +46,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]]}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -797,7 +797,7 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="in-depth-naive-bayes-classification">
+  <div class="section" id="in-depth-naive-bayes-classification">
 <h1>In Depth: Naive Bayes Classification<a class="headerlink" href="#in-depth-naive-bayes-classification" title="Permalink to this headline">¶</a></h1>
 <p><img alt="image.png" src="_images/author.png" /></p>
 <!--BOOK_INFORMATION-->
@@ -869,8 +869,8 @@ $$</p>
 <p><img alt="image.png" src="_images/naive.png" /></p>
 <p>The “naive” conditional independent assumptions: assume that each feature $x_i$ is conditionally statistical independence of every other feature $x_j$ for $j\neq i$, given the category $L_k$.  This means that</p>
 <p>$$p(x_i \mid x_{i+1}, \dots ,x_{n}, L_k ) = p(x_i \mid L_k)$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-28ce2f70-8510-42c4-9998-24fcaa506c5f">
-<span class="eqno">(2)<a class="headerlink" href="#equation-28ce2f70-8510-42c4-9998-24fcaa506c5f" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-98dcbaaf-711d-45e6-911c-8a3cd8629b52">
+<span class="eqno">(2)<a class="headerlink" href="#equation-98dcbaaf-711d-45e6-911c-8a3cd8629b52" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(L_k, x_1, \dots, x_n) &amp; = p(x_1, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2 \mid x_3, \dots, x_n, L_k) p(x_3, \dots, x_n, L_k) \\
@@ -878,8 +878,8 @@ p(L_k, x_1, \dots, x_n) &amp; = p(x_1, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2 \mid x_3, \dots, x_n, L_k) \dots   p(x_{n-1} \mid x_n, L_k) p(x_n \mid L_k) p(L_k) \\
 \end{align}\]</div>
 <p>Thus, the joint model can be expressed as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d5624178-6307-4fa4-9e6c-fb0e16b3c5ab">
-<span class="eqno">(3)<a class="headerlink" href="#equation-d5624178-6307-4fa4-9e6c-fb0e16b3c5ab" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1004da48-7cab-4deb-8bd5-a18933de4794">
+<span class="eqno">(3)<a class="headerlink" href="#equation-1004da48-7cab-4deb-8bd5-a18933de4794" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(L_k \mid x_1, \dots, x_n) &amp; \varpropto p(L_k, x_1, \dots, x_n) = \\
                             &amp; = p(L_k) \ p(x_1 \mid L_k) \ p(x_2\mid L_k) \ p(x_3\mid L_k) \ \cdots \\
                             &amp; = p(L_k) \prod_{i=1}^n p(x_i \mid L_k)\,.
@@ -913,8 +913,8 @@ $$</p>
 <p>Suppose we have collected some observation value $v$.
 Then, the probability distribution of $v$ given a class $C_k$,</p>
 <p>$p(x=v \mid C_k)$, can be computed by plugging $v$ into the equation for a Normal distribution parameterized by $\mu_k$ and $\sigma^2_k$. That is,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7e0e699b-c750-4666-ae7b-d017fc3e0a02">
-<span class="eqno">(4)<a class="headerlink" href="#equation-7e0e699b-c750-4666-ae7b-d017fc3e0a02" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-74632cf8-f8cc-4397-a4c7-b04e66c998c1">
+<span class="eqno">(4)<a class="headerlink" href="#equation-74632cf8-f8cc-4397-a4c7-b04e66c998c1" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(x=v \mid C_k)=\frac{1}{\sqrt{2\pi\sigma^2_k}}\,e^{ -\frac{(v-\mu_k)^2}{2\sigma^2_k} }
 \end{align}\]</div>
 <p><strong>Problem</strong>: classify whether a given person is a male or a female based on the measured features.</p>
