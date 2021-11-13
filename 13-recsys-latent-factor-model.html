@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Latent Factor Recommender System &#8212; 计算传播学</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -45,6 +45,8 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -58,7 +60,10 @@
     <link rel="next" title="使用Surprise构建推荐系统" href="13-recsys-intro-surprise.html" />
     <link rel="prev" title="第九章 推荐系统简介" href="13-recsys-intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -785,9 +790,10 @@
 <ul class="simple">
 <li><p>Evaluation criterion: Root Mean Square Error (RMSE)</p></li>
 </ul>
-<p>\begin{equation}
-RMSE =  \frac{1}{|R|} \sqrt{\sum_{(i, x)\in R}(\hat{r}<em>{xi} - r</em>{xi})^2}
-\end{equation}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e77b06aa-402a-418d-944e-8ca9cb38f7c1">
+<span class="eqno">(6)<a class="headerlink" href="#equation-e77b06aa-402a-418d-944e-8ca9cb38f7c1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  RMSE =  \frac{1}{|R|} \sqrt{\sum_{(i, x)\in R}(\hat{r}_{xi} - r_{xi})^2}
+\end{equation}\]</div>
 <ul class="simple">
 <li><p>Netflix’s system RMSE: 0.9514</p></li>
 </ul>
@@ -1873,9 +1879,10 @@ Recommending the highest 10 predicted ratings movies not already rated.
 <div class="section" id="including-bias">
 <h2>Including bias<a class="headerlink" href="#including-bias" title="Permalink to this headline">¶</a></h2>
 <p><img alt="image.png" src="_images/latent10.png" /></p>
-<p>\begin{equation}
-\hat{r}_{xi}= u + b_x + b_i + q_i p_x^{T}
-\end{equation}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-cedd924c-7a9a-46fb-aa3b-985226cd4fe3">
+<span class="eqno">(7)<a class="headerlink" href="#equation-cedd924c-7a9a-46fb-aa3b-985226cd4fe3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+  \hat{r}_{xi}= u + b_x + b_i + q_i p_x^{T}
+\end{equation}\]</div>
 <ul class="simple">
 <li><p>$u$ is the global bias, measured by the overall mean rating</p></li>
 <li><p>$b_x$ is the bias for user x, measured by the mean rating given by user x.</p></li>
@@ -1921,31 +1928,22 @@ Recommending the highest 10 predicted ratings movies not already rated.
               </div>
               
         
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="13-recsys-intro.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">第九章 推荐系统简介</p>
-            </div>
-        </a>
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="13-recsys-intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">第九章 推荐系统简介</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="13-recsys-intro-surprise.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">使用Surprise构建推荐系统</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="13-recsys-intro-surprise.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">使用Surprise构建推荐系统</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>
@@ -1966,8 +1964,7 @@ Recommending the highest 10 predicted ratings movies not already rated.
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
