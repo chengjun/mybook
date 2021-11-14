@@ -642,7 +642,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="Pantheon.html">
+    <a class="reference internal" href="19-visualization-pantheon.html">
      万神殿项目（Pantheon Project）
     </a>
    </li>
@@ -800,20 +800,20 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="id1">
 <h1>抓取网易云音乐热门评论<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>https://github.com/RitterHou/music-163</p>
+<p><a class="reference external" href="https://github.com/RitterHou/music-163">https://github.com/RitterHou/music-163</a></p>
 <p>爬取网易云音乐的所有的歌曲的评论数。以下为主要思路：</p>
 <ul class="simple">
-<li><p>爬取所有的歌手信息（artists.py）；</p></li>
+<li><p>爬取所有的歌手信息（<a class="reference external" href="http://artists.py">artists.py</a>）；</p></li>
 <li><p>根据上一步爬取到的歌手信息去爬取所有的专辑信息（album_by _artist.py）；</p></li>
 <li><p>根据专辑信息爬取所有的歌曲信息（music_by _album.py）；</p></li>
 <li><p>根据歌曲信息爬取其评论条数（comments_by _music.py）</p></li>
 </ul>
 <div class="section" id="artists-py">
-<h2>爬取所有的歌手信息（artists.py）<a class="headerlink" href="#artists-py" title="Permalink to this headline">¶</a></h2>
+<h2>爬取所有的歌手信息（<a class="reference external" href="http://artists.py">artists.py</a>）<a class="headerlink" href="#artists-py" title="Permalink to this headline">¶</a></h2>
 <p>观察网易云音乐官网页面HTML结构</p>
-<p>http://music.163.com/</p>
-<p>http://music.163.com/#/discover/artist/cat</p>
-<p>http://music.163.com/#/discover/artist/cat?id=4003&amp;initial=0</p>
+<p><a class="reference external" href="http://music.163.com/">http://music.163.com/</a></p>
+<p><a class="reference external" href="http://music.163.com/#/discover/artist/cat">http://music.163.com/#/discover/artist/cat</a></p>
+<p><a class="reference external" href="http://music.163.com/#/discover/artist/cat?id=4003&amp;initial=0">http://music.163.com/#/discover/artist/cat?id=4003&amp;initial=0</a></p>
 <p><img alt="" src="_images/netease.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1236,7 +1236,7 @@
 </div>
 </div>
 </div>
-<p>http://music.163.com/#/artist/album?id=89659&amp;limit=400</p>
+<p><a class="reference external" href="http://music.163.com/#/artist/album?id=89659&amp;limit=400">http://music.163.com/#/artist/album?id=89659&amp;limit=400</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
@@ -1491,7 +1491,7 @@
 </div>
 <div class="section" id="comments-by-music-py">
 <h2>根据歌曲信息爬取其评论条数（comments_by _music.py<a class="headerlink" href="#comments-by-music-py" title="Permalink to this headline">¶</a></h2>
-<p>http://music.163.com/#/song?id=516997458</p>
+<p><a class="reference external" href="http://music.163.com/#/song?id=516997458">http://music.163.com/#/song?id=516997458</a></p>
 <p>很遗憾的是评论数虽然也在详情页内，但是网易云音乐做了防爬处理，</p>
 <ul class="simple">
 <li><p>采用AJAX调用评论数API的方式填充评论相关数据，</p></li>
@@ -1499,8 +1499,8 @@
 </ul>
 <p>我们就找一找这个API吧，通关观察XHR请求发现是下面这个家伙..</p>
 <p>响应结果很丰富呢，所有评论相关的数据都有，不过经过观察发现这个API是经过加密处理的，不过没关系…</p>
-<p>https://blog.csdn.net/python233/article/details/72825003</p>
-<p>https://www.zhihu.com/question/36081767</p>
+<p><a class="reference external" href="https://blog.csdn.net/python233/article/details/72825003">https://blog.csdn.net/python233/article/details/72825003</a></p>
+<p><a class="reference external" href="https://www.zhihu.com/question/36081767">https://www.zhihu.com/question/36081767</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
@@ -1594,9 +1594,9 @@
 <ul class="simple">
 <li><p>比如limit是20，offset是40，就展示第三页的</p></li>
 </ul>
-<p>http://music.163.com/api/v1/resource/comments/R_SO_4_516997458?limit=20&amp;offset=0</p>
-<p>http://music.163.com/api/v1/resource/comments/R_SO_4_516997458?limit=20&amp;offset=20</p>
-<p>http://music.163.com/api/v1/resource/comments/R_SO_4_516997458?limit=20&amp;offset=40</p>
+<p><a class="reference external" href="http://music.163.com/api/v1/resource/comments/R_SO_4_516997458?limit=20&amp;offset=0">http://music.163.com/api/v1/resource/comments/R_SO_4_516997458?limit=20&amp;offset=0</a></p>
+<p><a class="reference external" href="http://music.163.com/api/v1/resource/comments/R_SO_4_516997458?limit=20&amp;offset=20">http://music.163.com/api/v1/resource/comments/R_SO_4_516997458?limit=20&amp;offset=20</a></p>
+<p><a class="reference external" href="http://music.163.com/api/v1/resource/comments/R_SO_4_516997458?limit=20&amp;offset=40">http://music.163.com/api/v1/resource/comments/R_SO_4_516997458?limit=20&amp;offset=40</a></p>
 </div>
 <div class="section" id="id3">
 <h2>另外一种方法<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
