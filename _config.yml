@@ -14,11 +14,14 @@ exclude_patterns: [pattern1/*, README.md, deploy.sh, LICENSE]
 
 parse:
   myst_enable_extensions:
+    # https://myst-parser.readthedocs.io/en/latest/syntax/optional.html
     # don't forget to list any other extensions you want enabled,
     # including those that are enabled by default!
     - html_image
     - amsmath
     - dollarmath
+    - linkify
+  myst_url_schemes: [mailto, http, https] # URI schemes that will be recognised as external URLs in Markdown links
   myst_dmath_double_inline: true  # Allow display math ($$) within an inline context
 
 
