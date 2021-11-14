@@ -45,8 +45,7 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script defer="defer" src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script>window.MathJax = {"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]]}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -869,8 +868,8 @@ $$</p>
 <p><img alt="image.png" src="_images/naive.png" /></p>
 <p>The “naive” conditional independent assumptions: assume that each feature $x_i$ is conditionally statistical independence of every other feature $x_j$ for $j\neq i$, given the category $L_k$.  This means that</p>
 <p>$$p(x_i \mid x_{i+1}, \dots ,x_{n}, L_k ) = p(x_i \mid L_k)$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0f8456f8-f4d3-4777-8541-bd3c388f221b">
-<span class="eqno">(2)<a class="headerlink" href="#equation-0f8456f8-f4d3-4777-8541-bd3c388f221b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e8f379c2-f187-4b5c-a43f-73ec4df8ec84">
+<span class="eqno">(2)<a class="headerlink" href="#equation-e8f379c2-f187-4b5c-a43f-73ec4df8ec84" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(L_k, x_1, \dots, x_n) &amp; = p(x_1, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2 \mid x_3, \dots, x_n, L_k) p(x_3, \dots, x_n, L_k) \\
@@ -878,8 +877,8 @@ p(L_k, x_1, \dots, x_n) &amp; = p(x_1, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2 \mid x_3, \dots, x_n, L_k) \dots   p(x_{n-1} \mid x_n, L_k) p(x_n \mid L_k) p(L_k) \\
 \end{align}\]</div>
 <p>Thus, the joint model can be expressed as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d29e1274-5e49-4607-86ad-01ff1867a71a">
-<span class="eqno">(3)<a class="headerlink" href="#equation-d29e1274-5e49-4607-86ad-01ff1867a71a" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d728f89b-c7a7-4cf9-b905-82594cd7a116">
+<span class="eqno">(3)<a class="headerlink" href="#equation-d728f89b-c7a7-4cf9-b905-82594cd7a116" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(L_k \mid x_1, \dots, x_n) &amp; \varpropto p(L_k, x_1, \dots, x_n) = \\
                             &amp; = p(L_k) \ p(x_1 \mid L_k) \ p(x_2\mid L_k) \ p(x_3\mid L_k) \ \cdots \\
                             &amp; = p(L_k) \prod_{i=1}^n p(x_i \mid L_k)\,.
@@ -913,8 +912,8 @@ $$</p>
 <p>Suppose we have collected some observation value $v$.
 Then, the probability distribution of $v$ given a class $C_k$,</p>
 <p>$p(x=v \mid C_k)$, can be computed by plugging $v$ into the equation for a Normal distribution parameterized by $\mu_k$ and $\sigma^2_k$. That is,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9be3fba6-ca69-431f-a888-9171e1c14e7c">
-<span class="eqno">(4)<a class="headerlink" href="#equation-9be3fba6-ca69-431f-a888-9171e1c14e7c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-42935868-ed40-4e06-aaab-718c0e7b83b4">
+<span class="eqno">(4)<a class="headerlink" href="#equation-42935868-ed40-4e06-aaab-718c0e7b83b4" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(x=v \mid C_k)=\frac{1}{\sqrt{2\pi\sigma^2_k}}\,e^{ -\frac{(v-\mu_k)^2}{2\sigma^2_k} }
 \end{align}\]</div>
 <p><strong>Problem</strong>: classify whether a given person is a male or a female based on the measured features.</p>
