@@ -46,6 +46,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -881,7 +882,7 @@
         
               <div>
                 
-  <div class="section" id="id1">
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
 <h1>主题模型简介<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p><img alt="image.png" src="_images/author.png" /></p>
 <p>2014年高考前夕，百度“基于海量作文范文和搜索数据，利用概率主题模型，预测2014年高考作文的命题方向”。共分为了六个主题：时间、生命、民族、教育、心灵、发展。而每个主题下面又包括了一些具体的关键词。比如，生命的主题对应：平凡、自由、美丽、梦想、奋斗、青春、快乐、孤独。<a class="reference external" href="https://site.douban.com/146782/widget/notes/15462869/note/356806087/">Read more</a></p>
@@ -947,8 +948,8 @@
 <ul class="simple">
 <li><p>Dirichlet分布是多项分布的参数的分布， 被认为是“分布上的分布”。</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-a0893c7d-e894-4cfd-b720-7a47015f317e">
-<span class="eqno">(5)<a class="headerlink" href="#equation-a0893c7d-e894-4cfd-b720-7a47015f317e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ded526c5-9293-4d65-ade9-94fd6c34e70f">
+<span class="eqno">(5)<a class="headerlink" href="#equation-ded526c5-9293-4d65-ade9-94fd6c34e70f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
   \text{Dir}\left(\boldsymbol{\alpha}\right)\rightarrow \mathrm{p}\left(\boldsymbol{\theta}\mid\boldsymbol{\alpha}\right)=\frac{\Gamma\left(\sum_{i=1}^{k}\boldsymbol{\alpha}_{i}\right)}{\prod_{i=1}^{k}\Gamma\left(\boldsymbol{\alpha}_{i}\right)}\prod_{i=1}^{k}\boldsymbol{\theta}_{i}^{\boldsymbol{\alpha}_{i}-1}
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -1057,31 +1058,34 @@
 </li>
 </ul>
 <p>Assume K topics are in D documents.</p>
-<p><code class="docutils literal notranslate"><span class="pre">主题在词语上的分布</span></code> Each topic is denoted with $\beta_{1:K}$，</p>
+<p><code class="docutils literal notranslate"><span class="pre">主题在词语上的分布</span></code> Each topic is denoted with <span class="math notranslate nohighlight">\(\beta_{1:K}\)</span>，</p>
 <ul class="simple">
-<li><p>主题$\beta_K$ 是第k个主题，这个主题表达为一系列的terms。</p></li>
+<li><p>主题<span class="math notranslate nohighlight">\(\beta_K\)</span> 是第k个主题，这个主题表达为一系列的terms。</p></li>
 <li><p>Each topic is a distribution of fixed words.</p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">主题在文本上的分布</span></code> The topics proportion in the document <em>d</em> is denoted as $\theta_d$</p>
+<p><code class="docutils literal notranslate"><span class="pre">主题在文本上的分布</span></code> The topics proportion in the document <em>d</em> is denoted as <span class="math notranslate nohighlight">\(\theta_d\)</span></p>
 <ul class="simple">
-<li><p>e.g., the kth topic’s proportion in document d is $\theta_{d, k}$.</p></li>
+<li><p>e.g., the kth topic’s proportion in document d is <span class="math notranslate nohighlight">\(\theta_{d, k}\)</span>.</p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">主题在文本和词上的分配</span></code></p>
 <p>topic models assign topics to a document and its terms.</p>
 <ul class="simple">
-<li><p>The topic assigned to document <em>d</em> is denoted as $z_d$,</p></li>
-<li><p>The topic assigned to the nth term in document <em>d</em> is denoted as $z_{d,n}$.</p></li>
+<li><p>The topic assigned to document <em>d</em> is denoted as <span class="math notranslate nohighlight">\(z_d\)</span>,</p></li>
+<li><p>The topic assigned to the nth term in document <em>d</em> is denoted as <span class="math notranslate nohighlight">\(z_{d,n}\)</span>.</p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">可以观察到的是？</span></code></p>
 <p>词在文档中的位置，也就是文档-词矩阵（document-term matrix）</p>
-<p>Let $w_{d,n}$ denote the nth term in document d.</p>
-<p><code class="docutils literal notranslate"><span class="pre">联合概率分布</span></code> According to Blei et al. the joint distribution of $\beta_{1:K}$,$\theta_{1:D}$, $z_{1:D}$ and $w_{d, n}$ plus the generative process for LDA can be expressed as:</p>
-<p>$$ p(\beta_{1:K}, \theta_{1:D}, z_{1:D}, w_{d, n})  = $$</p>
-<p>$$\prod_{i=1}^{K} p(\beta_i) \prod_{d =1}^D p(\theta_d)(\prod_{n=1}^N p(z_{d,n} \mid \theta_d) \times p(w_{d, n} \mid \beta_{1:K}, Z_{d, n})  ) $$</p>
+<p>Let <span class="math notranslate nohighlight">\(w_{d,n}\)</span> denote the nth term in document d.</p>
+<p><code class="docutils literal notranslate"><span class="pre">联合概率分布</span></code> According to Blei et al. the joint distribution of <span class="math notranslate nohighlight">\(\beta_{1:K}\)</span>,<span class="math notranslate nohighlight">\(\theta_{1:D}\)</span>, <span class="math notranslate nohighlight">\(z_{1:D}\)</span> and <span class="math notranslate nohighlight">\(w_{d, n}\)</span> plus the generative process for LDA can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[ p(\beta_{1:K}, \theta_{1:D}, z_{1:D}, w_{d, n})  = \]</div>
+<div class="math notranslate nohighlight">
+\[\prod_{i=1}^{K} p(\beta_i) \prod_{d =1}^D p(\theta_d)(\prod_{n=1}^N p(z_{d,n} \mid \theta_d) \times p(w_{d, n} \mid \beta_{1:K}, Z_{d, n})  ) \]</div>
 <div><img src="images/lda41.png" align="right"></div><p><img alt="image.png" src="_images/lda5.png" /></p>
-<p><strong>后验分布</strong> Note that $\beta_{1:k},\theta_{1:D},and z_{1:D}$ are latent, unobservable variables. Thus, the computational challenge of LDA is to compute the conditional distribution of them given the observable specific words in the documents $w_{d, n}$.</p>
+<p><strong>后验分布</strong> Note that <span class="math notranslate nohighlight">\(\beta_{1:k},\theta_{1:D},and z_{1:D}\)</span> are latent, unobservable variables. Thus, the computational challenge of LDA is to compute the conditional distribution of them given the observable specific words in the documents <span class="math notranslate nohighlight">\(w_{d, n}\)</span>.</p>
 <p>Accordingly, the posterior distribution of LDA can be expressed as:</p>
-<p>$$p(\beta_{1:K}, \theta_{1:D}, z_{1:D} \mid w_{d, n}) = \frac{p(\beta_{1:K}, \theta_{1:D}, z_{1:D}, w_{d, n})}{p(w_{1:D})}$$</p>
+<div class="math notranslate nohighlight">
+\[p(\beta_{1:K}, \theta_{1:D}, z_{1:D} \mid w_{d, n}) = \frac{p(\beta_{1:K}, \theta_{1:D}, z_{1:D}, w_{d, n})}{p(w_{1:D})}\]</div>
 <p>Because the number of possible topic structures is exponentially large, it is impossible to compute the posterior of LDA.</p>
 <p>Topic models aim to develop efficient algorithms to <strong>approximate</strong> the posterior of LDA. There are two categories of algorithms:</p>
 <ul class="simple">
@@ -1726,7 +1730,7 @@ argmax(...) method of numpy.ndarray instance
 <img alt="_images/12-topic-models-update_70_0.png" src="_images/12-topic-models-update_70_0.png" />
 </div>
 </div>
-<p><strong>问题</strong>：$\alpha$引起主题数量分布的变化意味着什么？</p>
+<p><strong>问题</strong>：<span class="math notranslate nohighlight">\(\alpha\)</span>引起主题数量分布的变化意味着什么？</p>
 </div>
 </div>
 <div class="section" id="id5">

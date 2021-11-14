@@ -45,6 +45,8 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -800,34 +802,40 @@
         
               <div>
                 
-  <div class="section" id="linear-regression">
+  <div class="tex2jax_ignore mathjax_ignore section" id="linear-regression">
 <h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h1>
 <p><img alt="image.png" src="_images/author.png" /></p>
 <div class="section" id="the-model">
 <h2>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h2>
-<p>$$y_i = \beta x_i + \alpha + \epsilon_i$$</p>
+<div class="math notranslate nohighlight">
+\[y_i = \beta x_i + \alpha + \epsilon_i\]</div>
 <p>where</p>
 <ul class="simple">
-<li><p>$y_i$ is the number of minutes user i spends on the site daily,</p></li>
-<li><p>$x_i$ is the number of friends user i has</p></li>
-<li><p>$\alpha$ is the constant when x = 0.</p></li>
-<li><p>$ε_i$ is a (hopefully small) error term representing the fact that there are other factors not accounted for by this simple model.</p></li>
+<li><p><span class="math notranslate nohighlight">\(y_i\)</span> is the number of minutes user i spends on the site daily,</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span> is the number of friends user i has</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> is the constant when x = 0.</p></li>
+<li><p><span class="math notranslate nohighlight">\(ε_i\)</span> is a (hopefully small) error term representing the fact that there are other factors not accounted for by this simple model.</p></li>
 </ul>
 </div>
 <div class="section" id="least-squares-fit">
 <h2>Least Squares Fit<a class="headerlink" href="#least-squares-fit" title="Permalink to this headline">¶</a></h2>
 <p>最小二乘法</p>
-<p>$$ y_i = X_i^T w$$</p>
+<div class="math notranslate nohighlight">
+\[ y_i = X_i^T w\]</div>
 <p>The constant could be represent by 1 in X</p>
 <p>The squared error could be written as:</p>
-<p>$$ \sum_{i = 1}^m (y_i -X_i^T w)^2 $$</p>
-<p>If we know $\alpha$ and $\beta$, then we can make predictions.</p>
-<p>Since we know the actual output $y_i$ we can compute the error for each pair.</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{i = 1}^m (y_i -X_i^T w)^2 \]</div>
+<p>If we know <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>, then we can make predictions.</p>
+<p>Since we know the actual output <span class="math notranslate nohighlight">\(y_i\)</span> we can compute the error for each pair.</p>
 <p>Since the negative errors cancel out with the positive ones, we use squared errors.</p>
-<p>The least squares solution is to choose the $\alpha$ and $\beta$ that make <strong>sum_of_squared_errors</strong> as small as possible.</p>
-<p>$$ y_i = \alpha + \beta x_i + \varepsilon_i $$</p>
-<p>$$ \hat\varepsilon_i =y_i-a -\beta x_i $$</p>
-<p>$$ \text{Find }\min_{\alpha,, \beta} Q(\alpha, \beta), \quad \text{for } Q(\alpha, \beta) = \sum_{i=1}^n\hat\varepsilon_i^{,2} = \sum_{i=1}^n (y_i -\alpha - \beta x_i)^2\ $$</p>
+<p>The least squares solution is to choose the <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> that make <strong>sum_of_squared_errors</strong> as small as possible.</p>
+<div class="math notranslate nohighlight">
+\[ y_i = \alpha + \beta x_i + \varepsilon_i \]</div>
+<div class="math notranslate nohighlight">
+\[ \hat\varepsilon_i =y_i-a -\beta x_i \]</div>
+<div class="math notranslate nohighlight">
+\[ \text{Find }\min_{\alpha,\, \beta} Q(\alpha, \beta), \quad \text{for } Q(\alpha, \beta) = \sum_{i=1}^n\hat\varepsilon_i^{\,2} = \sum_{i=1}^n (y_i -\alpha - \beta x_i)^2\ \]</div>
 <div class="section" id="id1">
 <h3>均方误差的几何意义：欧式距离<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>最小二乘法就是试图找到一条直线，是所有样本到直线的<strong>欧氏距离</strong>之和最小。</p>
@@ -912,16 +920,20 @@
 </div>
 <div class="section" id="the-matrix-method">
 <h2>The Matrix Method<a class="headerlink" href="#the-matrix-method" title="Permalink to this headline">¶</a></h2>
-<p>$$ y_i = X_i^T w$$</p>
+<div class="math notranslate nohighlight">
+\[ y_i = X_i^T w\]</div>
 <p>The constant could be represent by 1 in X</p>
 <p>The squared error could be written as:</p>
-<p>$$ \sum_{i = 1}^m (y_i -X_i^T w)^2 $$</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{i = 1}^m (y_i -X_i^T w)^2 \]</div>
 <p><img alt="image.png" src="_images/regression.png" /></p>
-<p>We can also write this in matrix notation as $(y-Xw)^T(y-Xw)$.</p>
-<p>If we take the derivative of this with respect to $w$, we’ll get</p>
-<p>$$X^T(y-Xw)$$</p>
+<p>We can also write this in matrix notation as <span class="math notranslate nohighlight">\((y-Xw)^T(y-Xw)\)</span>.</p>
+<p>If we take the derivative of this with respect to <span class="math notranslate nohighlight">\(w\)</span>, we’ll get</p>
+<div class="math notranslate nohighlight">
+\[X^T(y-Xw)\]</div>
 <p>We can set this to zero and solve for w to get the following equation:</p>
-<p>$$\hat w = (X^T X)^{-1}X^T y$$</p>
+<div class="math notranslate nohighlight">
+\[\hat w = (X^T X)^{-1}X^T y\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># https://github.com/computational-class/machinelearninginaction/blob/master/Ch08/regression.py</span>

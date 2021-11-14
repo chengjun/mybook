@@ -46,6 +46,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -796,7 +797,7 @@
         
               <div>
                 
-  <div class="section" id="in-depth-naive-bayes-classification">
+  <div class="tex2jax_ignore mathjax_ignore section" id="in-depth-naive-bayes-classification">
 <h1>In Depth: Naive Bayes Classification<a class="headerlink" href="#in-depth-naive-bayes-classification" title="Permalink to this headline">¶</a></h1>
 <p><img alt="image.png" src="_images/author.png" /></p>
 <!--BOOK_INFORMATION-->
@@ -813,10 +814,11 @@
 </ul>
 <div class="section" id="bayesian-classification">
 <h2>Bayesian Classification<a class="headerlink" href="#bayesian-classification" title="Permalink to this headline">¶</a></h2>
-<p>We are intrested in finding the probability of a label given some observed features, $P(L~|~{\rm features})$.</p>
+<p>We are intrested in finding the probability of a label given some observed features, <span class="math notranslate nohighlight">\(P(L~|~{\rm features})\)</span>.</p>
 <p>Bayes’s theorem:
-$$P(L~|~{\rm features}) = \frac{P({\rm features}~|~L)P(L)}{P({\rm features})}=\frac{P({\rm features},~L)}{P({\rm features})}$$</p>
-<p>$$\mbox{posterior} =  \frac{\mbox{likelihood}\times \mbox{prior}}{\mbox{evidence}} $$</p>
+$<span class="math notranslate nohighlight">\(P(L~|~{\rm features}) = \frac{P({\rm features}~|~L)P(L)}{P({\rm features})}=\frac{P({\rm features},~L)}{P({\rm features})}\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[\mbox{posterior} =  \frac{\mbox{likelihood}\times \mbox{prior}}{\mbox{evidence}} \\]</div>
 <p><img alt="" src="_images/Bayes_41.png" /></p>
 <p>Step 1: Convert the data set into a frequency table</p>
 <p>Step 2: Create Likelihood table by finding the probabilities like:</p>
@@ -827,49 +829,53 @@ $$P(L~|~{\rm features}) = \frac{P({\rm features}~|~L)P(L)}{P({\rm features})}=\f
 <p>Step 3: Now, use Naive Bayesian equation to calculate the posterior probability for each class. The class with the highest posterior probability is the outcome of prediction.</p>
 <p><strong>Problem: will the players  play if weather is sunny?</strong></p>
 <p>We can solve it using above discussed method of posterior probability.</p>
-<p>$P(Yes | Sunny) = \frac{P( Sunny | Yes) * P(Yes) } {P (Sunny)}$</p>
+<p><span class="math notranslate nohighlight">\(P(Yes | Sunny) = \frac{P( Sunny | Yes) * P(Yes) } {P (Sunny)}\)</span></p>
 <p>Here we have P (Sunny |Yes) = 3/9 = 0.33, P(Sunny) = 5/14 = 0.36, P( Yes)= 9/14 = 0.64</p>
-<p>Now, $P (Yes | Sunny) = \frac{0.33 * 0.64}{0.36} = 0.60$, which has higher probability.</p>
-<p>If we have $d$ dummy/binary features, the size of sample space will be: $2^d$</p>
-<p>It becomes almost impossible to estimate $P(x | L)$ from the limited observational data.</p>
+<p>Now, <span class="math notranslate nohighlight">\(P (Yes | Sunny) = \frac{0.33 * 0.64}{0.36} = 0.60\)</span>, which has higher probability.</p>
+<p>If we have <span class="math notranslate nohighlight">\(d\)</span> dummy/binary features, the size of sample space will be: <span class="math notranslate nohighlight">\(2^d\)</span></p>
+<p>It becomes almost impossible to estimate <span class="math notranslate nohighlight">\(P(x | L)\)</span> from the limited observational data.</p>
 <p>估计类条件概率(Likelihood)的常用策略：先假定其具有某种确定的概率分布形式，再基于训练样本对概率分布参数估计。</p>
 <ul class="simple">
 <li><p><strong>Generative models</strong> (生成式模型):</p>
 <ul>
-<li><p>先对联合概率分布$P(L, x)$建模, 再由此获得$P(L|x)$</p></li>
+<li><p>先对联合概率分布<span class="math notranslate nohighlight">\(P(L, x)\)</span>建模, 再由此获得<span class="math notranslate nohighlight">\(P(L|x)\)</span></p></li>
 <li><p>Naive Bayes</p></li>
 </ul>
 </li>
 <li><p><strong>Discrimitave models</strong> (判别式模型):</p>
 <ul>
-<li><p>给定$x$,直接建模$P(L|x)$来预测$L$</p></li>
+<li><p>给定<span class="math notranslate nohighlight">\(x\)</span>,直接建模<span class="math notranslate nohighlight">\(P(L|x)\)</span>来预测<span class="math notranslate nohighlight">\(L\)</span></p></li>
 <li><p>Decision Tree, SVM</p></li>
 </ul>
 </li>
 </ul>
-<p>If we are trying to decide between two labels $L_1$ and $L_2$</p>
+<p>If we are trying to decide between two labels <span class="math notranslate nohighlight">\(L_1\)</span> and <span class="math notranslate nohighlight">\(L_2\)</span></p>
 <ul class="simple">
 <li><p>to compute the ratio of the posterior probabilities for each label:</p></li>
 </ul>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 \frac{P(L_1~|~{\rm features})}{P(L_2~|~{\rm features})} = \frac{P({\rm features}~|~L_1)}{P({\rm features}~|~L_2)}\frac{P(L_1)}{P(L_2)}
-$$</p>
-<p>We need to compute $P({\rm features}, L_i)$.</p>
+\]</div>
+<p>We need to compute <span class="math notranslate nohighlight">\(P({\rm features}, L_i)\)</span>.</p>
 <p>Such a model is called a <em>generative model</em> because it specifies the hypothetical random process that generates the data.</p>
 <p>In practice, there is interest only in the numerator of that fraction,</p>
 <ul class="simple">
-<li><p>because the denominator does not depend on $L$ and the values of the features $x_i$ are given</p></li>
+<li><p>because the denominator does not depend on <span class="math notranslate nohighlight">\(L\)</span> and the values of the features <span class="math notranslate nohighlight">\(x_i\)</span> are given</p></li>
 <li><p>so that the denominator is effectively constant.</p></li>
 </ul>
 <p>The numerator is equivalent to the <code class="docutils literal notranslate"><span class="pre">joint</span> <span class="pre">probability</span></code> model</p>
-<p>$$p(x_1, \dots, x_n|L_k) p(L_k)  = p(L_k, x_1, \dots, x_n)  $$</p>
-<p>$$p(L_k \mid x_1, \dots, x_n)  \varpropto p(L_k, x_1, \dots, x_n)
-$$</p>
+<div class="math notranslate nohighlight">
+\[p(x_1, \dots, x_n|L_k) p(L_k)  = p(L_k, x_1, \dots, x_n)  \]</div>
+<div class="math notranslate nohighlight">
+\[p(L_k \mid x_1, \dots, x_n)  \varpropto p(L_k, x_1, \dots, x_n)
+\]</div>
 <p><img alt="image.png" src="_images/naive.png" /></p>
-<p>The “naive” conditional independent assumptions: assume that each feature $x_i$ is conditionally statistical independence of every other feature $x_j$ for $j\neq i$, given the category $L_k$.  This means that</p>
-<p>$$p(x_i \mid x_{i+1}, \dots ,x_{n}, L_k ) = p(x_i \mid L_k)$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e8f379c2-f187-4b5c-a43f-73ec4df8ec84">
-<span class="eqno">(2)<a class="headerlink" href="#equation-e8f379c2-f187-4b5c-a43f-73ec4df8ec84" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<p>The “naive” conditional independent assumptions: assume that each feature <span class="math notranslate nohighlight">\(x_i\)</span> is conditionally statistical independence of every other feature <span class="math notranslate nohighlight">\(x_j\)</span> for <span class="math notranslate nohighlight">\(j\neq i\)</span>, given the category <span class="math notranslate nohighlight">\(L_k\)</span>.  This means that</p>
+<div class="math notranslate nohighlight">
+\[p(x_i \mid x_{i+1}, \dots ,x_{n}, L_k ) = p(x_i \mid L_k)\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-d8f09746-f032-4fa2-ad47-7e69bc4ff4a1">
+<span class="eqno">(2)<a class="headerlink" href="#equation-d8f09746-f032-4fa2-ad47-7e69bc4ff4a1" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(L_k, x_1, \dots, x_n) &amp; = p(x_1, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2 \mid x_3, \dots, x_n, L_k) p(x_3, \dots, x_n, L_k) \\
@@ -877,14 +883,15 @@ p(L_k, x_1, \dots, x_n) &amp; = p(x_1, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2 \mid x_3, \dots, x_n, L_k) \dots   p(x_{n-1} \mid x_n, L_k) p(x_n \mid L_k) p(L_k) \\
 \end{align}\]</div>
 <p>Thus, the joint model can be expressed as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d728f89b-c7a7-4cf9-b905-82594cd7a116">
-<span class="eqno">(3)<a class="headerlink" href="#equation-d728f89b-c7a7-4cf9-b905-82594cd7a116" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f822943d-65e6-4061-b912-bd29e519998b">
+<span class="eqno">(3)<a class="headerlink" href="#equation-f822943d-65e6-4061-b912-bd29e519998b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(L_k \mid x_1, \dots, x_n) &amp; \varpropto p(L_k, x_1, \dots, x_n) = \\
                             &amp; = p(L_k) \ p(x_1 \mid L_k) \ p(x_2\mid L_k) \ p(x_3\mid L_k) \ \cdots \\
                             &amp; = p(L_k) \prod_{i=1}^n p(x_i \mid L_k)\,.
 \end{align}\]</div>
 <p>The maximum a posteriori (MAP) decision rule</p>
-<p>$$\hat{y} = \underset{k \in {1, \dots, K}}{\operatorname{argmax}} \ p(L_k) \displaystyle\prod_{i=1}^n p(x_i \mid L_k)$$</p>
+<div class="math notranslate nohighlight">
+\[\hat{y} = \underset{k \in \{1, \dots, K\}}{\operatorname{argmax}} \ p(L_k) \displaystyle\prod_{i=1}^n p(x_i \mid L_k)\]</div>
 <p><code class="docutils literal notranslate"><span class="pre">Specifying</span> <span class="pre">this</span> <span class="pre">generative</span> <span class="pre">model</span></code> for each label is the main piece of the training of such a Bayesian classifier.</p>
 <p>This is where the “naive” in “naive Bayes” comes in: if we make very naive assumptions about the generative model for each label,</p>
 <ul class="simple">
@@ -901,19 +908,20 @@ p(L_k \mid x_1, \dots, x_n) &amp; \varpropto p(L_k, x_1, \dots, x_n) = \\
 </ul>
 <p>A typical assumption is that the continuous values associated with each class are distributed according to a Normal distribution (Gaussian) distribution.</p>
 <p>The probability density of the normal distribution is</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 f(x \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2} } e^{ -\frac{(x-\mu)^2}{2\sigma^2} }
-$$</p>
-<p>Suppose the training data contains a continuous attribute, $x$. We first segment the data by the class, and then compute the mean and variance of $x$ in each class.</p>
+\]</div>
+<p>Suppose the training data contains a continuous attribute, <span class="math notranslate nohighlight">\(x\)</span>. We first segment the data by the class, and then compute the mean and variance of <span class="math notranslate nohighlight">\(x\)</span> in each class.</p>
 <ul class="simple">
-<li><p>Let $\mu_k$ be the mean of the values in $x$ associated with class $C_k$</p></li>
-<li><p>Let $\sigma^2_k$ be the variance of the values in $x$ associated with class $C_k$.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(\mu_k\)</span> be the mean of the values in <span class="math notranslate nohighlight">\(x\)</span> associated with class <span class="math notranslate nohighlight">\(C_k\)</span></p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(\sigma^2_k\)</span> be the variance of the values in <span class="math notranslate nohighlight">\(x\)</span> associated with class <span class="math notranslate nohighlight">\(C_k\)</span>.</p></li>
 </ul>
-<p>Suppose we have collected some observation value $v$.
-Then, the probability distribution of $v$ given a class $C_k$,</p>
-<p>$p(x=v \mid C_k)$, can be computed by plugging $v$ into the equation for a Normal distribution parameterized by $\mu_k$ and $\sigma^2_k$. That is,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-42935868-ed40-4e06-aaab-718c0e7b83b4">
-<span class="eqno">(4)<a class="headerlink" href="#equation-42935868-ed40-4e06-aaab-718c0e7b83b4" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<p>Suppose we have collected some observation value <span class="math notranslate nohighlight">\(v\)</span>.
+Then, the probability distribution of <span class="math notranslate nohighlight">\(v\)</span> given a class <span class="math notranslate nohighlight">\(C_k\)</span>,</p>
+<p><span class="math notranslate nohighlight">\(p(x=v \mid C_k)\)</span>, can be computed by plugging <span class="math notranslate nohighlight">\(v\)</span> into the equation for a Normal distribution parameterized by <span class="math notranslate nohighlight">\(\mu_k\)</span> and <span class="math notranslate nohighlight">\(\sigma^2_k\)</span>. That is,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-31f0c2ef-8720-4223-b170-b91797a6c321">
+<span class="eqno">(4)<a class="headerlink" href="#equation-31f0c2ef-8720-4223-b170-b91797a6c321" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(x=v \mid C_k)=\frac{1}{\sqrt{2\pi\sigma^2_k}}\,e^{ -\frac{(v-\mu_k)^2}{2\sigma^2_k} }
 \end{align}\]</div>
 <p><strong>Problem</strong>: classify whether a given person is a male or a female based on the measured features.</p>
@@ -983,17 +991,17 @@ p(x=v \mid C_k)=\frac{1}{\sqrt{2\pi\sigma^2_k}}\,e^{ -\frac{(v-\mu_k)^2}{2\sigma
 <tbody>
 <tr class="row-even"><td class="text-align:center"><p>male</p></td>
 <td class="text-align:center"><p>5.855</p></td>
-<td class="text-align:center"><p>$ 3.5033 × 10^{−2}$</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\( 3.5033 × 10^{−2}\)</span></p></td>
 <td class="text-align:center"><p>176.25</p></td>
-<td class="text-align:center"><p>$1.2292 × 10^2$</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(1.2292 × 10^2\)</span></p></td>
 <td class="text-align:center"><p>11.25</p></td>
-<td class="text-align:center"><p>$9.1667 × 10^{−1}$</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(9.1667 × 10^{−1}\)</span></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p>female</p></td>
 <td class="text-align:center"><p>5.4175</p></td>
-<td class="text-align:center"><p>$9.7225 × 10^{−2}$</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(9.7225 × 10^{−2}\)</span></p></td>
 <td class="text-align:center"><p>132.5</p></td>
-<td class="text-align:center"><p>$5.5833 × 10^2$</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(5.5833 × 10^2\)</span></p></td>
 <td class="text-align:center"><p>7.5</p></td>
 <td class="text-align:center"><p>1.6667</p></td>
 </tr>
@@ -1016,18 +1024,18 @@ p(x=v \mid C_k)=\frac{1}{\sqrt{2\pi\sigma^2_k}}\,e^{ -\frac{(v-\mu_k)^2}{2\sigma
 </tr>
 </tbody>
 </table>
-<p>$P(\text{male}) = 0.5$</p>
-<p>$p({\text{height}} \mid \text{male}) = \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(\frac{-(6-\mu)^2}{2\sigma^2}\right) \approx 1.5789$,</p>
-<p>where $\mu = 5.855$ and $\sigma^2 = 3.5033 \cdot 10^{-2}$</p>
+<p><span class="math notranslate nohighlight">\(P(\text{male}) = 0.5\)</span></p>
+<p><span class="math notranslate nohighlight">\(p({\text{height}} \mid \text{male}) = \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(\frac{-(6-\mu)^2}{2\sigma^2}\right) \approx 1.5789\)</span>,</p>
+<p>where <span class="math notranslate nohighlight">\(\mu = 5.855\)</span> and <span class="math notranslate nohighlight">\(\sigma^2 = 3.5033 \cdot 10^{-2}\)</span></p>
 <p>Note that a value greater than 1 is OK here – it is a probability density rather than a probability, because ‘’height’’ is a continuous variable.</p>
-<p>$p({\text{weight}} \mid \text{male}) = \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(\frac{-(130-\mu)^2}{2\sigma^2}\right) = 5.9881 \cdot 10^{-6}$</p>
-<p>$p({\text{foot size}} \mid \text{male}) = \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(\frac{-(8-\mu)^2}{2\sigma^2}\right) = 1.3112 \cdot 10^{-3}$</p>
-<p>$\text{posterior numerator (male)} = \text{their product} = 6.1984 \cdot 10^{-9}$</p>
-<p>$P({\text{female}}) = 0.5$</p>
-<p>$p({\text{height}} \mid {\text{female}}) = 2.2346 \cdot 10^{-1}$</p>
-<p>$p({\text{weight}} \mid {\text{female}}) = 1.6789 \cdot 10^{-2}$</p>
-<p>$p({\text{foot size}} \mid {\text{female}}) = 2.8669 \cdot 10^{-1}$</p>
-<p>$\text{posterior numerator (female)} = \text{their product} = 5.3778 \cdot 10^{-4}$</p>
+<p><span class="math notranslate nohighlight">\(p({\text{weight}} \mid \text{male}) = \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(\frac{-(130-\mu)^2}{2\sigma^2}\right) = 5.9881 \cdot 10^{-6}\)</span></p>
+<p><span class="math notranslate nohighlight">\(p({\text{foot size}} \mid \text{male}) = \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(\frac{-(8-\mu)^2}{2\sigma^2}\right) = 1.3112 \cdot 10^{-3}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\text{posterior numerator (male)} = \text{their product} = 6.1984 \cdot 10^{-9}\)</span></p>
+<p><span class="math notranslate nohighlight">\(P({\text{female}}) = 0.5\)</span></p>
+<p><span class="math notranslate nohighlight">\(p({\text{height}} \mid {\text{female}}) = 2.2346 \cdot 10^{-1}\)</span></p>
+<p><span class="math notranslate nohighlight">\(p({\text{weight}} \mid {\text{female}}) = 1.6789 \cdot 10^{-2}\)</span></p>
+<p><span class="math notranslate nohighlight">\(p({\text{foot size}} \mid {\text{female}}) = 2.8669 \cdot 10^{-1}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\text{posterior numerator (female)} = \text{their product} = 5.3778 \cdot 10^{-4}\)</span></p>
 <p>Since posterior numerator is greater in the female case, we predict the sample is female.</p>
 <p>https://en.wikipedia.org/wiki/Naive_Bayes_classifier</p>
 <div class="cell docutils container">
@@ -1068,7 +1076,7 @@ p(x=v \mid C_k)=\frac{1}{\sqrt{2\pi\sigma^2_k}}\,e^{ -\frac{(v-\mu_k)^2}{2\sigma
 <ul class="simple">
 <li><p>with larger probability toward the center of the ellipses.</p></li>
 </ul>
-<p>With this generative model in place for each class, we have a simple recipe to compute the likelihood $P({\rm features}~|~L_1)$ for any data point</p>
+<p>With this generative model in place for each class, we have a simple recipe to compute the likelihood <span class="math notranslate nohighlight">\(P({\rm features}~|~L_1)\)</span> for any data point</p>
 <ul class="simple">
 <li><p>and thus we can quickly compute the posterior ratio and determine which label is the most probable for a given point.</p></li>
 </ul>
@@ -1138,9 +1146,10 @@ p(x=v \mid C_k)=\frac{1}{\sqrt{2\pi\sigma^2_k}}\,e^{ -\frac{(v-\mu_k)^2}{2\sigma
 <div class="section" id="multinomial-naive-bayes">
 <h2>Multinomial Naive Bayes<a class="headerlink" href="#multinomial-naive-bayes" title="Permalink to this headline">¶</a></h2>
 <p>It assumes that the features are generated from a simple multinomial distribution.</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 p(\mathbf{x} \mid L_k) = \frac{(\sum_i x_i)!}{\prod_i x_i !} \prod_i {p_{ki}}^{x_i}
-$$</p>
+\]</div>
 <p>The multinomial distribution describes the probability of observing counts among a number of categories,</p>
 <ul class="simple">
 <li><p>It is most appropriate for features that represent counts or count rates.</p></li>

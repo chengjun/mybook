@@ -45,6 +45,8 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -843,7 +845,7 @@
         
               <div>
                 
-  <div class="section" id="in-depth-decision-trees-and-random-forests">
+  <div class="tex2jax_ignore mathjax_ignore section" id="in-depth-decision-trees-and-random-forests">
 <h1>In-Depth: Decision Trees and Random Forests<a class="headerlink" href="#in-depth-decision-trees-and-random-forests" title="Permalink to this headline">¶</a></h1>
 <p><img alt="image.png" src="_images/author.png" /></p>
 <!--BOOK_INFORMATION-->
@@ -1087,8 +1089,9 @@
 </div>
 <div class="section" id="entropy">
 <h3>Entropy<a class="headerlink" href="#entropy" title="Permalink to this headline">¶</a></h3>
-<p>样本集合总样本数为$D$，其中共有$K$类样本，其中第$k$类样本所占比例为$p_k (k = 1, 2, …K)$，则$D$个样本的信息熵$E(D)$为：</p>
-<p>$$E(D) = \sum_{k=1}^{K} -P_k log_2{P_k}$$</p>
+<p>样本集合总样本数为<span class="math notranslate nohighlight">\(D\)</span>，其中共有<span class="math notranslate nohighlight">\(K\)</span>类样本，其中第<span class="math notranslate nohighlight">\(k\)</span>类样本所占比例为<span class="math notranslate nohighlight">\(p_k (k = 1, 2, ...K)\)</span>，则<span class="math notranslate nohighlight">\(D\)</span>个样本的信息熵<span class="math notranslate nohighlight">\(E(D)\)</span>为：</p>
+<div class="math notranslate nohighlight">
+\[E(D) = \sum_{k=1}^{K} -P_k log_2{P_k}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;play&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -1107,13 +1110,13 @@ Name: play, dtype: int64
 </div>
 <div class="section" id="information-gains">
 <h3>Information Gains<a class="headerlink" href="#information-gains" title="Permalink to this headline">¶</a></h3>
-<p>假定离散属性$a$有$V$个可能的取值$(a_1, a_2,…a_V)$。</p>
+<p>假定离散属性<span class="math notranslate nohighlight">\(a\)</span>有<span class="math notranslate nohighlight">\(V\)</span>个可能的取值<span class="math notranslate nohighlight">\((a_1, a_2,...a_V)\)</span>。</p>
 <ul class="simple">
-<li><p>如果使用属性$a$对$D$个样本进行划分，则会产生$V$个分支节点。</p></li>
-<li><p>假设其中第$v$个分支节点包含$D_v$个样本，</p></li>
-<li><p>我们可以计算出$D_v$个样本的信息熵</p></li>
-<li><p>考虑到样本数越多的分支节点影响力越大，给分支节点赋予权重$D_v/D$</p></li>
-<li><p>可以计算使用属性$a$对$D$个样本进行划分可以获得的信息增益（information gain）:  $Gain(D, a) = Ent(D) - \sum_{v=1}^{V} \frac{D_v}{D} Ent(D_v) $</p></li>
+<li><p>如果使用属性<span class="math notranslate nohighlight">\(a\)</span>对<span class="math notranslate nohighlight">\(D\)</span>个样本进行划分，则会产生<span class="math notranslate nohighlight">\(V\)</span>个分支节点。</p></li>
+<li><p>假设其中第<span class="math notranslate nohighlight">\(v\)</span>个分支节点包含<span class="math notranslate nohighlight">\(D_v\)</span>个样本，</p></li>
+<li><p>我们可以计算出<span class="math notranslate nohighlight">\(D_v\)</span>个样本的信息熵</p></li>
+<li><p>考虑到样本数越多的分支节点影响力越大，给分支节点赋予权重<span class="math notranslate nohighlight">\(D_v/D\)</span></p></li>
+<li><p>可以计算使用属性<span class="math notranslate nohighlight">\(a\)</span>对<span class="math notranslate nohighlight">\(D\)</span>个样本进行划分可以获得的信息增益（information gain）:  <span class="math notranslate nohighlight">\(Gain(D, a) = Ent(D) - \sum_{v=1}^{V} \frac{D_v}{D} Ent(D_v) \)</span></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

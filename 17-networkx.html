@@ -45,6 +45,8 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -849,7 +851,7 @@
         
               <div>
                 
-  <div class="section" id="networkx">
+  <div class="tex2jax_ignore mathjax_ignore section" id="networkx">
 <h1>使用NetworkX分析网络<a class="headerlink" href="#networkx" title="Permalink to this headline">¶</a></h1>
 <p><img alt="image.png" src="_images/network10.png" /></p>
 <p>NetworkX is a Python package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.</p>
@@ -1225,9 +1227,11 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 </ul>
 <p><strong>closeness_centrality(G[, v, weighted_edges])</strong></p>
 <p>Closeness centrality of a node u is the reciprocal of the average shortest path distance to u over all n-1 reachable nodes.</p>
-<p>$$C(u) = \frac{n - 1}{\sum_{v=1}^{n-1} d(v, u)}$$</p>
+<div class="math notranslate nohighlight">
+\[C(u) = \frac{n - 1}{\sum_{v=1}^{n-1} d(v, u)}\]</div>
 <p>For graphs with more than one connected component:</p>
-<p>$$C_{WF}(u) = \frac{n-1}{N-1} \frac{n - 1}{\sum_{v=1}^{n-1} d(v, u)}$$</p>
+<div class="math notranslate nohighlight">
+\[C_{WF}(u) = \frac{n-1}{N-1} \frac{n - 1}{\sum_{v=1}^{n-1} d(v, u)}\]</div>
 <p>Letting N denote the number of nodes in the graph</p>
 <ul class="simple">
 <li><p>Linton C. Freeman: Centrality in networks: I. Conceptual clarification. Social Networks 1:215-239, 1979.</p></li>
@@ -1236,7 +1240,8 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 <p><strong>betweenness_centrality(G)</strong></p>
 <p>Compute the shortest-path betweenness centrality for nodes.</p>
 <p>Betweenness centrality of a node 𝑣 is the sum of the fraction of all-pairs shortest paths that pass through 𝑣</p>
-<p>$$c_B(v) =\sum_{s,t \in V} \frac{\sigma(s, t|v)}{\sigma(s, t)}$$</p>
+<div class="math notranslate nohighlight">
+\[c_B(v) =\sum_{s,t \in V} \frac{\sigma(s, t|v)}{\sigma(s, t)}\]</div>
 <ul class="simple">
 <li><p>s, t denote a node</p></li>
 <li><p>𝑉 is the set of nodes</p></li>
@@ -1628,7 +1633,7 @@ Diameter of the World Wide Web Nature 401, 130 (1999) [ PDF ]</p>
 <ul class="simple">
 <li><p>阅读 Barabasi (1999)  Diameter of the world wide web.Nature.401</p></li>
 <li><p>绘制www网络的出度分布、入度分布</p></li>
-<li><p>使用BA模型生成节点数为N、幂指数为$\gamma$的网络</p></li>
+<li><p>使用BA模型生成节点数为N、幂指数为<span class="math notranslate nohighlight">\(\gamma\)</span>的网络</p></li>
 <li><p>计算平均路径长度d与节点数量的关系</p></li>
 </ul>
 <a class="reference internal image-reference" href="_images/diameter.png"><img alt="_images/diameter.png" src="_images/diameter.png" style="width: 10000px;" /></a>

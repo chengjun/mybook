@@ -45,6 +45,8 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -871,7 +873,7 @@
         
               <div>
                 
-  <div class="section" id="id1">
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
 <h1>第五章 统计思维<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p><img alt="image.png" src="_images/author.png" /></p>
 <p><img alt="" src="_images/preface2.png" /></p>
@@ -1479,8 +1481,10 @@ quantile(num_friends, 0.90) 13
 </div>
 <div class="section" id="variance-and-standard-deviation">
 <h3>Variance and Standard Deviation<a class="headerlink" href="#variance-and-standard-deviation" title="Permalink to this headline">¶</a></h3>
-<p>$$\sigma = \sqrt{\frac{\sum_{i=1}^N (x_i - \overline{x})^2}{N-1} }$$</p>
-<p>$$\sigma ^ 2 = \frac{\sum_{i=1}^N (x_i - \overline{x})^2}{N-1} $$</p>
+<div class="math notranslate nohighlight">
+\[\sigma = \sqrt{\frac{\sum_{i=1}^N (x_i - \overline{x})^2}{N-1} }\]</div>
+<div class="math notranslate nohighlight">
+\[\sigma ^ 2 = \frac{\sum_{i=1}^N (x_i - \overline{x})^2}{N-1} \]</div>
 <p><a class="reference external" href="https://blog.csdn.net/hearthougan/article/details/77859173">样本方差为何除以n-1?</a></p>
 <p><img alt="" src="_images/variance.png" /></p>
 <div class="cell docutils container">
@@ -1775,7 +1779,7 @@ quantile(num_friends, 0.90) 13
 <div class="section" id="one-way-anova">
 <h3>单因素方差分析（one-way ANOVA）<a class="headerlink" href="#one-way-anova" title="Permalink to this headline">¶</a></h3>
 <p>ANOVA: Analysis of Variance</p>
-<p>假设：有k组实验数据，彼此之间相互独立且服从正态分布，均值分别为$\mu_1,\mu_2,…\mu_k$，方差都为$\sigma^2$</p>
+<p>假设：有k组实验数据，彼此之间相互独立且服从正态分布，均值分别为<span class="math notranslate nohighlight">\(\mu_1,\mu_2,...\mu_k\)</span>，方差都为<span class="math notranslate nohighlight">\(\sigma^2\)</span></p>
 <ul class="simple">
 <li><p>H0:假设两组或者多组数据之间有相同的均值</p></li>
 <li><p>H1:至少有两个均值不相等</p></li>
@@ -1797,13 +1801,13 @@ quantile(num_friends, 0.90) 13
 <p>Step 1: Calculate the mean within each group:</p>
 <p>\begin{aligned}{\overline {Y}}<em>{1}&amp;={\frac {1}{6}}\sum Y</em>{1i}={\frac {6+8+4+5+3+4}{6}}=5\{\overline {Y}}<em>{2}&amp;={\frac {1}{6}}\sum Y</em>{2i}={\frac {8+12+9+11+6+8}{6}}=9\{\overline {Y}}<em>{3}&amp;={\frac {1}{6}}\sum Y</em>{3i}={\frac {13+9+11+8+7+12}{6}}=10\end{aligned}</p>
 <p>Step 2: Calculate the overall mean:
-$\overline{Y}=\frac{\sum _{i} \overline{Y_i}}{a}=\frac {\overline{Y_1}+\overline{Y_2}+\overline{Y_3}}{a}=\frac {5+9+10}{3}=8$ where a is the number of groups.</p>
+<span class="math notranslate nohighlight">\(\overline{Y}=\frac{\sum _{i} \overline{Y_i}}{a}=\frac {\overline{Y_1}+\overline{Y_2}+\overline{Y_3}}{a}=\frac {5+9+10}{3}=8\)</span> where a is the number of groups.</p>
 <p>Step 3: Calculate the “between-group” sum of squared differences:</p>
 <p>\begin{aligned}S_{B}&amp;=n({\overline {Y}}<em>{1}-{\overline {Y}})^{2}+n({\overline {Y}}</em>{2}-{\overline {Y}})^{2}+n({\overline {Y}}_{3}-{\overline {Y}})^{2}\[8pt]&amp;=6(5-8)^{2}+6(9-8)^{2}+6(10-8)^{2}=84\end{aligned}</p>
 <p>where n is the number of data values per group.</p>
-<p>The between-group degrees of freedom is one less than the number of groups $f_{b}=3-1=2$</p>
+<p>The between-group degrees of freedom is one less than the number of groups <span class="math notranslate nohighlight">\(f_{b}=3-1=2\)</span></p>
 <p>The between-group mean square value is
-$MS_{B}=84/2=42$</p>
+<span class="math notranslate nohighlight">\(MS_{B}=84/2=42\)</span></p>
 <p>Step 4: Calculate the “within-group” sum of squares. Begin by centering the data in each group</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>a1	a2	a3
 6−5=1	8−9=−1	13−10=3
@@ -1817,12 +1821,12 @@ $MS_{B}=84/2=42$</p>
 <p>The within-group sum of squares:</p>
 <p>\begin{aligned}S_{W}=&amp;(1)^{2}+(3)^{2}+(-1)^{2}+(0)^{2}+(-2)^{2}+(-1)^{2}+\&amp;(-1)^{2}+(3)^{2}+(0)^{2}+(2)^{2}+(-3)^{2}+(-1)^{2}+\&amp;(3)^{2}+(-1)^{2}+(1)^{2}+(-2)^{2}+(-3)^{2}+(2)^{2}= 68\end{aligned}</p>
 <p>The within-group degrees of freedom is</p>
-<p>$f_{W}=a(n-1)=3(6-1)=15$</p>
+<p><span class="math notranslate nohighlight">\(f_{W}=a(n-1)=3(6-1)=15\)</span></p>
 <p>Thus the within-group mean square value is</p>
-<p>$MS_{W}=S_{W}/f_{W}=68/15\approx 4.5$</p>
+<p><span class="math notranslate nohighlight">\(MS_{W}=S_{W}/f_{W}=68/15\approx 4.5\)</span></p>
 <p>Step 5: The F-ratio is</p>
-<p>$ F={\frac {MS_{B}}{MS_{W}}}\approx 42/4.5\approx 9.3$</p>
-<p>$F_{crit}(2,15) = 3.68$ at α = 0.05. The results are significant at the 5% significance level.</p>
+<p><span class="math notranslate nohighlight">\( F={\frac {MS_{B}}{MS_{W}}}\approx 42/4.5\approx 9.3\)</span></p>
+<p><span class="math notranslate nohighlight">\(F_{crit}(2,15) = 3.68\)</span> at α = 0.05. The results are significant at the 5% significance level.</p>
 <p><img alt="image.png" src="_images/anova.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2048,13 +2052,13 @@ Residual              24.0    1.840000    0.076667          NaN           NaN
 </div>
 <div class="section" id="chi-square-formula">
 <h3>Chi-Square Formula<a class="headerlink" href="#chi-square-formula" title="Permalink to this headline">¶</a></h3>
-<p>$Χ^2 = \frac{\sum (O − E)^2}{E} $</p>
+<p><span class="math notranslate nohighlight">\(Χ^2 = \frac{\sum (O − E)^2}{E} \)</span></p>
 <ul class="simple">
-<li><p>$\sum$ means to sum up (see Sigma Notation)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sum\)</span> means to sum up (see Sigma Notation)</p></li>
 <li><p>O = each Observed (actual) value</p></li>
 <li><p>E = each Expected value</p></li>
 </ul>
-<p>So we calculate  $(O−E)^2/E$ for each pair of observed and expected values then sum them all up.</p>
+<p>So we calculate  <span class="math notranslate nohighlight">\((O−E)^2/E\)</span> for each pair of observed and expected values then sum them all up.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="o">=</span> <span class="mi">441</span>
@@ -2082,7 +2086,8 @@ Residual              24.0    1.840000    0.076667          NaN           NaN
 <p>Under the null hypothesis, it has approximately a chi-square distribution whose number of degrees of freedom are</p>
 <p>(number of rows−1)(number of columns−1)=(2−1)(2−1)=1.</p>
 <p>Then in that “cell” of the table, we have</p>
-<p>$$\frac{(observed−expected)^2}{expected}=\frac{(215−189.9)^2}{189.9} = 3.3$$</p>
+<div class="math notranslate nohighlight">
+\[\frac{(observed−expected)^2}{expected}=\frac{(215−189.9)^2}{189.9} = 3.3\]</div>
 <p>The sum of these quantities over all of the cells is the Chi-square statistic.</p>
 <p>3.30093271 + 13.12279349 + 222.36009343 + 277.84184475 = 37.37</p>
 <p>Observed</p>
@@ -2133,12 +2138,12 @@ Residual              24.0    1.840000    0.076667          NaN           NaN
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-align:left"><p>Male</p></td>
-<td class="text-align:center"><p>$\frac{(215-189.9)^2}{189.9} $</p></td>
-<td class="text-align:center"><p>$\frac{(143-168.0)^2}{168.0}  $</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\frac{(215-189.9)^2}{189.9} \)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\frac{(143-168.0)^2}{168.0}  \)</span></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:left"><p>Female</p></td>
-<td class="text-align:center"><p>$\frac{(19-44.0)^2}{44.0}$</p></td>
-<td class="text-align:center"><p>$\frac{(64-38.9)^2}{38.9}$</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\frac{(19-44.0)^2}{44.0}\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\frac{(64-38.9)^2}{38.9}\)</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -2239,9 +2244,11 @@ Degrees of Freedom: 1
 <li><p>白领的概率：Similarly we take 349/650 to estimate what proportion of the 1 million people are white-collar workers.</p></li>
 <li><p>住在A社区的白领的数量：By the assumption of independence under the hypothesis we should “expect” the number of white-collar workers in neighborhood A to be</p></li>
 </ul>
-<p>$$\frac{150}{650}\frac{349}{650}650=80.54$$</p>
+<div class="math notranslate nohighlight">
+\[\frac{150}{650}\frac{349}{650}650=80.54\]</div>
 <p>Then in that “cell” of the table, we have</p>
-<p>$$\frac{(observed−expected)^2}{expected}=\frac{(90−80.54)^2}{80.54} = 1.11$$</p>
+<div class="math notranslate nohighlight">
+\[\frac{(observed−expected)^2}{expected}=\frac{(90−80.54)^2}{80.54} = 1.11\]</div>
 <p>The sum of these quantities over all of the cells is the test statistic.</p>
 <p>Under the null hypothesis, it has approximately a chi-square distribution whose number of degrees of freedom are</p>
 <p>(number of rows−1)(number of columns−1)=(3−1)(4−1)=6.</p>

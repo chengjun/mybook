@@ -45,6 +45,8 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -876,7 +878,7 @@
         
               <div>
                 
-  <div class="section" id="hyperparameters-and-model-validation">
+  <div class="tex2jax_ignore mathjax_ignore section" id="hyperparameters-and-model-validation">
 <h1>Hyperparameters and Model Validation<a class="headerlink" href="#hyperparameters-and-model-validation" title="Permalink to this headline">¶</a></h1>
 <!--BOOK_INFORMATION-->
 <p><em>This notebook contains an excerpt from the <a class="reference external" href="http://shop.oreilly.com/product/0636920034919.do">Python Data Science Handbook</a> by Jake VanderPlas; the content is available <a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook">on GitHub</a>.</em></p>
@@ -1196,12 +1198,12 @@
 In the following diagrams, the red/lighter points indicate data that is omitted from the training set:</p>
 <p><img alt="" src="_images/05.03-bias-variance-2.png" />
 <a class="reference external" href="06.00-Figure-Code.ipynb#Bias-Variance-Tradeoff-Metrics">figure source in Appendix</a></p>
-<p>$R^2$ score, or <a class="reference external" href="https://en.wikipedia.org/wiki/Coefficient_of_determination">coefficient of determination</a></p>
+<p><span class="math notranslate nohighlight">\(R^2\)</span> score, or <a class="reference external" href="https://en.wikipedia.org/wiki/Coefficient_of_determination">coefficient of determination</a></p>
 <ul class="simple">
 <li><p>which measures how well a model performs relative to a simple mean of the target values.</p></li>
-<li><p>$R^2=1$ indicates a perfect match</p></li>
-<li><p>$R^2=0$ indicates the model does no better <code class="docutils literal notranslate"><span class="pre">than</span> <span class="pre">simply</span> <span class="pre">taking</span> <span class="pre">the</span> <span class="pre">mean</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">data</span></code></p></li>
-<li><p>$R^2&lt;0$ negative values mean even worse models.</p></li>
+<li><p><span class="math notranslate nohighlight">\(R^2=1\)</span> indicates a perfect match</p></li>
+<li><p><span class="math notranslate nohighlight">\(R^2=0\)</span> indicates the model does no better <code class="docutils literal notranslate"><span class="pre">than</span> <span class="pre">simply</span> <span class="pre">taking</span> <span class="pre">the</span> <span class="pre">mean</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">data</span></code></p></li>
+<li><p><span class="math notranslate nohighlight">\(R^2&lt;0\)</span> negative values mean even worse models.</p></li>
 </ul>
 <p>From the scores associated with these two models, we can make an observation that holds more generally:</p>
 <ul class="simple">
@@ -1245,14 +1247,16 @@ In the following diagrams, the red/lighter points indicate data that is omitted 
 <ul class="simple">
 <li><p>a generalized linear model in which the degree of the polynomial is a tunable parameter.</p></li>
 </ul>
-<p>For example, a degree-1 polynomial fits a straight line to the data; for model parameters $a$ and $b$:</p>
-<p>$$
+<p>For example, a degree-1 polynomial fits a straight line to the data; for model parameters <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
 y = ax + b
-$$</p>
-<p>A degree-3 polynomial fits a cubic curve to the data; for model parameters $a, b, c, d$:</p>
-<p>$$
+\]</div>
+<p>A degree-3 polynomial fits a cubic curve to the data; for model parameters <span class="math notranslate nohighlight">\(a, b, c, d\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
 y = ax^3 + bx^2 + cx + d
-$$</p>
+\]</div>
 <p>In Scikit-Learn, we can implement this with a simple linear regression combined with the polynomial preprocessor.</p>
 <p>We will use a <em>pipeline</em> to string these operations together (we will discuss polynomial features and pipelines more fully in <strong>Feature Engineering</strong>):</p>
 <div class="cell docutils container">

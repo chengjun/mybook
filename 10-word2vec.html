@@ -45,6 +45,8 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -852,7 +854,7 @@
         
               <div>
                 
-  <div class="section" id="id1">
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
 <h1>词向量模型简介<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>Introduction to Word Embeddings: Analyzing Meaning through Word Embeddings</p>
 <p><strong>Using vectors to represent things</strong></p>
@@ -931,14 +933,16 @@
 <div class="section" id="cosine-similarity">
 <h2>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Permalink to this headline">¶</a></h2>
 <p>The cosine of two non-zero vectors can be derived by using the Euclidean dot product formula:</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 \mathbf{A}\cdot\mathbf{B}
-=\left|\mathbf{A}\right|\left|\mathbf{B}\right|\cos\theta
-$$</p>
-<p>$$
-\text{similarity} = \cos(\theta) = {\mathbf{A} \cdot \mathbf{B} \over |\mathbf{A}| |\mathbf{B}|} = \frac{ \sum\limits_{i=1}^{n}{A_i  B_i} }{ \sqrt{\sum\limits_{i=1}^{n}{A_i^2}}  \sqrt{\sum\limits_{i=1}^{n}{B_i^2}} },
-$$</p>
-<p>where $A_i$ and $B_i$ are components of vector $A$ and $B$ respectively.</p>
+=\left\|\mathbf{A}\right\|\left\|\mathbf{B}\right\|\cos\theta
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{similarity} = \cos(\theta) = {\mathbf{A} \cdot \mathbf{B} \over \|\mathbf{A}\| \|\mathbf{B}\|} = \frac{ \sum\limits_{i=1}^{n}{A_i  B_i} }{ \sqrt{\sum\limits_{i=1}^{n}{A_i^2}}  \sqrt{\sum\limits_{i=1}^{n}{B_i^2}} },
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(A_i\)</span> and <span class="math notranslate nohighlight">\(B_i\)</span> are components of vector <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> respectively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">dot</span>
@@ -971,7 +975,8 @@ $$</p>
 </div>
 </div>
 </div>
-<p>$$CosineDistance = 1- CosineSimilarity$$</p>
+<div class="math notranslate nohighlight">
+\[CosineDistance = 1- CosineSimilarity\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">spatial</span>
@@ -1117,7 +1122,8 @@ $$</p>
 </div>
 </div>
 </div>
-<p>$$King- Queen = Man - Woman$$</p>
+<div class="math notranslate nohighlight">
+\[King- Queen = Man - Woman\]</div>
 <a class="reference internal image-reference" href="_images/word2vec.png"><img alt="_images/word2vec.png" src="_images/word2vec.png" style="width: 700px;" /></a>
 <p>Now that we’ve looked at trained word embeddings,</p>
 <ul class="simple">

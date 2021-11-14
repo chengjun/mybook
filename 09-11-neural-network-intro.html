@@ -45,6 +45,8 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -843,7 +845,7 @@
         
               <div>
                 
-  <div class="section" id="id1">
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
 <h1>第七章 神经网络与深度学习<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p><img alt="image.png" src="_images/author.png" /></p>
 <p><img alt="image.png" src="_images/neural.png" /></p>
@@ -911,7 +913,7 @@
 <h2>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">¶</a></h2>
 <p><img alt="" src="_images/gradient.gif" /></p>
 <p><img alt="image.png" src="_images/neural9.png" /></p>
-<p>Let’s represent parameters as $\Theta$, learning rate as $\alpha$, and gradient as $\bigtriangledown J(\Theta)$,</p>
+<p>Let’s represent parameters as <span class="math notranslate nohighlight">\(\Theta\)</span>, learning rate as <span class="math notranslate nohighlight">\(\alpha\)</span>, and gradient as <span class="math notranslate nohighlight">\(\bigtriangledown J(\Theta)\)</span>,</p>
 <div class="section" id="mannual-gradient">
 <h3>Mannual Gradient<a class="headerlink" href="#mannual-gradient" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
@@ -1290,7 +1292,8 @@ Epoch: 400 | Loss: 0.003276776522397995
 </tr>
 </tbody>
 </table>
-<p>$$y = f(X) = W X$$</p>
+<div class="math notranslate nohighlight">
+\[y = f(X) = W X\]</div>
 <ul class="simple">
 <li><p>Calculating the prediction is simple multiplication.</p></li>
 <li><p>But before that, we need to think about the weight we’ll be multiplying by.</p></li>
@@ -1321,7 +1324,8 @@ Epoch: 400 | Loss: 0.003276776522397995
 <li><p>But if we add a bias (intercept) we can find values that improve the model.</p></li>
 </ul>
 <a class="reference internal image-reference" href="_images/NNs_bias_2.png"><img alt="_images/NNs_bias_2.png" src="_images/NNs_bias_2.png" style="width: 500px;" /></a>
-<p>$$y = 0.1 X + 150$$</p>
+<div class="math notranslate nohighlight">
+\[y = 0.1 X + 150\]</div>
 <p><strong>Gradient Descent</strong></p>
 <ul class="simple">
 <li><p>Automatically get the correct weight and bias values</p></li>
@@ -1368,7 +1372,7 @@ Epoch: 400 | Loss: 0.003276776522397995
 <blockquote>
 <div><p>help(nn.Linear)</p>
 </div></blockquote>
-<p>Applies a linear transformation to the incoming data: $y = xA^T + b$</p>
+<p>Applies a linear transformation to the incoming data: <span class="math notranslate nohighlight">\(y = xA^T + b\)</span></p>
 <ul class="simple">
 <li><p><strong>in_features</strong>: size of each input sample</p></li>
 <li><p><strong>out_features</strong>: size of each output sample</p></li>
@@ -1533,7 +1537,8 @@ Epoch[1000/1000], loss: 2016.177734
 <div class="section" id="softmax">
 <h3>Softmax<a class="headerlink" href="#softmax" title="Permalink to this headline">¶</a></h3>
 <p>The softmax function, also known as softargmax or normalized exponential function, is a function that takes as input a vector of K real numbers, and normalizes it into a probability distribution consisting of K probabilities.</p>
-<p>$$softmax = \frac{e^x}{\sum e^x}$$</p>
+<div class="math notranslate nohighlight">
+\[softmax = \frac{e^x}{\sum e^x}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">softmax</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>

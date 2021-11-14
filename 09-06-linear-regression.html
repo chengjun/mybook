@@ -45,6 +45,8 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -786,12 +788,20 @@
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ridge-regression-l-2-regularization">
-     Ridge regression ($L_2$ Regularization) 岭回归
+     Ridge regression (
+     <span class="math notranslate nohighlight">
+      \(L_2\)
+     </span>
+     Regularization) 岭回归
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#lasso-regression-l-1-regularization">
-     Lasso regression ($L_1$ regularization) 套索回归
+     Lasso regression (
+     <span class="math notranslate nohighlight">
+      \(L_1\)
+     </span>
+     regularization) 套索回归
     </a>
    </li>
   </ul>
@@ -812,7 +822,7 @@
         
               <div>
                 
-  <div class="section" id="in-depth-linear-regression">
+  <div class="tex2jax_ignore mathjax_ignore section" id="in-depth-linear-regression">
 <h1>In Depth: Linear Regression<a class="headerlink" href="#in-depth-linear-regression" title="Permalink to this headline">¶</a></h1>
 <p><img alt="image.png" src="_images/author.png" /></p>
 <!--BOOK_INFORMATION-->
@@ -842,10 +852,10 @@
 <h2>Simple Linear Regression<a class="headerlink" href="#simple-linear-regression" title="Permalink to this headline">¶</a></h2>
 <p>We will start with the most familiar linear regression, a straight-line fit to data.
 A straight-line fit is a model of the form
-$$
+$<span class="math notranslate nohighlight">\(
 y = ax + b
-$$
-where $a$ is commonly known as the <em>slope</em>, and $b$ is commonly known as the <em>intercept</em>.</p>
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>a<span class="math notranslate nohighlight">\( is commonly known as the *slope*, and \)</span>b$ is commonly known as the <em>intercept</em>.</p>
 <p>Consider the following data, which is scattered about a line with a slope of 2 and an intercept of -5:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -970,10 +980,10 @@ Variance score: 0.9998
 </div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> estimator is much more capable than this, however—in addition to simple straight-line fits, it can also handle multidimensional linear models of the form
-$$
+$<span class="math notranslate nohighlight">\(
 y = a_0 + a_1 x_1 + a_2 x_2 + \cdots
-$$
-where there are multiple $x$ values.
+\)</span><span class="math notranslate nohighlight">\(
+where there are multiple \)</span>x$ values.
 Geometrically, this is akin to fitting a plane to points in three dimensions, or fitting a hyper-plane to points in higher dimensions.</p>
 <p><strong>Building some example data using NumPy</strong></p>
 <p>The <font color = 'red'>multidimensional nature of such regressions</font> makes them more difficult to visualize</p>
@@ -1012,19 +1022,19 @@ Geometrically, this is akin to fitting a plane to points in three dimensions, or
 </ul>
 <p>We have seen one version of this before, in the <code class="docutils literal notranslate"><span class="pre">PolynomialRegression</span></code> pipeline used in <strong>Hyperparameters and Model Validation</strong> and <strong>Feature Engineering</strong>.</p>
 <p>The idea is to take our multidimensional linear model:
-$$
+$<span class="math notranslate nohighlight">\(
 y = a_0 + a_1 x_1 + a_2 x_2 + a_3 x_3 + \cdots
-$$
-and build the $x_1, x_2, x_3,$ and so on, from our single-dimensional input $x$.</p>
-<p>That is, we let $x_n = f_n(x)$, where $f_n()$ is some function that transforms our data.</p>
-<p>For example, if $f_n(x) = x^n$, our model becomes a polynomial regression:
-$$
+\)</span><span class="math notranslate nohighlight">\(
+and build the \)</span>x_1, x_2, x_3,<span class="math notranslate nohighlight">\( and so on, from our single-dimensional input \)</span>x$.</p>
+<p>That is, we let <span class="math notranslate nohighlight">\(x_n = f_n(x)\)</span>, where <span class="math notranslate nohighlight">\(f_n()\)</span> is some function that transforms our data.</p>
+<p>For example, if <span class="math notranslate nohighlight">\(f_n(x) = x^n\)</span>, our model becomes a polynomial regression:
+$<span class="math notranslate nohighlight">\(
 y = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \cdots
-$$</p>
+\)</span>$</p>
 <p>Notice that this is <em>still a linear model</em></p>
 <ul class="simple">
-<li><p>the linearity refers to the fact that the coefficients $a_n$ never multiply or divide each other.</p></li>
-<li><p>What we have effectively done is taken our one-dimensional $x$ values and projected them into a higher dimension, so that a linear fit can fit more complicated relationships between $x$ and $y$.</p></li>
+<li><p>the linearity refers to the fact that the coefficients <span class="math notranslate nohighlight">\(a_n\)</span> never multiply or divide each other.</p></li>
+<li><p>What we have effectively done is taken our one-dimensional <span class="math notranslate nohighlight">\(x\)</span> values and projected them into a higher dimension, so that a linear fit can fit more complicated relationships between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
 </ul>
 <div class="section" id="polynomial-basis-functions">
 <h3>Polynomial basis functions 多项式基函数<a class="headerlink" href="#polynomial-basis-functions" title="Permalink to this headline">¶</a></h3>
@@ -1064,7 +1074,7 @@ $$</p>
 </div>
 </div>
 </div>
-<p>With this transform in place, we can use the linear model to fit much more complicated relationships between $x$ and $y$.</p>
+<p>With this transform in place, we can use the linear model to fit much more complicated relationships between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <p>For example, here is a sine wave with noise:</p>
 <p>Our linear model, through the use of 7th-order polynomial basis functions, can provide an excellent fit to this non-linear data!</p>
 <div class="cell docutils container">
@@ -1105,9 +1115,10 @@ The result might look something like the following figure:</p>
 </li>
 </ul>
 <p>The simplest case of a normal distribution is known as the ‘’standard normal distribution’’.</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 f(x \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2} } e^{ -\frac{(x-\mu)^2}{2\sigma^2} } \sim  e^{ -0.5 (\frac{x-\mu}{\sigma})^2}
-$$</p>
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
@@ -1230,19 +1241,19 @@ $$</p>
 </ul>
 <p>Such a penalty is known as <em>regularization</em>, and comes in several forms.</p>
 <div class="section" id="ridge-regression-l-2-regularization">
-<h3>Ridge regression ($L_2$ Regularization) 岭回归<a class="headerlink" href="#ridge-regression-l-2-regularization" title="Permalink to this headline">¶</a></h3>
-<p><em>ridge regression</em> or $L_2$ <em>regularization</em>, sometimes also called <em>Tikhonov regularization</em>.</p>
+<h3>Ridge regression (<span class="math notranslate nohighlight">\(L_2\)</span> Regularization) 岭回归<a class="headerlink" href="#ridge-regression-l-2-regularization" title="Permalink to this headline">¶</a></h3>
+<p><em>ridge regression</em> or <span class="math notranslate nohighlight">\(L_2\)</span> <em>regularization</em>, sometimes also called <em>Tikhonov regularization</em>.</p>
 <ul class="simple">
 <li><p>Perhaps the most common form of regularization</p></li>
 </ul>
 <p>This proceeds by penalizing the <strong>sum of squares</strong> (2-norms) of the model coefficients;</p>
 <ul class="simple">
 <li><p>The penalty on the model fit would be
-$$
+$<span class="math notranslate nohighlight">\(
 P = \alpha\sum_{n=1}^N \theta_n^2
-$$</p></li>
+\)</span>$</p></li>
 </ul>
-<p>where $\alpha$ is a free parameter that controls the strength of the penalty.</p>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is a free parameter that controls the strength of the penalty.</p>
 <p>This type of penalized model is built into Scikit-Learn with the <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> estimator:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1256,10 +1267,10 @@ $$</p></li>
 <img alt="_images/09-06-linear-regression_45_0.png" src="_images/09-06-linear-regression_45_0.png" />
 </div>
 </div>
-<p>The $\alpha$ parameter is essentially a knob controlling the complexity of the resulting model.</p>
+<p>The <span class="math notranslate nohighlight">\(\alpha\)</span> parameter is essentially a knob controlling the complexity of the resulting model.</p>
 <ul class="simple">
-<li><p>In the limit $\alpha \to 0$, we recover the standard linear regression result;</p></li>
-<li><p>in the limit $\alpha \to \infty$, all model responses will be suppressed.</p></li>
+<li><p>In the limit <span class="math notranslate nohighlight">\(\alpha \to 0\)</span>, we recover the standard linear regression result;</p></li>
+<li><p>in the limit <span class="math notranslate nohighlight">\(\alpha \to \infty\)</span>, all model responses will be suppressed.</p></li>
 </ul>
 <p>One advantage of ridge regression in particular is that it can be computed very efficiently</p>
 <ul class="simple">
@@ -1267,11 +1278,11 @@ $$</p></li>
 </ul>
 </div>
 <div class="section" id="lasso-regression-l-1-regularization">
-<h3>Lasso regression ($L_1$ regularization) 套索回归<a class="headerlink" href="#lasso-regression-l-1-regularization" title="Permalink to this headline">¶</a></h3>
+<h3>Lasso regression (<span class="math notranslate nohighlight">\(L_1\)</span> regularization) 套索回归<a class="headerlink" href="#lasso-regression-l-1-regularization" title="Permalink to this headline">¶</a></h3>
 <p>Lasso regression involves penalizing the <strong>sum of absolute values</strong> (1-norms) of regression coefficients:
-$$
+$<span class="math notranslate nohighlight">\(
 P = \alpha\sum_{n=1}^N |\theta_n|
-$$
+\)</span>$
 Though this is conceptually very similar to ridge regression, the results can differ surprisingly:</p>
 <ul class="simple">
 <li><p>for example, due to geometric reasons lasso regression tends to favor <em>sparse models</em> where possible:</p>
@@ -1297,7 +1308,7 @@ Though this is conceptually very similar to ridge regression, the results can di
 <ul class="simple">
 <li><p>with the functional behavior being modeled by a small subset of the available basis functions.</p></li>
 </ul>
-<p>As with ridge regularization, the $\alpha$ parameter tunes the strength of the penalty, and should be determined via, for example, cross-validation (refer back to <strong>Hyperparameters and Model Validation</strong> for a discussion of this).</p>
+<p>As with ridge regularization, the <span class="math notranslate nohighlight">\(\alpha\)</span> parameter tunes the strength of the penalty, and should be determined via, for example, cross-validation (refer back to <strong>Hyperparameters and Model Validation</strong> for a discussion of this).</p>
 </div>
 </div>
 <div class="section" id="example-predicting-bicycle-traffic">

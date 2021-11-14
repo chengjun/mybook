@@ -46,6 +46,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -779,7 +780,7 @@
         
               <div>
                 
-  <div class="section" id="latent-factor-recommender-system">
+  <div class="tex2jax_ignore mathjax_ignore section" id="latent-factor-recommender-system">
 <h1>Latent Factor Recommender System<a class="headerlink" href="#latent-factor-recommender-system" title="Permalink to this headline">¶</a></h1>
 <p><img alt="image.png" src="_images/author.png" /></p>
 <p>The NetFlix Challenge</p>
@@ -789,8 +790,8 @@
 <ul class="simple">
 <li><p>Evaluation criterion: Root Mean Square Error (RMSE)</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-8e69124b-b4e3-407e-a512-591970c185f6">
-<span class="eqno">(6)<a class="headerlink" href="#equation-8e69124b-b4e3-407e-a512-591970c185f6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-35e8b4b9-390d-4545-a69e-536b92cbb159">
+<span class="eqno">(6)<a class="headerlink" href="#equation-35e8b4b9-390d-4545-a69e-536b92cbb159" title="Permalink to this equation">¶</a></span>\[\begin{equation}
   RMSE =  \frac{1}{|R|} \sqrt{\sum_{(i, x)\in R}(\hat{r}_{xi} - r_{xi})^2}
 \end{equation}\]</div>
 <ul class="simple">
@@ -801,7 +802,7 @@
 <p><img alt="image.png" src="_images/latent3.png" /></p>
 <p><img alt="image.png" src="_images/latent4.png" /></p>
 <p><img alt="image.png" src="_images/latent5.png" /></p>
-<p>U (m x m) , $\Sigma$(m x n),   $V^T$ (n x n)</p>
+<p>U (m x m) , <span class="math notranslate nohighlight">\(\Sigma\)</span>(m x n),   <span class="math notranslate nohighlight">\(V^T\)</span> (n x n)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -830,7 +831,7 @@
 </div>
 </div>
 </div>
-<p>$\Sigma$本来应该跟A矩阵的大小一样，但linalg.svd()只返回了一个行向量的$\Sigma$，并且舍弃值为0的奇异值。因此，必须先将$\Sigma$转化为矩阵。</p>
+<p><span class="math notranslate nohighlight">\(\Sigma\)</span>本来应该跟A矩阵的大小一样，但linalg.svd()只返回了一个行向量的<span class="math notranslate nohighlight">\(\Sigma\)</span>，并且舍弃值为0的奇异值。因此，必须先将<span class="math notranslate nohighlight">\(\Sigma\)</span>转化为矩阵。</p>
 <p><img alt="image.png" src="_images/latent6.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -945,7 +946,7 @@ B =
 <p><img alt="image.png" src="_images/latent7.png" /></p>
 <p><img alt="image.png" src="_images/latent8.png" /></p>
 <p>SVD gives minimum reconstruction error (Sum of Squared Errors, <strong>SSE</strong>)</p>
-<p>SSE and RMSE are monotonically related:$RMSE=\frac{1}{c}\sqrt{SSE}$</p>
+<p>SSE and RMSE are monotonically related:<span class="math notranslate nohighlight">\(RMSE=\frac{1}{c}\sqrt{SSE}\)</span></p>
 <p>Great news: SVD is minimizing RMSE</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1865,7 +1866,7 @@ Recommending the highest 10 predicted ratings movies not already rated.
 <li><p>奇异值分解 Singular value decomposition</p>
 <ul>
 <li><p>需要填充稀疏矩阵中的缺失元素</p></li>
-<li><p>计算复杂度高 $O(mn^2)$</p></li>
+<li><p>计算复杂度高 <span class="math notranslate nohighlight">\(O(mn^2)\)</span></p></li>
 </ul>
 </li>
 <li><p>梯度下降 Gradient Descent</p>
@@ -1878,15 +1879,15 @@ Recommending the highest 10 predicted ratings movies not already rated.
 <div class="section" id="including-bias">
 <h2>Including bias<a class="headerlink" href="#including-bias" title="Permalink to this headline">¶</a></h2>
 <p><img alt="image.png" src="_images/latent10.png" /></p>
-<div class="amsmath math notranslate nohighlight" id="equation-38ee03f3-42a8-451e-b26e-3cfed1e7cebf">
-<span class="eqno">(7)<a class="headerlink" href="#equation-38ee03f3-42a8-451e-b26e-3cfed1e7cebf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-63638c61-b205-48f9-bc86-f15a68f0faa3">
+<span class="eqno">(7)<a class="headerlink" href="#equation-63638c61-b205-48f9-bc86-f15a68f0faa3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
   \hat{r}_{xi}= u + b_x + b_i + q_i p_x^{T}
 \end{equation}\]</div>
 <ul class="simple">
-<li><p>$u$ is the global bias, measured by the overall mean rating</p></li>
-<li><p>$b_x$ is the bias for user x, measured by the mean rating given by user x.</p></li>
-<li><p>$b_i$ is the bias for movie i, measured by the mean ratings of movie i.</p></li>
-<li><p>$q_i p_{x}^{T}$ is the user-movie interaction</p></li>
+<li><p><span class="math notranslate nohighlight">\(u\)</span> is the global bias, measured by the overall mean rating</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_x\)</span> is the bias for user x, measured by the mean rating given by user x.</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_i\)</span> is the bias for movie i, measured by the mean ratings of movie i.</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_i p_{x}^{T}\)</span> is the user-movie interaction</p></li>
 </ul>
 <p><img alt="image.png" src="_images/latent11.png" /></p>
 <p><img alt="image.png" src="_images/latent12.png" /></p>

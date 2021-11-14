@@ -45,6 +45,8 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -827,7 +829,7 @@
         
               <div>
                 
-  <div class="section" id="in-depth-support-vector-machines">
+  <div class="tex2jax_ignore mathjax_ignore section" id="in-depth-support-vector-machines">
 <h1>In-Depth: Support Vector Machines<a class="headerlink" href="#in-depth-support-vector-machines" title="Permalink to this headline">¶</a></h1>
 <p><img alt="image.png" src="_images/author.png" /></p>
 <!--BOOK_INFORMATION-->
@@ -1247,11 +1249,11 @@ Notice</p>
 <p>Kernel is a similarity function over pairs of data points in raw representation.</p>
 <div class="section" id="problem">
 <h3>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">¶</a></h3>
-<p>Projecting $N$ points into $N$ dimensions might become very computationally intensive as $N$ grows large.</p>
+<p>Projecting <span class="math notranslate nohighlight">\(N\)</span> points into <span class="math notranslate nohighlight">\(N\)</span> dimensions might become very computationally intensive as <span class="math notranslate nohighlight">\(N\)</span> grows large.</p>
 <ul class="simple">
 <li><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Kernel_trick"><em>kernel trick</em></a>, a fit on kernel-transformed data can be done implicitly</p>
 <ul>
-<li><p>without ever building the full $N$-dimensional representation of the kernel projection!</p></li>
+<li><p>without ever building the full <span class="math notranslate nohighlight">\(N\)</span>-dimensional representation of the kernel projection!</p></li>
 </ul>
 </li>
 <li><p>This kernel trick is built into the SVM, and is one of the reasons the method is so powerful.</p></li>
@@ -1321,12 +1323,12 @@ Notice</p>
 <ul class="simple">
 <li><p>it allows some of the points to creep into the margin if that allows a better fit.</p></li>
 </ul>
-<p>The hardness of the margin is controlled by a tuning parameter, most often known as $C$.</p>
+<p>The hardness of the margin is controlled by a tuning parameter, most often known as <span class="math notranslate nohighlight">\(C\)</span>.</p>
 <ul class="simple">
-<li><p>For very large $C$, the margin is hard, and points cannot lie in it.</p></li>
-<li><p>For smaller $C$, the margin is softer, and can grow to encompass some points.</p></li>
+<li><p>For very large <span class="math notranslate nohighlight">\(C\)</span>, the margin is hard, and points cannot lie in it.</p></li>
+<li><p>For smaller <span class="math notranslate nohighlight">\(C\)</span>, the margin is softer, and can grow to encompass some points.</p></li>
 </ul>
-<p>The plot shown below gives a visual picture of how a changing $C$ parameter affects the final fit, via the softening of the margin:</p>
+<p>The plot shown below gives a visual picture of how a changing <span class="math notranslate nohighlight">\(C\)</span> parameter affects the final fit, via the softening of the margin:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
@@ -1350,7 +1352,7 @@ Notice</p>
 <img alt="_images/09-07-support-vector-machines_47_0.png" src="_images/09-07-support-vector-machines_47_0.png" />
 </div>
 </div>
-<p>The optimal value of the $C$ parameter will depend on your dataset, and should be tuned using cross-validation or a similar procedure (refer back to <strong>Hyperparameters and Model Validation</strong>).</p>
+<p>The optimal value of the <span class="math notranslate nohighlight">\(C\)</span> parameter will depend on your dataset, and should be tuned using cross-validation or a similar procedure (refer back to <strong>Hyperparameters and Model Validation</strong>).</p>
 </div>
 </div>
 <div class="section" id="example-face-recognition">
@@ -1548,12 +1550,12 @@ Junichiro Koizumi       0.92      1.00      0.96        12
 </ul>
 <p>However, SVMs have several disadvantages as well:</p>
 <ul class="simple">
-<li><p>The scaling with the number of samples $N$ is $\mathcal{O}[N^3]$ at worst, or $\mathcal{O}[N^2]$ for efficient implementations.</p>
+<li><p>The scaling with the number of samples <span class="math notranslate nohighlight">\(N\)</span> is <span class="math notranslate nohighlight">\(\mathcal{O}[N^3]\)</span> at worst, or <span class="math notranslate nohighlight">\(\mathcal{O}[N^2]\)</span> for efficient implementations.</p>
 <ul>
 <li><p>For large numbers of training samples, this computational cost can be prohibitive.</p></li>
 </ul>
 </li>
-<li><p>The results are strongly dependent on a suitable choice for the softening parameter $C$.</p>
+<li><p>The results are strongly dependent on a suitable choice for the softening parameter <span class="math notranslate nohighlight">\(C\)</span>.</p>
 <ul>
 <li><p>This must be carefully chosen via cross-validation, which can be expensive as datasets grow in size.</p></li>
 </ul>

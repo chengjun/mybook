@@ -45,6 +45,8 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -968,10 +970,11 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#average-path-length-distance-d">
-     Average path length/distance, $
-     <d>
-      $ 平均路径长度
-     </d>
+     Average path length/distance,
+     <span class="math notranslate nohighlight">
+      \(&lt;d&gt;\)
+     </span>
+     平均路径长度
     </a>
    </li>
   </ul>
@@ -1083,7 +1086,7 @@
         
               <div>
                 
-  <div class="section" id="id1">
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
 <h1>第十章 网络科学简介<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p><strong>Network Science</strong>, a textbook for network science, is freely available under the Creative Commons license. http://networksciencebook.com/</p>
 <a class="reference internal image-reference" href="_images/network.png"><img alt="_images/network.png" class="align-right" src="_images/network.png" style="width: 250px;" /></a>
@@ -1391,7 +1394,7 @@ For example, the way we assign the links between a group of individuals will det
 <div class="section" id="undirected-network">
 <h3>Undirected network:<a class="headerlink" href="#undirected-network" title="Permalink to this headline">¶</a></h3>
 <p>Node degree: the number of links connected to the node.</p>
-<p>$k_1 = k_2 = 2, k_3 = 3, k_4 = 1$</p>
+<p><span class="math notranslate nohighlight">\(k_1 = k_2 = 2, k_3 = 3, k_4 = 1\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">Gd</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">circular_layout</span><span class="p">(</span><span class="n">Gd</span><span class="p">))</span>
@@ -1406,17 +1409,17 @@ For example, the way we assign the links between a group of individuals will det
 <div class="section" id="directed-network">
 <h3>Directed network<a class="headerlink" href="#directed-network" title="Permalink to this headline">¶</a></h3>
 <p>In directed networks we can define an in-degree and out-degree. The (total) degree is the sum of in-and out-degree.</p>
-<p>$k_3^{in} = 2, k_3^{out} = 1, k_3 = 3$</p>
-<p>Source: a node with $k^{in}= 0$; Sink: a node with $k^{out}= 0$.</p>
-<p>For a sample of N values: $x_1, x_2, …, x_N$:</p>
+<p><span class="math notranslate nohighlight">\(k_3^{in} = 2, k_3^{out} = 1, k_3 = 3\)</span></p>
+<p>Source: a node with <span class="math notranslate nohighlight">\(k^{in}= 0\)</span>; Sink: a node with <span class="math notranslate nohighlight">\(k^{out}= 0\)</span>.</p>
+<p>For a sample of N values: <span class="math notranslate nohighlight">\(x_1, x_2, ..., x_N\)</span>:</p>
 <p>Average(mean):</p>
-<p>$<x> = \frac{x_1 +x_2 + …+x_N}{N} = \frac{1}{N}\sum_{i = 1}^{N} x_i$</p>
-<p>For a sample of N values: $x_1, x_2, …, x_N$:</p>
+<p><span class="math notranslate nohighlight">\(&lt;x&gt; = \frac{x_1 +x_2 + ...+x_N}{N} = \frac{1}{N}\sum_{i = 1}^{N} x_i\)</span></p>
+<p>For a sample of N values: <span class="math notranslate nohighlight">\(x_1, x_2, ..., x_N\)</span>:</p>
 <p>The nth moment:</p>
-<p>$&lt;x^n&gt; = \frac{x_1^n +x_2^n + …+x_N^n}{N} = \frac{1}{N}\sum_{i = 1}^{N} x_i^n$</p>
-<p>For a sample of N values: $x_1, x_2, …, x_N$:</p>
+<p><span class="math notranslate nohighlight">\(&lt;x^n&gt; = \frac{x_1^n +x_2^n + ...+x_N^n}{N} = \frac{1}{N}\sum_{i = 1}^{N} x_i^n\)</span></p>
+<p>For a sample of N values: <span class="math notranslate nohighlight">\(x_1, x_2, ..., x_N\)</span>:</p>
 <p>Standard deviation:</p>
-<p>$\sigma_x = \sqrt{\frac{1}{N}\sum_{i = 1}^{N} (x_i - <x>)^2}$</p>
+<p><span class="math notranslate nohighlight">\(\sigma_x = \sqrt{\frac{1}{N}\sum_{i = 1}^{N} (x_i - &lt;x&gt;)^2}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1431,10 +1434,10 @@ For example, the way we assign the links between a group of individuals will det
 </div>
 </div>
 </div>
-<p>For a sample of N values: $x_1, x_2, …, x_N$:</p>
+<p>For a sample of N values: <span class="math notranslate nohighlight">\(x_1, x_2, ..., x_N\)</span>:</p>
 <p>Distribution of x:</p>
-<p>$p_x = \frac{The : frequency : of : x}{The: Number :of: Observations}$</p>
-<p>其中，$p_x 满足 \sum_i p_x = 1$</p>
+<p><span class="math notranslate nohighlight">\(p_x = \frac{The \: frequency \: of \: x}{The\: Number \:of\: Observations}\)</span></p>
+<p>其中，<span class="math notranslate nohighlight">\(p_x 满足 \sum_i p_x = 1\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 直方图</span>
@@ -1507,23 +1510,23 @@ For example, the way we assign the links between a group of individuals will det
 <h2>Average Degree<a class="headerlink" href="#average-degree" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id3">
 <h3>Undirected<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>$<k> = \frac{1}{N} \sum_{i = 1}^{N} k_i  = \frac{2L}{N}$</p>
+<p><span class="math notranslate nohighlight">\(&lt;k&gt; = \frac{1}{N} \sum_{i = 1}^{N} k_i  = \frac{2L}{N}\)</span></p>
 </div>
 <div class="section" id="id4">
 <h3>Directed<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>$&lt;k^{in}&gt; = \frac{1}{N} \sum_{i=1}^N k_i^{in}= &lt;k^{out}&gt; = \frac{1}{N} \sum_{i=1}^N k_i^{out} = \frac{L}{N}$</p>
+<p><span class="math notranslate nohighlight">\(&lt;k^{in}&gt; = \frac{1}{N} \sum_{i=1}^N k_i^{in}= &lt;k^{out}&gt; = \frac{1}{N} \sum_{i=1}^N k_i^{out} = \frac{L}{N}\)</span></p>
 </div>
 </div>
 <div class="section" id="degree-distribution">
 <h2>Degree distribution<a class="headerlink" href="#degree-distribution" title="Permalink to this headline">¶</a></h2>
 <p>P(k): probability that a randomly selected node  has degree k</p>
-<p>$N_k = The :number: of :nodes:with :degree: k$</p>
-<p>$P(k) = \frac{N_k}{N}$</p>
+<p><span class="math notranslate nohighlight">\(N_k = The \:number\: of \:nodes\:with \:degree\: k\)</span></p>
+<p><span class="math notranslate nohighlight">\(P(k) = \frac{N_k}{N}\)</span></p>
 </div>
 <div class="section" id="adjacency-matrix">
 <h2>Adjacency matrix<a class="headerlink" href="#adjacency-matrix" title="Permalink to this headline">¶</a></h2>
-<p>$A_{ij} =1$ if there is a link between node i and j</p>
-<p>$A_{ij} =0$ if there is no link between node i and j</p>
+<p><span class="math notranslate nohighlight">\(A_{ij} =1\)</span> if there is a link between node i and j</p>
+<p><span class="math notranslate nohighlight">\(A_{ij} =0\)</span> if there is no link between node i and j</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -1541,35 +1544,35 @@ For example, the way we assign the links between a group of individuals will det
 </div>
 <div class="section" id="id5">
 <h3>Undirected<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<p>$A_{ij} =1$ if there is a link between node i and j</p>
-<p>$A_{ij} =0$ if there is no link between node i and j</p>
-<p>$A_{ij}=\begin{bmatrix} 0&amp;1  &amp;0  &amp;1 \ 1&amp;0  &amp;0  &amp;1 \ 0 &amp;0  &amp;0  &amp;1 \ 1&amp;1  &amp;1  &amp; 0 \end{bmatrix}$</p>
+<p><span class="math notranslate nohighlight">\(A_{ij} =1\)</span> if there is a link between node i and j</p>
+<p><span class="math notranslate nohighlight">\(A_{ij} =0\)</span> if there is no link between node i and j</p>
+<p><span class="math notranslate nohighlight">\(A_{ij}=\begin{bmatrix} 0&amp;1  &amp;0  &amp;1 \\ 1&amp;0  &amp;0  &amp;1 \\ 0 &amp;0  &amp;0  &amp;1 \\ 1&amp;1  &amp;1  &amp; 0 \end{bmatrix}\)</span></p>
 </div>
 <div class="section" id="id6">
 <h3>Undirected<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>无向网络的矩阵是对称的。</p>
-<p>$A_{ij} = A_{ji} , : A_{ii} = 0$</p>
-<p>$k_i = \sum_{j=1}^N A_{ij}, : k_j = \sum_{i=1}^N A_{ij} $</p>
-<p>网络中的链接数量$L$可以表达为：</p>
-<p>$ L = \frac{1}{2}\sum_{i=1}^N k_i = \frac{1}{2}\sum_{ij}^N A_{ij} $</p>
+<p><span class="math notranslate nohighlight">\(A_{ij} = A_{ji} , \: A_{ii} = 0\)</span></p>
+<p><span class="math notranslate nohighlight">\(k_i = \sum_{j=1}^N A_{ij}, \: k_j = \sum_{i=1}^N A_{ij} \)</span></p>
+<p>网络中的链接数量<span class="math notranslate nohighlight">\(L\)</span>可以表达为：</p>
+<p><span class="math notranslate nohighlight">\( L = \frac{1}{2}\sum_{i=1}^N k_i = \frac{1}{2}\sum_{ij}^N A_{ij} \)</span></p>
 </div>
 <div class="section" id="id7">
 <h3>Directed<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
-<p>$A_{ij} =1$ if there is a link between node i and j</p>
-<p>$A_{ij} =0$ if there is no link between node i and j</p>
-<p>$A_{ij}=\begin{bmatrix} 0&amp;0  &amp;0  &amp;0 \ 1&amp;0  &amp;0  &amp;1 \ 0 &amp;0  &amp;0  &amp;1 \ 1&amp;0  &amp;0  &amp; 0 \end{bmatrix}$</p>
+<p><span class="math notranslate nohighlight">\(A_{ij} =1\)</span> if there is a link between node i and j</p>
+<p><span class="math notranslate nohighlight">\(A_{ij} =0\)</span> if there is no link between node i and j</p>
+<p><span class="math notranslate nohighlight">\(A_{ij}=\begin{bmatrix} 0&amp;0  &amp;0  &amp;0 \\ 1&amp;0  &amp;0  &amp;1 \\ 0 &amp;0  &amp;0  &amp;1 \\ 1&amp;0  &amp;0  &amp; 0 \end{bmatrix}\)</span></p>
 <p>Note that for a directed graph the matrix is not symmetric.</p>
 </div>
 <div class="section" id="id8">
 <h3>Directed<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
-<p>$A_{ij} \neq A_{ji}, : A_{ii} = 0$</p>
-<p>$k_i^{in} = \sum_{j=1}^N A_{ji}, : k_i^{out} = \sum_{j=1}^N A_{ij} $</p>
-<p>$ L = \sum_{i=1}^N k_i^{in} = \sum_{j=1}^N k_j^{out}= \sum_{i,j}^N A_{ij} $</p>
+<p><span class="math notranslate nohighlight">\(A_{ij} \neq A_{ji}, \: A_{ii} = 0\)</span></p>
+<p><span class="math notranslate nohighlight">\(k_i^{in} = \sum_{j=1}^N A_{ji}, \: k_i^{out} = \sum_{j=1}^N A_{ij} \)</span></p>
+<p><span class="math notranslate nohighlight">\( L = \sum_{i=1}^N k_i^{in} = \sum_{j=1}^N k_j^{out}= \sum_{i,j}^N A_{ij} \)</span></p>
 </div>
 </div>
 <div class="section" id="weighted-and-unweighted-networks">
 <h2>WEIGHTED AND UNWEIGHTED NETWORKS<a class="headerlink" href="#weighted-and-unweighted-networks" title="Permalink to this headline">¶</a></h2>
-<p>$A_{ij} = W_{ij}$</p>
+<p><span class="math notranslate nohighlight">\(A_{ij} = W_{ij}\)</span></p>
 </div>
 <div class="section" id="bipartite-networks">
 <h2>BIPARTITE NETWORKS<a class="headerlink" href="#bipartite-networks" title="Permalink to this headline">¶</a></h2>
@@ -1779,25 +1782,25 @@ For example, the way we assign the links between a group of individuals will det
 </div>
 <div class="section" id="diameter">
 <h3>Diameter 直径<a class="headerlink" href="#diameter" title="Permalink to this headline">¶</a></h3>
-<p><strong>Diameter $d_{max}$</strong> is the maximum distance between any pair of nodes in the graph.</p>
+<p><strong>Diameter <span class="math notranslate nohighlight">\(d_{max}\)</span></strong> is the maximum distance between any pair of nodes in the graph.</p>
 </div>
 <div class="section" id="average-path-length-distance-d">
-<h3>Average path length/distance, $<d>$ 平均路径长度<a class="headerlink" href="#average-path-length-distance-d" title="Permalink to this headline">¶</a></h3>
+<h3>Average path length/distance, <span class="math notranslate nohighlight">\(&lt;d&gt;\)</span> 平均路径长度<a class="headerlink" href="#average-path-length-distance-d" title="Permalink to this headline">¶</a></h3>
 <p>The average of the shortest paths for all pairs of nodes.</p>
 <ul class="simple">
-<li><p>for a <strong>directed graph</strong>: where $d_{ij}$ is the distance from node i to node j</p></li>
+<li><p>for a <strong>directed graph</strong>: where <span class="math notranslate nohighlight">\(d_{ij}\)</span> is the distance from node i to node j</p></li>
 </ul>
-<p>$<d> = \frac{1}{2 L }\sum_{i, j \neq i} d_{ij}$</p>
+<p><span class="math notranslate nohighlight">\(&lt;d&gt; = \frac{1}{2 L }\sum_{i, j \neq i} d_{ij}\)</span></p>
 <blockquote>
-<div><p>有向网络当中的$d_{ij}$数量是链接数量L的2倍</p>
+<div><p>有向网络当中的<span class="math notranslate nohighlight">\(d_{ij}\)</span>数量是链接数量L的2倍</p>
 </div></blockquote>
 <ul class="simple">
-<li><p>In an <strong>undirected</strong> graph $d_{ij} =d_{ji}$ , so we only need to count them once</p></li>
+<li><p>In an <strong>undirected</strong> graph <span class="math notranslate nohighlight">\(d_{ij} =d_{ji}\)</span> , so we only need to count them once</p></li>
 </ul>
 <blockquote>
-<div><p>无向网络当中的$d_{ij}$数量是链接数量L</p>
+<div><p>无向网络当中的<span class="math notranslate nohighlight">\(d_{ij}\)</span>数量是链接数量L</p>
 </div></blockquote>
-<p>$<d> = \frac{1}{L }\sum_{i, j &gt; i} d_{ij}$</p>
+<p><span class="math notranslate nohighlight">\(&lt;d&gt; = \frac{1}{L }\sum_{i, j &gt; i} d_{ij}\)</span></p>
 </div>
 </div>
 <div class="section" id="cycle">
@@ -1853,16 +1856,16 @@ For example, the way we assign the links between a group of individuals will det
 <div class="section" id="clustering-coefficient">
 <h2>Clustering coefficient 聚集系数<a class="headerlink" href="#clustering-coefficient" title="Permalink to this headline">¶</a></h2>
 <p>what fraction of your neighbors are connected? Watts &amp; Strogatz, Nature 1998.</p>
-<p>节点$i$的朋友之间是否也是朋友？</p>
-<p>Node i with degree $k_i$  节点i有k个朋友</p>
+<p>节点<span class="math notranslate nohighlight">\(i\)</span>的朋友之间是否也是朋友？</p>
+<p>Node i with degree <span class="math notranslate nohighlight">\(k_i\)</span>  节点i有k个朋友</p>
 <blockquote>
-<div><p>$e_i$ represents the number of links between the $k_i$ neighbors of node i.</p>
+<div><p><span class="math notranslate nohighlight">\(e_i\)</span> represents the number of links between the <span class="math notranslate nohighlight">\(k_i\)</span> neighbors of node i.</p>
 </div></blockquote>
 <blockquote>
-<div><p>节点i的k个朋友之间全部是朋友的数量  $\frac{k_i(k_i -1)}{2}$</p>
+<div><p>节点i的k个朋友之间全部是朋友的数量  <span class="math notranslate nohighlight">\(\frac{k_i(k_i -1)}{2}\)</span></p>
 </div></blockquote>
-<p>$C_i = \frac{2e_i}{k_i(k_i -1)}$</p>
-<p>$C_i$ in [0,1]</p>
+<p><span class="math notranslate nohighlight">\(C_i = \frac{2e_i}{k_i(k_i -1)}\)</span></p>
+<p><span class="math notranslate nohighlight">\(C_i\)</span> in [0,1]</p>
 <div class="section" id="id10">
 <h3>节点的<strong>聚集系数</strong><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <a class="reference internal image-reference" href="_images/cc.png"><img alt="_images/cc.png" src="_images/cc.png" style="width: 500px;" /></a>
@@ -1879,8 +1882,8 @@ triplets 三元组</p>
 <li><p>A triangle forms three <strong>connected triplets</strong></p></li>
 <li><p><strong>A connected triplet</strong> is defined to be a connected subgraph consisting of three vertices and <strong>two edges</strong>.</p></li>
 </ul>
-<p>$C  = \frac{\mbox{number of closed triplets}}{\mbox{number of connected triplets of vertices}}$</p>
-<p>$C = \frac{3 \times \mbox{number of triangles}}{\mbox{number of connected triplets of vertices}}$</p>
+<p><span class="math notranslate nohighlight">\(C  = \frac{\mbox{number of closed triplets}}{\mbox{number of connected triplets of vertices}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(C = \frac{3 \times \mbox{number of triangles}}{\mbox{number of connected triplets of vertices}}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G1</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">complete_graph</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
@@ -1959,9 +1962,9 @@ triplets 三元组</p>
 </div>
 <p>THREE CENTRAL QUANTITIES IN NETWORK SCIENCE</p>
 <ul class="simple">
-<li><p>A. Degree distribution: 			  $p_k$</p></li>
-<li><p>B. Path length: 						$<d>$</p></li>
-<li><p>C. Clustering coefficient: $C_i$</p></li>
+<li><p>A. Degree distribution: 			  <span class="math notranslate nohighlight">\(p_k\)</span></p></li>
+<li><p>B. Path length: 						<span class="math notranslate nohighlight">\(&lt;d&gt;\)</span></p></li>
+<li><p>C. Clustering coefficient: <span class="math notranslate nohighlight">\(C_i\)</span></p></li>
 </ul>
 </div>
 </div>

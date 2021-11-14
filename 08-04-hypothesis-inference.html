@@ -45,6 +45,8 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -820,7 +822,7 @@
         
               <div>
                 
-  <div class="section" id="statistical-hypothesis-testing">
+  <div class="tex2jax_ignore mathjax_ignore section" id="statistical-hypothesis-testing">
 <h1>Statistical Hypothesis Testing<a class="headerlink" href="#statistical-hypothesis-testing" title="Permalink to this headline">¶</a></h1>
 <p><img alt="" src="_images/preface2.png" /></p>
 <p>The statistics of hypothesis can be thought of as observations of random variables from known distributions,</p>
@@ -1230,7 +1232,7 @@ power 0.9363794803307173
 <p>How confident can we be about this estimate?</p>
 <p>If we knew the exact value of p, the <code class="docutils literal notranslate"><span class="pre">central</span> <span class="pre">limit</span> <span class="pre">theorem</span></code> tells us</p>
 <blockquote>
-<div><p>the average of those Bernoulli variables should be approximately normal, with mean p and standard deviation $\sigma = \sqrt{p(1 - p) / 1000}$:</p>
+<div><p>the average of those Bernoulli variables should be approximately normal, with mean p and standard deviation <span class="math notranslate nohighlight">\(\sigma = \sqrt{p(1 - p) / 1000}\)</span>:</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1347,18 +1349,20 @@ power 0.9363794803307173
 <ul class="simple">
 <li><p>Here’s where you’d use statistical inference.</p></li>
 </ul>
-<p>Let’s say that $N_A$ people see ad A, and that $n_A$ of them click it.</p>
+<p>Let’s say that <span class="math notranslate nohighlight">\(N_A\)</span> people see ad A, and that <span class="math notranslate nohighlight">\(n_A\)</span> of them click it.</p>
 <ul class="simple">
 <li><p>We can think of each ad view as a Bernoulli trial</p>
 <ul>
-<li><p>where $p_A$ is the probability that someone clicks ad A.</p></li>
+<li><p>where <span class="math notranslate nohighlight">\(p_A\)</span> is the probability that someone clicks ad A.</p></li>
 </ul>
 </li>
 </ul>
-<p>$\frac{n_A}{N_A}$ is approximately a normal random variable with mean $p_A$ and standard deviation $\sigma_A$</p>
-<p>$$\sigma_A = \sqrt \frac{P_A(1-P_A)}{N_A}$$</p>
+<p><span class="math notranslate nohighlight">\(\frac{n_A}{N_A}\)</span> is approximately a normal random variable with mean <span class="math notranslate nohighlight">\(p_A\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma_A\)</span></p>
+<div class="math notranslate nohighlight">
+\[\sigma_A = \sqrt \frac{P_A(1-P_A)}{N_A}\]</div>
 <p>Similarly,</p>
-<p>$$\sigma_B = \sqrt \frac{P_B(1-P_B)}{N_B}$$</p>
+<div class="math notranslate nohighlight">
+\[\sigma_B = \sqrt \frac{P_B(1-P_B)}{N_B}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># running an A/B test</span>
@@ -1372,10 +1376,10 @@ power 0.9363794803307173
 </div>
 <p>If we assume those two normals are independent (which seems reasonable, since the individual Bernoulli trials ought to be), then their difference should also be normal with</p>
 <ul class="simple">
-<li><p>mean $p_B − p_A$</p></li>
-<li><p>standard deviation $\sqrt {\sigma_A^2 + \sigma_B^2}$.</p></li>
+<li><p>mean <span class="math notranslate nohighlight">\(p_B − p_A\)</span></p></li>
+<li><p>standard deviation <span class="math notranslate nohighlight">\(\sqrt {\sigma_A^2 + \sigma_B^2}\)</span>.</p></li>
 </ul>
-<p>Null Hypothesis: $p_A$ and $p_B$ are the same, that is $p_A - p_B = 0$</p>
+<p>Null Hypothesis: <span class="math notranslate nohighlight">\(p_A\)</span> and <span class="math notranslate nohighlight">\(p_B\)</span> are the same, that is <span class="math notranslate nohighlight">\(p_A - p_B = 0\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">a_b_test_statistic</span><span class="p">(</span><span class="n">N_A</span><span class="p">,</span> <span class="n">n_A</span><span class="p">,</span> <span class="n">N_B</span><span class="p">,</span> <span class="n">n_B</span><span class="p">):</span>

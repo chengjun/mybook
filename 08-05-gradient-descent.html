@@ -45,6 +45,8 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -800,7 +802,7 @@
         
               <div>
                 
-  <div class="section" id="introduction-to-gradient-descent">
+  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-gradient-descent">
 <h1>Introduction to Gradient Descent<a class="headerlink" href="#introduction-to-gradient-descent" title="Permalink to this headline">¶</a></h1>
 <p>The Idea Behind Gradient Descent 梯度下降</p>
 <p><img alt="" src="_images/gradient_descent.gif" /></p>
@@ -825,7 +827,7 @@
 <li><p>repeat with a new staring point.</p></li>
 </ul>
 <p><img alt="" src="_images/gd.webp" /></p>
-<p>Let’s represent parameters as $\Theta$, learning rate as $\alpha$, and gradient as $\bigtriangledown J(\Theta)$,</p>
+<p>Let’s represent parameters as <span class="math notranslate nohighlight">\(\Theta\)</span>, learning rate as <span class="math notranslate nohighlight">\(\alpha\)</span>, and gradient as <span class="math notranslate nohighlight">\(\bigtriangledown J(\Theta)\)</span>,</p>
 <p>To the find the best model is an optimization problem</p>
 <ul class="simple">
 <li><p>“minimizes the error of the model”</p></li>
@@ -840,35 +842,50 @@
 <p>A simple mathematical intuition behind one of the commonly used optimisation algorithms in Machine Learning.</p>
 <p>https://www.douban.com/note/713353797/</p>
 <p>The cost or loss function:</p>
-<p>$$Cost = \frac{1}{N} \sum_{i = 1}^N (Y’ -Y)^2$$</p>
+<div class="math notranslate nohighlight">
+\[Cost = \frac{1}{N} \sum_{i = 1}^N (Y' -Y)^2\]</div>
 <p><img alt="" src="_images/x2.webp" /></p>
 <p>Parameters with small changes:
-$$ m_1 = m_0 - \delta m,  b_1 = b_0 - \delta b$$</p>
+$<span class="math notranslate nohighlight">\( m_1 = m_0 - \delta m,  b_1 = b_0 - \delta b\)</span>$</p>
 <p>The cost function J is a function of m and b:</p>
-<p>$$J_{m, b} = \frac{1}{N} \sum_{i = 1}^N (Y’ -Y)^2 = \frac{1}{N} \sum_{i = 1}^N Error_i^2$$</p>
-<p>$$\frac{\partial J}{\partial m} = 2 Error \frac{\partial}{\partial m}Error$$</p>
-<p>$$\frac{\partial J}{\partial b} = 2 Error \frac{\partial}{\partial b}Error$$</p>
+<div class="math notranslate nohighlight">
+\[J_{m, b} = \frac{1}{N} \sum_{i = 1}^N (Y' -Y)^2 = \frac{1}{N} \sum_{i = 1}^N Error_i^2\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J}{\partial m} = 2 Error \frac{\partial}{\partial m}Error\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J}{\partial b} = 2 Error \frac{\partial}{\partial b}Error\]</div>
 <p>Let’s fit the data with linear regression:</p>
-<p>$$\frac{\partial}{\partial m}Error = \frac{\partial}{\partial m}(Y’ - Y) = \frac{\partial}{\partial m}(mX + b - Y)$$</p>
-<p>Since $X, b, Y$ are constant:</p>
-<p>$$\frac{\partial}{\partial m}Error = X$$</p>
-<p>$$\frac{\partial}{\partial b}Error = \frac{\partial}{\partial b}(Y’ - Y) = \frac{\partial}{\partial b}(mX + b - Y)$$</p>
-<p>Since $X, m, Y$ are constant:</p>
-<p>$$\frac{\partial}{\partial m}Error = 1$$</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial}{\partial m}Error = \frac{\partial}{\partial m}(Y' - Y) = \frac{\partial}{\partial m}(mX + b - Y)\]</div>
+<p>Since <span class="math notranslate nohighlight">\(X, b, Y\)</span> are constant:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial}{\partial m}Error = X\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{\partial}{\partial b}Error = \frac{\partial}{\partial b}(Y' - Y) = \frac{\partial}{\partial b}(mX + b - Y)\]</div>
+<p>Since <span class="math notranslate nohighlight">\(X, m, Y\)</span> are constant:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial}{\partial m}Error = 1\]</div>
 <p>Thus:</p>
-<p>$$\frac{\partial J}{\partial m} = 2 * Error * X$$
-$$\frac{\partial J}{\partial b} = 2 * Error$$</p>
-<p>Let’s get rid of the constant 2 and multiplying the learning rate  $\alpha$, who determines how large a step to take:</p>
-<p>$$\frac{\partial J}{\partial m} = Error * X *  \alpha$$
-$$\frac{\partial J}{\partial b} = Error * \alpha$$</p>
-<p>Since $ m_1 = m_0 - \delta m,  b_1 = b_0 - \delta b$:</p>
-<p>$$ m_1 = m_0 -  Error * X * \alpha$$</p>
-<p>$$b_1 = b_0 - Error * \alpha$$</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J}{\partial m} = 2 * Error * X\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J}{\partial b} = 2 * Error\]</div>
+<p>Let’s get rid of the constant 2 and multiplying the learning rate  <span class="math notranslate nohighlight">\(\alpha\)</span>, who determines how large a step to take:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J}{\partial m} = Error * X *  \alpha\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{\partial J}{\partial b} = Error * \alpha\]</div>
+<p>Since <span class="math notranslate nohighlight">\( m_1 = m_0 - \delta m,  b_1 = b_0 - \delta b\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ m_1 = m_0 -  Error * X * \alpha\]</div>
+<div class="math notranslate nohighlight">
+\[b_1 = b_0 - Error * \alpha\]</div>
 <p><strong>Notice</strong> that the slope b can be viewed as the beta value for X = 1. Thus, the above two equations are in essence the same.</p>
-<p>Let’s represent parameters as $\Theta$, learning rate as $\alpha$, and gradient as $\bigtriangledown J(\Theta)$, we have:</p>
-<p>$$\Theta_1 = \Theta_0 - \alpha \bigtriangledown J(\Theta)$$</p>
+<p>Let’s represent parameters as <span class="math notranslate nohighlight">\(\Theta\)</span>, learning rate as <span class="math notranslate nohighlight">\(\alpha\)</span>, and gradient as <span class="math notranslate nohighlight">\(\bigtriangledown J(\Theta)\)</span>, we have:</p>
+<div class="math notranslate nohighlight">
+\[\Theta_1 = \Theta_0 - \alpha \bigtriangledown J(\Theta)\]</div>
 <a class="reference internal image-reference" href="_images/gd.webp"><img alt="_images/gd.webp" class="align-center" src="_images/gd.webp" style="width: 800px;" /></a>
-<p>Hence,to solve for the gradient, we iterate through our data points using our new $m$ and $b$ values and compute the partial derivatives.</p>
+<p>Hence,to solve for the gradient, we iterate through our data points using our new <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(b\)</span> values and compute the partial derivatives.</p>
 <p>This new gradient tells us</p>
 <ul class="simple">
 <li><p>the slope of our cost function at our current position</p></li>
