@@ -351,6 +351,11 @@
      Survival Analysis with Python
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-10-dowhy-estimation-methods.html">
+     The Book of Why
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
@@ -874,8 +879,8 @@ $<span class="math notranslate nohighlight">\(P(L~|~{\rm features}) = \frac{P({\
 <p>The “naive” conditional independent assumptions: assume that each feature <span class="math notranslate nohighlight">\(x_i\)</span> is conditionally statistical independence of every other feature <span class="math notranslate nohighlight">\(x_j\)</span> for <span class="math notranslate nohighlight">\(j\neq i\)</span>, given the category <span class="math notranslate nohighlight">\(L_k\)</span>.  This means that</p>
 <div class="math notranslate nohighlight">
 \[p(x_i \mid x_{i+1}, \dots ,x_{n}, L_k ) = p(x_i \mid L_k)\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-f47a04a5-5a14-4449-9bcf-be220e370140">
-<span class="eqno">(2)<a class="headerlink" href="#equation-f47a04a5-5a14-4449-9bcf-be220e370140" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-333bdb5f-f4df-415c-91d1-f15fce4452be">
+<span class="eqno">(2)<a class="headerlink" href="#equation-333bdb5f-f4df-415c-91d1-f15fce4452be" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(L_k, x_1, \dots, x_n) &amp; = p(x_1, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2 \mid x_3, \dots, x_n, L_k) p(x_3, \dots, x_n, L_k) \\
@@ -883,8 +888,8 @@ p(L_k, x_1, \dots, x_n) &amp; = p(x_1, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2 \mid x_3, \dots, x_n, L_k) \dots   p(x_{n-1} \mid x_n, L_k) p(x_n \mid L_k) p(L_k) \\
 \end{align}\]</div>
 <p>Thus, the joint model can be expressed as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-342b2e21-8f5a-4946-af7a-6fc5fd62094a">
-<span class="eqno">(3)<a class="headerlink" href="#equation-342b2e21-8f5a-4946-af7a-6fc5fd62094a" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e0c10ee3-fb45-4803-b1e0-975bd9856b6b">
+<span class="eqno">(3)<a class="headerlink" href="#equation-e0c10ee3-fb45-4803-b1e0-975bd9856b6b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(L_k \mid x_1, \dots, x_n) &amp; \varpropto p(L_k, x_1, \dots, x_n) = \\
                             &amp; = p(L_k) \ p(x_1 \mid L_k) \ p(x_2\mid L_k) \ p(x_3\mid L_k) \ \cdots \\
                             &amp; = p(L_k) \prod_{i=1}^n p(x_i \mid L_k)\,.
@@ -920,8 +925,8 @@ f(x \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2} } e^{ -\frac{(x-\mu)^2}{2
 <p>Suppose we have collected some observation value <span class="math notranslate nohighlight">\(v\)</span>.
 Then, the probability distribution of <span class="math notranslate nohighlight">\(v\)</span> given a class <span class="math notranslate nohighlight">\(C_k\)</span>,</p>
 <p><span class="math notranslate nohighlight">\(p(x=v \mid C_k)\)</span>, can be computed by plugging <span class="math notranslate nohighlight">\(v\)</span> into the equation for a Normal distribution parameterized by <span class="math notranslate nohighlight">\(\mu_k\)</span> and <span class="math notranslate nohighlight">\(\sigma^2_k\)</span>. That is,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3de5c19e-defa-46e9-ba32-9f9b21c62f69">
-<span class="eqno">(4)<a class="headerlink" href="#equation-3de5c19e-defa-46e9-ba32-9f9b21c62f69" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f071776f-c621-4df9-8ded-9b1b56ab3c33">
+<span class="eqno">(4)<a class="headerlink" href="#equation-f071776f-c621-4df9-8ded-9b1b56ab3c33" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(x=v \mid C_k)=\frac{1}{\sqrt{2\pi\sigma^2_k}}\,e^{ -\frac{(v-\mu_k)^2}{2\sigma^2_k} }
 \end{align}\]</div>
 <p><strong>Problem</strong>: classify whether a given person is a male or a female based on the measured features.</p>
