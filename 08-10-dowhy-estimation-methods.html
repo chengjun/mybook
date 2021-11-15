@@ -792,8 +792,8 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-formula-for-the-front-door-adjustment">
-       The formula for the front-door adjustment,
+      <a class="reference internal nav-link" href="#the-front-door-adjustment-formula">
+       The  front-door adjustment formula
       </a>
      </li>
     </ul>
@@ -810,6 +810,11 @@
    DoWhy: Different estimation methods for causal inference
   </a>
   <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simple-multiple-regression">
+     Simple Multiple Regression
+    </a>
+   </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#identifying-the-causal-estimand">
      Identifying the causal estimand
@@ -1006,8 +1011,8 @@ P(cancer | no \space tar, no \space smoking)P(no \space smoking)
 <li><p>The same argument holds if we prevent a person from smoking, do(no smoking).</p></li>
 <li><p>The difference between the two gives us the average causal effect on cancer of smoking versus not smoking.</p></li>
 </ul>
-<div class="section" id="the-formula-for-the-front-door-adjustment">
-<h3>The formula for the front-door adjustment,<a class="headerlink" href="#the-formula-for-the-front-door-adjustment" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="the-front-door-adjustment-formula">
+<h3>The  front-door adjustment formula<a class="headerlink" href="#the-front-door-adjustment-formula" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[
 P(Y|do(X)) = \sum_{z} P(Z = z|X) \sum_{x} P(Y|X = x, Z = z)P(X = x)
@@ -1290,6 +1295,103 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 <p>Note that we are using a pandas dataframe to load the data.</p>
+<div class="section" id="simple-multiple-regression">
+<h2>Simple Multiple Regression<a class="headerlink" href="#simple-multiple-regression" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;y ~ v0+ Z0 + Z1 + W0+W1 + W2 + W3+W4&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>            <td>y</td>        <th>  R-squared:         </th>  <td>   1.000</td> 
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th>  <td>   1.000</td> 
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th>  <td>9.173e+08</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Mon, 15 Nov 2021</td> <th>  Prob (F-statistic):</th>   <td>  0.00</td>  
+</tr>
+<tr>
+  <th>Time:</th>                 <td>17:59:58</td>     <th>  Log-Likelihood:    </th>  <td>  31888.</td> 
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td> 10000</td>      <th>  AIC:               </th> <td>-6.376e+04</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>  9991</td>      <th>  BIC:               </th> <td>-6.369e+04</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     8</td>      <th>                     </th>      <td> </td>    
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>      <td> </td>    
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+       <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th>  <td>   -0.0002</td> <td>    0.000</td> <td>   -0.457</td> <td> 0.647</td> <td>   -0.001</td> <td>    0.001</td>
+</tr>
+<tr>
+  <th>v0[T.True]</th> <td>    9.9999</td> <td>    0.000</td> <td> 2.72e+04</td> <td> 0.000</td> <td>    9.999</td> <td>   10.001</td>
+</tr>
+<tr>
+  <th>Z0</th>         <td>    0.0004</td> <td>    0.000</td> <td>    1.809</td> <td> 0.070</td> <td>-3.24e-05</td> <td>    0.001</td>
+</tr>
+<tr>
+  <th>Z1</th>         <td>    0.0004</td> <td>    0.000</td> <td>    1.104</td> <td> 0.270</td> <td>   -0.000</td> <td>    0.001</td>
+</tr>
+<tr>
+  <th>W0</th>         <td>    3.6089</td> <td> 9.95e-05</td> <td> 3.63e+04</td> <td> 0.000</td> <td>    3.609</td> <td>    3.609</td>
+</tr>
+<tr>
+  <th>W1</th>         <td>    4.2723</td> <td>    0.000</td> <td> 4.07e+04</td> <td> 0.000</td> <td>    4.272</td> <td>    4.273</td>
+</tr>
+<tr>
+  <th>W2</th>         <td>    1.0764</td> <td>    0.000</td> <td> 1.02e+04</td> <td> 0.000</td> <td>    1.076</td> <td>    1.077</td>
+</tr>
+<tr>
+  <th>W3</th>         <td>    2.9752</td> <td>    0.000</td> <td> 2.84e+04</td> <td> 0.000</td> <td>    2.975</td> <td>    2.975</td>
+</tr>
+<tr>
+  <th>W4</th>         <td>    0.5833</td> <td>    0.000</td> <td> 5581.928</td> <td> 0.000</td> <td>    0.583</td> <td>    0.584</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td> 0.593</td> <th>  Durbin-Watson:     </th> <td>   2.016</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.744</td> <th>  Jarque-Bera (JB):  </th> <td>   0.606</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td>-0.018</td> <th>  Prob(JB):          </th> <td>   0.739</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 2.989</td> <th>  Cond. No.          </th> <td>    10.5</td>
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
+</div>
+</div>
 <div class="section" id="identifying-the-causal-estimand">
 <h2>Identifying the causal estimand<a class="headerlink" href="#identifying-the-causal-estimand" title="Permalink to this headline">¶</a></h2>
 <p>We now input a causal graph in the DOT graph format.</p>
@@ -1314,7 +1416,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/08-10-dowhy-estimation-methods_26_0.png" src="_images/08-10-dowhy-estimation-methods_26_0.png" />
+<img alt="_images/08-10-dowhy-estimation-methods_29_0.png" src="_images/08-10-dowhy-estimation-methods_29_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1325,7 +1427,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/08-10-dowhy-estimation-methods_27_0.png" src="_images/08-10-dowhy-estimation-methods_27_0.png" />
+<img alt="_images/08-10-dowhy-estimation-methods_30_0.png" src="_images/08-10-dowhy-estimation-methods_30_0.png" />
 </div>
 </div>
 <p>We get a causal graph. Now identification and estimation is done.</p>
