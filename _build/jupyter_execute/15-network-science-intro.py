@@ -842,21 +842,3 @@ print(nx.transitivity(G3))
 # - 梅拉妮·米歇尔 2011 复杂,湖南科学技术出版社
 # - 菲利普-鲍尔 2004 预知社会：群体行为的内在法则，当代中国出版社
 # - 巴拉巴西 2007 链接：网络新科学 湖南科技出版社
-
-# 
-# ```{toctree}
-# :hidden:
-# :titlesonly:
-# 
-# 
-# 16-network-science-models
-# 17-networkx
-# 18-02-network-diffusion
-# 18-03-network-epidemics
-# 18-04-seir-hcd-model
-# 18-network-ergm-siena
-# 18-network-analysis-of-tianya-bbs
-# 19-facebook-ego-netwrok-visualization
-# reproducing_hidagos_result
-# ```
-# 

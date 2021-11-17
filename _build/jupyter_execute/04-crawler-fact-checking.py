@@ -23,31 +23,32 @@
 # 
 # ![image.png](./images/fact3.png)
 
-# In[3]:
+# In[1]:
 
 
 import requests
 from bs4 import BeautifulSoup
 
-path = 'https://vp.fact.qq.com/loadmore?artnum=0&token=U2FsdGVkX18vf24Ll8I4bLXafIv7BY3GfCU0q9PJ%252FhM2kTmyPKf78WYKL5KP%252BGx4&page='
+path = 'https://vp.fact.qq.com/loadmore?artnum=0&token=U2FsdGVkX1%252FAdwQK1w6oSwDysphCNqZMsNahIOyALNiMuwg4EcZjwcBhAg7gk%252FED&page='
+
 url = path + '0'
 content = requests.get(url)
 d = content.json()
 
 
-# In[4]:
+# In[2]:
 
 
 d['content'][0]
 
 
-# In[6]:
+# In[3]:
 
 
-print(*range(74))
+print(*range(80))
 
 
-# In[7]:
+# In[4]:
 
 
 import random
@@ -55,17 +56,17 @@ import random
 random.random()
 
 
-# In[8]:
+# In[5]:
 
 
 from time import sleep
 import random
 
 jsons = []
-for i in range(74):
+for i in range(80):
     print(i)
     sleep(random.random())
-    path = 'https://vp.fact.qq.com/loadmore?artnum=0&token=U2FsdGVkX18vf24Ll8I4bLXafIv7BY3GfCU0q9PJ%252FhM2kTmyPKf78WYKL5KP%252BGx4&page='
+    path = 'https://vp.fact.qq.com/loadmore?artnum=0&token=U2FsdGVkX1%252FAdwQK1w6oSwDysphCNqZMsNahIOyALNiMuwg4EcZjwcBhAg7gk%252FED&page='
     url = path + str(i)
     content = requests.get(url)
     d = content.json()
@@ -73,13 +74,13 @@ for i in range(74):
         jsons.append(j)
 
 
-# In[9]:
+# In[6]:
 
 
 len(jsons)
 
 
-# In[10]:
+# In[7]:
 
 
 import pandas as pd
@@ -90,7 +91,7 @@ df.head()
 # In[11]:
 
 
-df.to_excel('./data/vpqq2021-05-15.xlsx')
+df.to_excel('./data/vpqq2021-10-25.xlsx')
 
 
 # In[ ]:

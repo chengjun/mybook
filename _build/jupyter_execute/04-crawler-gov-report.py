@@ -8,7 +8,7 @@
 # 
 # 
 
-# In[20]:
+# In[1]:
 
 
 import requests
@@ -16,12 +16,10 @@ from bs4 import BeautifulSoup
 
 
 # www.hprc.org.cn/wxzl/wxysl/lczf/
-
-# In[2]:
-
-
-get_ipython().run_cell_magic('html', '', '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" \n    width=900 height=600 \n    src="http://www.hprc.org.cn/wxzl/wxysl/lczf/">\n</iframe>')
-
+# 
+# 另外一个镜像
+# 
+# http://hprc.cssn.cn/wxzl/wxysl/lczf/
 
 # ## Inspect
 # 
@@ -31,7 +29,7 @@ get_ipython().run_cell_magic('html', '', '<iframe frameborder="no" border="0" ma
 # 
 # 
 
-# In[21]:
+# In[3]:
 
 
 # get the link for each year
@@ -86,7 +84,7 @@ content.encoding
 # ### html.parser
 # BeautifulSoup(content, 'html.parser')
 
-# In[22]:
+# In[4]:
 
 
 # Specify the encoding
@@ -94,7 +92,7 @@ content.encoding = 'utf8' # 'gb18030'
 content = content.text
 
 
-# In[23]:
+# In[5]:
 
 
 soup = BeautifulSoup(content, 'html.parser') 
@@ -103,57 +101,47 @@ links = soup.select('.bl a')
 print(links[0])
 
 
-# In[24]:
+# In[8]:
 
 
 len(links)
 
 
-# In[25]:
+# In[9]:
 
 
 links[-1]['href']
 
 
-# In[26]:
+# In[10]:
 
 
 links[0]['href'].split('./')[1]
 
 
-# In[27]:
+# In[12]:
 
 
-url + links[0]['href'].split('./')[1]
+print(url + links[0]['href'].split('./')[1])
 
 
-# In[28]:
+# In[13]:
 
 
 hyperlinks = [url + i['href'].split('./')[1] for i in links]
 hyperlinks[:5]
 
 
-# In[29]:
+# In[14]:
 
 
 hyperlinks[-5:]
 
 
-# In[30]:
+# In[15]:
 
 
-hyperlinks[12] # 2007年有分页
-
-
-# In[44]:
-
-
-from IPython.display import display_html, HTML, IFrame
-
-IFrame(src = 'http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_1/200908/t20090818_3955570.html', width=1000, height=500)
-#HTML('<iframe src=http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_1/200908/t20090818_3955570.html width=1000 height=500></iframe>')
-# 2007年有分页
+print(hyperlinks[14]) # 2007年有分页
 
 
 # ### Inspect 下一页
@@ -166,7 +154,7 @@ IFrame(src = 'http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_1/200908/t200908
 #     - script
 #         - td
 
-# In[31]:
+# In[16]:
 
 
 url_i = 'http://www.hprc.org.cn/wxzl/wxysl/lczf/dishiyijie_1/200908/t20090818_3955570.html'
@@ -180,19 +168,19 @@ soup = BeautifulSoup(content, 'html.parser')
 scripts = soup.select('td script')[0]
 
 
-# In[32]:
+# In[17]:
 
 
 scripts
 
 
-# In[33]:
+# In[18]:
 
 
 scripts.text
 
 
-# In[34]:
+# In[19]:
 
 
 # countPage = int(''.join(scripts).split('countPage = ')\
@@ -203,7 +191,7 @@ countPage = int(scripts.text.split('countPage = ')[1].split('//')[0])
 countPage
 
 
-# In[35]:
+# In[30]:
 
 
 import sys
@@ -229,7 +217,7 @@ def crawler(url_i):
         for i in range(1, countPage):
             url_child = url_i.split('.html')[0] +'_'+str(i)+'.html'
             content = requests.get(url_child)
-            content.encoding = 'gb18030'
+            content.encoding = 'utf8'
             content = content.text
             soup = BeautifulSoup(content, 'html.parser') 
             report_child = ''.join(s.text for s in soup('p'))
@@ -237,7 +225,31 @@ def crawler(url_i):
     return year, report
 
 
-# In[36]:
+# In[26]:
+
+
+hyperlinks[14]
+
+
+# In[31]:
+
+
+year, report = crawler(hyperlinks[14])
+
+
+# In[32]:
+
+
+year
+
+
+# In[34]:
+
+
+report[:30]
+
+
+# In[35]:
 
 
 # 抓取52年政府工作报告内容
@@ -248,7 +260,7 @@ for link in hyperlinks:
     reports[year] = report 
 
 
-# In[37]:
+# In[36]:
 
 
 with open('./data/gov_reports1954-2021.txt', 'w', encoding = 'utf8') as f:
@@ -257,7 +269,7 @@ with open('./data/gov_reports1954-2021.txt', 'w', encoding = 'utf8') as f:
         f.write(line)
 
 
-# In[38]:
+# In[37]:
 
 
 import pandas as pd
@@ -265,7 +277,7 @@ import pandas as pd
 df = pd.read_table('./data/gov_reports1954-2021.txt', names = ['year', 'report'])
 
 
-# In[40]:
+# In[38]:
 
 
 df[:5]

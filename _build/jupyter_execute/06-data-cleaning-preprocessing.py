@@ -26,16 +26,29 @@
 # In[1]:
 
 
+import sys
+
+# flush print
+def flushPrint(d):
+    sys.stdout.write('\r')
+    sys.stdout.write(str(d))
+    sys.stdout.flush()
+
+
+# In[2]:
+
+
 # 按行读取数据
 line_num = 0
 cops_num = 0
+# windows users may need to add encoding = 'utf8' into the folling line.
 with open('/Users/datalab/bigdata/cjc/ows-raw.txt', 'r') as f:
     for i in f:
         line_num += 1
         if 'cops' in i:
             cops_num += 1
         if line_num % 100000 ==0:
-            print(line_num)
+            flushPrint(line_num)
 
 
 # In[2]:

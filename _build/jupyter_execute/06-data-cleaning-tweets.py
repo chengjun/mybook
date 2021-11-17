@@ -49,7 +49,7 @@ print(len(list(lines_csv)))
 # next(lines_csv)
 
 
-# In[5]:
+# In[1]:
 
 
 import pandas as pd
@@ -58,13 +58,13 @@ df = pd.read_csv("./data/ows_tweets_sample.txt",
 df[:3]
 
 
-# In[6]:
+# In[2]:
 
 
 len(df)
 
 
-# In[7]:
+# In[3]:
 
 
 df.Text[0]
@@ -79,7 +79,7 @@ df['From User'][:10]
 # ### 统计发帖数量所对应的人数的分布
 # > 人数在发帖数量方面的分布情况
 
-# In[12]:
+# In[4]:
 
 
 from collections import defaultdict
@@ -88,22 +88,25 @@ for i in df['From User']:
     data_dict[i] +=1 
 
 
-# In[14]:
+# In[5]:
 
 
 list(data_dict.items())[:5]
 #data_dict
 
 
-# In[10]:
+# In[8]:
 
 
 import matplotlib.pyplot as plt
 
-plt.style.use('ggplot')
+plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']  # 用来正常显示中文标签
+plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号, 注意['SimHei']对应这句不行.
+
+plt.style.use('ggplot') 
 
 
-# In[16]:
+# In[9]:
 
 
 plt.hist(data_dict.values())
@@ -114,7 +117,7 @@ plt.ylabel(u'人数', fontsize = 20)
 plt.show()
 
 
-# In[18]:
+# In[10]:
 
 
 tweet_dict = defaultdict(int)
@@ -127,7 +130,7 @@ plt.ylabel(u'人数', fontsize=20 )
 plt.show()
 
 
-# In[17]:
+# In[11]:
 
 
 import numpy as np
@@ -150,7 +153,7 @@ def powerPlot(d_value, d_freq, color, marker):
              r'$\beta$ = ' + str(round(beta,2)) +'\n' + r'$R^2$ = ' + str(round(r2, 2)), fontsize = 20)
 
 
-# In[19]:
+# In[12]:
 
 
 histo, bin_edges = np.histogram(list(data_dict.values()), 15)
@@ -162,7 +165,7 @@ plt.xlabel(u'推特数', fontsize=20)
 plt.show()
 
 
-# In[20]:
+# In[13]:
 
 
 import statsmodels.api as sm
@@ -196,7 +199,7 @@ def powerPlot2(data):
     
 
 
-# In[21]:
+# In[14]:
 
 
 powerPlot2(data_dict.values())
@@ -208,7 +211,7 @@ powerPlot2(data_dict.values())
 pip install powerlaw
 
 
-# In[22]:
+# In[15]:
 
 
 import powerlaw
@@ -223,7 +226,7 @@ def plotPowerlaw(data,ax,col,xlab):
     plt.legend(loc = 0, frameon = False)
 
 
-# In[23]:
+# In[16]:
 
 
 from collections import defaultdict
@@ -233,7 +236,7 @@ for i in df['From User']:
     data_dict[i] += 1
 
 
-# In[24]:
+# In[17]:
 
 
 # 
@@ -256,16 +259,7 @@ tweet = '''RT @AnonKitsu: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W 
             http://ccc.nju.edu.cn RT !!HELP!!!!'''
 
 
-# ### 安装twitter_text
-# 
-# [twitter-text-py](https://github.com/dryan/twitter-text-py/issues/21) could not be used for python 3
-# 
-# Glyph debug the problem, and make [a new repo of twitter-text-py3](https://github.com/glyph/twitter-text-py).
-# 
-# >  pip install twitter-text
-# 
-
-# In[27]:
+# In[18]:
 
 
 #!pip install twitter-text
@@ -275,7 +269,7 @@ import twitter_text
 #Macintosh HD ▸ 用户 ▸ datalab ▸ 应用程序 ▸ anaconda ▸ lib ▸ python3.5 ▸ site-packages
 
 
-# In[28]:
+# In[19]:
 
 
 import re
@@ -289,7 +283,7 @@ rt_user_name = rt_patterns.findall(tweet)[0][1].strip(' @')#.split(':')[0]
 rt_user_name 
 
 
-# In[30]:
+# In[20]:
 
 
 import re
@@ -303,7 +297,7 @@ rt_user_name = rt_patterns.findall(tweet)[0][1].strip(' @').split(':')[0]
 rt_user_name
 
 
-# In[31]:
+# In[21]:
 
 
 import re
@@ -322,7 +316,7 @@ else:
     print('None')
 
 
-# In[32]:
+# In[22]:
 
 
 import re
@@ -337,7 +331,7 @@ def extract_rt_user(tweet):
     return rt_user_name
 
 
-# In[33]:
+# In[23]:
 
 
 tweet = '''RT @chengjun: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELICOPTERS AND PADDYWAGONS!!!! 
@@ -347,7 +341,7 @@ tweet = '''RT @chengjun: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W H
 extract_rt_user(tweet)    
 
 
-# In[34]:
+# In[24]:
 
 
 tweet = '''@chengjun: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELICOPTERS AND PADDYWAGONS!!!! 
@@ -357,7 +351,7 @@ tweet = '''@chengjun: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELI
 print(extract_rt_user(tweet) )
 
 
-# In[35]:
+# In[25]:
 
 
 import csv
@@ -371,7 +365,7 @@ tweet_user_data = [(i[1], i[8]) for i in lines]
 tweet_user_data[:3]
 
 
-# In[36]:
+# In[26]:
 
 
 from collections import defaultdict
@@ -392,7 +386,7 @@ list(rt_dict.items())[:3]
 # 
 # 不含人名、url、各种符号（如RT @等）
 
-# In[37]:
+# In[27]:
 
 
 def extract_tweet_text(tweet, at_names, urls):
@@ -406,7 +400,16 @@ def extract_tweet_text(tweet, at_names, urls):
     return tweet
 
 
-# In[38]:
+# ### 安装twitter_text
+# 
+# [twitter-text-py](https://github.com/dryan/twitter-text-py/issues/21) could not be used for python 3
+# 
+# Glyph debug the problem, and make [a new repo of twitter-text-py3](https://github.com/glyph/twitter-text-py).
+# 
+# >  pip install twitter-text
+# 
+
+# In[28]:
 
 
 import twitter_text

@@ -168,18 +168,3 @@ ax = sns.clustermap(df.corr(), center=0, cmap="vlag",
 
 
 
-
-# 
-# ```{toctree}
-# :hidden:
-# :titlesonly:
-# 
-# 
-# 19-visualization-with-pyecharts
-# 19-visualization-plotly-express
-# 19-visualization-maps-using-folium
-# 19-visualization-datashader
-# 19-visualization-datapane
-# Pantheon
-# ```
-# 

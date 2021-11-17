@@ -5,7 +5,7 @@
 # 
 # # Simulating Network Diffusion With NDlib
 # 
-#  <span><img src=images/network11.png   align='middle'/></span>
+#  <span><img src=images/network11.png   align='center'/></span>
 # 
 # 
 # 
@@ -501,7 +501,7 @@ from ndlib.viz.bokeh.DiffusionPrevalence import DiffusionPrevalence
 from ndlib.viz.bokeh.MultiPlot import MultiPlot
 
 
-# <span><img src=images/network16.png   width = '400px' align='middle'/></span>
+# <span><img src=images/network16.png   width = '400px' align='center'/></span>
 # 
 
 # In[2]:

@@ -713,22 +713,3 @@ plotEvolution(u'马克思主义', 'b', '-', 's')
 
 
 # ![image.png](images/end.png)
-
-# 
-# ```{toctree}
-# :hidden:
-# :titlesonly:
-# 
-# 
-# 10-word2vec
-# 10-doc2vec
-# 11-1-sentiment-analysis-with-dict
-# 11-2-emotion-dict
-# 11-3-NRC-Chinese-dict
-# 11-3-textblob
-# 11-4-sentiment-classifier
-# 11-5-LIWC
-# 12-topic-models-update
-# 12-topic-models-with-turicreate
-# ```
-# 

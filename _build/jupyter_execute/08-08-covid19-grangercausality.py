@@ -19,53 +19,58 @@
 get_ipython().run_cell_magic('html', '', '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" \n    width=900 height=600 \n    src="//xgml.zhiweidata.net/?from=floating#/">\n</iframe>')
 
 
-# In[1]:
+# In[7]:
 
 
 import pylab as plt
 import pandas as pd
 import seaborn as sns
+import numpy as np
 import json
 
+plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']  # 用来正常显示中文标签
+plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号, 注意['SimHei']对应这句不行.
 
-# In[86]:
+
+# In[3]:
 
 
 #j = json.load(open('../data/zhiwei_line.json'))
-j = json.load(open('../data/zhiwei_line0417.json'))
+j = json.load(open('./data/zhiwei_line0417.json'))
 df = pd.DataFrame(j)
 df.tail()
 
 
-# In[53]:
+# In[4]:
 
 
 df.info()
 
 
-# In[54]:
+# In[5]:
 
 
 df['time'][:3]
 
 
-# In[97]:
+# In[11]:
 
 
-df['heat'] = [np.float(i) for i in df['heat']]
-df['case'] = [np.int(i) for i in df['case']]
+df['heat'] = [np.float64(i) for i in df['heat']]
+df['case'] = [np.int32(i) for i in df['case']]
 
 
-# In[98]:
+# In[12]:
 
 
 df['heat']
 
 
-# In[107]:
+# In[15]:
 
 
-plt.figure(figsize = [10, 6])
+plt.style.use('ggplot')
+plt.figure(figsize = [10, 6], dpi = 100)
 plt.plot(df['heat'], df['case'], 'bo')
 plt.yscale('log')
 #plt.xscale('log')
@@ -75,7 +80,7 @@ plt.xlim([100000, 800000])
 plt.show()
 
 
-# In[110]:
+# In[16]:
 
 
 MIN = df['heat'].min()
@@ -90,7 +95,7 @@ plt.yscale('log')
 plt.show()
 
 
-# In[112]:
+# In[17]:
 
 
 MIN = df['case'].min()+1
@@ -105,7 +110,7 @@ plt.yscale('log')
 plt.show()
 
 
-# In[109]:
+# In[18]:
 
 
 plt.hist( df['heat'], bins = 50)
@@ -114,7 +119,7 @@ plt.xscale('log')
 plt.show()
 
 
-# In[108]:
+# In[19]:
 
 
 #plt.hist( df['heat'], bins = 50)
@@ -124,24 +129,26 @@ plt.xscale('log')
 plt.show()
 
 
-# In[113]:
+# In[31]:
 
 
 # plot
-fig = plt.figure(figsize=(12,6),dpi = 200)
+fig = plt.figure(figsize=(30,10),dpi = 200)
 plt.style.use('fivethirtyeight')
+
+#plt.tick_params(labelsize = 20) 
 
 ax1=fig.add_subplot(111)
 ax1.plot(df['time'],  df['heat'], 'r-s')
-ax1.set_ylabel('舆论热度', fontsize = 16)
+ax1.set_ylabel('舆论热度', fontsize = 26)
 ax1.tick_params(axis='x', rotation=60)
-ax1.legend(('舆论热度',),loc='upper left')
+ax1.legend(('舆论热度',),loc='upper left', fontsize = 26)
 #ax1.set_yscale('log')
 
 ax2=ax1.twinx()
 ax2.plot(df['time'], df['case'], 'g-o')
-ax2.set_ylabel('新增确诊', fontsize = 16)
-ax2.legend(('新增确诊',),loc='upper right')
+ax2.set_ylabel('新增确诊', fontsize = 26)
+ax2.legend(('新增确诊',),loc='upper right', fontsize = 26)
 #ax2.set_yscale('log')
 
 plt.show()
@@ -230,7 +237,7 @@ gc_res1 = grangercausalitytests(data1,4)
 
 # ### without peak
 
-# In[76]:
+# In[32]:
 
 
 df['case'][df['time']=='2020-02-12'] = np.nan
@@ -238,7 +245,7 @@ df['case'][df['time']=='2020-02-13'] = np.nan
 df = df.fillna(method='ffill')
 
 
-# In[77]:
+# In[33]:
 
 
 # df = pd.read_excel('zhiwei_line_no_peak.xlsx')
@@ -247,21 +254,21 @@ df['case'] = [int(i) for i in df['case']]
 df.tail()
 
 
-# In[78]:
+# In[36]:
 
 
 # plot
-fig = plt.figure(figsize=(12,6),dpi = 200)
+fig = plt.figure(figsize=(30,10),dpi = 200)
 plt.style.use('fivethirtyeight')
 ax1=fig.add_subplot(111)
 ax1.plot(df['time'],  df['heat'], 'r-s')
-ax1.set_ylabel('舆论热度', fontsize = 16)
+ax1.set_ylabel('舆论热度', fontsize = 26)
 ax1.tick_params(axis='x', rotation=60)
-ax1.legend(('舆论热度',),loc='upper left')
+ax1.legend(('舆论热度',),loc='upper left', fontsize = 26)
 ax2=ax1.twinx()
 ax2.plot(df['time'], df['case'], 'g-o')
-ax2.set_ylabel('新增确诊', fontsize = 16)
-ax2.legend(('新增确诊',),loc='upper right')
+ax2.set_ylabel('新增确诊', fontsize = 26)
+ax2.legend(('新增确诊',),loc='upper right', fontsize = 26)
 plt.show()
 
 

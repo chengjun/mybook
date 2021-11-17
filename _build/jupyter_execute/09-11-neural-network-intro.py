@@ -784,17 +784,3 @@ class Net(nn.Module):
 # 
 # ![image.png](./images/end.png)
 # 
-
-# 
-# ```{toctree}
-# :hidden:
-# :titlesonly:
-# 
-# 
-# 09-13-cnn
-# 09-14-rnn
-# 09-12-hand-written-digits
-# 09-15-cifar10
-# 09-16-pytorch_vgg_pretrained
-# ```
-# 

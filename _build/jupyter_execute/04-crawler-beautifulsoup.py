@@ -59,7 +59,7 @@
 # http://www.crummy.com/software/BeautifulSoup/bs4/doc/
 # 
 # 
-# http://computational-class.github.io/bigdata/data/test.html
+# https://socratesacademy.github.io/bigdata/data/test.html
 # 
 
 # 
@@ -115,7 +115,7 @@ content = requests.get(url)
 print(content.text)
 
 
-# In[4]:
+# In[5]:
 
 
 content.encoding
@@ -211,19 +211,19 @@ soup.select('body > p.title > b')[0].text
 
 # ### Select 方法: 通过标签名查找
 
-# In[11]:
+# In[22]:
 
 
 soup.select('title')[0].text
 
 
-# In[12]:
+# In[23]:
 
 
-soup.select('a')
+soup.select('a') 
 
 
-# In[13]:
+# In[24]:
 
 
 soup.select('b')
@@ -231,19 +231,19 @@ soup.select('b')
 
 # ### Select 方法: 通过类名查找
 
-# In[14]:
+# In[25]:
 
 
 soup.select('.title')
 
 
-# In[15]:
+# In[26]:
 
 
 soup.select('.sister')
 
 
-# In[16]:
+# In[27]:
 
 
 soup.select('.story')
@@ -251,13 +251,13 @@ soup.select('.story')
 
 # ### Select 方法: 通过id名查找
 
-# In[17]:
+# In[28]:
 
 
 soup.select('#link1')
 
 
-# In[19]:
+# In[31]:
 
 
 soup.select('#link1')[0]['href']
@@ -270,7 +270,7 @@ soup.select('#link1')[0]['href']
 # - 例如查找 p 标签中，id 等于 link1的内容
 #  
 
-# In[20]:
+# In[32]:
 
 
 soup.select('p #link1')
@@ -285,228 +285,161 @@ soup.select('p #link1')
 # 
 # 
 
-# In[21]:
+# In[33]:
 
 
 soup.select("head > title")
 
 
-# In[22]:
+# In[34]:
 
 
 soup.select("body > p")
 
 
 # ## find_all方法
+# 
+# - 找到所有的：
+#     - `find_all`
+#     - `()`
+# - 只找一个：
+#     - `find`
+#     - `.`
+# - `find_all('tag name', {'class or id': 'value'})`
 
-# In[23]:
+# In[40]:
 
 
-#soup('p')
 soup.find_all('p')
 
 
-# In[29]:
+# In[72]:
 
 
-soup.find_all('p')  
+soup('p')
 
 
-# In[24]:
+# In[73]:
 
 
-[i.text for i in soup('p')]
+soup.find('p')
 
 
-# In[25]:
+# In[74]:
+
+
+soup.p
+
+
+# In[42]:
+
+
+[i.text.replace('\n', ' ') for i in soup('p')]
+
+
+# In[43]:
 
 
 for i in soup('p'):
     print(i.text)
 
 
-# In[26]:
+# In[44]:
 
 
 for tag in soup.find_all(True):
     print(tag.name)
 
 
-# In[27]:
-
-
-soup('head') # or soup.head
-
-
-# In[28]:
-
-
-soup('body') # or soup.body
-
-
-# In[29]:
+# In[48]:
 
 
 soup('title')  # or  soup.title
 
 
-# In[30]:
-
-
-soup('p')
-
-
-# In[40]:
-
-
-soup.p
-
-
-# In[33]:
+# In[50]:
 
 
 soup.title.name
 
 
-# In[34]:
+# In[53]:
 
 
 soup.title.string
 
 
-# In[36]:
+# In[54]:
 
 
 soup.title.text
 # 推荐使用text方法
 
 
-# In[38]:
+# In[56]:
 
 
 soup.title.parent.name
 
 
-# In[37]:
-
-
-soup.p
-
-
-# In[38]:
-
-
-soup.p['class']
-
-
-# In[42]:
-
-
-soup.find_all('p', {'class', 'story'}) 
-
-
-# In[43]:
-
-
-#soup.find_all('p', class_= 'title')
-
-
-# In[44]:
-
-
-soup.find_all('a', {'class', 'sister'})
-
-
-# In[34]:
-
-
-soup.find_all('p', {'class', 'story'})[0].find_all('a')
-
-
-# In[45]:
-
-
-soup.a
-
-
-# In[46]:
-
-
-soup('a')
-
-
-# In[48]:
-
-
-soup.find(id="link1")
-
-
-# In[49]:
+# In[64]:
 
 
 soup.find_all('a')
 
 
-# In[50]:
+# In[97]:
 
 
-soup.find_all('a', {'class', 'sister'}) # compare with soup.find_all('a')
+soup.find_all('a', {'class':'sister'})
 
 
-# In[51]:
+# In[98]:
 
 
-soup.find_all('a', {'class', 'sister'})[0]
+soup.find_all('a', {'class': 'sister'})[0]
 
 
-# In[57]:
+# In[99]:
 
 
-soup.find_all('a', {'class', 'sister'})[0].text 
+soup.find_all('a', {'class': 'sister'})[0].text 
 
 
-# In[58]:
+# In[100]:
 
 
-soup.find_all('a', {'class', 'sister'})[0]['href']
+soup.find_all('a', {'class':'sister'})[0]['href']
 
 
-# In[59]:
+# In[101]:
 
 
-soup.find_all('a', {'class', 'sister'})[0]['id']
+soup.find_all('a', {'class': 'sister'})[0]['id']
 
 
-# In[74]:
+# In[96]:
+
+
+soup.find_all('a', {'id':'link1'})#[0]['id']
+
+
+# In[68]:
 
 
 soup.find_all(["a", "b"])
 
 
-# In[75]:
+# In[63]:
+
+
+soup.find(id="link1")
+
+
+# In[69]:
 
 
 print(soup.get_text())
 
 
 # ![image.png](./images/end.png)
-
-# 
-# ```{toctree}
-# :hidden:
-# :titlesonly:
-# 
-# 
-# 04-crawler-fact-checking
-# 04-crawler-13chambers
-# 04-crawler-wechat
-# 04-crawler-douban
-# 04-crawler-gov-report
-# 04-crawler-cppcc
-# 04-crawler-netease-music
-# 04-crawler-selenium
-# 04-crawler-selenium-music-history
-# 04-crawler-selenium-people-com-search
-# 04-crawler-tripadvisor
-# ```
-# 

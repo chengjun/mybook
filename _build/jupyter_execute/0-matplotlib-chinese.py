@@ -4,6 +4,24 @@
 # # 解决Matplotlib绘图显示中文问题
 # 
 
+# In[18]:
+
+
+import pylab as plt
+plt.style.use('seaborn')
+plt.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
+plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
+
+x = range(100)
+y = [i**2 for i in x] 
+plt.plot(x, y, 'r--', label = '人啊，认识你自己！')
+plt.xlabel('我一无所知！', fontsize = 16)
+plt.ylabel('未经省察的人生不值得度过。', fontsize = 16)
+plt.title('苏格拉底', fontsize = 20)
+plt.legend(fontsize = 16)
+plt.show()
+
+
 # ## 1. 下载微软雅黑字体
 # 
 # https://github.com/computational-class/ccbook/blob/master/data/msyh.ttf

@@ -69,7 +69,7 @@ pip install flownetwork
 
 from flownetwork import flownetwork as fn
 import networkx as nx
-import matplotlib.pyplot as plt
+import pylab as plt
 import numpy as np
 
 print(fn.__version__)
@@ -81,7 +81,7 @@ print(fn.__version__)
 help(fn.constructFlowNetwork)
 
 
-# In[4]:
+# In[3]:
 
 
 # constructing a flow network
@@ -114,7 +114,7 @@ nx.draw_networkx_labels(gd,pos,font_size=18)
 plt.show()
 
 
-# In[6]:
+# In[4]:
 
 
 nx.info(gd)
@@ -134,38 +134,38 @@ m
 fn.networkDissipate(gd)
 
 
-# In[9]:
+# In[5]:
 
 
 import random, datetime
 import numpy as np
-import matplotlib.pyplot as plt
+import pylab as plt
 import matplotlib
 import statsmodels.api as sm
 from scipy.stats import norm
 from scipy.stats.stats import pearsonr
 
 
-# In[11]:
+# In[7]:
 
 
 with open('./data/the_republic_plato_gutenberg_pg1497.txt', 'r') as f:
     lines = f.readlines()
 
 
-# In[12]:
+# In[8]:
 
 
 len(lines)
 
 
-# In[13]:
+# In[9]:
 
 
 type(lines)
 
 
-# In[24]:
+# In[10]:
 
 
 lines[8520:8530]
@@ -174,27 +174,27 @@ lines[8520:8530]
 # ## Variable Type
 # 
 
-# In[27]:
+# In[15]:
 
 
 # str, int, float, bool
 str(3)
 
 
-# In[28]:
+# In[16]:
 
 
 "chengjun wang"
 
 
-# In[29]:
+# In[17]:
 
 
 # int
 int('5') 
 
 
-# In[31]:
+# In[18]:
 
 
 # float
@@ -204,38 +204,37 @@ float(str(7.1))
 # In[32]:
 
 
-range(10)
+range(10) 
 
 
-# In[33]:
+# In[20]:
 
 
 # for i in range(1, 10):
 #     print(i)
-
-range(1,10) 
+range(1, 10)
 
 
 # ## dir & help
 # 
 # 当你想要了解对象的详细信息时使用
 
-# In[26]:
+# In[21]:
 
 
-dir(str) 
+dir(str) [-10:]
 
 
-# In[36]:
+# In[22]:
 
 
 'cheng'.capitalize()
 
 
-# In[7]:
+# In[23]:
 
 
-dir(str)[-10:]
+#dir(str)[-10:]
 
 
 # In[63]:
@@ -256,66 +255,67 @@ help(str)
 'socrates the king'.__add__(' is the greatest.')
 
 
-# In[46]:
+# In[24]:
 
 
 x = ' Hello WorlD  '
 dir(x)[-10:] 
 
 
-# In[47]:
+# In[25]:
 
 
 # lower
 x.lower() 
 
 
-# In[49]:
+# In[26]:
 
 
 # upper
 x.upper()
 
 
-# In[50]:
+# In[28]:
 
 
 # rstrip
-x.lstrip()
+x.rstrip()
 
 
-# In[48]:
+# In[29]:
 
 
 # strip
 x.strip()
 
 
-# In[51]:
+# In[33]:
 
 
 # replace
-x.replace('lo', '')
+x.replace('lo', 'l')
 
 
-# In[52]:
+# In[38]:
 
 
 # split
+# x.lower().strip().split(' ')
 x.split('lo')
 
 
-# In[53]:
+# In[39]:
 
 
 # join 
-','.join(['a', 'b'])
+', '.join(['a', 'b'])
 
 
 # ## type
 # 当你想要了解变量类型时使用type
 
-# In[59]:
+# In[40]:
 
 
 x = 'hello world'
@@ -326,7 +326,7 @@ type(x)
 # list, tuple, set, dictionary, array
 # 
 
-# In[54]:
+# In[41]:
 
 
 l = [1,2,3,3] # list
@@ -337,7 +337,7 @@ a = np.array(l) # array
 print(l, t, s, d, a)
 
 
-# In[60]:
+# In[42]:
 
 
 l = [1,2,3,3] # list
@@ -345,24 +345,24 @@ l.append(4)
 l
 
 
-# In[57]:
+# In[43]:
 
 
 d = {'a':1,'b':2,'c':3} # dict
 d.keys()
 
 
-# In[58]:
+# In[44]:
 
 
 d = {'a':1,'b':2,'c':3} # dict
 d.values()
 
 
-# In[59]:
+# In[48]:
 
 
-d = {'a':1,'b':2,'c':3} # dict
+d = {'a':1,'b':3,'c':3} # dict
 d['b']
 
 
@@ -375,7 +375,7 @@ d.items()
 
 # ## 定义函数
 
-# In[64]:
+# In[49]:
 
 
 def devidePlus(m, n): # 结尾是冒号
@@ -385,40 +385,40 @@ def devidePlus(m, n): # 结尾是冒号
 
 # ## For 循环
 
-# In[65]:
+# In[50]:
 
 
 range(10)
 
 
-# In[66]:
+# In[51]:
 
 
 range(1, 10)  
 
 
-# In[67]:
+# In[52]:
 
 
 for i in range(10):
     print(i, i*10, i**2)
 
 
-# In[68]:
+# In[53]:
 
 
 for i in range(10):
     print(i*10) 
 
 
-# In[73]:
+# In[54]:
 
 
 for i in range(10):
     print(devidePlus(i, 2))
 
 
-# In[71]:
+# In[55]:
 
 
 # 列表内部的for循环
@@ -428,11 +428,11 @@ r
 
 # ## map函数
 
-# In[74]:
+# In[58]:
 
 
 def fahrenheit(T):
-    return ((float(9)/5)*T + 32)
+    return (9/5)*T + 32
 
 temp = [0, 22.5, 40,100]
 F_temps = map(fahrenheit, temp)
@@ -440,7 +440,7 @@ F_temps = map(fahrenheit, temp)
 print(*F_temps)
 
 
-# In[13]:
+# In[59]:
 
 
 m1 = map(devidePlus, [4,3,2], [2, 1, 5])
@@ -449,7 +449,7 @@ print(*m1)
 # 注意： 将（4， 2)作为一个组合进行计算，将（3， 1）作为一个组合进行计算
 
 
-# In[75]:
+# In[60]:
 
 
 m2 = map(lambda x, y: x + y, [1, 3, 5, 7, 9], [2, 4, 6, 8, 10])
@@ -465,10 +465,10 @@ print(*m3)
 
 # ## if elif else
 
-# In[37]:
+# In[61]:
 
 
-j = 5
+j = 5.5
 if j%2 == 1:
     print(r'余数是1')
 elif j%2 ==0:
@@ -477,7 +477,7 @@ else:
     print(r'余数既不是1也不是0')
 
 
-# In[16]:
+# In[62]:
 
 
 x = 5
@@ -495,7 +495,7 @@ print(x, y, z)
 
 # ## while循环
 
-# In[17]:
+# In[63]:
 
 
 j = 0
@@ -505,7 +505,7 @@ while j <10:
     
 
 
-# In[40]:
+# In[64]:
 
 
 j = 0
@@ -515,7 +515,7 @@ while j <10:
     j+=1 # avoid dead loop 
 
 
-# In[41]:
+# In[65]:
 
 
 j = 0
@@ -528,26 +528,24 @@ while j <50:
     
 
 
-# In[77]:
+# In[66]:
 
 
 a = 4
 while a: # 0, None, False
     print(a) 
     a -= 1
-    if a < 0:
+    if a < 2:
         a = None # []
 
 
 # ## try except 
 
-# In[80]:
+# In[70]:
 
 
 def devidePlus(m, n): # 结尾是冒号
     return m/n+ 1 # 注意：空格
-
-
 for i in [2, 0, 5]:
     try:
         print(devidePlus(4, i))
@@ -556,61 +554,61 @@ for i in [2, 0, 5]:
         pass
 
 
-# In[47]:
+# In[73]:
 
 
 alist = [[1,1], [0, 0, 1]]
-for aa in alist:
+for i in alist:
     try:
-        for a in aa:
-            print(10 / a)
+        for j in i:
+            print(10 / j)
     except Exception as e:
         print(e)
         pass
 
 
-# In[46]:
+# In[74]:
 
 
 alist = [[1,1], [0, 0, 1]]
-for aa in alist:
-    for a in aa:
+for i in alist:
+    for j in i:
         try:
-            print(10 / a)
+            print(10 / j)
         except Exception as e:
-            print(e)
+            print(j, e)
             pass
 
 
 # ## Write and Read data
 
-# In[82]:
+# In[75]:
 
 
 data =[[i, i**2, i**3] for i in range(10)] 
 data
 
 
-# In[83]:
+# In[76]:
 
 
 for i in data:
     print('\t'.join(map(str, i)))  
 
 
-# In[84]:
+# In[77]:
 
 
 type(data)
 
 
-# In[85]:
+# In[78]:
 
 
 len(data)
 
 
-# In[86]:
+# In[79]:
 
 
 data[0]
@@ -631,7 +629,7 @@ data =[[i, i**2, i**3] for i in range(10000)]
 f = open("data_write_to_file1.txt", "w")
 for i in data:
     f.write('\t'.join(map(str,i)) + '\n')
-f.close()
+f.close() 
 
 
 # In[89]:
@@ -642,22 +640,22 @@ with open('data_write_to_file1.txt','r') as f:
 data[:5]
 
 
-# In[91]:
+# In[82]:
 
 
-with open('data_write_to_file1.txt','r') as f:
+with open('./data/data_write_to_file1.txt','r') as f:
     data = f.readlines(1000) #bytes 
 len(data) 
 
 
-# In[93]:
+# In[84]:
 
 
-with open('data_write_to_file1.txt','r') as f:
+with open('./data/data_write_to_file1.txt','r') as f:
     print(f.readline())
 
 
-# In[94]:
+# In[85]:
 
 
 f = [1, 2, 3, 4, 5]
@@ -669,13 +667,16 @@ for k, i in enumerate(f):
 #             print(i)
 
 
-# In[101]:
+# In[88]:
 
+
+from time import sleep
 
 total = 0
-with open('data_write_to_file1.txt','r') as f:
+with open('./data/data_write_to_file1.txt','r') as f:
     for k, i in enumerate(f):
         if k % 1000 ==0:
+            sleep(1)
             print(k)
         total += sum([int(j) for j in i.strip().split('\t')])
 
@@ -691,7 +692,7 @@ with open('../data/data_write_to_file.txt','r') as f:
             print(i)
 
 
-# In[33]:
+# In[89]:
 
 
 data = []
@@ -703,33 +704,34 @@ data.append(line)
 data
 
 
-# In[102]:
+# In[96]:
 
 
 # 读取数据
 data = []
-with open('data_write_to_file1.txt','r') as f:
+with open('./data/data_write_to_file1.txt','r') as f:
     for line in f:
         line = line.replace('\n', '').split('\t')
         line = [int(i) for i in line]
         data.append(line)
-data
+len(data)
+#data[-5:]
 
 
-# In[60]:
+# In[98]:
 
 
 # 读取数据
 data = []
-with open('../data/data_write_to_file.txt','r') as f:
+with open('./data/data_write_to_file.txt','r') as f:
     for line in f:
         line = line.replace('\n', '').split('\t')
         line = [int(i) for i in line]
         data.append(line)
-data
+len(data)
 
 
-# In[103]:
+# In[99]:
 
 
 import pandas as pd
@@ -741,12 +743,12 @@ import pandas as pd
 help(pd.read_csv)
 
 
-# In[105]:
+# In[108]:
 
 
-df = pd.read_csv('data_write_to_file1.txt', 
+df = pd.read_csv('./data/data_write_to_file1.txt', 
                  sep = '\t', names = ['a', 'b', 'c'])
-df[:5]
+df.head()
 
 
 # ## 保存中间步骤产生的字典数据
@@ -760,9 +762,10 @@ with open('./data/save_dict.json', 'w') as f:
     json.dump(data_dict, f)
 
 
-# In[111]:
+# In[109]:
 
 
+import json
 dd = json.load(open("./data/save_dict.json"))
 dd
 
@@ -775,14 +778,14 @@ dd
 
 
 data_list = list(range(10))
-with open('../data/save_list.json', 'w') as f:
+with open('./data/save_list.json', 'w') as f:
     json.dump(data_list, f)
 
 
-# In[72]:
+# In[110]:
 
 
-dl = json.load(open("../data/save_list.json"))
+dl = json.load(open("./data/save_list.json"))
 dl
 
 
@@ -1022,16 +1025,3 @@ plt.show()
 
 # ## This is the end.
 # > Thank you for your attention.
-
-# 
-# ```{toctree}
-# :hidden:
-# :titlesonly:
-# 
-# 
-# 0-jupyter-notebook
-# 0-slides
-# 0-turicreate
-# 0-matplotlib-chinese
-# ```
-# 

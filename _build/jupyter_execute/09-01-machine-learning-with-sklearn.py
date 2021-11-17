@@ -705,21 +705,3 @@ for i, ax in enumerate(axes.flat):
 # Armed with this information about the estimator API, you can explore the Scikit-Learn documentation and begin trying out various models on your data.
 # 
 # In the next section, we will explore perhaps the most important topic in machine learning: how to select and validate your model.
-
-# 
-# ```{toctree}
-# :hidden:
-# :titlesonly:
-# 
-# 
-# 09-03-hyperparameters-and-model-validation
-# 09-04-feature-engineering
-# 09-05-naive-bayes
-# 09-06-linear-regression
-# 09-07-support-vector-machines
-# 09-08-random-forests
-# 09-09-googleflustudy
-# 09-10-future-employment
-# 09-grf
-# ```
-# 

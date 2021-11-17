@@ -42,7 +42,8 @@
 #     
 # `The theory of Forms` or `theory of Ideas` is a philosophical theory, concept, or world-view, attributed to Plato, that the `physical world` is not as real or true as timeless, absolute, unchangeable `ideas`.
 
-# <img src = './img/stats/plato2.png' width = '150px' align = 'right'> 
+# <img src = 'img/stats/plato2.png' width = '150px' align = 'right'> 
+# 
 # 真实的知识存在于普遍而永恒的法则之中。
 # 
 # The physical world of becoming is an imitation of the mathematical world of being.
@@ -694,16 +695,23 @@ stats.ttest_ind(income_male, income_female)
 # 
 # Step 1: Calculate the mean within each group:
 # 
+# $$
 # \begin{aligned}{\overline {Y}}_{1}&={\frac {1}{6}}\sum Y_{1i}={\frac {6+8+4+5+3+4}{6}}=5\\{\overline {Y}}_{2}&={\frac {1}{6}}\sum Y_{2i}={\frac {8+12+9+11+6+8}{6}}=9\\{\overline {Y}}_{3}&={\frac {1}{6}}\sum Y_{3i}={\frac {13+9+11+8+7+12}{6}}=10\end{aligned}
+# $$
 # 
 # 
 # 
 # Step 2: Calculate the overall mean:
-# $\overline{Y}=\frac{\sum _{i} \overline{Y_i}}{a}=\frac {\overline{Y_1}+\overline{Y_2}+\overline{Y_3}}{a}=\frac {5+9+10}{3}=8$ where a is the number of groups.
+# 
+# $\overline{Y}=\frac{\sum _{i} \overline{Y_i}}{a}=\frac {\overline{Y_1}+\overline{Y_2}+\overline{Y_3}}{a}=\frac {5+9+10}{3}=8$ 
+# 
+# where $a$ is the number of groups.
 
 # Step 3: Calculate the "between-group" sum of squared differences:
 # 
+# $$
 # \begin{aligned}S_{B}&=n({\overline {Y}}_{1}-{\overline {Y}})^{2}+n({\overline {Y}}_{2}-{\overline {Y}})^{2}+n({\overline {Y}}_{3}-{\overline {Y}})^{2}\\[8pt]&=6(5-8)^{2}+6(9-8)^{2}+6(10-8)^{2}=84\end{aligned}
+# $$
 # 
 # where n is the number of data values per group.
 # 
@@ -726,7 +734,9 @@ stats.ttest_ind(income_male, income_female)
 # 
 # The within-group sum of squares:
 # 
+# $$
 # \begin{aligned}S_{W}=&(1)^{2}+(3)^{2}+(-1)^{2}+(0)^{2}+(-2)^{2}+(-1)^{2}+\\&(-1)^{2}+(3)^{2}+(0)^{2}+(2)^{2}+(-3)^{2}+(-1)^{2}+\\&(3)^{2}+(-1)^{2}+(1)^{2}+(-2)^{2}+(-3)^{2}+(2)^{2}= 68\\\end{aligned}
+# $$
 
 # The within-group degrees of freedom is
 # 
@@ -989,24 +999,3 @@ print( expected )
 # ![image.png](./images/statistics.png)
 
 # ![image.png](./images/end.png)
-
-# 
-# ```{toctree}
-# :hidden:
-# :titlesonly:
-# 
-# 
-# 08-02-kl-divergence
-# 08-02-linear-algebra
-# 08-03-distributions
-# 08-03-probability
-# 08-04-hypothesis-inference
-# 08-05-gradient-descent
-# 08-06-regression
-# 08-06-statsmodels
-# 08-07-analyzing-titanic-dataset
-# 08-07-covid19-pew-survey
-# 08-08-covid19-grangercausality
-# 08-09-survival-analysis
-# ```
-# 

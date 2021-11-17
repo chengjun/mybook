@@ -26,14 +26,15 @@
 print(*range(1, 3))
 
 
-# In[5]:
+# In[12]:
 
 
+#<a href="/cnpeople/search.do?pageNum=2&amp;keyword=%D0%C2%B9%DA&amp;siteName=news&amp;facetFlag=false&amp;nodeType=belongsId&amp;nodeId=">2</a>
 url = 'http://search.people.com.cn/cnpeople/search.do?pageNum='
-path = '&keyword=%D0%C2%B9%DA+%D6%D0%D2%BD&siteName=news&facetFlag=null&nodeType=belongsId&nodeId='
-page_num = range(1, 3)
+path = '&keyword=%D0%C2%B9%DA&siteName=news&facetFlag=null&nodeType=belongsId&nodeId='
+page_num = range(1, 10)
 urls = [url+str(i)+path for i in page_num]
-for i in urls[-3:]:
+for i in urls:
     print(i)
     
 
@@ -65,7 +66,14 @@ soup = BeautifulSoup(content.text, 'html.parser')
 soup
 
 
-# In[6]:
+# In[4]:
+
+
+for i in urls:
+    print(i)
+
+
+# In[13]:
 
 
 from selenium import webdriver
@@ -141,7 +149,7 @@ df = pd.DataFrame(dat, columns = ['pagenum', 'url', 'title', 'time'])
 df.head()
 
 
-# In[16]:
+# In[9]:
 
 
 len(df)
@@ -155,24 +163,24 @@ df.to_csv('../data/people_com_search20200606.csv', index = False)
 
 # ## Reading data with Pandas
 
-# In[20]:
+# In[16]:
 
 
-with open('../data/people_com_search20200606.csv', 'r') as f:
+with open('./data/people_com_search20200606.csv', 'r') as f:
     lines = f.readlines()
 len(lines)
 
 
-# In[21]:
+# In[17]:
 
 
 import pandas as pd
-df2 = pd.read_csv('../data/people_com_search20200606.csv')
+df2 = pd.read_csv('./data/people_com_search20200606.csv')
 df2.head()
 len(df2)
 
 
-# In[24]:
+# In[18]:
 
 
 for i in df2['url'].tolist()[:10]:

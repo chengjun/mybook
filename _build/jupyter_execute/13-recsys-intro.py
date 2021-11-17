@@ -231,7 +231,7 @@ topMatches(critics,'Toby',n=3) # topN
 
 # ## 1.1 Recommending Items
 # 
-# <div><img src="images/recsys2.png" width =1000></div>
+# <img src="images/recsys2.png" width =1000>
 
 #  Toby相似的五个用户（Rose, Reymour, Puig, LaSalle, Matthews）及相似度（依次为0.99， 0.38， 0.89， 0.92, 0.66）
 # - 这五个用户看过的三个电影（Night,Lady, Luck）及其评分
@@ -351,7 +351,7 @@ itemsim=calculateSimilarItems(critics)
 itemsim['Superman Returns']
 
 
-# <div><img src="images/recsys3.png" width = 1200></div>
+# <img src="images/recsys3.png" width = 1200>
 
 # Toby看过三个电影（snakes、Superman、dupree）和评分（依次是4.5、4.0、1.0）
 # - 表格2-3给出这三部电影与另外三部电影的相似度
@@ -559,20 +559,10 @@ getRecommendations(prefs,'87')[0:30]
 
 # ### Item-based filtering
 
-# In[44]:
+# itemsim=calculateSimilarItems(prefs,n=50)
 
+# getRecommendedItems(prefs,itemsim,'87')[0:30]
 
-itemsim=calculateSimilarItems(prefs,n=50)
-
-
-# In[95]:
-
-
-getRecommendedItems(prefs,itemsim,'87')[0:30]
-
-
-# <div><img src=attachment:image.png width = 500 align='right'></div>
-# 
 # Libraries:
 # - [Surprise](https://github.com/NicolasHug/Surprise): a Python scikit building and analyzing recommender systems that deal with explicit rating data.
 # - [LightFM](https://github.com/lyst/lightfm): a hybrid recommendation algorithm in Python
@@ -780,16 +770,3 @@ for i in range(5):
 # - Toby Segaran, 2007, Programming Collective Intelligence. O'Reilly. Chapter 2 Making Recommendations
 #     - programming-collective-intelligence-code/blob/master/chapter2/recommendations.py
 # - 项亮 2012 推荐系统实践 人民邮电出版社
-
-# 
-# ```{toctree}
-# :hidden:
-# :titlesonly:
-# 
-# 
-# 13-recsys-latent-factor-model
-# 13-recsys-intro-surprise
-# 14-millionsong
-# 14-movielens
-# ```
-# 

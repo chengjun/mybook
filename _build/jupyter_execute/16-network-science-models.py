@@ -185,7 +185,7 @@
 # 
 # L. Backstrom, P. Boldi, M. Rosa, J. Ugander, and S. Vigna. Four degrees of separation. In ACM Web Science 2012: Conference Proceedings, pages 45−54. ACM Press, 2012.
 
-# <div><img src="images/network5.png" width=1000></div>
+# <img src="images/network5.png" width=1000>
 
 # ### 大的聚集系数与小的网络直径如何并存？
 # 
@@ -198,7 +198,7 @@
 # In lattices the path lengths are significantly longer than in a random network.
 # 
 
-# <div><img src = 'images/network6.png' width = 800px></div>
+# <img src = 'images/network6.png' width = 800px>
 # 
 # 
 
@@ -220,7 +220,7 @@
 # - For fixed $<k>$, the larger the network, the smaller is a node’s clustering coefficient.
 # - The local clustering coefficient of a node is **independent** of the node’s degree.
 
-# <div><img src = 'images/network7.png' width = 1000px></div>
+# <img src = 'images/network7.png' width = 1000px>
 # 
 # 
 
@@ -252,7 +252,7 @@
 # - An extension of the random network model proposed by Watts and Strogatz [1998] addresses the coexistence of high <C> and the small world property. 
 # - It fails to explain, however, **why high-degree nodes have a smaller clustering coefficient than low-degree nodes**.
 
-# <div><img src = 'images/network8.png' width = 1000px></div>
+# <img src = 'images/network8.png' width = 1000px>
 # 
 # 
 # REAL NETWORKS ARE NOT POISSON

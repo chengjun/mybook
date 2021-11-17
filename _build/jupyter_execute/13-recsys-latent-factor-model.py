@@ -262,7 +262,7 @@ predictions
 
 # ![image.png](images/latent13.png)
 
-# <div><img src=attachment:image.png width = 800></div>
+# <img src=img/recsys_more.png width = 800>
 
 # ## Further reading:
 # Y. Koren, Collaborative filtering with temporal dynamics, KDD ’09

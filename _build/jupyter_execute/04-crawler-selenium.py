@@ -23,7 +23,7 @@
 # 上面我们知道了selenium支持很多的浏览器，但是如果想要声明并调用浏览器则需要：
 # https://pypi.org/project/selenium/
 
-# In[1]:
+# In[10]:
 
 
 pip install -U selenium
@@ -35,7 +35,7 @@ pip install -U selenium
 # 
 # 
 
-# In[2]:
+# In[11]:
 
 
 from selenium import webdriver
@@ -67,18 +67,19 @@ help(webdriver)
 #browser = webdriver.Chrome(executable_path = '/opt/anaconda3/bin/chromedriver')
 
 
-# In[5]:
+# In[14]:
 
 
 from selenium import webdriver
 
 browser = webdriver.Chrome(executable_path = '/opt/anaconda3/bin/chromedriver')
 browser.get("http://music.163.com") 
-print(browser.page_source)
+#print(browser.page_source)
+print('i am fine!')
 #browser.close() 
 
 
-# In[6]:
+# In[15]:
 
 
 browser.close() 
@@ -92,7 +93,7 @@ browser.close()
 # ![image.png](./images/selenium2.png)
 # 
 
-# In[10]:
+# In[16]:
 
 
 # from selenium import webdriver
@@ -121,7 +122,7 @@ browser.close()
 # - find_element_by_class_name
 # - find_element_by_css_selector
 
-# In[11]:
+# In[17]:
 
 
 # 下面这种方式是比较通用的一种方式：这里需要记住By模块所以需要导入
@@ -170,7 +171,7 @@ browser.close()
 # ## 元素交互操作
 # 对于获取的元素调用交互方法
 
-# In[12]:
+# In[20]:
 
 
 from selenium import webdriver
@@ -195,7 +196,7 @@ time.sleep(3)
 # 这是一个非常有用的方法，这里就可以直接调用js方法来实现一些操作，
 # 下面的例子是通过登录知乎然后通过js翻到页面底部，并弹框提示
 
-# In[13]:
+# In[21]:
 
 
 from selenium import webdriver
@@ -204,11 +205,123 @@ browser.get("https://www.zhihu.com/explore/")
 browser.execute_script('window.scrollTo(0, document.body.scrollHeight)')
 #browser.execute_script('alert("To Bottom")')
 time.sleep(3)
-#browser.close()
+browser.close()
 
 
 # 
 # ![discuss.gif](./images/end.png)
+
+# In[13]:
+
+
+from selenium import webdriver
+
+options = webdriver.ChromeOptions()
+options.add_argument("disable-infobars")
+options.add_argument('--profile-directory=Default')
+options.add_argument("--disable-extensions")
+options.add_argument('incognito')
+options.add_argument('disable-geolocation')
+options.add_argument('ignore-certificate-errors')
+options.add_argument('disable-popup-blocking')
+options.add_argument('disable-web-security')
+options.add_argument('--disable-infobars')
+options.add_argument('disable-translate')
+browser = webdriver.Chrome(options=options, executable_path = '/opt/anaconda3/bin/chromedriver')
+browser.get("https://github.com")
+
+
+# In[1]:
+
+
+from selenium import webdriver
+options = webdriver.ChromeOptions()
+options.add_argument("disable-infobars")
+options.add_argument('--profile-directory=Default')
+#options.add_argument("--user-data-dir=~/Library/Application\ Support/Google/Chrome/Default/")
+browser = webdriver.Chrome(options=options, executable_path=r"chromedriver")
+browser.get('https://mail.google.com/mail/u/0/')
+
+
+# In[15]:
+
+
+get_ipython().system('pip3 install pyppeteer')
+
+
+# In[6]:
+
+
+import nest_asyncio
+nest_asyncio.apply()
+
+
+# In[7]:
+
+
+import asyncio
+from pyppeteer import launch
+
+width, height = 1366, 768
+
+async def main():
+    browser = await launch(headless=False,
+                           args=[f'--window-size={width},{height}'])
+    page = await browser.newPage()
+    await page.setViewport({'width': width, 'height': height})
+    await page.goto('https://www.taobao.com')
+    await asyncio.sleep(100)
+
+asyncio.get_event_loop().run_until_complete(main())
+
+
+# In[8]:
+
+
+import asyncio
+from pyppeteer import launch
+
+
+async def main():
+    browser = await launch(headless=False, args=['--disable-infobars'])
+    page = await browser.newPage()
+    await page.goto('https://login.taobao.com/member/login.jhtml?redirectURL=https://www.taobao.com/')
+    await page.evaluate(
+        '''() =>{ Object.defineProperties(navigator,{ webdriver:{ get: () => false } }) }''')
+    await asyncio.sleep(100)
+
+asyncio.get_event_loop().run_until_complete(main())
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
 
 # ```
 # from selenium import webdriver
