@@ -765,6 +765,18 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gradient-descent">
+   Gradient Descent
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mannual-gradient">
+     Mannual Gradient
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#mathematics-behind-gradient-descent">
    Mathematics behind Gradient Descent
   </a>
@@ -831,6 +843,12 @@
 <li><p>take a small step in the direction of the gradient, and</p></li>
 <li><p>repeat with a new staring point.</p></li>
 </ul>
+<div class="section" id="gradient-descent">
+<h2>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">¶</a></h2>
+<p>以下内容同<a class="reference external" href="https://chengjun.github.io/mybook/09-11-neural-network-intro.html">《第七章 神经网络与深度学习》</a></p>
+<p><img alt="image.png" src="_images/neural9.png" /></p>
+<p>Let’s represent parameters as <span class="math notranslate nohighlight">\(\Theta\)</span>, learning rate as <span class="math notranslate nohighlight">\(\alpha\)</span>, and gradient as <span class="math notranslate nohighlight">\(\bigtriangledown J(\Theta)\)</span>,</p>
+<p><img alt="" src="_images/gradient.gif" /></p>
 <p><img alt="" src="_images/gd.webp" /></p>
 <p>Let’s represent parameters as <span class="math notranslate nohighlight">\(\Theta\)</span>, learning rate as <span class="math notranslate nohighlight">\(\alpha\)</span>, and gradient as <span class="math notranslate nohighlight">\(\bigtriangledown J(\Theta)\)</span>,</p>
 <p>To the find the best model is an optimization problem</p>
@@ -842,6 +860,210 @@
 <ul class="simple">
 <li><p>to find the input vector v that produces the largest (or smallest) possible value.</p></li>
 </ul>
+<div class="section" id="mannual-gradient">
+<h3>Mannual Gradient<a class="headerlink" href="#mannual-gradient" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+
+<span class="n">x_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]</span>
+<span class="n">y_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="s1">&#39;r-o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-05-gradient-descent_10_0.png" src="_images/08-05-gradient-descent_10_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># our model for the forward pass</span>
+<span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">w</span>
+
+<span class="c1"># Loss function</span>
+<span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_val</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_val</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List of weights/Mean square Error (Mse) for each input</span>
+<span class="n">w_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mse_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">4.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">):</span>
+    <span class="c1"># Print the weights and initialize the lost</span>
+    <span class="c1">#print(&quot;w=&quot;, w)</span>
+    <span class="n">l_sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">x_val</span><span class="p">,</span> <span class="n">y_val</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">):</span>
+        <span class="c1"># For each input and output, calculate y_hat</span>
+        <span class="c1"># Compute the total loss and add to the total error</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">x_val</span><span class="p">)</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">loss</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
+        <span class="n">l_sum</span> <span class="o">+=</span> <span class="n">l</span>
+        <span class="c1">#print(&quot;\t&quot;, x_val, y_val, y_pred_val, l)</span>
+    <span class="c1"># Now compute the Mean squared error (mse) of each</span>
+    <span class="c1"># Aggregate the weight/mse from this run</span>
+    <span class="c1">#print(&quot;MSE=&quot;, l_sum / 3)</span>
+    <span class="n">w_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+    <span class="n">mse_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l_sum</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot it all</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w_list</span><span class="p">,</span> <span class="n">mse_list</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-05-gradient-descent_13_0.png" src="_images/08-05-gradient-descent_13_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute gradient</span>
+<span class="k">def</span> <span class="nf">gradient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>  <span class="c1"># d_loss/d_w</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">w</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Training loop</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">x_val</span><span class="p">,</span> <span class="n">y_val</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">):</span>
+        <span class="c1"># Compute derivative w.r.t to the learned weights</span>
+        <span class="c1"># Update the weights</span>
+        <span class="c1"># Compute the loss and print progress</span>
+        <span class="n">grad</span> <span class="o">=</span> <span class="n">gradient</span><span class="p">(</span><span class="n">x_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">-</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">grad</span>
+        <span class="c1">#print(&quot;\tgrad: &quot;, x_val, y_val, round(grad, 2))</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">x_val</span><span class="p">)</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">loss</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Epoch:&quot;</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="s2">&quot;w=&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;loss=&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>  <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 0 w= 3.48 loss= 19.68
+Epoch: 1 w= 3.09 loss= 10.76
+Epoch: 2 w= 2.81 loss= 5.88
+Epoch: 3 w= 2.6 loss= 3.21
+Epoch: 4 w= 2.44 loss= 1.76
+Epoch: 5 w= 2.33 loss= 0.96
+Epoch: 6 w= 2.24 loss= 0.52
+Epoch: 7 w= 2.18 loss= 0.29
+Epoch: 8 w= 2.13 loss= 0.16
+Epoch: 9 w= 2.1 loss= 0.09
+Epoch: 10 w= 2.07 loss= 0.05
+Epoch: 11 w= 2.05 loss= 0.03
+Epoch: 12 w= 2.04 loss= 0.01
+Epoch: 13 w= 2.03 loss= 0.01
+Epoch: 14 w= 2.02 loss= 0.0
+Epoch: 15 w= 2.02 loss= 0.0
+Epoch: 16 w= 2.01 loss= 0.0
+Epoch: 17 w= 2.01 loss= 0.0
+Epoch: 18 w= 2.01 loss= 0.0
+Epoch: 19 w= 2.0 loss= 0.0
+Epoch: 20 w= 2.0 loss= 0.0
+Epoch: 21 w= 2.0 loss= 0.0
+Epoch: 22 w= 2.0 loss= 0.0
+Epoch: 23 w= 2.0 loss= 0.0
+Epoch: 24 w= 2.0 loss= 0.0
+Epoch: 25 w= 2.0 loss= 0.0
+Epoch: 26 w= 2.0 loss= 0.0
+Epoch: 27 w= 2.0 loss= 0.0
+Epoch: 28 w= 2.0 loss= 0.0
+Epoch: 29 w= 2.0 loss= 0.0
+Epoch: 30 w= 2.0 loss= 0.0
+Epoch: 31 w= 2.0 loss= 0.0
+Epoch: 32 w= 2.0 loss= 0.0
+Epoch: 33 w= 2.0 loss= 0.0
+Epoch: 34 w= 2.0 loss= 0.0
+Epoch: 35 w= 2.0 loss= 0.0
+Epoch: 36 w= 2.0 loss= 0.0
+Epoch: 37 w= 2.0 loss= 0.0
+Epoch: 38 w= 2.0 loss= 0.0
+Epoch: 39 w= 2.0 loss= 0.0
+Epoch: 40 w= 2.0 loss= 0.0
+Epoch: 41 w= 2.0 loss= 0.0
+Epoch: 42 w= 2.0 loss= 0.0
+Epoch: 43 w= 2.0 loss= 0.0
+Epoch: 44 w= 2.0 loss= 0.0
+Epoch: 45 w= 2.0 loss= 0.0
+Epoch: 46 w= 2.0 loss= 0.0
+Epoch: 47 w= 2.0 loss= 0.0
+Epoch: 48 w= 2.0 loss= 0.0
+Epoch: 49 w= 2.0 loss= 0.0
+Epoch: 50 w= 2.0 loss= 0.0
+Epoch: 51 w= 2.0 loss= 0.0
+Epoch: 52 w= 2.0 loss= 0.0
+Epoch: 53 w= 2.0 loss= 0.0
+Epoch: 54 w= 2.0 loss= 0.0
+Epoch: 55 w= 2.0 loss= 0.0
+Epoch: 56 w= 2.0 loss= 0.0
+Epoch: 57 w= 2.0 loss= 0.0
+Epoch: 58 w= 2.0 loss= 0.0
+Epoch: 59 w= 2.0 loss= 0.0
+Epoch: 60 w= 2.0 loss= 0.0
+Epoch: 61 w= 2.0 loss= 0.0
+Epoch: 62 w= 2.0 loss= 0.0
+Epoch: 63 w= 2.0 loss= 0.0
+Epoch: 64 w= 2.0 loss= 0.0
+Epoch: 65 w= 2.0 loss= 0.0
+Epoch: 66 w= 2.0 loss= 0.0
+Epoch: 67 w= 2.0 loss= 0.0
+Epoch: 68 w= 2.0 loss= 0.0
+Epoch: 69 w= 2.0 loss= 0.0
+Epoch: 70 w= 2.0 loss= 0.0
+Epoch: 71 w= 2.0 loss= 0.0
+Epoch: 72 w= 2.0 loss= 0.0
+Epoch: 73 w= 2.0 loss= 0.0
+Epoch: 74 w= 2.0 loss= 0.0
+Epoch: 75 w= 2.0 loss= 0.0
+Epoch: 76 w= 2.0 loss= 0.0
+Epoch: 77 w= 2.0 loss= 0.0
+Epoch: 78 w= 2.0 loss= 0.0
+Epoch: 79 w= 2.0 loss= 0.0
+Epoch: 80 w= 2.0 loss= 0.0
+Epoch: 81 w= 2.0 loss= 0.0
+Epoch: 82 w= 2.0 loss= 0.0
+Epoch: 83 w= 2.0 loss= 0.0
+Epoch: 84 w= 2.0 loss= 0.0
+Epoch: 85 w= 2.0 loss= 0.0
+Epoch: 86 w= 2.0 loss= 0.0
+Epoch: 87 w= 2.0 loss= 0.0
+Epoch: 88 w= 2.0 loss= 0.0
+Epoch: 89 w= 2.0 loss= 0.0
+Epoch: 90 w= 2.0 loss= 0.0
+Epoch: 91 w= 2.0 loss= 0.0
+Epoch: 92 w= 2.0 loss= 0.0
+Epoch: 93 w= 2.0 loss= 0.0
+Epoch: 94 w= 2.0 loss= 0.0
+Epoch: 95 w= 2.0 loss= 0.0
+Epoch: 96 w= 2.0 loss= 0.0
+Epoch: 97 w= 2.0 loss= 0.0
+Epoch: 98 w= 2.0 loss= 0.0
+Epoch: 99 w= 2.0 loss= 0.0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="mathematics-behind-gradient-descent">
 <h2>Mathematics behind Gradient Descent<a class="headerlink" href="#mathematics-behind-gradient-descent" title="Permalink to this headline">¶</a></h2>
 <p>A simple mathematical intuition behind one of the commonly used optimisation algorithms in Machine Learning.</p>
@@ -1020,7 +1242,7 @@ Error function: 405.98496249324046
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/08-05-gradient-descent_29_0.png" src="_images/08-05-gradient-descent_29_0.png" />
+<img alt="_images/08-05-gradient-descent_37_0.png" src="_images/08-05-gradient-descent_37_0.png" />
 </div>
 </div>
 <p>When f is a function of many variables, it has multiple partial derivatives.</p>
