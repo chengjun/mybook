@@ -165,6 +165,11 @@
      案例：Who runs China？背后的数据
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-gdelt.html">
+     Gdelt Dataset: Events, Mentions, and Global Knowledge Graph
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -339,6 +344,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="08-07-covid19-pew-survey.html">
      Analysing the Pew Survey Data of COVID19
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-11-cfps-survey-analysis.html">
+     中国家庭追踪调查2018
     </a>
    </li>
    <li class="toctree-l2">
@@ -1744,17 +1754,12 @@ Name: Survived, dtype: float64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">],</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">],</span> <span class="n">aggfunc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">],</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">],</span> <span class="n">aggfunc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.7/site-packages/numpy/lib/function_base.py:393: RuntimeWarning: Mean of empty slice.
-  avg = a.mean(axis)
-/opt/anaconda3/lib/python3.7/site-packages/numpy/core/_methods.py:161: RuntimeWarning: invalid value encountered in double_scalars
-  ret = ret.dtype.type(ret / rcount)
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1808,12 +1813,6 @@ Name: Survived, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.7/site-packages/numpy/lib/function_base.py:393: RuntimeWarning: Mean of empty slice.
-  avg = a.mean(axis)
-/opt/anaconda3/lib/python3.7/site-packages/numpy/core/_methods.py:161: RuntimeWarning: invalid value encountered in double_scalars
-  ret = ret.dtype.type(ret / rcount)
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2183,7 +2182,7 @@ $<span class="math notranslate nohighlight">\(logit = ln \frac{y}{1-y} = w^Tx + 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 
-<span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/tatanic_train.csv&#39;</span><span class="p">,</span><span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data/tatanic_train.csv&#39;</span><span class="p">,</span><span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2245,10 +2244,10 @@ $<span class="math notranslate nohighlight">\(logit = ln \frac{y}{1-y} = w^Tx + 
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     5</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Sun, 07 Jun 2020</td> <th>  Pseudo R-squ.:     </th>  <td>0.3116</td>  
+  <th>Date:</th>            <td>Mon, 22 Nov 2021</td> <th>  Pseudo R-squ.:     </th>  <td>0.3116</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>11:17:13</td>     <th>  Log-Likelihood:    </th> <td> -408.47</td> 
+  <th>Time:</th>                <td>16:34:12</td>     <th>  Log-Likelihood:    </th> <td> -408.47</td> 
 </tr>
 <tr>
   <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -593.33</td> 

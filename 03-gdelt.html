@@ -1,0 +1,2409 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gdelt Dataset: Events, Mentions, and Global Knowledge Graph &#8212; 计算传播学</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="第三章 数据抓取" href="04-crawler-beautifulsoup.html" />
+    <link rel="prev" title="案例：Who runs China？背后的数据" href="03-who-runs-China.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">计算传播学</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   寻找人类传播行为的基因
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-bigdata.html">
+     数据科学的编程工具：大数据
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="0-jupyter-notebook.html">
+     Jupyter Notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="0-slides.html">
+     使用Jupyter制作Slides的介绍
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="0-turicreate.html">
+     Turicreate: Departure from Graphlab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="0-matplotlib-chinese.html">
+     解决Matplotlib绘图显示中文问题
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-UK-MPS-Scandal.html">
+     案例：2009年英国国会议员开支丑闻
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-umbrella-of-love.html">
+     案例：《转角遇到爱》背后的数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-who-runs-China.html">
+     案例：Who runs China？背后的数据
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Gdelt Dataset: Events, Mentions, and Global Knowledge Graph
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-fact-checking.html">
+     抓取实时辟谣数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-13chambers.html">
+     抓取网络小说
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-wechat.html">
+     抓取微信公众号文章内容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-douban.html">
+     使用requests + Xpath抓取豆瓣电影数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-gov-report.html">
+     抓取历届政府工作报告
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-cppcc.html">
+     抓取江苏省政协十年提案
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-netease-music.html">
+     抓取网易云音乐热门评论
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium.html">
+     使用Selenium操纵浏览器
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-music-history.html">
+     抓取网易云音乐用户的听歌记录
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-people-com-search.html">
+     使用Selenium提取人民网搜索数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-tripadvisor.html">
+     使用Selenium抓取TripAdvisor用户评论
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-pyppeteer.html">
+     使用Pyppeteer实现异步抓取!
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-weibo.html">
+     轻型微博爬虫
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-preprocessing.html">
+     对大数据进行预处理
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-tweets.html">
+     数据清洗之推特数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-occupy-central-news.html">
+     对占中新闻进行数据清洗
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-music-list.html">
+     清洗音乐列表🎵
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-pandas.html">
+     使用Pandas进行数据清洗
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-02-kl-divergence.html">
+     KL Divergence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-02-linear-algebra.html">
+     Linear algebra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-03-distributions.html">
+     Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-03-probability.html">
+     Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-04-hypothesis-inference.html">
+     Statistical Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-05-gradient-descent.html">
+     Introduction to Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-06-regression.html">
+     Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-06-statsmodels.html">
+     Statistical Modeling with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-07-analyzing-titanic-dataset.html">
+     Logistic Regression of Titanic Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-07-covid19-pew-survey.html">
+     Analysing the Pew Survey Data of COVID19
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-11-cfps-survey-analysis.html">
+     中国家庭追踪调查2018
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-08-covid19-grangercausality.html">
+     社交媒体可以预测新冠疫情吗？
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-09-survival-analysis.html">
+     Survival Analysis with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-10-dowhy-estimation-methods.html">
+     The Book of Why
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-03-hyperparameters-and-model-validation.html">
+     Hyperparameters and Model Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-04-feature-engineering.html">
+     Feature Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-05-naive-bayes.html">
+     In Depth: Naive Bayes Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-06-linear-regression.html">
+     In Depth: Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-07-support-vector-machines.html">
+     In-Depth: Support Vector Machines
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-08-random-forests.html">
+     In-Depth: Decision Trees and Random Forests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-09-googleflustudy.html">
+     Forecasting and nowcasting with Google Flu Trends
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-10-future-employment.html">
+     The future of employment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-grf.html">
+     Causal Forests
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-13-cnn.html">
+     Convolutional Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-14-rnn.html">
+     Sequnce Modeling: Recurrent and Recursive Nets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-12-hand-written-digits.html">
+     Recognizing Hand-Written Digits with Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-15-cifar10.html">
+     使用CNN对CIFAR10图像进行分类
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-16-pytorch_vgg_pretrained.html">
+     VGG16预训练模型
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="10-text-minning-gov-report.html">
+   第八章 文本挖掘
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-word2vec.html">
+     词向量模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-doc2vec.html">
+     Doc2Vec
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">
+     基于字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-2-emotion-dict.html">
+     大连理工大学中文情感词汇
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-NRC-Chinese-dict.html">
+     基于NRC字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-textblob.html">
+     利用textblob进行情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-4-sentiment-classifier.html">
+     基于机器学习的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-5-LIWC.html">
+     LIWC: Linguistic Inquiry and Word Count  analyzer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-update.html">
+     主题模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-with-turicreate.html">
+     使用Turicreate建立主题模型
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13-recsys-latent-factor-model.html">
+     Latent Factor Recommender System
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13-recsys-intro-surprise.html">
+     使用Surprise构建推荐系统
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14-millionsong.html">
+     使用Turicreate进行音乐推荐
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14-movielens.html">
+     使用Turicreate进行电影推荐
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="16-network-science-models.html">
+     网络科学模型
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="17-networkx.html">
+     使用NetworkX分析网络
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-02-network-diffusion.html">
+     Simulating Network Diffusion With NDlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-03-network-epidemics.html">
+     Epidemics on Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-04-seir-hcd-model.html">
+     SEIR-HCD Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-network-ergm-siena.html">
+     Social Network Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-network-weibo-hot-search.html">
+     微博热搜分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">
+     天涯论坛的回帖网络分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">
+     可视化Facebook社交网络
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-network-ecomplexity.html">
+     Economic Complexity and Product Complexity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-scientific-plot.html">
+     Matplotlib的科学绘图样式
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-with-pyecharts.html">
+     使用PyEcharts进行可视化
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-plotly-express.html">
+     Plotly Express in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-maps-using-folium.html">
+     使用folium做地图可视化
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-datashader.html">
+     使用Datashader可视化地理信息
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-datapane.html">
+     使用Datapane制作数据报告
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-pantheon.html">
+     万神殿项目（Pantheon Project）
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/03-gdelt.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F03-gdelt.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/03-gdelt.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/03-gdelt.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#events">
+   Events
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mentions">
+   Mentions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#knowledge-graph">
+   Knowledge Graph
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="gdelt-dataset-events-mentions-and-global-knowledge-graph">
+<h1>Gdelt Dataset: Events, Mentions, and Global Knowledge Graph<a class="headerlink" href="#gdelt-dataset-events-mentions-and-global-knowledge-graph" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://data.gdeltproject.org/gdeltv2/masterfilelist.txt">http://data.gdeltproject.org/gdeltv2/masterfilelist.txt</a></p>
+<p><a class="reference external" href="http://data.gdeltproject.org/documentation/GDELT-Event_Codebook-V2.0.pdf">http://data.gdeltproject.org/documentation/GDELT-Event_Codebook-V2.0.pdf</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20190517211500.export.CSV.zip
+20190517211500.gkg.csv.zip
+20190517211500.mentions.CSV.zip
+20211105.export.CSV
+GDELT Wrangler - Clean.ipynb.txt
+GDELT_2.0_Events_Column_Labels_Header_Row_Sep2016.csv
+events-mentions-global-knowledge-graph.ipynb
+memoria.pdf
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="events">
+<h2>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/GDELT_2.0_Events_Column_Labels_Header_Row_Sep2016.csv&#39;</span><span class="p">)</span>
+<span class="n">names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tableId</th>
+      <th>dataType</th>
+      <th>Empty</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>GLOBALEVENTID</td>
+      <td>INTEGER</td>
+      <td>NULLABLE</td>
+      <td>Globally unique identifier assigned to each ev...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>SQLDATE</td>
+      <td>INTEGER</td>
+      <td>NULLABLE</td>
+      <td>Date the event took place in YYYYMMDD format. ...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>MonthYear</td>
+      <td>INTEGER</td>
+      <td>NULLABLE</td>
+      <td>Alternative formatting of the event date, in Y...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Year</td>
+      <td>INTEGER</td>
+      <td>NULLABLE</td>
+      <td>Alternative formatting of the event date, in Y...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>FractionDate</td>
+      <td>FLOAT</td>
+      <td>NULLABLE</td>
+      <td>Alternative formatting of the event date, comp...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>ActionGeo_Lat</td>
+      <td>FLOAT</td>
+      <td>NULLABLE</td>
+      <td>This is the centroid latitude of the landmark ...</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>ActionGeo_Long</td>
+      <td>FLOAT</td>
+      <td>NULLABLE</td>
+      <td>This is the centroid longitude of the landmark...</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>ActionGeo_FeatureID</td>
+      <td>STRING</td>
+      <td>NULLABLE</td>
+      <td>This is the GNS or GNIS FeatureID for this loc...</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>DATEADDED</td>
+      <td>INTEGER</td>
+      <td>NULLABLE</td>
+      <td>This field stores the date the event was added...</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>SOURCEURL</td>
+      <td>STRING</td>
+      <td>NULLABLE</td>
+      <td>This field records the URL or citation of the ...</td>
+    </tr>
+  </tbody>
+</table>
+<p>61 rows × 4 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">names</span><span class="p">[</span><span class="s1">&#39;tableId&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GLOBALEVENTID SQLDATE MonthYear Year FractionDate Actor1Code Actor1Name Actor1CountryCode Actor1KnownGroupCode Actor1EthnicCode Actor1Religion1Code Actor1Religion2Code Actor1Type1Code Actor1Type2Code Actor1Type3Code Actor2Code Actor2Name Actor2CountryCode Actor2KnownGroupCode Actor2EthnicCode Actor2Religion1Code Actor2Religion2Code Actor2Type1Code Actor2Type2Code Actor2Type3Code IsRootEvent EventCode EventBaseCode EventRootCode QuadClass GoldsteinScale NumMentions NumSources NumArticles AvgTone Actor1Geo_Type Actor1Geo_FullName Actor1Geo_CountryCode Actor1Geo_ADM1Code Actor1Geo_ADM2Code Actor1Geo_Lat Actor1Geo_Long Actor1Geo_FeatureID Actor2Geo_Type Actor2Geo_FullName Actor2Geo_CountryCode Actor2Geo_ADM1Code Actor2Geo_ADM2Code Actor2Geo_Lat Actor2Geo_Long Actor2Geo_FeatureID ActionGeo_Type ActionGeo_FullName ActionGeo_CountryCode ActionGeo_ADM1Code ActionGeo_ADM2Code ActionGeo_Lat ActionGeo_Long ActionGeo_FeatureID DATEADDED SOURCEURL
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 读取15分钟的数据</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/Users/datalab/bigdata/gdelt_data/20190517211500.export.CSV.zip&quot;</span><span class="p">,</span>
+                 <span class="n">sep</span><span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="s1">&#39;tableId&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GLOBALEVENTID</th>
+      <th>SQLDATE</th>
+      <th>MonthYear</th>
+      <th>Year</th>
+      <th>FractionDate</th>
+      <th>Actor1Code</th>
+      <th>Actor1Name</th>
+      <th>Actor1CountryCode</th>
+      <th>Actor1KnownGroupCode</th>
+      <th>Actor1EthnicCode</th>
+      <th>...</th>
+      <th>ActionGeo_Type</th>
+      <th>ActionGeo_FullName</th>
+      <th>ActionGeo_CountryCode</th>
+      <th>ActionGeo_ADM1Code</th>
+      <th>ActionGeo_ADM2Code</th>
+      <th>ActionGeo_Lat</th>
+      <th>ActionGeo_Long</th>
+      <th>ActionGeo_FeatureID</th>
+      <th>DATEADDED</th>
+      <th>SOURCEURL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>846073409</td>
+      <td>20180517</td>
+      <td>201805</td>
+      <td>2018</td>
+      <td>2018.3753</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>4</td>
+      <td>Sunamganj, Sylhet, Bangladesh</td>
+      <td>BG</td>
+      <td>BG86</td>
+      <td>5823</td>
+      <td>25.0667</td>
+      <td>91.4000</td>
+      <td>-2737975</td>
+      <td>20190517211500</td>
+      <td>https://en.prothomalo.com/bangladesh/news/1957...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>846073410</td>
+      <td>20180517</td>
+      <td>201805</td>
+      <td>2018</td>
+      <td>2018.3753</td>
+      <td>BGD</td>
+      <td>BANGLADESH</td>
+      <td>BGD</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>4</td>
+      <td>Hakaluki Haor, Bangladesh (general), Bangladesh</td>
+      <td>BG</td>
+      <td>BG00</td>
+      <td>5824</td>
+      <td>24.6667</td>
+      <td>92.0667</td>
+      <td>-2721111</td>
+      <td>20190517211500</td>
+      <td>https://en.prothomalo.com/bangladesh/news/1957...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>846073411</td>
+      <td>20180517</td>
+      <td>201805</td>
+      <td>2018</td>
+      <td>2018.3753</td>
+      <td>BGD</td>
+      <td>BANGLADESH</td>
+      <td>BGD</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>4</td>
+      <td>Sylhet, Sylhet, Bangladesh</td>
+      <td>BG</td>
+      <td>BG86</td>
+      <td>5824</td>
+      <td>24.8967</td>
+      <td>91.8717</td>
+      <td>-2737987</td>
+      <td>20190517211500</td>
+      <td>https://en.prothomalo.com/bangladesh/news/1957...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>846073412</td>
+      <td>20180517</td>
+      <td>201805</td>
+      <td>2018</td>
+      <td>2018.3753</td>
+      <td>BUS</td>
+      <td>PRODUCER</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>2</td>
+      <td>New York, United States</td>
+      <td>US</td>
+      <td>USNY</td>
+      <td>NaN</td>
+      <td>42.1497</td>
+      <td>-74.9384</td>
+      <td>NY</td>
+      <td>20190517211500</td>
+      <td>https://dailytimes.com.pk/396172/shahrukh-khan...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>846073413</td>
+      <td>20180517</td>
+      <td>201805</td>
+      <td>2018</td>
+      <td>2018.3753</td>
+      <td>EDU</td>
+      <td>SCHOOL</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>2</td>
+      <td>Florida, United States</td>
+      <td>US</td>
+      <td>USFL</td>
+      <td>NaN</td>
+      <td>27.8333</td>
+      <td>-81.7170</td>
+      <td>FL</td>
+      <td>20190517211500</td>
+      <td>https://wrex.com/category/2019/05/17/florida-s...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1617</th>
+      <td>846075026</td>
+      <td>20190517</td>
+      <td>201905</td>
+      <td>2019</td>
+      <td>2019.3753</td>
+      <td>sco</td>
+      <td>SCOTTISH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>sco</td>
+      <td>...</td>
+      <td>1</td>
+      <td>Russia</td>
+      <td>RS</td>
+      <td>RS</td>
+      <td>NaN</td>
+      <td>60.0000</td>
+      <td>100.0000</td>
+      <td>RS</td>
+      <td>20190517211500</td>
+      <td>https://2paragraphs.com/2019/05/gene-simmons-e...</td>
+    </tr>
+    <tr>
+      <th>1618</th>
+      <td>846075027</td>
+      <td>20190517</td>
+      <td>201905</td>
+      <td>2019</td>
+      <td>2019.3753</td>
+      <td>sco</td>
+      <td>SCOTTISH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>sco</td>
+      <td>...</td>
+      <td>1</td>
+      <td>Russia</td>
+      <td>RS</td>
+      <td>RS</td>
+      <td>NaN</td>
+      <td>60.0000</td>
+      <td>100.0000</td>
+      <td>RS</td>
+      <td>20190517211500</td>
+      <td>https://2paragraphs.com/2019/05/gene-simmons-e...</td>
+    </tr>
+    <tr>
+      <th>1619</th>
+      <td>846075028</td>
+      <td>20190517</td>
+      <td>201905</td>
+      <td>2019</td>
+      <td>2019.3753</td>
+      <td>tms</td>
+      <td>TAMA</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>tms</td>
+      <td>...</td>
+      <td>2</td>
+      <td>Iowa, United States</td>
+      <td>US</td>
+      <td>USIA</td>
+      <td>NaN</td>
+      <td>42.0046</td>
+      <td>-93.2140</td>
+      <td>IA</td>
+      <td>20190517211500</td>
+      <td>https://www.timesrepublican.com/news/todays-ne...</td>
+    </tr>
+    <tr>
+      <th>1620</th>
+      <td>846075029</td>
+      <td>20190517</td>
+      <td>201905</td>
+      <td>2019</td>
+      <td>2019.3753</td>
+      <td>tms</td>
+      <td>TAMA</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>tms</td>
+      <td>...</td>
+      <td>3</td>
+      <td>Marshall County, Iowa, United States</td>
+      <td>US</td>
+      <td>USIA</td>
+      <td>NaN</td>
+      <td>42.0333</td>
+      <td>-93.0008</td>
+      <td>465252</td>
+      <td>20190517211500</td>
+      <td>https://www.timesrepublican.com/news/todays-ne...</td>
+    </tr>
+    <tr>
+      <th>1621</th>
+      <td>846075030</td>
+      <td>20190517</td>
+      <td>201905</td>
+      <td>2019</td>
+      <td>2019.3753</td>
+      <td>tms</td>
+      <td>TAMA</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>tms</td>
+      <td>...</td>
+      <td>2</td>
+      <td>Iowa, United States</td>
+      <td>US</td>
+      <td>USIA</td>
+      <td>NaN</td>
+      <td>42.0046</td>
+      <td>-93.2140</td>
+      <td>IA</td>
+      <td>20190517211500</td>
+      <td>https://www.timesrepublican.com/news/todays-ne...</td>
+    </tr>
+  </tbody>
+</table>
+<p>1622 rows × 61 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Microsoft YaHei&#39;</span><span class="p">]</span>  <span class="c1"># 用来正常显示中文标签</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># 用来正常显示负号, 注意[&#39;SimHei&#39;]对应这句不行.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>All GDELTAll GDELT Event Files <a class="reference external" href="http://data.gdeltproject.org/events/index.html">http://data.gdeltproject.org/events/index.html</a></p>
+<p>Codebook <a class="reference external" href="http://data.gdeltproject.org/documentation/GDELT-Event_Codebook-V2.0.pdf">http://data.gdeltproject.org/documentation/GDELT-Event_Codebook-V2.0.pdf</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 读取一天的数据</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/Users/datalab/bigdata/gdelt_data/20211105.export.CSV&#39;</span><span class="p">,</span> 
+                 <span class="n">sep</span><span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span>  <span class="n">names</span><span class="p">[</span><span class="s1">&#39;tableId&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NumMentions&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NumSources&#39;</span><span class="p">],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03-gdelt_11_0.png" src="_images/03-gdelt_11_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NumMentions&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NumArticles&#39;</span><span class="p">],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03-gdelt_12_0.png" src="_images/03-gdelt_12_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NumSources&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NumArticles&#39;</span><span class="p">],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03-gdelt_13_0.png" src="_images/03-gdelt_13_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;NumMentions&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;NumSources&#39;</span><span class="p">,</span> 
+             <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;QuadClass&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;QuadClass&#39;</span><span class="p">,</span>
+            <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dashes</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03-gdelt_14_0.png" src="_images/03-gdelt_14_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="mentions">
+<h2>Mentions<a class="headerlink" href="#mentions" title="Permalink to this headline">¶</a></h2>
+<p>The Mentions table is a new addition to GDELT 2.0 and records each mention of the events in the Event
+table, making it possible to track the trajectory and network structure of a story as it flows through the
+global media system.</p>
+<p>Each mention of an event receives its own entry in the Mentions table.</p>
+<ul class="simple">
+<li><p>an event which is mentioned in 100 articles will be listed 100 times in the Mentions table.</p></li>
+<li><p>Mentions are recorded irrespective of the date of the original event, meaning that a mention today of an event from a year ago will still be recorded, making it possible to trace discussion of “anniversary events” or historical events being recontextualized into present actions.</p></li>
+<li><p>If a news report mentions multiple events, each mention is recorded separately in this table.</p></li>
+</ul>
+<p>As an event is mentioned across multiple news reports, each of those mentions is recorded in the Mentions table, along with several key indicators about that mention, including the location within the article where the mention appeared (in the lead paragraph versus being buried at the bottom) and the “confidence” of the algorithms in their identification of the event
+from that specific news report.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mnames</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;mentions.csv&#39;</span><span class="p">)</span>
+<span class="n">mnames</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>type</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>GLOBALEVENTID</td>
+      <td>INTEGER</td>
+      <td>This is the ID of the event that was mentioned...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>EventTimeDate</td>
+      <td>INTEGER</td>
+      <td>This is the 15-minute timestamp (YYYYMMDDHHMMS...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>MentionTimeDate</td>
+      <td>INTEGER</td>
+      <td>This is the 15-minute timestamp (YYYYMMDDHHMMS...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>MentionType</td>
+      <td>INTEGER</td>
+      <td>This is a numeric identifier that refers to th...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>MentionSourceName</td>
+      <td>STRING</td>
+      <td>This is a human-friendly identifier of the sou...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>MentionIdentifier</td>
+      <td>STRING</td>
+      <td>This is the unique external identifier for the...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>SentenceID</td>
+      <td>INTEGER</td>
+      <td>The sentence within the article where the even...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Actor1CharOffset</td>
+      <td>INTEGER</td>
+      <td>The location within the article (in terms of E...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Actor2CharOffset</td>
+      <td>INTEGER</td>
+      <td>The location within the article (in terms of E...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>ActionCharOffset</td>
+      <td>INTEGER</td>
+      <td>The location within the article (in terms of E...</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>InRawText</td>
+      <td>INTEGER</td>
+      <td>This records whether the event was found in th...</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Confidence</td>
+      <td>INTEGER</td>
+      <td>Percent confidence in the extraction of this e...</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>MentionDocLen</td>
+      <td>INTEGER</td>
+      <td>The length in English characters of the source...</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>MentionDocTone</td>
+      <td>FLOAT</td>
+      <td>The same contents as the AvgTone field in the ...</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>MentionDocTranslationInfo</td>
+      <td>STRING</td>
+      <td>This field is internally delimited by semicolo...</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Extras</td>
+      <td>STRING</td>
+      <td>This field is currently blank, but is reserved...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;20190517211500.mentions.CSV.zip&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">mnames</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GLOBALEVENTID</th>
+      <th>EventTimeDate</th>
+      <th>MentionTimeDate</th>
+      <th>MentionType</th>
+      <th>MentionSourceName</th>
+      <th>MentionIdentifier</th>
+      <th>SentenceID</th>
+      <th>Actor1CharOffset</th>
+      <th>Actor2CharOffset</th>
+      <th>ActionCharOffset</th>
+      <th>InRawText</th>
+      <th>Confidence</th>
+      <th>MentionDocLen</th>
+      <th>MentionDocTone</th>
+      <th>MentionDocTranslationInfo</th>
+      <th>Extras</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>846073409</td>
+      <td>20190517211500</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>prothomalo.com</td>
+      <td>https://en.prothomalo.com/bangladesh/news/1957...</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>124</td>
+      <td>139</td>
+      <td>1</td>
+      <td>100</td>
+      <td>2277</td>
+      <td>0.546448</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>846052753</td>
+      <td>20190517191500</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>calgarysun.com</td>
+      <td>https://calgarysun.com/news/crime/macs-killer-...</td>
+      <td>16</td>
+      <td>-1</td>
+      <td>3395</td>
+      <td>3422</td>
+      <td>1</td>
+      <td>100</td>
+      <td>4000</td>
+      <td>-3.863988</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>846041561</td>
+      <td>20190517181500</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>azcentral.com</td>
+      <td>https://www.azcentral.com/story/travel/news/20...</td>
+      <td>12</td>
+      <td>-1</td>
+      <td>3274</td>
+      <td>3176</td>
+      <td>0</td>
+      <td>10</td>
+      <td>6917</td>
+      <td>-2.144772</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>846041562</td>
+      <td>20190517181500</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>wtop.com</td>
+      <td>https://wtop.com/latin-america/2019/05/cuba-be...</td>
+      <td>7</td>
+      <td>-1</td>
+      <td>2621</td>
+      <td>2523</td>
+      <td>1</td>
+      <td>50</td>
+      <td>6332</td>
+      <td>-2.198853</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>846041562</td>
+      <td>20190517181500</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>azcentral.com</td>
+      <td>https://www.azcentral.com/story/travel/news/20...</td>
+      <td>12</td>
+      <td>-1</td>
+      <td>3274</td>
+      <td>3176</td>
+      <td>1</td>
+      <td>40</td>
+      <td>6917</td>
+      <td>-2.144772</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>8183</th>
+      <td>846075026</td>
+      <td>20190517211500</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>2paragraphs.com</td>
+      <td>https://2paragraphs.com/2019/05/gene-simmons-e...</td>
+      <td>1</td>
+      <td>398</td>
+      <td>664</td>
+      <td>651</td>
+      <td>0</td>
+      <td>20</td>
+      <td>1305</td>
+      <td>3.448276</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8184</th>
+      <td>846075027</td>
+      <td>20190517211500</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>2paragraphs.com</td>
+      <td>https://2paragraphs.com/2019/05/gene-simmons-e...</td>
+      <td>1</td>
+      <td>398</td>
+      <td>606</td>
+      <td>595</td>
+      <td>1</td>
+      <td>60</td>
+      <td>1305</td>
+      <td>3.448276</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8185</th>
+      <td>846075028</td>
+      <td>20190517211500</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>timesrepublican.com</td>
+      <td>https://www.timesrepublican.com/news/todays-ne...</td>
+      <td>5</td>
+      <td>1087</td>
+      <td>-1</td>
+      <td>1150</td>
+      <td>1</td>
+      <td>10</td>
+      <td>2730</td>
+      <td>-7.226107</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8186</th>
+      <td>846075029</td>
+      <td>20190517211500</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>timesrepublican.com</td>
+      <td>https://www.timesrepublican.com/news/todays-ne...</td>
+      <td>5</td>
+      <td>1087</td>
+      <td>1200</td>
+      <td>1175</td>
+      <td>0</td>
+      <td>10</td>
+      <td>2730</td>
+      <td>-7.226107</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8187</th>
+      <td>846075030</td>
+      <td>20190517211500</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>timesrepublican.com</td>
+      <td>https://www.timesrepublican.com/news/todays-ne...</td>
+      <td>5</td>
+      <td>1087</td>
+      <td>1229</td>
+      <td>1175</td>
+      <td>0</td>
+      <td>10</td>
+      <td>2730</td>
+      <td>-7.226107</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>8188 rows × 16 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="knowledge-graph">
+<h2>Knowledge Graph<a class="headerlink" href="#knowledge-graph" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/linwoodc3/gdeltPyR/blob/master/data/gkg2.csv">https://github.com/linwoodc3/gdeltPyR/blob/master/data/gkg2.csv</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gnames</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;gkg2.csv&#39;</span><span class="p">)</span>
+<span class="n">gnames</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>type</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>GKGRECORDID</td>
+      <td>STRING</td>
+      <td>Each GKG record is assigned a globally unique ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>DATE</td>
+      <td>INTEGER</td>
+      <td>This is the date in YYYYMMDDHHMMSS format on w...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>SourceCollectionIdentifier</td>
+      <td>INTEGER</td>
+      <td>This is a numeric identifier that refers to th...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>SourceCommonName</td>
+      <td>STRING</td>
+      <td>This is a human-friendly identifier of the sou...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>DocumentIdentifier</td>
+      <td>STRING</td>
+      <td>This is the unique external identifier for the...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Counts</td>
+      <td>STRING</td>
+      <td>This is the list of Counts found in this docum...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>V2Counts</td>
+      <td>STRING</td>
+      <td>This field is identical to the V1COUNTS field ...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Themes</td>
+      <td>STRING</td>
+      <td>This is the list of all Themes found in the do...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>V2Themes</td>
+      <td>STRING</td>
+      <td>This contains a list of all GKG themes referen...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Locations</td>
+      <td>STRING</td>
+      <td>This is a list of all locations found in the t...</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>V2Locations</td>
+      <td>STRING</td>
+      <td>This field is identical to the V1LOCATIONS fie...</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Persons</td>
+      <td>STRING</td>
+      <td>This is the list of all person names found in ...</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>V2Persons</td>
+      <td>STRING</td>
+      <td>This contains a list of all person names refer...</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Organizations</td>
+      <td>STRING</td>
+      <td>This is the list of all company and organizati...</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>V2Organizations</td>
+      <td>STRING</td>
+      <td>This contains a list of all organizations/comp...</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>V2Tone</td>
+      <td>STRING</td>
+      <td>This field contains a comma-delimited\nlist of...</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Dates</td>
+      <td>STRING</td>
+      <td>This contains a list of all date references in...</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>GCAM</td>
+      <td>STRING</td>
+      <td>The Global Content Analysis Measures (GCAM) sy...</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>SharingImage</td>
+      <td>STRING</td>
+      <td>Many news websites specify a so-called “sharin...</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>RelatedImages</td>
+      <td>STRING</td>
+      <td>News articles frequently include photographs, ...</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>SocialImageEmbeds</td>
+      <td>STRING</td>
+      <td>News websites are increasingly embedding image...</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>SocialVideoEmbeds</td>
+      <td>STRING</td>
+      <td>News websites are increasingly\nembedding vide...</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Quotations</td>
+      <td>STRING</td>
+      <td>News coverage frequently features excerpted st...</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>AllNames</td>
+      <td>STRING</td>
+      <td>This field contains a list of all proper names...</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Amounts</td>
+      <td>STRING</td>
+      <td>This field contains a list of all precise nume...</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>TranslationInfo</td>
+      <td>STRING</td>
+      <td>This field is used to record provenance inform...</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Extras</td>
+      <td>STRING</td>
+      <td>This field is reserved to hold special non-sta...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;20190517211500.gkg.csv.zip&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">gnames</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GKGRECORDID</th>
+      <th>DATE</th>
+      <th>SourceCollectionIdentifier</th>
+      <th>SourceCommonName</th>
+      <th>DocumentIdentifier</th>
+      <th>Counts</th>
+      <th>V2Counts</th>
+      <th>Themes</th>
+      <th>V2Themes</th>
+      <th>Locations</th>
+      <th>...</th>
+      <th>GCAM</th>
+      <th>SharingImage</th>
+      <th>RelatedImages</th>
+      <th>SocialImageEmbeds</th>
+      <th>SocialVideoEmbeds</th>
+      <th>Quotations</th>
+      <th>AllNames</th>
+      <th>Amounts</th>
+      <th>TranslationInfo</th>
+      <th>Extras</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>20190517211500-0</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>wicc600.com</td>
+      <td>http://www.wicc600.com/winners/</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ECON_TAXATION;USPEC_POLICY1;EPU_POLICY;EPU_POL...</td>
+      <td>ECON_TAXATION,124;USPEC_POLICY1,124;EPU_POLICY...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>wc:126,c12.1:15,c12.10:6,c12.12:4,c12.13:4,c12...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>600,dollars ,203;</td>
+      <td>NaN</td>
+      <td>&lt;PAGE_AUTHORS&gt;mboyd&lt;/PAGE_AUTHORS&gt;</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20190517211500-1</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>hot1073jamz.com</td>
+      <td>https://hot1073jamz.com/report-whataburger-is-...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2#Arkansas, United States#US#USAR#34.9513#-92....</td>
+      <td>...</td>
+      <td>wc:204,c12.1:8,c12.10:10,c12.12:2,c12.13:7,c12...</td>
+      <td>https://townsquare.media/site/156/files/2017/0...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>https://youtube.com/watch?v=9zCZ8WRnG4U;https:...</td>
+      <td>NaN</td>
+      <td>New Mexico,427;Morgan Stanley,821;Corpus Chris...</td>
+      <td>820,locations,189;670,of which,202;7,nationall...</td>
+      <td>NaN</td>
+      <td>&lt;PAGE_LINKS&gt;https://www.mysanantonio.com/busin...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>20190517211500-2</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>thewesterlysun.com</td>
+      <td>https://www.thewesterlysun.com/news/state/seri...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>TAX_WORLDLANGUAGES;TAX_WORLDLANGUAGES_MASSACHU...</td>
+      <td>GENERAL_GOVERNMENT,639;EPU_POLICY_GOVERNMENT,6...</td>
+      <td>3#Pittsfield, Vermont, United States#US#USVT#4...</td>
+      <td>...</td>
+      <td>wc:134,c12.1:9,c12.10:9,c12.12:4,c12.13:4,c12....</td>
+      <td>https://bloximages.newyork1.vip.townnews.com/t...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>https://youtube.com/user/sunpublishingco/videos;</td>
+      <td>NaN</td>
+      <td>Berkshire Eagle,254;Phillip Jordan,295</td>
+      <td>6,months,183;23,at the Canadian border,344;</td>
+      <td>NaN</td>
+      <td>&lt;PAGE_LINKS&gt;http://www.berkshireeagle.com;http...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>20190517211500-3</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>zerohedge.com</td>
+      <td>https://www.zerohedge.com/news/2019-05-17/here...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>EPU_ECONOMY;EPU_ECONOMY_HISTORIC;WB_698_TRADE;...</td>
+      <td>SANITATION,4617;ARMEDCONFLICT,90;ARMEDCONFLICT...</td>
+      <td>1#China#CH#CH#35#105#CH;1#United States#US#US#...</td>
+      <td>...</td>
+      <td>wc:1034,c1.2:12,c1.4:1,c12.1:112,c12.10:109,c1...</td>
+      <td>https://zh-prod-1cc738ca-7d3b-4a72-b792-20bd8d...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2735|72||sometimes struggle to afford housing ...</td>
+      <td>Atlanta Fed,2517;Urban Institute,2706;Marc Cha...</td>
+      <td>2,largest economies on the,495;15,numbers,1001...</td>
+      <td>NaN</td>
+      <td>&lt;PAGE_LINKS&gt;http://theeconomiccollapseblog.com...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20190517211500-4</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>politicususa.com</td>
+      <td>https://www.politicususa.com/2019/05/17/when-c...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>MEDIA_MSM;LEADER;TAX_FNCACT;TAX_FNCACT_PRESIDE...</td>
+      <td>TAX_POLITICAL_PARTY_REPUBLICANS,544;TAX_POLITI...</td>
+      <td>2#New York, United States#US#USNY#42.1497#-74....</td>
+      <td>...</td>
+      <td>wc:1479,c1.1:1,c1.4:1,c12.1:166,c12.10:192,c12...</td>
+      <td>https://www.politicususa.com/wp-content/upload...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Editor-In-Chief Sarah,65;Donald Trump,412;Sena...</td>
+      <td>2,Telly Awards,7466;</td>
+      <td>NaN</td>
+      <td>&lt;PAGE_PRECISEPUBTIMESTAMP&gt;20190517155200&lt;/PAGE...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2756</th>
+      <td>20190517211500-2756</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>sfgate.com</td>
+      <td>https://www.sfgate.com/nation/article/House-pa...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>LEADER;USPEC_POLITICS_GENERAL1;SELF_IDENTIFIED...</td>
+      <td>LEADER,68;LEADER,2080;USPEC_POLITICS_GENERAL1,...</td>
+      <td>1#United States#US#US#39.828175#-98.5795#US;3#...</td>
+      <td>...</td>
+      <td>wc:397,c1.1:1,c1.4:1,c12.1:36,c12.10:46,c12.12...</td>
+      <td>https://s.hdnux.com/photos/01/02/52/37/1747553...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Mark Takano,17;Chad Griffin,70;Human Rights Ca...</td>
+      <td>8,Republicans,1106;</td>
+      <td>NaN</td>
+      <td>&lt;PAGE_AUTHORS&gt;Matthew Daly&lt;/PAGE_AUTHORS&gt;&lt;PAGE...</td>
+    </tr>
+    <tr>
+      <th>2757</th>
+      <td>20190517211500-2757</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>joker.com</td>
+      <td>https://joker.com/?mode=order&amp;do_next=landingp...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>EPU_ECONOMY_HISTORIC;TAX_FNCACT;TAX_FNCACT_REG...</td>
+      <td>TAX_FNCACT_REGISTRAR,66;EPU_ECONOMY_HISTORIC,4...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>wc:36,c12.1:6,c12.10:1,c12.14:1,c12.3:3,c12.4:...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>About Joker,13</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2758</th>
+      <td>20190517211500-2758</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>thesun.co.uk</td>
+      <td>https://www.thesun.co.uk/fabulous/9096246/worl...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>TAX_FNCACT;TAX_FNCACT_DESIGNER;MEDIA_SOCIAL;TA...</td>
+      <td>TAX_WORLDFISH_SUCKER,2436;TAX_WORLDFISH_SUCKER...</td>
+      <td>1#Jamaica#JM#JM#18.25#-77.5#JM;1#United Kingdo...</td>
+      <td>...</td>
+      <td>wc:515,c1.1:3,c12.1:64,c12.10:35,c12.12:9,c12....</td>
+      <td>https://www.thesun.co.uk/wp-content/uploads/20...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Oxford Street,397;Thursday June,461;Paq Offici...</td>
+      <td>10000,of thousands of discount,105;50,denim cr...</td>
+      <td>NaN</td>
+      <td>&lt;PAGE_LINKS&gt;https://www.thesun.co.uk/fabulous/...</td>
+    </tr>
+    <tr>
+      <th>2759</th>
+      <td>20190517211500-2759</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>929nin.com</td>
+      <td>https://929nin.com/watch-booksmart-online/</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>EDUCATION;SOC_POINTSOFINTEREST;SOC_POINTSOFINT...</td>
+      <td>TAX_FNCACT_PRINCIPAL,532;SOC_POINTSOFINTEREST_...</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>wc:142,c12.1:11,c12.10:18,c12.12:5,c12.13:5,c1...</td>
+      <td>https://townsquare.media/site/442/files/2019/0...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>https://youtube.com/oembed?url=https%3A%2F%2Fw...</td>
+      <td>NaN</td>
+      <td>South By Southwest,42;Olivia Wilde,225;Kaitlyn...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>&lt;PAGE_LINKS&gt;https://screencrush.com/tags/books...</td>
+    </tr>
+    <tr>
+      <th>2760</th>
+      <td>20190517211500-2760</td>
+      <td>20190517211500</td>
+      <td>1</td>
+      <td>stalbansreview.co.uk</td>
+      <td>https://www.stalbansreview.co.uk/news/national...</td>
+      <td>ARREST#449##4#Glasgow, Glasgow City, United Ki...</td>
+      <td>ARREST#449##4#Glasgow, Glasgow City, United Ki...</td>
+      <td>SOC_POINTSOFINTEREST;SOC_POINTSOFINTEREST_PRIS...</td>
+      <td>GENERAL_GOVERNMENT,157;GENERAL_GOVERNMENT,686;...</td>
+      <td>4#Glasgow, Glasgow City, United Kingdom#UK#UKV...</td>
+      <td>...</td>
+      <td>wc:401,c1.3:1,c12.1:17,c12.10:39,c12.12:20,c12...</td>
+      <td>https://www.stalbansreview.co.uk/resources/ima...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Barlinnie Prison,17;Scottish Government,163;Sc...</td>
+      <td>449,prisoners,442;12,months,1334;</td>
+      <td>NaN</td>
+      <td>&lt;PAGE_PRECISEPUBTIMESTAMP&gt;20190517192400&lt;/PAGE...</td>
+    </tr>
+  </tbody>
+</table>
+<p>2761 rows × 27 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dg</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GKGRECORDID                                                    20190517211500-2
+DATE                                                             20190517211500
+SourceCollectionIdentifier                                                    1
+SourceCommonName                                             thewesterlysun.com
+DocumentIdentifier            https://www.thewesterlysun.com/news/state/seri...
+Counts                                                                      NaN
+V2Counts                                                                    NaN
+Themes                        TAX_WORLDLANGUAGES;TAX_WORLDLANGUAGES_MASSACHU...
+V2Themes                      GENERAL_GOVERNMENT,639;EPU_POLICY_GOVERNMENT,6...
+Locations                     3#Pittsfield, Vermont, United States#US#USVT#4...
+V2Locations                   2#Vermont, United States#US#USVT##44.0407#-72....
+Persons                                                                     NaN
+V2Persons                                                                   NaN
+Organizations                                                               NaN
+V2Organizations                                                             NaN
+V2Tone                        -6.84931506849315,1.36986301369863,8.219178082...
+Dates                                                                       NaN
+GCAM                          wc:134,c12.1:9,c12.10:9,c12.12:4,c12.13:4,c12....
+SharingImage                  https://bloximages.newyork1.vip.townnews.com/t...
+RelatedImages                                                               NaN
+SocialImageEmbeds                                                           NaN
+SocialVideoEmbeds              https://youtube.com/user/sunpublishingco/videos;
+Quotations                                                                  NaN
+AllNames                                 Berkshire Eagle,254;Phillip Jordan,295
+Amounts                             6,months,183;23,at the Canadian border,344;
+TranslationInfo                                                             NaN
+Extras                        &lt;PAGE_LINKS&gt;http://www.berkshireeagle.com;http...
+Name: 2, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="03-who-runs-China.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">案例：Who runs China？背后的数据</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="04-crawler-beautifulsoup.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">第三章 数据抓取</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Cheng-Jun Wang<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

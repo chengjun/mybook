@@ -165,6 +165,11 @@
      案例：Who runs China？背后的数据
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-gdelt.html">
+     Gdelt Dataset: Events, Mentions, and Global Knowledge Graph
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -339,6 +344,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="08-07-covid19-pew-survey.html">
      Analysing the Pew Survey Data of COVID19
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-11-cfps-survey-analysis.html">
+     中国家庭追踪调查2018
     </a>
    </li>
    <li class="toctree-l2">
@@ -1279,7 +1289,7 @@ introducing statistical methods to the social sciences in his book titled <stron
     <span class="n">sorted_v</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
     <span class="n">midpoint</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="mi">2</span>
 
-    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> 
         <span class="c1"># if odd, return the middle value</span>
         <span class="k">return</span> <span class="n">sorted_v</span><span class="p">[</span><span class="n">midpoint</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
@@ -1670,12 +1680,12 @@ quantile(num_friends, 0.90) 13
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>   
   
-<span class="n">pearsonr</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="n">daily_minutes</span><span class="p">)</span>
+<span class="n">pearsonr</span><span class="p">(</span><span class="n">num_friends</span><span class="p">,</span> <span class="n">daily_minutes</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.24736957366478224, 0.0003610473973450633)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.2473695736647822, 0.0003610473973450684)
 </pre></div>
 </div>
 </div>
@@ -2013,7 +2023,7 @@ Residual      34.0  0.005395  0.000159       NaN       NaN
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;hs ~ C(fetus) + C(observer) + C(fetus):C(observer)&#39;</span>
 <span class="n">lm</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">anova_lm</span><span class="p">(</span><span class="n">lm</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">anova_lm</span><span class="p">(</span><span class="n">lm</span><span class="p">))</span>  
 </pre></div>
 </div>
 </div>
