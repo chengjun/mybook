@@ -629,6 +629,11 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-matplotlib-colormap.html">
+     Qualitative Colormaps in Matplotlib Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="19-visualization-scientific-plot.html">
      Matplotlib的科学绘图样式
     </a>
@@ -1092,7 +1097,7 @@
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span><span class="p">;</span> 
 <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;talk&quot;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">1.5</span><span class="p">);</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1318,7 +1323,7 @@ Depending on the model class we are working with, we might need to answer one or
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression()
 </pre></div>
 </div>
 </div>
@@ -1364,7 +1369,7 @@ This can be done with the <code class="docutils literal notranslate"><span class
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression()
 </pre></div>
 </div>
 </div>
@@ -1597,16 +1602,12 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;talk&quot;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
 <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;PCA1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_2D</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
 <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;PCA2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_2D</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="s2">&quot;PCA1&quot;</span><span class="p">,</span> <span class="s2">&quot;PCA2&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">iris</span><span class="p">,</span> <span class="n">fit_reg</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;PCA1&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span> <span class="s2">&quot;PCA2&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">iris</span><span class="p">,</span> <span class="n">fit_reg</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.7/site-packages/seaborn/_decorators.py:43: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-  FutureWarning
-</pre></div>
-</div>
-<img alt="_images/09-01-machine-learning-with-sklearn_65_1.png" src="_images/09-01-machine-learning-with-sklearn_65_1.png" />
+<img alt="_images/09-01-machine-learning-with-sklearn_65_0.png" src="_images/09-01-machine-learning-with-sklearn_65_0.png" />
 </div>
 </div>
 <p>In the two-dimensional representation, the species are fairly well separated, even though the PCA algorithm had no knowledge of the species labels!</p>
@@ -1672,17 +1673,13 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;talk&quot;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
 <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_gmm</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="s2">&quot;PCA1&quot;</span><span class="p">,</span> <span class="s2">&quot;PCA2&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">iris</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span><span class="s2">&quot;PCA1&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;PCA2&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">iris</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span>
            <span class="n">col</span><span class="o">=</span><span class="s1">&#39;cluster&#39;</span><span class="p">,</span> <span class="n">fit_reg</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.7/site-packages/seaborn/_decorators.py:43: FutureWarning: Pass the following variables as keyword args: x, y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
-  FutureWarning
-</pre></div>
-</div>
-<img alt="_images/09-01-machine-learning-with-sklearn_71_1.png" src="_images/09-01-machine-learning-with-sklearn_71_1.png" />
+<img alt="_images/09-01-machine-learning-with-sklearn_71_0.png" src="_images/09-01-machine-learning-with-sklearn_71_0.png" />
 </div>
 </div>
 <p>By splitting the data by cluster number, GMM algorithm recovered the underlying label  without an expert:</p>
@@ -1790,7 +1787,7 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span>
-<span class="n">y</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">y</span><span class="o">.</span><span class="n">shape</span> 
 </pre></div>
 </div>
 </div>

@@ -629,6 +629,11 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-matplotlib-colormap.html">
+     Qualitative Colormaps in Matplotlib Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="19-visualization-scientific-plot.html">
      Matplotlib的科学绘图样式
     </a>
@@ -889,8 +894,8 @@ $<span class="math notranslate nohighlight">\(P(L~|~{\rm features}) = \frac{P({\
 <p>The “naive” conditional independent assumptions: assume that each feature <span class="math notranslate nohighlight">\(x_i\)</span> is conditionally statistical independence of every other feature <span class="math notranslate nohighlight">\(x_j\)</span> for <span class="math notranslate nohighlight">\(j\neq i\)</span>, given the category <span class="math notranslate nohighlight">\(L_k\)</span>.  This means that</p>
 <div class="math notranslate nohighlight">
 \[p(x_i \mid x_{i+1}, \dots ,x_{n}, L_k ) = p(x_i \mid L_k)\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-27188d3a-d0b4-4c64-a909-36e611799e61">
-<span class="eqno">(2)<a class="headerlink" href="#equation-27188d3a-d0b4-4c64-a909-36e611799e61" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4f0122d8-6d59-4607-983f-5d2e049e952c">
+<span class="eqno">(2)<a class="headerlink" href="#equation-4f0122d8-6d59-4607-983f-5d2e049e952c" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(L_k, x_1, \dots, x_n) &amp; = p(x_1, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2 \mid x_3, \dots, x_n, L_k) p(x_3, \dots, x_n, L_k) \\
@@ -898,8 +903,8 @@ p(L_k, x_1, \dots, x_n) &amp; = p(x_1, \dots, x_n, L_k) \\
                         &amp; = p(x_1 \mid x_2, \dots, x_n, L_k) p(x_2 \mid x_3, \dots, x_n, L_k) \dots   p(x_{n-1} \mid x_n, L_k) p(x_n \mid L_k) p(L_k) \\
 \end{align}\]</div>
 <p>Thus, the joint model can be expressed as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d982bcaa-a0e8-4618-b615-7cde03f73bf5">
-<span class="eqno">(3)<a class="headerlink" href="#equation-d982bcaa-a0e8-4618-b615-7cde03f73bf5" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-578ccce5-cc5c-43be-adf9-0f29e4f39af1">
+<span class="eqno">(3)<a class="headerlink" href="#equation-578ccce5-cc5c-43be-adf9-0f29e4f39af1" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(L_k \mid x_1, \dots, x_n) &amp; \varpropto p(L_k, x_1, \dots, x_n) = \\
                             &amp; = p(L_k) \ p(x_1 \mid L_k) \ p(x_2\mid L_k) \ p(x_3\mid L_k) \ \cdots \\
                             &amp; = p(L_k) \prod_{i=1}^n p(x_i \mid L_k)\,.
@@ -935,8 +940,8 @@ f(x \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2} } e^{ -\frac{(x-\mu)^2}{2
 <p>Suppose we have collected some observation value <span class="math notranslate nohighlight">\(v\)</span>.
 Then, the probability distribution of <span class="math notranslate nohighlight">\(v\)</span> given a class <span class="math notranslate nohighlight">\(C_k\)</span>,</p>
 <p><span class="math notranslate nohighlight">\(p(x=v \mid C_k)\)</span>, can be computed by plugging <span class="math notranslate nohighlight">\(v\)</span> into the equation for a Normal distribution parameterized by <span class="math notranslate nohighlight">\(\mu_k\)</span> and <span class="math notranslate nohighlight">\(\sigma^2_k\)</span>. That is,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-229755f6-9266-4cb8-9915-ee46441f245d">
-<span class="eqno">(4)<a class="headerlink" href="#equation-229755f6-9266-4cb8-9915-ee46441f245d" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-786fdf78-623c-4b16-8fa6-58e11f6d8f84">
+<span class="eqno">(4)<a class="headerlink" href="#equation-786fdf78-623c-4b16-8fa6-58e11f6d8f84" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(x=v \mid C_k)=\frac{1}{\sqrt{2\pi\sigma^2_k}}\,e^{ -\frac{(v-\mu_k)^2}{2\sigma^2_k} }
 \end{align}\]</div>
 <p><strong>Problem</strong>: classify whether a given person is a male or a female based on the measured features.</p>
