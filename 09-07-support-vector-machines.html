@@ -983,10 +983,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SVC(C=10000000000.0, break_ties=False, cache_size=200, class_weight=None,
-    coef0=0.0, decision_function_shape=&#39;ovr&#39;, degree=3, gamma=&#39;scale&#39;,
-    kernel=&#39;linear&#39;, max_iter=-1, probability=False, random_state=None,
-    shrinking=True, tol=0.001, verbose=False)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SVC(C=10000000000.0, kernel=&#39;linear&#39;)
 </pre></div>
 </div>
 </div>
@@ -1136,7 +1133,7 @@ Notice</p>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "09e85941857746c8bb75fec340839a60", "version_major": 2, "version_minor": 0}
+{"model_id": "6eb9f24efcc94088bf08db8c5bab0979", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 </div>
@@ -1182,19 +1179,30 @@ Notice</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.14308403e-02, 4.91155946e-05])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.72161745, 0.43644773])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">X</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">((</span><span class="n">X</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.011479955941199707
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on built-in function sum:
+
+sum(...) method of numpy.ndarray instance
+    a.sum(axis=None, dtype=None, out=None, keepdims=False, initial=0, where=True)
+    
+    Return the sum of the array elements over the given axis.
+    
+    Refer to `numpy.sum` for full documentation.
+    
+    See Also
+    --------
+    numpy.sum : equivalent function
 </pre></div>
 </div>
 </div>
@@ -1242,7 +1250,7 @@ Notice</p>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "981e1e83888840bcbabec21abad15258", "version_major": 2, "version_minor": 0}
+{"model_id": "f0727514ee634ce5b8d716e8faddd568", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 <p>We can see that with this additional dimension, the data becomes trivially linearly separable,</p>
@@ -1298,10 +1306,7 @@ Notice</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SVC(C=1000000.0, break_ties=False, cache_size=200, class_weight=None, coef0=0.0,
-    decision_function_shape=&#39;ovr&#39;, degree=3, gamma=&#39;scale&#39;, kernel=&#39;rbf&#39;,
-    max_iter=-1, probability=False, random_state=None, shrinking=True,
-    tol=0.001, verbose=False)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SVC(C=1000000.0)
 </pre></div>
 </div>
 </div>
@@ -1458,7 +1463,7 @@ Here we will adjust <code class="docutils literal notranslate"><span class="pre"
 <span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">)</span>
 
 <span class="o">%</span><span class="k">time</span> grid.fit(Xtrain, ytrain)
-<span class="nb">print</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>  
 </pre></div>
 </div>
 </div>
