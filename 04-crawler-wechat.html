@@ -134,6 +134,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="01-recombination.html">
+     计算思维：通过拆解和重组学习编程
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="0-slides.html">
      使用Jupyter制作Slides的介绍
     </a>
@@ -2709,27 +2714,21 @@ __moonf__(); }, 25);</script><script nonce="1627523344" type="text/javascript">
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting wechatsogou
-?25l  Downloading https://files.pythonhosted.org/packages/37/f0/b4699c0f04cd7bd0c51f8039bc7f2797ba92dd6fc1effeec230868b33ef4/wechatsogou-4.5.4-py2.py3-none-any.whl (45kB)
-    100% |████████████████████████████████| 51kB 62kB/s ta 0:00:01
-?25hRequirement already satisfied, skipping upgrade: lxml in /Users/datalab/Applications/anaconda/lib/python3.5/site-packages (from wechatsogou) (3.6.4)
-Collecting bs4 (from wechatsogou)
-  Downloading https://files.pythonhosted.org/packages/10/ed/7e8b97591f6f456174139ec089c769f89a94a1a4025fe967691de971f314/bs4-0.0.1.tar.gz
-Requirement already satisfied, skipping upgrade: Werkzeug in /Users/datalab/Applications/anaconda/lib/python3.5/site-packages (from wechatsogou) (0.11.11)
-Requirement already satisfied, skipping upgrade: Pillow in /Users/datalab/Applications/anaconda/lib/python3.5/site-packages (from wechatsogou) (5.0.0)
-Requirement already satisfied, skipping upgrade: future in /Users/datalab/Applications/anaconda/lib/python3.5/site-packages (from wechatsogou) (0.16.0)
-Requirement already satisfied, skipping upgrade: six in /Users/datalab/Applications/anaconda/lib/python3.5/site-packages (from wechatsogou) (1.11.0)
-Requirement already satisfied, skipping upgrade: requests in /Users/datalab/Applications/anaconda/lib/python3.5/site-packages (from wechatsogou) (2.14.2)
-Requirement already satisfied, skipping upgrade: xlrd in /Users/datalab/Applications/anaconda/lib/python3.5/site-packages (from wechatsogou) (1.0.0)
-Requirement already satisfied, skipping upgrade: beautifulsoup4 in /Users/datalab/Applications/anaconda/lib/python3.5/site-packages (from bs4-&gt;wechatsogou) (4.5.1)
-Building wheels for collected packages: bs4
-  Building wheel for bs4 (setup.py) ... ?25ldone
-?25h  Stored in directory: /Users/datalab/Library/Caches/pip/wheels/a0/b0/b2/4f80b9456b87abedbc0bf2d52235414c3467d8889be38dd472
-Successfully built bs4
-Installing collected packages: bs4, wechatsogou
-Successfully installed bs4-0.0.1 wechatsogou-4.5.4
-<span class=" -Color -Color-Yellow">You are using pip version 19.0.3, however version 19.1.1 is available.</span>
-<span class=" -Color -Color-Yellow">You should consider upgrading via the &#39;pip install --upgrade pip&#39; command.</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: wechatsogou in /opt/anaconda3/lib/python3.9/site-packages (4.5.4)
+Requirement already satisfied: future in /opt/anaconda3/lib/python3.9/site-packages (from wechatsogou) (0.18.2)
+Requirement already satisfied: Pillow in /opt/anaconda3/lib/python3.9/site-packages (from wechatsogou) (8.4.0)
+Requirement already satisfied: Werkzeug in /opt/anaconda3/lib/python3.9/site-packages (from wechatsogou) (2.0.2)
+Requirement already satisfied: six in /opt/anaconda3/lib/python3.9/site-packages (from wechatsogou) (1.16.0)
+Requirement already satisfied: requests in /opt/anaconda3/lib/python3.9/site-packages (from wechatsogou) (2.26.0)
+Requirement already satisfied: bs4 in /opt/anaconda3/lib/python3.9/site-packages (from wechatsogou) (0.0.1)
+Requirement already satisfied: xlrd in /opt/anaconda3/lib/python3.9/site-packages (from wechatsogou) (2.0.1)
+Requirement already satisfied: lxml in /opt/anaconda3/lib/python3.9/site-packages (from wechatsogou) (4.6.3)
+Requirement already satisfied: beautifulsoup4 in /opt/anaconda3/lib/python3.9/site-packages (from bs4-&gt;wechatsogou) (4.10.0)
+Requirement already satisfied: soupsieve&gt;1.2 in /opt/anaconda3/lib/python3.9/site-packages (from beautifulsoup4-&gt;bs4-&gt;wechatsogou) (2.2.1)
+Requirement already satisfied: charset-normalizer~=2.0.0 in /opt/anaconda3/lib/python3.9/site-packages (from requests-&gt;wechatsogou) (2.0.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/anaconda3/lib/python3.9/site-packages (from requests-&gt;wechatsogou) (3.2)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /opt/anaconda3/lib/python3.9/site-packages (from requests-&gt;wechatsogou) (1.26.7)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /opt/anaconda3/lib/python3.9/site-packages (from requests-&gt;wechatsogou) (2021.10.8)
 </pre></div>
 </div>
 </div>
@@ -2749,8 +2748,8 @@ Successfully installed bs4-0.0.1 wechatsogou-4.5.4
 <span class="c1"># 所有requests库的参数都能在这用</span>
 <span class="c1"># 如 配置代理，代理列表中至少需包含1个 HTTPS 协议的代理, 并确保代理可用</span>
 <span class="n">ws_api</span> <span class="o">=</span> <span class="n">wechatsogou</span><span class="o">.</span><span class="n">WechatSogouAPI</span><span class="p">(</span><span class="n">proxies</span><span class="o">=</span><span class="p">{</span>
-    <span class="s2">&quot;http&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1:8889&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;https&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1:8889&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;http&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1:8888&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1:8888&quot;</span><span class="p">,</span>
 <span class="p">})</span>
 
 <span class="c1"># 如 设置超时</span>
@@ -2762,24 +2761,39 @@ Successfully installed bs4-0.0.1 wechatsogou-4.5.4
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ws_api</span> <span class="o">=</span><span class="n">wechatsogou</span><span class="o">.</span><span class="n">WechatSogouAPI</span><span class="p">()</span>
-<span class="n">ws_api</span><span class="o">.</span><span class="n">get_gzh_info</span><span class="p">(</span><span class="s1">&#39;南航青年志愿者&#39;</span><span class="p">)</span>
+<span class="n">ws_api</span><span class="o">.</span><span class="n">get_gzh_info</span><span class="p">(</span><span class="s1">&#39;侠客栈&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>please input code: HK37T5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;open_id&#39;: &#39;oIWsFt8tsw8GsejMnpu1SUBK4BkM&#39;,
+ &#39;profile_url&#39;: &#39;http://mp.weixin.qq.com/profile?src=3&amp;timestamp=1638855866&amp;ver=1&amp;signature=RcKL6h5J9i7U7j3XEdEsS*550qpahebslJl5pdOvKt-PE7hVecsxp4-T7ub*3cZkeo-1pKVuQzfS-r6TkS1zDg==&#39;,
+ &#39;headimage&#39;: &#39;https://img01.sogoucdn.com/app/a/100520090/oIWsFt8tsw8GsejMnpu1SUBK4BkM&#39;,
+ &#39;wechat_name&#39;: &#39;侠客栈&#39;,
+ &#39;wechat_id&#39;: &#39;xiake-zhan&#39;,
+ &#39;qrcode&#39;: &#39;&#39;,
+ &#39;introduction&#39;: &#39;我们心里,都住着一个侠客!&#39;,
+ &#39;authentication&#39;: &#39;\n&#39;,
+ &#39;post_perm&#39;: -1,
+ &#39;view_perm&#39;: -1}
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;authentication&#39;: &#39;\n&#39;,
- &#39;headimage&#39;: &#39;https://img01.sogoucdn.com/app/a/100520090/oIWsFt1tmWoG6vO6BcsS7St61bRE&#39;,
- &#39;introduction&#39;: &#39;南航大志愿活动的领跑者,为你提供校内外的志愿资源和精彩消息.&#39;,
- &#39;open_id&#39;: &#39;oIWsFt1tmWoG6vO6BcsS7St61bRE&#39;,
- &#39;post_perm&#39;: 26,
- &#39;profile_url&#39;: &#39;http://mp.weixin.qq.com/profile?src=3&amp;timestamp=1560004347&amp;ver=1&amp;signature=OpcTZp20TUdKHjSqWh7m73RWBIzwYwINpib2ZktBkLEWS9*s61AB7DxViyL4XhpOGnibYEovkq8eELKID5futg==&#39;,
- &#39;qrcode&#39;: &#39;http://mp.weixin.qq.com/rr?src=3&amp;timestamp=1560004347&amp;ver=1&amp;signature=-DnFampQflbiOadckRJaTaDRzGSNfisIfECELSo-lN-GeEOH8-XTtM*ASdavl0xuGzG1yEhZNZAikkhyhU*C93uHbUVw8Ht7qn8MtInPfZ8=&#39;,
- &#39;view_perm&#39;: 365,
- &#39;wechat_id&#39;: &#39;nanhangqinggong&#39;,
- &#39;wechat_name&#39;: &#39;南航青年志愿者&#39;}
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ws_api</span> <span class="o">=</span><span class="n">wechatsogou</span><span class="o">.</span><span class="n">WechatSogouAPI</span><span class="p">()</span>
+<span class="n">ws_api</span><span class="o">.</span><span class="n">get_gzh_article_by_history</span><span class="p">(</span><span class="s1">&#39;乱花迷眼&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;gzh&#39;: {&#39;wechat_name&#39;: &#39;乱花迷眼&#39;,
+  &#39;wechat_id&#39;: &#39;wegonews&#39;,
+  &#39;introduction&#39;: &#39;为您精选精彩好文&#39;,
+  &#39;authentication&#39;: &#39;为您精选精彩好文&#39;,
+  &#39;headimage&#39;: &#39;http://wx.qlogo.cn/mmhead/Q3auHgzwzM7EODqEq8WmX867sP4hamJGDLyJA8o1lakRkj00muZ4LQ/0&#39;},
+ &#39;article&#39;: []}
 </pre></div>
 </div>
 </div>
