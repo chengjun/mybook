@@ -58,7 +58,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Doc2Vec" href="10-doc2vec.html" />
-    <link rel="prev" title="第八章 文本挖掘" href="10-text-minning-gov-report.html" />
+    <link rel="prev" title="第八章 文本挖掘" href="10-text-mining-gov-report.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -137,7 +137,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="01-recombination.html">
-     计算思维：通过拆解和重组学习编程
+     计算思维：通过拆解和重组学习
     </a>
    </li>
    <li class="toctree-l2">
@@ -468,7 +468,7 @@
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="10-text-minning-gov-report.html">
+  <a class="reference internal" href="10-text-mining-gov-report.html">
    第八章 文本挖掘
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
@@ -1076,12 +1076,13 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;woman&#39;</span><span class="p">][:</span><span class="mi">3</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;woman&#39;</span><span class="p">][:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.24316406, -0.07714844, -0.10302734], dtype=float32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.24316406, -0.07714844, -0.10302734, -0.10742188,  0.11816406],
+      dtype=float32)
 </pre></div>
 </div>
 </div>
@@ -1093,15 +1094,15 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;man&#39;, 0.7664012312889099),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;man&#39;, 0.7664012908935547),
  (&#39;girl&#39;, 0.7494640946388245),
  (&#39;teenage_girl&#39;, 0.7336829900741577),
  (&#39;teenager&#39;, 0.631708562374115),
  (&#39;lady&#39;, 0.6288785934448242),
- (&#39;teenaged_girl&#39;, 0.6141784191131592),
- (&#39;mother&#39;, 0.607630729675293),
+ (&#39;teenaged_girl&#39;, 0.614178478717804),
+ (&#39;mother&#39;, 0.6076306104660034),
  (&#39;policewoman&#39;, 0.6069462299346924),
- (&#39;boy&#39;, 0.5975908041000366),
+ (&#39;boy&#39;, 0.5975908637046814),
  (&#39;Woman&#39;, 0.5770983099937439)]
 </pre></div>
 </div>
@@ -1138,17 +1139,65 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;queen&#39;, 0.7118192911148071),
- (&#39;monarch&#39;, 0.6189674139022827),
- (&#39;princess&#39;, 0.5902431607246399),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;queen&#39;, 0.7118193507194519),
+ (&#39;monarch&#39;, 0.6189674735069275),
+ (&#39;princess&#39;, 0.5902431011199951),
  (&#39;crown_prince&#39;, 0.5499460697174072),
  (&#39;prince&#39;, 0.5377321243286133)]
 </pre></div>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;London&#39;</span><span class="p">,</span> <span class="s1">&#39;China&#39;</span><span class="p">],</span> <span class="n">negative</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Beijing&#39;</span><span class="p">],</span> <span class="n">topn</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;UK&#39;, 0.6304796934127808),
+ (&#39;Britain&#39;, 0.6012536287307739),
+ (&#39;EURASIAN_NATURAL_RESOURCES_CORP.&#39;, 0.5524139404296875),
+ (&#39;Europe&#39;, 0.5444058775901794),
+ (&#39;United_Kingdom&#39;, 0.5375455021858215)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;big&#39;</span><span class="p">,</span> <span class="s1">&#39;worst&#39;</span><span class="p">],</span> <span class="n">negative</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bad&#39;</span><span class="p">],</span> <span class="n">topn</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;biggest&#39;, 0.7630176544189453),
+ (&#39;greatest&#39;, 0.6113720536231995),
+ (&#39;major&#39;, 0.5540789365768433),
+ (&#39;huge&#39;, 0.5368192195892334),
+ (&#39;Biggest&#39;, 0.5305125713348389)]
+</pre></div>
+</div>
+</div>
+</div>
 <div class="math notranslate nohighlight">
 \[King- Queen = Man - Woman\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;go&#39;</span><span class="p">,</span> <span class="s1">&#39;do&#39;</span><span class="p">],</span> <span class="n">negative</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;did&#39;</span><span class="p">],</span> <span class="n">topn</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;come&#39;, 0.6050394177436829),
+ (&#39;get&#39;, 0.5739777684211731),
+ (&#39;goes&#39;, 0.5202917456626892),
+ (&#39;happen&#39;, 0.5166401267051697),
+ (&#39;sit&#39;, 0.5145819187164307)]
+</pre></div>
+</div>
+</div>
+</div>
 <a class="reference internal image-reference" href="_images/word2vec.png"><img alt="_images/word2vec.png" src="_images/word2vec.png" style="width: 700px;" /></a>
 <p>Now that we’ve looked at trained word embeddings,</p>
 <ul class="simple">
@@ -1483,7 +1532,7 @@ SkipGram(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10-word2vec_68_0.png" src="_images/10-word2vec_68_0.png" />
+<img alt="_images/10-word2vec_71_0.png" src="_images/10-word2vec_71_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1541,7 +1590,7 @@ SkipGram(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10-word2vec_71_0.png" src="_images/10-word2vec_71_0.png" />
+<img alt="_images/10-word2vec_74_0.png" src="_images/10-word2vec_74_0.png" />
 </div>
 </div>
 </div>
@@ -1852,7 +1901,7 @@ SkipGram(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10-word2vec_84_0.png" src="_images/10-word2vec_84_0.png" />
+<img alt="_images/10-word2vec_87_0.png" src="_images/10-word2vec_87_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1920,12 +1969,20 @@ SkipGram(
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Building prefix dict from the default dictionary ...
+Loading model from cache /var/folders/8b/hhnbt0nd4zsg2qhxc28q23w80000gn/T/jieba.cache
+Loading model cost 0.685 seconds.
+Prefix dict has been built successfully.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 调用gensim Word2Vec的算法进行训练。</span>
 <span class="c1"># 参数分别为：size: 嵌入后的词向量维度；window: 上下文的宽度，min_count为考虑计算的单词的最低词频阈值</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">window</span> <span class="o">=</span> <span class="mi">2</span> <span class="p">,</span> <span class="n">min_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">vector_size</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">window</span> <span class="o">=</span> <span class="mi">2</span> <span class="p">,</span> <span class="n">min_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1937,106 +1994,106 @@ SkipGram(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;号&#39;, 0.9991474151611328),
- (&#39;仍&#39;, 0.9990677237510681),
- (&#39;背景&#39;, 0.9989785552024841),
- (&#39;中&#39;, 0.9989073276519775),
- (&#39;和&#39;, 0.9988664388656616),
- (&#39;下&#39;, 0.9988356232643127),
- (&#39;与&#39;, 0.998835027217865),
- (&#39;时代&#39;, 0.9988163709640503),
- (&#39;被&#39;, 0.998814582824707),
- (&#39;上&#39;, 0.9987987875938416),
- (&#39;设备&#39;, 0.9987902641296387),
- (&#39;这个&#39;, 0.9987789392471313),
- (&#39;在&#39;, 0.9987666010856628),
- (&#39;出&#39;, 0.998758852481842),
- (&#39;计算&#39;, 0.9987345337867737),
- (&#39;确实&#39;, 0.9986939430236816),
- (&#39;地球&#39;, 0.9986928701400757),
- (&#39;开始&#39;, 0.9986846446990967),
- (&#39;研究&#39;, 0.9986833930015564),
- (&#39;目前&#39;, 0.9986788034439087),
- (&#39;计算机&#39;, 0.9986657500267029),
- (&#39;一个&#39;, 0.9986624717712402),
- (&#39;使&#39;, 0.998661994934082),
- (&#39;的&#39;, 0.9986578226089478),
- (&#39;出现&#39;, 0.9986552000045776),
- (&#39;真实&#39;, 0.9986495971679688),
- (&#39;信息&#39;, 0.9986458420753479),
- (&#39;那样&#39;, 0.9986419677734375),
- (&#39;毁灭&#39;, 0.9986330270767212),
- (&#39;存在&#39;, 0.9986319541931152),
- (&#39;生命&#39;, 0.9986208081245422),
- (&#39;太阳&#39;, 0.9986128807067871),
- (&#39;外星&#39;, 0.9986080527305603),
- (&#39;宇宙&#39;, 0.9985974431037903),
- (&#39;技术&#39;, 0.9985949397087097),
- (&#39;内&#39;, 0.9985937476158142),
- (&#39;不同&#39;, 0.9985873699188232),
- (&#39;对&#39;, 0.9985859990119934),
- (&#39;’&#39;, 0.9985852241516113),
- (&#39;但&#39;, 0.9985851645469666),
- (&#39;或&#39;, 0.998579740524292),
- (&#39;以&#39;, 0.9985793828964233),
- (&#39;确定&#39;, 0.9985712766647339),
- (&#39;已&#39;, 0.9985640048980713),
- (&#39;监听&#39;, 0.9985599517822266),
- (&#39;产生&#39;, 0.9985580444335938),
- (&#39;一名&#39;, 0.998555064201355),
- (&#39;曾&#39;, 0.9985499382019043),
- (&#39;控制&#39;, 0.9985296726226807),
- (&#39;质子&#39;, 0.9985259771347046),
- (&#39;那些&#39;, 0.9985222816467285),
- (&#39;对于&#39;, 0.9985181093215942),
- (&#39;人&#39;, 0.9985091686248779),
- (&#39;很&#39;, 0.9984890222549438),
- (&#39;状态&#39;, 0.9984877705574036),
- (&#39;将&#39;, 0.9984877705574036),
- (&#39;其&#39;, 0.9984660744667053),
- (&#39;甚至&#39;, 0.9984593987464905),
- (&#39;并&#39;, 0.998455286026001),
- (&#39;两个&#39;, 0.9984530806541443),
- (&#39;为&#39;, 0.9984517097473145),
- (&#39;一些&#39;, 0.9984512329101562),
- (&#39;到&#39;, 0.9984411597251892),
- (&#39;时&#39;, 0.9984337091445923),
- (&#39;成为&#39;, 0.9984302520751953),
- (&#39;只有&#39;, 0.9984236359596252),
- (&#39;人类&#39;, 0.9984211325645447),
- (&#39;操作&#39;, 0.9984169006347656),
- (&#39;以前&#39;, 0.9984143972396851),
- (&#39;有&#39;, 0.998409628868103),
- (&#39;于&#39;, 0.9984070062637329),
- (&#39;精确&#39;, 0.9984040260314941),
- (&#39;材料&#39;, 0.9984034895896912),
- (&#39;工作&#39;, 0.9984033107757568),
- (&#39;发射&#39;, 0.9983908534049988),
- (&#39;撞击&#39;, 0.9983891248703003),
- (&#39;向&#39;, 0.9983859062194824),
- (&#39;需要&#39;, 0.9983782768249512),
- (&#39;金字塔&#39;, 0.9983758926391602),
- (&#39;周围&#39;, 0.9983750581741333),
- (&#39;还有&#39;, 0.9983642101287842),
- (&#39;这种&#39;, 0.9983606338500977),
- (&#39;部分&#39;, 0.998336911201477),
- (&#39;从&#39;, 0.9983317852020264),
- (&#39;人们&#39;, 0.9983276128768921),
- (&#39;三个&#39;, 0.9983229637145996),
- (&#39;已经&#39;, 0.9983162879943848),
- (&#39;太空&#39;, 0.9983103275299072),
- (&#39;小&#39;, 0.9982970356941223),
- (&#39;刚刚&#39;, 0.998295783996582),
- (&#39;一片&#39;, 0.9982841610908508),
- (&#39;一&#39;, 0.9982807636260986),
- (&#39;还是&#39;, 0.9982765913009644),
- (&#39;变成&#39;, 0.9982757568359375),
- (&#39;科学&#39;, 0.9982727766036987),
- (&#39;也&#39;, 0.9982692003250122),
- (&#39;最后&#39;, 0.9982669949531555),
- (&#39;一颗&#39;, 0.9982632398605347),
- (&#39;其他&#39;, 0.9982585906982422),
- (&#39;一下&#39;, 0.9982539415359497)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;地球&#39;, 0.9974961876869202),
+ (&#39;外星&#39;, 0.9959420561790466),
+ (&#39;中&#39;, 0.9958519339561462),
+ (&#39;的&#39;, 0.9958161115646362),
+ (&#39;信息&#39;, 0.9955942034721375),
+ (&#39;文明&#39;, 0.9955913424491882),
+ (&#39;时间&#39;, 0.9953882694244385),
+ (&#39;宇宙&#39;, 0.9951216578483582),
+ (&#39;发展&#39;, 0.9950591325759888),
+ (&#39;与&#39;, 0.9950133562088013),
+ (&#39;一个&#39;, 0.9949650764465332),
+ (&#39;它&#39;, 0.9945959448814392),
+ (&#39;四个&#39;, 0.9944809079170227),
+ (&#39;世界&#39;, 0.9944674968719482),
+ (&#39;加速器&#39;, 0.9942856431007385),
+ (&#39;太阳&#39;, 0.9941897988319397),
+ (&#39;通过&#39;, 0.9940699934959412),
+ (&#39;放到&#39;, 0.9940448999404907),
+ (&#39;将&#39;, 0.9940245151519775),
+ (&#39;社会&#39;, 0.9938994646072388),
+ (&#39;实验&#39;, 0.9938514232635498),
+ (&#39;目前&#39;, 0.993848979473114),
+ (&#39;其他&#39;, 0.9938352704048157),
+ (&#39;结构&#39;, 0.9938239455223083),
+ (&#39;存在&#39;, 0.9937348961830139),
+ (&#39;舰队&#39;, 0.9936554431915283),
+ (&#39;这个&#39;, 0.9936324954032898),
+ (&#39;历史&#39;, 0.993557333946228),
+ (&#39;内&#39;, 0.9935263991355896),
+ (&#39;使&#39;, 0.9934986233711243),
+ (&#39;巨大&#39;, 0.9934812188148499),
+ (&#39;出现&#39;, 0.9934180974960327),
+ (&#39;最近&#39;, 0.9934037327766418),
+ (&#39;大殿&#39;, 0.9933778047561646),
+ (&#39;毁灭&#39;, 0.993355929851532),
+ (&#39;等&#39;, 0.9933347105979919),
+ (&#39;在&#39;, 0.9933309555053711),
+ (&#39;这样&#39;, 0.9933069944381714),
+ (&#39;而&#39;, 0.9932495355606079),
+ (&#39;杨冬&#39;, 0.9932450652122498),
+ (&#39;周围&#39;, 0.9932316541671753),
+ (&#39;那个&#39;, 0.9932215213775635),
+ (&#39;产生&#39;, 0.9931648373603821),
+ (&#39;为&#39;, 0.9931637644767761),
+ (&#39;所有&#39;, 0.9931597113609314),
+ (&#39;沙瑞山&#39;, 0.9931430220603943),
+ (&#39;不同&#39;, 0.9931164383888245),
+ (&#39;你们&#39;, 0.9930866360664368),
+ (&#39;人们&#39;, 0.993083119392395),
+ (&#39;上&#39;, 0.993078351020813),
+ (&#39;人类&#39;, 0.9930549263954163),
+ (&#39;人&#39;, 0.9930544495582581),
+ (&#39;时&#39;, 0.9930477142333984),
+ (&#39;那些&#39;, 0.9930435419082642),
+ (&#39;一些&#39;, 0.9930272698402405),
+ (&#39;该&#39;, 0.9929757714271545),
+ (&#39;频率&#39;, 0.9928855895996094),
+ (&#39;技术&#39;, 0.9928467273712158),
+ (&#39;美好&#39;, 0.9928457736968994),
+ (&#39;主要&#39;, 0.9928236603736877),
+ (&#39;疯狂&#39;, 0.9928078055381775),
+ (&#39;努力&#39;, 0.9927535653114319),
+ (&#39;进行&#39;, 0.9927522540092468),
+ (&#39;需要&#39;, 0.992743730545044),
+ (&#39;被&#39;, 0.9927397966384888),
+ (&#39;发生&#39;, 0.992729127407074),
+ (&#39;接触&#39;, 0.9927168488502502),
+ (&#39;复杂&#39;, 0.99271559715271),
+ (&#39;研究&#39;, 0.9927100539207458),
+ (&#39;和&#39;, 0.9926401376724243),
+ (&#39;于&#39;, 0.992630660533905),
+ (&#39;发出&#39;, 0.9926106333732605),
+ (&#39;三&#39;, 0.9926024675369263),
+ (&#39;运动&#39;, 0.9925642013549805),
+ (&#39;只能&#39;, 0.9925564527511597),
+ (&#39;一片&#39;, 0.9925556182861328),
+ (&#39;已经&#39;, 0.9925482273101807),
+ (&#39;自己&#39;, 0.992435872554779),
+ (&#39;计算&#39;, 0.9924312829971313),
+ (&#39;那样&#39;, 0.9924249649047852),
+ (&#39;这些&#39;, 0.9924024343490601),
+ (&#39;第一次&#39;, 0.9923712611198425),
+ (&#39;一张&#39;, 0.9923089742660522),
+ (&#39;基地&#39;, 0.9922966361045837),
+ (&#39;辐射&#39;, 0.9922692775726318),
+ (&#39;混乱&#39;, 0.9922570586204529),
+ (&#39;一名&#39;, 0.9922410249710083),
+ (&#39;其&#39;, 0.9922134280204773),
+ (&#39;比&#39;, 0.9921837449073792),
+ (&#39;为了&#39;, 0.992165744304657),
+ (&#39;计算机&#39;, 0.9921648502349854),
+ (&#39;个&#39;, 0.99213045835495),
+ (&#39;天线&#39;, 0.9921154975891113),
+ (&#39;之间&#39;, 0.9921114444732666),
+ (&#39;两次&#39;, 0.9920859336853027),
+ (&#39;建造&#39;, 0.9920815825462341),
+ (&#39;杨母&#39;, 0.9920707941055298),
+ (&#39;后面&#39;, 0.9920520186424255),
+ (&#39;接收&#39;, 0.9920087456703186),
+ (&#39;如何&#39;, 0.9919811487197876)]
 </pre></div>
 </div>
 </div>
@@ -2049,17 +2106,11 @@ SkipGram(
 
 <span class="n">rawWordVec</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">word2ind</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">vocab</span><span class="p">):</span>
-    <span class="n">rawWordVec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">key_to_index</span><span class="p">):</span>
+    <span class="n">rawWordVec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
     <span class="n">word2ind</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
 <span class="n">rawWordVec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rawWordVec</span><span class="p">)</span>
 <span class="n">X_reduced</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">rawWordVec</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:8: DeprecationWarning: Call to deprecated `__getitem__` (Method will be removed in 4.0.0, use self.wv.__getitem__() instead).
-  
 </pre></div>
 </div>
 </div>
@@ -2070,6 +2121,8 @@ SkipGram(
 <span class="c1"># 绘制所有单词向量的二维空间投影</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span>  <span class="c1"># 用来正常显示中文标签</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># 用来正常显示负号</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
@@ -2090,7 +2143,7 @@ SkipGram(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10-word2vec_92_0.png" src="_images/10-word2vec_92_0.png" />
+<img alt="_images/10-word2vec_95_0.png" src="_images/10-word2vec_95_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2115,7 +2168,7 @@ SkipGram(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10-word2vec_93_0.png" src="_images/10-word2vec_93_0.png" />
+<img alt="_images/10-word2vec_96_0.png" src="_images/10-word2vec_96_0.png" />
 </div>
 </div>
 <p><img alt="" src="_images/end.png" /></p>
@@ -2147,7 +2200,7 @@ SkipGram(
         
             <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="10-text-minning-gov-report.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="10-text-mining-gov-report.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
