@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>词向量模型简介 &#8212; 计算传播学</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,43 +20,42 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Doc2Vec" href="10-doc2vec.html" />
@@ -66,7 +67,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -75,9 +90,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -95,14 +111,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
-   寻找人类传播行为的基因
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    寻找人类传播行为的基因
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="01-intro2cjc.html">
    第一章 计算传播学简介
@@ -678,112 +695,227 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/10-word2vec.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F10-word2vec.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/10-word2vec.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/10-word2vec.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/10-word2vec.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/10-word2vec.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chengjun/mybook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F10-word2vec.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/10-word2vec.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-geometry-of-culture">
    The Geometry of Culture
@@ -870,12 +1002,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>词向量模型简介</h1>
@@ -978,11 +1109,12 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
-<h1>词向量模型简介<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>词向量模型简介<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
 <p>Introduction to Word Embeddings: Analyzing Meaning through Word Embeddings</p>
 <p><strong>Using vectors to represent things</strong></p>
 <ul class="simple">
@@ -994,8 +1126,8 @@
 </ul>
 </li>
 </ul>
-<div class="section" id="the-geometry-of-culture">
-<h2>The Geometry of Culture<a class="headerlink" href="#the-geometry-of-culture" title="Permalink to this headline">¶</a></h2>
+<section id="the-geometry-of-culture">
+<h2>The Geometry of Culture<a class="headerlink" href="#the-geometry-of-culture" title="Permalink to this headline">#</a></h2>
 <p>Analyzing Meaning through Word Embeddings</p>
 <p>Austin C. Kozlowski; Matt Taddy; James A. Evans</p>
 <p><a class="reference external" href="https://arxiv.org/abs/1803.09288">https://arxiv.org/abs/1803.09288</a></p>
@@ -1006,9 +1138,9 @@
 </ul>
 <p>The success of these high-dimensional models motivates a move towards “high-dimensional theorizing” of meanings, identities and cultural processes.</p>
 <a class="reference internal image-reference" href="_images/gender_class.png"><img alt="_images/gender_class.png" src="_images/gender_class.png" style="width: 700px;" /></a>
-</div>
-<div class="section" id="histwords">
-<h2>HistWords<a class="headerlink" href="#histwords" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="histwords">
+<h2>HistWords<a class="headerlink" href="#histwords" title="Permalink to this headline">#</a></h2>
 <p>HistWords is a collection of tools and datasets for analyzing language change using word vector embeddings.</p>
 <ul class="simple">
 <li><p>The goal of this project is to facilitate quantitative research in diachronic linguistics, history, and the digital humanities.</p></li>
@@ -1019,18 +1151,18 @@
 <p><a class="reference external" href="https://github.com/williamleif/histwords">https://github.com/williamleif/histwords</a></p>
 <p><strong>Diachronic Word Embeddings Reveal Statistical Laws of Semantic Change</strong></p>
 <a class="reference internal image-reference" href="_images/wordpaths-final.png"><img alt="_images/wordpaths-final.png" src="_images/wordpaths-final.png" style="width: 900px;" /></a>
-</div>
-<div class="section" id="word-embeddings-quantify-100-years-of-gender-and-ethnic-stereotypes">
-<h2>Word embeddings quantify 100 years of gender and ethnic stereotypes<a class="headerlink" href="#word-embeddings-quantify-100-years-of-gender-and-ethnic-stereotypes" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="word-embeddings-quantify-100-years-of-gender-and-ethnic-stereotypes">
+<h2>Word embeddings quantify 100 years of gender and ethnic stereotypes<a class="headerlink" href="#word-embeddings-quantify-100-years-of-gender-and-ethnic-stereotypes" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="http://www.pnas.org/content/early/2018/03/30/1720347115">http://www.pnas.org/content/early/2018/03/30/1720347115</a></p>
 <a class="reference internal image-reference" href="_images/sex.png"><img alt="_images/sex.png" src="_images/sex.png" style="width: 500px;" /></a>
-</div>
-<div class="section" id="the-illustrated-word2vec">
-<h2>The Illustrated Word2vec<a class="headerlink" href="#the-illustrated-word2vec" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-illustrated-word2vec">
+<h2>The Illustrated Word2vec<a class="headerlink" href="#the-illustrated-word2vec" title="Permalink to this headline">#</a></h2>
 <p>Jay Alammar.  <a class="reference external" href="https://jalammar.github.io/illustrated-word2vec/">https://jalammar.github.io/illustrated-word2vec/</a></p>
-</div>
-<div class="section" id="personality-embeddings">
-<h2>Personality Embeddings<a class="headerlink" href="#personality-embeddings" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="personality-embeddings">
+<h2>Personality Embeddings<a class="headerlink" href="#personality-embeddings" title="Permalink to this headline">#</a></h2>
 <blockquote>
 <div><p>What are you like?</p>
 </div></blockquote>
@@ -1056,9 +1188,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="cosine-similarity">
-<h2>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="cosine-similarity">
+<h2>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Permalink to this headline">#</a></h2>
 <p>The cosine of two non-zero vectors can be derived by using the Euclidean dot product formula:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1148,11 +1280,11 @@
 <li><p>We can represent people (and things) as vectors of numbers (which is great for machines!).</p></li>
 <li><p>We can easily calculate how similar vectors are to each other.</p></li>
 </ul>
-</div>
-<div class="section" id="word-embeddings">
-<h2>Word Embeddings<a class="headerlink" href="#word-embeddings" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="google-news-word2vec">
-<h3>Google News Word2Vec<a class="headerlink" href="#google-news-word2vec" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="word-embeddings">
+<h2>Word Embeddings<a class="headerlink" href="#word-embeddings" title="Permalink to this headline">#</a></h2>
+<section id="google-news-word2vec">
+<h3>Google News Word2Vec<a class="headerlink" href="#google-news-word2vec" title="Permalink to this headline">#</a></h3>
 <p>You can download Google’s pre-trained model here.</p>
 <ul class="simple">
 <li><p>It’s 1.5GB!</p></li>
@@ -1306,10 +1438,10 @@
 <li><p>let’s learn more about the training process.</p></li>
 <li><p>But before we get to word2vec, we need to look at a conceptual parent of word embeddings: <strong>the neural language model</strong>.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="the-neural-language-model">
-<h2>The neural language model<a class="headerlink" href="#the-neural-language-model" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="the-neural-language-model">
+<h2>The neural language model<a class="headerlink" href="#the-neural-language-model" title="Permalink to this headline">#</a></h2>
 <p>“You shall know a word by the company it keeps” J.R. Firth</p>
 <blockquote>
 <div><p>Bengio 2003 A Neural Probabilistic Language Model. Journal of Machine Learning Research. 3:1137–1155</p>
@@ -1322,8 +1454,8 @@
 <li><p>We’re referring to the probability as a percentage here,</p></li>
 <li><p>but 40% would actually be represented as 0.4 in the output vector.</p></li>
 </ul>
-<div class="section" id="language-model-training">
-<h3>Language Model Training<a class="headerlink" href="#language-model-training" title="Permalink to this headline">¶</a></h3>
+<section id="language-model-training">
+<h3>Language Model Training<a class="headerlink" href="#language-model-training" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>We get a lot of text data (say, all Wikipedia articles, for example). then</p></li>
 <li><p>We have a window (say, of three words) that we slide against all of that text.</p></li>
@@ -1336,9 +1468,9 @@
 <p>If we do this, the dataset we’re virtually building and training the model against would look like this:</p>
 <a class="reference internal image-reference" href="_images/continuous-bag-of-words-dataset.png"><img alt="_images/continuous-bag-of-words-dataset.png" src="_images/continuous-bag-of-words-dataset.png" style="width: 700px;" /></a>
 <p>This is called a <strong>Continuous Bag of Words</strong> (CBOW) <a class="reference external" href="https://arxiv.org/pdf/1301.3781.pdf">https://arxiv.org/pdf/1301.3781.pdf</a></p>
-</div>
-<div class="section" id="skip-gram">
-<h3>Skip-gram<a class="headerlink" href="#skip-gram" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="skip-gram">
+<h3>Skip-gram<a class="headerlink" href="#skip-gram" title="Permalink to this headline">#</a></h3>
 <p>Instead of guessing a word based on its context (the words before and after it), this other architecture tries to guess neighboring words using the current word.</p>
 <a class="reference internal image-reference" href="_images/skipgram.png"><img alt="_images/skipgram.png" src="_images/skipgram.png" style="width: 700px;" /></a>
 <p><a class="reference external" href="https://arxiv.org/pdf/1301.3781.pdf">https://arxiv.org/pdf/1301.3781.pdf</a></p>
@@ -1353,9 +1485,9 @@
 <a class="reference internal image-reference" href="_images/skipgram-language-model-training-4.png"><img alt="_images/skipgram-language-model-training-4.png" src="_images/skipgram-language-model-training-4.png" style="width: 700px;" /></a>
 <a class="reference internal image-reference" href="_images/skipgram-language-model-training-5.png"><img alt="_images/skipgram-language-model-training-5.png" src="_images/skipgram-language-model-training-5.png" style="width: 700px;" /></a>
 <a class="reference internal image-reference" href="_images/language-model-expensive.png"><img alt="_images/language-model-expensive.png" src="_images/language-model-expensive.png" style="width: 700px;" /></a>
-</div>
-<div class="section" id="negative-sampling">
-<h3>Negative Sampling<a class="headerlink" href="#negative-sampling" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="negative-sampling">
+<h3>Negative Sampling<a class="headerlink" href="#negative-sampling" title="Permalink to this headline">#</a></h3>
 <p>And switch it to a model that takes the input and output word, and outputs a score indicating <strong>if they’re neighbors or not</strong></p>
 <ul class="simple">
 <li><p>0 for “not neighbors”, 1 for “neighbors”.</p></li>
@@ -1369,14 +1501,14 @@
 <li><p>This leads to a great tradeoff of computational and statistical efficiency.</p></li>
 </ul>
 <p><strong>Skipgram with Negative Sampling (SGNS)</strong></p>
-</div>
-<div class="section" id="word2vec-training-process">
-<h3>Word2vec Training Process<a class="headerlink" href="#word2vec-training-process" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="word2vec-training-process">
+<h3>Word2vec Training Process<a class="headerlink" href="#word2vec-training-process" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="_images/word2vec-training-update.png"><img alt="_images/word2vec-training-update.png" src="_images/word2vec-training-update.png" style="width: 700px;" /></a>
-</div>
-</div>
-<div class="section" id="pytorch-word2vec">
-<h2>Pytorch word2vec<a class="headerlink" href="#pytorch-word2vec" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="pytorch-word2vec">
+<h2>Pytorch word2vec<a class="headerlink" href="#pytorch-word2vec" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="https://github.com/jojonki/word2vec-pytorch/blob/master/word2vec.ipynb">https://github.com/jojonki/word2vec-pytorch/blob/master/word2vec.ipynb</a></p>
 <p><a class="reference external" href="https://github.com/bamtercelboo/pytorch_word2vec/blob/master/model.py">https://github.com/bamtercelboo/pytorch_word2vec/blob/master/model.py</a></p>
 <div class="cell docutils container">
@@ -1695,9 +1827,9 @@ SkipGram(
 <img alt="_images/10-word2vec_74_0.png" src="_images/10-word2vec_74_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="ngram">
-<h2>NGram词向量模型<a class="headerlink" href="#ngram" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="ngram">
+<h2>NGram词向量模型<a class="headerlink" href="#ngram" title="Permalink to this headline">#</a></h2>
 <p>本文件是集智AI学园http://campus.swarma.org 出品的“火炬上的深度学习”第VI课的配套源代码</p>
 <p>原理：利用一个人工神经网络来根据前N个单词来预测下一个单词，从而得到每个单词的词向量</p>
 <p>以刘慈欣著名的科幻小说《三体》为例，来展示利用NGram模型训练词向量的方法</p>
@@ -2037,9 +2169,9 @@ SkipGram(
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="gensim-word2vec">
-<h2>Gensim Word2vec<a class="headerlink" href="#gensim-word2vec" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="gensim-word2vec">
+<h2>Gensim Word2vec<a class="headerlink" href="#gensim-word2vec" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gensim</span> <span class="k">as</span> <span class="nn">gensim</span>
@@ -2274,8 +2406,8 @@ Prefix dict has been built successfully.
 </div>
 </div>
 <p><img alt="" src="_images/end.png" /></p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2299,9 +2431,11 @@ Prefix dict has been built successfully.
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="10-text-mining-gov-report.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -2317,24 +2451,28 @@ Prefix dict has been built successfully.
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Cheng-Jun Wang<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Cheng-Jun Wang<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>第九章 推荐系统简介 &#8212; 计算传播学</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,43 +20,42 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Latent Factor Recommender System" href="13-recsys-latent-factor-model.html" />
@@ -66,7 +67,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -75,9 +90,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -95,14 +111,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
-   寻找人类传播行为的基因
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    寻找人类传播行为的基因
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="01-intro2cjc.html">
    第一章 计算传播学简介
@@ -678,112 +695,227 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/13-recsys-intro.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F13-recsys-intro.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/13-recsys-intro.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/13-recsys-intro.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/13-recsys-intro.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/13-recsys-intro.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chengjun/mybook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F13-recsys-intro.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/13-recsys-intro.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
    集体智慧编程
@@ -924,12 +1056,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>第九章 推荐系统简介</h1>
@@ -1086,23 +1217,24 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
-<h1>第九章 推荐系统简介<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>第九章 推荐系统简介<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
 <p><img alt="image.png" src="_images/recsys.png" /></p>
-<div class="section" id="id2">
-<h2>集体智慧编程<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<section id="id2">
+<h2>集体智慧编程<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
 <blockquote>
 <div><p>集体智慧是指为了创造新想法，将一群人的行为、偏好或思想组合在一起。一般基于聪明的算法（Netflix, Google）或者提供内容的用户(Wikipedia)。</p>
 </div></blockquote>
 <p>集体智慧编程所强调的是前者，即通过编写计算机程序、构造具有智能的算法收集并分析用户的数据，发现新的信息甚至是知识。</p>
 <p>Toby Segaran, 2007, Programming Collective Intelligence. O’Reilly.</p>
 <p><a class="reference external" href="https://github.com/computational-class/programming-collective-intelligence-code/blob/master/chapter2/recommendations.py">https://github.com/computational-class/programming-collective-intelligence-code/blob/master/chapter2/recommendations.py</a></p>
-</div>
-<div class="section" id="id3">
-<h2>推荐系统<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id3">
+<h2>推荐系统<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>目前互联网世界最常见的智能产品形式。</p></li>
 <li><p>从信息时代过渡到注意力时代：</p>
@@ -1117,9 +1249,9 @@
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="id4">
-<h2>推荐系统的类型<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id4">
+<h2>推荐系统的类型<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>基于流行度的推荐</p></li>
 <li><p>社会化推荐（Social Recommendation）</p>
@@ -1140,9 +1272,9 @@
 <li><p>隐语义模型（latent factor model）</p></li>
 <li><p>基于图的随机游走算法（random walk on graphs）</p></li>
 </ul>
-</div>
-<div class="section" id="id5">
-<h2>协同过滤算法<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id5">
+<h2>协同过滤算法<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>基于邻域的方法（neighborhood-based method）</p>
 <ul>
@@ -1151,9 +1283,9 @@
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="usercfitemcf">
-<h2>UserCF和ItemCF的比较<a class="headerlink" href="#usercfitemcf" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="usercfitemcf">
+<h2>UserCF和ItemCF的比较<a class="headerlink" href="#usercfitemcf" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>UserCF较为古老， 1992年应用于电子邮件个性化推荐系统Tapestry, 1994年应用于Grouplens新闻个性化推荐， 后来被Digg采用</p>
 <ul>
@@ -1175,9 +1307,9 @@
 </li>
 <li><p>新闻更新快，物品数量庞大，相似度变化很快，不利于维护一张物品相似度的表格，电影、音乐、图书则可以。</p></li>
 </ul>
-</div>
-<div class="section" id="id6">
-<h2>推荐系统评测<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id6">
+<h2>推荐系统评测<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
 <ul>
 <li><p>用户满意度</p></li>
 <li><p>预测准确度</p>
@@ -1253,11 +1385,11 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="user-based-filtering">
-<h2>1. User-based filtering<a class="headerlink" href="#user-based-filtering" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="finding-similar-users">
-<h3>1.0 Finding similar users<a class="headerlink" href="#finding-similar-users" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="user-based-filtering">
+<h2>1. User-based filtering<a class="headerlink" href="#user-based-filtering" title="Permalink to this headline">#</a></h2>
+<section id="finding-similar-users">
+<h3>1.0 Finding similar users<a class="headerlink" href="#finding-similar-users" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 欧几里得距离</span>
@@ -1319,9 +1451,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="pearson-correlation-coefficient">
-<h3>Pearson Correlation Coefficient<a class="headerlink" href="#pearson-correlation-coefficient" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="pearson-correlation-coefficient">
+<h3>Pearson Correlation Coefficient<a class="headerlink" href="#pearson-correlation-coefficient" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Returns the Pearson correlation coefficient for p1 and p2</span>
@@ -1408,10 +1540,10 @@
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="recommending-items">
-<h2>1.1 Recommending Items<a class="headerlink" href="#recommending-items" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="recommending-items">
+<h2>1.1 Recommending Items<a class="headerlink" href="#recommending-items" title="Permalink to this headline">#</a></h2>
 <a class="reference internal image-reference" href="_images/recsys2.png"><img alt="_images/recsys2.png" src="_images/recsys2.png" style="width: 1000px;" /></a>
 <p>Toby相似的五个用户（Rose, Reymour, Puig, LaSalle, Matthews）及相似度（依次为0.99， 0.38， 0.89， 0.92, 0.66）</p>
 <ul class="simple">
@@ -1498,14 +1630,14 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="item-based-filtering">
-<h2>2. Item-based filtering<a class="headerlink" href="#item-based-filtering" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="item-based-filtering">
+<h2>2. Item-based filtering<a class="headerlink" href="#item-based-filtering" title="Permalink to this headline">#</a></h2>
 <p>Now you know how to find similar people and recommend products for a given person</p>
 <p><strong>But what if you want to see which products are similar to each other?</strong></p>
 <p>This is actually the same method we used earlier to determine similarity between people—</p>
-<div class="section" id="item-user">
-<h3>将item-user字典的键值翻转<a class="headerlink" href="#item-user" title="Permalink to this headline">¶</a></h3>
+<section id="item-user">
+<h3>将item-user字典的键值翻转<a class="headerlink" href="#item-user" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># you just need to swap the people and the items. </span>
@@ -1523,9 +1655,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="item">
-<h3>计算item的相似性<a class="headerlink" href="#item" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="item">
+<h3>计算item的相似性<a class="headerlink" href="#item" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">topMatches</span><span class="p">(</span><span class="n">movies</span><span class="p">,</span><span class="s1">&#39;Superman Returns&#39;</span><span class="p">)</span>
@@ -1542,9 +1674,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="itemuser">
-<h3>给item推荐user<a class="headerlink" href="#itemuser" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="itemuser">
+<h3>给item推荐user<a class="headerlink" href="#itemuser" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculateSimilarItems</span><span class="p">(</span><span class="n">prefs</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
@@ -1665,10 +1797,10 @@
 </div>
 <a class="reference internal image-reference" href="_images/itemcfNetwork.png"><img alt="_images/itemcfNetwork.png" src="_images/itemcfNetwork.png" style="width: 700px;" /></a>
 <p><strong>基于物品的协同过滤算法的网络表示方法</strong></p>
-</div>
-</div>
-<div class="section" id="id7">
-<h2>基于图的模型<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="id7">
+<h2>基于图的模型<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h2>
 <p>使用二分图表示用户行为，因此基于图的算法可以应用到推荐系统当中。</p>
 <a class="reference internal image-reference" href="_images/graphrec.png"><img alt="_images/graphrec.png" src="_images/graphrec.png" style="width: 500px;" /></a>
 <div class="cell docutils container">
@@ -1828,12 +1960,12 @@ C d 1
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="movielens-recommender">
-<h2>3. MovieLens Recommender<a class="headerlink" href="#movielens-recommender" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="movielens-recommender">
+<h2>3. MovieLens Recommender<a class="headerlink" href="#movielens-recommender" title="Permalink to this headline">#</a></h2>
 <p>MovieLens是一个电影评价的真实数据，由明尼苏达州立大学的GroupLens项目组开发。</p>
-<div class="section" id="id8">
-<h3>数据下载<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<section id="id8">
+<h3>数据下载<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="http://grouplens.org/datasets/movielens/1m/">http://grouplens.org/datasets/movielens/1m/</a></p>
 <blockquote>
 <div><p>These files contain 1,000,209 anonymous ratings of approximately 3,900 movies
@@ -1936,9 +2068,9 @@ made by 6,040 MovieLens users who joined MovieLens in 2000.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id9">
-<h3>user-based filtering<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id9">
+<h3>user-based filtering<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">getRecommendations</span><span class="p">(</span><span class="n">prefs</span><span class="p">,</span><span class="s1">&#39;87&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">30</span><span class="p">]</span>
@@ -1981,9 +2113,9 @@ made by 6,040 MovieLens users who joined MovieLens in 2000.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id10">
-<h3>Item-based filtering<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id10">
+<h3>Item-based filtering<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
 <p>itemsim=calculateSimilarItems(prefs,n=50)</p>
 <p>getRecommendedItems(prefs,itemsim,’87’)[0:30]</p>
 <p>Libraries:</p>
@@ -1994,10 +2126,10 @@ made by 6,040 MovieLens users who joined MovieLens in 2000.</p>
 </ul>
 <p><a class="reference external" href="https://realpython.com/build-recommendation-engine-collaborative-filtering/">https://realpython.com/build-recommendation-engine-collaborative-filtering/</a></p>
 <p><img alt="image.png" src="_images/end.png" /></p>
-</div>
-</div>
-<div class="section" id="buiding-recommendation-system-with-turicreate">
-<h2>Buiding Recommendation System with Turicreate<a class="headerlink" href="#buiding-recommendation-system-with-turicreate" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="buiding-recommendation-system-with-turicreate">
+<h2>Buiding Recommendation System with Turicreate<a class="headerlink" href="#buiding-recommendation-system-with-turicreate" title="Permalink to this headline">#</a></h2>
 <p>In this notebook we will import Turicreate and use it to</p>
 <ul class="simple">
 <li><p>train two models that can be used for recommending new songs to users</p></li>
@@ -2116,8 +2248,8 @@ made by 6,040 MovieLens users who joined MovieLens in 2000.</p>
 [4 rows x 4 columns]<br/>
 </div></div></div>
 </div>
-<div class="section" id="the-coursetalk-dataset-loading-and-first-look">
-<h3>The CourseTalk dataset: loading and first look<a class="headerlink" href="#the-coursetalk-dataset-loading-and-first-look" title="Permalink to this headline">¶</a></h3>
+<section id="the-coursetalk-dataset-loading-and-first-look">
+<h3>The CourseTalk dataset: loading and first look<a class="headerlink" href="#the-coursetalk-dataset-loading-and-first-look" title="Permalink to this headline">#</a></h3>
 <p>Loading of the CourseTalk database.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2207,9 +2339,9 @@ made by 6,040 MovieLens users who joined MovieLens in 2000.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="popularity-model">
-<h3>Popularity model<a class="headerlink" href="#popularity-model" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="popularity-model">
+<h3>Popularity model<a class="headerlink" href="#popularity-model" title="Permalink to this headline">#</a></h3>
 <p>Create a model that makes recommendations using item popularity. When no target column is provided, the popularity is determined by the number of observations involving each item. When a target is provided, popularity is computed using the item’s mean target value. When the target column contains ratings, for example, the model computes the mean rating for each item and uses this to rank items for recommendations.</p>
 <p>One typically wants to initially create a simple recommendation system that can be used as a baseline and to verify that the rest of the pipeline works as expected. The <code class="docutils literal notranslate"><span class="pre">recommender</span></code> package has several models available for this purpose. For example, we can create a model that predicts songs based on their overall popularity across all users.</p>
 <div class="cell docutils container">
@@ -2221,9 +2353,9 @@ made by 6,040 MovieLens users who joined MovieLens in 2000.</p>
 <div class="cell_output docutils container">
 <div class="output text_html"><pre>Preparing data set.</pre></div><div class="output text_html"><pre>    Data has 2202 observations with 1651 users and 201 items.</pre></div><div class="output text_html"><pre>    Data prepared in: 0.024186s</pre></div><div class="output text_html"><pre>2202 observations to process; with 201 unique items.</pre></div></div>
 </div>
-</div>
-<div class="section" id="item-similarity-model">
-<h3>Item similarity Model<a class="headerlink" href="#item-similarity-model" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="item-similarity-model">
+<h3>Item similarity Model<a class="headerlink" href="#item-similarity-model" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="http://en.wikipedia.org/wiki/Collaborative_filtering">Collaborative filtering</a> methods make predictions for a given user based on the patterns of other users’ activities. One common technique is to compare items based on their <a class="reference external" href="http://en.wikipedia.org/wiki/Jaccard_index">Jaccard</a> similarity.This measurement is a ratio: the number of items they have in common, over the total number of distinct items in both sets.</p></li>
 <li><p>We could also have used another slightly more complicated similarity measurement, called <a class="reference external" href="http://en.wikipedia.org/wiki/Cosine_similarity">Cosine Similarity</a>.</p></li>
@@ -2250,9 +2382,9 @@ method=’factorization_model’)</p>
 <div class="cell_output docutils container">
 <div class="output text_html"><pre>Preparing data set.</pre></div><div class="output text_html"><pre>    Data has 2202 observations with 1651 users and 201 items.</pre></div><div class="output text_html"><pre>    Data prepared in: 0.021186s</pre></div><div class="output text_html"><pre>Training model from provided data.</pre></div><div class="output text_html"><pre>Gathering per-item and per-user statistics.</pre></div><div class="output text_html"><pre>+--------------------------------+------------+</pre></div><div class="output text_html"><pre>| Elapsed Time (Item Statistics) | % Complete |</pre></div><div class="output text_html"><pre>+--------------------------------+------------+</pre></div><div class="output text_html"><pre>| 3.805ms                        | 60.5       |</pre></div><div class="output text_html"><pre>| 23.105ms                       | 100        |</pre></div><div class="output text_html"><pre>+--------------------------------+------------+</pre></div><div class="output text_html"><pre>Setting up lookup tables.</pre></div><div class="output text_html"><pre>Processing data in one pass using dense lookup tables.</pre></div><div class="output text_html"><pre>+-------------------------------------+------------------+-----------------+</pre></div><div class="output text_html"><pre>| Elapsed Time (Constructing Lookups) | Total % Complete | Items Processed |</pre></div><div class="output text_html"><pre>+-------------------------------------+------------------+-----------------+</pre></div><div class="output text_html"><pre>| 26.4ms                              | 0                | 0               |</pre></div><div class="output text_html"><pre>| 32.479ms                            | 100              | 201             |</pre></div><div class="output text_html"><pre>+-------------------------------------+------------------+-----------------+</pre></div><div class="output text_html"><pre>Finalizing lookup tables.</pre></div><div class="output text_html"><pre>Generating candidate set for working with new users.</pre></div><div class="output text_html"><pre>Finished training in 0.037491s</pre></div></div>
 </div>
-</div>
-<div class="section" id="factorization-recommender-model">
-<h3>Factorization Recommender Model<a class="headerlink" href="#factorization-recommender-model" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="factorization-recommender-model">
+<h3>Factorization Recommender Model<a class="headerlink" href="#factorization-recommender-model" title="Permalink to this headline">#</a></h3>
 <p>Create a FactorizationRecommender that learns latent factors for each user and item and uses them to make rating predictions. This includes both standard matrix factorization as well as factorization machines models (in the situation where side data is available for users and/or items). <a class="reference external" href="https://dato.com/products/create/docs/generated/graphlab.recommender.factorization_recommender.create.html#graphlab.recommender.factorization_recommender.create">link</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2265,9 +2397,9 @@ method=’factorization_model’)</p>
 <div class="cell_output docutils container">
 <div class="output text_html"><pre>Preparing data set.</pre></div><div class="output text_html"><pre>    Data has 2202 observations with 1651 users and 201 items.</pre></div><div class="output text_html"><pre>    Data prepared in: 0.00781s</pre></div><div class="output text_html"><pre>Training factorization_recommender for recommendations.</pre></div><div class="output text_html"><pre>+--------------------------------+--------------------------------------------------+----------+</pre></div><div class="output text_html"><pre>| Parameter                      | Description                                      | Value    |</pre></div><div class="output text_html"><pre>+--------------------------------+--------------------------------------------------+----------+</pre></div><div class="output text_html"><pre>| num_factors                    | Factor Dimension                                 | 8        |</pre></div><div class="output text_html"><pre>| regularization                 | L2 Regularization on Factors                     | 1e-08    |</pre></div><div class="output text_html"><pre>| solver                         | Solver used for training                         | sgd      |</pre></div><div class="output text_html"><pre>| linear_regularization          | L2 Regularization on Linear Coefficients         | 1e-10    |</pre></div><div class="output text_html"><pre>| max_iterations                 | Maximum Number of Iterations                     | 50       |</pre></div><div class="output text_html"><pre>+--------------------------------+--------------------------------------------------+----------+</pre></div><div class="output text_html"><pre>  Optimizing model using SGD; tuning step size.</pre></div><div class="output text_html"><pre>  Using 2202 / 2202 points for tuning the step size.</pre></div><div class="output text_html"><pre>+---------+-------------------+------------------------------------------+</pre></div><div class="output text_html"><pre>| Attempt | Initial Step Size | Estimated Objective Value                |</pre></div><div class="output text_html"><pre>+---------+-------------------+------------------------------------------+</pre></div><div class="output text_html"><pre>| 0       | 25                | Not Viable                               |</pre></div><div class="output text_html"><pre>| 1       | 6.25              | Not Viable                               |</pre></div><div class="output text_html"><pre>| 2       | 1.5625            | Not Viable                               |</pre></div><div class="output text_html"><pre>| 3       | 0.390625          | 0.122277                                 |</pre></div><div class="output text_html"><pre>| 4       | 0.195312          | 0.172024                                 |</pre></div><div class="output text_html"><pre>| 5       | 0.0976562         | 0.235897                                 |</pre></div><div class="output text_html"><pre>| 6       | 0.0488281         | 0.338391                                 |</pre></div><div class="output text_html"><pre>+---------+-------------------+------------------------------------------+</pre></div><div class="output text_html"><pre>| Final   | 0.390625          | 0.122277                                 |</pre></div><div class="output text_html"><pre>+---------+-------------------+------------------------------------------+</pre></div><div class="output text_html"><pre>Starting Optimization.</pre></div><div class="output text_html"><pre>+---------+--------------+-------------------+-----------------------+-------------+</pre></div><div class="output text_html"><pre>| Iter.   | Elapsed Time | Approx. Objective | Approx. Training RMSE | Step Size   |</pre></div><div class="output text_html"><pre>+---------+--------------+-------------------+-----------------------+-------------+</pre></div><div class="output text_html"><pre>| Initial | 238us        | 0.891401          | 0.94414               |             |</pre></div><div class="output text_html"><pre>+---------+--------------+-------------------+-----------------------+-------------+</pre></div><div class="output text_html"><pre>| 1       | 285.573ms    | 0.879224          | 0.937667              | 0.390625    |</pre></div><div class="output text_html"><pre>| 2       | 352.797ms    | 0.511761          | 0.715374              | 0.232267    |</pre></div><div class="output text_html"><pre>| 3       | 444.885ms    | 0.296781          | 0.544775              | 0.171364    |</pre></div><div class="output text_html"><pre>| 4       | 535.596ms    | 0.215641          | 0.464371              | 0.138107    |</pre></div><div class="output text_html"><pre>| 5       | 594.038ms    | 0.156399          | 0.395472              | 0.116824    |</pre></div><div class="output text_html"><pre>| 10      | 1.10s        | 0.0319218         | 0.178663              | 0.069464    |</pre></div><div class="output text_html"><pre>| 50      | 4.83s        | 0.000601022       | 0.0244708             | 0.0207746   |</pre></div><div class="output text_html"><pre>+---------+--------------+-------------------+-----------------------+-------------+</pre></div><div class="output text_html"><pre>Optimization Complete: Maximum number of passes through the data reached.</pre></div><div class="output text_html"><pre>Computing final objective value and training RMSE.</pre></div><div class="output text_html"><pre>       Final objective value: 0.000520035</pre></div><div class="output text_html"><pre>       Final training RMSE: 0.0227559</pre></div></div>
 </div>
-</div>
-<div class="section" id="model-evaluation">
-<h3>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="model-evaluation">
+<h3>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline">#</a></h3>
 <p>It’s straightforward to use GraphLab to compare models on a small subset of users in the <code class="docutils literal notranslate"><span class="pre">test_set</span></code>. The <a class="reference external" href="http://en.wikipedia.org/wiki/Precision_and_recall">precision-recall</a> plot that is computed shows the benefits of using the similarity-based model instead of the baseline <code class="docutils literal notranslate"><span class="pre">popularity_model</span></code>: better curves tend toward the upper-right hand corner of the plot.</p>
 <p>The following command finds the top-ranked items for all users in the first 500 rows of <code class="docutils literal notranslate"><span class="pre">test_set</span></code>. The observations in <code class="docutils literal notranslate"><span class="pre">train_set</span></code> are not included in the predicted items.</p>
 <div class="cell docutils container">
@@ -2723,10 +2855,10 @@ We recommend these other courses:
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="readings">
-<h2>Readings<a class="headerlink" href="#readings" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="readings">
+<h2>Readings<a class="headerlink" href="#readings" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>(Looking for more details about the modules and functions? Check out the <a href="https://dato.com/products/create/docs/">API docs</a>.)</p></li>
 <li><p>Toby Segaran, 2007, Programming Collective Intelligence. O’Reilly. Chapter 2 Making Recommendations</p>
@@ -2736,10 +2868,10 @@ We recommend these other courses:
 </li>
 <li><p>项亮 2012 推荐系统实践 人民邮电出版社</p></li>
 </ul>
-</div>
+</section>
 <div class="toctree-wrapper compound">
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2763,9 +2895,11 @@ We recommend these other courses:
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="12-topic-models-with-turicreate.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -2781,24 +2915,28 @@ We recommend these other courses:
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Cheng-Jun Wang<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Cheng-Jun Wang<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

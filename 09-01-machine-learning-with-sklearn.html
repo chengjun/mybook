@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>第六章 社会科学家的机器学习 &#8212; 计算传播学</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,43 +20,42 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Hyperparameters and Model Validation" href="09-03-hyperparameters-and-model-validation.html" />
@@ -66,7 +67,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -75,9 +90,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -95,14 +111,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
-   寻找人类传播行为的基因
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    寻找人类传播行为的基因
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="01-intro2cjc.html">
    第一章 计算传播学简介
@@ -678,112 +695,227 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/09-01-machine-learning-with-sklearn.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F09-01-machine-learning-with-sklearn.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/09-01-machine-learning-with-sklearn.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/09-01-machine-learning-with-sklearn.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/09-01-machine-learning-with-sklearn.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/09-01-machine-learning-with-sklearn.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chengjun/mybook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F09-01-machine-learning-with-sklearn.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/09-01-machine-learning-with-sklearn.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-representation-in-scikit-learn">
    Data Representation in Scikit-Learn
@@ -911,12 +1043,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>第六章 社会科学家的机器学习</h1>
@@ -1060,11 +1191,12 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
-<h1>第六章 社会科学家的机器学习<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>第六章 社会科学家的机器学习<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
 <!--BOOK_INFORMATION-->
 <p><em>This notebook contains an excerpt from the <a class="reference external" href="http://shop.oreilly.com/product/0636920034919.do">Python Data Science Handbook</a> by Jake VanderPlas; the content is available <a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook">on GitHub</a>.</em></p>
 <p><em>The text is released under the <a class="reference external" href="https://creativecommons.org/licenses/by-nc-nd/3.0/us/legalcode">CC-BY-NC-ND license</a>, and code is released under the <a class="reference external" href="https://opensource.org/licenses/MIT">MIT license</a>. If you find this content useful, please consider supporting the work by <a class="reference external" href="http://shop.oreilly.com/product/0636920034919.do">buying the book</a>!</em></p>
@@ -1089,8 +1221,8 @@
 </ul>
 </li>
 </ul>
-<div class="section" id="data-representation-in-scikit-learn">
-<h2>Data Representation in Scikit-Learn<a class="headerlink" href="#data-representation-in-scikit-learn" title="Permalink to this headline">¶</a></h2>
+<section id="data-representation-in-scikit-learn">
+<h2>Data Representation in Scikit-Learn<a class="headerlink" href="#data-representation-in-scikit-learn" title="Permalink to this headline">#</a></h2>
 <p>Machine learning is about creating models from data:</p>
 <ul class="simple">
 <li><p>How data can be represented in order to be understood by the computer.</p>
@@ -1099,8 +1231,8 @@
 </ul>
 </li>
 </ul>
-<div class="section" id="data-as-table">
-<h3>Data as table<a class="headerlink" href="#data-as-table" title="Permalink to this headline">¶</a></h3>
+<section id="data-as-table">
+<h3>Data as table<a class="headerlink" href="#data-as-table" title="Permalink to this headline">#</a></h3>
 <p>A basic table is a two-dimensional grid of data</p>
 <ul class="simple">
 <li><p>the rows represent individual elements of the dataset</p></li>
@@ -1204,8 +1336,8 @@
 </ul>
 </li>
 </ul>
-<div class="section" id="features-matrix">
-<h4>Features matrix<a class="headerlink" href="#features-matrix" title="Permalink to this headline">¶</a></h4>
+<section id="features-matrix">
+<h4>Features matrix<a class="headerlink" href="#features-matrix" title="Permalink to this headline">#</a></h4>
 <p>This table layout of the information can be thought of as a <code class="docutils literal notranslate"><span class="pre">two-dimensional</span> <span class="pre">numerical</span> <span class="pre">array</span> <span class="pre">or</span> <span class="pre">matrix</span></code>, which we will call the <strong>features matrix</strong>.</p>
 <ul class="simple">
 <li><p>The features matrix is often stored in a variable named <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p></li>
@@ -1221,9 +1353,9 @@
 <ul class="simple">
 <li><p>Features are generally real-valued, but may be Boolean or discrete-valued in some cases.</p></li>
 </ul>
-</div>
-<div class="section" id="target-array">
-<h4>Target array<a class="headerlink" href="#target-array" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="target-array">
+<h4>Target array<a class="headerlink" href="#target-array" title="Permalink to this headline">#</a></h4>
 <p>In addition to the feature matrix <code class="docutils literal notranslate"><span class="pre">X</span></code>, we also generally work with a <em>label</em> or <em>target</em> array, which by convention we will usually call <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
 <ul class="simple">
 <li><p>The target array is usually one dimensional, with length <code class="docutils literal notranslate"><span class="pre">n_samples</span></code></p></li>
@@ -1231,9 +1363,9 @@
 <li><p>The target array may have continuous numerical values, or discrete classes/labels.</p></li>
 </ul>
 <p>While some Scikit-Learn estimators do handle multiple target values in the form of a two-dimensional, <code class="docutils literal notranslate"><span class="pre">[n_samples,</span> <span class="pre">n_targets]</span></code> target array, we will primarily be working with the common case of a one-dimensional target array.</p>
-</div>
-<div class="section" id="id2">
-<h4>Target array<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="id2">
+<h4>Target array<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
 <p>The target array is usually the quantity we want to <em>predict from the data</em>: in statistical terms, it is the dependent variable.</p>
 <blockquote>
 <div><p>For example, in the preceding data we may wish to construct a model that can predict the species of flower based on the other measurements; in this case, the <code class="docutils literal notranslate"><span class="pre">species</span></code> column would be considered the target array.</p>
@@ -1357,11 +1489,11 @@ Name: species, dtype: object
 </div>
 <p>To summarize, the expected layout of features and target values is visualized in the following diagram:</p>
 <p><img alt="" src="_images/05.02-samples-features.png" /></p>
-</div>
-</div>
-</div>
-<div class="section" id="scikit-learn-s-estimator-api">
-<h2>Scikit-Learn’s Estimator API<a class="headerlink" href="#scikit-learn-s-estimator-api" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="scikit-learn-s-estimator-api">
+<h2>Scikit-Learn’s Estimator API<a class="headerlink" href="#scikit-learn-s-estimator-api" title="Permalink to this headline">#</a></h2>
 <p>With this data properly formatted, we can move on to consider the <em>estimator</em> API of Scikit-Learn:</p>
 <p>Guiding principles outlined in the <a class="reference external" href="http://arxiv.org/abs/1309.0238">Scikit-Learn API paper</a>:</p>
 <ul class="simple">
@@ -1388,8 +1520,8 @@ and Scikit-Learn makes use of this wherever possible.</p></li>
 <blockquote>
 <div><p>In practice, these principles make Scikit-Learn very easy to use, once the basic principles are understood.</p>
 </div></blockquote>
-<div class="section" id="basics-of-the-api">
-<h3>Basics of the API<a class="headerlink" href="#basics-of-the-api" title="Permalink to this headline">¶</a></h3>
+<section id="basics-of-the-api">
+<h3>Basics of the API<a class="headerlink" href="#basics-of-the-api" title="Permalink to this headline">#</a></h3>
 <ol class="simple">
 <li><p>Choose a class of model by importing the appropriate estimator class from Scikit-Learn.</p></li>
 <li><p>Choose model hyperparameters by instantiating this class with desired values.</p></li>
@@ -1403,9 +1535,9 @@ and Scikit-Learn makes use of this wherever possible.</p></li>
 </li>
 </ol>
 <p>We will now step through several simple examples of applying supervised and unsupervised learning methods.</p>
-</div>
-<div class="section" id="supervised-learning-example-simple-linear-regression">
-<h3>Supervised learning example: Simple linear regression<a class="headerlink" href="#supervised-learning-example-simple-linear-regression" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="supervised-learning-example-simple-linear-regression">
+<h3>Supervised learning example: Simple linear regression<a class="headerlink" href="#supervised-learning-example-simple-linear-regression" title="Permalink to this headline">#</a></h3>
 <p>As an example of this process, let’s consider a simple linear regression—that is, the common case of fitting a line to <span class="math notranslate nohighlight">\((x, y)\)</span> data.
 We will use the following simple data for our regression example:</p>
 <div class="cell docutils container">
@@ -1427,8 +1559,8 @@ We will use the following simple data for our regression example:</p>
 </div>
 </div>
 <p>With this data in place, we can use the recipe outlined earlier. Let’s walk through the process:</p>
-<div class="section" id="choose-a-class-of-model">
-<h4>1. Choose a class of model<a class="headerlink" href="#choose-a-class-of-model" title="Permalink to this headline">¶</a></h4>
+<section id="choose-a-class-of-model">
+<h4>1. Choose a class of model<a class="headerlink" href="#choose-a-class-of-model" title="Permalink to this headline">#</a></h4>
 <p>In Scikit-Learn, every class of model is represented by a Python class.
 So, for example, if we would like to compute a simple linear regression model, we can import the linear regression class:</p>
 <div class="cell docutils container">
@@ -1439,9 +1571,9 @@ So, for example, if we would like to compute a simple linear regression model, w
 </div>
 </div>
 <p>Note that other more general linear regression models exist as well; you can read more about them in the <a class="reference external" href="http://Scikit-Learn.org/stable/modules/linear_model.html"><code class="docutils literal notranslate"><span class="pre">sklearn.linear_model</span></code> module documentation</a>.</p>
-</div>
-<div class="section" id="choose-model-hyperparameters">
-<h4>2. Choose model hyperparameters<a class="headerlink" href="#choose-model-hyperparameters" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="choose-model-hyperparameters">
+<h4>2. Choose model hyperparameters<a class="headerlink" href="#choose-model-hyperparameters" title="Permalink to this headline">#</a></h4>
 <p>An important point is that <em>a class of model is not the same as an instance of a model</em>.</p>
 <p>Once we have decided on our model class, there are still some options open to us.
 Depending on the model class we are working with, we might need to answer one or more questions like the following:</p>
@@ -1452,9 +1584,9 @@ Depending on the model class we are working with, we might need to answer one or
 <li><p>What degree of regularization would we like to use in our model?</p></li>
 <li><p>How many model components would we like to use?</p></li>
 </ul>
-</div>
-<div class="section" id="id3">
-<h4>2. Choose model hyperparameters<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="id3">
+<h4>2. Choose model hyperparameters<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
 <p>These are examples of the important choices that must be made <em>once the model class is selected</em>.</p>
 <ul class="simple">
 <li><p>These choices are often represented as <em>hyperparameters</em>, or parameters that must be set before the model is fit to data.</p></li>
@@ -1481,9 +1613,9 @@ Depending on the model class we are working with, we might need to answer one or
 <li><p>In particular, we have not yet applied the model to any data:</p></li>
 <li><p>the Scikit-Learn API makes very clear the distinction between <em>choice of model</em> and <em>application of model to data</em>.</p></li>
 </ul>
-</div>
-<div class="section" id="arrange-data-into-a-features-matrix-and-target-vector">
-<h4>3. Arrange data into a features matrix and target vector<a class="headerlink" href="#arrange-data-into-a-features-matrix-and-target-vector" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="arrange-data-into-a-features-matrix-and-target-vector">
+<h4>3. Arrange data into a features matrix and target vector<a class="headerlink" href="#arrange-data-into-a-features-matrix-and-target-vector" title="Permalink to this headline">#</a></h4>
 <p>Previously we detailed the Scikit-Learn data representation, which requires a two-dimensional features matrix and a one-dimensional target array.</p>
 <ul class="simple">
 <li><p>The target variable <code class="docutils literal notranslate"><span class="pre">y</span></code> is already in the correct form (a length-<code class="docutils literal notranslate"><span class="pre">n_samples</span></code> array)</p></li>
@@ -1505,9 +1637,9 @@ Depending on the model class we are working with, we might need to answer one or
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="fit-the-model-to-your-data">
-<h4>4. Fit the model to your data<a class="headerlink" href="#fit-the-model-to-your-data" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="fit-the-model-to-your-data">
+<h4>4. Fit the model to your data<a class="headerlink" href="#fit-the-model-to-your-data" title="Permalink to this headline">#</a></h4>
 <p>Now it is time to apply our model to data.
 This can be done with the <code class="docutils literal notranslate"><span class="pre">fit()</span></code> method of the model:</p>
 <div class="cell docutils container">
@@ -1561,9 +1693,9 @@ This can be done with the <code class="docutils literal notranslate"><span class
 <li><p>Machine learning rather focuses on what the model <em>predicts</em>.</p></li>
 </ul>
 <p>If you would like to dive into the meaning of fit parameters within the model, other tools are available, including the <a class="reference external" href="http://statsmodels.sourceforge.net/">Statsmodels Python package</a>.</p>
-</div>
-<div class="section" id="predict-labels-for-unknown-data">
-<h4>5. Predict labels for unknown data<a class="headerlink" href="#predict-labels-for-unknown-data" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="predict-labels-for-unknown-data">
+<h4>5. Predict labels for unknown data<a class="headerlink" href="#predict-labels-for-unknown-data" title="Permalink to this headline">#</a></h4>
 <p>Once the model is trained, the main task of supervised machine learning is to evaluate it based on what it says about new data that was not part of the training set.
 In Scikit-Learn, this can be done using the <code class="docutils literal notranslate"><span class="pre">predict()</span></code> method.
 For the sake of this example, our “new data” will be a grid of <em>x</em> values, and we will ask what <em>y</em> values the model predicts:</p>
@@ -1625,10 +1757,10 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 </div>
 </div>
 <p>Typically the efficacy of the model is evaluated by comparing its results to some known baseline, as we will see in the next example</p>
-</div>
-</div>
-<div class="section" id="supervised-learning-example-iris-classification">
-<h3>Supervised learning example: Iris classification<a class="headerlink" href="#supervised-learning-example-iris-classification" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="supervised-learning-example-iris-classification">
+<h3>Supervised learning example: Iris classification<a class="headerlink" href="#supervised-learning-example-iris-classification" title="Permalink to this headline">#</a></h3>
 <blockquote>
 <div><p><strong>Question</strong>: given a model trained on a portion of the Iris data, how well can we predict the remaining labels?</p>
 </div></blockquote>
@@ -1695,9 +1827,9 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 </div>
 </div>
 <p>With an accuracy topping 97%, we see that even this very naive classification algorithm is effective for this particular dataset!</p>
-</div>
-<div class="section" id="unsupervised-learning-example-iris-dimensionality-reduction">
-<h3>Unsupervised learning example: Iris dimensionality reduction<a class="headerlink" href="#unsupervised-learning-example-iris-dimensionality-reduction" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="unsupervised-learning-example-iris-dimensionality-reduction">
+<h3>Unsupervised learning example: Iris dimensionality reduction<a class="headerlink" href="#unsupervised-learning-example-iris-dimensionality-reduction" title="Permalink to this headline">#</a></h3>
 <p>Reducing the dimensionality of the Iris data to more easily visualize it:</p>
 <ul class="simple">
 <li><p>Iris data is four dimensional:</p>
@@ -1710,9 +1842,9 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 <blockquote>
 <div><p>whether there is a suitable lower-dimensional representation that retains the essential features of the data.</p>
 </div></blockquote>
-</div>
-<div class="section" id="id4">
-<h3>Unsupervised learning example: Iris dimensionality reduction<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id4">
+<h3>Unsupervised learning example: Iris dimensionality reduction<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
 <p>Dimensionality reduction is often used as an aid to visualizing data:</p>
 <ul class="simple">
 <li><p>it is much easier to plot data in two dimensions than in four dimensions or higher!</p></li>
@@ -1760,9 +1892,9 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 </div>
 <p>In the two-dimensional representation, the species are fairly well separated, even though the PCA algorithm had no knowledge of the species labels!</p>
 <p>A relatively straightforward classification will probably be effective on the dataset.</p>
-</div>
-<div class="section" id="unsupervised-learning-iris-clustering">
-<h3>Unsupervised learning: Iris clustering<a class="headerlink" href="#unsupervised-learning-iris-clustering" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="unsupervised-learning-iris-clustering">
+<h3>Unsupervised learning: Iris clustering<a class="headerlink" href="#unsupervised-learning-iris-clustering" title="Permalink to this headline">#</a></h3>
 <p>Let’s next look at applying clustering to the Iris data.</p>
 <blockquote>
 <div><p>A clustering algorithm attempts to find distinct groups of data without reference to any labels.</p>
@@ -1840,18 +1972,18 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 </li>
 <li><p>might further give experts in the field clues as to the relationship between the samples they are observing.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="application-exploring-hand-written-digits">
-<h2>Application: Exploring Hand-written Digits<a class="headerlink" href="#application-exploring-hand-written-digits" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="application-exploring-hand-written-digits">
+<h2>Application: Exploring Hand-written Digits<a class="headerlink" href="#application-exploring-hand-written-digits" title="Permalink to this headline">#</a></h2>
 <p>In the wild, this problem involves</p>
 <ul class="simple">
 <li><p>locating characters in an image.</p></li>
 <li><p>identifying characters in an image.</p></li>
 </ul>
 <p>Here we’ll take a shortcut and use Scikit-Learn’s set of pre-formatted digits, which is built into the library.</p>
-<div class="section" id="loading-and-visualizing-the-digits-data">
-<h3>Loading and visualizing the digits data<a class="headerlink" href="#loading-and-visualizing-the-digits-data" title="Permalink to this headline">¶</a></h3>
+<section id="loading-and-visualizing-the-digits-data">
+<h3>Loading and visualizing the digits data<a class="headerlink" href="#loading-and-visualizing-the-digits-data" title="Permalink to this headline">#</a></h3>
 <p>We’ll use Scikit-Learn’s data access interface and take a look at this data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1958,9 +2090,9 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 </div>
 </div>
 <p>We see here that there are 1,797 samples and 64 features.</p>
-</div>
-<div class="section" id="unsupervised-learning-dimensionality-reduction">
-<h3>Unsupervised learning: Dimensionality reduction<a class="headerlink" href="#unsupervised-learning-dimensionality-reduction" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="unsupervised-learning-dimensionality-reduction">
+<h3>Unsupervised learning: Dimensionality reduction<a class="headerlink" href="#unsupervised-learning-dimensionality-reduction" title="Permalink to this headline">#</a></h3>
 <p>We’d like to visualize our points within the 64-dimensional parameter space</p>
 <ul class="simple">
 <li><p>it’s difficult to effectively visualize points in such a high-dimensional space.</p></li>
@@ -2017,9 +2149,9 @@ Let’s plot this data to see if we can learn anything from its structure:</p>
 <li><p>this tells us that even a very straightforward supervised classification algorithm should perform suitably on this data.</p></li>
 </ul>
 <p>Let’s give it a try.</p>
-</div>
-<div class="section" id="classification-on-digits">
-<h3>Classification on digits<a class="headerlink" href="#classification-on-digits" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="classification-on-digits">
+<h3>Classification on digits<a class="headerlink" href="#classification-on-digits" title="Permalink to this headline">#</a></h3>
 <p>Let’s apply a classification algorithm to the digits.</p>
 <ul class="simple">
 <li><p>split the data into a training and testing set</p></li>
@@ -2118,10 +2250,10 @@ Let’s plot this data to see if we can learn anything from its structure:</p>
 <li><p>random forests (see <strong>In-Depth: Decision Trees and Random Forests</strong>)</p></li>
 <li><p>the other classification approaches.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
 <p>In this section we have covered the essential features of the Scikit-Learn</p>
 <ul class="simple">
 <li><p>data representation</p></li>
@@ -2130,10 +2262,10 @@ Let’s plot this data to see if we can learn anything from its structure:</p>
 <p>Regardless of the type of estimator, the same import/instantiate/fit/predict pattern holds.</p>
 <p>Armed with this information about the estimator API, you can explore the Scikit-Learn documentation and begin trying out various models on your data.</p>
 <p>In the next section, we will explore perhaps the most important topic in machine learning: how to select and validate your model.</p>
-</div>
+</section>
 <div class="toctree-wrapper compound">
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2157,9 +2289,11 @@ Let’s plot this data to see if we can learn anything from its structure:</p>
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="08-10-dowhy-estimation-methods.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -2175,24 +2309,28 @@ Let’s plot this data to see if we can learn anything from its structure:</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Cheng-Jun Wang<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Cheng-Jun Wang<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>抓取实时辟谣数据 &#8212; 计算传播学</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,41 +20,40 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="抓取网络小说" href="04-crawler-13chambers.html" />
@@ -64,7 +65,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -73,9 +88,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -93,14 +109,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
-   寻找人类传播行为的基因
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    寻找人类传播行为的基因
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="01-intro2cjc.html">
    第一章 计算传播学简介
@@ -676,12 +693,17 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -689,99 +711,221 @@
 
 
           
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
     
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
+    <div class="header-article row sticky-top noprint">
         
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/04-crawler-fact-checking.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/04-crawler-fact-checking.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/04-crawler-fact-checking.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chengjun/mybook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F04-crawler-fact-checking.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/04-crawler-fact-checking.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F04-crawler-fact-checking.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
     </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   如何使用快捷键打开开发者工具
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/04-crawler-fact-checking.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/04-crawler-fact-checking.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        
     </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-        </div>
-    </div>
-</div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>抓取实时辟谣数据</h1>
@@ -789,14 +933,28 @@
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   如何使用快捷键打开开发者工具
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
-<h1>抓取实时辟谣数据<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>抓取实时辟谣数据<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://vp.fact.qq.com/home">https://vp.fact.qq.com/home</a></p>
 <p><img alt="image.png" src="_images/fact.png" /></p>
 <p><a class="reference external" href="https://vp.fact.qq.com/article?id=be3aea585b07c193778985e180cf164b">https://vp.fact.qq.com/article?id=be3aea585b07c193778985e180cf164b</a></p>
@@ -804,14 +962,20 @@
 <p><img alt="image.png" src="_images/fact2.png" /></p>
 <p><a class="reference external" href="https://vp.fact.qq.com/loadmore?artnum=0&amp;page=0">https://vp.fact.qq.com/loadmore?artnum=0&amp;page=0</a></p>
 <p><img alt="image.png" src="_images/fact3.png" /></p>
+<section id="id2">
+<h2>如何使用快捷键打开开发者工具<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>To open the developer console in Google Chrome, open the Chrome Menu in the upper-right-hand corner of the browser window and select More Tools &gt; Developer Tools. You can also use <code class="docutils literal notranslate"><span class="pre">Option</span> <span class="pre">+</span> <span class="pre">⌘</span> <span class="pre">+</span> <span class="pre">J</span></code> (on macOS), or <code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">CTRL</span> <span class="pre">+</span> <span class="pre">J</span></code> (on Windows/Linux).</p>
+<p><a class="reference external" href="https://vp.fact.qq.com/api/article/list?page=100&amp;locale=zh-CN&amp;token=U2FsdGVkX186uQh1zecOEhKWJnvgDYAkh7N%252BVBnRrbNgyzif9Sj5PmJ1vRBoqtIo">https://vp.fact.qq.com/api/article/list?page=100&amp;locale=zh-CN&amp;token=U2FsdGVkX186uQh1zecOEhKWJnvgDYAkh7N%2BVBnRrbNgyzif9Sj5PmJ1vRBoqtIo</a></p>
+<p><img alt="image.png" src="_images/fact4.png" /></p>
+<p><img alt="image.png" src="_images/fact5.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 
-<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://vp.fact.qq.com/loadmore?artnum=0&amp;token=U2FsdGVkX1</span><span class="si">%252F</span><span class="s1">AdwQK1w6oSwDysphCNqZMsNahIOyALNiMuwg4EcZjwcBhAg7gk</span><span class="si">%252F</span><span class="s1">ED&amp;page=&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://vp.fact.qq.com/api/article/list?locale=zh-CN&amp;token=U2FsdGVkX186uQh1zecOEhKWJnvgDYAkh7N%252BVBnRrbNgyzif9Sj5PmJ1vRBoqtIo&amp;page=&#39;</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;0&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;100&#39;</span>
 <span class="n">content</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">d</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </pre></div>
@@ -820,41 +984,86 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;list&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;新冠口服抗病毒药来了，疫苗不用打了&#39;,
- &#39;author&#39;: &#39;遗传学博士，科普作者，新药研发从业者&#39;,
- &#39;authordesc&#39;: &#39;遗传学博士，科普作者，新药研发从业者&#39;,
- &#39;id&#39;: &#39;e8b9e0d7775169d5cf45d1c31db707b0&#39;,
- &#39;date&#39;: &#39;2021-10-11&#39;,
- &#39;markstyle&#39;: &#39;fake&#39;,
- &#39;result&#39;: &#39;假&#39;,
- &#39;explain&#39;: &#39;谣言&#39;,
- &#39;abstract&#39;: &#39;使用方便并能用在感染早期、降低新冠重症风险的口服抗病毒药一度是空白，此类药物的研发对于新冠早期感染后的治疗有重要意义。\n默克口服抗新冠药在临床试验中显示了良好疗效，将新冠患者住院或死亡风险降低约50%，对新冠突变株也有效，是新冠药物研发的重要突破。\n口服抗新冠药物会是防疫的重要一环，但不是用来取代疫苗的，而是要与疫苗、非药物防疫措施相配合，才能对疫情防控起到积极作用。&#39;,
- &#39;tag&#39;: [&#39;新冠肺炎&#39;, &#39;新型冠状病毒&#39;],
- &#39;type&#39;: 1,
- &#39;videourl&#39;: &#39;&#39;,
- &#39;cover&#39;: &#39;//jiaozhen-70111.picnjc.qpic.cn/x9cw3H69xiWypZ2BhW8SPy?imageView2/2/w/150/h/90&#39;,
- &#39;coverrect&#39;: &#39;//jiaozhen-70111.picnjc.qpic.cn/x9cw3H69xiWypZ2BhW8SPy&#39;,
- &#39;coversqual&#39;: &#39;//jiaozhen-70111.picnjc.qpic.cn/x9cw3H69xiWypZ2BhW8SPy?imageView2/2/w/300/h/300&#39;,
- &#39;section&#39;: &#39;&#39;,
- &#39;iscolled&#39;: False,
- &#39;arttype&#39;: &#39;normal&#39;}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;title&#39;: &#39;武汉不明原因肺炎系SARS病毒&#39;,
+  &#39;author&#39;: &#39;中国疾病预防控制中心官方账号官方账号&#39;,
+  &#39;authordesc&#39;: &#39;中国疾病预防控制中心官方账号官方账号&#39;,
+  &#39;id&#39;: &#39;82226639be57efa52297094f79ec6d52&#39;,
+  &#39;Author&#39;: {&#39;id&#39;: 1224,
+   &#39;name&#39;: &#39;中国疾病预防控制中心&#39;,
+   &#39;desc&#39;: &#39;中国疾病预防控制中心官方账号官方账号&#39;,
+   &#39;head&#39;: &#39;http://p.qpic.cn/jiaozhen/0/69a3f9c0003d4684848c64c325269891/0&#39;,
+   &#39;level&#39;: 0,
+   &#39;artList&#39;: None,
+   &#39;openid&#39;: &#39;&#39;,
+   &#39;unionid&#39;: &#39;&#39;,
+   &#39;inviteId&#39;: &#39;&#39;,
+   &#39;nickname&#39;: &#39;&#39;,
+   &#39;headimgurl&#39;: &#39;&#39;,
+   &#39;ext1&#39;: &#39;&#39;,
+   &#39;ext2&#39;: None,
+   &#39;ext3&#39;: None,
+   &#39;ext4&#39;: None,
+   &#39;ext5&#39;: None,
+   &#39;createdAt&#39;: &#39;2020-01-22T08:47:12.000Z&#39;,
+   &#39;updatedAt&#39;: &#39;2020-01-22T08:51:30.000Z&#39;},
+  &#39;date&#39;: &#39;2020-01-18&#39;,
+  &#39;markstyle&#39;: &#39;fake&#39;,
+  &#39;result&#39;: &#39;假&#39;,
+  &#39;explain&#39;: &#39;谣言&#39;,
+  &#39;abstract&#39;: &#39;引起武汉不明原因肺炎的病原体已确定为一种新型冠状病毒，不是SARS病毒。\n该新型冠状病毒虽与SARS、MERS病毒同属冠状病毒，但它们的基因序列差别较大，不可等同。&#39;,
+  &#39;tag&#39;: [&#39;&#39;],
+  &#39;type&#39;: 1,
+  &#39;videourl&#39;: &#39;&#39;,
+  &#39;cover&#39;: &#39;//jiaozhen-70111.picnjc.qpic.cn/f0a11b7c9a84efd654efa32910c686d8?imageView2/2/w/150/h/90&#39;,
+  &#39;coverrect&#39;: &#39;//jiaozhen-70111.picnjc.qpic.cn/f0a11b7c9a84efd654efa32910c686d8&#39;,
+  &#39;coversqual&#39;: &#39;//jiaozhen-70111.picnjc.qpic.cn/f0a11b7c9a84efd654efa32910c686d8?imageView2/2/w/300/h/300&#39;,
+  &#39;section&#39;: &#39;&#39;,
+  &#39;iscolled&#39;: False,
+  &#39;arttype&#39;: &#39;normal&#39;}]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="mi">80</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">print</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on built-in function print in module builtins:
+
+print(...)
+    print(value, ..., sep=&#39; &#39;, end=&#39;\n&#39;, file=sys.stdout, flush=False)
+    
+    Prints the values to a stream, or to sys.stdout by default.
+    Optional keyword arguments:
+    file:  a file-like object (stream); defaults to the current sys.stdout.
+    sep:   string inserted between values, default a space.
+    end:   string appended after the last value, default a newline.
+    flush: whether to forcibly flush the stream.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100
 </pre></div>
 </div>
 </div>
@@ -879,21 +1088,20 @@
 <span class="kn">import</span> <span class="nn">random</span>
 
 <span class="n">jsons</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">80</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://vp.fact.qq.com/loadmore?artnum=0&amp;token=U2FsdGVkX1</span><span class="si">%252F</span><span class="s1">AdwQK1w6oSwDysphCNqZMsNahIOyALNiMuwg4EcZjwcBhAg7gk</span><span class="si">%252F</span><span class="s1">ED&amp;page=&#39;</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://vp.fact.qq.com/api/article/list?locale=zh-CN&amp;token=U2FsdGVkX186uQh1zecOEhKWJnvgDYAkh7N%252BVBnRrbNgyzif9Sj5PmJ1vRBoqtIo&amp;page=&#39;</span>
     <span class="n">url</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="n">content</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;list&#39;</span><span class="p">]:</span>
         <span class="n">jsons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
-1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
 2
 3
 4
@@ -972,6 +1180,27 @@
 77
 78
 79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
 </pre></div>
 </div>
 </div>
@@ -983,7 +1212,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>794
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>972
 </pre></div>
 </div>
 </div>
@@ -1019,6 +1248,7 @@
       <th>author</th>
       <th>authordesc</th>
       <th>id</th>
+      <th>Author</th>
       <th>date</th>
       <th>markstyle</th>
       <th>result</th>
@@ -1038,105 +1268,110 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>新冠口服抗病毒药来了，疫苗不用打了</td>
-      <td>遗传学博士，科普作者，新药研发从业者</td>
-      <td>遗传学博士，科普作者，新药研发从业者</td>
-      <td>e8b9e0d7775169d5cf45d1c31db707b0</td>
-      <td>2021-10-11</td>
+      <td>出公共场所再扫场所码可避免成为密接者</td>
+      <td>中央网信办违法和不良信息举报中心主办、新华网承办的辟谣平台</td>
+      <td>中央网信办违法和不良信息举报中心主办、新华网承办的辟谣平台</td>
+      <td>5537b7c1cad11570829276829d433f66</td>
+      <td>{'id': 964, 'name': '中国互联网联合辟谣平台', 'desc': '中央...</td>
+      <td>2022-10-10</td>
       <td>fake</td>
       <td>假</td>
       <td>谣言</td>
-      <td>使用方便并能用在感染早期、降低新冠重症风险的口服抗病毒药一度是空白，此类药物的研发对于新冠早...</td>
-      <td>[新冠肺炎, 新型冠状病毒]</td>
+      <td>宁波市防控办对网传说法辟谣：扫场所码是为方便流调工作，确保一旦发现阳性病例，密接、次密接、时...</td>
+      <td>[场所码, 密接]</td>
       <td>1</td>
       <td></td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/x9cw3H69xiWypZ...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/x9cw3H69xiWypZ...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/x9cw3H69xiWypZ...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/x8kmEe2UrVaozy...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/x8kmEe2UrVaozy...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/x8kmEe2UrVaozy...</td>
       <td></td>
       <td>False</td>
       <td>normal</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>张文宏：今冬非常严峻！疫情对人类未来影响巨大！</td>
-      <td>福建日报社东南网承办</td>
-      <td>福建日报社东南网承办</td>
-      <td>230c5bf33f1c51dc21bf994f5f818e47</td>
-      <td>2021-09-26</td>
+      <td>太原防疫短信带核酸结果“查询链接”，可以点击查询</td>
+      <td>中央人民广播电台广播新闻网</td>
+      <td>中央人民广播电台广播新闻网</td>
+      <td>667477e34d8ffc970dccd2256521c466</td>
+      <td>{'id': 1195, 'name': '央广网', 'desc': '中央人民广播电台广...</td>
+      <td>2022-10-10</td>
       <td>fake</td>
       <td>假</td>
-      <td>谣言</td>
-      <td>张文宏教授曾在今年4月接受媒体采访时对该网传消息辟谣，网传文章并非他所说、所写。事实上：张文...</td>
-      <td>[张文宏, 疫情]</td>
+      <td>疑似诈骗</td>
+      <td>10月4日，经与太原市反诈骗中心核实，附有查询链接的该短信为诈骗链接，点击后会跳转至某钓鱼网...</td>
+      <td>[短信, 诈骗]</td>
       <td>1</td>
       <td></td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/6C3vD93YwDcmp2...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/6C3vD93YwDcmp2...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/6C3vD93YwDcmp2...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/snc972bZU4sMFX...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/snc972bZU4sMFX...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/snc972bZU4sMFX...</td>
       <td></td>
       <td>False</td>
       <td>normal</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>北京健康宝只能在北京用</td>
-      <td>北京地区网站联合辟谣平台</td>
-      <td>北京地区网站联合辟谣平台</td>
-      <td>82b275ccba95683cb7178f00a5e808b8</td>
-      <td>2021-09-22</td>
+      <td>上海有人“持红码到酒吧蹦迪”数千人惨变密接</td>
+      <td>中央网信办违法和不良信息举报中心主办</td>
+      <td>中央网信办违法和不良信息举报中心主办</td>
+      <td>2faa44138715b91b2e8dc957fd2a6aab</td>
+      <td>{'id': 398, 'name': '中国互联网联合辟谣平台', 'desc': '中央...</td>
+      <td>2022-10-10</td>
       <td>fake</td>
       <td>假</td>
       <td>谣言</td>
-      <td>北京健康宝在京外也可正常使用，出现“打不开”的情况，一般是网络方面的问题，比如在商业楼宇、机...</td>
-      <td>[健康宝, 北京]</td>
+      <td>所谓“持红码到酒吧蹦迪”的说法系误传。根据上海警方调查，视频中出现的红码图片实为两名当事人存...</td>
+      <td>[红码, 蹦迪]</td>
       <td>1</td>
       <td></td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/5V45vFj3pvk1T3...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/5V45vFj3pvk1T3...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/5V45vFj3pvk1T3...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/7BKjGqTcXywwnz...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/7BKjGqTcXywwnz...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/7BKjGqTcXywwnz...</td>
       <td></td>
       <td>False</td>
       <td>normal</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>9月12日，钟南山院士到达莆田开展防疫工作</td>
-      <td>金台资讯</td>
-      <td>人民网资讯精选官方账号</td>
-      <td>97097f394e80f908bbf64e49be8212bc</td>
-      <td>2021-09-19</td>
+      <td>上海游客遇新疆疫情，变身葡萄采摘工</td>
+      <td>中央网信办违法和不良信息举报中心主办、新华网承办的辟谣平台</td>
+      <td>中央网信办违法和不良信息举报中心主办、新华网承办的辟谣平台</td>
+      <td>abb50569bc1f464504caac8a2b864d76</td>
+      <td>{'id': 964, 'name': '中国互联网联合辟谣平台', 'desc': '中央...</td>
+      <td>2022-10-10</td>
       <td>fake</td>
       <td>假</td>
       <td>谣言</td>
-      <td>9月12日，钟南山秘书回应，目前钟南山仍在广东，来闽消息不属实。</td>
-      <td>[钟南山, 莆田]</td>
+      <td>吐鲁番市农业农村局、林草局等相关部门核实，有关部门未采取过将滞留人员留在本地就业采摘葡萄的措...</td>
+      <td>[新疆, 游客]</td>
       <td>1</td>
       <td></td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/bEZc9MLiujzP9S...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/bEZc9MLiujzP9S...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/bEZc9MLiujzP9S...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/iwStcGMpqU94pY...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/iwStcGMpqU94pY...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/iwStcGMpqU94pY...</td>
       <td></td>
       <td>False</td>
       <td>normal</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>福建仙游警方给确诊人员戴手铐脚镣</td>
-      <td>共青团北京市委机关报</td>
-      <td>共青团北京市委机关报</td>
-      <td>f4fa6b37b9c345712e3b320fb92f60a0</td>
-      <td>2021-09-19</td>
+      <td>体检查出肺结节，是打新冠疫苗打出来的</td>
+      <td>国家执业医师，神经科学硕士</td>
+      <td>国家执业医师，神经科学硕士</td>
+      <td>93dad175b3694399912fcac67a7e6f2c</td>
+      <td>{'id': 754, 'name': '庄时利和', 'desc': '国家执业医师，神经...</td>
+      <td>2022-09-23</td>
       <td>fake</td>
       <td>假</td>
       <td>谣言</td>
-      <td>网传视频系9月11日上午，仙游县看守所将8月26日后收押的来自中高风险区域犯罪嫌疑人分批押解...</td>
-      <td>[福建, 确诊人员]</td>
+      <td>人群中肺结节的检出率其实并不低，绝大多数肺结节是良性的；肺结节除了关注大小以外，还应当关注数...</td>
+      <td>[新冠疫苗, 肺结节]</td>
       <td>1</td>
       <td></td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/7F1iXdfTUdCepL...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/7F1iXdfTUdCepL...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/7F1iXdfTUdCepL...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/qXboJt4mr1JRiD...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/qXboJt4mr1JRiD...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/qXboJt4mr1JRiD...</td>
       <td></td>
       <td>False</td>
       <td>normal</td>
@@ -1147,12 +1382,13 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s1">&#39;./data/vpqq2021-10-25.xlsx&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s1">&#39;./data/vpqq2022-11-1.xlsx&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1176,9 +1412,11 @@
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="04-crawler-beautifulsoup.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1194,24 +1432,28 @@
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Cheng-Jun Wang<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Cheng-Jun Wang<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>使用Pandas进行数据清洗 &#8212; 计算传播学</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,41 +20,40 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="第五章 统计思维" href="08-01-statistics-thinking.html" />
@@ -64,7 +65,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -73,9 +88,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -93,14 +109,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
-   寻找人类传播行为的基因
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    寻找人类传播行为的基因
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="01-intro2cjc.html">
    第一章 计算传播学简介
@@ -676,112 +693,227 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/06-data-cleaning-pandas.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F06-data-cleaning-pandas.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/06-data-cleaning-pandas.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/06-data-cleaning-pandas.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/06-data-cleaning-pandas.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/06-data-cleaning-pandas.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chengjun/mybook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F06-data-cleaning-pandas.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/06-data-cleaning-pandas.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id1">
    简介
@@ -899,12 +1031,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>使用Pandas进行数据清洗</h1>
@@ -1038,14 +1169,15 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="pandas">
-<h1>使用Pandas进行数据清洗<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="pandas">
+<h1>使用Pandas进行数据清洗<a class="headerlink" href="#pandas" title="Permalink to this headline">#</a></h1>
 <p><img alt="image.png" src="_images/author.png" /></p>
-<div class="section" id="id1">
-<h2>简介<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<section id="id1">
+<h2>简介<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>Pandas 是 Python 中很流行的类库，使用它可以进行数据科学计算和数据分析。数据分析结果的好坏依赖于数据的好坏。</p>
 <ul class="simple">
 <li><p>存在数据缺失、数据格式不统一、数据错误的情况。</p></li>
@@ -1064,9 +1196,9 @@
 </ul>
 <p><a class="reference external" href="https://www.cnblogs.com/BoyceYang/p/8182053.html">https://www.cnblogs.com/BoyceYang/p/8182053.html</a></p>
 <p><img alt="" src="_images/pandas.png" /></p>
-</div>
-<div class="section" id="id2">
-<h2>案例1： 电影数据清洗<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id2">
+<h2>案例1： 电影数据清洗<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
 <p>Imdb5000数据包含了很多信息，例如演员、导演、预算、总收入，以及 IMDB 评分和上映时间。有一些列的值是缺失的，有些列的默认值是0，有的是 NaN（Not a Number）。下面我们通过使用 Pandas 提供的功能来清洗“脏”数据。数据来源:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.kaggle.com/carolzhangdc/imdb-5000-movie-dataset">https://www.kaggle.com/carolzhangdc/imdb-5000-movie-dataset</a></p></li>
@@ -1094,8 +1226,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="id3">
-<h3>检查数据<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<section id="id3">
+<h3>检查数据<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <p>Pandas 提供了<code class="docutils literal notranslate"><span class="pre">describe()</span></code>方法描述数据，还提供了 <code class="docutils literal notranslate"><span class="pre">head()</span> <span class="pre">方法</span></code>，输出前几行数据，让我们对读入的数据有一个大致的了解。此外，Pandas 提供了一些数据切片的方法：</p>
 <ul class="simple">
 <li><p>查看一列的一些基本统计信息：<code class="docutils literal notranslate"><span class="pre">data['columnname'].describe()</span></code></p></li>
@@ -1302,9 +1434,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id4">
-<h3>一、缺失数据<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id4">
+<h3>一、缺失数据<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
 <p>为什么要考虑数值缺失的情况？</p>
 <ul class="simple">
 <li><p>真实世界的数据很少是干净和一致的</p></li>
@@ -1315,8 +1447,8 @@
 <p>① 从来没有填正确过② 数据不可用③ 计算错误</p>
 <p>处理缺失数据的方法：
 一、补充缺失值; 二、删除缺失值; 三、不处理</p>
-<div class="section" id="id5">
-<h4>1. 使用默认值填补缺失<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<section id="id5">
+<h4>1. 使用默认值填补缺失<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()[:</span><span class="mi">5</span><span class="p">]</span> <span class="c1"># 通过这个函数查看是否有缺失值。True表示缺失，False表示没有缺失。</span>
@@ -1491,8 +1623,8 @@
 <p>5 rows × 28 columns</p>
 </div></div></div>
 </div>
-<div class="section" id="id6">
-<h5>👉使用空字符串填补<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h5>
+<section id="id6">
+<h5>👉使用空字符串填补<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">director_name</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
@@ -1518,9 +1650,9 @@ Name: director_name, Length: 5043, dtype: object
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id7">
-<h5>👉使用数值0进行填补<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h5>
+</section>
+<section id="id7">
+<h5>👉使用数值0进行填补<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -1544,12 +1676,12 @@ Name: duration, Length: 5043, dtype: float64
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="id8">
-<h4>2.删除缺失数据<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
-<div class="section" id="id9">
-<h5>①有缺失数据的情况就删除（一行任意出现一个缺失值我就删掉）<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h5>
+</section>
+</section>
+<section id="id8">
+<h4>2.删除缺失数据<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h4>
+<section id="id9">
+<h5>①有缺失数据的情况就删除（一行任意出现一个缺失值我就删掉）<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">()[:</span><span class="mi">3</span><span class="p">]</span>
@@ -1678,9 +1810,9 @@ Name: duration, Length: 5043, dtype: float64
 <p>3 rows × 28 columns</p>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="id10">
-<h5>② 全部是缺失值才删除<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h5>
+</section>
+<section id="id10">
+<h5>② 全部是缺失值才删除<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h5>
 <p>（一般情况下如果有部分缺失值是不影响整体行列的，如果有就删除会影响数据完整性）</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1812,9 +1944,9 @@ Name: duration, Length: 5043, dtype: float64
 </div>
 <p>→图示解读：我们可以发现，全部是缺失值才删除的方法很低效几乎没用</p>
 <p>→原始数据是5043行，经过处理后仍然是5043行</p>
-</div>
-<div class="section" id="n">
-<h5>③ 至少有n个才删除<a class="headerlink" href="#n" title="Permalink to this headline">¶</a></h5>
+</section>
+<section id="n">
+<h5>③ 至少有n个才删除<a class="headerlink" href="#n" title="Permalink to this headline">#</a></h5>
 <p>（我们可以设定一个“门槛”，如果一行中有5个以上缺失值就删除，这样比起上面两个方法更加“中庸”）</p>
 <p>→图示解读：但我们发现设定5个缺失值为门槛仍然不能处理，我们需要降低删除的门槛,，比如改到4个或3</p>
 <div class="cell docutils container">
@@ -1944,9 +2076,9 @@ Name: duration, Length: 5043, dtype: float64
 <p>3 rows × 28 columns</p>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="id11">
-<h5>④ 某个/几个列值缺失才删除<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h5>
+</section>
+<section id="id11">
+<h5>④ 某个/几个列值缺失才删除<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h5>
 <p>（如果我们觉得某几个值是特别重要的、不可或缺的话，如果是缺失值该数据就没意义，就可以指定特定列）</p>
 <p>（例如对于一个电影而言，电影名字或者导演通常是必须的要素）</p>
 <div class="cell docutils container">
@@ -2076,9 +2208,9 @@ Name: duration, Length: 5043, dtype: float64
 <p>3 rows × 28 columns</p>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="id12">
-<h5>⑤ 删除列<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h5>
+</section>
+<section id="id12">
+<h5>⑤ 删除列<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h5>
 <p>（前面的操作是针对行）</p>
 <p>（同样的方法也适用于于列，只需要补充axis=1的参数即可。默认值为axis=0 行  axis=1 列）</p>
 <div class="cell docutils container">
@@ -2278,10 +2410,10 @@ Name: duration, Length: 5043, dtype: float64
 </table>
 </div></div></div>
 </div>
-</div>
-</div>
-<div class="section" id="id13">
-<h4>3. 通过计算填充<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+</section>
+</section>
+<section id="id13">
+<h4>3. 通过计算填充<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h4>
 <p>使用数字类型的数据，比如，电影的时长，计算像电影平均时长可以帮我们甚至是数据集。这并不是最优解，但这个持续时间是根据其他数据估算出来的。这样的方式下，就不会因为像 0 或者 NaN这样的值在我们分析的时候而抛错。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2305,10 +2437,10 @@ Name: duration, dtype: float64
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="id14">
-<h3>二、对数值类型进行规范(转换类型）<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="id14">
+<h3>二、对数值类型进行规范(转换类型）<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h3>
 <p>有的时候，尤其当我们读取 csv 中一串数字的时候，有的时候数值类型的数字被读成字符串的数字，或将字符串的数字读成数据值类型的数字。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2373,9 +2505,9 @@ Name: title_year, dtype: object
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id15">
-<h3>三、不识别数据<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id15">
+<h3>三、不识别数据<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h3>
 <p>有时候我们不想看到某列或者某行的空值，但却该列缺失不是关键量不需要删除
 可以选择忽略/不识别该数据的方法</p>
 <div class="cell docutils container">
@@ -2411,9 +2543,9 @@ Name: director_name, Length: 5043, dtype: object
 </pre></div>
 </div>
 <p>因此，用这个方法可以可以替换文本中存在的\n（还可用来其他转移转义字符 \n\t\r</p>
-</div>
-<div class="section" id="id16">
-<h3>四、重复数据<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id16">
+<h3>四、重复数据<a class="headerlink" href="#id16" title="Permalink to this headline">#</a></h3>
 <p>有的时候数据集中会有一些重复的数据。在我们的数据集中也添加了重复的数据。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2425,10 +2557,10 @@ Name: director_name, Length: 5043, dtype: object
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="id17">
-<h2>案例2：病人心脏病数据<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="id17">
+<h2>案例2：病人心脏病数据<a class="headerlink" href="#id17" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="https://www.cnblogs.com/BoyceYang/p/8186033.html">https://www.cnblogs.com/BoyceYang/p/8186033.html</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2549,8 +2681,8 @@ Name: director_name, Length: 5043, dtype: object
 <li><p>非 ASCII 字符</p></li>
 <li><p>有些列头应该是数据，而不应该是列名参数</p></li>
 </ul>
-<div class="section" id="id18">
-<h3>五、增加列头<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<section id="id18">
+<h3>五、增加列头<a class="headerlink" href="#id18" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -2739,9 +2871,9 @@ Name: director_name, Length: 5043, dtype: object
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="id19">
-<h3>六、单位列数据的单位不统一<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id19">
+<h3>六、单位列数据的单位不统一<a class="headerlink" href="#id19" title="Permalink to this headline">#</a></h3>
 <p>如果仔细观察数据集可以发现 Weight 列的单位不统一。有的单位是 kgs，有的单位是 lbs (磅）</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3034,9 +3166,9 @@ Name: director_name, Length: 5043, dtype: object
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="id20">
-<h3>七、空行<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id20">
+<h3>七、空行<a class="headerlink" href="#id20" title="Permalink to this headline">#</a></h3>
 <p>仔细对比会发现我们的数据中一行空行，除了 index 之外，全部的值都是 NaN。</p>
 <p>Pandas 的 read_csv() 并没有可选参数来忽略空行，这样，我们就需要在数据被读入之后再使用 dropna() 进行处理，删除空行.</p>
 <div class="cell docutils container">
@@ -3287,9 +3419,9 @@ Name: director_name, Length: 5043, dtype: object
 </div>
 <p>更多练习： <a class="reference external" href="https://github.com/computational-class/data_cleaning">https://github.com/computational-class/data_cleaning</a></p>
 <p><img alt="image.png" src="_images/end.png" /></p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -3313,9 +3445,11 @@ Name: director_name, Length: 5043, dtype: object
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="06-data-cleaning-music-list.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -3331,24 +3465,28 @@ Name: director_name, Length: 5043, dtype: object
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Cheng-Jun Wang<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Cheng-Jun Wang<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

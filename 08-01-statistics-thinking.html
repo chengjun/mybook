@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>第五章 统计思维 &#8212; 计算传播学</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,43 +20,42 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="KL Divergence" href="08-02-kl-divergence.html" />
@@ -66,7 +67,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -75,9 +90,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -95,14 +111,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
-   寻找人类传播行为的基因
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    寻找人类传播行为的基因
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="01-intro2cjc.html">
    第一章 计算传播学简介
@@ -678,112 +695,227 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/08-01-statistics-thinking.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F08-01-statistics-thinking.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/08-01-statistics-thinking.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/08-01-statistics-thinking.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/08-01-statistics-thinking.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/08-01-statistics-thinking.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chengjun/mybook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F08-01-statistics-thinking.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/08-01-statistics-thinking.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#plato-typological-thinking">
    Plato &amp; Typological Thinking
@@ -889,12 +1021,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>第五章 统计思维</h1>
@@ -1016,11 +1147,12 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
-<h1>第五章 统计思维<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>第五章 统计思维<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
 <p><img alt="image.png" src="_images/author.png" /></p>
 <p><img alt="" src="_images/preface2.png" /></p>
 <ol class="simple">
@@ -1038,8 +1170,8 @@
 <a class="reference internal image-reference" href="_images/socrats2.png"><img alt="_images/socrats2.png" src="_images/socrats2.png" style="width: 800px;" /></a>
 <p>The School of Athens by Raphael (1509–1510), fresco at the Apostolic Palace, Vatican City. <a class="reference external" href="https://en.wikipedia.org/wiki/Platonic_Academy">https://en.wikipedia.org/wiki/Platonic_Academy</a></p>
 <a class="reference internal image-reference" href="_images/plato.jpg"><img alt="_images/plato.jpg" class="align-right" src="_images/plato.jpg" style="width: 150px;" /></a>
-<div class="section" id="plato-typological-thinking">
-<h2>Plato &amp; Typological Thinking<a class="headerlink" href="#plato-typological-thinking" title="Permalink to this headline">¶</a></h2>
+<section id="plato-typological-thinking">
+<h2>Plato &amp; Typological Thinking<a class="headerlink" href="#plato-typological-thinking" title="Permalink to this headline">#</a></h2>
 <p>Pythagoras held that</p>
 <ul class="simple">
 <li><p>all things are number</p></li>
@@ -1061,8 +1193,8 @@
 </ul>
 </li>
 </ul>
-<div class="section" id="social-physics-taking-physics-as-a-role-model">
-<h3>Social Physics: Taking Physics as a Role Model<a class="headerlink" href="#social-physics-taking-physics-as-a-role-model" title="Permalink to this headline">¶</a></h3>
+<section id="social-physics-taking-physics-as-a-role-model">
+<h3>Social Physics: Taking Physics as a Role Model<a class="headerlink" href="#social-physics-taking-physics-as-a-role-model" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>French social thinker <strong>Henri de Saint-Simon</strong> 1803 described the idea of describing society using laws similar to those of the physical and biological sciences.</p></li>
 <li><p>His student and collaborator was <strong>Auguste Comte</strong>, a French philosopher, the founder of sociology, who first defined the term</p></li>
@@ -1091,10 +1223,10 @@ introducing statistical methods to the social sciences in his book titled <stron
 <div><p>“His goal was to understand the statistical laws underlying such phenomena as crime rates, marriage rates or suicide rates. He wanted to explain the values of these variables by other social factors”.</p>
 </div></blockquote>
 <a class="reference internal image-reference" href="_images/darwin.jpg"><img alt="_images/darwin.jpg" class="align-right" src="_images/darwin.jpg" style="width: 200px;" /></a>
-</div>
-</div>
-<div class="section" id="population-thinking">
-<h2><strong>Population Thinking</strong><a class="headerlink" href="#population-thinking" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="population-thinking">
+<h2><strong>Population Thinking</strong><a class="headerlink" href="#population-thinking" title="Permalink to this headline">#</a></h2>
 <p><strong>Charles Robert Darwin</strong> (12 February 1809 – 19 April 1882)</p>
 <blockquote>
 <div><p>favourable variations would make organisms better at surviving and passing the variations on to their offspring, while unfavourable variations would be lost.</p>
@@ -1126,8 +1258,8 @@ introducing statistical methods to the social sciences in his book titled <stron
 <a class="reference internal image-reference" href="_images/aristotle2.png"><img alt="_images/aristotle2.png" src="_images/aristotle2.png" style="width: 600px;" /></a>
 <p>The School of Athens by Raphael (1509–1510), fresco at the Apostolic Palace, Vatican City. <a class="reference external" href="https://en.wikipedia.org/wiki/Platonic_Academy">https://en.wikipedia.org/wiki/Platonic_Academy</a></p>
 <a class="reference internal image-reference" href="_images/galton.jpg"><img alt="_images/galton.jpg" class="align-right" src="_images/galton.jpg" style="width: 200px;" /></a>
-<div class="section" id="id2">
-<h3>本体论： 世界的本质<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<section id="id2">
+<h3>本体论： 世界的本质<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <blockquote>
 <div><p>“我认为自然科学是以“挖掘”本质的世界中的真理为最终目的，这也是其精华所在。而社会科学是以“了解”形成的世界为最终目的。历史上很多人想在社会科学领域找到一种真理，能够适用于各个方面，并且做过许多这方面的尝试。我认为社会科学不应该是这样的。在社会科学中，我们的目的是要了解现实世界，而不是去挖掘永恒的真理。这可能和你们的想象不一样。……既然差异是世界的本质，那差异就应该是研究的对象。” — 谢宇</p>
 </div></blockquote>
@@ -1158,9 +1290,9 @@ introducing statistical methods to the social sciences in his book titled <stron
 </li>
 <li><p>“Regression to mediocrity”</p></li>
 </ul>
-</div>
-<div class="section" id="id3">
-<h3>认识论： 人类知识的起源、本质、方法及局限<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id3">
+<h3>认识论： 人类知识的起源、本质、方法及局限<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <p>谢宇：“你到底能知道什么，你怎样认识世界。”</p>
 <ul class="simple">
 <li><p>自然科学追求永恒真理，关注典型现象；</p>
@@ -1170,17 +1302,17 @@ introducing statistical methods to the social sciences in his book titled <stron
 </li>
 <li><p>社会科学关注所有个案组成的总体的状况。</p></li>
 </ul>
-</div>
-<div class="section" id="id4">
-<h3>方法论： 使用什么方法<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id4">
+<h3>方法论： 使用什么方法<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
 <p>谢宇：“社会科学之所以复杂，是因为我们运用的数据是通过观察所得，而观察所得的数据必然受到外来因素的影响，这些外来因素都可能解释你的数据。“</p>
 <ul class="simple">
 <li><p>自然科学使用实验来隔离外来因素的影响；</p></li>
 <li><p>“社会科学可以使用统计排除一些外来影响，但你不能排除所有的外来因素”。</p></li>
 </ul>
-</div>
-<div class="section" id="three-basic-principles-of-social-science-research">
-<h3>Three Basic Principles of Social Science Research<a class="headerlink" href="#three-basic-principles-of-social-science-research" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="three-basic-principles-of-social-science-research">
+<h3>Three Basic Principles of Social Science Research<a class="headerlink" href="#three-basic-principles-of-social-science-research" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Variability Principle</p>
 <ul>
@@ -1192,10 +1324,10 @@ introducing statistical methods to the social sciences in his book titled <stron
 </ul>
 </li>
 </ul>
-</div>
-</div>
-<div class="section" id="statistics-for-describing-data">
-<h2>Statistics for Describing Data<a class="headerlink" href="#statistics-for-describing-data" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="statistics-for-describing-data">
+<h2>Statistics for Describing Data<a class="headerlink" href="#statistics-for-describing-data" title="Permalink to this headline">#</a></h2>
 <p>The mathematics and techniques with which we understand data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1277,8 +1409,8 @@ introducing statistical methods to the social sciences in his book titled <stron
 </div>
 </div>
 </div>
-<div class="section" id="distribution-and-histogram">
-<h3>Distribution and Histogram<a class="headerlink" href="#distribution-and-histogram" title="Permalink to this headline">¶</a></h3>
+<section id="distribution-and-histogram">
+<h3>Distribution and Histogram<a class="headerlink" href="#distribution-and-histogram" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">daily_minutes</span><span class="p">))</span>
@@ -1346,9 +1478,9 @@ introducing statistical methods to the social sciences in his book titled <stron
 <ul class="simple">
 <li><p>So you start generating some statistics.</p></li>
 </ul>
-</div>
-<div class="section" id="from-max-to-min">
-<h3>From Max to Min<a class="headerlink" href="#from-max-to-min" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="from-max-to-min">
+<h3>From Max to Min<a class="headerlink" href="#from-max-to-min" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_points</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_friends</span><span class="p">)</span>               <span class="c1"># 204</span>
@@ -1377,9 +1509,9 @@ introducing statistical methods to the social sciences in his book titled <stron
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="mean-median-mode-and-quantile">
-<h3>Mean, Median, Mode, and Quantile<a class="headerlink" href="#mean-median-mode-and-quantile" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="mean-median-mode-and-quantile">
+<h3>Mean, Median, Mode, and Quantile<a class="headerlink" href="#mean-median-mode-and-quantile" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -1624,9 +1756,9 @@ quantile(num_friends, 0.90) 13
 <img alt="_images/08-01-statistics-thinking_52_0.png" src="_images/08-01-statistics-thinking_52_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="variance-and-standard-deviation">
-<h3>Variance and Standard Deviation<a class="headerlink" href="#variance-and-standard-deviation" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="variance-and-standard-deviation">
+<h3>Variance and Standard Deviation<a class="headerlink" href="#variance-and-standard-deviation" title="Permalink to this headline">#</a></h3>
 <div class="math notranslate nohighlight">
 \[\sigma = \sqrt{\frac{\sum_{i=1}^N (x_i - \overline{x})^2}{N-1} }\]</div>
 <div class="math notranslate nohighlight">
@@ -1701,9 +1833,9 @@ quantile(num_friends, 0.90) 13
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="covariance-correlation-and-scatter-plot">
-<h3>Covariance, Correlation, and Scatter Plot<a class="headerlink" href="#covariance-correlation-and-scatter-plot" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="covariance-correlation-and-scatter-plot">
+<h3>Covariance, Correlation, and Scatter Plot<a class="headerlink" href="#covariance-correlation-and-scatter-plot" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matplotlib</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
@@ -1845,9 +1977,9 @@ quantile(num_friends, 0.90) 13
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="regression-analysis">
-<h3>Regression Analysis<a class="headerlink" href="#regression-analysis" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="regression-analysis">
+<h3>Regression Analysis<a class="headerlink" href="#regression-analysis" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">r_value</span><span class="p">,</span> <span class="n">p_value</span><span class="p">,</span> <span class="n">std_err</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">num_friends_good</span><span class="p">,</span><span class="n">daily_minutes_good</span><span class="p">)</span>
@@ -1872,9 +2004,9 @@ quantile(num_friends, 0.90) 13
 <img alt="_images/08-01-statistics-thinking_71_1.png" src="_images/08-01-statistics-thinking_71_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="t">
-<h3>比较均值：T检验<a class="headerlink" href="#t" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="t">
+<h3>比较均值：T检验<a class="headerlink" href="#t" title="Permalink to this headline">#</a></h3>
 <p><img alt="image.png" src="_images/end2.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1926,9 +2058,9 @@ quantile(num_friends, 0.90) 13
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="one-way-anova">
-<h3>单因素方差分析（one-way ANOVA）<a class="headerlink" href="#one-way-anova" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="one-way-anova">
+<h3>单因素方差分析（one-way ANOVA）<a class="headerlink" href="#one-way-anova" title="Permalink to this headline">#</a></h3>
 <p>ANOVA: Analysis of Variance</p>
 <p>假设：有k组实验数据，彼此之间相互独立且服从正态分布，均值分别为<span class="math notranslate nohighlight">\(\mu_1,\mu_2,...\mu_k\)</span>，方差都为<span class="math notranslate nohighlight">\(\sigma^2\)</span></p>
 <ul class="simple">
@@ -2070,9 +2202,9 @@ Residual      34.0  0.005395  0.000159       NaN       NaN
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="two-way-anova">
-<h3>Two-way ANOVA<a class="headerlink" href="#two-way-anova" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="two-way-anova">
+<h3>Two-way ANOVA<a class="headerlink" href="#two-way-anova" title="Permalink to this headline">#</a></h3>
 <p>ANOVA with interaction</p>
 <p>Measurement of fetal head circumference <strong>hs</strong>, by four observers in three fetuses.</p>
 <div class="cell docutils container">
@@ -2173,9 +2305,9 @@ Residual              24.0    1.840000    0.076667          NaN           NaN
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="a-chi-squared-test">
-<h3>卡方检验 A chi-squared test<a class="headerlink" href="#a-chi-squared-test" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="a-chi-squared-test">
+<h3>卡方检验 A chi-squared test<a class="headerlink" href="#a-chi-squared-test" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Chi-squared_test">https://en.wikipedia.org/wiki/Chi-squared_test</a></p>
 <p>Suppose we look at the House of Representatives for the 113th Congress. This data is taken from <a class="reference external" href="https://www.senate.gov">www.senate.gov</a>.</p>
 <table class="colwidths-auto table">
@@ -2210,9 +2342,9 @@ Residual              24.0    1.840000    0.076667          NaN           NaN
 <li><p>Test statistics that follow a chi-squared distribution arise from an assumption of independent normally distributed data, which is valid in many cases due to the central limit theorem.</p></li>
 <li><p>Chi-squared tests are often constructed from a sum of squared errors, or through the sample variance.</p></li>
 </ul>
-</div>
-<div class="section" id="chi-square-formula">
-<h3>Chi-Square Formula<a class="headerlink" href="#chi-square-formula" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="chi-square-formula">
+<h3>Chi-Square Formula<a class="headerlink" href="#chi-square-formula" title="Permalink to this headline">#</a></h3>
 <p><span class="math notranslate nohighlight">\(Χ^2 = \frac{\sum (O − E)^2}{E} \)</span></p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\sum\)</span> means to sum up (see Sigma Notation)</p></li>
@@ -2437,11 +2569,11 @@ Degrees of Freedom: 1
 </div>
 <p><img alt="image.png" src="_images/statistics.png" /></p>
 <p><img alt="image.png" src="_images/end.png" /></p>
-</div>
-</div>
+</section>
+</section>
 <div class="toctree-wrapper compound">
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2465,9 +2597,11 @@ Degrees of Freedom: 1
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="06-data-cleaning-pandas.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -2483,24 +2617,28 @@ Degrees of Freedom: 1
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Cheng-Jun Wang<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Cheng-Jun Wang<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

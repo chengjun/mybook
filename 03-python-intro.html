@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>第二章 数据科学的编程工具 &#8212; 计算传播学</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,41 +20,40 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Jupyter Notebook" href="0-jupyter-notebook.html" />
@@ -64,7 +65,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -73,9 +88,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -93,14 +109,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
-   寻找人类传播行为的基因
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    寻找人类传播行为的基因
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="01-intro2cjc.html">
    第一章 计算传播学简介
@@ -676,112 +693,227 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/03-python-intro.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/chengjun/mybook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F03-python-intro.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/03-python-intro.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/chengjun/mybook/blob/main/03-python-intro.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/03-python-intro.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/03-python-intro.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chengjun/mybook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F03-python-intro.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/03-python-intro.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#python">
    人生苦短，我用Python。
@@ -894,12 +1026,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>第二章 数据科学的编程工具</h1>
@@ -1028,16 +1159,17 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
-<h1>第二章 数据科学的编程工具<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>第二章 数据科学的编程工具<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
 <p>Python使用简介</p>
 <p>王成军</p>
 <p><img alt="" src="_images/author.png" /></p>
-<div class="section" id="python">
-<h2>人生苦短，我用Python。<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<section id="python">
+<h2>人生苦短，我用Python。<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h2>
 <p>Python（/ˈpaɪθən/）是一种面向对象、解释型计算机程序设计语言</p>
 <ul class="simple">
 <li><p>由Guido van Rossum于1989年底发明</p></li>
@@ -1047,30 +1179,30 @@
 <li><p>它常被昵称为胶水语言</p></li>
 <li><p>TIOBE编程语言排行榜“2010年度编程语言”</p></li>
 </ul>
-</div>
-<div class="section" id="id2">
-<h2>特点<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id2">
+<h2>特点<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>免费、功能强大、使用者众多</p></li>
 <li><p>与R和MATLAB相比，Python是一门更易学、更严谨的程序设计语言。使用Python编写的脚本更易于理解和维护。</p></li>
 <li><p>如同其它编程语言一样，Python语言的基础知识包括：类型、列表（list）和元组（tuple）、字典（dictionary）、条件、循环、异常处理等。</p></li>
 <li><p>关于这些，初阶读者可以阅读《Beginning Python》一书（Hetland, 2005)。</p></li>
 </ul>
-</div>
-<div class="section" id="id3">
-<h2>Python中包含了丰富的类库。<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id3">
+<h2>Python中包含了丰富的类库。<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
 <p>众多开源的科学计算软件包都提供了Python的调用接口，例如著名的计算机视觉库OpenCV。
 Python本身的科学计算类库发展也十分完善，例如NumPy、SciPy和matplotlib等。
 就社会网络分析而言，igraph, networkx, graph-tool, Snap.py等类库提供了丰富的网络分析工具</p>
-</div>
-<div class="section" id="pythonide">
-<h2>Python软件与IDE<a class="headerlink" href="#pythonide" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="pythonide">
+<h2>Python软件与IDE<a class="headerlink" href="#pythonide" title="Permalink to this headline">#</a></h2>
 <p>目前最新的Python版本为3.0，更稳定的2.7版本。
 编译器是编写程序的重要工具。
 免费的Python编译器有Spyder、PyCharm(免费社区版)、Ipython、Vim、 Emacs、 Eclipse(加上PyDev插件)。</p>
-</div>
-<div class="section" id="installing-anaconda-python">
-<h2>Installing Anaconda Python<a class="headerlink" href="#installing-anaconda-python" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="installing-anaconda-python">
+<h2>Installing Anaconda Python<a class="headerlink" href="#installing-anaconda-python" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Use the Anaconda Python</p>
 <ul>
@@ -1078,9 +1210,9 @@ Python本身的科学计算类库发展也十分完善，例如NumPy、SciPy和m
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="pip-install">
-<h2>第三方包可以使用pip install的方法安装。<a class="headerlink" href="#pip-install" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="pip-install">
+<h2>第三方包可以使用pip install的方法安装。<a class="headerlink" href="#pip-install" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>可以点击ToolsOpen command prompt</p></li>
 <li><p>然后在打开的命令窗口中输入：</p>
@@ -1105,17 +1237,8 @@ Python本身的科学计算类库发展也十分完善，例如NumPy、SciPy和m
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting flownetwork
-  Using cached flownetwork-3.1.0.tar.gz (125 kB)
-Collecting peppercorn
-  Using cached peppercorn-0.6-py3-none-any.whl (4.8 kB)
-Building wheels for collected packages: flownetwork
-  Building wheel for flownetwork (setup.py) ... ?25ldone
-?25h  Created wheel for flownetwork: filename=flownetwork-3.1.0-py2.py3-none-any.whl size=20734 sha256=855be2b93fa8f1633a49e562614b87179c983dec8393f5519fa60db59cd08d2d
-  Stored in directory: /Users/datalab/Library/Caches/pip/wheels/ca/29/64/cbb6c78f5b115a4c89370f4b4f765ea29bab3307b97607e606
-Successfully built flownetwork
-Installing collected packages: peppercorn, flownetwork
-Successfully installed flownetwork-3.1.0 peppercorn-0.6
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: flownetwork in /opt/anaconda3/lib/python3.9/site-packages (3.1.0)
+Requirement already satisfied: peppercorn in /opt/anaconda3/lib/python3.9/site-packages (from flownetwork) (0.6)
 Note: you may need to restart the kernel to use updated packages.
 </pre></div>
 </div>
@@ -1258,6 +1381,7 @@ constructFlowNetwork(C)
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
 <span class="kn">from</span> <span class="nn">scipy.stats.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
+<span class="c1">#!pip install iching</span>
 </pre></div>
 </div>
 </div>
@@ -1272,7 +1396,7 @@ constructFlowNetwork(C)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
@@ -1296,16 +1420,12 @@ constructFlowNetwork(C)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lines</span><span class="p">[</span><span class="mi">8520</span><span class="p">:</span><span class="mi">8535</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lines</span><span class="p">[</span><span class="mi">8524</span><span class="p">:</span><span class="mi">8540</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;\n&#39;,
- &#39;\n&#39;,
- &#39;\n&#39;,
- &#39;\n&#39;,
- &#39;BOOK I.\n&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;BOOK I.\n&#39;,
  &#39;\n&#39;,
  &#39;I went down yesterday to the Piraeus with Glaucon the son of Ariston,\n&#39;,
  &#39;that I might offer up my prayers to the goddess (Bendis, the Thracian\n&#39;,
@@ -1315,35 +1435,40 @@ constructFlowNetwork(C)
  &#39;if not more, beautiful. When we had finished our prayers and viewed the\n&#39;,
  &#39;spectacle, we turned in the direction of the city; and at that instant\n&#39;,
  &#39;Polemarchus the son of Cephalus chanced to catch sight of us from a\n&#39;,
- &#39;distance as we were starting on our way home, and told his servant to\n&#39;]
+ &#39;distance as we were starting on our way home, and told his servant to\n&#39;,
+ &#39;run and bid us wait for him. The servant took hold of me by the cloak\n&#39;,
+ &#39;behind, and said: Polemarchus desires you to wait.\n&#39;,
+ &#39;\n&#39;,
+ &#39;I turned round, and asked him where his master was.\n&#39;,
+ &#39;\n&#39;]
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="variable-type">
-<h2>Variable Type<a class="headerlink" href="#variable-type" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="variable-type">
+<h2>Variable Type<a class="headerlink" href="#variable-type" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># str, int, float, bool</span>
-<span class="nb">str</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;3&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bool
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;chengjun wang&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Cheng-Jun Wang&quot;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;chengjun wang&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Cheng-Jun Wang&#39;
 </pre></div>
 </div>
 </div>
@@ -1365,6 +1490,7 @@ constructFlowNetwork(C)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># float</span>
 <span class="nb">float</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mf">7.1</span><span class="p">))</span>
+<span class="c1">#str(7.1)</span>
 </pre></div>
 </div>
 </div>
@@ -1388,25 +1514,33 @@ constructFlowNetwork(C)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for i in range(1, 10):</span>
-<span class="c1">#     print(i)</span>
-<span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="c1"># range(1, 10)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>range(1, 10)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="dir-help">
-<h2>dir &amp; help<a class="headerlink" href="#dir-help" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="dir-help">
+<h2>dir &amp; help<a class="headerlink" href="#dir-help" title="Permalink to this headline">#</a></h2>
 <p>当你想要了解对象的详细信息时使用</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="nb">str</span><span class="p">)[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
 </pre></div>
 </div>
 </div>
@@ -1421,25 +1555,6 @@ constructFlowNetwork(C)
  &#39;translate&#39;,
  &#39;upper&#39;,
  &#39;zfill&#39;]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;cheng&#39;</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Cheng&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#dir(str)[-10:]</span>
 </pre></div>
 </div>
 </div>
@@ -1602,7 +1717,7 @@ class str(object)
  |  index(...)
  |      S.index(sub[, start[, end]]) -&gt; int
  |      
- |      Return the lowest index in S where substring sub is found, 
+ |      Return the lowest index in S where substring sub is found,
  |      such that sub is contained within S[start:end].  Optional
  |      arguments start and end are interpreted as in slice notation.
  |      
@@ -1641,8 +1756,8 @@ class str(object)
  |  isidentifier(self, /)
  |      Return True if the string is a valid Python identifier, False otherwise.
  |      
- |      Use keyword.iskeyword() to test for reserved identifiers such as &quot;def&quot; and
- |      &quot;class&quot;.
+ |      Call keyword.iskeyword(s) to test whether string s is a reserved identifier,
+ |      such as &quot;def&quot; or &quot;class&quot;.
  |  
  |  islower(self, /)
  |      Return True if the string is a lowercase string, False otherwise.
@@ -1710,6 +1825,19 @@ class str(object)
  |      
  |      If the separator is not found, returns a 3-tuple containing the original string
  |      and two empty strings.
+ |  
+ |  removeprefix(self, prefix, /)
+ |      Return a str with the given prefix string removed if present.
+ |      
+ |      If the string starts with the prefix string, return string[len(prefix):].
+ |      Otherwise, return a copy of the original string.
+ |  
+ |  removesuffix(self, suffix, /)
+ |      Return a str with the given suffix string removed if present.
+ |      
+ |      If the string ends with the suffix string and that suffix is not empty,
+ |      return string[:-len(suffix)]. Otherwise, return a copy of the original
+ |      string.
  |  
  |  replace(self, old, new, count=-1, /)
  |      Return a copy with all occurrences of substring old replaced by new.
@@ -1836,7 +1964,7 @@ class str(object)
  |  __new__(*args, **kwargs) from builtins.type
  |      Create and return a new object.  See help(type) for accurate signature.
  |  
- |  maketrans(x, y=None, z=None, /)
+ |  maketrans(...)
  |      Return a translation table usable for str.translate().
  |      
  |      If there is only one argument, it must be a dictionary mapping Unicode
@@ -1846,6 +1974,25 @@ class str(object)
  |      in the resulting dictionary, each character in x will be mapped to the
  |      character at the same position in y. If there is a third argument, it
  |      must be a string, whose characters will be mapped to None in the result.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;cheng jun&#39;</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="s1">&#39; is a big fan of Socrates!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;cheng jun is a big fan of Socrates!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#dir(str)[-10:]</span>
 </pre></div>
 </div>
 </div>
@@ -1978,24 +2125,25 @@ class str(object)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># join </span>
-<span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span>
+<span class="s1">&#39;---&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;a, b&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;a---1&#39;
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="type">
-<h2>type<a class="headerlink" href="#type" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="type">
+<h2>type<a class="headerlink" href="#type" title="Permalink to this headline">#</a></h2>
 <p>当你想要了解变量类型时使用type</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;hello world&#39;</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1">#help(type(x))</span>
 </pre></div>
 </div>
 </div>
@@ -2005,9 +2153,9 @@ class str(object)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="data-structure">
-<h2>Data Structure<a class="headerlink" href="#data-structure" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="data-structure">
+<h2>Data Structure<a class="headerlink" href="#data-structure" title="Permalink to this headline">#</a></h2>
 <p>list, tuple, set, dictionary, array</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2031,6 +2179,7 @@ class str(object)
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># list</span>
 <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">l</span>
+<span class="c1">#help(list)</span>
 </pre></div>
 </div>
 </div>
@@ -2044,6 +2193,7 @@ class str(object)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span> <span class="c1"># dict</span>
 <span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="c1">#help(dict)</span>
 </pre></div>
 </div>
 </div>
@@ -2068,13 +2218,13 @@ class str(object)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span> <span class="c1"># dict</span>
-<span class="n">d</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span> <span class="c1"># dict</span>
+<span class="n">d</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
 </pre></div>
 </div>
 </div>
@@ -2092,9 +2242,9 @@ class str(object)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id4">
-<h2>定义函数<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id4">
+<h2>定义函数<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">devidePlus</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> <span class="c1"># 结尾是冒号</span>
@@ -2104,9 +2254,9 @@ class str(object)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="for">
-<h2>For 循环<a class="headerlink" href="#for" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="for">
+<h2>For 循环<a class="headerlink" href="#for" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -2155,22 +2305,8 @@ class str(object)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span> 
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
-10
-20
-30
-40
-50
-60
-70
-80
-90
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for i in range(10):</span>
+<span class="c1">#     print(i*10) </span>
 </pre></div>
 </div>
 </div>
@@ -2211,18 +2347,18 @@ class str(object)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="map">
-<h2>map函数<a class="headerlink" href="#map" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="map">
+<h2>map函数<a class="headerlink" href="#map" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fahrenheit</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="mi">9</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="n">T</span> <span class="o">+</span> <span class="mi">32</span>
-
 <span class="n">temp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">22.5</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span><span class="mi">100</span><span class="p">]</span>
+<span class="c1">#[fahrenheit(i) for i in temp]</span>
 <span class="n">F_temps</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">F_temps</span><span class="p">)</span>
+<span class="c1">#[i for i in F_temps]</span>
 </pre></div>
 </div>
 </div>
@@ -2273,9 +2409,9 @@ class str(object)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="if-elif-else">
-<h2>if elif else<a class="headerlink" href="#if-elif-else" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="if-elif-else">
+<h2>if elif else<a class="headerlink" href="#if-elif-else" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">j</span> <span class="o">=</span> <span class="mf">5.5</span>
@@ -2316,9 +2452,9 @@ class str(object)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="while">
-<h2>while循环<a class="headerlink" href="#while" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="while">
+<h2>while循环<a class="headerlink" href="#while" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
@@ -2404,7 +2540,7 @@ class str(object)
     <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> 
     <span class="n">a</span> <span class="o">-=</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># []</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">{}</span><span class="c1">#[]#&#39;&#39;#False #0 #None # []</span>
 </pre></div>
 </div>
 </div>
@@ -2416,9 +2552,9 @@ class str(object)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="try-except">
-<h2>try except<a class="headerlink" href="#try-except" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="try-except">
+<h2>try except<a class="headerlink" href="#try-except" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">devidePlus</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> <span class="c1"># 结尾是冒号</span>
@@ -2448,7 +2584,7 @@ class str(object)
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="mi">10</span> <span class="o">/</span> <span class="n">j</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
         <span class="k">pass</span>
 </pre></div>
 </div>
@@ -2456,7 +2592,7 @@ class str(object)
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.0
 10.0
-division by zero
+[0, 0, 1] 0 division by zero
 </pre></div>
 </div>
 </div>
@@ -2484,9 +2620,9 @@ division by zero
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="write-and-read-data">
-<h2>Write and Read data<a class="headerlink" href="#write-and-read-data" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="write-and-read-data">
+<h2>Write and Read data<a class="headerlink" href="#write-and-read-data" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span><span class="p">[[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">**</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span> 
@@ -2512,7 +2648,8 @@ division by zero
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">i</span><span class="p">)))</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">i</span><span class="p">]))</span>
+    <span class="c1">#print(&#39;\t&#39;.join(map(str, i)))  </span>
 </pre></div>
 </div>
 </div>
@@ -2589,7 +2726,7 @@ write(text, /) method of _io.TextIOWrapper instance
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存数据</span>
 <span class="n">data</span> <span class="o">=</span><span class="p">[[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">**</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)]</span> 
 
-<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data_write_to_file1.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/data_write_to_file1.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">i</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
@@ -2599,7 +2736,7 @@ write(text, /) method of _io.TextIOWrapper instance
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data_write_to_file1.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/data_write_to_file1.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 <span class="n">data</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
@@ -2640,61 +2777,64 @@ write(text, /) method of _io.TextIOWrapper instance
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
 
-<span class="c1"># with open(&#39;data_write_to_file1.txt&#39;, &#39;r&#39;) as f:</span>
-<span class="c1">#      for i in f:</span>
-<span class="c1">#             print(i)</span>
+<span class="c1"># with open(&#39;data/data_write_to_file1.txt&#39;, &#39;r&#39;) as f:</span>
+<span class="c1">#      for k, i in enumerate(f):</span>
+<span class="c1">#         if k%2000==0:</span>
+<span class="c1">#             print(k, i)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 1
-1 2
-2 3
-3 4
-4 5
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 0	0	0
+
+2000 2000	4000000	8000000000
+
+4000 4000	16000000	64000000000
+
+6000 6000	36000000	216000000000
+
+8000 8000	64000000	512000000000
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from time import sleep</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
 <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./data/data_write_to_file1.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">k</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-            <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-        <span class="n">total</span> <span class="o">+=</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)])</span>
-
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+        <span class="n">total</span><span class="o">+=</span><span class="mi">1</span>
+<span class="c1">#     for k, i in enumerate(f):</span>
+<span class="c1">#         if k % 1000 ==0:</span>
+<span class="c1">#             sleep(1)</span>
+<span class="c1">#             print(k, end = &#39;\r&#39;)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
-1000
-2000
-3000
-4000
-5000
-6000
-7000
-8000
-9000
-2499833358330000
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000it [00:12, 803.68it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/data_write_to_file.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./data/data_write_to_file.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">k</span><span class="o">%</span><span class="k">2000</span> == 0:
             <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -2742,13 +2882,17 @@ write(text, /) method of _io.TextIOWrapper instance
         <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">line</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">line</span><span class="p">]</span>
         <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-<span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="c1">#data[-5:]</span>
+<span class="c1">#len(data)</span>
+<span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[9995, 99900025, 998500749875],
+ [9996, 99920016, 998800479936],
+ [9997, 99940009, 999100269973],
+ [9998, 99960004, 999400119992],
+ [9999, 99980001, 999700029999]]
 </pre></div>
 </div>
 </div>
@@ -2969,6 +3113,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data/data_write_to_file1.txt&#39;</span><span class="p">,</span> 
                  <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="c1">#len(df)</span>
 </pre></div>
 </div>
 </div>
@@ -3031,9 +3176,9 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="id5">
-<h2>保存中间步骤产生的字典数据<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id5">
+<h2>保存中间步骤产生的字典数据<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
@@ -3058,12 +3203,12 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="json">
-<h2>重新读入json<a class="headerlink" href="#json" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="id6">
-<h2>保存中间步骤产生的列表数据<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="json">
+<h2>重新读入json<a class="headerlink" href="#json" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="id6">
+<h2>保存中间步骤产生的列表数据<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
@@ -3086,9 +3231,9 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="matplotlib">
-<h2>使用matplotlib绘图<a class="headerlink" href="#matplotlib" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="matplotlib">
+<h2>使用matplotlib绘图<a class="headerlink" href="#matplotlib" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
@@ -3448,16 +3593,16 @@ The default value for &#39;return_type&#39; will change to &#39;axes&#39; in a f
 <div><p>To be a programmer is to develop a carefully managed relationship with error. There’s no getting around it. You either make your accommodations with failure, or the work will become intolerable.</p>
 </div></blockquote>
 <p>Ellen Ullman  （an American computer programmer and author）</p>
-</div>
-<div class="section" id="this-is-the-end">
-<h2>This is the end.<a class="headerlink" href="#this-is-the-end" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="this-is-the-end">
+<h2>This is the end.<a class="headerlink" href="#this-is-the-end" title="Permalink to this headline">#</a></h2>
 <blockquote>
 <div><p>Thank you for your attention.</p>
 </div></blockquote>
-</div>
+</section>
 <div class="toctree-wrapper compound">
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -3481,9 +3626,11 @@ The default value for &#39;return_type&#39; will change to &#39;axes&#39; in a f
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="02-bigdata.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -3499,24 +3646,28 @@ The default value for &#39;return_type&#39; will change to &#39;axes&#39; in a f
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Cheng-Jun Wang<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Cheng-Jun Wang<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
