@@ -267,6 +267,11 @@ const thebe_selector_output = ".output, .cell_output"
      轻型微博爬虫
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-snscrape-twitter.html">
+     snscrape
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -1111,14 +1116,15 @@ content = content.text
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span> 
-<span class="c1"># links = soup.find_all(&#39;td&#39;, {&#39;class&#39;, &#39;bl&#39;})   </span>
+<span class="c1"># links = soup.find_all(&#39;td&#39;, {&#39;class&#39;, &#39;bl&#39;})  </span>
+<span class="c1"># print(links[0](&#39;a&#39;)[0][&#39;href&#39;])</span>
 <span class="n">links</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;.bl a&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">links</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;a href=&quot;./dssjqgrmdbdh_1/202103/t20210316_5318622.html&quot; target=&quot;_blank&quot; title=&quot;2021年政府工作报告&quot;&gt;2021年政府工作报告&lt;/a&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;a href=&quot;./dssjqgrmdbdh_1/202203/t20220313_5398415.html&quot; target=&quot;_blank&quot; title=&quot;2022年政府工作报告&quot;&gt;2022年政府工作报告&lt;/a&gt;
 </pre></div>
 </div>
 </div>
@@ -1130,7 +1136,19 @@ content = content.text
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>52
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>53
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/&#39;
 </pre></div>
 </div>
 </div>
@@ -1154,7 +1172,7 @@ content = content.text
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;dssjqgrmdbdh_1/202103/t20210316_5318622.html&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;dssjqgrmdbdh_1/202203/t20220313_5398415.html&#39;
 </pre></div>
 </div>
 </div>
@@ -1166,7 +1184,7 @@ content = content.text
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>http://www.hprc.org.cn/wxzl/wxysl/lczf/dssjqgrmdbdh_1/202103/t20210316_5318622.html
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>http://www.hprc.org.cn/wxzl/wxysl/lczf/dssjqgrmdbdh_1/202203/t20220313_5398415.html
 </pre></div>
 </div>
 </div>
@@ -1179,11 +1197,11 @@ content = content.text
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dssjqgrmdbdh_1/202103/t20210316_5318622.html&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dssjqgrmdbdh_1/202203/t20220313_5398415.html&#39;,
+ &#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dssjqgrmdbdh_1/202103/t20210316_5318622.html&#39;,
  &#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dssjqgrmdbdh_1/202006/t20200604_5138985.html&#39;,
  &#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dssjqgrmdbdh_1/201903/t20190318_4849567.html&#39;,
- &#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dssjqgrmdbdh_1/201803/t20180323_4240852.html&#39;,
- &#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/d12qgrdzfbg/201703/t20170317_4144138.html&#39;]
+ &#39;http://www.hprc.org.cn/wxzl/wxysl/lczf/dssjqgrmdbdh_1/201803/t20180323_4240852.html&#39;]
 </pre></div>
 </div>
 </div>
@@ -1206,7 +1224,7 @@ content = content.text
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hyperlinks</span><span class="p">[</span><span class="mi">14</span><span class="p">])</span> <span class="c1"># 2007年有分页</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hyperlinks</span><span class="p">[</span><span class="mi">15</span><span class="p">])</span> <span class="c1"># 2007年有分页</span>
 </pre></div>
 </div>
 </div>
@@ -1299,7 +1317,7 @@ content = content.text
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scripts</span><span class="o">.</span><span class="n">text</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scripts</span><span class="o">.</span><span class="n">text</span><span class="c1">#.split(&#39;countPage = &#39;)[1].split(&#39;//&#39;)[0]</span>
 </pre></div>
 </div>
 </div>
@@ -1329,10 +1347,6 @@ content = content.text
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="k">def</span> <span class="nf">flushPrint</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s</span><span class="p">)</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
     
 <span class="k">def</span> <span class="nf">crawler</span><span class="p">(</span><span class="n">url_i</span><span class="p">):</span>
     <span class="n">content</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_i</span><span class="p">)</span>
@@ -1363,7 +1377,7 @@ content = content.text
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hyperlinks</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hyperlinks</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="c1"># 2007</span>
 </pre></div>
 </div>
 </div>
@@ -1375,7 +1389,7 @@ content = content.text
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="p">,</span> <span class="n">report</span> <span class="o">=</span> <span class="n">crawler</span><span class="p">(</span><span class="n">hyperlinks</span><span class="p">[</span><span class="mi">14</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="p">,</span> <span class="n">report</span> <span class="o">=</span> <span class="n">crawler</span><span class="p">(</span><span class="n">hyperlinks</span><span class="p">[</span><span class="mi">15</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1394,12 +1408,12 @@ content = content.text
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">report</span><span class="p">[:</span><span class="mi">30</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">report</span><span class="p">[</span><span class="o">-</span><span class="mi">300</span><span class="p">:]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;政府工作报告\u3000\xa0\xa0——2007年3月5日在第十届全国人民代表&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;和高素质人才。引导跨国公司把高端制造和研发环节转移到我国，吸引外资加快向中西部、东北地区等老工业基地和符合产业政策的领域扩展。大力承接国际服务外包，提高我国服务业发展水平。加强对外资并购的引导和规范。优化投资环境，规范招商引资行为，纠正一些地方违法违规变相给予优惠政策和层层下达分解指标的做法。\u3000\u3000引导和规范企业对外投资合作。完善财税、信贷、外汇、保险等政策措施，支持有实力、有信誉、有竞争力的各种所有制企业走出去。加强引导和协调，避免企业在境外盲目投资和恶性竞争。发展对外承包工程与劳务合作。办好境外经济贸易合作区。推动多哈回合谈判进程，积极参与多边贸易规则制定，稳步推进双边和区域自由贸易区建设。&#39;
 </pre></div>
 </div>
 </div>
@@ -1410,7 +1424,7 @@ content = content.text
 <span class="n">reports</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">hyperlinks</span><span class="p">:</span>
     <span class="n">year</span><span class="p">,</span> <span class="n">report</span> <span class="o">=</span> <span class="n">crawler</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
-    <span class="n">flushPrint</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># flush and print</span>
     <span class="n">reports</span><span class="p">[</span><span class="n">year</span><span class="p">]</span> <span class="o">=</span> <span class="n">report</span> 
 </pre></div>
 </div>
@@ -1423,9 +1437,9 @@ content = content.text
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./data/gov_reports1954-2021.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./data/gov_reports1954-2022.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">reports</span><span class="p">:</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">reports</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">reports</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1435,7 +1449,14 @@ content = content.text
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;./data/gov_reports1954-2021.txt&#39;</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;report&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;./data/gov_reports1954-2022.txt&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;report&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.read_table<span class="o">?</span>
 </pre></div>
 </div>
 </div>
@@ -1472,28 +1493,28 @@ content = content.text
   <tbody>
     <tr>
       <th>0</th>
-      <td>2021</td>
+      <td>2022</td>
       <td>各位代表：　　现在，我代表国务院，向大会报告政府工作，请予审议，并请全国政协委员提出意见。　...</td>
     </tr>
     <tr>
       <th>1</th>
+      <td>2021</td>
+      <td>各位代表：　　现在，我代表国务院，向大会报告政府工作，请予审议，并请全国政协委员提出意见。　...</td>
+    </tr>
+    <tr>
+      <th>2</th>
       <td>2020</td>
       <td>新华社北京5月29日电　　政府工作报告　　——2020年5月22日在第十三届全国人民代表...</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>3</th>
       <td>2019</td>
       <td>新华社北京3月16日电　　 政府工作报告　　——2019年3月5日在第十三届全国人民代表...</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>4</th>
       <td>2018</td>
       <td>各位代表：　　现在，我代表国务院，向大会报告过去五年政府工作，对今年工作提出建议，请予审...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2017</td>
-      <td>各位代表：　　现在，我代表国务院，向大会报告政府工作，请予审议，并请全国政协各位委员提出...</td>
     </tr>
   </tbody>
 </table>

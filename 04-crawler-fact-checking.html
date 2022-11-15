@@ -267,6 +267,11 @@ const thebe_selector_output = ".output, .cell_output"
      轻型微博爬虫
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-snscrape-twitter.html">
+     snscrape
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -973,7 +978,7 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 
-<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://vp.fact.qq.com/api/article/list?locale=zh-CN&amp;token=U2FsdGVkX186uQh1zecOEhKWJnvgDYAkh7N%252BVBnRrbNgyzif9Sj5PmJ1vRBoqtIo&amp;page=&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://vp.fact.qq.com/api/article/list?locale=zh-CN&amp;token=U2FsdGVkX1%252BSf5tazIgNXUkfSRI81VMClXBoG5lAMez6vJJWe%252BfsQqejh9QTvts7&amp;page=&#39;</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;100&#39;</span>
 <span class="n">content</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
@@ -984,47 +989,12 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;list&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;list&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;title&#39;: &#39;武汉不明原因肺炎系SARS病毒&#39;,
-  &#39;author&#39;: &#39;中国疾病预防控制中心官方账号官方账号&#39;,
-  &#39;authordesc&#39;: &#39;中国疾病预防控制中心官方账号官方账号&#39;,
-  &#39;id&#39;: &#39;82226639be57efa52297094f79ec6d52&#39;,
-  &#39;Author&#39;: {&#39;id&#39;: 1224,
-   &#39;name&#39;: &#39;中国疾病预防控制中心&#39;,
-   &#39;desc&#39;: &#39;中国疾病预防控制中心官方账号官方账号&#39;,
-   &#39;head&#39;: &#39;http://p.qpic.cn/jiaozhen/0/69a3f9c0003d4684848c64c325269891/0&#39;,
-   &#39;level&#39;: 0,
-   &#39;artList&#39;: None,
-   &#39;openid&#39;: &#39;&#39;,
-   &#39;unionid&#39;: &#39;&#39;,
-   &#39;inviteId&#39;: &#39;&#39;,
-   &#39;nickname&#39;: &#39;&#39;,
-   &#39;headimgurl&#39;: &#39;&#39;,
-   &#39;ext1&#39;: &#39;&#39;,
-   &#39;ext2&#39;: None,
-   &#39;ext3&#39;: None,
-   &#39;ext4&#39;: None,
-   &#39;ext5&#39;: None,
-   &#39;createdAt&#39;: &#39;2020-01-22T08:47:12.000Z&#39;,
-   &#39;updatedAt&#39;: &#39;2020-01-22T08:51:30.000Z&#39;},
-  &#39;date&#39;: &#39;2020-01-18&#39;,
-  &#39;markstyle&#39;: &#39;fake&#39;,
-  &#39;result&#39;: &#39;假&#39;,
-  &#39;explain&#39;: &#39;谣言&#39;,
-  &#39;abstract&#39;: &#39;引起武汉不明原因肺炎的病原体已确定为一种新型冠状病毒，不是SARS病毒。\n该新型冠状病毒虽与SARS、MERS病毒同属冠状病毒，但它们的基因序列差别较大，不可等同。&#39;,
-  &#39;tag&#39;: [&#39;&#39;],
-  &#39;type&#39;: 1,
-  &#39;videourl&#39;: &#39;&#39;,
-  &#39;cover&#39;: &#39;//jiaozhen-70111.picnjc.qpic.cn/f0a11b7c9a84efd654efa32910c686d8?imageView2/2/w/150/h/90&#39;,
-  &#39;coverrect&#39;: &#39;//jiaozhen-70111.picnjc.qpic.cn/f0a11b7c9a84efd654efa32910c686d8&#39;,
-  &#39;coversqual&#39;: &#39;//jiaozhen-70111.picnjc.qpic.cn/f0a11b7c9a84efd654efa32910c686d8?imageView2/2/w/300/h/300&#39;,
-  &#39;section&#39;: &#39;&#39;,
-  &#39;iscolled&#39;: False,
-  &#39;arttype&#39;: &#39;normal&#39;}]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19
 </pre></div>
 </div>
 </div>
@@ -1089,9 +1059,9 @@ print(...)
 
 <span class="n">jsons</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://vp.fact.qq.com/api/article/list?locale=zh-CN&amp;token=U2FsdGVkX186uQh1zecOEhKWJnvgDYAkh7N%252BVBnRrbNgyzif9Sj5PmJ1vRBoqtIo&amp;page=&#39;</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://vp.fact.qq.com/api/article/list?locale=zh-CN&amp;token=U2FsdGVkX1%252BSf5tazIgNXUkfSRI81VMClXBoG5lAMez6vJJWe%252BfsQqejh9QTvts7&amp;page=&#39;</span>
     <span class="n">url</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="n">content</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
@@ -1101,106 +1071,7 @@ print(...)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100
 </pre></div>
 </div>
 </div>

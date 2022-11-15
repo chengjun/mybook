@@ -1,0 +1,1348 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>snscrape &#8212; 计算传播学</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="第四章 数据清洗" href="06-data-cleaning-intro.html" />
+    <link rel="prev" title="轻型微博爬虫" href="04-crawler-weibo.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/socrates_jump.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">计算传播学</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    寻找人类传播行为的基因
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="01-intro2cjc.html">
+   第一章 计算传播学简介
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02-bigdata.html">
+     数据科学的编程工具：大数据
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="03-python-intro.html">
+   第二章 数据科学的编程工具
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="0-jupyter-notebook.html">
+     Jupyter Notebook
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01-recombination.html">
+     计算思维：通过拆解和重组学习
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="0-slides.html">
+     使用Jupyter制作Slides的介绍
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="0-turicreate.html">
+     Turicreate: Departure from Graphlab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="0-matplotlib-chinese.html">
+     解决Matplotlib绘图显示中文问题
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-UK-MPS-Scandal.html">
+     案例：2009年英国国会议员开支丑闻
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-umbrella-of-love.html">
+     案例：《转角遇到爱》背后的数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-who-runs-China.html">
+     案例：Who runs China？背后的数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03-gdelt.html">
+     Gdelt Dataset: Events, Mentions, and Global Knowledge Graph
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="04-crawler-beautifulsoup.html">
+   第三章 数据抓取
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-fact-checking.html">
+     抓取实时辟谣数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-13chambers.html">
+     抓取网络小说
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-wechat.html">
+     抓取微信公众号文章内容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-douban.html">
+     使用requests + Xpath抓取豆瓣电影数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-gov-report.html">
+     抓取历届政府工作报告
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-cppcc.html">
+     抓取江苏省政协十年提案
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-netease-music.html">
+     抓取网易云音乐热门评论
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium.html">
+     使用Selenium操纵浏览器
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-music-history.html">
+     抓取网易云音乐用户的听歌记录
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-selenium-people-com-search.html">
+     使用Selenium提取人民网搜索数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-tripadvisor.html">
+     使用Selenium抓取TripAdvisor用户评论
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-pyppeteer.html">
+     使用Pyppeteer实现异步抓取!
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-weibo.html">
+     轻型微博爬虫
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     snscrape
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="06-data-cleaning-intro.html">
+   第四章 数据清洗
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-preprocessing.html">
+     对大数据进行预处理
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-tweets.html">
+     数据清洗之推特数据
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-occupy-central-news.html">
+     对占中新闻进行数据清洗
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-music-list.html">
+     清洗音乐列表🎵
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06-data-cleaning-pandas.html">
+     使用Pandas进行数据清洗
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="08-01-statistics-thinking.html">
+   第五章 统计思维
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-02-kl-divergence.html">
+     KL Divergence
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-02-linear-algebra.html">
+     Linear algebra
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-03-distributions.html">
+     Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-03-probability.html">
+     Probability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-04-hypothesis-inference.html">
+     Statistical Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-05-gradient-descent.html">
+     Introduction to Gradient Descent
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-06-regression.html">
+     Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-06-statsmodels.html">
+     Statistical Modeling with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-07-analyzing-titanic-dataset.html">
+     Logistic Regression of Titanic Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-07-covid19-pew-survey.html">
+     Analysing the Pew Survey Data of COVID19
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-11-cfps-survey-analysis.html">
+     中国家庭追踪调查2018
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-08-covid19-grangercausality.html">
+     社交媒体可以预测新冠疫情吗？
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-09-survival-analysis.html">
+     Survival Analysis with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08-10-dowhy-estimation-methods.html">
+     The Book of Why
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
+   第六章 社会科学家的机器学习
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-03-hyperparameters-and-model-validation.html">
+     Hyperparameters and Model Validation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-04-feature-engineering.html">
+     Feature Engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-05-naive-bayes.html">
+     In Depth: Naive Bayes Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-06-linear-regression.html">
+     In Depth: Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-07-support-vector-machines.html">
+     In-Depth: Support Vector Machines
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-08-random-forests.html">
+     In-Depth: Decision Trees and Random Forests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-09-googleflustudy.html">
+     Forecasting and nowcasting with Google Flu Trends
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-10-future-employment.html">
+     The future of employment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-grf.html">
+     Causal Forests
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="09-11-neural-network-intro.html">
+   第七章 神经网络与深度学习
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-13-cnn.html">
+     Convolutional Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-14-rnn.html">
+     Sequnce Modeling: Recurrent and Recursive Nets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-12-hand-written-digits.html">
+     Recognizing Hand-Written Digits with Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-15-cifar10.html">
+     使用CNN对CIFAR10图像进行分类
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09-16-pytorch_vgg_pretrained.html">
+     VGG16预训练模型
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="10-text-mining-gov-report.html">
+   第八章 文本挖掘
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-word2vec.html">
+     词向量模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10-doc2vec.html">
+     Doc2Vec
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">
+     基于字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-2-emotion-dict.html">
+     大连理工大学中文情感词汇
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-NRC-Chinese-dict.html">
+     基于NRC字典的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-3-textblob.html">
+     利用textblob进行情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-4-sentiment-classifier.html">
+     基于机器学习的情感分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-5-LIWC.html">
+     LIWC: Linguistic Inquiry and Word Count  analyzer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-update.html">
+     主题模型简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="12-topic-models-with-turicreate.html">
+     使用Turicreate建立主题模型
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="13-recsys-intro.html">
+   第九章 推荐系统简介
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13-recsys-latent-factor-model.html">
+     Latent Factor Recommender System
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="13-recsys-intro-surprise.html">
+     使用Surprise构建推荐系统
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14-millionsong.html">
+     使用Turicreate进行音乐推荐
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="14-movielens.html">
+     使用Turicreate进行电影推荐
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="15-network-science-intro.html">
+   第十章 网络科学简介
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="16-network-science-models.html">
+     网络科学模型
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="17-networkx.html">
+     使用NetworkX分析网络
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-02-network-diffusion.html">
+     Simulating Network Diffusion With NDlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-03-network-epidemics.html">
+     Epidemics on Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-04-seir-hcd-model.html">
+     SEIR-HCD Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-network-ergm-siena.html">
+     Social Network Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-network-weibo-hot-search.html">
+     微博热搜分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">
+     天涯论坛的回帖网络分析
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">
+     可视化Facebook社交网络
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="18-network-ecomplexity.html">
+     Economic Complexity and Product Complexity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="19-visualization-with-seaborn.html">
+   第十一章 可视化
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-matplotlib-colormap.html">
+     Qualitative Colormaps in Matplotlib Visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-scientific-plot.html">
+     Matplotlib的科学绘图样式
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-with-pyecharts.html">
+     使用PyEcharts进行可视化
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-plotly-express.html">
+     Plotly Express in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-maps-using-folium.html">
+     使用folium做地图可视化
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-datashader.html">
+     使用Datashader可视化地理信息
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-datapane.html">
+     使用Datapane制作数据报告
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="19-visualization-pantheon.html">
+     万神殿项目（Pantheon Project）
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/04-crawler-snscrape-twitter.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/04-crawler-snscrape-twitter.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/chengjun/mybook"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F04-crawler-snscrape-twitter.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/04-crawler-snscrape-twitter.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#requirements">
+   Requirements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation">
+   Installation
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>snscrape</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#requirements">
+   Requirements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation">
+   Installation
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="snscrape">
+<h1>snscrape<a class="headerlink" href="#snscrape" title="Permalink to this headline">#</a></h1>
+<p>snscrape is a scraper for social networking services (SNS). It scrapes things like user profiles, hashtags, or searches and returns the discovered items, e.g. the relevant posts.</p>
+<p><a class="reference external" href="https://github.com/JustAnotherArchivist/snscrape">https://github.com/JustAnotherArchivist/snscrape</a></p>
+<p>The following services are currently supported:</p>
+<ul class="simple">
+<li><p>Facebook: user profiles, groups, and communities (aka visitor posts)</p></li>
+<li><p>Instagram: user profiles, hashtags, and locations</p></li>
+<li><p>Mastodon: user profiles and toots (single or thread)</p></li>
+<li><p>Reddit: users, subreddits, and searches (via Pushshift)</p></li>
+<li><p>Telegram: channels</p></li>
+<li><p>Twitter: users, user profiles, hashtags, searches, tweets (single or surrounding thread), list posts, and trends</p></li>
+<li><p>VKontakte: user profiles</p></li>
+<li><p>Weibo (Sina Weibo): user profiles</p></li>
+</ul>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">#</a></h2>
+<p>snscrape requires Python 3.8 or higher. The Python package dependencies are installed automatically when you install snscrape.</p>
+<p>Note that one of the dependencies, lxml, also requires libxml2 and libxslt to be installed.</p>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h2>
+<blockquote>
+<div><p>pip3 install snscrape</p>
+</div></blockquote>
+<p>If you want to use the development version:</p>
+<blockquote>
+<div><p>pip3 install git+https://github.com/JustAnotherArchivist/snscrape.git</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lxml</span>
+<span class="c1">#import libxml2</span>
+<span class="c1">#import libxslt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip3 install snscrape
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting snscrape
+  Downloading snscrape-0.4.3.20220106-py3-none-any.whl (59 kB)
+     |████████████████████████████████| 59 kB 733 kB/s eta 0:00:01
+?25hRequirement already satisfied: beautifulsoup4 in /opt/anaconda3/lib/python3.9/site-packages (from snscrape) (4.10.0)
+Requirement already satisfied: lxml in /opt/anaconda3/lib/python3.9/site-packages (from snscrape) (4.6.3)
+Requirement already satisfied: filelock in /opt/anaconda3/lib/python3.9/site-packages (from snscrape) (3.3.1)
+Requirement already satisfied: requests[socks] in /opt/anaconda3/lib/python3.9/site-packages (from snscrape) (2.26.0)
+Requirement already satisfied: soupsieve&gt;1.2 in /opt/anaconda3/lib/python3.9/site-packages (from beautifulsoup4-&gt;snscrape) (2.2.1)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/anaconda3/lib/python3.9/site-packages (from requests[socks]-&gt;snscrape) (3.2)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /opt/anaconda3/lib/python3.9/site-packages (from requests[socks]-&gt;snscrape) (2021.10.8)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /opt/anaconda3/lib/python3.9/site-packages (from requests[socks]-&gt;snscrape) (1.26.7)
+Requirement already satisfied: charset-normalizer~=2.0.0 in /opt/anaconda3/lib/python3.9/site-packages (from requests[socks]-&gt;snscrape) (2.0.4)
+Requirement already satisfied: PySocks!=1.5.7,&gt;=1.5.6 in /opt/anaconda3/lib/python3.9/site-packages (from requests[socks]-&gt;snscrape) (1.7.1)
+Installing collected packages: snscrape
+Successfully installed snscrape-0.4.3.20220106
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## 导入所需要的包</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">snscrape.modules.twitter</span> <span class="k">as</span> <span class="nn">sntwitter</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">random</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;http_proxy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://127.0.0.1:9999&quot;</span> 
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;https_proxy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http://127.0.0.1:9999&quot;</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##获取日期列表</span>
+<span class="k">def</span> <span class="nf">get_date_list</span><span class="p">(</span><span class="n">begin_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">):</span>
+    <span class="n">begin_date_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">begin_date</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">end_date_dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">end_date</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">begin_date_second</span> <span class="o">=</span> <span class="p">(</span><span class="n">begin_date_dt</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">end_date_last</span> <span class="o">=</span> <span class="p">(</span><span class="n">end_date_dt</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">since_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">begin_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">end_date_last</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+    <span class="n">since_date</span> <span class="o">=</span> <span class="p">[</span><span class="n">dt</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">+</span><span class="n">dt</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">+</span><span class="n">dt</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span> <span class="k">for</span> <span class="n">dt</span> <span class="ow">in</span> <span class="n">since_date</span><span class="p">]</span>
+    <span class="n">until_date</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">begin_date_second</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+    <span class="n">until_date</span> <span class="o">=</span> <span class="p">[</span><span class="n">dt</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">+</span><span class="n">dt</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">+</span><span class="n">dt</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span> <span class="k">for</span> <span class="n">dt</span> <span class="ow">in</span> <span class="n">until_date</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">since_date</span><span class="p">,</span><span class="n">until_date</span>
+
+<span class="c1">##保存文件到本地</span>
+<span class="k">def</span> <span class="nf">saveFile</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    功能：将爬取保存到本地文件中</span>
+<span class="sd">    参数：要保存的内容，路径，文件名</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># 如果没有该文件夹，则自动生成</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        
+    <span class="c1"># 保存文件</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span><span class="c1">#index = False</span>
+    
+<span class="c1">##随机休眠</span>
+<span class="k">def</span> <span class="nf">random_sleep</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;正态分布随机睡眠</span>
+<span class="sd">    :param mu: 平均值</span>
+<span class="sd">    :param sigma: 标准差，决定波动范围</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">secs</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">normalvariate</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">secs</span> <span class="o">&lt;=</span> <span class="mi">60</span><span class="p">:</span>
+        <span class="n">secs</span> <span class="o">=</span> <span class="n">mu</span>  <span class="c1"># 太小则重置为平均值</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">secs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># 输入开始日期、结束日期、爬取关键词</span>
+    <span class="n">begin_date</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;请输入开始日期:&#39;</span><span class="p">)</span>
+    <span class="n">end_date</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;请输入结束日期:&#39;</span><span class="p">)</span>
+    <span class="n">keyword</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;请输入爬取关键词:&#39;</span><span class="p">)</span>
+    <span class="n">since_date</span><span class="p">,</span><span class="n">until_date</span> <span class="o">=</span> <span class="n">get_date_list</span><span class="p">(</span><span class="n">begin_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">start_date</span><span class="p">,</span><span class="n">end_date</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">since_date</span><span class="p">,</span><span class="n">until_date</span><span class="p">):</span>
+        <span class="n">year</span> <span class="o">=</span> <span class="n">start_date</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
+        <span class="n">month</span> <span class="o">=</span> <span class="n">start_date</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+        <span class="n">day</span> <span class="o">=</span> <span class="n">start_date</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">keyword</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">year</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">month</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span>
+        <span class="c1"># Creating list to append tweet data</span>
+        <span class="n">tweets_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Using TwitterSearchScraper to scrape data and append tweets to list</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">tweet</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sntwitter</span><span class="o">.</span><span class="n">TwitterSearchScraper</span><span class="p">(</span><span class="s1">&#39;Bitcoin since:&#39;</span><span class="o">+</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">+</span><span class="s1">&#39; until:&#39;</span><span class="o">+</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get_items</span><span class="p">()):</span>
+                <span class="n">tweets_list</span><span class="o">.</span><span class="n">append</span><span class="p">([</span>
+                                    <span class="n">tweet</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">rawContent</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">replyCount</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">retweetCount</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">likeCount</span><span class="p">,</span> 
+                                    <span class="n">tweet</span><span class="o">.</span><span class="n">quoteCount</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">conversationId</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">lang</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">sourceUrl</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">links</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">media</span><span class="p">,</span>
+                                    <span class="n">tweet</span><span class="o">.</span><span class="n">retweetedTweet</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">quotedTweet</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">inReplyToTweetId</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">inReplyToUser</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">mentionedUsers</span><span class="p">,</span> 
+                                    <span class="n">tweet</span><span class="o">.</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">place</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">hashtags</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">cashtags</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">card</span><span class="p">,</span> <span class="c1">#tweet相关的字段</span>
+                                    <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">displayname</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">rawDescription</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">descriptionLinks</span><span class="p">,</span>
+                                    <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">verified</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">created</span><span class="p">,</span><span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">followersCount</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">friendsCount</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">statusesCount</span><span class="p">,</span> 
+                                    <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">favouritesCount</span><span class="p">,</span><span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">listedCount</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">mediaCount</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">protected</span><span class="p">,</span> 
+                                    <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">link</span><span class="p">,</span><span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">profileImageUrl</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">profileBannerUrl</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">label</span> <span class="c1">##user相关的字段</span>
+                                    <span class="p">])</span>
+            <span class="c1"># Creating a dataframe from the tweets list above</span>
+            <span class="n">tweets_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tweets_list</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span>
+                                                            <span class="s1">&#39;Datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_url&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_id&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_content&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_reply_count&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_retweet_count&#39;</span><span class="p">,</span>
+                                                            <span class="s1">&#39;Tweet_like_count&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_quote_count&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_conversation_id&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_language&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_source&#39;</span><span class="p">,</span> 
+                                                            <span class="s1">&#39;Tweet_source_url&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_links&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_mdeia&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_retweeted_tweet&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_quoted_tweet&#39;</span><span class="p">,</span> 
+                                                            <span class="s1">&#39;Tweet_inReplyToTweetId&#39;</span><span class="p">,</span><span class="s1">&#39;Tweet_inReplyToUser&#39;</span><span class="p">,</span><span class="s1">&#39;Tweet_mentioned_users&#39;</span><span class="p">,</span><span class="s1">&#39;Tweet_coordinates&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_place&#39;</span><span class="p">,</span> 
+                                                            <span class="s1">&#39;Tweet_hashtags&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_cashtags&#39;</span><span class="p">,</span><span class="s1">&#39;Tweet_card&#39;</span><span class="p">,</span><span class="c1">#tweet 相关的字段</span>
+                                                            <span class="s1">&#39;Username&#39;</span><span class="p">,</span><span class="s1">&#39;User_displayname&#39;</span><span class="p">,</span> <span class="s1">&#39;User_id&#39;</span><span class="p">,</span> <span class="s1">&#39;User_profile_description&#39;</span><span class="p">,</span> <span class="s1">&#39;User_description_link&#39;</span><span class="p">,</span> <span class="s1">&#39;User_verified&#39;</span><span class="p">,</span>
+                                                            <span class="s1">&#39;User_created&#39;</span><span class="p">,</span> <span class="s1">&#39;User_followers_count&#39;</span><span class="p">,</span> <span class="s1">&#39;User_friends_count&#39;</span><span class="p">,</span> <span class="s1">&#39;User_statuses_count&#39;</span><span class="p">,</span> <span class="s1">&#39;User_favourites_count&#39;</span><span class="p">,</span>
+                                                            <span class="s1">&#39;User_listed_count&#39;</span><span class="p">,</span> <span class="s1">&#39;User_media_count&#39;</span><span class="p">,</span> <span class="s1">&#39;User_location&#39;</span><span class="p">,</span> <span class="s1">&#39;User_protected&#39;</span><span class="p">,</span> <span class="s1">&#39;User_profile_link&#39;</span><span class="p">,</span> <span class="s1">&#39;User_profile_image_url&#39;</span><span class="p">,</span>
+                                                            <span class="s1">&#39;User_profile_banner_url&#39;</span><span class="p">,</span> <span class="s1">&#39;User_label&#39;</span> <span class="c1">#user 相关的字段</span>
+                                                          <span class="p">])</span>
+
+            <span class="n">fileName</span> <span class="o">=</span> <span class="n">year</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">month</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">day</span> <span class="o">+</span> <span class="s1">&#39;.csv&#39;</span>
+            <span class="n">saveFile</span><span class="p">(</span><span class="n">tweets_df</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">fileName</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;爬取完成：&quot;</span> <span class="o">+</span> <span class="n">year</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">month</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">day</span><span class="p">)</span>
+            <span class="n">random_sleep</span><span class="p">()</span>       <span class="c1"># 随机休眠</span>
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">error_msg</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sorry,</span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span><span class="s2"> is not a valid key!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>请输入开始日期:2022-02-10
+请输入结束日期:2022-02-15
+请输入爬取关键词:bitcoin
+爬取完成：2022-02-10
+爬取完成：2022-02-11
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tweet 1491943423862972423 contains an app icon medium key &#39;4_1582211007291834369&#39; on app &#39;android_app&#39;/&#39;com.gemini.android.app&#39;, but the corresponding medium is missing; dropping
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>爬取完成：2022-02-12
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tweet 1455815359609675778 contains an app icon medium key &#39;4_1582070568056242197&#39; on app &#39;android_app&#39;/&#39;de.traderepublic.app&#39;, but the corresponding medium is missing; dropping
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>爬取完成：2022-02-13
+爬取完成：2022-02-14
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tweets_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">tweet</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sntwitter</span><span class="o">.</span><span class="n">TwitterTweetScraper</span><span class="p">(</span><span class="mi">1565127293961248773</span><span class="p">)</span><span class="o">.</span><span class="n">get_items</span><span class="p">()):</span>
+    <span class="n">tweets_list</span><span class="o">.</span><span class="n">append</span><span class="p">([</span>
+                        <span class="n">tweet</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">rawContent</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">replyCount</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">retweetCount</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">likeCount</span><span class="p">,</span> 
+                        <span class="n">tweet</span><span class="o">.</span><span class="n">quoteCount</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">conversationId</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">lang</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">sourceUrl</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">links</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">media</span><span class="p">,</span>
+                        <span class="n">tweet</span><span class="o">.</span><span class="n">retweetedTweet</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">quotedTweet</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">inReplyToTweetId</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">inReplyToUser</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">mentionedUsers</span><span class="p">,</span> 
+                        <span class="n">tweet</span><span class="o">.</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">place</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">hashtags</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">cashtags</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">card</span><span class="p">,</span> <span class="c1">#tweet相关的字段</span>
+                        <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">displayname</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">rawDescription</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">descriptionLinks</span><span class="p">,</span>
+                        <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">verified</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">created</span><span class="p">,</span><span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">followersCount</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">friendsCount</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">statusesCount</span><span class="p">,</span> 
+                        <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">favouritesCount</span><span class="p">,</span><span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">listedCount</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">mediaCount</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">protected</span><span class="p">,</span> 
+                        <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">link</span><span class="p">,</span><span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">profileImageUrl</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">profileBannerUrl</span><span class="p">,</span> <span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">label</span> <span class="c1">##user相关的字段</span>
+                        <span class="p">])</span>
+            <span class="c1"># Creating a dataframe from the tweets list above</span>
+<span class="n">tweets_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tweets_list</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span>
+                                                <span class="s1">&#39;Datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_url&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_id&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_content&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_reply_count&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_retweet_count&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;Tweet_like_count&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_quote_count&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_conversation_id&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_language&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_source&#39;</span><span class="p">,</span> 
+                                                <span class="s1">&#39;Tweet_source_url&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_links&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_mdeia&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_retweeted_tweet&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_quoted_tweet&#39;</span><span class="p">,</span> 
+                                                <span class="s1">&#39;Tweet_inReplyToTweetId&#39;</span><span class="p">,</span><span class="s1">&#39;Tweet_inReplyToUser&#39;</span><span class="p">,</span><span class="s1">&#39;Tweet_mentioned_users&#39;</span><span class="p">,</span><span class="s1">&#39;Tweet_coordinates&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_place&#39;</span><span class="p">,</span> 
+                                                <span class="s1">&#39;Tweet_hashtags&#39;</span><span class="p">,</span> <span class="s1">&#39;Tweet_cashtags&#39;</span><span class="p">,</span><span class="s1">&#39;Tweet_card&#39;</span><span class="p">,</span><span class="c1">#tweet 相关的字段</span>
+                                                <span class="s1">&#39;Username&#39;</span><span class="p">,</span><span class="s1">&#39;User_displayname&#39;</span><span class="p">,</span> <span class="s1">&#39;User_id&#39;</span><span class="p">,</span> <span class="s1">&#39;User_profile_description&#39;</span><span class="p">,</span> <span class="s1">&#39;User_description_link&#39;</span><span class="p">,</span> <span class="s1">&#39;User_verified&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;User_created&#39;</span><span class="p">,</span> <span class="s1">&#39;User_followers_count&#39;</span><span class="p">,</span> <span class="s1">&#39;User_friends_count&#39;</span><span class="p">,</span> <span class="s1">&#39;User_statuses_count&#39;</span><span class="p">,</span> <span class="s1">&#39;User_favourites_count&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;User_listed_count&#39;</span><span class="p">,</span> <span class="s1">&#39;User_media_count&#39;</span><span class="p">,</span> <span class="s1">&#39;User_location&#39;</span><span class="p">,</span> <span class="s1">&#39;User_protected&#39;</span><span class="p">,</span> <span class="s1">&#39;User_profile_link&#39;</span><span class="p">,</span> <span class="s1">&#39;User_profile_image_url&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;User_profile_banner_url&#39;</span><span class="p">,</span> <span class="s1">&#39;User_label&#39;</span> <span class="c1">#user 相关的字段</span>
+                                              <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tweets_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Datetime</th>
+      <th>Tweet_url</th>
+      <th>Tweet_id</th>
+      <th>Tweet_content</th>
+      <th>Tweet_reply_count</th>
+      <th>Tweet_retweet_count</th>
+      <th>Tweet_like_count</th>
+      <th>Tweet_quote_count</th>
+      <th>Tweet_conversation_id</th>
+      <th>Tweet_language</th>
+      <th>...</th>
+      <th>User_statuses_count</th>
+      <th>User_favourites_count</th>
+      <th>User_listed_count</th>
+      <th>User_media_count</th>
+      <th>User_location</th>
+      <th>User_protected</th>
+      <th>User_profile_link</th>
+      <th>User_profile_image_url</th>
+      <th>User_profile_banner_url</th>
+      <th>User_label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2022-09-01 00:00:00+00:00</td>
+      <td>https://twitter.com/InformazioneA/status/15651...</td>
+      <td>1565127293961248773</td>
+      <td>#Report #31August</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1565127293961248773</td>
+      <td>qht</td>
+      <td>...</td>
+      <td>18973</td>
+      <td>58</td>
+      <td>36</td>
+      <td>12139</td>
+      <td></td>
+      <td>False</td>
+      <td>TextLink(text='informazionea.altervista.org', ...</td>
+      <td>https://pbs.twimg.com/profile_images/123559427...</td>
+      <td>https://pbs.twimg.com/profile_banners/12352445...</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+<p>1 rows × 43 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="04-crawler-weibo.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">轻型微博爬虫</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="06-data-cleaning-intro.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">第四章 数据清洗</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Cheng-Jun Wang<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -267,6 +267,11 @@ const thebe_selector_output = ".output, .cell_output"
      轻型微博爬虫
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-snscrape-twitter.html">
+     snscrape
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
@@ -920,8 +925,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#chunk">
-   按照Chunk读取数据并进行处理
+  <a class="reference internal nav-link" href="#id2">
+   分段读取数据并进行处理
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -954,8 +959,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#chunk">
-   按照Chunk读取数据并进行处理
+  <a class="reference internal nav-link" href="#id2">
+   分段读取数据并进行处理
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -988,18 +993,34 @@ title="Print to PDF"
 <li><p>1GB（Gigabyte，吉字节，十亿字节，又称“千兆”）=1000MB= 10^9 B；</p></li>
 </ul>
 </section>
-<section id="chunk">
-<h2>按照Chunk读取数据并进行处理<a class="headerlink" href="#chunk" title="Permalink to this headline">#</a></h2>
+<section id="id2">
+<h2>分段读取数据并进行处理<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
 <p>Lazy Method for Reading Big File in Python?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import sys</span>
 
 <span class="c1"># flush print</span>
-<span class="k">def</span> <span class="nf">flushPrint</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+<span class="c1"># def flushPrint(d):</span>
+<span class="c1">#     sys.stdout.write(&#39;\r&#39;)</span>
+<span class="c1">#     sys.stdout.write(str(d))</span>
+<span class="c1">#     sys.stdout.flush()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>    
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
 </pre></div>
 </div>
 </div>
@@ -1016,7 +1037,7 @@ title="Print to PDF"
         <span class="k">if</span> <span class="s1">&#39;cops&#39;</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
             <span class="n">cops_num</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="n">line_num</span> <span class="o">%</span> <span class="mi">100000</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-            <span class="n">flushPrint</span><span class="p">(</span><span class="n">line_num</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">line_num</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1094,26 +1115,24 @@ title="Print to PDF"
 <span class="n">bigfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/datalab/bigdata/cjc/ows-raw.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">chunkSize</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">8</span>
 <span class="n">chunk</span> <span class="o">=</span> <span class="n">bigfile</span><span class="o">.</span><span class="n">readlines</span><span class="p">(</span><span class="n">chunkSize</span><span class="p">)</span>
-<span class="n">num_chunk</span><span class="p">,</span> <span class="n">num_lines</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">num_chunk</span><span class="p">,</span> <span class="n">num_lines</span><span class="p">,</span> <span class="n">num_cops</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
 <span class="k">while</span> <span class="n">chunk</span><span class="p">:</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">((</span><span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">chunk</span><span class="p">),</span> 
                        <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
-    <span class="c1">#do sth.</span>
+    <span class="c1"># do sth.</span>
     <span class="n">num_lines</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">lines</span><span class="p">))</span>
+<span class="c1">#     for i in lines:</span>
+<span class="c1">#         if &#39;cops&#39; in i:</span>
+<span class="c1">#             num_cops +=1</span>
     <span class="k">if</span> <span class="n">num_chunk</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">num_chunk</span><span class="p">,</span> <span class="n">num_lines</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">num_chunk</span><span class="p">,</span> <span class="n">num_lines</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">num_chunk</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="n">chunk</span> <span class="o">=</span> <span class="n">bigfile</span><span class="o">.</span><span class="n">readlines</span><span class="p">(</span><span class="n">chunkSize</span><span class="p">)</span> <span class="c1"># read another chunk</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 262665
-5 1574666
-10 2880857
-15 4189419
-20 5492578
-25 6602141
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25 6602141
 </pre></div>
 </div>
 </div>
@@ -1141,7 +1160,7 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/datalab/bigdata/cjc/ows-raw.txt&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-<span class="n">reader</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">f</span><span class="p">,</span>  <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>  <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="n">iterator</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">error_bad_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1">#跳过报错行</span>
+<span class="n">reader</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">f</span><span class="p">,</span>  <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>  <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="n">iterator</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">on_bad_lines</span><span class="o">=</span><span class="s1">&#39;skip&#39;</span><span class="p">)</span> <span class="c1">#跳过报错行</span>
 <span class="n">chunkSize</span> <span class="o">=</span> <span class="mi">100000</span>
 <span class="n">chunk</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_chunk</span><span class="p">(</span><span class="n">chunkSize</span><span class="p">)</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
@@ -1293,19 +1312,21 @@ title="Print to PDF"
 
 <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/datalab/bigdata/cjc/ows-raw.txt&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
 <span class="n">reader</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">f</span><span class="p">,</span>  <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>  <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> 
-                       <span class="n">iterator</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">error_bad_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1">#跳过报错行</span>
+                       <span class="n">iterator</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">on_bad_lines</span><span class="o">=</span><span class="s1">&#39;skip&#39;</span><span class="p">)</span> <span class="c1">#跳过报错行</span>
 <span class="n">chunkSize</span> <span class="o">=</span> <span class="mi">100000</span>
 <span class="n">loop</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="c1">#data = []</span>
+<span class="n">cops_data</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">num_chunk</span><span class="p">,</span> <span class="n">num_lines</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
 <span class="k">while</span> <span class="n">loop</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">chunk</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_chunk</span><span class="p">(</span><span class="n">chunkSize</span><span class="p">)</span>
-        <span class="c1"># dat = data_cleaning_funtion(chunk) # do sth.</span>
+        <span class="c1"># dat = data_cleaning_funtion(chunk) # do sth. e.g., if cops in dat</span>
+        <span class="n">dat</span><span class="o">=</span><span class="p">[</span><span class="n">chunk</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">chunk</span><span class="o">.</span><span class="n">index</span> <span class="k">if</span> <span class="s1">&#39;cops&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">chunk</span><span class="p">[</span><span class="s1">&#39;Text&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">])</span> <span class="p">]</span>
         <span class="n">num_lines</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">num_chunk</span><span class="p">,</span> <span class="n">num_lines</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">num_chunk</span><span class="p">,</span> <span class="n">num_lines</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">num_chunk</span> <span class="o">+=</span><span class="mi">1</span>
-        <span class="c1">#data.append(dat) </span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dat</span><span class="p">:</span>
+            <span class="n">cops_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> 
     <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
         <span class="n">loop</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Iteration is stopped.&quot;</span><span class="p">)</span>
@@ -1314,121 +1335,206 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 100000
-1 200000
-2 300000
-3 400000
-4 500000
-5 600000
-6 700000
-7 800000
-8 900000
-9 1000000
-10 1100000
-11 1200000
-12 1300000
-13 1400000
-14 1500000
-15 1600000
-16 1700000
-17 1800000
-18 1900000
-19 2000000
-20 2100000
-21 2200000
-22 2300000
-23 2400000
-24 2500000
-25 2600000
-26 2700000
-27 2800000
-28 2900000
-29 3000000
-30 3100000
-31 3200000
-32 3300000
-33 3400000
-34 3500000
-35 3600000
-36 3700000
-37 3800000
-38 3900000
-39 4000000
-40 4100000
-41 4200000
-42 4300000
-43 4400000
-44 4500000
-45 4600000
-46 4700000
-47 4800000
-48 4900000
-49 5000000
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 5051743: expected 14 fields, saw 15\n&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50 5100000
-51 5200000
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 5254718: expected 14 fields, saw 15\n&#39;
-b&#39;Skipping line 5281095: expected 14 fields, saw 15\n&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>52 5300000
-53 5400000
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 5481759: expected 14 fields, saw 15\nSkipping line 5482014: expected 14 fields, saw 15\nSkipping line 5482532: expected 14 fields, saw 15\n&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>54 5500000
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 5516605: expected 14 fields, saw 15\n&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55 5600000
-56 5700000
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 5709055: expected 14 fields, saw 15\n&#39;
-b&#39;Skipping line 5796658: expected 14 fields, saw 15\n&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>57 5800000
-58 5900000
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 5927412: expected 14 fields, saw 15\nSkipping line 5927419: expected 14 fields, saw 15\nSkipping line 5927421: expected 14 fields, saw 15\nSkipping line 5927451: expected 14 fields, saw 15\nSkipping line 5927478: expected 14 fields, saw 15\n&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>59 6000000
-60 6100000
-61 6200000
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 6229621: expected 14 fields, saw 16\nSkipping line 6245861: expected 14 fields, saw 17\n&#39;
-b&#39;Skipping line 6278728: expected 14 fields, saw 15\n&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>62 6300000
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;Skipping line 6350262: expected 14 fields, saw 15\n&#39;
-b&#39;Skipping line 6387321: expected 14 fields, saw 15\nSkipping line 6388879: expected 14 fields, saw 15\n&#39;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>63 6400000
-64 6500000
-65 6600000
-66 6602120
-Iteration is stopped.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration is stopped.
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chunk</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Twitter ID                                          153352746249101312
+Text                                                               NaN
+Profile Image URL    http://a3.twimg.com/profile_images/1647201670/...
+Day                                                         2012-01-01
+Hour                                                                 5
+Minute                                                              51
+Created At                                         2012-01-01 05:51:58
+Geo                                                                 N;
+From User                                              AngeredPopulist
+From User ID                                                 416481838
+Language                                                            en
+To User                                                            NaN
+To User ID                                                           0
+Source               &amp;lt;a href=&amp;quot;http://twitter.com/#!/downloa...
+Name: 5832333, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">cops_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>78397
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0                                    170734732877893632
+1     RT @DiceyTroop: When I got here, cops were has...
+2     http://a2.twimg.com/profile_images/1753747297/...
+3                                            2012-02-18
+4                                                     5
+5                                                     1
+6                                   2012-02-18 05:01:47
+7                                                    N;
+8                                             shushugah
+9                                              28624302
+10                                                   en
+11                                                  NaN
+12                                                    0
+13    &amp;lt;a href=&amp;quot;http://twitter.com/#!/downloa...
+Name: 6600282, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">cops_data</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Twitter ID</th>
+      <th>Text</th>
+      <th>Profile Image URL</th>
+      <th>Day</th>
+      <th>Hour</th>
+      <th>Minute</th>
+      <th>Created At</th>
+      <th>Geo</th>
+      <th>From User</th>
+      <th>From User ID</th>
+      <th>Language</th>
+      <th>To User</th>
+      <th>To User ID</th>
+      <th>Source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>57</th>
+      <td>121813549478707200</td>
+      <td>RT @kittylight: Dear #cops THE WHOLE WORLD IS ...</td>
+      <td>http://a2.twimg.com/profile_images/1146887237/...</td>
+      <td>2011-10-06</td>
+      <td>5</td>
+      <td>6</td>
+      <td>2011-10-06 05:06:28</td>
+      <td>N;</td>
+      <td>dove_hawk</td>
+      <td>361839281</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://twitter.com/#!/downloa...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>121813722099482624</td>
+      <td>The whiny, sanctimonious drivel coming out of ...</td>
+      <td>http://a3.twimg.com/profile_images/1573938172/...</td>
+      <td>2011-10-06</td>
+      <td>5</td>
+      <td>7</td>
+      <td>2011-10-06 05:07:09</td>
+      <td>N;</td>
+      <td>wryson</td>
+      <td>351681669</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://twitter.com/&amp;quot;&amp;gt;...</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>121813748003508224</td>
+      <td>RT @KeithOlbermann: Again NYPD supervisors do ...</td>
+      <td>http://a1.twimg.com/profile_images/509909348/t...</td>
+      <td>2011-10-06</td>
+      <td>5</td>
+      <td>7</td>
+      <td>2011-10-06 05:07:15</td>
+      <td>N;</td>
+      <td>dannydoodar</td>
+      <td>76258793</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://stone.com/Twittelator&amp;...</td>
+    </tr>
+    <tr>
+      <th>267</th>
+      <td>121814376234754049</td>
+      <td>RT @kittylight: #isad #stayhungry #ThinkDiffer...</td>
+      <td>http://a2.twimg.com/profile_images/1540184395/...</td>
+      <td>2011-10-06</td>
+      <td>5</td>
+      <td>9</td>
+      <td>2011-10-06 05:09:45</td>
+      <td>N;</td>
+      <td>kittylightsCat</td>
+      <td>406361898</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://twitter.com/#!/downloa...</td>
+    </tr>
+    <tr>
+      <th>278</th>
+      <td>121814402025533440</td>
+      <td>RT @kittylight: Dear #cops THE WHOLE WORLD IS ...</td>
+      <td>http://a2.twimg.com/profile_images/1540184395/...</td>
+      <td>2011-10-06</td>
+      <td>5</td>
+      <td>9</td>
+      <td>2011-10-06 05:09:51</td>
+      <td>N;</td>
+      <td>kittylightsCat</td>
+      <td>406361898</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://twitter.com/#!/downloa...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p><img alt="image.png" src="_images/end.png" /></p>
 </section>

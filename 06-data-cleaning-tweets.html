@@ -267,6 +267,11 @@ const thebe_selector_output = ".output, .cell_output"
      轻型微博爬虫
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04-crawler-snscrape-twitter.html">
+     snscrape
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
@@ -1190,7 +1195,8 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">Text</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#df.columns #</span>
+<span class="n">df</span><span class="o">.</span><span class="n">Text</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1484,7 +1490,7 @@ Note: you may need to restart the kernel to use updated packages.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install twitter-text</span>
 <span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">twitter_text</span>
+<span class="kn">import</span> <span class="nn">twitter_text</span> 
 <span class="c1"># https://github.com/dryan/twitter-text-py/issues/21</span>
 <span class="c1">#Macintosh HD ▸ 用户 ▸ datalab ▸ 应用程序 ▸ anaconda ▸ lib ▸ python3.5 ▸ site-packages</span>
 </pre></div>
@@ -1500,13 +1506,13 @@ Note: you may need to restart the kernel to use updated packages.
 <span class="s1">            http://ccc.nju.edu.cn RT !!HELP!!!!&#39;&#39;&#39;</span>
 
 <span class="n">rt_patterns</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(RT|via)((?:\b\W*@\w+)+)&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
-<span class="n">rt_user_name</span> <span class="o">=</span> <span class="n">rt_patterns</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">tweet</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; @&#39;</span><span class="p">)</span><span class="c1">#.split(&#39;:&#39;)[0]</span>
+<span class="n">rt_user_name</span> <span class="o">=</span> <span class="n">rt_patterns</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">tweet</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="c1">#.strip(&#39; @&#39;).split(&#39;:&#39;)[0]</span>
 <span class="n">rt_user_name</span> 
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;AnonKitsu: @who&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; @AnonKitsu: @who&#39;
 </pre></div>
 </div>
 </div>
@@ -1687,7 +1693,7 @@ None
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">twitter_text</span>
 
 <span class="n">tweet</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;RT @AnonKitsu: ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELICOPTERS AND PADDYWAGONS!!!! </span>
-<span class="s1">            #OCCUPYWALLSTREET #OWS #OCCUPYNY PLEASE @chengjun @mili http://computational-communication.com </span>
+<span class="s1">            #OCCUPYWALLSTREET #OWS #OCCUPYNY PLEASE @chengjun @mili https://computational-communication.com </span>
 <span class="s1">            http://ccc.nju.edu.cn RT !!HELP!!!!&#39;&#39;&#39;</span>
 
 <span class="n">ex</span> <span class="o">=</span> <span class="n">twitter_text</span><span class="o">.</span><span class="n">Extractor</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
@@ -1695,14 +1701,14 @@ None
 <span class="n">urls</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">extract_urls</span><span class="p">()</span>
 <span class="n">hashtags</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">extract_hashtags</span><span class="p">()</span>
 <span class="n">rt_user</span> <span class="o">=</span> <span class="n">extract_rt_user</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
-<span class="c1">#tweet_text = extract_tweet_text(tweet, at_names, urls)</span>
+<span class="n">tweet_text</span> <span class="o">=</span> <span class="n">extract_tweet_text</span><span class="p">(</span><span class="n">tweet</span><span class="p">,</span> <span class="n">at_names</span><span class="p">,</span> <span class="n">urls</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">at_names</span><span class="p">,</span> <span class="n">urls</span><span class="p">,</span> <span class="n">hashtags</span><span class="p">,</span> <span class="n">rt_user</span><span class="p">,</span><span class="s1">&#39;--------&gt;&#39;</span><span class="p">)</span><span class="c1">#, tweet_text)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">at_names</span><span class="p">,</span> <span class="n">urls</span><span class="p">,</span> <span class="n">hashtags</span><span class="p">,</span> <span class="n">rt_user</span><span class="p">,</span><span class="s1">&#39;--------&gt;&#39;</span><span class="p">,</span> <span class="n">tweet_text</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;AnonKitsu&#39;, &#39;chengjun&#39;, &#39;mili&#39;] [&#39;http://computational-communication.com&#39;, &#39;http://ccc.nju.edu.cn&#39;] [&#39;OCCUPYWALLSTREET&#39;, &#39;OWS&#39;, &#39;OCCUPYNY&#39;] AnonKitsu --------&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;AnonKitsu&#39;, &#39;chengjun&#39;, &#39;mili&#39;] [&#39;https://computational-communication.com&#39;, &#39;http://ccc.nju.edu.cn&#39;] [&#39;OCCUPYWALLSTREET&#39;, &#39;OWS&#39;, &#39;OCCUPYNY&#39;] AnonKitsu --------&gt; : ALERT!!!!!!!!!!COPS ARE KETTLING PROTESTERS IN PARK W HELICOPTERS AND PADDYWAGONS!!!! OCCUPYWALLSTREET OWS OCCUPYNY PLEASE RT !!HELP!!!!
 </pre></div>
 </div>
 </div>
