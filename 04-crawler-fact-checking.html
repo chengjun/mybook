@@ -1,50 +1,62 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>抓取实时辟谣数据 &#8212; 计算传播学</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,63 +64,103 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '04-crawler-fact-checking';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="抓取网络小说" href="04-crawler-13chambers.html" />
     <link rel="prev" title="第三章 数据抓取" href="04-crawler-beautifulsoup.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
 
-    
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/socrates_jump.gif" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">计算传播学</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/socrates_jump.gif" class="logo__image only-light" alt="计算传播学 - Home"/>
+    <script>document.write(`<img src="_static/socrates_jump.gif" class="logo__image only-dark" alt="计算传播学 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -118,859 +170,380 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="01-intro2cjc.html">
-   第一章 计算传播学简介
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="02-bigdata.html">
-     数据科学的编程工具：大数据
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="03-python-intro.html">
-   第二章 数据科学的编程工具
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-jupyter-notebook.html">
-     Jupyter Notebook
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="01-recombination.html">
-     计算思维：通过拆解和重组学习
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-slides.html">
-     使用Jupyter制作Slides的介绍
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-turicreate.html">
-     Turicreate: Departure from Graphlab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-matplotlib-chinese.html">
-     解决Matplotlib绘图显示中文问题
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-UK-MPS-Scandal.html">
-     案例：2009年英国国会议员开支丑闻
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-umbrella-of-love.html">
-     案例：《转角遇到爱》背后的数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-who-runs-China.html">
-     案例：Who runs China？背后的数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-gdelt.html">
-     Gdelt Dataset: Events, Mentions, and Global Knowledge Graph
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="04-crawler-beautifulsoup.html">
-   第三章 数据抓取
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     抓取实时辟谣数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-13chambers.html">
-     抓取网络小说
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-wechat.html">
-     抓取微信公众号文章内容
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-douban.html">
-     使用requests + Xpath抓取豆瓣电影数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-gov-report.html">
-     抓取历届政府工作报告
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-cppcc.html">
-     抓取江苏省政协十年提案
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-netease-music.html">
-     抓取网易云音乐热门评论
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-selenium.html">
-     使用Selenium操纵浏览器
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-selenium-music-history.html">
-     抓取网易云音乐用户的听歌记录
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-selenium-people-com-search.html">
-     使用Selenium提取人民网搜索数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-tripadvisor.html">
-     使用Selenium抓取TripAdvisor用户评论
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-pyppeteer.html">
-     使用Pyppeteer实现异步抓取!
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-weibo.html">
-     轻型微博爬虫
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-snscrape-twitter.html">
-     snscrape
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="06-data-cleaning-intro.html">
-   第四章 数据清洗
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-preprocessing.html">
-     对大数据进行预处理
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-tweets.html">
-     数据清洗之推特数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-occupy-central-news.html">
-     对占中新闻进行数据清洗
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-music-list.html">
-     清洗音乐列表🎵
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-pandas.html">
-     使用Pandas进行数据清洗
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="08-01-statistics-thinking.html">
-   第五章 统计思维
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-02-kl-divergence.html">
-     KL Divergence
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-02-linear-algebra.html">
-     Linear algebra
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-03-distributions.html">
-     Distribution Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-03-probability.html">
-     Probability
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-04-hypothesis-inference.html">
-     Statistical Hypothesis Testing
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-05-gradient-descent.html">
-     Introduction to Gradient Descent
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-06-regression.html">
-     Linear Regression
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-06-statsmodels.html">
-     Statistical Modeling with Python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-07-analyzing-titanic-dataset.html">
-     Logistic Regression of Titanic Data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-07-covid19-pew-survey.html">
-     Analysing the Pew Survey Data of COVID19
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-11-cfps-survey-analysis.html">
-     中国家庭追踪调查2018
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-08-covid19-grangercausality.html">
-     社交媒体可以预测新冠疫情吗？
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-09-survival-analysis.html">
-     Survival Analysis with Python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-10-dowhy-estimation-methods.html">
-     The Book of Why
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
-   第六章 社会科学家的机器学习
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-03-hyperparameters-and-model-validation.html">
-     Hyperparameters and Model Validation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-04-feature-engineering.html">
-     Feature Engineering
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-05-naive-bayes.html">
-     In Depth: Naive Bayes Classification
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-06-linear-regression.html">
-     In Depth: Linear Regression
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-07-support-vector-machines.html">
-     In-Depth: Support Vector Machines
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-08-random-forests.html">
-     In-Depth: Decision Trees and Random Forests
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-09-googleflustudy.html">
-     Forecasting and nowcasting with Google Flu Trends
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-10-future-employment.html">
-     The future of employment
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-grf.html">
-     Causal Forests
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="09-11-neural-network-intro.html">
-   第七章 神经网络与深度学习
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-13-cnn.html">
-     Convolutional Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-14-rnn.html">
-     Sequnce Modeling: Recurrent and Recursive Nets
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-12-hand-written-digits.html">
-     Recognizing Hand-Written Digits with Neural Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-15-cifar10.html">
-     使用CNN对CIFAR10图像进行分类
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-16-pytorch_vgg_pretrained.html">
-     VGG16预训练模型
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="10-text-mining-gov-report.html">
-   第八章 文本挖掘
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10-word2vec.html">
-     词向量模型简介
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10-doc2vec.html">
-     Doc2Vec
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">
-     基于字典的情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-2-emotion-dict.html">
-     大连理工大学中文情感词汇
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-3-NRC-Chinese-dict.html">
-     基于NRC字典的情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-3-textblob.html">
-     利用textblob进行情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-4-sentiment-classifier.html">
-     基于机器学习的情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-5-LIWC.html">
-     LIWC: Linguistic Inquiry and Word Count  analyzer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12-topic-models-update.html">
-     主题模型简介
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12-topic-models-with-turicreate.html">
-     使用Turicreate建立主题模型
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="13-recsys-intro.html">
-   第九章 推荐系统简介
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13-recsys-latent-factor-model.html">
-     Latent Factor Recommender System
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13-recsys-intro-surprise.html">
-     使用Surprise构建推荐系统
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="14-millionsong.html">
-     使用Turicreate进行音乐推荐
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="14-movielens.html">
-     使用Turicreate进行电影推荐
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="15-network-science-intro.html">
-   第十章 网络科学简介
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="16-network-science-models.html">
-     网络科学模型
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="17-networkx.html">
-     使用NetworkX分析网络
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-02-network-diffusion.html">
-     Simulating Network Diffusion With NDlib
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-03-network-epidemics.html">
-     Epidemics on Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-04-seir-hcd-model.html">
-     SEIR-HCD Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-ergm-siena.html">
-     Social Network Analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-weibo-hot-search.html">
-     微博热搜分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">
-     天涯论坛的回帖网络分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">
-     可视化Facebook社交网络
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-ecomplexity.html">
-     Economic Complexity and Product Complexity
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="19-visualization-with-seaborn.html">
-   第十一章 可视化
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-matplotlib-colormap.html">
-     Qualitative Colormaps in Matplotlib Visualization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-scientific-plot.html">
-     Matplotlib的科学绘图样式
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-with-pyecharts.html">
-     使用PyEcharts进行可视化
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-plotly-express.html">
-     Plotly Express in Python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-maps-using-folium.html">
-     使用folium做地图可视化
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-datashader.html">
-     使用Datashader可视化地理信息
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-datapane.html">
-     使用Datapane制作数据报告
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-pantheon.html">
-     万神殿项目（Pantheon Project）
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="01-intro2cjc.html">第一章 计算传播学简介</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02-bigdata.html">数据科学的编程工具：大数据</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="03-python-intro.html">第二章 数据科学的编程工具</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="0-jupyter-notebook.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-chatgpt.html">Using ChatGPT to Learn Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-iching.html">iching: A python package of I Ching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-recombination.html">计算思维：通过拆解和重组学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-slides.html">使用Jupyter制作Slides的介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-turicreate.html">Turicreate: Departure from Graphlab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-matplotlib-chinese.html">解决Matplotlib绘图显示中文问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-UK-MPS-Scandal.html">案例：2009年英国国会议员开支丑闻</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-umbrella-of-love.html">案例：《转角遇到爱》背后的数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-who-runs-China.html">案例：Who runs China？背后的数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-gdelt.html">Gdelt Dataset: Events, Mentions, and Global Knowledge Graph</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="04-crawler-beautifulsoup.html">第三章 数据抓取</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">抓取实时辟谣数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-13chambers.html">抓取网络小说</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-wechat.html">抓取微信公众号文章内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-douban.html">使用requests + Xpath抓取豆瓣电影数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-gov-report.html">抓取历届政府工作报告</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-cppcc.html">抓取江苏省政协十年提案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-netease-music.html">抓取网易云音乐热门评论</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium.html">使用Selenium操纵浏览器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium-music-history.html">抓取网易云音乐用户的听歌记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium-people-com-search.html">使用Selenium提取人民网搜索数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-tripadvisor.html">使用Selenium抓取TripAdvisor用户评论</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-pyppeteer.html">使用Pyppeteer实现异步抓取!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-weibo.html">轻型微博爬虫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-snscrape-twitter.html">snscrape</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="06-data-cleaning-intro.html">第四章 数据清洗</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-preprocessing.html">对大数据进行预处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-tweets.html">数据清洗之推特数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-occupy-central-news.html">对占中新闻进行数据清洗</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-music-list.html">清洗音乐列表🎵</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-pandas.html">使用Pandas进行数据清洗</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="08-01-statistics-thinking.html">第五章 统计思维</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="08-02-kl-divergence.html">KL Divergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-02-linear-algebra.html">Linear algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-03-distributions.html">Distribution Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-03-probability.html">Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-04-hypothesis-inference.html">Statistical Hypothesis Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-05-gradient-descent.html">Introduction to Gradient Descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-06-regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-06-statsmodels.html">Statistical Modeling with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-07-analyzing-titanic-dataset.html">Logistic Regression of Titanic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-07-covid19-pew-survey.html">Analysing the Pew Survey Data of COVID19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-11-cfps-survey-analysis.html">中国家庭追踪调查2018</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-08-covid19-grangercausality.html">社交媒体可以预测新冠疫情吗？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-09-survival-analysis.html">Survival Analysis with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-10-dowhy-estimation-methods.html">The Book of Why</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="09-01-machine-learning-with-sklearn.html">第六章 社会科学家的机器学习</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="09-03-hyperparameters-and-model-validation.html">Hyperparameters and Model Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-04-feature-engineering.html">Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-05-naive-bayes.html">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-06-linear-regression.html">In Depth: Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-07-support-vector-machines.html">In-Depth: Support Vector Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-08-random-forests.html">In-Depth: Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-09-googleflustudy.html">Forecasting and nowcasting with Google Flu Trends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-10-future-employment.html">The future of employment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-grf.html">Causal Forests</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="09-11-neural-network-intro.html">第七章 神经网络与深度学习</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="09-13-cnn.html">Convolutional Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-14-rnn.html">Sequnce Modeling: Recurrent and Recursive Nets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-12-hand-written-digits.html">Recognizing Hand-Written Digits with Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-15-cifar10.html">使用CNN对CIFAR10图像进行分类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-16-pytorch_vgg_pretrained.html">VGG16预训练模型</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="10-text-mining-gov-report.html">第八章 文本挖掘</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="10-word2vec.html">词向量模型简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-doc2vec.html">Doc2Vec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">基于字典的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-2-emotion-dict.html">大连理工大学中文情感词汇</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-3-NRC-Chinese-dict.html">基于NRC字典的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-3-textblob.html">利用textblob进行情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-4-sentiment-classifier.html">基于机器学习的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-5-LIWC.html">LIWC: Linguistic Inquiry and Word Count  analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-topic-models-update.html">主题模型简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-topic-models-with-turicreate.html">使用Turicreate建立主题模型</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="13-recsys-intro.html">第九章 推荐系统简介</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="13-recsys-latent-factor-model.html">Latent Factor Recommender System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13-recsys-intro-surprise.html">使用Surprise构建推荐系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-millionsong.html">使用Turicreate进行音乐推荐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-movielens.html">使用Turicreate进行电影推荐</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="15-network-science-intro.html">第十章 网络科学简介</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="16-network-science-models.html">网络科学模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17-networkx.html">使用NetworkX分析网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-02-network-diffusion.html">Simulating Network Diffusion With NDlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-03-network-epidemics.html">Epidemics on Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-04-seir-hcd-model.html">SEIR-HCD Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-ergm-siena.html">Social Network Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-weibo-hot-search.html">微博热搜分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">天涯论坛的回帖网络分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">可视化Facebook社交网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-ecomplexity.html">Economic Complexity and Product Complexity</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="19-visualization-with-seaborn.html">第十一章 可视化</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-matplotlib-colormap.html">Qualitative Colormaps in Matplotlib Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-scientific-plot.html">Matplotlib的科学绘图样式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-with-pyecharts.html">使用PyEcharts进行可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-plotly-express.html">Plotly Express in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-maps-using-folium.html">使用folium做地图可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-datashader.html">使用Datashader可视化地理信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-datapane.html">使用Datapane制作数据报告</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-pantheon.html">万神殿项目（Pantheon Project）</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/04-crawler-fact-checking.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
   
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
+  <div id="rtd-footer-container"></div>
 
-      </li>
+
+      </div>
       
-      <li>
-        <a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/04-crawler-fact-checking.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/04-crawler-fact-checking.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/chengjun/mybook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F04-crawler-fact-checking.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/04-crawler-fact-checking.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chengjun/mybook"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F04-crawler-fact-checking.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/04-crawler-fact-checking.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   如何使用快捷键打开开发者工具
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>抓取实时辟谣数据</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   如何使用快捷键打开开发者工具
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>抓取实时辟谣数据</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">如何使用快捷键打开开发者工具</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>抓取实时辟谣数据<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<h1>抓取实时辟谣数据<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://vp.fact.qq.com/home">https://vp.fact.qq.com/home</a></p>
 <p><img alt="image.png" src="_images/fact.png" /></p>
 <p><a class="reference external" href="https://vp.fact.qq.com/article?id=be3aea585b07c193778985e180cf164b">https://vp.fact.qq.com/article?id=be3aea585b07c193778985e180cf164b</a></p>
-<p><a class="reference external" href="https://vp.fact.qq.com/loadmore?artnum=0&amp;page=0">https://vp.fact.qq.com/loadmore?artnum=0&amp;page=0</a></p>
+<p><a class="reference external" href="https://vp.fact.qq.com/loadmore?artnum=0&amp;amp;page=0">https://vp.fact.qq.com/loadmore?artnum=0&amp;page=0</a></p>
 <p><img alt="image.png" src="_images/fact2.png" /></p>
-<p><a class="reference external" href="https://vp.fact.qq.com/loadmore?artnum=0&amp;page=0">https://vp.fact.qq.com/loadmore?artnum=0&amp;page=0</a></p>
+<p><a class="reference external" href="https://vp.fact.qq.com/loadmore?artnum=0&amp;amp;page=0">https://vp.fact.qq.com/loadmore?artnum=0&amp;page=0</a></p>
 <p><img alt="image.png" src="_images/fact3.png" /></p>
 <section id="id2">
-<h2>如何使用快捷键打开开发者工具<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<h2>如何使用快捷键打开开发者工具<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>To open the developer console in Google Chrome, open the Chrome Menu in the upper-right-hand corner of the browser window and select More Tools &gt; Developer Tools. You can also use <code class="docutils literal notranslate"><span class="pre">Option</span> <span class="pre">+</span> <span class="pre">⌘</span> <span class="pre">+</span> <span class="pre">J</span></code> (on macOS), or <code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">CTRL</span> <span class="pre">+</span> <span class="pre">J</span></code> (on Windows/Linux).</p>
-<p><a class="reference external" href="https://vp.fact.qq.com/api/article/list?page=100&amp;locale=zh-CN&amp;token=U2FsdGVkX186uQh1zecOEhKWJnvgDYAkh7N%252BVBnRrbNgyzif9Sj5PmJ1vRBoqtIo">https://vp.fact.qq.com/api/article/list?page=100&amp;locale=zh-CN&amp;token=U2FsdGVkX186uQh1zecOEhKWJnvgDYAkh7N%2BVBnRrbNgyzif9Sj5PmJ1vRBoqtIo</a></p>
+<p><a class="reference external" href="https://vp.fact.qq.com/api/article/list?page=100&amp;amp;locale=zh-CN&amp;amp;token=U2FsdGVkX186uQh1zecOEhKWJnvgDYAkh7N%252BVBnRrbNgyzif9Sj5PmJ1vRBoqtIo">https://vp.fact.qq.com/api/article/list?page=100&amp;locale=zh-CN&amp;token=U2FsdGVkX186uQh1zecOEhKWJnvgDYAkh7N%252BVBnRrbNgyzif9Sj5PmJ1vRBoqtIo</a></p>
 <p><img alt="image.png" src="_images/fact4.png" /></p>
 <p><img alt="image.png" src="_images/fact5.png" /></p>
 <div class="cell docutils container">
@@ -978,11 +551,59 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 
-<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://vp.fact.qq.com/api/article/list?locale=zh-CN&amp;token=U2FsdGVkX1%252BSf5tazIgNXUkfSRI81VMClXBoG5lAMez6vJJWe%252BfsQqejh9QTvts7&amp;page=&#39;</span>
+<span class="c1"># path = &#39;https://vp.fact.qq.com/api/article/list?locale=zh-CN&amp;token=U2FsdGVkX1%252BSf5tazIgNXUkfSRI81VMClXBoG5lAMez6vJJWe%252BfsQqejh9QTvts7&amp;page=&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://vp.fact.qq.com/api/article/list?locale=zh-CN&amp;token=U2FsdGVkX18wJCxvmPFL5AV2K4up19</span><span class="si">%252F</span><span class="s1">jtp2T</span><span class="si">%252F</span><span class="s1">5nJsBZrsPhH9WhvW7smZP%252BVVcO9&amp;page=&#39;</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;100&#39;</span>
 <span class="n">content</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">d</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;list&#39;</span><span class="p">][</span><span class="mi">9</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;郑州上午九点到十一点将空中喷洒消杀药物&#39;,
+ &#39;author&#39;: &#39;郑州电台新闻广播官方微博&#39;,
+ &#39;authordesc&#39;: &#39;郑州电台新闻广播官方微博&#39;,
+ &#39;id&#39;: &#39;d087b691eab2d89d7e177a299e183818&#39;,
+ &#39;Author&#39;: {&#39;id&#39;: 1234,
+  &#39;name&#39;: &#39;郑州新闻广播&#39;,
+  &#39;desc&#39;: &#39;郑州电台新闻广播官方微博&#39;,
+  &#39;head&#39;: &#39;http://p.qpic.cn/jiaozhen/0/b6e73b0df15e4f6b90edd91f98ab3721/0&#39;,
+  &#39;level&#39;: 0,
+  &#39;artList&#39;: None,
+  &#39;openid&#39;: &#39;&#39;,
+  &#39;unionid&#39;: &#39;&#39;,
+  &#39;inviteId&#39;: &#39;&#39;,
+  &#39;nickname&#39;: &#39;&#39;,
+  &#39;headimgurl&#39;: &#39;&#39;,
+  &#39;ext1&#39;: &#39;&#39;,
+  &#39;ext2&#39;: None,
+  &#39;ext3&#39;: None,
+  &#39;ext4&#39;: None,
+  &#39;ext5&#39;: None,
+  &#39;createdAt&#39;: &#39;2020-01-25T04:15:12.000Z&#39;,
+  &#39;updatedAt&#39;: &#39;2020-01-25T04:15:12.000Z&#39;},
+ &#39;date&#39;: &#39;2020-01-25&#39;,
+ &#39;markstyle&#39;: &#39;fake&#39;,
+ &#39;result&#39;: &#39;假&#39;,
+ &#39;explain&#39;: &#39;谣言&#39;,
+ &#39;abstract&#39;: &#39;郑州新闻广播记者拨打了12345市长热线，接线员说，并没有收到相关消毒通知。随后，记者又电话联系上河南省疾控中心，相关负责人告知，他们也没有收到相关通知。\n郑州市疫情应急指挥中心的工作人员称，此条所谓的应急通知系谣言，如果有需要喷洒消杀药物，他们会提前进行告知。&#39;,
+ &#39;tag&#39;: [&#39;肺炎&#39;, &#39;新型冠状病毒&#39;],
+ &#39;type&#39;: 1,
+ &#39;videourl&#39;: &#39;&#39;,
+ &#39;cover&#39;: &#39;//jiaozhen-70111.picnjc.qpic.cn/f1c1cb261d2a4dc5823e36a8ea30e606?imageView2/2/w/150/h/90&#39;,
+ &#39;coverrect&#39;: &#39;//jiaozhen-70111.picnjc.qpic.cn/f1c1cb261d2a4dc5823e36a8ea30e606&#39;,
+ &#39;coversqual&#39;: &#39;//jiaozhen-70111.picnjc.qpic.cn/f1c1cb261d2a4dc5823e36a8ea30e606?imageView2/2/w/300/h/300&#39;,
+ &#39;section&#39;: &#39;&#39;,
+ &#39;iscolled&#39;: False,
+ &#39;arttype&#39;: &#39;normal&#39;}
 </pre></div>
 </div>
 </div>
@@ -1058,10 +679,10 @@ print(...)
 <span class="kn">import</span> <span class="nn">random</span>
 
 <span class="n">jsons</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">104</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://vp.fact.qq.com/api/article/list?locale=zh-CN&amp;token=U2FsdGVkX1%252BSf5tazIgNXUkfSRI81VMClXBoG5lAMez6vJJWe%252BfsQqejh9QTvts7&amp;page=&#39;</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;https://vp.fact.qq.com/api/article/list?locale=zh-CN&amp;token=U2FsdGVkX18wJCxvmPFL5AV2K4up19</span><span class="si">%252F</span><span class="s1">jtp2T</span><span class="si">%252F</span><span class="s1">5nJsBZrsPhH9WhvW7smZP%252BVVcO9&amp;page=&#39;</span>
     <span class="n">url</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="n">content</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
@@ -1071,7 +692,7 @@ print(...)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>104
 </pre></div>
 </div>
 </div>
@@ -1083,7 +704,7 @@ print(...)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>972
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1025
 </pre></div>
 </div>
 </div>
@@ -1139,110 +760,110 @@ print(...)
   <tbody>
     <tr>
       <th>0</th>
-      <td>出公共场所再扫场所码可避免成为密接者</td>
-      <td>中央网信办违法和不良信息举报中心主办、新华网承办的辟谣平台</td>
-      <td>中央网信办违法和不良信息举报中心主办、新华网承办的辟谣平台</td>
-      <td>5537b7c1cad11570829276829d433f66</td>
-      <td>{'id': 964, 'name': '中国互联网联合辟谣平台', 'desc': '中央...</td>
-      <td>2022-10-10</td>
+      <td>北京协和医院有武汉肺炎患者出逃</td>
+      <td>综合类大型城市日报</td>
+      <td>综合类大型城市日报</td>
+      <td>502100d9aaf5d5ed23850933140f8088</td>
+      <td>{'id': 961, 'name': '新京报', 'desc': '综合类大型城市日报'...</td>
+      <td>2020-01-22</td>
       <td>fake</td>
       <td>假</td>
       <td>谣言</td>
-      <td>宁波市防控办对网传说法辟谣：扫场所码是为方便流调工作，确保一旦发现阳性病例，密接、次密接、时...</td>
-      <td>[场所码, 密接]</td>
+      <td>新京报记者致电北京协和医院，工作人员表示，该患者按照流程操作进行诊断和治疗，没有出逃。\n该...</td>
+      <td>[协和医院, 新型冠状病毒]</td>
       <td>1</td>
       <td></td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/x8kmEe2UrVaozy...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/x8kmEe2UrVaozy...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/x8kmEe2UrVaozy...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/1d25062126f0b8...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/1d25062126f0b8...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/1d25062126f0b8...</td>
       <td></td>
       <td>False</td>
       <td>normal</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>太原防疫短信带核酸结果“查询链接”，可以点击查询</td>
-      <td>中央人民广播电台广播新闻网</td>
-      <td>中央人民广播电台广播新闻网</td>
-      <td>667477e34d8ffc970dccd2256521c466</td>
-      <td>{'id': 1195, 'name': '央广网', 'desc': '中央人民广播电台广...</td>
-      <td>2022-10-10</td>
+      <td>新型冠状病毒抗体能治疗和预防肺炎</td>
+      <td>药理学硕士，知贝儿科药师</td>
+      <td>药理学硕士，知贝儿科药师</td>
+      <td>d024bb6fdb1f60a8a785dd83c9a935d4</td>
+      <td>{'id': 226, 'name': '谢望时', 'desc': '药理学硕士，知贝儿科...</td>
+      <td>2020-01-22</td>
       <td>fake</td>
       <td>假</td>
-      <td>疑似诈骗</td>
-      <td>10月4日，经与太原市反诈骗中心核实，附有查询链接的该短信为诈骗链接，点击后会跳转至某钓鱼网...</td>
-      <td>[短信, 诈骗]</td>
+      <td>谣言</td>
+      <td>京天成这次通报成功研制的抗体叫“2019冠状病毒N蛋白抗体”，理论上可以识别新型冠状病毒，以...</td>
+      <td>[抗体, 新型冠状病毒]</td>
       <td>1</td>
       <td></td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/snc972bZU4sMFX...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/snc972bZU4sMFX...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/snc972bZU4sMFX...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/f0a11b7c9a84ef...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/f0a11b7c9a84ef...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/f0a11b7c9a84ef...</td>
       <td></td>
       <td>False</td>
       <td>normal</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>上海有人“持红码到酒吧蹦迪”数千人惨变密接</td>
-      <td>中央网信办违法和不良信息举报中心主办</td>
-      <td>中央网信办违法和不良信息举报中心主办</td>
-      <td>2faa44138715b91b2e8dc957fd2a6aab</td>
-      <td>{'id': 398, 'name': '中国互联网联合辟谣平台', 'desc': '中央...</td>
-      <td>2022-10-10</td>
+      <td>口罩正确戴法：感冒时有颜色的朝外，没感冒反过来</td>
+      <td>国际谣言查证机构</td>
+      <td>国际谣言查证机构</td>
+      <td>ca1dd5415f6acd1fbf7c22fd1e6e3dc1</td>
+      <td>{'id': 501, 'name': '反海外谣言中心', 'desc': '国际谣言查证...</td>
+      <td>2020-01-22</td>
       <td>fake</td>
       <td>假</td>
       <td>谣言</td>
-      <td>所谓“持红码到酒吧蹦迪”的说法系误传。根据上海警方调查，视频中出现的红码图片实为两名当事人存...</td>
-      <td>[红码, 蹦迪]</td>
+      <td>口罩正确的戴法是，有颜色的那一面（通常是绿色、蓝色或者粉红色）应该朝外，白色的那一面朝内。无...</td>
+      <td>[口罩, 新型冠状病毒]</td>
       <td>1</td>
       <td></td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/7BKjGqTcXywwnz...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/7BKjGqTcXywwnz...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/7BKjGqTcXywwnz...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/61bb516ad6174f...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/61bb516ad6174f...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/61bb516ad6174f...</td>
       <td></td>
       <td>False</td>
       <td>normal</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>上海游客遇新疆疫情，变身葡萄采摘工</td>
-      <td>中央网信办违法和不良信息举报中心主办、新华网承办的辟谣平台</td>
-      <td>中央网信办违法和不良信息举报中心主办、新华网承办的辟谣平台</td>
-      <td>abb50569bc1f464504caac8a2b864d76</td>
-      <td>{'id': 964, 'name': '中国互联网联合辟谣平台', 'desc': '中央...</td>
-      <td>2022-10-10</td>
+      <td>这个玻璃装置是“隔离舱”，用它进行患者的隔离</td>
+      <td>医学博士、副主任医师、中华医学会科普分会青年委员</td>
+      <td>医学博士、副主任医师、中华医学会科普分会青年委员</td>
+      <td>762167361e181d478652f85ac76fe34d</td>
+      <td>{'id': 13, 'name': '胡远东', 'desc': '医学博士、副主任医师、...</td>
+      <td>2020-01-22</td>
       <td>fake</td>
       <td>假</td>
       <td>谣言</td>
-      <td>吐鲁番市农业农村局、林草局等相关部门核实，有关部门未采取过将滞留人员留在本地就业采摘葡萄的措...</td>
-      <td>[新疆, 游客]</td>
+      <td>这个装置学名叫隔离担架，主要用途是转运传染性疾病患者或者疑似患者，避免在转运过程中发生继发性...</td>
+      <td>[隔离, 传染]</td>
       <td>1</td>
       <td></td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/iwStcGMpqU94pY...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/iwStcGMpqU94pY...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/iwStcGMpqU94pY...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/b0d32b60f5e90b...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/b0d32b60f5e90b...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/b0d32b60f5e90b...</td>
       <td></td>
       <td>False</td>
       <td>normal</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>体检查出肺结节，是打新冠疫苗打出来的</td>
-      <td>国家执业医师，神经科学硕士</td>
-      <td>国家执业医师，神经科学硕士</td>
-      <td>93dad175b3694399912fcac67a7e6f2c</td>
-      <td>{'id': 754, 'name': '庄时利和', 'desc': '国家执业医师，神经...</td>
-      <td>2022-09-23</td>
+      <td>放烟花爆竹可以消毒，预防瘟疫</td>
+      <td>医学博士、副主任医师、中华医学会科普分会青年委员</td>
+      <td>医学博士、副主任医师、中华医学会科普分会青年委员</td>
+      <td>a54f4a260301565af3454048724350f5</td>
+      <td>{'id': 13, 'name': '胡远东', 'desc': '医学博士、副主任医师、...</td>
+      <td>2020-01-21</td>
       <td>fake</td>
       <td>假</td>
-      <td>谣言</td>
-      <td>人群中肺结节的检出率其实并不低，绝大多数肺结节是良性的；肺结节除了关注大小以外，还应当关注数...</td>
-      <td>[新冠疫苗, 肺结节]</td>
+      <td>伪科学</td>
+      <td>农业上确实有在大棚中燃烧硫磺杀灭害虫细菌的做法，但没有将硫化物用于医疗环境中的做法，因为硫化...</td>
+      <td>[烟花爆竹, 瘟疫]</td>
       <td>1</td>
       <td></td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/qXboJt4mr1JRiD...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/qXboJt4mr1JRiD...</td>
-      <td>//jiaozhen-70111.picnjc.qpic.cn/qXboJt4mr1JRiD...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/814be59fed9db8...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/814be59fed9db8...</td>
+      <td>//jiaozhen-70111.picnjc.qpic.cn/814be59fed9db8...</td>
       <td></td>
       <td>False</td>
       <td>normal</td>
@@ -1253,7 +874,7 @@ print(...)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s1">&#39;./data/vpqq2022-11-1.xlsx&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s1">&#39;./data/vpqq2023-10-27.xlsx&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1273,7 +894,7 @@ print(...)
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1281,50 +902,101 @@ print(...)
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="04-crawler-beautifulsoup.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">第三章 数据抓取</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04-crawler-beautifulsoup.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">第三章 数据抓取</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="04-crawler-13chambers.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="04-crawler-13chambers.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">抓取网络小说</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">如何使用快捷键打开开发者工具</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Cheng-Jun Wang<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Cheng-Jun Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

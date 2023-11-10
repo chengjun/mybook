@@ -1,50 +1,62 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>第十章 网络科学简介 &#8212; 计算传播学</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,65 +64,105 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '15-network-science-intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="网络科学模型" href="16-network-science-models.html" />
     <link rel="prev" title="使用Turicreate进行电影推荐" href="14-movielens.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
 
-    
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/socrates_jump.gif" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">计算传播学</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/socrates_jump.gif" class="logo__image only-light" alt="计算传播学 - Home"/>
+    <script>document.write(`<img src="_static/socrates_jump.gif" class="logo__image only-dark" alt="计算传播学 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -120,1473 +172,448 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="01-intro2cjc.html">
-   第一章 计算传播学简介
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="02-bigdata.html">
-     数据科学的编程工具：大数据
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="03-python-intro.html">
-   第二章 数据科学的编程工具
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-jupyter-notebook.html">
-     Jupyter Notebook
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="01-recombination.html">
-     计算思维：通过拆解和重组学习
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-slides.html">
-     使用Jupyter制作Slides的介绍
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-turicreate.html">
-     Turicreate: Departure from Graphlab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-matplotlib-chinese.html">
-     解决Matplotlib绘图显示中文问题
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-UK-MPS-Scandal.html">
-     案例：2009年英国国会议员开支丑闻
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-umbrella-of-love.html">
-     案例：《转角遇到爱》背后的数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-who-runs-China.html">
-     案例：Who runs China？背后的数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-gdelt.html">
-     Gdelt Dataset: Events, Mentions, and Global Knowledge Graph
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="04-crawler-beautifulsoup.html">
-   第三章 数据抓取
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-fact-checking.html">
-     抓取实时辟谣数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-13chambers.html">
-     抓取网络小说
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-wechat.html">
-     抓取微信公众号文章内容
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-douban.html">
-     使用requests + Xpath抓取豆瓣电影数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-gov-report.html">
-     抓取历届政府工作报告
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-cppcc.html">
-     抓取江苏省政协十年提案
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-netease-music.html">
-     抓取网易云音乐热门评论
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-selenium.html">
-     使用Selenium操纵浏览器
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-selenium-music-history.html">
-     抓取网易云音乐用户的听歌记录
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-selenium-people-com-search.html">
-     使用Selenium提取人民网搜索数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-tripadvisor.html">
-     使用Selenium抓取TripAdvisor用户评论
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-pyppeteer.html">
-     使用Pyppeteer实现异步抓取!
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-weibo.html">
-     轻型微博爬虫
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-snscrape-twitter.html">
-     snscrape
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="06-data-cleaning-intro.html">
-   第四章 数据清洗
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-preprocessing.html">
-     对大数据进行预处理
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-tweets.html">
-     数据清洗之推特数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-occupy-central-news.html">
-     对占中新闻进行数据清洗
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-music-list.html">
-     清洗音乐列表🎵
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-pandas.html">
-     使用Pandas进行数据清洗
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="08-01-statistics-thinking.html">
-   第五章 统计思维
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-02-kl-divergence.html">
-     KL Divergence
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-02-linear-algebra.html">
-     Linear algebra
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-03-distributions.html">
-     Distribution Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-03-probability.html">
-     Probability
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-04-hypothesis-inference.html">
-     Statistical Hypothesis Testing
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-05-gradient-descent.html">
-     Introduction to Gradient Descent
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-06-regression.html">
-     Linear Regression
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-06-statsmodels.html">
-     Statistical Modeling with Python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-07-analyzing-titanic-dataset.html">
-     Logistic Regression of Titanic Data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-07-covid19-pew-survey.html">
-     Analysing the Pew Survey Data of COVID19
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-11-cfps-survey-analysis.html">
-     中国家庭追踪调查2018
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-08-covid19-grangercausality.html">
-     社交媒体可以预测新冠疫情吗？
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-09-survival-analysis.html">
-     Survival Analysis with Python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-10-dowhy-estimation-methods.html">
-     The Book of Why
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
-   第六章 社会科学家的机器学习
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-03-hyperparameters-and-model-validation.html">
-     Hyperparameters and Model Validation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-04-feature-engineering.html">
-     Feature Engineering
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-05-naive-bayes.html">
-     In Depth: Naive Bayes Classification
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-06-linear-regression.html">
-     In Depth: Linear Regression
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-07-support-vector-machines.html">
-     In-Depth: Support Vector Machines
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-08-random-forests.html">
-     In-Depth: Decision Trees and Random Forests
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-09-googleflustudy.html">
-     Forecasting and nowcasting with Google Flu Trends
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-10-future-employment.html">
-     The future of employment
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-grf.html">
-     Causal Forests
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="09-11-neural-network-intro.html">
-   第七章 神经网络与深度学习
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-13-cnn.html">
-     Convolutional Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-14-rnn.html">
-     Sequnce Modeling: Recurrent and Recursive Nets
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-12-hand-written-digits.html">
-     Recognizing Hand-Written Digits with Neural Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-15-cifar10.html">
-     使用CNN对CIFAR10图像进行分类
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-16-pytorch_vgg_pretrained.html">
-     VGG16预训练模型
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="10-text-mining-gov-report.html">
-   第八章 文本挖掘
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10-word2vec.html">
-     词向量模型简介
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10-doc2vec.html">
-     Doc2Vec
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">
-     基于字典的情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-2-emotion-dict.html">
-     大连理工大学中文情感词汇
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-3-NRC-Chinese-dict.html">
-     基于NRC字典的情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-3-textblob.html">
-     利用textblob进行情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-4-sentiment-classifier.html">
-     基于机器学习的情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-5-LIWC.html">
-     LIWC: Linguistic Inquiry and Word Count  analyzer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12-topic-models-update.html">
-     主题模型简介
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12-topic-models-with-turicreate.html">
-     使用Turicreate建立主题模型
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="13-recsys-intro.html">
-   第九章 推荐系统简介
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13-recsys-latent-factor-model.html">
-     Latent Factor Recommender System
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13-recsys-intro-surprise.html">
-     使用Surprise构建推荐系统
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="14-millionsong.html">
-     使用Turicreate进行音乐推荐
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="14-movielens.html">
-     使用Turicreate进行电影推荐
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
-   第十章 网络科学简介
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="16-network-science-models.html">
-     网络科学模型
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="17-networkx.html">
-     使用NetworkX分析网络
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-02-network-diffusion.html">
-     Simulating Network Diffusion With NDlib
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-03-network-epidemics.html">
-     Epidemics on Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-04-seir-hcd-model.html">
-     SEIR-HCD Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-ergm-siena.html">
-     Social Network Analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-weibo-hot-search.html">
-     微博热搜分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">
-     天涯论坛的回帖网络分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">
-     可视化Facebook社交网络
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-ecomplexity.html">
-     Economic Complexity and Product Complexity
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="19-visualization-with-seaborn.html">
-   第十一章 可视化
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-matplotlib-colormap.html">
-     Qualitative Colormaps in Matplotlib Visualization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-scientific-plot.html">
-     Matplotlib的科学绘图样式
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-with-pyecharts.html">
-     使用PyEcharts进行可视化
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-plotly-express.html">
-     Plotly Express in Python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-maps-using-folium.html">
-     使用folium做地图可视化
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-datashader.html">
-     使用Datashader可视化地理信息
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-datapane.html">
-     使用Datapane制作数据报告
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-pantheon.html">
-     万神殿项目（Pantheon Project）
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="01-intro2cjc.html">第一章 计算传播学简介</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02-bigdata.html">数据科学的编程工具：大数据</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="03-python-intro.html">第二章 数据科学的编程工具</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="0-jupyter-notebook.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-chatgpt.html">Using ChatGPT to Learn Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-iching.html">iching: A python package of I Ching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-recombination.html">计算思维：通过拆解和重组学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-slides.html">使用Jupyter制作Slides的介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-turicreate.html">Turicreate: Departure from Graphlab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-matplotlib-chinese.html">解决Matplotlib绘图显示中文问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-UK-MPS-Scandal.html">案例：2009年英国国会议员开支丑闻</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-umbrella-of-love.html">案例：《转角遇到爱》背后的数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-who-runs-China.html">案例：Who runs China？背后的数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-gdelt.html">Gdelt Dataset: Events, Mentions, and Global Knowledge Graph</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="04-crawler-beautifulsoup.html">第三章 数据抓取</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-fact-checking.html">抓取实时辟谣数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-13chambers.html">抓取网络小说</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-wechat.html">抓取微信公众号文章内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-douban.html">使用requests + Xpath抓取豆瓣电影数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-gov-report.html">抓取历届政府工作报告</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-cppcc.html">抓取江苏省政协十年提案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-netease-music.html">抓取网易云音乐热门评论</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium.html">使用Selenium操纵浏览器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium-music-history.html">抓取网易云音乐用户的听歌记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium-people-com-search.html">使用Selenium提取人民网搜索数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-tripadvisor.html">使用Selenium抓取TripAdvisor用户评论</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-pyppeteer.html">使用Pyppeteer实现异步抓取!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-weibo.html">轻型微博爬虫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-snscrape-twitter.html">snscrape</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="06-data-cleaning-intro.html">第四章 数据清洗</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-preprocessing.html">对大数据进行预处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-tweets.html">数据清洗之推特数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-occupy-central-news.html">对占中新闻进行数据清洗</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-music-list.html">清洗音乐列表🎵</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-pandas.html">使用Pandas进行数据清洗</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="08-01-statistics-thinking.html">第五章 统计思维</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="08-02-kl-divergence.html">KL Divergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-02-linear-algebra.html">Linear algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-03-distributions.html">Distribution Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-03-probability.html">Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-04-hypothesis-inference.html">Statistical Hypothesis Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-05-gradient-descent.html">Introduction to Gradient Descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-06-regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-06-statsmodels.html">Statistical Modeling with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-07-analyzing-titanic-dataset.html">Logistic Regression of Titanic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-07-covid19-pew-survey.html">Analysing the Pew Survey Data of COVID19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-11-cfps-survey-analysis.html">中国家庭追踪调查2018</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-08-covid19-grangercausality.html">社交媒体可以预测新冠疫情吗？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-09-survival-analysis.html">Survival Analysis with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-10-dowhy-estimation-methods.html">The Book of Why</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="09-01-machine-learning-with-sklearn.html">第六章 社会科学家的机器学习</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="09-03-hyperparameters-and-model-validation.html">Hyperparameters and Model Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-04-feature-engineering.html">Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-05-naive-bayes.html">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-06-linear-regression.html">In Depth: Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-07-support-vector-machines.html">In-Depth: Support Vector Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-08-random-forests.html">In-Depth: Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-09-googleflustudy.html">Forecasting and nowcasting with Google Flu Trends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-10-future-employment.html">The future of employment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-grf.html">Causal Forests</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="09-11-neural-network-intro.html">第七章 神经网络与深度学习</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="09-13-cnn.html">Convolutional Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-14-rnn.html">Sequnce Modeling: Recurrent and Recursive Nets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-12-hand-written-digits.html">Recognizing Hand-Written Digits with Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-15-cifar10.html">使用CNN对CIFAR10图像进行分类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-16-pytorch_vgg_pretrained.html">VGG16预训练模型</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="10-text-mining-gov-report.html">第八章 文本挖掘</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="10-word2vec.html">词向量模型简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-doc2vec.html">Doc2Vec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">基于字典的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-2-emotion-dict.html">大连理工大学中文情感词汇</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-3-NRC-Chinese-dict.html">基于NRC字典的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-3-textblob.html">利用textblob进行情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-4-sentiment-classifier.html">基于机器学习的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-5-LIWC.html">LIWC: Linguistic Inquiry and Word Count  analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-topic-models-update.html">主题模型简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-topic-models-with-turicreate.html">使用Turicreate建立主题模型</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="13-recsys-intro.html">第九章 推荐系统简介</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="13-recsys-latent-factor-model.html">Latent Factor Recommender System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13-recsys-intro-surprise.html">使用Surprise构建推荐系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-millionsong.html">使用Turicreate进行音乐推荐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-movielens.html">使用Turicreate进行电影推荐</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">第十章 网络科学简介</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="16-network-science-models.html">网络科学模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17-networkx.html">使用NetworkX分析网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-02-network-diffusion.html">Simulating Network Diffusion With NDlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-03-network-epidemics.html">Epidemics on Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-04-seir-hcd-model.html">SEIR-HCD Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-ergm-siena.html">Social Network Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-weibo-hot-search.html">微博热搜分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">天涯论坛的回帖网络分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">可视化Facebook社交网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-ecomplexity.html">Economic Complexity and Product Complexity</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="19-visualization-with-seaborn.html">第十一章 可视化</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-matplotlib-colormap.html">Qualitative Colormaps in Matplotlib Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-scientific-plot.html">Matplotlib的科学绘图样式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-with-pyecharts.html">使用PyEcharts进行可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-plotly-express.html">Plotly Express in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-maps-using-folium.html">使用folium做地图可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-datashader.html">使用Datashader可视化地理信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-datapane.html">使用Datapane制作数据报告</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-pantheon.html">万神殿项目（Pantheon Project）</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/15-network-science-intro.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
   
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
+  <div id="rtd-footer-container"></div>
 
-      </li>
+
+      </div>
       
-      <li>
-        <a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/15-network-science-intro.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/15-network-science-intro.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/chengjun/mybook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F15-network-science-intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/15-network-science-intro.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chengjun/mybook"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F15-network-science-intro.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/15-network-science-intro.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#from-saddam-hussein-to-network-theory">
-   FROM SADDAM HUSSEIN TO NETWORK THEORY
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-about-osama-bin-laden">
-   How about Osama bin Laden?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-simple-story-2-august-15-2003-blackout">
-   A SIMPLE STORY (2): August 15, 2003 blackout.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vulnerability">
-   VULNERABILITY
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#complex-systems">
-   COMPLEX SYSTEMS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#complexity">
-   Complexity
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   COMPLEX SYSTEMS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-history-of-network-analysis">
-   THE HISTORY OF NETWORK ANALYSIS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#health-from-drug-design-to-metabolic-engineering">
-   Health: From drug design to metabolic engineering.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#security-fighting-terrorism">
-   Security: Fighting Terrorism.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#epidemics-from-forecasting-to-halting-deadly-viruses">
-   Epidemics: From forecasting to halting deadly viruses.
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-first-major-mobile-epidemic-outbreak">
-     The first major mobile epidemic outbreak
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#brain-research-mapping-neural-network">
-   Brain Research: Mapping neural network.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-bridges-of-konigsberg">
-   The Bridges of Konigsberg
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#eulers-theorem-1735">
-     Euler’s theorem (1735):
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#choosing-a-proper-representation">
-     CHOOSING A PROPER REPRESENTATION
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#undirected-vs-directed-networks">
-   UNDIRECTED VS. DIRECTED NETWORKS
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#undirected">
-     Undirected
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#directed">
-     Directed
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#degree-average-degree-and-degree-distribution">
-   Degree, Average Degree and Degree Distribution
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#undirected-network">
-     Undirected network:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#directed-network">
-     Directed network
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#average-degree">
-   Average Degree
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     Undirected
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     Directed
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#degree-distribution">
-   Degree distribution
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#adjacency-matrix">
-   Adjacency matrix
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     Undirected
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
-     Undirected
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     Directed
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     Directed
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#weighted-and-unweighted-networks">
-   WEIGHTED AND UNWEIGHTED NETWORKS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bipartite-networks">
-   BIPARTITE NETWORKS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#link-analysis">
-   Link Analysis
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pagerank">
-     PageRank
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#path">
-   Path 路径
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#shortest-path">
-     Shortest Path  最短路径
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#distance">
-     Distance  距离
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#diameter">
-     Diameter 直径
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#average-path-length-distance-d">
-     Average path length/distance,
-     <span class="math notranslate nohighlight">
-      \(&lt;d&gt;\)
-     </span>
-     平均路径长度
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cycle">
-   Cycle  环
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#connectedness">
-   CONNECTEDNESS
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#connected-undirected-graph">
-     Connected (undirected) graph
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bridge">
-     Bridge 桥
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
-     结构洞
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#strongly-connected-directed-graph">
-     Strongly connected
-     <em>
-      directed
-     </em>
-     graph 强连通有向图
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#weakly-connected-directed-graph">
-     Weakly connected directed graph  弱连接有向图
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#in-component-scc-out-component">
-     In-component -&gt; SCC -&gt;Out-component
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#clustering-coefficient">
-   Clustering coefficient 聚集系数
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id10">
-     节点的
-     <strong>
-      聚集系数
-     </strong>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#global-clustering-coefficient-i-e-transtivity">
-     Global Clustering Coefficient 全局聚集系数（i.e., Transtivity 传递性)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#typical-network-science-research">
-   Typical Network Science Research
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#typical-math-style">
-   Typical Math Style
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#typical-physical-style">
-   Typical Physical Style
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#typical-computer-science-style">
-   Typical Computer Science Style
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#typical-control-sytle">
-   Typical control sytle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id11">
-   阅读材料
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>第十章 网络科学简介</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#from-saddam-hussein-to-network-theory">
-   FROM SADDAM HUSSEIN TO NETWORK THEORY
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-about-osama-bin-laden">
-   How about Osama bin Laden?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-simple-story-2-august-15-2003-blackout">
-   A SIMPLE STORY (2): August 15, 2003 blackout.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vulnerability">
-   VULNERABILITY
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#complex-systems">
-   COMPLEX SYSTEMS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#complexity">
-   Complexity
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   COMPLEX SYSTEMS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-history-of-network-analysis">
-   THE HISTORY OF NETWORK ANALYSIS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#health-from-drug-design-to-metabolic-engineering">
-   Health: From drug design to metabolic engineering.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#security-fighting-terrorism">
-   Security: Fighting Terrorism.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#epidemics-from-forecasting-to-halting-deadly-viruses">
-   Epidemics: From forecasting to halting deadly viruses.
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-first-major-mobile-epidemic-outbreak">
-     The first major mobile epidemic outbreak
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#brain-research-mapping-neural-network">
-   Brain Research: Mapping neural network.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-bridges-of-konigsberg">
-   The Bridges of Konigsberg
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#eulers-theorem-1735">
-     Euler’s theorem (1735):
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#choosing-a-proper-representation">
-     CHOOSING A PROPER REPRESENTATION
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#undirected-vs-directed-networks">
-   UNDIRECTED VS. DIRECTED NETWORKS
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#undirected">
-     Undirected
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#directed">
-     Directed
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#degree-average-degree-and-degree-distribution">
-   Degree, Average Degree and Degree Distribution
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#undirected-network">
-     Undirected network:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#directed-network">
-     Directed network
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#average-degree">
-   Average Degree
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     Undirected
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     Directed
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#degree-distribution">
-   Degree distribution
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#adjacency-matrix">
-   Adjacency matrix
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     Undirected
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
-     Undirected
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     Directed
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     Directed
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#weighted-and-unweighted-networks">
-   WEIGHTED AND UNWEIGHTED NETWORKS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bipartite-networks">
-   BIPARTITE NETWORKS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#link-analysis">
-   Link Analysis
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pagerank">
-     PageRank
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#path">
-   Path 路径
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#shortest-path">
-     Shortest Path  最短路径
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#distance">
-     Distance  距离
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#diameter">
-     Diameter 直径
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#average-path-length-distance-d">
-     Average path length/distance,
-     <span class="math notranslate nohighlight">
-      \(&lt;d&gt;\)
-     </span>
-     平均路径长度
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cycle">
-   Cycle  环
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#connectedness">
-   CONNECTEDNESS
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#connected-undirected-graph">
-     Connected (undirected) graph
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bridge">
-     Bridge 桥
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
-     结构洞
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#strongly-connected-directed-graph">
-     Strongly connected
-     <em>
-      directed
-     </em>
-     graph 强连通有向图
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#weakly-connected-directed-graph">
-     Weakly connected directed graph  弱连接有向图
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#in-component-scc-out-component">
-     In-component -&gt; SCC -&gt;Out-component
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#clustering-coefficient">
-   Clustering coefficient 聚集系数
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id10">
-     节点的
-     <strong>
-      聚集系数
-     </strong>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#global-clustering-coefficient-i-e-transtivity">
-     Global Clustering Coefficient 全局聚集系数（i.e., Transtivity 传递性)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#typical-network-science-research">
-   Typical Network Science Research
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#typical-math-style">
-   Typical Math Style
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#typical-physical-style">
-   Typical Physical Style
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#typical-computer-science-style">
-   Typical Computer Science Style
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#typical-control-sytle">
-   Typical control sytle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id11">
-   阅读材料
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>第十章 网络科学简介</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-saddam-hussein-to-network-theory">FROM SADDAM HUSSEIN TO NETWORK THEORY</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-about-osama-bin-laden">How about Osama bin Laden?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-story-2-august-15-2003-blackout">A SIMPLE STORY (2): August 15, 2003 blackout.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vulnerability">VULNERABILITY</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-systems">COMPLEX SYSTEMS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity">Complexity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">COMPLEX SYSTEMS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-history-of-network-analysis">THE HISTORY OF NETWORK ANALYSIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#health-from-drug-design-to-metabolic-engineering">Health: From drug design to metabolic engineering.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#security-fighting-terrorism">Security: Fighting Terrorism.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemics-from-forecasting-to-halting-deadly-viruses">Epidemics: From forecasting to halting deadly viruses.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-first-major-mobile-epidemic-outbreak">The first major mobile epidemic outbreak</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brain-research-mapping-neural-network">Brain Research: Mapping neural network.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bridges-of-konigsberg">The Bridges of Konigsberg</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eulers-theorem-1735">Euler’s theorem (1735):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-a-proper-representation">CHOOSING A PROPER REPRESENTATION</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#undirected-vs-directed-networks">UNDIRECTED VS. DIRECTED NETWORKS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#undirected">Undirected</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#directed">Directed</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-average-degree-and-degree-distribution">Degree, Average Degree and Degree Distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#undirected-network">Undirected network:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#directed-network">Directed network</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#average-degree">Average Degree</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Undirected</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Directed</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-distribution">Degree distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacency-matrix">Adjacency matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Undirected</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Undirected</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Directed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Directed</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-and-unweighted-networks">WEIGHTED AND UNWEIGHTED NETWORKS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bipartite-networks">BIPARTITE NETWORKS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#link-analysis">Link Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pagerank">PageRank</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#path">Path 路径</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shortest-path">Shortest Path  最短路径</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distance">Distance  距离</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diameter">Diameter 直径</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-path-length-distance-d">Average path length/distance, <span class="math notranslate nohighlight">\(&lt;d&gt;\)</span> 平均路径长度</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cycle">Cycle  环</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connectedness">CONNECTEDNESS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connected-undirected-graph">Connected (undirected) graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bridge">Bridge 桥</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">结构洞</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strongly-connected-directed-graph">Strongly connected <em>directed</em> graph 强连通有向图</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakly-connected-directed-graph">Weakly connected directed graph  弱连接有向图</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-component-scc-out-component">In-component -&gt; SCC -&gt;Out-component</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-coefficient">Clustering coefficient 聚集系数</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">节点的<strong>聚集系数</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#global-clustering-coefficient-i-e-transtivity">Global Clustering Coefficient 全局聚集系数（i.e., Transtivity 传递性)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-network-science-research">Typical Network Science Research</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-math-style">Typical Math Style</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-physical-style">Typical Physical Style</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-computer-science-style">Typical Computer Science Style</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-control-sytle">Typical control sytle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">阅读材料</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>第十章 网络科学简介<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<h1>第十章 网络科学简介<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <p><strong>Network Science</strong>, a textbook for network science, is freely available under the Creative Commons license. <a class="reference external" href="http://networksciencebook.com/">http://networksciencebook.com/</a></p>
 <a class="reference internal image-reference" href="_images/network.png"><img alt="_images/network.png" class="align-right" src="_images/network.png" style="width: 250px;" /></a>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Introduction</p></li>
 <li><p>Graph Theory</p></li>
 <li><p>Random Networks</p></li>
@@ -1600,7 +627,7 @@ title="Print to PDF"
 Preface</p></li>
 </ol>
 <section id="from-saddam-hussein-to-network-theory">
-<h2>FROM SADDAM HUSSEIN TO NETWORK THEORY<a class="headerlink" href="#from-saddam-hussein-to-network-theory" title="Permalink to this headline">#</a></h2>
+<h2>FROM SADDAM HUSSEIN TO NETWORK THEORY<a class="headerlink" href="#from-saddam-hussein-to-network-theory" title="Permalink to this heading">#</a></h2>
 <p>SADDAM HUSSEIN: the fifth President of <strong>Iraq</strong>, serving in this capacity from 16 July 1979 until 9 April <strong>2003</strong>. Invasion that started in March 19,  2003. Many of the regime’s high ranking officials, including Saddam Hussein, avoided capture. Hussein was last spotted kissing a baby in Baghdad in April 2003, and then his trace went cold.</p>
 <ul class="simple">
 <li><p>Designed a deck of cards, each card engraved with the images of the 55 most wanted.</p>
@@ -1617,7 +644,7 @@ Preface</p></li>
 the <strong>hierarchical tree</strong> captured the official organization of the Iraqi government, was of no use when it came to Saddam Hussein’s whereabouts.</p>
 </section>
 <section id="how-about-osama-bin-laden">
-<h2>How about Osama bin Laden?<a class="headerlink" href="#how-about-osama-bin-laden" title="Permalink to this headline">#</a></h2>
+<h2>How about Osama bin Laden?<a class="headerlink" href="#how-about-osama-bin-laden" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>the founder of al-Qaeda, the organization that claimed responsibility for the September 11 attacks on the United States.</p></li>
 </ul>
@@ -1626,11 +653,11 @@ the <strong>hierarchical tree</strong> captured the official organization of the
 </div></blockquote>
 </section>
 <section id="a-simple-story-2-august-15-2003-blackout">
-<h2>A SIMPLE STORY (2): August 15, 2003 blackout.<a class="headerlink" href="#a-simple-story-2-august-15-2003-blackout" title="Permalink to this headline">#</a></h2>
+<h2>A SIMPLE STORY (2): August 15, 2003 blackout.<a class="headerlink" href="#a-simple-story-2-august-15-2003-blackout" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="_images/blackout.png"><img alt="_images/blackout.png" src="_images/blackout.png" style="width: 1000px;" /></a>
 </section>
 <section id="vulnerability">
-<h2>VULNERABILITY<a class="headerlink" href="#vulnerability" title="Permalink to this headline">#</a></h2>
+<h2>VULNERABILITY<a class="headerlink" href="#vulnerability" title="Permalink to this heading">#</a></h2>
 <p>DUE TO INTERCONNECTIVITY</p>
 <ul class="simple">
 <li><p>The 2003 blackout is a typical example of a cascading failure.</p></li>
@@ -1646,7 +673,7 @@ the <strong>hierarchical tree</strong> captured the official organization of the
 <p>NETWORKS AT THE HEART OF</p>
 </section>
 <section id="complex-systems">
-<h2>COMPLEX SYSTEMS<a class="headerlink" href="#complex-systems" title="Permalink to this headline">#</a></h2>
+<h2>COMPLEX SYSTEMS<a class="headerlink" href="#complex-systems" title="Permalink to this heading">#</a></h2>
 <p>Complex</p>
 <p>[adj., v. kuh m-pleks, kom-pleks; n. kom-pleks]
 –adjective</p>
@@ -1658,13 +685,13 @@ Source: <a class="reference external" href="http://Dictionary.com">Dictionary.co
 </ul>
 </section>
 <section id="complexity">
-<h2>Complexity<a class="headerlink" href="#complexity" title="Permalink to this headline">#</a></h2>
+<h2>Complexity<a class="headerlink" href="#complexity" title="Permalink to this heading">#</a></h2>
 <p>a scientific theory which asserts that some systems display behavioral phenomena that are completely inexplicable by any conventional analysis of the systems’ constituent parts. These phenomena, commonly referred to as emergent behaviour, seem to occur in many complex systems involving living organisms, such as a stock market or the human brain.
  
 Source: John L. Casti, Encyclopædia Britannica</p>
 </section>
 <section id="id2">
-<h2>COMPLEX SYSTEMS<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<h2>COMPLEX SYSTEMS<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>society</p></li>
 <li><p>brain</p></li>
@@ -1689,7 +716,7 @@ Source: John L. Casti, Encyclopædia Britannica</p>
 <p>We will never understand complex system unless we map out and understand the networks behind them.</p>
 </section>
 <section id="the-history-of-network-analysis">
-<h2>THE HISTORY OF NETWORK ANALYSIS<a class="headerlink" href="#the-history-of-network-analysis" title="Permalink to this headline">#</a></h2>
+<h2>THE HISTORY OF NETWORK ANALYSIS<a class="headerlink" href="#the-history-of-network-analysis" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Graph theory: 1735, Euler</p></li>
 <li><p>Social Network Research:  1930s, Moreno</p></li>
@@ -1732,7 +759,7 @@ $50 billion</p></li>
 </ul>
 </section>
 <section id="health-from-drug-design-to-metabolic-engineering">
-<h2>Health: From drug design to metabolic engineering.<a class="headerlink" href="#health-from-drug-design-to-metabolic-engineering" title="Permalink to this headline">#</a></h2>
+<h2>Health: From drug design to metabolic engineering.<a class="headerlink" href="#health-from-drug-design-to-metabolic-engineering" title="Permalink to this heading">#</a></h2>
 <p>The human genome project, completed in 2001, offered the first comprehensive list of all human genes.</p>
 <ul class="simple">
 <li><p>Yet, to fully understand how our cells function, and the origin of disease,</p></li>
@@ -1740,7 +767,7 @@ $50 billion</p></li>
 </ul>
 </section>
 <section id="security-fighting-terrorism">
-<h2>Security: Fighting Terrorism.<a class="headerlink" href="#security-fighting-terrorism" title="Permalink to this headline">#</a></h2>
+<h2>Security: Fighting Terrorism.<a class="headerlink" href="#security-fighting-terrorism" title="Permalink to this heading">#</a></h2>
 <p>Terrorism is one of the maladies of the 21st century, absorbing significant resources to combat it worldwide.</p>
 <ul class="simple">
 <li><p><strong>Network thinking</strong> is increasingly present in the arsenal of various law enforcement agencies in charge of limiting terrorist activities.</p>
@@ -1755,20 +782,20 @@ $50 billion</p></li>
 </ul>
 </section>
 <section id="epidemics-from-forecasting-to-halting-deadly-viruses">
-<h2>Epidemics: From forecasting to halting deadly viruses.<a class="headerlink" href="#epidemics-from-forecasting-to-halting-deadly-viruses" title="Permalink to this headline">#</a></h2>
+<h2>Epidemics: From forecasting to halting deadly viruses.<a class="headerlink" href="#epidemics-from-forecasting-to-halting-deadly-viruses" title="Permalink to this heading">#</a></h2>
 <p>While the <strong>H1N1 pandemic</strong> was not as devastating as it was feared at the beginning of the outbreak in 2009, it gained a special role in the history of epidemics: it was <strong>the first pandemic whose course and time evolution was accurately predicted months before the pandemic reached its peak</strong>.</p>
 <ul class="simple">
 <li><p>Before 2000 epidemic modeling was dominated by <strong>compartment models</strong>, assuming that everyone can infect everyone else one word the same socio-physical compartment.</p></li>
 <li><p>The emergence of a network-based framework has fundamentally changed this, offering a new level of predictability in epidemic phenomena.</p></li>
 </ul>
 <section id="the-first-major-mobile-epidemic-outbreak">
-<h3>The first major mobile epidemic outbreak<a class="headerlink" href="#the-first-major-mobile-epidemic-outbreak" title="Permalink to this headline">#</a></h3>
+<h3>The first major mobile epidemic outbreak<a class="headerlink" href="#the-first-major-mobile-epidemic-outbreak" title="Permalink to this heading">#</a></h3>
 <p>In January 2010 network science tools have predicted the conditions necessary for the emergence of viruses spreading through mobile phones.</p>
 <p>in the fall of 2010 in China, infecting over 300,000 phones each day, closely followed the predicted scenario.</p>
 </section>
 </section>
 <section id="brain-research-mapping-neural-network">
-<h2>Brain Research: Mapping neural network.<a class="headerlink" href="#brain-research-mapping-neural-network" title="Permalink to this headline">#</a></h2>
+<h2>Brain Research: Mapping neural network.<a class="headerlink" href="#brain-research-mapping-neural-network" title="Permalink to this heading">#</a></h2>
 <p>The human brain, consisting of hundreds of billions of interlinked neurons, is one of the least understood networks from the perspective of network science.</p>
 <p>The reason is simple:</p>
 <ul class="simple">
@@ -1778,12 +805,12 @@ $50 billion</p></li>
 <p>Driven by the potential impact of such maps, in 2010 the <strong>National Institutes of Health</strong> has initiated the Connectome project, aimed at developing the technologies that could provide an accurate neuron-level map of mammalian brains.</p>
 </section>
 <section id="the-bridges-of-konigsberg">
-<h2>The Bridges of Konigsberg<a class="headerlink" href="#the-bridges-of-konigsberg" title="Permalink to this headline">#</a></h2>
+<h2>The Bridges of Konigsberg<a class="headerlink" href="#the-bridges-of-konigsberg" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="_images/konigsberg.png"><img alt="_images/konigsberg.png" src="_images/konigsberg.png" style="width: 500px;" /></a>
 <p>Can one walk across the seven bridges and never cross the same bridge twice and get back to the starting place?</p>
 <a class="reference internal image-reference" href="_images/euler.png"><img alt="_images/euler.png" src="_images/euler.png" style="width: 600px;" /></a>
 <section id="eulers-theorem-1735">
-<h3>Euler’s theorem (1735):<a class="headerlink" href="#eulers-theorem-1735" title="Permalink to this headline">#</a></h3>
+<h3>Euler’s theorem (1735):<a class="headerlink" href="#eulers-theorem-1735" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>If a graph has more than two nodes of odd degree, there is no path.</p></li>
 <li><p>If a graph is connected and has no odd degree nodes, it has at least one path.</p></li>
@@ -1811,7 +838,7 @@ $50 billion</p></li>
 <a class="reference internal image-reference" href="_images/net.png"><img alt="_images/net.png" src="_images/net.png" style="width: 800px;" /></a>
 </section>
 <section id="choosing-a-proper-representation">
-<h3>CHOOSING A PROPER REPRESENTATION<a class="headerlink" href="#choosing-a-proper-representation" title="Permalink to this headline">#</a></h3>
+<h3>CHOOSING A PROPER REPRESENTATION<a class="headerlink" href="#choosing-a-proper-representation" title="Permalink to this heading">#</a></h3>
 <p>The choice of the proper network representation determines our ability to use network theory successfully.</p>
 <p>In some cases there is a unique, unambiguous representation.
 In other cases, the representation is by no means unique.
@@ -1823,9 +850,9 @@ For example, the way we assign the links between a group of individuals will det
 </section>
 </section>
 <section id="undirected-vs-directed-networks">
-<h2>UNDIRECTED VS. DIRECTED NETWORKS<a class="headerlink" href="#undirected-vs-directed-networks" title="Permalink to this headline">#</a></h2>
+<h2>UNDIRECTED VS. DIRECTED NETWORKS<a class="headerlink" href="#undirected-vs-directed-networks" title="Permalink to this heading">#</a></h2>
 <section id="undirected">
-<h3>Undirected<a class="headerlink" href="#undirected" title="Permalink to this headline">#</a></h3>
+<h3>Undirected<a class="headerlink" href="#undirected" title="Permalink to this heading">#</a></h3>
 <p>Links: undirected</p>
 <ul class="simple">
 <li><p>co-authorship</p></li>
@@ -1846,12 +873,12 @@ For example, the way we assign the links between a group of individuals will det
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-network-science-intro_41_0.png" src="_images/15-network-science-intro_41_0.png" />
+<img alt="_images/e058a9383ad8147e2a3ea50ff9ef42ae7b86f1df6908bb25fece53d5587c5657.png" src="_images/e058a9383ad8147e2a3ea50ff9ef42ae7b86f1df6908bb25fece53d5587c5657.png" />
 </div>
 </div>
 </section>
 <section id="directed">
-<h3>Directed<a class="headerlink" href="#directed" title="Permalink to this headline">#</a></h3>
+<h3>Directed<a class="headerlink" href="#directed" title="Permalink to this heading">#</a></h3>
 <p>Links: directed</p>
 <ul class="simple">
 <li><p>urls on the www</p></li>
@@ -1869,14 +896,14 @@ For example, the way we assign the links between a group of individuals will det
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-network-science-intro_43_0.png" src="_images/15-network-science-intro_43_0.png" />
+<img alt="_images/399545f84c1f4e36e1e96989391296c7e86011f966d592b2f13a65433cd346cb.png" src="_images/399545f84c1f4e36e1e96989391296c7e86011f966d592b2f13a65433cd346cb.png" />
 </div>
 </div>
 <a class="reference internal image-reference" href="_images/networks.png"><img alt="_images/networks.png" src="_images/networks.png" style="width: 1000px;" /></a>
 </section>
 </section>
 <section id="degree-average-degree-and-degree-distribution">
-<h2>Degree, Average Degree and Degree Distribution<a class="headerlink" href="#degree-average-degree-and-degree-distribution" title="Permalink to this headline">#</a></h2>
+<h2>Degree, Average Degree and Degree Distribution<a class="headerlink" href="#degree-average-degree-and-degree-distribution" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">Gu</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
@@ -1884,11 +911,11 @@ For example, the way we assign the links between a group of individuals will det
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-network-science-intro_46_0.png" src="_images/15-network-science-intro_46_0.png" />
+<img alt="_images/bbaf1def46e23487c449672a01d3e3b3df262812821aefd0fc507dbe044681d8.png" src="_images/bbaf1def46e23487c449672a01d3e3b3df262812821aefd0fc507dbe044681d8.png" />
 </div>
 </div>
 <section id="undirected-network">
-<h3>Undirected network:<a class="headerlink" href="#undirected-network" title="Permalink to this headline">#</a></h3>
+<h3>Undirected network:<a class="headerlink" href="#undirected-network" title="Permalink to this heading">#</a></h3>
 <p>Node degree: the number of links connected to the node.</p>
 <p><span class="math notranslate nohighlight">\(k_1 = k_2 = 2, k_3 = 3, k_4 = 1\)</span></p>
 <div class="cell docutils container">
@@ -1898,12 +925,12 @@ For example, the way we assign the links between a group of individuals will det
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-network-science-intro_48_0.png" src="_images/15-network-science-intro_48_0.png" />
+<img alt="_images/399545f84c1f4e36e1e96989391296c7e86011f966d592b2f13a65433cd346cb.png" src="_images/399545f84c1f4e36e1e96989391296c7e86011f966d592b2f13a65433cd346cb.png" />
 </div>
 </div>
 </section>
 <section id="directed-network">
-<h3>Directed network<a class="headerlink" href="#directed-network" title="Permalink to this headline">#</a></h3>
+<h3>Directed network<a class="headerlink" href="#directed-network" title="Permalink to this heading">#</a></h3>
 <p>In directed networks we can define an in-degree and out-degree. The (total) degree is the sum of in-and out-degree.</p>
 <p><span class="math notranslate nohighlight">\(k_3^{in} = 2, k_3^{out} = 1, k_3 = 3\)</span></p>
 <p>Source: a node with <span class="math notranslate nohighlight">\(k^{in}= 0\)</span>; Sink: a node with <span class="math notranslate nohighlight">\(k^{out}= 0\)</span>.</p>
@@ -1943,7 +970,7 @@ For example, the way we assign the links between a group of individuals will det
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-network-science-intro_55_0.png" src="_images/15-network-science-intro_55_0.png" />
+<img alt="_images/0fe9f85f9735c872102fd595284de8479120e65f2a59dd4986183acd4563caac.png" src="_images/0fe9f85f9735c872102fd595284de8479120e65f2a59dd4986183acd4563caac.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1997,30 +1024,30 @@ For example, the way we assign the links between a group of individuals will det
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-network-science-intro_59_0.png" src="_images/15-network-science-intro_59_0.png" />
+<img alt="_images/aac5cacec648f42451729ccc4babb7a6af27627a560a83c09c40646cc2d09411.png" src="_images/aac5cacec648f42451729ccc4babb7a6af27627a560a83c09c40646cc2d09411.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="average-degree">
-<h2>Average Degree<a class="headerlink" href="#average-degree" title="Permalink to this headline">#</a></h2>
+<h2>Average Degree<a class="headerlink" href="#average-degree" title="Permalink to this heading">#</a></h2>
 <section id="id3">
-<h3>Undirected<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<h3>Undirected<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(&lt;k&gt; = \frac{1}{N} \sum_{i = 1}^{N} k_i  = \frac{2L}{N}\)</span></p>
 </section>
 <section id="id4">
-<h3>Directed<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<h3>Directed<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(&lt;k^{in}&gt; = \frac{1}{N} \sum_{i=1}^N k_i^{in}= &lt;k^{out}&gt; = \frac{1}{N} \sum_{i=1}^N k_i^{out} = \frac{L}{N}\)</span></p>
 </section>
 </section>
 <section id="degree-distribution">
-<h2>Degree distribution<a class="headerlink" href="#degree-distribution" title="Permalink to this headline">#</a></h2>
+<h2>Degree distribution<a class="headerlink" href="#degree-distribution" title="Permalink to this heading">#</a></h2>
 <p>P(k): probability that a randomly selected node  has degree k</p>
 <p><span class="math notranslate nohighlight">\(N_k = The \:number\: of \:nodes\:with \:degree\: k\)</span></p>
 <p><span class="math notranslate nohighlight">\(P(k) = \frac{N_k}{N}\)</span></p>
 </section>
 <section id="adjacency-matrix">
-<h2>Adjacency matrix<a class="headerlink" href="#adjacency-matrix" title="Permalink to this headline">#</a></h2>
+<h2>Adjacency matrix<a class="headerlink" href="#adjacency-matrix" title="Permalink to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\(A_{ij} =1\)</span> if there is a link between node i and j</p>
 <p><span class="math notranslate nohighlight">\(A_{ij} =0\)</span> if there is no link between node i and j</p>
 <div class="cell docutils container">
@@ -2035,17 +1062,17 @@ For example, the way we assign the links between a group of individuals will det
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-network-science-intro_65_0.png" src="_images/15-network-science-intro_65_0.png" />
+<img alt="_images/04dfa28fd4c2b7f1a9ea4f9c0086b6cfe175143215f13c5df81cbc20175e07ec.png" src="_images/04dfa28fd4c2b7f1a9ea4f9c0086b6cfe175143215f13c5df81cbc20175e07ec.png" />
 </div>
 </div>
 <section id="id5">
-<h3>Undirected<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<h3>Undirected<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(A_{ij} =1\)</span> if there is a link between node i and j</p>
 <p><span class="math notranslate nohighlight">\(A_{ij} =0\)</span> if there is no link between node i and j</p>
 <p><span class="math notranslate nohighlight">\(A_{ij}=\begin{bmatrix} 0&amp;1  &amp;0  &amp;1 \\ 1&amp;0  &amp;0  &amp;1 \\ 0 &amp;0  &amp;0  &amp;1 \\ 1&amp;1  &amp;1  &amp; 0 \end{bmatrix}\)</span></p>
 </section>
 <section id="id6">
-<h3>Undirected<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<h3>Undirected<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <p>无向网络的矩阵是对称的。</p>
 <p><span class="math notranslate nohighlight">\(A_{ij} = A_{ji} , \: A_{ii} = 0\)</span></p>
 <p><span class="math notranslate nohighlight">\(k_i = \sum_{j=1}^N A_{ij}, \: k_j = \sum_{i=1}^N A_{ij} \)</span></p>
@@ -2053,25 +1080,25 @@ For example, the way we assign the links between a group of individuals will det
 <p><span class="math notranslate nohighlight">\( L = \frac{1}{2}\sum_{i=1}^N k_i = \frac{1}{2}\sum_{ij}^N A_{ij} \)</span></p>
 </section>
 <section id="id7">
-<h3>Directed<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<h3>Directed<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(A_{ij} =1\)</span> if there is a link between node i and j</p>
 <p><span class="math notranslate nohighlight">\(A_{ij} =0\)</span> if there is no link between node i and j</p>
 <p><span class="math notranslate nohighlight">\(A_{ij}=\begin{bmatrix} 0&amp;0  &amp;0  &amp;0 \\ 1&amp;0  &amp;0  &amp;1 \\ 0 &amp;0  &amp;0  &amp;1 \\ 1&amp;0  &amp;0  &amp; 0 \end{bmatrix}\)</span></p>
 <p>Note that for a directed graph the matrix is not symmetric.</p>
 </section>
 <section id="id8">
-<h3>Directed<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<h3>Directed<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(A_{ij} \neq A_{ji}, \: A_{ii} = 0\)</span></p>
 <p><span class="math notranslate nohighlight">\(k_i^{in} = \sum_{j=1}^N A_{ji}, \: k_i^{out} = \sum_{j=1}^N A_{ij} \)</span></p>
 <p><span class="math notranslate nohighlight">\( L = \sum_{i=1}^N k_i^{in} = \sum_{j=1}^N k_j^{out}= \sum_{i,j}^N A_{ij} \)</span></p>
 </section>
 </section>
 <section id="weighted-and-unweighted-networks">
-<h2>WEIGHTED AND UNWEIGHTED NETWORKS<a class="headerlink" href="#weighted-and-unweighted-networks" title="Permalink to this headline">#</a></h2>
+<h2>WEIGHTED AND UNWEIGHTED NETWORKS<a class="headerlink" href="#weighted-and-unweighted-networks" title="Permalink to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\(A_{ij} = W_{ij}\)</span></p>
 </section>
 <section id="bipartite-networks">
-<h2>BIPARTITE NETWORKS<a class="headerlink" href="#bipartite-networks" title="Permalink to this headline">#</a></h2>
+<h2>BIPARTITE NETWORKS<a class="headerlink" href="#bipartite-networks" title="Permalink to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Bipartite</span> <span class="pre">graph</span></code> (or bigraph) is a graph whose nodes can be divided into two disjoint sets U and V such that every link connects a node in U to one in V; that is, U and V are independent sets.</p>
 <ul class="simple">
 <li><p>Hits algorithm</p></li>
@@ -2081,7 +1108,7 @@ For example, the way we assign the links between a group of individuals will det
 <a class="reference internal image-reference" href="_images/bipartite.png"><img alt="_images/bipartite.png" src="_images/bipartite.png" style="width: 800px;" /></a>
 </section>
 <section id="link-analysis">
-<h2>Link Analysis<a class="headerlink" href="#link-analysis" title="Permalink to this headline">#</a></h2>
+<h2>Link Analysis<a class="headerlink" href="#link-analysis" title="Permalink to this heading">#</a></h2>
 <p>餐馆推荐问题</p>
 <p><img alt="image.png" src="_images/hits.png" /></p>
 <p>Credit: 李晓明</p>
@@ -2179,7 +1206,7 @@ For example, the way we assign the links between a group of individuals will det
 </div>
 </div>
 <section id="pagerank">
-<h3>PageRank<a class="headerlink" href="#pagerank" title="Permalink to this headline">#</a></h3>
+<h3>PageRank<a class="headerlink" href="#pagerank" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="_images/pagerank.png"><img alt="_images/pagerank.png" src="_images/pagerank.png" style="width: 800px;" /></a>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2196,7 +1223,7 @@ For example, the way we assign the links between a group of individuals will det
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-network-science-intro_80_0.png" src="_images/15-network-science-intro_80_0.png" />
+<img alt="_images/6c91088c949594574d65d8f1cc128ea24da3ae1678421d865cb544112bb6f916.png" src="_images/6c91088c949594574d65d8f1cc128ea24da3ae1678421d865cb544112bb6f916.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2260,28 +1287,28 @@ For example, the way we assign the links between a group of individuals will det
 </section>
 </section>
 <section id="path">
-<h2>Path 路径<a class="headerlink" href="#path" title="Permalink to this headline">#</a></h2>
+<h2>Path 路径<a class="headerlink" href="#path" title="Permalink to this heading">#</a></h2>
 <p>A path is a sequence of nodes in which  each node is adjacent to the next one</p>
 <ul class="simple">
 <li><p>In a directed network, the path can follow only the direction of an arrow.</p></li>
 </ul>
 <section id="shortest-path">
-<h3>Shortest Path  最短路径<a class="headerlink" href="#shortest-path" title="Permalink to this headline">#</a></h3>
+<h3>Shortest Path  最短路径<a class="headerlink" href="#shortest-path" title="Permalink to this heading">#</a></h3>
 <p>The path with the shortest length between two nodes (distance).</p>
 </section>
 <section id="distance">
-<h3>Distance  距离<a class="headerlink" href="#distance" title="Permalink to this headline">#</a></h3>
+<h3>Distance  距离<a class="headerlink" href="#distance" title="Permalink to this heading">#</a></h3>
 <p>The distance (shortest path, geodesic path) between two nodes is defined as the number of edges along the shortest path connecting them.</p>
 <blockquote>
 <div><p>If the two nodes are disconnected, the distance is <strong>infinity</strong>.</p>
 </div></blockquote>
 </section>
 <section id="diameter">
-<h3>Diameter 直径<a class="headerlink" href="#diameter" title="Permalink to this headline">#</a></h3>
+<h3>Diameter 直径<a class="headerlink" href="#diameter" title="Permalink to this heading">#</a></h3>
 <p><strong>Diameter <span class="math notranslate nohighlight">\(d_{max}\)</span></strong> is the maximum distance between any pair of nodes in the graph.</p>
 </section>
 <section id="average-path-length-distance-d">
-<h3>Average path length/distance, <span class="math notranslate nohighlight">\(&lt;d&gt;\)</span> 平均路径长度<a class="headerlink" href="#average-path-length-distance-d" title="Permalink to this headline">#</a></h3>
+<h3>Average path length/distance, <span class="math notranslate nohighlight">\(&lt;d&gt;\)</span> 平均路径长度<a class="headerlink" href="#average-path-length-distance-d" title="Permalink to this heading">#</a></h3>
 <p>The average of the shortest paths for all pairs of nodes.</p>
 <ul class="simple">
 <li><p>for a <strong>directed graph</strong>: where <span class="math notranslate nohighlight">\(d_{ij}\)</span> is the distance from node i to node j</p></li>
@@ -2300,13 +1327,13 @@ For example, the way we assign the links between a group of individuals will det
 </section>
 </section>
 <section id="cycle">
-<h2>Cycle  环<a class="headerlink" href="#cycle" title="Permalink to this headline">#</a></h2>
+<h2>Cycle  环<a class="headerlink" href="#cycle" title="Permalink to this heading">#</a></h2>
 <p>A path with the same start and end node.</p>
 </section>
 <section id="connectedness">
-<h2>CONNECTEDNESS<a class="headerlink" href="#connectedness" title="Permalink to this headline">#</a></h2>
+<h2>CONNECTEDNESS<a class="headerlink" href="#connectedness" title="Permalink to this heading">#</a></h2>
 <section id="connected-undirected-graph">
-<h3>Connected (undirected) graph<a class="headerlink" href="#connected-undirected-graph" title="Permalink to this headline">#</a></h3>
+<h3>Connected (undirected) graph<a class="headerlink" href="#connected-undirected-graph" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>In a connected <strong>undirected</strong> graph, any two vertices can be joined by a path.</p>
 </div></blockquote>
@@ -2319,27 +1346,27 @@ For example, the way we assign the links between a group of individuals will det
 </ul>
 </section>
 <section id="bridge">
-<h3>Bridge 桥<a class="headerlink" href="#bridge" title="Permalink to this headline">#</a></h3>
+<h3>Bridge 桥<a class="headerlink" href="#bridge" title="Permalink to this heading">#</a></h3>
 <p>if  we erase it, the graph becomes disconnected.</p>
 <p>The adjacency matrix of a network with several components can be written in a block-diagonal form, so that nonzero elements are confined to squares, with all other elements being zero:</p>
 <a class="reference internal image-reference" href="_images/block.png"><img alt="_images/block.png" src="_images/block.png" style="width: 600px;" /></a>
 </section>
 <section id="id9">
-<h3>结构洞<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<h3>结构洞<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
 <p>洞在哪里？</p>
 <p>洞在桥下！结构“坑”</p>
 </section>
 <section id="strongly-connected-directed-graph">
-<h3>Strongly connected <em>directed</em> graph 强连通有向图<a class="headerlink" href="#strongly-connected-directed-graph" title="Permalink to this headline">#</a></h3>
+<h3>Strongly connected <em>directed</em> graph 强连通有向图<a class="headerlink" href="#strongly-connected-directed-graph" title="Permalink to this heading">#</a></h3>
 <p>has a path from each node to every other node and vice versa (e.g. AB path and BA path).</p>
 </section>
 <section id="weakly-connected-directed-graph">
-<h3>Weakly connected directed graph  弱连接有向图<a class="headerlink" href="#weakly-connected-directed-graph" title="Permalink to this headline">#</a></h3>
+<h3>Weakly connected directed graph  弱连接有向图<a class="headerlink" href="#weakly-connected-directed-graph" title="Permalink to this heading">#</a></h3>
 <p>it is connected if we disregard the edge directions.</p>
 <p>Strongly connected components can be identified, but not every node is part of a nontrivial strongly connected component.</p>
 </section>
 <section id="in-component-scc-out-component">
-<h3>In-component -&gt; SCC -&gt;Out-component<a class="headerlink" href="#in-component-scc-out-component" title="Permalink to this headline">#</a></h3>
+<h3>In-component -&gt; SCC -&gt;Out-component<a class="headerlink" href="#in-component-scc-out-component" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>In-component: nodes that can reach the <strong>scc</strong> (strongly connected component 强连通分量或强连通子图)</p></li>
 <li><p>Out-component: nodes that can be reached from the scc.</p></li>
@@ -2350,7 +1377,7 @@ For example, the way we assign the links between a group of individuals will det
 </section>
 </section>
 <section id="clustering-coefficient">
-<h2>Clustering coefficient 聚集系数<a class="headerlink" href="#clustering-coefficient" title="Permalink to this headline">#</a></h2>
+<h2>Clustering coefficient 聚集系数<a class="headerlink" href="#clustering-coefficient" title="Permalink to this heading">#</a></h2>
 <p>what fraction of your neighbors are connected? Watts &amp; Strogatz, Nature 1998.</p>
 <p>节点<span class="math notranslate nohighlight">\(i\)</span>的朋友之间是否也是朋友？</p>
 <p>Node i with degree <span class="math notranslate nohighlight">\(k_i\)</span>  节点i有k个朋友</p>
@@ -2363,11 +1390,11 @@ For example, the way we assign the links between a group of individuals will det
 <p><span class="math notranslate nohighlight">\(C_i = \frac{2e_i}{k_i(k_i -1)}\)</span></p>
 <p><span class="math notranslate nohighlight">\(C_i\)</span> in [0,1]</p>
 <section id="id10">
-<h3>节点的<strong>聚集系数</strong><a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<h3>节点的<strong>聚集系数</strong><a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="_images/cc.png"><img alt="_images/cc.png" src="_images/cc.png" style="width: 500px;" /></a>
 </section>
 <section id="global-clustering-coefficient-i-e-transtivity">
-<h3>Global Clustering Coefficient 全局聚集系数（i.e., Transtivity 传递性)<a class="headerlink" href="#global-clustering-coefficient-i-e-transtivity" title="Permalink to this headline">#</a></h3>
+<h3>Global Clustering Coefficient 全局聚集系数（i.e., Transtivity 传递性)<a class="headerlink" href="#global-clustering-coefficient-i-e-transtivity" title="Permalink to this heading">#</a></h3>
 <blockquote>
 <div><p>triangles 三角形
 triplets 三元组</p>
@@ -2389,7 +1416,7 @@ triplets 三元组</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-network-science-intro_101_0.png" src="_images/15-network-science-intro_101_0.png" />
+<img alt="_images/b1484525d877817a0c5b79e04ae0d8c9965349c58790fe49b3930033d768f449.png" src="_images/b1484525d877817a0c5b79e04ae0d8c9965349c58790fe49b3930033d768f449.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2414,7 +1441,7 @@ triplets 三元组</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-network-science-intro_103_0.png" src="_images/15-network-science-intro_103_0.png" />
+<img alt="_images/b6a9692abbc27bc4d0db3cb4f8526c992b6835d8bc13165c2dbf7a57569371f4.png" src="_images/b6a9692abbc27bc4d0db3cb4f8526c992b6835d8bc13165c2dbf7a57569371f4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2440,7 +1467,7 @@ triplets 三元组</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15-network-science-intro_105_0.png" src="_images/15-network-science-intro_105_0.png" />
+<img alt="_images/ab53e9caa932628507a8ca9e9022de0fd5a9be8d4adeb3907aae2aa560121365.png" src="_images/ab53e9caa932628507a8ca9e9022de0fd5a9be8d4adeb3907aae2aa560121365.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2465,7 +1492,7 @@ triplets 三元组</p>
 </section>
 </section>
 <section id="typical-network-science-research">
-<h2>Typical Network Science Research<a class="headerlink" href="#typical-network-science-research" title="Permalink to this headline">#</a></h2>
+<h2>Typical Network Science Research<a class="headerlink" href="#typical-network-science-research" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Discovering, Modeling, Verification</p>
 <ul>
@@ -2476,15 +1503,15 @@ triplets 三元组</p>
 </ul>
 </section>
 <section id="typical-math-style">
-<h2>Typical Math Style<a class="headerlink" href="#typical-math-style" title="Permalink to this headline">#</a></h2>
+<h2>Typical Math Style<a class="headerlink" href="#typical-math-style" title="Permalink to this heading">#</a></h2>
 <p>Fan Chung &amp; Linyuan Lu, The average distance in random graphs with given expected degree,. PNAS, 19, 15879-15882 (2002).</p>
 </section>
 <section id="typical-physical-style">
-<h2>Typical Physical Style<a class="headerlink" href="#typical-physical-style" title="Permalink to this headline">#</a></h2>
+<h2>Typical Physical Style<a class="headerlink" href="#typical-physical-style" title="Permalink to this heading">#</a></h2>
 <p>A.-L.Barabási,R.Albert,H.Jeong Mean-field theory for scale-free random networks. Physica A 272, 173–187 (1999).</p>
 </section>
 <section id="typical-computer-science-style">
-<h2>Typical Computer Science Style<a class="headerlink" href="#typical-computer-science-style" title="Permalink to this headline">#</a></h2>
+<h2>Typical Computer Science Style<a class="headerlink" href="#typical-computer-science-style" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Community detection</p></li>
 <li><p>Link prediction</p></li>
@@ -2492,12 +1519,12 @@ triplets 三元组</p>
 </ul>
 </section>
 <section id="typical-control-sytle">
-<h2>Typical control sytle<a class="headerlink" href="#typical-control-sytle" title="Permalink to this headline">#</a></h2>
+<h2>Typical control sytle<a class="headerlink" href="#typical-control-sytle" title="Permalink to this heading">#</a></h2>
 <p>Controllability of Complex Networks</p>
 <p>Liu Y Y, Slotine J J, Barabási A L. Nature, 2011, 473(7346): 167-173.</p>
 </section>
 <section id="id11">
-<h2>阅读材料<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h2>
+<h2>阅读材料<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Barabasi 2016 Network Science. Cambridge</p></li>
 <li><p>汪小帆、李翔、陈关荣 2012 网络科学导论. 高等教育出版社</p></li>
@@ -2522,7 +1549,7 @@ triplets 三元组</p>
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -2530,50 +1557,177 @@ triplets 三元组</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="14-movielens.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">使用Turicreate进行电影推荐</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="14-movielens.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">使用Turicreate进行电影推荐</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="16-network-science-models.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="16-network-science-models.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">网络科学模型</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-saddam-hussein-to-network-theory">FROM SADDAM HUSSEIN TO NETWORK THEORY</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-about-osama-bin-laden">How about Osama bin Laden?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-story-2-august-15-2003-blackout">A SIMPLE STORY (2): August 15, 2003 blackout.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vulnerability">VULNERABILITY</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-systems">COMPLEX SYSTEMS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity">Complexity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">COMPLEX SYSTEMS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-history-of-network-analysis">THE HISTORY OF NETWORK ANALYSIS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#health-from-drug-design-to-metabolic-engineering">Health: From drug design to metabolic engineering.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#security-fighting-terrorism">Security: Fighting Terrorism.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#epidemics-from-forecasting-to-halting-deadly-viruses">Epidemics: From forecasting to halting deadly viruses.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-first-major-mobile-epidemic-outbreak">The first major mobile epidemic outbreak</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brain-research-mapping-neural-network">Brain Research: Mapping neural network.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-bridges-of-konigsberg">The Bridges of Konigsberg</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eulers-theorem-1735">Euler’s theorem (1735):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-a-proper-representation">CHOOSING A PROPER REPRESENTATION</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#undirected-vs-directed-networks">UNDIRECTED VS. DIRECTED NETWORKS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#undirected">Undirected</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#directed">Directed</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-average-degree-and-degree-distribution">Degree, Average Degree and Degree Distribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#undirected-network">Undirected network:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#directed-network">Directed network</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#average-degree">Average Degree</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Undirected</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Directed</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-distribution">Degree distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacency-matrix">Adjacency matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Undirected</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Undirected</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Directed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Directed</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-and-unweighted-networks">WEIGHTED AND UNWEIGHTED NETWORKS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bipartite-networks">BIPARTITE NETWORKS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#link-analysis">Link Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pagerank">PageRank</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#path">Path 路径</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shortest-path">Shortest Path  最短路径</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distance">Distance  距离</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diameter">Diameter 直径</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-path-length-distance-d">Average path length/distance, <span class="math notranslate nohighlight">\(&lt;d&gt;\)</span> 平均路径长度</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cycle">Cycle  环</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connectedness">CONNECTEDNESS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connected-undirected-graph">Connected (undirected) graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bridge">Bridge 桥</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">结构洞</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strongly-connected-directed-graph">Strongly connected <em>directed</em> graph 强连通有向图</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakly-connected-directed-graph">Weakly connected directed graph  弱连接有向图</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-component-scc-out-component">In-component -&gt; SCC -&gt;Out-component</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-coefficient">Clustering coefficient 聚集系数</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">节点的<strong>聚集系数</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#global-clustering-coefficient-i-e-transtivity">Global Clustering Coefficient 全局聚集系数（i.e., Transtivity 传递性)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-network-science-research">Typical Network Science Research</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-math-style">Typical Math Style</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-physical-style">Typical Physical Style</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-computer-science-style">Typical Computer Science Style</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#typical-control-sytle">Typical control sytle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">阅读材料</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Cheng-Jun Wang<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Cheng-Jun Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

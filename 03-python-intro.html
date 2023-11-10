@@ -1,50 +1,62 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>第二章 数据科学的编程工具 &#8212; 计算传播学</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,63 +64,103 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '03-python-intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Jupyter Notebook" href="0-jupyter-notebook.html" />
     <link rel="prev" title="数据科学的编程工具：大数据" href="02-bigdata.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
 
-    
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/socrates_jump.gif" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">计算传播学</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/socrates_jump.gif" class="logo__image only-light" alt="计算传播学 - Home"/>
+    <script>document.write(`<img src="_static/socrates_jump.gif" class="logo__image only-dark" alt="计算传播学 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -118,1063 +170,395 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="01-intro2cjc.html">
-   第一章 计算传播学简介
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="02-bigdata.html">
-     数据科学的编程工具：大数据
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
-   第二章 数据科学的编程工具
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-jupyter-notebook.html">
-     Jupyter Notebook
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="01-recombination.html">
-     计算思维：通过拆解和重组学习
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-slides.html">
-     使用Jupyter制作Slides的介绍
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-turicreate.html">
-     Turicreate: Departure from Graphlab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-matplotlib-chinese.html">
-     解决Matplotlib绘图显示中文问题
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-UK-MPS-Scandal.html">
-     案例：2009年英国国会议员开支丑闻
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-umbrella-of-love.html">
-     案例：《转角遇到爱》背后的数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-who-runs-China.html">
-     案例：Who runs China？背后的数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-gdelt.html">
-     Gdelt Dataset: Events, Mentions, and Global Knowledge Graph
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="04-crawler-beautifulsoup.html">
-   第三章 数据抓取
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-fact-checking.html">
-     抓取实时辟谣数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-13chambers.html">
-     抓取网络小说
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-wechat.html">
-     抓取微信公众号文章内容
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-douban.html">
-     使用requests + Xpath抓取豆瓣电影数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-gov-report.html">
-     抓取历届政府工作报告
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-cppcc.html">
-     抓取江苏省政协十年提案
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-netease-music.html">
-     抓取网易云音乐热门评论
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-selenium.html">
-     使用Selenium操纵浏览器
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-selenium-music-history.html">
-     抓取网易云音乐用户的听歌记录
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-selenium-people-com-search.html">
-     使用Selenium提取人民网搜索数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-tripadvisor.html">
-     使用Selenium抓取TripAdvisor用户评论
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-pyppeteer.html">
-     使用Pyppeteer实现异步抓取!
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-weibo.html">
-     轻型微博爬虫
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-snscrape-twitter.html">
-     snscrape
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="06-data-cleaning-intro.html">
-   第四章 数据清洗
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-preprocessing.html">
-     对大数据进行预处理
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-tweets.html">
-     数据清洗之推特数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-occupy-central-news.html">
-     对占中新闻进行数据清洗
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-music-list.html">
-     清洗音乐列表🎵
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-pandas.html">
-     使用Pandas进行数据清洗
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="08-01-statistics-thinking.html">
-   第五章 统计思维
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-02-kl-divergence.html">
-     KL Divergence
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-02-linear-algebra.html">
-     Linear algebra
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-03-distributions.html">
-     Distribution Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-03-probability.html">
-     Probability
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-04-hypothesis-inference.html">
-     Statistical Hypothesis Testing
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-05-gradient-descent.html">
-     Introduction to Gradient Descent
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-06-regression.html">
-     Linear Regression
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-06-statsmodels.html">
-     Statistical Modeling with Python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-07-analyzing-titanic-dataset.html">
-     Logistic Regression of Titanic Data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-07-covid19-pew-survey.html">
-     Analysing the Pew Survey Data of COVID19
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-11-cfps-survey-analysis.html">
-     中国家庭追踪调查2018
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-08-covid19-grangercausality.html">
-     社交媒体可以预测新冠疫情吗？
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-09-survival-analysis.html">
-     Survival Analysis with Python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-10-dowhy-estimation-methods.html">
-     The Book of Why
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
-   第六章 社会科学家的机器学习
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-03-hyperparameters-and-model-validation.html">
-     Hyperparameters and Model Validation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-04-feature-engineering.html">
-     Feature Engineering
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-05-naive-bayes.html">
-     In Depth: Naive Bayes Classification
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-06-linear-regression.html">
-     In Depth: Linear Regression
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-07-support-vector-machines.html">
-     In-Depth: Support Vector Machines
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-08-random-forests.html">
-     In-Depth: Decision Trees and Random Forests
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-09-googleflustudy.html">
-     Forecasting and nowcasting with Google Flu Trends
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-10-future-employment.html">
-     The future of employment
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-grf.html">
-     Causal Forests
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="09-11-neural-network-intro.html">
-   第七章 神经网络与深度学习
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-13-cnn.html">
-     Convolutional Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-14-rnn.html">
-     Sequnce Modeling: Recurrent and Recursive Nets
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-12-hand-written-digits.html">
-     Recognizing Hand-Written Digits with Neural Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-15-cifar10.html">
-     使用CNN对CIFAR10图像进行分类
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-16-pytorch_vgg_pretrained.html">
-     VGG16预训练模型
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="10-text-mining-gov-report.html">
-   第八章 文本挖掘
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10-word2vec.html">
-     词向量模型简介
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10-doc2vec.html">
-     Doc2Vec
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">
-     基于字典的情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-2-emotion-dict.html">
-     大连理工大学中文情感词汇
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-3-NRC-Chinese-dict.html">
-     基于NRC字典的情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-3-textblob.html">
-     利用textblob进行情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-4-sentiment-classifier.html">
-     基于机器学习的情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-5-LIWC.html">
-     LIWC: Linguistic Inquiry and Word Count  analyzer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12-topic-models-update.html">
-     主题模型简介
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12-topic-models-with-turicreate.html">
-     使用Turicreate建立主题模型
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="13-recsys-intro.html">
-   第九章 推荐系统简介
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13-recsys-latent-factor-model.html">
-     Latent Factor Recommender System
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13-recsys-intro-surprise.html">
-     使用Surprise构建推荐系统
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="14-millionsong.html">
-     使用Turicreate进行音乐推荐
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="14-movielens.html">
-     使用Turicreate进行电影推荐
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="15-network-science-intro.html">
-   第十章 网络科学简介
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="16-network-science-models.html">
-     网络科学模型
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="17-networkx.html">
-     使用NetworkX分析网络
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-02-network-diffusion.html">
-     Simulating Network Diffusion With NDlib
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-03-network-epidemics.html">
-     Epidemics on Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-04-seir-hcd-model.html">
-     SEIR-HCD Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-ergm-siena.html">
-     Social Network Analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-weibo-hot-search.html">
-     微博热搜分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">
-     天涯论坛的回帖网络分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">
-     可视化Facebook社交网络
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-ecomplexity.html">
-     Economic Complexity and Product Complexity
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="19-visualization-with-seaborn.html">
-   第十一章 可视化
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-matplotlib-colormap.html">
-     Qualitative Colormaps in Matplotlib Visualization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-scientific-plot.html">
-     Matplotlib的科学绘图样式
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-with-pyecharts.html">
-     使用PyEcharts进行可视化
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-plotly-express.html">
-     Plotly Express in Python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-maps-using-folium.html">
-     使用folium做地图可视化
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-datashader.html">
-     使用Datashader可视化地理信息
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-datapane.html">
-     使用Datapane制作数据报告
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-pantheon.html">
-     万神殿项目（Pantheon Project）
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="01-intro2cjc.html">第一章 计算传播学简介</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02-bigdata.html">数据科学的编程工具：大数据</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">第二章 数据科学的编程工具</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="0-jupyter-notebook.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-chatgpt.html">Using ChatGPT to Learn Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-iching.html">iching: A python package of I Ching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-recombination.html">计算思维：通过拆解和重组学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-slides.html">使用Jupyter制作Slides的介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-turicreate.html">Turicreate: Departure from Graphlab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-matplotlib-chinese.html">解决Matplotlib绘图显示中文问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-UK-MPS-Scandal.html">案例：2009年英国国会议员开支丑闻</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-umbrella-of-love.html">案例：《转角遇到爱》背后的数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-who-runs-China.html">案例：Who runs China？背后的数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-gdelt.html">Gdelt Dataset: Events, Mentions, and Global Knowledge Graph</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="04-crawler-beautifulsoup.html">第三章 数据抓取</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-fact-checking.html">抓取实时辟谣数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-13chambers.html">抓取网络小说</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-wechat.html">抓取微信公众号文章内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-douban.html">使用requests + Xpath抓取豆瓣电影数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-gov-report.html">抓取历届政府工作报告</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-cppcc.html">抓取江苏省政协十年提案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-netease-music.html">抓取网易云音乐热门评论</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium.html">使用Selenium操纵浏览器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium-music-history.html">抓取网易云音乐用户的听歌记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium-people-com-search.html">使用Selenium提取人民网搜索数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-tripadvisor.html">使用Selenium抓取TripAdvisor用户评论</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-pyppeteer.html">使用Pyppeteer实现异步抓取!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-weibo.html">轻型微博爬虫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-snscrape-twitter.html">snscrape</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="06-data-cleaning-intro.html">第四章 数据清洗</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-preprocessing.html">对大数据进行预处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-tweets.html">数据清洗之推特数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-occupy-central-news.html">对占中新闻进行数据清洗</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-music-list.html">清洗音乐列表🎵</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-pandas.html">使用Pandas进行数据清洗</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="08-01-statistics-thinking.html">第五章 统计思维</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="08-02-kl-divergence.html">KL Divergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-02-linear-algebra.html">Linear algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-03-distributions.html">Distribution Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-03-probability.html">Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-04-hypothesis-inference.html">Statistical Hypothesis Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-05-gradient-descent.html">Introduction to Gradient Descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-06-regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-06-statsmodels.html">Statistical Modeling with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-07-analyzing-titanic-dataset.html">Logistic Regression of Titanic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-07-covid19-pew-survey.html">Analysing the Pew Survey Data of COVID19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-11-cfps-survey-analysis.html">中国家庭追踪调查2018</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-08-covid19-grangercausality.html">社交媒体可以预测新冠疫情吗？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-09-survival-analysis.html">Survival Analysis with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-10-dowhy-estimation-methods.html">The Book of Why</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="09-01-machine-learning-with-sklearn.html">第六章 社会科学家的机器学习</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="09-03-hyperparameters-and-model-validation.html">Hyperparameters and Model Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-04-feature-engineering.html">Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-05-naive-bayes.html">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-06-linear-regression.html">In Depth: Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-07-support-vector-machines.html">In-Depth: Support Vector Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-08-random-forests.html">In-Depth: Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-09-googleflustudy.html">Forecasting and nowcasting with Google Flu Trends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-10-future-employment.html">The future of employment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-grf.html">Causal Forests</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="09-11-neural-network-intro.html">第七章 神经网络与深度学习</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="09-13-cnn.html">Convolutional Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-14-rnn.html">Sequnce Modeling: Recurrent and Recursive Nets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-12-hand-written-digits.html">Recognizing Hand-Written Digits with Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-15-cifar10.html">使用CNN对CIFAR10图像进行分类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-16-pytorch_vgg_pretrained.html">VGG16预训练模型</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="10-text-mining-gov-report.html">第八章 文本挖掘</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="10-word2vec.html">词向量模型简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-doc2vec.html">Doc2Vec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">基于字典的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-2-emotion-dict.html">大连理工大学中文情感词汇</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-3-NRC-Chinese-dict.html">基于NRC字典的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-3-textblob.html">利用textblob进行情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-4-sentiment-classifier.html">基于机器学习的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-5-LIWC.html">LIWC: Linguistic Inquiry and Word Count  analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-topic-models-update.html">主题模型简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-topic-models-with-turicreate.html">使用Turicreate建立主题模型</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="13-recsys-intro.html">第九章 推荐系统简介</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="13-recsys-latent-factor-model.html">Latent Factor Recommender System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13-recsys-intro-surprise.html">使用Surprise构建推荐系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-millionsong.html">使用Turicreate进行音乐推荐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-movielens.html">使用Turicreate进行电影推荐</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="15-network-science-intro.html">第十章 网络科学简介</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="16-network-science-models.html">网络科学模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17-networkx.html">使用NetworkX分析网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-02-network-diffusion.html">Simulating Network Diffusion With NDlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-03-network-epidemics.html">Epidemics on Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-04-seir-hcd-model.html">SEIR-HCD Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-ergm-siena.html">Social Network Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-weibo-hot-search.html">微博热搜分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">天涯论坛的回帖网络分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">可视化Facebook社交网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-ecomplexity.html">Economic Complexity and Product Complexity</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="19-visualization-with-seaborn.html">第十一章 可视化</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-matplotlib-colormap.html">Qualitative Colormaps in Matplotlib Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-scientific-plot.html">Matplotlib的科学绘图样式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-with-pyecharts.html">使用PyEcharts进行可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-plotly-express.html">Plotly Express in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-maps-using-folium.html">使用folium做地图可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-datashader.html">使用Datashader可视化地理信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-datapane.html">使用Datapane制作数据报告</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-pantheon.html">万神殿项目（Pantheon Project）</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/03-python-intro.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
   
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
+  <div id="rtd-footer-container"></div>
 
-      </li>
+
+      </div>
       
-      <li>
-        <a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/03-python-intro.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/03-python-intro.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/chengjun/mybook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F03-python-intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/03-python-intro.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chengjun/mybook"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F03-python-intro.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/03-python-intro.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python">
-   人生苦短，我用Python。
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   特点
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   Python中包含了丰富的类库。
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pythonide">
-   Python软件与IDE
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-anaconda-python">
-   Installing Anaconda Python
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pip-install">
-   第三方包可以使用pip install的方法安装。
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#variable-type">
-   Variable Type
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dir-help">
-   dir &amp; help
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#type">
-   type
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-structure">
-   Data Structure
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
-   定义函数
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#for">
-   For 循环
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#map">
-   map函数
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#if-elif-else">
-   if elif else
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#while">
-   while循环
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#try-except">
-   try except
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#write-and-read-data">
-   Write and Read data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
-   保存中间步骤产生的字典数据
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#json">
-   重新读入json
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id6">
-   保存中间步骤产生的列表数据
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#matplotlib">
-   使用matplotlib绘图
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#this-is-the-end">
-   This is the end.
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>第二章 数据科学的编程工具</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#python">
-   人生苦短，我用Python。
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   特点
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   Python中包含了丰富的类库。
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pythonide">
-   Python软件与IDE
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installing-anaconda-python">
-   Installing Anaconda Python
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pip-install">
-   第三方包可以使用pip install的方法安装。
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#variable-type">
-   Variable Type
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dir-help">
-   dir &amp; help
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#type">
-   type
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-structure">
-   Data Structure
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
-   定义函数
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#for">
-   For 循环
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#map">
-   map函数
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#if-elif-else">
-   if elif else
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#while">
-   while循环
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#try-except">
-   try except
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#write-and-read-data">
-   Write and Read data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
-   保存中间步骤产生的字典数据
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#json">
-   重新读入json
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id6">
-   保存中间步骤产生的列表数据
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#matplotlib">
-   使用matplotlib绘图
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#this-is-the-end">
-   This is the end.
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>第二章 数据科学的编程工具</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">人生苦短，我用Python。</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">特点</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Python中包含了丰富的类库。</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pythonide">Python软件与IDE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-anaconda-python">Installing Anaconda Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-install">第三方包可以使用pip install的方法安装。</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-type">Variable Type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dir-help">dir &amp; help</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type">type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structure">Data Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">定义函数</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for">For 循环</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map">map函数</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#if-elif-else">if elif else</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#while">while循环</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#try-except">try except</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-and-read-data">Write and Read data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">保存中间步骤产生的字典数据</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#json">重新读入json</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">保存中间步骤产生的列表数据</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">使用matplotlib绘图</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#this-is-the-end">This is the end.</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>第二章 数据科学的编程工具<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<h1>第二章 数据科学的编程工具<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <p>Python使用简介</p>
 <p>王成军</p>
 <p><img alt="" src="_images/author.png" /></p>
 <section id="python">
-<h2>人生苦短，我用Python。<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h2>
+<h2>人生苦短，我用Python。<a class="headerlink" href="#python" title="Permalink to this heading">#</a></h2>
 <p>Python（/ˈpaɪθən/）是一种面向对象、解释型计算机程序设计语言</p>
 <ul class="simple">
 <li><p>由Guido van Rossum于1989年底发明</p></li>
@@ -1186,7 +570,7 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="id2">
-<h2>特点<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<h2>特点<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>免费、功能强大、使用者众多</p></li>
 <li><p>与R和MATLAB相比，Python是一门更易学、更严谨的程序设计语言。使用Python编写的脚本更易于理解和维护。</p></li>
@@ -1195,19 +579,19 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="id3">
-<h2>Python中包含了丰富的类库。<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<h2>Python中包含了丰富的类库。<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>众多开源的科学计算软件包都提供了Python的调用接口，例如著名的计算机视觉库OpenCV。
 Python本身的科学计算类库发展也十分完善，例如NumPy、SciPy和matplotlib等。
 就社会网络分析而言，igraph, networkx, graph-tool, Snap.py等类库提供了丰富的网络分析工具</p>
 </section>
 <section id="pythonide">
-<h2>Python软件与IDE<a class="headerlink" href="#pythonide" title="Permalink to this headline">#</a></h2>
+<h2>Python软件与IDE<a class="headerlink" href="#pythonide" title="Permalink to this heading">#</a></h2>
 <p>目前最新的Python版本为3.0，更稳定的2.7版本。
 编译器是编写程序的重要工具。
 免费的Python编译器有Spyder、PyCharm(免费社区版)、Ipython、Vim、 Emacs、 Eclipse(加上PyDev插件)。</p>
 </section>
 <section id="installing-anaconda-python">
-<h2>Installing Anaconda Python<a class="headerlink" href="#installing-anaconda-python" title="Permalink to this headline">#</a></h2>
+<h2>Installing Anaconda Python<a class="headerlink" href="#installing-anaconda-python" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Use the Anaconda Python</p>
 <ul>
@@ -1217,17 +601,17 @@ Python本身的科学计算类库发展也十分完善，例如NumPy、SciPy和m
 </ul>
 </section>
 <section id="pip-install">
-<h2>第三方包可以使用pip install的方法安装。<a class="headerlink" href="#pip-install" title="Permalink to this headline">#</a></h2>
+<h2>第三方包可以使用pip install的方法安装。<a class="headerlink" href="#pip-install" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>可以点击ToolsOpen command prompt</p></li>
 <li><p>然后在打开的命令窗口中输入：</p>
 <ul>
-<li><p><del>pip install beautifulsoup4</p></li>
+<li><p>pip install RISE</p></li>
 </ul>
 </li>
 </ul>
 <blockquote>
-<div><p>pip install beautifulsoup4</p>
+<div><p>pip install RISE</p>
 </div></blockquote>
 <ul class="simple">
 <li><p>NumPy /SciPy for scientific computing</p></li>
@@ -1290,7 +674,7 @@ constructFlowNetwork(C)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># constructing a flow network</span>
 <span class="n">demo</span> <span class="o">=</span> <span class="n">fn</span><span class="o">.</span><span class="n">attention_data</span>
-<span class="n">gd</span> <span class="o">=</span> <span class="n">fn</span><span class="o">.</span><span class="n">constructFlowNetwork</span><span class="p">(</span><span class="n">demo</span><span class="p">)</span>
+<span class="n">gd</span> <span class="o">=</span> <span class="n">fn</span><span class="o">.</span><span class="n">constructFlowNetwork</span><span class="p">(</span><span class="n">demo</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
@@ -1321,7 +705,7 @@ constructFlowNetwork(C)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_13_0.png" src="_images/03-python-intro_13_0.png" />
+<img alt="_images/8bd0e4cc24bcc78ff05ec42654622193ba75af8f7625bcec258941680fba01ea.png" src="_images/8bd0e4cc24bcc78ff05ec42654622193ba75af8f7625bcec258941680fba01ea.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1379,9 +763,164 @@ constructFlowNetwork(C)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">iching</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: iching in /opt/anaconda3/lib/python3.9/site-packages (3.7.2)
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">iching.iching</span> <span class="k">as</span> <span class="nn">i</span>
+
+<span class="n">i</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="mi">200308030630</span><span class="p">,</span> <span class="mi">202310271420</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Your birthday &amp; your prediction time:  200308030630202310271420
+there is a changing predict! Also run changePredict()
+困 &amp; 兑 
+ 本卦:  困卦原文困。亨，贞，大人吉，无咎。有言不信。象曰：泽无水，困。君子以致命遂志。白话文解释困卦：通泰。卜问王公贵族之事吉利，没有灾难。筮遇此爻，有罪之人无法申辩清楚。《象辞》说：本卦上卦为兑，兑为泽；下卦为坎，坎为水，水渗泽底，泽中干涸，是困卦的卦象。君子观此卦象，以处境艰难自励，穷且益坚，舍身捐命，以行其夙志。
+
+《断易天机》解困卦兑上坎下，为兑宫初世卦。此卦君子受困于小人，阳为阴蔽，大人则吉而无咎。所闻之言没有诚信。
+
+北宋易学家邵雍解泽上无水，受困穷之；万物不生，修德静守。得此卦者，陷入困境，事事不如意，宜坚守正道，等待时机。
+
+台湾国学大儒傅佩荣解时运：身名皆困，不如安命。财运：财乏势危，不如归去。家宅：安全第一；女寡之象。身体：肾水已亏，险在眼前。
+
+传统解卦这个卦是异卦（下坎上兑）相叠。兑为阴为泽喻悦；坎为阳为水喻险。泽水困，陷入困境，才智难以施展，仍坚守正道，自得其乐，必可成事，摆脱困境。大象：水在泽下，万物不生，喻君子困穷，小人滥盈之象。运势：诸事不如意，所谓龙游浅水遭虾戏。事业：境况十分不佳，遭受到很大的困难。人生面临巨大的考验，如采取不正当的手段，会愈陷愈深。相反，如身陷困逆境地而不失节操，自勉自坚，泰然处之，不失其志，终能成事。经商：面临激烈竞争，很有破产的可能。切勿失望，而应在困境中奋斗。为此，只能靠平日加强修养。认真反省自己的行为，总结教训，重新奋起，但也不宜浮躁，应缓慢而进。同时，更要警惕因致富发财，得意忘形而陷入新的困境。求名：欲速则不达。应以谦虚的态度，缓慢前进，应有坚定的志向，唯有志才能促成事业的成功。婚恋：以乐观态度冷静处理，尤应注重人品。决策：聪明智慧，但怀才不遇。若不因困境而失去信心，坚持努力上进，放弃侥幸心理，锲而不舍，虽不一定能守全实现自己的理想，但终会有所成。
+
+台湾张铭仁解卦困：表示很大的困难被困住了，主大凶象，四大难卦第四卦。四处无援，最困难之时。事事很难再有进展，只好静待时机，是此时最好的选择。解释：被困住。特性：不满足感，不喜平淡生活，生活过于理想化，爱变化。自立自强，辛勤工作，善于用脑工作，不适合领导工作。运势：不如意，被小人欺，劳而无功，破损之灾。一事难成，运衰也。宜守己待时。家运：家庭之主有屈于下风，被内助压迫者，亦常生反弹，吵架滋事。为黑暗时期，宜忍辱负重，期待黎明到来。若不谨守正道者，有失和、破​​兆也。疾病：危重之象，注意口腔咽喉，泌尿系统，甚至性病。胎孕：胎安。将来劳碌命格。子女：劳苦之命，但行为端正者，终可得福也。周转：求人不如求己，凡事需量入为出。若为女色破财，当然求助无门。买卖：不能如愿，有挫折。等人：受到阻碍，不来或迟到。寻人：途中可遇，来者自来也。失物：不能寻回。外出：困难多，慎重考虑。考试：不理想。诉讼：凡事不宜过于执着，防牢狱之灾。求事：不得时亦不得意，再待时机。改行：不宜。开业：开业者须再待时。
+
+初六爻辞初六。臀困于株木，入于幽谷，三岁不见。象曰：入于幽谷，幽不明也。白话文解释初六：臀部被狱吏的刑杖打伤，被投入黑暗的牢房中，三年不见其人。《象辞》说：进入了幽深的山谷，自然幽暗不明。
+
+北宋易学家邵雍解凶：得此爻者，有惊忧，或有丧服之灾。做官的会退职。
+
+台湾国学大儒傅佩荣解时运：渐入逆境，三年才转。财运：材木生意，运送不易。家宅：来往人少；男家卑微。身体：大凶之兆。
+
+初六变卦初六爻动变得周易第58卦：兑为泽。这个卦是同卦（下泽上泽）相叠。泽为水。两泽相连，两水交流，上下相和，团结一致，朋友相助，欢欣喜悦。兑为悦也。同秉刚健之德，外抱柔和之姿，坚行正道，导民向上。
+
+九二爻辞九二。困于洒食，朱绂方来，利用享祀。征凶，无咎。象曰：困于洒食，中有庆也。白话文解释九二：酒醉未醒，穿着红色服装的蛮夷前来进犯，忧患猝临，宜急祭神求佑。至于占问出征，则有危险。其他事无大的灾祸。《象辞》说：酒醉未醒，天予命赐公卿之服，因为九二之爻居下卦中位，这是将有喜庆之事的兆头。
+
+北宋易学家邵雍解平：得此爻者，得贵人提携，营谋获利，静吉动凶。做官的有晋升之机。
+
+台湾国学大儒傅佩荣解时运：有名有利，反为利用。财运：由商起家，往前则凶。家宅：富贵祭拜；婚姻即成。身体：饮食无度，收心祷告。
+
+九二变卦九二爻动变得周易第45卦：泽地萃。这个卦是异卦（下坤上兑）相叠。坤为地、为顺；兑为泽、为水。泽泛滥淹没大地，人众多相互斗争，危机必四伏，务必顺天任贤，未雨绸缪，柔顺而又和悦，彼此相得益彰，安居乐业。萃，聚集、团结。
+
+六三爻辞六三。困于石，据于疾藜。入于其宫，不见其妻，凶。象曰：据于疾藜，乘刚也；入于其宫，不见其妻，不祥也。白话文解释六三：被石头绊倒，被蒺藜刺伤，历难归家，妻子又不见了，这是凶险之兆。《象辞》说：被石头绊倒，被蒺藜刺伤，之所以屡遇艰难，因为六三阴爻居于九二阳爻之上，像弱者攀附于强暴之人，必受其挟持威凌。回到家中，妻子又不见了，这是不祥之兆。
+
+北宋易学家邵雍解凶：得此爻者，多难之时，宜守正谨慎。
+
+台湾国学大儒傅佩荣解时运：进退不得，身将不保。财运：财去命弱，下场堪虑。家宅：悼亡之屋。身体：无可救药。
+
+六三变卦六三爻动变得周易第28卦：泽风大过。这个卦是异卦（下巽上兑）相叠。兑为泽、为悦，巽为木、为顺，泽水淹舟，遂成大错。阴阳爻相反，阳大阴小，行动非常，有过度形象，内刚外柔。
+
+九四爻辞九四。来徐徐，困于金车，吝，有终。象曰：来徐徐，志在下也。虽不当位，有与也。白话文解释九四：其人被关押在囚车里，慢慢地走来。真不幸，但最后还是被释放。《象辞》说：行走缓慢，不求速进，志向卑微的表现。九四之爻居于九五之下，像人甘居下位，因为态度谦卑，倒能得人帮助。
+
+北宋易学家邵雍解凶：得此爻者，谋事虽然不利，但终有出险之时，从商者或周转不利。做官的闲职者会被起用。
+
+台湾国学大儒傅佩荣解时运：地位不当，受人所鄙。财运：货物失去，急救可保。家宅：慢些入住；事缓可成。身体：长期劳累，恐得归天。
+
+九四变卦九四爻动变得周易第29卦：坎为水。这个卦是同卦（下坎上坎）相叠。坎为水、为险，两坎相重，险上加险，险阻重重。一阳陷二阴。所幸阴虚阳实，诚信可豁然贯通。虽险难重重，却方能显人性光彩。
+
+九五爻辞九五。劓刖，困于赤绂。乃徐，有说，利用祭祀。象曰：劓刖，志未得也。乃徐有说，以中直也。利用祭祀，受福也。白话文解释九五：割了鼻子，断了腿，被身着红色服装的蛮夷虏去。后来慢慢找到脱身的机会，终于逃脱回家。宜急祭神酬谢。《象辞》说：割了鼻子，断了腿，是说其人不得志，身处险境。后来慢慢地脱离了险境，因为九五之爻居上卦中位，像人立身正直，自能化险为夷。宜祭祀鬼神，因为爻象指示：祈求鬼神保佑，承受其福荫。
+
+北宋易学家邵雍解凶：得此爻者，先难后易，不良者有诉刑之扰，丧服之忧。做官的先阻后顺。
+
+台湾国学大儒傅佩荣解时运：过刚必折，小心免祸。财运：货物清理，慢慢售出。家宅：鼻足之患；先疑后成。身体：头脚之病，调养祷告。
+
+九五变卦九五爻动变得周易第40卦：雷水解。这个卦是异卦（下坎上震）相叠。震为雷、为动；坎为水、为险。险在内，动在外。严冬天地闭塞，静极而动。万象更新，冬去春来，一切消除，是为解。
+
+上六爻辞上六。困于葛藟，于臲卼，曰动悔。有悔，征吉。象曰：困于葛藟，未当也。动悔有悔，吉行也。白话文解释上六：被葛藟绊倒，被小木桩刺伤，处境如此艰难，不宜有所行动，否则悔上加悔。至于占问出征则吉利。《象辞》说：被葛藟绊倒，因为行为不得当。悔悟到动则招悔，必能谦慎行事丽逢吉利。
+
+北宋易学家邵雍解平：得此爻者，防惊忧丧服，惟商人、旅行者利有攸往。做官的会有刑罚束缚之忧。
+
+台湾国学大儒傅佩荣解时运：厄运将终，收心努力。财运：久货可出，方可获利。家宅：修整旧宅；厘清瓜葛。身体：心神不安，迁地静养。
+
+上六变卦上六爻动变得周易第6卦：天水讼。这个卦是异卦（下坎上乾）相叠。同需卦相反，互为“综卦”。乾为刚健，坎为险陷。刚与险，健与险，彼此反对，定生争讼。争讼非善事，务必慎重戒惧。
+
+ 
+                (O--__/\__--O) 
+(-------------(O---- |__|----O)----------------) 
+(-----------(O-----/-|__|-\------O)------------) 
+         (-------(O-/_--_\-O)-------) 
+
+
+ 变卦:  兑卦原文兑。亨，利，贞。象曰：丽泽，兑。君子以朋友讲习。白话文解释兑卦：亨通。吉利的贞卜。《象辞》说：本卦为两兑相叠，兑为泽，两泽相连，两水交流是兑卦的卦象。君子观此卦象，从而广交朋友，讲习探索，推广见闻。
+
+《断易天机》解兑卦兑上兑下，为兑宫本位卦。兑为喜悦、取悦，又为泽，泽中之水可以滋润万物，所占的人会很吉利。
+
+北宋易学家邵雍解泽润万物，双重喜悦；和乐群伦，确守正道。得此卦者，多喜庆之事，人情和合，但应坚守正道，否则犯灾。
+
+台湾国学大儒傅佩荣解时运：朋友支持，好好珍惜。财运：有人扶助，获利不难。家宅：友朋同住；因友成亲。身体：熟医可治。
+
+传统解卦这个卦是同卦（下泽上泽）相叠。泽为水。两泽相连，两水交流，上下相和，团结一致，朋友相助，欢欣喜悦。兑为悦也。同秉刚健之德，外抱柔和之姿，坚行正道，导民向上。大象：两泽相依，更得泽中映月，美景良辰，令人怡悦。运势：悲喜交集，有誉有讥，守正道，诸事尚可称意。事业：由于善长人际关系，能团结他人，获得援助。因此，各项事业都十分顺利。只要本人坚持中正之道，动机纯正，是非分明，以诚心与人和悦，前途光明。经商：很有利，可以取得多种渠道的支持。但在顺利时切莫忘记谨慎小心的原则，尤其警惕上小人的当。求名：只要自己目的纯正，并有真才实学，一定可以受到多方面的热情帮助和资助，达到目的。婚恋：彼此满意，成功的可能性很大。但千万不要过于坚持己见。决策：为人聪颖，性格开朗，头脑灵活，心地善良，热心为公众服务，富有组织才能。因此，可以比较顺利地走上领导岗位。但一定要坚持中正原则，秉公办事，不得诌媚讨好上级，更不可欺压民众。永远保持谦虚品德，尤其不可过分自信，否则很容易为坏人包围。
+
+台湾张铭仁解卦泽：表示少女纯真喜悦之象，却在纯真之中带有娇蛮、任性的态度。六冲卦象，大好大坏。忧喜参半！解释：喜悦，高兴。特性：细心，体贴，善解人意，口才佳，幽默感，宜从事公关，服务业。运势：有喜亦有忧，有誉亦有讥，虽得吉庆如意，然应守持正道，否则犯灾。家运：有和悦之气象，但要操守自律，行事不可越轨，有分寸可得吉运。若不操守自律，必犯色情之害而受殃。疾病：久病则凶，注意生活检点，戒酒色。胎孕：孕安。能带给家人喜悦，又与六亲和睦，有缘。但也不要过分溺爱才是。子女：骨肉情深，和好幸福之象。周转：可顺利，不须急也。买卖：有反覆之象，然尽力必成，可得大利之交易。等人：会来，且有喜讯相告。寻人：很快可知其下落。向西方寻可得。失物：遗失物似为金属或金钱，有望失而复得，但是迟一点。且多数已损毁或损失。外出：一路平安，即使遇到困难也会有人帮助，解脱困境。考试：成绩佳。诉讼：似为两个女性及金钱之事惹起，宜有和事佬出面调解。求事：得利，但亦不可太大意。改行：吉利。开业：吉利。
+
+初九爻辞初九。和兑，吉。象曰：和兑之吉，行未疑也。白话文解释初九：和睦欢喜，吉利。《象辞》说：和睦欢喜之所以吉利，因为人际邦交无所猜疑。
+
+北宋易学家邵雍解吉：得此爻者，人情和合，百谋皆遂。
+
+台湾国学大儒傅佩荣解时运：以和为贵，诸事皆吉。财运：秋实可收，自然有利。家宅：和乐融融；室家得宜。身体：宽心无忧。
+
+初九变卦初九爻动变得周易第47卦：泽水困。这个卦是异卦（下坎上兑）相叠。兑为阴为泽喻悦；坎为阳为水喻险。泽水困，陷入困境，才智难以施展，仍坚守正道，自得其乐，必可成事，摆脱困境。
+
+九二爻辞九二。孚兑，吉，悔亡。象曰：孚兑之吉，信志也。白话文解释九二：优待俘虏，吉利，没有悔恨。《象辞》说：以诚信待人，人亦热忱待之，之所以吉利，因为互相之间有了信任。
+
+北宋易学家邵雍解吉：得此爻者，正当好运，事事和顺。做官的有升迁之兆。
+
+台湾国学大儒傅佩荣解时运：上下同心，自然吉祥。财运：以信为本，可长可远。家宅：与邻共富；阴阳相合。身体：疑病得解。
+
+九二变卦九二爻动变得周易第17卦：泽雷随。这个卦是异卦（下震上兑）相叠，震为雷，为动；兑为悦，动而悦就是“随”。随指相互顺从，己有随物，物能随己，彼此沟通。随必依时顺势，有原则和条件，以坚贞为前提。
+
+六三爻辞六三。来兑，凶。象曰：来兑之凶，位不当也白话文解释六三：以使人归服为乐，蕴藏着凶险。《象辞》说：以使人归服为乐，蕴藏着凶险，因为力小而任大，德薄而欲多，所行必不当。
+
+北宋易学家邵雍解凶：得此爻者，会有意外之祸，甚者则失道忘身。做官的有听信谗言而遭辱之忧。
+
+台湾国学大儒傅佩荣解时运：奔走营求，虽成亦辱。财运：无信之商，未来堪虑。家宅：去伪存诚；先合后离。身体：小心外祸。
+
+六三变卦六三爻动变得周易第43卦：泽天夬。这个卦是异卦（下乾上兑）相叠。乾为天为健；兑为泽为悦。泽气上升，决注成雨，雨施大地，滋润万物。五阳去一阴，去之不难，决（去之意）即可，故名为夬（guài），夬即决。
+
+九四爻辞九四。商兑，未宁，介疾有喜。象曰：九四之喜，有庆也。白话文解释九四：商谈恢复邦交之事，尚未达成协议，但两国的矛盾分歧有了愈合的趋势。《象辞》说：九四爻辞所讲的喜，即是指将有喜庆之事。
+
+北宋易学家邵雍解平：得此爻者，从商获利，或进人口，不良者或有疾病，谋望不成。做官的会身居要职，升迁有望。
+
+台湾国学大儒傅佩荣解时运：奋斗将成，斟酌行止。财运：忧心之事，商量解决。家宅：多疾不安；再三说媒而成。身体：心神不安，喜事舒怀。
+
+九四变卦九四爻动变得周易第60卦：水泽节。这个卦是异卦（下兑上坎）相叠。兑为泽，坎为水。泽有水而流有限，多必溢于泽外。因此要有节度，故称节。节卦与涣卦相反，互为综卦，交相使用。天地有节度才能常新，国家有节度才能安稳，个人有节度才能完美。
+
+九五爻辞九五。孚于剥，有厉。象曰：孚于剥，位正当也。白话文解释九五：被剥国俘虏。剥国无理挑衅，必遭惩罚（对我方而言，坏事将变为好事）。《象辞》说：当被侵剥之时，仍以诚信待人，正如九五阳爻所象，其人秉行中正之道，必能逢凶化吉。
+
+北宋易学家邵雍解凶：得此爻者，时运不佳，多意外之祸。做官的会受到小人的诽谤。
+
+台湾国学大儒傅佩荣解时运：居安思危，常得其昌。财运：虽有小损，信心仍在。家宅：诚信为上。身体：皮肤有疾，速治可愈。
+
+九五变卦九五爻动变得周易第54卦：雷泽归妹。这个卦是异卦（下兑上震）相叠。震为动、为长男；兑为悦、为少女。以少女从长男，产生爱慕之情，有婚姻之动，有嫁女之象，故称归妹。
+
+上六爻辞上六。引兑。象曰：上六引兑，未光也。白话文解释上六：引导大家和睦相处。《象辞》说：上六爻辞讲引导大家和睦相处，用意虽佳，但上六阴爻处一卦之尽头，像其人未必能一呼百应。
+
+北宋易学家邵雍解平：得此爻者，营谋不顺，谨防有忧。
+
+台湾国学大儒傅佩荣解时运：靠人扶持，平平之运。财运：有人指引，稍有小利。家宅：内忧外患；似非正聘。身体：化解内邪，才可保全。
+
+上六变卦上六爻动变得周易第10卦：天泽履。这个卦是异卦（下兑上乾）相叠，乾为天，兑为泽，以天喻君，以泽喻民，原文：“履（踩）虎尾，不咥（咬）人”。因此，结果吉利。君上民下，各得其位。兑柔遇乾刚，所履危。履意为实践，卦义是脚踏实地的向前进取的意思。
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span><span class="o">,</span> <span class="nn">datetime</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># plot</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
@@ -1425,38 +964,30 @@ constructFlowNetwork(C)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lines</span><span class="p">[</span><span class="mi">8524</span><span class="p">:</span><span class="mi">8540</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">book</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">8524</span><span class="p">:]</span>
+
+<span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">book</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s1">&#39;wrong&#39;</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+        <span class="n">num</span><span class="o">+=</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+        
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;BOOK I.\n&#39;,
- &#39;\n&#39;,
- &#39;I went down yesterday to the Piraeus with Glaucon the son of Ariston,\n&#39;,
- &#39;that I might offer up my prayers to the goddess (Bendis, the Thracian\n&#39;,
- &#39;Artemis.); and also because I wanted to see in what manner they would\n&#39;,
- &#39;celebrate the festival, which was a new thing. I was delighted with the\n&#39;,
- &#39;procession of the inhabitants; but that of the Thracians was equally,\n&#39;,
- &#39;if not more, beautiful. When we had finished our prayers and viewed the\n&#39;,
- &#39;spectacle, we turned in the direction of the city; and at that instant\n&#39;,
- &#39;Polemarchus the son of Cephalus chanced to catch sight of us from a\n&#39;,
- &#39;distance as we were starting on our way home, and told his servant to\n&#39;,
- &#39;run and bid us wait for him. The servant took hold of me by the cloak\n&#39;,
- &#39;behind, and said: Polemarchus desires you to wait.\n&#39;,
- &#39;\n&#39;,
- &#39;I turned round, and asked him where his master was.\n&#39;,
- &#39;\n&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>32
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="variable-type">
-<h2>Variable Type<a class="headerlink" href="#variable-type" title="Permalink to this headline">#</a></h2>
+<h2>Variable Type<a class="headerlink" href="#variable-type" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># str, int, float, bool</span>
-<span class="nb">type</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1468,12 +999,12 @@ constructFlowNetwork(C)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Cheng-Jun Wang&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="s1">&#39;Socrates&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Cheng-Jun Wang&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
 </pre></div>
 </div>
 </div>
@@ -1481,7 +1012,7 @@ constructFlowNetwork(C)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># int</span>
-<span class="nb">int</span><span class="p">(</span><span class="s1">&#39;5&#39;</span><span class="p">)</span> 
+<span class="nb">int</span><span class="p">(</span><span class="s1">&#39;5&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1519,7 +1050,7 @@ constructFlowNetwork(C)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 <span class="c1"># range(1, 10)</span>
 </pre></div>
@@ -1535,22 +1066,94 @@ constructFlowNetwork(C)
 7
 8
 9
+10
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="dir-help">
-<h2>dir &amp; help<a class="headerlink" href="#dir-help" title="Permalink to this headline">#</a></h2>
+<h2>dir &amp; help<a class="headerlink" href="#dir-help" title="Permalink to this heading">#</a></h2>
 <p>当你想要了解对象的详细信息时使用</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="nb">str</span><span class="p">)[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#dir(str)[-10:]</span>
+<span class="nb">dir</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;rstrip&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;__add__&#39;,
+ &#39;__class__&#39;,
+ &#39;__contains__&#39;,
+ &#39;__delattr__&#39;,
+ &#39;__dir__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__eq__&#39;,
+ &#39;__format__&#39;,
+ &#39;__ge__&#39;,
+ &#39;__getattribute__&#39;,
+ &#39;__getitem__&#39;,
+ &#39;__getnewargs__&#39;,
+ &#39;__gt__&#39;,
+ &#39;__hash__&#39;,
+ &#39;__init__&#39;,
+ &#39;__init_subclass__&#39;,
+ &#39;__iter__&#39;,
+ &#39;__le__&#39;,
+ &#39;__len__&#39;,
+ &#39;__lt__&#39;,
+ &#39;__mod__&#39;,
+ &#39;__mul__&#39;,
+ &#39;__ne__&#39;,
+ &#39;__new__&#39;,
+ &#39;__reduce__&#39;,
+ &#39;__reduce_ex__&#39;,
+ &#39;__repr__&#39;,
+ &#39;__rmod__&#39;,
+ &#39;__rmul__&#39;,
+ &#39;__setattr__&#39;,
+ &#39;__sizeof__&#39;,
+ &#39;__str__&#39;,
+ &#39;__subclasshook__&#39;,
+ &#39;capitalize&#39;,
+ &#39;casefold&#39;,
+ &#39;center&#39;,
+ &#39;count&#39;,
+ &#39;encode&#39;,
+ &#39;endswith&#39;,
+ &#39;expandtabs&#39;,
+ &#39;find&#39;,
+ &#39;format&#39;,
+ &#39;format_map&#39;,
+ &#39;index&#39;,
+ &#39;isalnum&#39;,
+ &#39;isalpha&#39;,
+ &#39;isascii&#39;,
+ &#39;isdecimal&#39;,
+ &#39;isdigit&#39;,
+ &#39;isidentifier&#39;,
+ &#39;islower&#39;,
+ &#39;isnumeric&#39;,
+ &#39;isprintable&#39;,
+ &#39;isspace&#39;,
+ &#39;istitle&#39;,
+ &#39;isupper&#39;,
+ &#39;join&#39;,
+ &#39;ljust&#39;,
+ &#39;lower&#39;,
+ &#39;lstrip&#39;,
+ &#39;maketrans&#39;,
+ &#39;partition&#39;,
+ &#39;removeprefix&#39;,
+ &#39;removesuffix&#39;,
+ &#39;replace&#39;,
+ &#39;rfind&#39;,
+ &#39;rindex&#39;,
+ &#39;rjust&#39;,
+ &#39;rpartition&#39;,
+ &#39;rsplit&#39;,
+ &#39;rstrip&#39;,
  &#39;split&#39;,
  &#39;splitlines&#39;,
  &#39;startswith&#39;,
@@ -2130,19 +1733,19 @@ class str(object)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># join </span>
-<span class="s1">&#39;---&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">])</span>
+<span class="s1">&#39; - &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;a---1&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;a - 1&#39;
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="type">
-<h2>type<a class="headerlink" href="#type" title="Permalink to this headline">#</a></h2>
+<h2>type<a class="headerlink" href="#type" title="Permalink to this heading">#</a></h2>
 <p>当你想要了解变量类型时使用type</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2160,7 +1763,7 @@ class str(object)
 </div>
 </section>
 <section id="data-structure">
-<h2>Data Structure<a class="headerlink" href="#data-structure" title="Permalink to this headline">#</a></h2>
+<h2>Data Structure<a class="headerlink" href="#data-structure" title="Permalink to this heading">#</a></h2>
 <p>list, tuple, set, dictionary, array</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2249,7 +1852,7 @@ class str(object)
 </div>
 </section>
 <section id="id4">
-<h2>定义函数<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<h2>定义函数<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">devidePlus</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> <span class="c1"># 结尾是冒号</span>
@@ -2261,7 +1864,7 @@ class str(object)
 </div>
 </section>
 <section id="for">
-<h2>For 循环<a class="headerlink" href="#for" title="Permalink to this headline">#</a></h2>
+<h2>For 循环<a class="headerlink" href="#for" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -2340,7 +1943,7 @@ class str(object)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 列表内部的for循环</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 列表内部的for循环（列表推演）</span>
 <span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="n">devidePlus</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
 <span class="n">r</span> 
 </pre></div>
@@ -2354,12 +1957,14 @@ class str(object)
 </div>
 </section>
 <section id="map">
-<h2>map函数<a class="headerlink" href="#map" title="Permalink to this headline">#</a></h2>
+<h2>map函数<a class="headerlink" href="#map" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fahrenheit</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="mi">9</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="n">T</span> <span class="o">+</span> <span class="mi">32</span>
+
 <span class="n">temp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">22.5</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span><span class="mi">100</span><span class="p">]</span>
+
 <span class="c1">#[fahrenheit(i) for i in temp]</span>
 <span class="n">F_temps</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">F_temps</span><span class="p">)</span>
@@ -2416,7 +2021,7 @@ class str(object)
 </div>
 </section>
 <section id="if-elif-else">
-<h2>if elif else<a class="headerlink" href="#if-elif-else" title="Permalink to this headline">#</a></h2>
+<h2>if elif else<a class="headerlink" href="#if-elif-else" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">j</span> <span class="o">=</span> <span class="mf">5.5</span>
@@ -2459,7 +2064,7 @@ class str(object)
 </div>
 </section>
 <section id="while">
-<h2>while循环<a class="headerlink" href="#while" title="Permalink to this headline">#</a></h2>
+<h2>while循环<a class="headerlink" href="#while" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
@@ -2545,7 +2150,7 @@ class str(object)
     <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> 
     <span class="n">a</span> <span class="o">-=</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="p">{}</span><span class="c1">#[]#&#39;&#39;#False #0 #None # []</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># {}#[]#&#39;&#39;#False #0 #None # []</span>
 </pre></div>
 </div>
 </div>
@@ -2559,24 +2164,30 @@ class str(object)
 </div>
 </section>
 <section id="try-except">
-<h2>try except<a class="headerlink" href="#try-except" title="Permalink to this headline">#</a></h2>
+<h2>try except<a class="headerlink" href="#try-except" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">devidePlus</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> <span class="c1"># 结尾是冒号</span>
     <span class="k">return</span> <span class="n">m</span><span class="o">/</span><span class="n">n</span><span class="o">+</span> <span class="mi">1</span> <span class="c1"># 注意：空格</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">]:</span>
+<span class="n">error</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">]):</span>
+<span class="c1">#     print(devidePlus(4, i))  </span>
     <span class="k">try</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">devidePlus</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+        <span class="c1">#print(i, e)</span>
+        <span class="n">error</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">e</span><span class="p">])</span>
         <span class="k">pass</span>
+<span class="n">error</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0
-0 division by zero
 1.8
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1, 0, ZeroDivisionError(&#39;division by zero&#39;)]]
 </pre></div>
 </div>
 </div>
@@ -2627,7 +2238,7 @@ class str(object)
 </div>
 </section>
 <section id="write-and-read-data">
-<h2>Write and Read data<a class="headerlink" href="#write-and-read-data" title="Permalink to this headline">#</a></h2>
+<h2>Write and Read data<a class="headerlink" href="#write-and-read-data" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span><span class="p">[[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">**</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span> 
@@ -2731,9 +2342,9 @@ write(text, /) method of _io.TextIOWrapper instance
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存数据</span>
 <span class="n">data</span> <span class="o">=</span><span class="p">[[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">**</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)]</span> 
 
-<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/data_write_to_file1.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/data_write_to_file2023.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">i</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
 </pre></div>
 </div>
@@ -2741,9 +2352,10 @@ write(text, /) method of _io.TextIOWrapper instance
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/data_write_to_file1.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/data_write_to_file2023.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 <span class="n">data</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="c1"># print(data[0])</span>
 </pre></div>
 </div>
 </div>
@@ -2756,7 +2368,7 @@ write(text, /) method of _io.TextIOWrapper instance
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./data/data_write_to_file1.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="c1">#bytes </span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="c1">#bytes 字节</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> 
 </pre></div>
 </div>
@@ -2782,27 +2394,38 @@ write(text, /) method of _io.TextIOWrapper instance
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># f = [7, 2, 10, 4, 5]</span>
 
-<span class="c1"># with open(&#39;data/data_write_to_file1.txt&#39;, &#39;r&#39;) as f:</span>
-<span class="c1">#      for k, i in enumerate(f):</span>
-<span class="c1">#         if k%2000==0:</span>
-<span class="c1">#             print(k, i)</span>
+<span class="c1"># for k,i in enumerate(f):</span>
+<span class="c1">#     print(k,i)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/data_write_to_file1.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>   
+     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">k</span><span class="o">%</span><span class="k">1000</span>==0:
+            <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 0	0	0
 
+1000 1000	1000000	1000000000
+
 2000 2000	4000000	8000000000
+
+3000 3000	9000000	27000000000
 
 4000 4000	16000000	64000000000
 
+5000 5000	25000000	125000000000
+
 6000 6000	36000000	216000000000
 
+7000 7000	49000000	343000000000
+
 8000 8000	64000000	512000000000
+
+9000 9000	81000000	729000000000
 </pre></div>
 </div>
 </div>
@@ -2811,6 +2434,7 @@ write(text, /) method of _io.TextIOWrapper instance
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from time import sleep</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
 
 <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./data/data_write_to_file1.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -2826,13 +2450,7 @@ write(text, /) method of _io.TextIOWrapper instance
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000it [00:12, 803.68it/s]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0000
 </pre></div>
 </div>
 </div>
@@ -3115,9 +2733,9 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data/data_write_to_file1.txt&#39;</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data/data_write_to_file2023.txt&#39;</span><span class="p">,</span> 
                  <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
 <span class="c1">#len(df)</span>
 </pre></div>
 </div>
@@ -3148,34 +2766,34 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <th>9995</th>
+      <td>9995</td>
+      <td>99900025</td>
+      <td>998500749875</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
+      <th>9996</th>
+      <td>9996</td>
+      <td>99920016</td>
+      <td>998800479936</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>2</td>
-      <td>4</td>
-      <td>8</td>
+      <th>9997</th>
+      <td>9997</td>
+      <td>99940009</td>
+      <td>999100269973</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>3</td>
-      <td>9</td>
-      <td>27</td>
+      <th>9998</th>
+      <td>9998</td>
+      <td>99960004</td>
+      <td>999400119992</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>4</td>
-      <td>16</td>
-      <td>64</td>
+      <th>9999</th>
+      <td>9999</td>
+      <td>99980001</td>
+      <td>999700029999</td>
     </tr>
   </tbody>
 </table>
@@ -3183,7 +2801,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </section>
 <section id="id5">
-<h2>保存中间步骤产生的字典数据<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<h2>保存中间步骤产生的字典数据<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
@@ -3210,10 +2828,10 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </section>
 <section id="json">
-<h2>重新读入json<a class="headerlink" href="#json" title="Permalink to this headline">#</a></h2>
+<h2>重新读入json<a class="headerlink" href="#json" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="id6">
-<h2>保存中间步骤产生的列表数据<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
+<h2>保存中间步骤产生的列表数据<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
@@ -3238,7 +2856,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </section>
 <section id="matplotlib">
-<h2>使用matplotlib绘图<a class="headerlink" href="#matplotlib" title="Permalink to this headline">#</a></h2>
+<h2>使用matplotlib绘图<a class="headerlink" href="#matplotlib" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
@@ -3257,7 +2875,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_107_0.png" src="_images/03-python-intro_107_0.png" />
+<img alt="_images/e25cc74f172bbfb10613be040ae2a5f399fe59cf7e1cc09e1cdbe4f05b6cc65c.png" src="_images/e25cc74f172bbfb10613be040ae2a5f399fe59cf7e1cc09e1cdbe4f05b6cc65c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3273,7 +2891,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_108_0.png" src="_images/03-python-intro_108_0.png" />
+<img alt="_images/952c11c47c0b549d28b92cdd7316cbb2163577ea254873cc2f7b2c5670933ddf.png" src="_images/952c11c47c0b549d28b92cdd7316cbb2163577ea254873cc2f7b2c5670933ddf.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3296,7 +2914,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_109_0.png" src="_images/03-python-intro_109_0.png" />
+<img alt="_images/57bf2a93b8e6cb7ad6c2c544f4cdb63204746465eea7315646cfd90486b4ee43.png" src="_images/57bf2a93b8e6cb7ad6c2c544f4cdb63204746465eea7315646cfd90486b4ee43.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3329,7 +2947,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_111_0.png" src="_images/03-python-intro_111_0.png" />
+<img alt="_images/41f82b61b919aa0c21934c7836ec7eaf3ca5f176f3112775931ae859bee5afea.png" src="_images/41f82b61b919aa0c21934c7836ec7eaf3ca5f176f3112775931ae859bee5afea.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3357,7 +2975,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_113_0.png" src="_images/03-python-intro_113_0.png" />
+<img alt="_images/329ee5ed08654deefa956f196980368c835c2ca592a37e90e2adfb89eef072c6.png" src="_images/329ee5ed08654deefa956f196980368c835c2ca592a37e90e2adfb89eef072c6.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3383,7 +3001,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_114_0.png" src="_images/03-python-intro_114_0.png" />
+<img alt="_images/9f10369fdb20aab4b6ea50ce712055f6344f4a6daa5efb5fb385f9659b01b1d4.png" src="_images/9f10369fdb20aab4b6ea50ce712055f6344f4a6daa5efb5fb385f9659b01b1d4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3415,7 +3033,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_116_0.png" src="_images/03-python-intro_116_0.png" />
+<img alt="_images/bcd968fc0bb510536fb51a52af55e5f9d8e4db2dbe658347d626a5f05e7247df.png" src="_images/bcd968fc0bb510536fb51a52af55e5f9d8e4db2dbe658347d626a5f05e7247df.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3435,7 +3053,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_117_0.png" src="_images/03-python-intro_117_0.png" />
+<img alt="_images/6f43eebd1adc61160d493ecc52ff907a2808f2b3fbcbc43ab38957d174d0ef4d.png" src="_images/6f43eebd1adc61160d493ecc52ff907a2808f2b3fbcbc43ab38957d174d0ef4d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3516,7 +3134,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_119_0.png" src="_images/03-python-intro_119_0.png" />
+<img alt="_images/bf11a6029de4187c4e9d4fd1ef59313495d0185f2528a9a3fc76ff05aef9fdd8.png" src="_images/bf11a6029de4187c4e9d4fd1ef59313495d0185f2528a9a3fc76ff05aef9fdd8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3527,7 +3145,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_120_0.png" src="_images/03-python-intro_120_0.png" />
+<img alt="_images/f38a9f359c9fdd216ecfb7d731b998b3976b9979cf33179ce20fb586ed2101a2.png" src="_images/f38a9f359c9fdd216ecfb7d731b998b3976b9979cf33179ce20fb586ed2101a2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3538,7 +3156,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_121_0.png" src="_images/03-python-intro_121_0.png" />
+<img alt="_images/35c87ff6867094b0e95a2725280efc8691db882621e25c77688523d3a887a71e.png" src="_images/35c87ff6867094b0e95a2725280efc8691db882621e25c77688523d3a887a71e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3549,7 +3167,7 @@ read_csv(filepath_or_buffer, sep=&#39;,&#39;, delimiter=None, header=&#39;infer&
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_122_0.png" src="_images/03-python-intro_122_0.png" />
+<img alt="_images/a0b412e755fd88af14fd1650b44e26b14ae39111d048b7fcd98c7f8936b7bf0a.png" src="_images/a0b412e755fd88af14fd1650b44e26b14ae39111d048b7fcd98c7f8936b7bf0a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3568,7 +3186,7 @@ The default value for &#39;return_type&#39; will change to &#39;axes&#39; in a f
   if __name__ == &#39;__main__&#39;:
 </pre></div>
 </div>
-<img alt="_images/03-python-intro_123_1.png" src="_images/03-python-intro_123_1.png" />
+<img alt="_images/7655fe06cff6c6ed9be0f20c1cc251c135994dd867d6877816ab9e4c2ba637bb.png" src="_images/7655fe06cff6c6ed9be0f20c1cc251c135994dd867d6877816ab9e4c2ba637bb.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3579,7 +3197,7 @@ The default value for &#39;return_type&#39; will change to &#39;axes&#39; in a f
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_124_0.png" src="_images/03-python-intro_124_0.png" />
+<img alt="_images/f4c50df29bf2138ffe1b5096a849ba5d1e07496bebd0bf7a1ac6334db20935a8.png" src="_images/f4c50df29bf2138ffe1b5096a849ba5d1e07496bebd0bf7a1ac6334db20935a8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3591,7 +3209,7 @@ The default value for &#39;return_type&#39; will change to &#39;axes&#39; in a f
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-python-intro_125_0.png" src="_images/03-python-intro_125_0.png" />
+<img alt="_images/39ef1167a741eaefd32ae77a946e7b18f930aefdcf45841fea30ea24da944792.png" src="_images/39ef1167a741eaefd32ae77a946e7b18f930aefdcf45841fea30ea24da944792.png" />
 </div>
 </div>
 <blockquote>
@@ -3600,7 +3218,7 @@ The default value for &#39;return_type&#39; will change to &#39;axes&#39; in a f
 <p>Ellen Ullman  （an American computer programmer and author）</p>
 </section>
 <section id="this-is-the-end">
-<h2>This is the end.<a class="headerlink" href="#this-is-the-end" title="Permalink to this headline">#</a></h2>
+<h2>This is the end.<a class="headerlink" href="#this-is-the-end" title="Permalink to this heading">#</a></h2>
 <blockquote>
 <div><p>Thank you for your attention.</p>
 </div></blockquote>
@@ -3621,7 +3239,7 @@ The default value for &#39;return_type&#39; will change to &#39;axes&#39; in a f
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -3629,50 +3247,122 @@ The default value for &#39;return_type&#39; will change to &#39;axes&#39; in a f
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="02-bigdata.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">数据科学的编程工具：大数据</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02-bigdata.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">数据科学的编程工具：大数据</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="0-jupyter-notebook.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="0-jupyter-notebook.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Jupyter Notebook</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">人生苦短，我用Python。</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">特点</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Python中包含了丰富的类库。</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pythonide">Python软件与IDE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-anaconda-python">Installing Anaconda Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-install">第三方包可以使用pip install的方法安装。</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-type">Variable Type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dir-help">dir &amp; help</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type">type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structure">Data Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">定义函数</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for">For 循环</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map">map函数</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#if-elif-else">if elif else</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#while">while循环</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#try-except">try except</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-and-read-data">Write and Read data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">保存中间步骤产生的字典数据</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#json">重新读入json</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">保存中间步骤产生的列表数据</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">使用matplotlib绘图</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#this-is-the-end">This is the end.</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Cheng-Jun Wang<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Cheng-Jun Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

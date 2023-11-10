@@ -1,0 +1,789 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>iching: A python package of I Ching &#8212; 计算传播学</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '0-iching';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="计算思维：通过拆解和重组学习" href="01-recombination.html" />
+    <link rel="prev" title="Using ChatGPT to Learn Python" href="0-chatgpt.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/socrates_jump.gif" class="logo__image only-light" alt="计算传播学 - Home"/>
+    <script>document.write(`<img src="_static/socrates_jump.gif" class="logo__image only-dark" alt="计算传播学 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    寻找人类传播行为的基因
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="01-intro2cjc.html">第一章 计算传播学简介</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02-bigdata.html">数据科学的编程工具：大数据</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="03-python-intro.html">第二章 数据科学的编程工具</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="0-jupyter-notebook.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-chatgpt.html">Using ChatGPT to Learn Python</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">iching: A python package of I Ching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-recombination.html">计算思维：通过拆解和重组学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-slides.html">使用Jupyter制作Slides的介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-turicreate.html">Turicreate: Departure from Graphlab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-matplotlib-chinese.html">解决Matplotlib绘图显示中文问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-UK-MPS-Scandal.html">案例：2009年英国国会议员开支丑闻</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-umbrella-of-love.html">案例：《转角遇到爱》背后的数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-who-runs-China.html">案例：Who runs China？背后的数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-gdelt.html">Gdelt Dataset: Events, Mentions, and Global Knowledge Graph</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="04-crawler-beautifulsoup.html">第三章 数据抓取</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-fact-checking.html">抓取实时辟谣数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-13chambers.html">抓取网络小说</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-wechat.html">抓取微信公众号文章内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-douban.html">使用requests + Xpath抓取豆瓣电影数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-gov-report.html">抓取历届政府工作报告</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-cppcc.html">抓取江苏省政协十年提案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-netease-music.html">抓取网易云音乐热门评论</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium.html">使用Selenium操纵浏览器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium-music-history.html">抓取网易云音乐用户的听歌记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium-people-com-search.html">使用Selenium提取人民网搜索数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-tripadvisor.html">使用Selenium抓取TripAdvisor用户评论</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-pyppeteer.html">使用Pyppeteer实现异步抓取!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-weibo.html">轻型微博爬虫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-snscrape-twitter.html">snscrape</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="06-data-cleaning-intro.html">第四章 数据清洗</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-preprocessing.html">对大数据进行预处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-tweets.html">数据清洗之推特数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-occupy-central-news.html">对占中新闻进行数据清洗</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-music-list.html">清洗音乐列表🎵</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-pandas.html">使用Pandas进行数据清洗</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="08-01-statistics-thinking.html">第五章 统计思维</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="08-02-kl-divergence.html">KL Divergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-02-linear-algebra.html">Linear algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-03-distributions.html">Distribution Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-03-probability.html">Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-04-hypothesis-inference.html">Statistical Hypothesis Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-05-gradient-descent.html">Introduction to Gradient Descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-06-regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-06-statsmodels.html">Statistical Modeling with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-07-analyzing-titanic-dataset.html">Logistic Regression of Titanic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-07-covid19-pew-survey.html">Analysing the Pew Survey Data of COVID19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-11-cfps-survey-analysis.html">中国家庭追踪调查2018</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-08-covid19-grangercausality.html">社交媒体可以预测新冠疫情吗？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-09-survival-analysis.html">Survival Analysis with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-10-dowhy-estimation-methods.html">The Book of Why</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="09-01-machine-learning-with-sklearn.html">第六章 社会科学家的机器学习</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="09-03-hyperparameters-and-model-validation.html">Hyperparameters and Model Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-04-feature-engineering.html">Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-05-naive-bayes.html">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-06-linear-regression.html">In Depth: Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-07-support-vector-machines.html">In-Depth: Support Vector Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-08-random-forests.html">In-Depth: Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-09-googleflustudy.html">Forecasting and nowcasting with Google Flu Trends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-10-future-employment.html">The future of employment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-grf.html">Causal Forests</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="09-11-neural-network-intro.html">第七章 神经网络与深度学习</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="09-13-cnn.html">Convolutional Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-14-rnn.html">Sequnce Modeling: Recurrent and Recursive Nets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-12-hand-written-digits.html">Recognizing Hand-Written Digits with Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-15-cifar10.html">使用CNN对CIFAR10图像进行分类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-16-pytorch_vgg_pretrained.html">VGG16预训练模型</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="10-text-mining-gov-report.html">第八章 文本挖掘</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="10-word2vec.html">词向量模型简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-doc2vec.html">Doc2Vec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">基于字典的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-2-emotion-dict.html">大连理工大学中文情感词汇</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-3-NRC-Chinese-dict.html">基于NRC字典的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-3-textblob.html">利用textblob进行情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-4-sentiment-classifier.html">基于机器学习的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-5-LIWC.html">LIWC: Linguistic Inquiry and Word Count  analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-topic-models-update.html">主题模型简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-topic-models-with-turicreate.html">使用Turicreate建立主题模型</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="13-recsys-intro.html">第九章 推荐系统简介</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="13-recsys-latent-factor-model.html">Latent Factor Recommender System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13-recsys-intro-surprise.html">使用Surprise构建推荐系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-millionsong.html">使用Turicreate进行音乐推荐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-movielens.html">使用Turicreate进行电影推荐</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="15-network-science-intro.html">第十章 网络科学简介</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="16-network-science-models.html">网络科学模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17-networkx.html">使用NetworkX分析网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-02-network-diffusion.html">Simulating Network Diffusion With NDlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-03-network-epidemics.html">Epidemics on Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-04-seir-hcd-model.html">SEIR-HCD Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-ergm-siena.html">Social Network Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-weibo-hot-search.html">微博热搜分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">天涯论坛的回帖网络分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">可视化Facebook社交网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-ecomplexity.html">Economic Complexity and Product Complexity</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="19-visualization-with-seaborn.html">第十一章 可视化</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-matplotlib-colormap.html">Qualitative Colormaps in Matplotlib Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-scientific-plot.html">Matplotlib的科学绘图样式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-with-pyecharts.html">使用PyEcharts进行可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-plotly-express.html">Plotly Express in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-maps-using-folium.html">使用folium做地图可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-datashader.html">使用Datashader可视化地理信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-datapane.html">使用Datapane制作数据报告</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-pantheon.html">万神殿项目（Pantheon Project）</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/0-iching.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/chengjun/mybook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F0-iching.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/0-iching.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>iching: A python package of I Ching</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="iching-a-python-package-of-i-ching">
+<h1>iching: A python package of I Ching<a class="headerlink" href="#iching-a-python-package-of-i-ching" title="Permalink to this heading">#</a></h1>
+<p>大衍之数五十，其用四十有九。分而为二以象两，挂一以象三，揲之以四以象四时，归奇于扐以象闰。五岁再闰，故再扐而后挂。天一，地二；天三，地四；天五，地六；天七，地八；天九，地十。天数五，地数五。五位相得而各有合，天数二十有五，地数三十，凡天地之数五十有五，此所以成变化而行鬼神也。乾之策二百一十有六，坤之策百四十有四，凡三百六十，当期之日。二篇之策，万有一千五百二十，当万物之数也。是故四营而成《易》，十有八变而成卦，八卦而小成。引而伸之，触类而长之，天下之能事毕矣。显道神德行，是故可与酬酢，可与祐神矣。子曰：“知变化之道者，其知神之所为乎。”</p>
+<p><a class="github reference external" href="https://github.com/chengjun/iching">chengjun/iching</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">iching</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: iching in /opt/anaconda3/lib/python3.9/site-packages (3.7.2)
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">iching.iching</span> <span class="k">as</span> <span class="nn">i</span>
+
+<span class="n">i</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="mi">198510110630</span><span class="p">,</span> <span class="mi">201801191430</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Your birthday &amp; your prediction time:  198510110630201801191430
+there is a changing predict! Also run changePredict()
+there is a changing predict! Also run changePredict()
+离 &amp; 睽 
+ 本卦:  离卦原文离。利贞，亨。畜牝牛，吉。象曰：明两作，离。大人以继明照四方。白话文解释离卦：吉利的占问，通泰。饲养母牛，吉利。《象辞》说：今朝太阳升，明朝太阳升，相继不停顿，这是离卦的卦象。贵族王公观此卦象，从而以源源不断的光明照临四方。
+
+《断易天机》解离卦离上离下，为离宫本位卦。离可取光明、美丽、离散之意，利文章而不利出师。
+
+北宋易学家邵雍解附丽光明，谦虚缓进；公正柔和，顺守则吉。得此卦者，宜谦虚谨慎，稳步进取，则前途光明。急进及意气用事者必有所损失。
+
+台湾国学大儒傅佩荣解时运：努力修德，前途光明。财运：与火有关，皆有所得。家宅：贵人之屋；可得继室。身体：热病严重，小心大去。
+
+传统解卦这个卦是同卦（下离上离）相叠。离者丽也，附着之意，一阴附丽，上下二阳，该卦象征火，内空外明。离为火、为明，太阳反复升落，运行不息，柔顺为心。大象：两离火相重，上下通明之象，火有气，但无形，主不实不定之意。运势：外观极盛，烈日当空之象，凡事不宜急进及意气用事。事业：已快进入顶点，盛极而衰，务必总结经验教训，趋善避邪，以顺自养，居危知危，激励志气，切勿妄动。尤应求助中正的人援助，以期重振事业。经商：不要急于求成，宜兢兢业业，忧深虑远，考察市场行情，公平竞争，不可投机取巧，争取与他人密切合作。求名：方向未确定之前，不可到处乱撞，应持之以恒，执意追求，虚心向有才德的长者请教。婚恋：自己寻找对象恐怕有困难，最好请可靠的朋友、长辈帮忙，不得急躁。双方应相互尊敬，最忌生邪念。决策：乐天知命，顺应自然，年轻时急于上进，未能实现理想，但坚持中正、谦和，可无灾祸，时常警觉，更可化险为夷。在危难时要寻求依托，但要慎重选择对象。晚年应知天命，尤不可不顾时势而轻举妄图动。
+
+台湾张铭仁解卦火：表示智慧、明亮、温暖。六冲卦、纯卦，主大吉大凶、大好大坏之象，也表虚象不实之意。解释：变动，突发火光。特性：喜欢与人竞争，冲动，自尊心强，不服输，容易遭人排斥反对。依赖自己努力，他人助力较少。运势：虽然目前外观极盛一切顺利，可能为假象、虚象，而且双火之燃，其内部、内情已有所损，又双火之烈，如烈日中天，故凡事宜守之，勿太急进，待人以谦和、理性，否则必有所损失。宜顺从长辈，勿因急躁而妄动或意气用事，则可欣欣向荣也。家运：富有幸福之运，必须保持仁和谦恭，骄傲自大者易招致失败，宜谦逊处世。疾病：急病可解，久病则凶，宜耐心调养、为心脏眼科血疾。胎孕：胎有不安。产母不宜出外游。子女：子女幸福，但有娇生惯养之嫌，勿疏于教导为上。周转：可得到上辈的帮助渡过难关。买卖：交易必得利，忌用不法手段。等人：一定会来。寻人：此人因受到诱惑或煽动而出走。南方可寻，且小有是非。失物：动作快，可寻回。外出：可行动，事先应准备充分，不可仓促上路。考试：成绩不错。诉讼：只宜人侵己，不宜己侵人，主动者不利。求事：尊重长辈安排。待时机可获良好事业。改行：可极力推展。开业：开业者吉象。
+
+初九爻辞初九。履错然，敬之，无咎。象曰：履错之敬，以辟咎也。白话文解释初九：听到纷来沓至的脚步声，立时警惕戒备，可以无灾难。《象辞》说：听到纷至沓来的脚步声，立时警惕戒备，可以避免灾难。
+
+北宋易学家邵雍解平：得此爻者，须防无妄之灾，宜谨慎，或有足疾。做官的宜安守。
+
+台湾国学大儒傅佩荣解时运：临事而惧，得助而成。财运：暂无大利，但可无咎。家宅：大道之旁。身体：走路小心。
+
+初九变卦初九爻动变得周易第56卦：火山旅。这个卦是异卦（下艮上离）相叠。此卦与丰卦相反，互为“综卦”。山中燃火，烧而不止，火势不停地向前蔓延，如同途中行人，急于赶路。因而称旅卦。
+
+六二爻辞六二。黄离，元吉。象曰：黄离元吉，得中道也。白话文解释六二：天空出黄霓，大吉大利。《象辞》说：黄色附丽于身，大吉大利，因为六二之爻居下卦中位，像人得中正之道。
+
+北宋易学家邵雍解吉：得此爻者，财利可获。做官的会受到重用。读书人会取得佳绩。
+
+台湾国学大儒傅佩荣解时运：文明在外，功名必显。财运：利在土木，中规中矩。家宅：振起家声；可成佳偶。身体：郁热之症。
+
+六二变卦六二爻动变得周易第14卦：火天大有。这个卦是异卦（下乾上离）相叠。上卦为离，为火；下卦为乾，为天。火在天上，普照万物，万民归顺，顺天依时，大有所成。
+
+九三爻辞九三。日昃之离。不鼓缶而歌，则大耋之嗟，凶。象曰：日昃之离，何可久也。白话文解释九三：黄昏时分有霓虹出现在天空，这是凶兆，人们居然不击鼓唱歌禳除它，老人感到悲哀，灾殃快要来了。《象辞》说：黄昏时分的霓虹，怎么会长留不散。
+
+北宋易学家邵雍解凶：得此爻者，乐中生悲，吉中生愁，险难迭生。做官的告休。
+
+台湾国学大儒傅佩荣解时运：老大无成，心思涣散。财运：留连夜市，必伤正业。家宅：老人不安；难望偕老。身体：早睡早起。
+
+九三变卦九三爻动变得周易第21卦：火雷噬嗑。这个卦是异卦（下震上离）相叠。离为阴卦；震为阳卦。阴阳相交，咬碎硬物，喻恩威并施，宽严结合，刚柔相济。噬嗑为上下颚咬合，咀嚼。
+
+九四爻辞九四。突如其来如，焚如，死如，弃如。象曰：突如其来如，无所容也。白话文解释九四：灾难突然降临，敌人见房屋就烧，见人就杀，此处变成一片废墟。《象辞》说：灾难来得如此突然，人们无处藏身逃命。
+
+北宋易学家邵雍解凶：得此爻者，时运不济，困难重重，或和长辈不睦，或遭官灾。
+
+台湾国学大儒傅佩荣解时运：为免灾祸，不如隐退。财运：人财两亡，小心避开。家宅：逆子之罪；婚姻不吉。身体：命在危局。
+
+九四变卦九四爻动变得周易第22卦：山火贲。这个卦是异卦（下离上艮）相叠。离为火为明；艮为山为止。文明而有节制。贲卦论述文与质的关系，以质为主，以文调节。贲，文饰、修饰。
+
+六五爻辞六五。出涕沱若，戚嗟若，吉。象曰：六五之吉，离王公也。白话文解释六五：灾难过后，人们痛哭，人们悲叹，然而吉利。《象辞》说：六五爻辞所讲的吉利，因为爻象表明，六五之爻处于上九之下，像人们能够附丽于王公而得救。
+
+北宋易学家邵雍解平：得此爻者，不宜进取，宜守常。做官的在位者得志，退职者多险危。
+
+台湾国学大儒傅佩荣解时运：位高权重，慎谋能断。财运：辛苦经营，公家生意。家宅：婚事主贵；先泣后笑。身体：又哭又叹，但仍无妨。
+
+六五变卦六五爻动变得周易第13卦：天火同人。这个卦是异卦（下离上乾）相叠，乾为天，为君；离为火，为臣民百姓，上天下火，火性上升，同于天，上下和同，同舟共济，人际关系和谐，天下大同。
+
+上九爻辞上九。王用出征，有嘉。折首，获匪其丑，无咎。象曰：王用出征，以正邦也。白话文解释上九：国王出征，反击敌人，将有嘉国的国君斩首，抓到了许多俘虏，无灾无难。《象辞》说：君王出兵反击，以安定邦国。抓到了许多俘虏，是说大获胜仗。
+
+北宋易学家邵雍解吉：得此爻者，时运佳，多喜事，经营获利。做官的会功成名就，读书人会取得好成绩。
+
+台湾国学大儒傅佩荣解时运：与人为善，必受重用。财运：上等货品，才可获利。家宅：旅行在外。身体：可能归天。
+
+上九变卦上九爻动变得周易第55卦：雷火丰。这个卦是异卦（下离上震）相叠，电闪雷鸣，成就巨大，喻达到顶峰，如日中天。告戒：务必注意事物向相反方面发展，盛衰无常，不可不警惕。
+
+ 
+                (O--__/\__--O) 
+(-------------(O---- |__|----O)----------------) 
+(-----------(O-----/-|__|-\------O)------------) 
+         (-------(O-/_--_\-O)-------) 
+
+
+ 变卦:  睽卦原文睽。小事吉。象曰：上火下泽，睽。君子以同而异。白话文解释睽卦：筮遇此卦，小事吉利。《象辞》说：本卦上卦为离，离为火；下卦为兑，兑为泽。上火下泽，两相乖离，是睽卦的卦象。君子观此卦象，从而综合万物之所同，分析万物之所异。
+
+《断易天机》解睽卦离上兑下，为艮宫四世卦。睽象征乖离、乖异，筮遇此卦，大事不吉，小事顺利。
+
+北宋易学家邵雍解人心外向，背道而驰；难以成事，不宜大举。得此卦者，运气不佳，水火不容，相互矛盾，诸事难成。
+
+台湾国学大儒傅佩荣解时运：上下不通，以正处之。财运：人弃我取，尚有小利。家宅：迁避为宜；择而娶之。身体：上火下湿，实在难治。
+
+传统解卦这个卦是异卦（下兑上离）相叠。离为火；兑为泽。上火下泽，相违不相济。克则生，往复无空。万物有所不同，必有所异，相互矛盾。睽即矛盾。大象：离火向上，兑泽则向下，一上一下，两相乖违，又二女同居，不得正之象。运势：气运欠佳，诸事难成，有水火不容之象，宜处变不惊。事业：事业开创困难，处境艰辛。如能志同道合，相互信任，目的可以达到。但起初成功的多是小事，小事积累可成大事。事成于协力合作，败于众志相异。应加强团结，委曲以求相通，最忌内部相互猜疑。经商：应以心平气和的态度投入市场竞争，求大同而存小异。对竞争对手不应敌视，可和而不流，群而不党。尤其不能惹起纠纷，极力避免灾祸。求名：以真诚的心努力上进。对于恶人必要时亦不可完全不交往，应采取宽大包容的态度，适度往来。对志同道合者也不必完全一致，可异中求同。婚恋：双方必须真诚相待。否则，第三者极易介入，夫妻相疑则家破。决策：处于矛盾、对应状态。必须注意以宽宏大度、平和、柔顺的态度对待人生。这样才能心平气和，柔而上进。认清合必有离，离必有合；同中有异，异中有同的道理。否则，刚极暴躁，明极生疑。暴疑皆可致命。
+
+台湾张铭仁解卦睽：表示乖危、叛逆、背离之象，主凶象。意见不合，彼此争斗、任性、不协调。事事均不顺，且有被出卖的危险，注意犯小人。解释：防小人。特性：经常事与愿违，个性敏锐，理想化，感情与理智容易矛盾冲突，易生孤独感，宜往专技艺术发展。运势：水火不相容，则气运不通，势行低落，诸事难成。凡事有违叛之时，若能处变不惊，不逞强出头，尚可转危为安。有家内不和，亲友疏散之情。宜力持温和，忍耐去克服困难，始可渡危。家运：困苦离亲之象，不和睦之情。家运衰颓，虽可得小利，但也入不敷出。疾病：轻症宜速就医，重症则危，更防断症错误，注意心脏，寒热失调之症。胎孕：无碍。子女：子女不和，有骨肉无情之不幸，且其子女六亲缘薄无靠。周转：难以如愿。买卖：多阻碍，难成，若成者亦必损。等人：不会来。寻人：因口角负气出走，其志不同故不易寻。失物：不能找回。有失窃的可能。外出：顺利。途中可以得到善人相助。考试：落榜。诉讼：宜速求和解，迟则理屈辞穷。求事：无希望。改行：不宜。开业：不利。
+
+初九爻辞初九。悔亡，丧马勿逐，自复。见恶人，无咎。象曰：见恶人，以辟咎也。白话文解释初九：不必悔恨，丢失了马匹，不必寻找，它自会回来，途中碰见坏人，也不会有灾祸。《象辞》说：遇见坏人之所以无灾祸，意在消除恶人的恶意。
+
+北宋易学家邵雍解平：得此爻者，营谋先失而后得，人事先离而后合，谨防凶恶之灾患。做官的闲职者复职，被贬者复升。
+
+台湾国学大儒傅佩荣解时运：好运初至，顺其自然。财运：不必多虑，后必大亨。家宅：平顺无咎；耐心等待。身体：没有大碍。
+
+初九变卦初九爻动变得周易第64卦：火水未济。这个卦是异卦（下坎上离）相叠。离为火，坎为水。火上水下，火势压倒水势，救火大功未成，故称未济。《周易》以乾坤二卦为始，以既济、未济二卦为终，充分反映了变化发展的思想。
+
+九二爻辞九二。遇主于巷，无咎。象曰：遇主于巷，未失道也。白话文解释九二：遇着了热情好客的主人，没有灾难。《象辞》说：遇着了热情好客的主人，这说明没有迷失道路。
+
+北宋易学家邵雍解平：得此爻者，会得知己，营谋遂意。做官的会遇到明主，升迁有望。
+
+台湾国学大儒傅佩荣解时运：风云际会，勇往直前。财运：遭遇财主，共同经营。家宅：贵人来访；小心私情。身体：得遇良医。
+
+九二变卦九二爻动变得周易第21卦：火雷噬嗑。这个卦是异卦（下震上离）相叠。离为阴卦；震为阳卦。阴阳相交，咬碎硬物，喻恩威并施，宽严结合，刚柔相济。噬嗑为上下颚咬合，咀嚼。
+
+六三爻辞六三。见舆曳，其牛掣。其人天且劓，无初有终。象曰：见舆曳，位不当也；无初有终，遇刚也。白话文解释六三：看见一辆拉货的车，拉车的牛一俯一仰拉得很费劲，赶车的人是一个烙了额，割了鼻的奴隶。起初车子陷着不动，后来终于拉动了。《象辞》说：看见一个烙额割鼻的奴隶在拉车，爻象表明：六三阴爻而居于阳位，所处不当，像人落入了悲苦的境地。起初不顺，结局倒好，因为六三阴爻上进遇到九四阳爻，像人得到强者的帮助。
+
+北宋易学家邵雍解凶：得此爻者，谋望有阻，险中求安，先迷后顺。不良者有骨肉刑伤之厄。做官的须防小人的谗言。
+
+台湾国学大儒傅佩荣解时运：恐有刑伤，苦撑三年。财运：人和不易，无利可图。家宅：朝西为宜；先疑后释。身体：面上有疮，久后自愈。
+
+六三变卦六三爻动变得周易第14卦：火天大有。这个卦是异卦（下乾上离）相叠。上卦为离，为火；下卦为乾，为天。火在天上，普照万物，万民归顺，顺天依时，大有所成。
+
+九四爻辞九四。睽孤，遇元夫。交孚，厉无咎。象曰：交孚无咎，志行也。白话文解释九四：旅人孤单地行路，遇上一个跛子，一同被抓住，情形危险，但终无灾祸。《象辞》说：交相信任，必无灾难，说明其志得行，目的达到。
+
+北宋易学家邵雍解平：得此爻者，能得到朋友的帮助，转危为安，求婚者必配。做官的会得到同僚的推荐，升迁有机。
+
+台湾国学大儒傅佩荣解时运：孤僻个性，朋友相助。财运：进退两难，旧友帮忙。家宅：四周荒凉。身体：目疾求医。
+
+九四变卦九四爻动变得周易第41卦：山泽损。这个卦是异卦（下兑上艮）相叠。艮为山；兑为泽。上山下泽，大泽浸蚀山根。损益相间，损中有益，益中有损。二者之间，不可不慎重对待。损下益上，治理国家，过度会损伤国基。应损则损，但必量力、适度。少损而益最佳。
+
+六五爻辞六五。悔亡，厥宗噬肤，往何咎。象曰：厥宗噬肤，往有庆也。白话文解释六五：没有悔恨。瞧见同族宗人在吃肉，孤单的旅人欣然结伴同行，一路平安无事。《象辞》说：同族宗人在吃肉，前往，必有喜庆之事。
+
+北宋易学家邵雍解平：得此爻者，经营获利，抬举有人。不良者，亲朋怨恶，骨肉刑伤，官司牵连。做官的会获得成就与名望，读书人会取得佳绩。
+
+台湾国学大儒傅佩荣解时运：同宗相助，可以放心。财运：须防合伙，自己端正。家宅：旧屋可居；亲上加亲。身体：皮肤毛病，不难治好。
+
+六五变卦六五爻动变得周易第10卦：天泽履。这个卦是异卦（下兑上乾）相叠，乾为天，兑为泽，以天喻君，以泽喻民，原文：“履（踩）虎尾，不咥（咬）人”。因此，结果吉利。君上民下，各得其位。兑柔遇乾刚，所履危。履意为实践，卦义是脚踏实地的向前进取的意思。
+
+上九爻辞上九。睽孤，见豕负涂，载鬼一车。先张之弧，后说之弧，匪寇婚媾。往遇雨则吉。象曰：遇雨之吉，群疑亡也。白话文解释上九：旅人孤单地行路，见一头大猪伏在路上，又遇上一辆大车，上面满载着打扮得奇形怪状的人。旅人搭弓欲射，后来又放下弓箭。因为这伙人不是强盗，而是去订婚的。旅人照常行进，遇上大雨，但一切平安。《象辞》说：上九爻辞讲的旅人途遇婚媾之人，开始相互猜疑，几致动武，后来相安无事，照常旅行。这是因为双方疑惧消失了。
+
+北宋易学家邵雍解平：得此爻者，遭污受诬，先损后益。做官的须防被诽谤之忧。
+
+台湾国学大儒傅佩荣解时运：运转之时，正心诚意。财运：秋雨之后，方可获利。家宅：防有作祟；婚姻终和。身体：因疑成病，解疑无碍。
+
+上九变卦上九爻动变得周易第54卦：雷泽归妹。这个卦是异卦（下兑上震）相叠。震为动、为长男；兑为悦、为少女。以少女从长男，产生爱慕之情，有婚姻之动，有嫁女之象，故称归妹。
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="0-chatgpt.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Using ChatGPT to Learn Python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="01-recombination.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">计算思维：通过拆解和重组学习</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Cheng-Jun Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

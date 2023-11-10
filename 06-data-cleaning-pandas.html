@@ -1,50 +1,62 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>使用Pandas进行数据清洗 &#8212; 计算传播学</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,63 +64,103 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '06-data-cleaning-pandas';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="第五章 统计思维" href="08-01-statistics-thinking.html" />
     <link rel="prev" title="清洗音乐列表🎵" href="06-data-cleaning-music-list.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
 
-    
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/socrates_jump.gif" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">计算传播学</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/socrates_jump.gif" class="logo__image only-light" alt="计算传播学 - Home"/>
+    <script>document.write(`<img src="_static/socrates_jump.gif" class="logo__image only-dark" alt="计算传播学 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -118,1071 +170,402 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="01-intro2cjc.html">
-   第一章 计算传播学简介
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="02-bigdata.html">
-     数据科学的编程工具：大数据
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="03-python-intro.html">
-   第二章 数据科学的编程工具
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-jupyter-notebook.html">
-     Jupyter Notebook
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="01-recombination.html">
-     计算思维：通过拆解和重组学习
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-slides.html">
-     使用Jupyter制作Slides的介绍
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-turicreate.html">
-     Turicreate: Departure from Graphlab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-matplotlib-chinese.html">
-     解决Matplotlib绘图显示中文问题
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-UK-MPS-Scandal.html">
-     案例：2009年英国国会议员开支丑闻
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-umbrella-of-love.html">
-     案例：《转角遇到爱》背后的数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-who-runs-China.html">
-     案例：Who runs China？背后的数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-gdelt.html">
-     Gdelt Dataset: Events, Mentions, and Global Knowledge Graph
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="04-crawler-beautifulsoup.html">
-   第三章 数据抓取
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-fact-checking.html">
-     抓取实时辟谣数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-13chambers.html">
-     抓取网络小说
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-wechat.html">
-     抓取微信公众号文章内容
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-douban.html">
-     使用requests + Xpath抓取豆瓣电影数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-gov-report.html">
-     抓取历届政府工作报告
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-cppcc.html">
-     抓取江苏省政协十年提案
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-netease-music.html">
-     抓取网易云音乐热门评论
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-selenium.html">
-     使用Selenium操纵浏览器
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-selenium-music-history.html">
-     抓取网易云音乐用户的听歌记录
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-selenium-people-com-search.html">
-     使用Selenium提取人民网搜索数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-tripadvisor.html">
-     使用Selenium抓取TripAdvisor用户评论
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-pyppeteer.html">
-     使用Pyppeteer实现异步抓取!
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-weibo.html">
-     轻型微博爬虫
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-snscrape-twitter.html">
-     snscrape
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="06-data-cleaning-intro.html">
-   第四章 数据清洗
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-preprocessing.html">
-     对大数据进行预处理
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-tweets.html">
-     数据清洗之推特数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-occupy-central-news.html">
-     对占中新闻进行数据清洗
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-music-list.html">
-     清洗音乐列表🎵
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     使用Pandas进行数据清洗
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="08-01-statistics-thinking.html">
-   第五章 统计思维
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-02-kl-divergence.html">
-     KL Divergence
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-02-linear-algebra.html">
-     Linear algebra
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-03-distributions.html">
-     Distribution Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-03-probability.html">
-     Probability
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-04-hypothesis-inference.html">
-     Statistical Hypothesis Testing
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-05-gradient-descent.html">
-     Introduction to Gradient Descent
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-06-regression.html">
-     Linear Regression
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-06-statsmodels.html">
-     Statistical Modeling with Python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-07-analyzing-titanic-dataset.html">
-     Logistic Regression of Titanic Data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-07-covid19-pew-survey.html">
-     Analysing the Pew Survey Data of COVID19
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-11-cfps-survey-analysis.html">
-     中国家庭追踪调查2018
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-08-covid19-grangercausality.html">
-     社交媒体可以预测新冠疫情吗？
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-09-survival-analysis.html">
-     Survival Analysis with Python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-10-dowhy-estimation-methods.html">
-     The Book of Why
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
-   第六章 社会科学家的机器学习
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-03-hyperparameters-and-model-validation.html">
-     Hyperparameters and Model Validation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-04-feature-engineering.html">
-     Feature Engineering
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-05-naive-bayes.html">
-     In Depth: Naive Bayes Classification
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-06-linear-regression.html">
-     In Depth: Linear Regression
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-07-support-vector-machines.html">
-     In-Depth: Support Vector Machines
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-08-random-forests.html">
-     In-Depth: Decision Trees and Random Forests
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-09-googleflustudy.html">
-     Forecasting and nowcasting with Google Flu Trends
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-10-future-employment.html">
-     The future of employment
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-grf.html">
-     Causal Forests
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="09-11-neural-network-intro.html">
-   第七章 神经网络与深度学习
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-13-cnn.html">
-     Convolutional Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-14-rnn.html">
-     Sequnce Modeling: Recurrent and Recursive Nets
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-12-hand-written-digits.html">
-     Recognizing Hand-Written Digits with Neural Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-15-cifar10.html">
-     使用CNN对CIFAR10图像进行分类
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-16-pytorch_vgg_pretrained.html">
-     VGG16预训练模型
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="10-text-mining-gov-report.html">
-   第八章 文本挖掘
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10-word2vec.html">
-     词向量模型简介
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10-doc2vec.html">
-     Doc2Vec
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">
-     基于字典的情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-2-emotion-dict.html">
-     大连理工大学中文情感词汇
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-3-NRC-Chinese-dict.html">
-     基于NRC字典的情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-3-textblob.html">
-     利用textblob进行情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-4-sentiment-classifier.html">
-     基于机器学习的情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-5-LIWC.html">
-     LIWC: Linguistic Inquiry and Word Count  analyzer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12-topic-models-update.html">
-     主题模型简介
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12-topic-models-with-turicreate.html">
-     使用Turicreate建立主题模型
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="13-recsys-intro.html">
-   第九章 推荐系统简介
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13-recsys-latent-factor-model.html">
-     Latent Factor Recommender System
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13-recsys-intro-surprise.html">
-     使用Surprise构建推荐系统
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="14-millionsong.html">
-     使用Turicreate进行音乐推荐
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="14-movielens.html">
-     使用Turicreate进行电影推荐
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="15-network-science-intro.html">
-   第十章 网络科学简介
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="16-network-science-models.html">
-     网络科学模型
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="17-networkx.html">
-     使用NetworkX分析网络
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-02-network-diffusion.html">
-     Simulating Network Diffusion With NDlib
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-03-network-epidemics.html">
-     Epidemics on Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-04-seir-hcd-model.html">
-     SEIR-HCD Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-ergm-siena.html">
-     Social Network Analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-weibo-hot-search.html">
-     微博热搜分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">
-     天涯论坛的回帖网络分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">
-     可视化Facebook社交网络
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-ecomplexity.html">
-     Economic Complexity and Product Complexity
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="19-visualization-with-seaborn.html">
-   第十一章 可视化
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-matplotlib-colormap.html">
-     Qualitative Colormaps in Matplotlib Visualization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-scientific-plot.html">
-     Matplotlib的科学绘图样式
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-with-pyecharts.html">
-     使用PyEcharts进行可视化
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-plotly-express.html">
-     Plotly Express in Python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-maps-using-folium.html">
-     使用folium做地图可视化
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-datashader.html">
-     使用Datashader可视化地理信息
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-datapane.html">
-     使用Datapane制作数据报告
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-pantheon.html">
-     万神殿项目（Pantheon Project）
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="01-intro2cjc.html">第一章 计算传播学简介</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02-bigdata.html">数据科学的编程工具：大数据</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="03-python-intro.html">第二章 数据科学的编程工具</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="0-jupyter-notebook.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-chatgpt.html">Using ChatGPT to Learn Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-iching.html">iching: A python package of I Ching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-recombination.html">计算思维：通过拆解和重组学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-slides.html">使用Jupyter制作Slides的介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-turicreate.html">Turicreate: Departure from Graphlab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-matplotlib-chinese.html">解决Matplotlib绘图显示中文问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-UK-MPS-Scandal.html">案例：2009年英国国会议员开支丑闻</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-umbrella-of-love.html">案例：《转角遇到爱》背后的数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-who-runs-China.html">案例：Who runs China？背后的数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-gdelt.html">Gdelt Dataset: Events, Mentions, and Global Knowledge Graph</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="04-crawler-beautifulsoup.html">第三章 数据抓取</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-fact-checking.html">抓取实时辟谣数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-13chambers.html">抓取网络小说</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-wechat.html">抓取微信公众号文章内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-douban.html">使用requests + Xpath抓取豆瓣电影数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-gov-report.html">抓取历届政府工作报告</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-cppcc.html">抓取江苏省政协十年提案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-netease-music.html">抓取网易云音乐热门评论</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium.html">使用Selenium操纵浏览器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium-music-history.html">抓取网易云音乐用户的听歌记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium-people-com-search.html">使用Selenium提取人民网搜索数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-tripadvisor.html">使用Selenium抓取TripAdvisor用户评论</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-pyppeteer.html">使用Pyppeteer实现异步抓取!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-weibo.html">轻型微博爬虫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-snscrape-twitter.html">snscrape</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="06-data-cleaning-intro.html">第四章 数据清洗</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-preprocessing.html">对大数据进行预处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-tweets.html">数据清洗之推特数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-occupy-central-news.html">对占中新闻进行数据清洗</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-music-list.html">清洗音乐列表🎵</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">使用Pandas进行数据清洗</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="08-01-statistics-thinking.html">第五章 统计思维</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="08-02-kl-divergence.html">KL Divergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-02-linear-algebra.html">Linear algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-03-distributions.html">Distribution Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-03-probability.html">Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-04-hypothesis-inference.html">Statistical Hypothesis Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-05-gradient-descent.html">Introduction to Gradient Descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-06-regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-06-statsmodels.html">Statistical Modeling with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-07-analyzing-titanic-dataset.html">Logistic Regression of Titanic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-07-covid19-pew-survey.html">Analysing the Pew Survey Data of COVID19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-11-cfps-survey-analysis.html">中国家庭追踪调查2018</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-08-covid19-grangercausality.html">社交媒体可以预测新冠疫情吗？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-09-survival-analysis.html">Survival Analysis with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-10-dowhy-estimation-methods.html">The Book of Why</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="09-01-machine-learning-with-sklearn.html">第六章 社会科学家的机器学习</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="09-03-hyperparameters-and-model-validation.html">Hyperparameters and Model Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-04-feature-engineering.html">Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-05-naive-bayes.html">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-06-linear-regression.html">In Depth: Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-07-support-vector-machines.html">In-Depth: Support Vector Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-08-random-forests.html">In-Depth: Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-09-googleflustudy.html">Forecasting and nowcasting with Google Flu Trends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-10-future-employment.html">The future of employment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-grf.html">Causal Forests</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="09-11-neural-network-intro.html">第七章 神经网络与深度学习</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="09-13-cnn.html">Convolutional Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-14-rnn.html">Sequnce Modeling: Recurrent and Recursive Nets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-12-hand-written-digits.html">Recognizing Hand-Written Digits with Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-15-cifar10.html">使用CNN对CIFAR10图像进行分类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-16-pytorch_vgg_pretrained.html">VGG16预训练模型</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="10-text-mining-gov-report.html">第八章 文本挖掘</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="10-word2vec.html">词向量模型简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-doc2vec.html">Doc2Vec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">基于字典的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-2-emotion-dict.html">大连理工大学中文情感词汇</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-3-NRC-Chinese-dict.html">基于NRC字典的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-3-textblob.html">利用textblob进行情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-4-sentiment-classifier.html">基于机器学习的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-5-LIWC.html">LIWC: Linguistic Inquiry and Word Count  analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-topic-models-update.html">主题模型简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-topic-models-with-turicreate.html">使用Turicreate建立主题模型</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="13-recsys-intro.html">第九章 推荐系统简介</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="13-recsys-latent-factor-model.html">Latent Factor Recommender System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13-recsys-intro-surprise.html">使用Surprise构建推荐系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-millionsong.html">使用Turicreate进行音乐推荐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-movielens.html">使用Turicreate进行电影推荐</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="15-network-science-intro.html">第十章 网络科学简介</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="16-network-science-models.html">网络科学模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17-networkx.html">使用NetworkX分析网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-02-network-diffusion.html">Simulating Network Diffusion With NDlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-03-network-epidemics.html">Epidemics on Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-04-seir-hcd-model.html">SEIR-HCD Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-ergm-siena.html">Social Network Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-weibo-hot-search.html">微博热搜分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">天涯论坛的回帖网络分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">可视化Facebook社交网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-ecomplexity.html">Economic Complexity and Product Complexity</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="19-visualization-with-seaborn.html">第十一章 可视化</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-matplotlib-colormap.html">Qualitative Colormaps in Matplotlib Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-scientific-plot.html">Matplotlib的科学绘图样式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-with-pyecharts.html">使用PyEcharts进行可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-plotly-express.html">Plotly Express in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-maps-using-folium.html">使用folium做地图可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-datashader.html">使用Datashader可视化地理信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-datapane.html">使用Datapane制作数据报告</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-pantheon.html">万神殿项目（Pantheon Project）</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/06-data-cleaning-pandas.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
   
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
+  <div id="rtd-footer-container"></div>
 
-      </li>
+
+      </div>
       
-      <li>
-        <a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/06-data-cleaning-pandas.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/06-data-cleaning-pandas.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/chengjun/mybook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F06-data-cleaning-pandas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/06-data-cleaning-pandas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chengjun/mybook"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F06-data-cleaning-pandas.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/06-data-cleaning-pandas.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   简介
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   案例1： 电影数据清洗
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     检查数据
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     一、缺失数据
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id5">
-       1. 使用默认值填补缺失
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id6">
-         👉使用空字符串填补
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id7">
-         👉使用数值0进行填补
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id8">
-       2.删除缺失数据
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id9">
-         ①有缺失数据的情况就删除（一行任意出现一个缺失值我就删掉）
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id10">
-         ② 全部是缺失值才删除
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#n">
-         ③ 至少有n个才删除
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id11">
-         ④ 某个/几个列值缺失才删除
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id12">
-         ⑤ 删除列
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id13">
-       3. 通过计算填充
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id14">
-     二、对数值类型进行规范(转换类型）
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id15">
-     三、不识别数据
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id16">
-     四、重复数据
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id17">
-   案例2：病人心脏病数据
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id18">
-     五、增加列头
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id19">
-     六、单位列数据的单位不统一
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id20">
-     七、空行
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>使用Pandas进行数据清洗</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   简介
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   案例1： 电影数据清洗
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     检查数据
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     一、缺失数据
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id5">
-       1. 使用默认值填补缺失
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id6">
-         👉使用空字符串填补
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id7">
-         👉使用数值0进行填补
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id8">
-       2.删除缺失数据
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id9">
-         ①有缺失数据的情况就删除（一行任意出现一个缺失值我就删掉）
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id10">
-         ② 全部是缺失值才删除
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#n">
-         ③ 至少有n个才删除
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id11">
-         ④ 某个/几个列值缺失才删除
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id12">
-         ⑤ 删除列
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id13">
-       3. 通过计算填充
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id14">
-     二、对数值类型进行规范(转换类型）
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id15">
-     三、不识别数据
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id16">
-     四、重复数据
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id17">
-   案例2：病人心脏病数据
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id18">
-     五、增加列头
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id19">
-     六、单位列数据的单位不统一
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id20">
-     七、空行
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>使用Pandas进行数据清洗</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">简介</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">案例1： 电影数据清洗</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">检查数据</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">一、缺失数据</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">1. 使用默认值填补缺失</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">👉使用空字符串填补</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">👉使用数值0进行填补</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">2.删除缺失数据</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">①有缺失数据的情况就删除（一行任意出现一个缺失值我就删掉）</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">② 全部是缺失值才删除</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#n">③ 至少有n个才删除</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">④ 某个/几个列值缺失才删除</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">⑤ 删除列</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">3. 通过计算填充</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">二、对数值类型进行规范(转换类型）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">三、不识别数据</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">四、重复数据</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">案例2：病人心脏病数据</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">五、增加列头</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">六、单位列数据的单位不统一</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">七、空行</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="pandas">
-<h1>使用Pandas进行数据清洗<a class="headerlink" href="#pandas" title="Permalink to this headline">#</a></h1>
+<h1>使用Pandas进行数据清洗<a class="headerlink" href="#pandas" title="Permalink to this heading">#</a></h1>
 <p><img alt="image.png" src="_images/author.png" /></p>
 <section id="id1">
-<h2>简介<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<h2>简介<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p>Pandas 是 Python 中很流行的类库，使用它可以进行数据科学计算和数据分析。数据分析结果的好坏依赖于数据的好坏。</p>
 <ul class="simple">
 <li><p>存在数据缺失、数据格式不统一、数据错误的情况。</p></li>
@@ -1203,7 +586,7 @@ title="Print to PDF"
 <p><img alt="" src="_images/pandas.png" /></p>
 </section>
 <section id="id2">
-<h2>案例1： 电影数据清洗<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<h2>案例1： 电影数据清洗<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>Imdb5000数据包含了很多信息，例如演员、导演、预算、总收入，以及 IMDB 评分和上映时间。有一些列的值是缺失的，有些列的默认值是0，有的是 NaN（Not a Number）。下面我们通过使用 Pandas 提供的功能来清洗“脏”数据。数据来源:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.kaggle.com/carolzhangdc/imdb-5000-movie-dataset">https://www.kaggle.com/carolzhangdc/imdb-5000-movie-dataset</a></p></li>
@@ -1232,7 +615,7 @@ title="Print to PDF"
 </div>
 </div>
 <section id="id3">
-<h3>检查数据<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<h3>检查数据<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>Pandas 提供了<code class="docutils literal notranslate"><span class="pre">describe()</span></code>方法描述数据，还提供了 <code class="docutils literal notranslate"><span class="pre">head()</span> <span class="pre">方法</span></code>，输出前几行数据，让我们对读入的数据有一个大致的了解。此外，Pandas 提供了一些数据切片的方法：</p>
 <ul class="simple">
 <li><p>查看一列的一些基本统计信息：<code class="docutils literal notranslate"><span class="pre">data['columnname'].describe()</span></code></p></li>
@@ -1441,7 +824,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="id4">
-<h3>一、缺失数据<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<h3>一、缺失数据<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <p>为什么要考虑数值缺失的情况？</p>
 <ul class="simple">
 <li><p>真实世界的数据很少是干净和一致的</p></li>
@@ -1453,7 +836,7 @@ title="Print to PDF"
 <p>处理缺失数据的方法：
 一、补充缺失值; 二、删除缺失值; 三、不处理</p>
 <section id="id5">
-<h4>1. 使用默认值填补缺失<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h4>
+<h4>1. 使用默认值填补缺失<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()[:</span><span class="mi">5</span><span class="p">]</span> <span class="c1"># 通过这个函数查看是否有缺失值。True表示缺失，False表示没有缺失。</span>
@@ -1629,7 +1012,7 @@ title="Print to PDF"
 </div></div></div>
 </div>
 <section id="id6">
-<h5>👉使用空字符串填补<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h5>
+<h5>👉使用空字符串填补<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">director_name</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
@@ -1657,7 +1040,7 @@ Name: director_name, Length: 5043, dtype: object
 </div>
 </section>
 <section id="id7">
-<h5>👉使用数值0进行填补<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h5>
+<h5>👉使用数值0进行填补<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -1684,9 +1067,9 @@ Name: duration, Length: 5043, dtype: float64
 </section>
 </section>
 <section id="id8">
-<h4>2.删除缺失数据<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h4>
+<h4>2.删除缺失数据<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h4>
 <section id="id9">
-<h5>①有缺失数据的情况就删除（一行任意出现一个缺失值我就删掉）<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h5>
+<h5>①有缺失数据的情况就删除（一行任意出现一个缺失值我就删掉）<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">()[:</span><span class="mi">3</span><span class="p">]</span>
@@ -1817,7 +1200,7 @@ Name: duration, Length: 5043, dtype: float64
 </div>
 </section>
 <section id="id10">
-<h5>② 全部是缺失值才删除<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h5>
+<h5>② 全部是缺失值才删除<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h5>
 <p>（一般情况下如果有部分缺失值是不影响整体行列的，如果有就删除会影响数据完整性）</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1951,7 +1334,7 @@ Name: duration, Length: 5043, dtype: float64
 <p>→原始数据是5043行，经过处理后仍然是5043行</p>
 </section>
 <section id="n">
-<h5>③ 至少有n个才删除<a class="headerlink" href="#n" title="Permalink to this headline">#</a></h5>
+<h5>③ 至少有n个才删除<a class="headerlink" href="#n" title="Permalink to this heading">#</a></h5>
 <p>（我们可以设定一个“门槛”，如果一行中有5个以上缺失值就删除，这样比起上面两个方法更加“中庸”）</p>
 <p>→图示解读：但我们发现设定5个缺失值为门槛仍然不能处理，我们需要降低删除的门槛,，比如改到4个或3</p>
 <div class="cell docutils container">
@@ -2083,7 +1466,7 @@ Name: duration, Length: 5043, dtype: float64
 </div>
 </section>
 <section id="id11">
-<h5>④ 某个/几个列值缺失才删除<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h5>
+<h5>④ 某个/几个列值缺失才删除<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h5>
 <p>（如果我们觉得某几个值是特别重要的、不可或缺的话，如果是缺失值该数据就没意义，就可以指定特定列）</p>
 <p>（例如对于一个电影而言，电影名字或者导演通常是必须的要素）</p>
 <div class="cell docutils container">
@@ -2215,7 +1598,7 @@ Name: duration, Length: 5043, dtype: float64
 </div>
 </section>
 <section id="id12">
-<h5>⑤ 删除列<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h5>
+<h5>⑤ 删除列<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h5>
 <p>（前面的操作是针对行）</p>
 <p>（同样的方法也适用于于列，只需要补充axis=1的参数即可。默认值为axis=0 行  axis=1 列）</p>
 <div class="cell docutils container">
@@ -2418,7 +1801,7 @@ Name: duration, Length: 5043, dtype: float64
 </section>
 </section>
 <section id="id13">
-<h4>3. 通过计算填充<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h4>
+<h4>3. 通过计算填充<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h4>
 <p>使用数字类型的数据，比如，电影的时长，计算像电影平均时长可以帮我们甚至是数据集。这并不是最优解，但这个持续时间是根据其他数据估算出来的。这样的方式下，就不会因为像 0 或者 NaN这样的值在我们分析的时候而抛错。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2445,7 +1828,7 @@ Name: duration, dtype: float64
 </section>
 </section>
 <section id="id14">
-<h3>二、对数值类型进行规范(转换类型）<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h3>
+<h3>二、对数值类型进行规范(转换类型）<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h3>
 <p>有的时候，尤其当我们读取 csv 中一串数字的时候，有的时候数值类型的数字被读成字符串的数字，或将字符串的数字读成数据值类型的数字。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2512,7 +1895,7 @@ Name: title_year, dtype: object
 </div>
 </section>
 <section id="id15">
-<h3>三、不识别数据<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h3>
+<h3>三、不识别数据<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h3>
 <p>有时候我们不想看到某列或者某行的空值，但却该列缺失不是关键量不需要删除
 可以选择忽略/不识别该数据的方法</p>
 <div class="cell docutils container">
@@ -2550,7 +1933,7 @@ Name: director_name, Length: 5043, dtype: object
 <p>因此，用这个方法可以可以替换文本中存在的\n（还可用来其他转移转义字符 \n\t\r</p>
 </section>
 <section id="id16">
-<h3>四、重复数据<a class="headerlink" href="#id16" title="Permalink to this headline">#</a></h3>
+<h3>四、重复数据<a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h3>
 <p>有的时候数据集中会有一些重复的数据。在我们的数据集中也添加了重复的数据。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2565,7 +1948,7 @@ Name: director_name, Length: 5043, dtype: object
 </section>
 </section>
 <section id="id17">
-<h2>案例2：病人心脏病数据<a class="headerlink" href="#id17" title="Permalink to this headline">#</a></h2>
+<h2>案例2：病人心脏病数据<a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://www.cnblogs.com/BoyceYang/p/8186033.html">https://www.cnblogs.com/BoyceYang/p/8186033.html</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2687,7 +2070,7 @@ Name: director_name, Length: 5043, dtype: object
 <li><p>有些列头应该是数据，而不应该是列名参数</p></li>
 </ul>
 <section id="id18">
-<h3>五、增加列头<a class="headerlink" href="#id18" title="Permalink to this headline">#</a></h3>
+<h3>五、增加列头<a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -2878,7 +2261,7 @@ Name: director_name, Length: 5043, dtype: object
 </div>
 </section>
 <section id="id19">
-<h3>六、单位列数据的单位不统一<a class="headerlink" href="#id19" title="Permalink to this headline">#</a></h3>
+<h3>六、单位列数据的单位不统一<a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h3>
 <p>如果仔细观察数据集可以发现 Weight 列的单位不统一。有的单位是 kgs，有的单位是 lbs (磅）</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3173,7 +2556,7 @@ Name: director_name, Length: 5043, dtype: object
 </div>
 </section>
 <section id="id20">
-<h3>七、空行<a class="headerlink" href="#id20" title="Permalink to this headline">#</a></h3>
+<h3>七、空行<a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h3>
 <p>仔细对比会发现我们的数据中一行空行，除了 index 之外，全部的值都是 NaN。</p>
 <p>Pandas 的 read_csv() 并没有可选参数来忽略空行，这样，我们就需要在数据被读入之后再使用 dropna() 进行处理，删除空行.</p>
 <div class="cell docutils container">
@@ -3422,7 +2805,7 @@ Name: director_name, Length: 5043, dtype: object
 </div>
 </div>
 </div>
-<p>更多练习： <a class="reference external" href="https://github.com/computational-class/data_cleaning">https://github.com/computational-class/data_cleaning</a></p>
+<p>更多练习： <a class="github reference external" href="https://github.com/computational-class/data_cleaning">computational-class/data_cleaning</a></p>
 <p><img alt="image.png" src="_images/end.png" /></p>
 </section>
 </section>
@@ -3440,7 +2823,7 @@ Name: director_name, Length: 5043, dtype: object
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -3448,50 +2831,131 @@ Name: director_name, Length: 5043, dtype: object
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="06-data-cleaning-music-list.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">清洗音乐列表🎵</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06-data-cleaning-music-list.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">清洗音乐列表🎵</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="08-01-statistics-thinking.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="08-01-statistics-thinking.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">第五章 统计思维</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">简介</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">案例1： 电影数据清洗</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">检查数据</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">一、缺失数据</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">1. 使用默认值填补缺失</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">👉使用空字符串填补</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">👉使用数值0进行填补</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">2.删除缺失数据</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">①有缺失数据的情况就删除（一行任意出现一个缺失值我就删掉）</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">② 全部是缺失值才删除</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#n">③ 至少有n个才删除</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">④ 某个/几个列值缺失才删除</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">⑤ 删除列</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">3. 通过计算填充</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">二、对数值类型进行规范(转换类型）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">三、不识别数据</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">四、重复数据</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">案例2：病人心脏病数据</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">五、增加列头</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">六、单位列数据的单位不统一</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">七、空行</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Cheng-Jun Wang<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Cheng-Jun Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

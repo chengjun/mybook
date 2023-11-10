@@ -1,50 +1,62 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>SEIR-HCD Model &#8212; 计算传播学</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,63 +64,106 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"176913bda28b484aa335bef836b7d78e": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_1b77bb55a75d4fa5a3a2cbf3721842a4", "max": 306, "min": 0, "orientation": "horizontal", "style": "IPY_MODEL_af5662d82be841d98009db0f733c37b0", "value": 306}}, "1b77bb55a75d4fa5a3a2cbf3721842a4": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "1ff30be85a6845f5900e1fafc8538c39": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "2a7646975de747eda9cf488d3c5f3716": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "317f467a108d4c7ea890aacf22b823db": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "49dc85cd97ab4457ac3a8c16139ff6f1": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_176913bda28b484aa335bef836b7d78e", "IPY_MODEL_72aa0d662442499dbdc448894d12bfac"], "layout": "IPY_MODEL_9b108a1367144e969f4b02f183f4a27b"}}, "72aa0d662442499dbdc448894d12bfac": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_d788278c812c4a5ebd037dc1ef5dca89", "placeholder": "\u200b", "style": "IPY_MODEL_2a7646975de747eda9cf488d3c5f3716", "value": " 306/306 [34:32&lt;00:00,  6.77s/it]"}}, "9b108a1367144e969f4b02f183f4a27b": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "af5662d82be841d98009db0f733c37b0": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "b7c830a331314259a824b1502eaceabd": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_cb8cc3404e9b4ab08313a295f74e63b8", "placeholder": "\u200b", "style": "IPY_MODEL_1ff30be85a6845f5900e1fafc8538c39", "value": " 306/306 [32:04&lt;00:00,  6.29s/it]"}}, "b800b56c24734526a7a5bfc5165e0025": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_d36c8da6a78341449cd75b1664a46931", "max": 306, "min": 0, "orientation": "horizontal", "style": "IPY_MODEL_317f467a108d4c7ea890aacf22b823db", "value": 306}}, "cb8cc3404e9b4ab08313a295f74e63b8": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d36c8da6a78341449cd75b1664a46931": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d788278c812c4a5ebd037dc1ef5dca89": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d8a007bb72bc4832abcb0190270c5752": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_b800b56c24734526a7a5bfc5165e0025", "IPY_MODEL_b7c830a331314259a824b1502eaceabd"], "layout": "IPY_MODEL_f7cd42c293ea487daeb73b46da7d6bdf"}}, "f7cd42c293ea487daeb73b46da7d6bdf": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '18-04-seir-hcd-model';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Social Network Analysis" href="18-network-ergm-siena.html" />
     <link rel="prev" title="Epidemics on Networks" href="18-03-network-epidemics.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
 
-    
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/socrates_jump.gif" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">计算传播学</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/socrates_jump.gif" class="logo__image only-light" alt="计算传播学 - Home"/>
+    <script>document.write(`<img src="_static/socrates_jump.gif" class="logo__image only-dark" alt="计算传播学 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -118,908 +173,375 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="01-intro2cjc.html">
-   第一章 计算传播学简介
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="02-bigdata.html">
-     数据科学的编程工具：大数据
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="03-python-intro.html">
-   第二章 数据科学的编程工具
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-jupyter-notebook.html">
-     Jupyter Notebook
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="01-recombination.html">
-     计算思维：通过拆解和重组学习
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-slides.html">
-     使用Jupyter制作Slides的介绍
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-turicreate.html">
-     Turicreate: Departure from Graphlab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="0-matplotlib-chinese.html">
-     解决Matplotlib绘图显示中文问题
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-UK-MPS-Scandal.html">
-     案例：2009年英国国会议员开支丑闻
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-umbrella-of-love.html">
-     案例：《转角遇到爱》背后的数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-who-runs-China.html">
-     案例：Who runs China？背后的数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="03-gdelt.html">
-     Gdelt Dataset: Events, Mentions, and Global Knowledge Graph
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="04-crawler-beautifulsoup.html">
-   第三章 数据抓取
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-fact-checking.html">
-     抓取实时辟谣数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-13chambers.html">
-     抓取网络小说
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-wechat.html">
-     抓取微信公众号文章内容
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-douban.html">
-     使用requests + Xpath抓取豆瓣电影数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-gov-report.html">
-     抓取历届政府工作报告
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-cppcc.html">
-     抓取江苏省政协十年提案
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-netease-music.html">
-     抓取网易云音乐热门评论
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-selenium.html">
-     使用Selenium操纵浏览器
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-selenium-music-history.html">
-     抓取网易云音乐用户的听歌记录
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-selenium-people-com-search.html">
-     使用Selenium提取人民网搜索数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-tripadvisor.html">
-     使用Selenium抓取TripAdvisor用户评论
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-pyppeteer.html">
-     使用Pyppeteer实现异步抓取!
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-weibo.html">
-     轻型微博爬虫
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="04-crawler-snscrape-twitter.html">
-     snscrape
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="06-data-cleaning-intro.html">
-   第四章 数据清洗
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-preprocessing.html">
-     对大数据进行预处理
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-tweets.html">
-     数据清洗之推特数据
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-occupy-central-news.html">
-     对占中新闻进行数据清洗
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-music-list.html">
-     清洗音乐列表🎵
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="06-data-cleaning-pandas.html">
-     使用Pandas进行数据清洗
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="08-01-statistics-thinking.html">
-   第五章 统计思维
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-02-kl-divergence.html">
-     KL Divergence
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-02-linear-algebra.html">
-     Linear algebra
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-03-distributions.html">
-     Distribution Functions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-03-probability.html">
-     Probability
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-04-hypothesis-inference.html">
-     Statistical Hypothesis Testing
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-05-gradient-descent.html">
-     Introduction to Gradient Descent
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-06-regression.html">
-     Linear Regression
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-06-statsmodels.html">
-     Statistical Modeling with Python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-07-analyzing-titanic-dataset.html">
-     Logistic Regression of Titanic Data
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-07-covid19-pew-survey.html">
-     Analysing the Pew Survey Data of COVID19
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-11-cfps-survey-analysis.html">
-     中国家庭追踪调查2018
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-08-covid19-grangercausality.html">
-     社交媒体可以预测新冠疫情吗？
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-09-survival-analysis.html">
-     Survival Analysis with Python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="08-10-dowhy-estimation-methods.html">
-     The Book of Why
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="09-01-machine-learning-with-sklearn.html">
-   第六章 社会科学家的机器学习
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-03-hyperparameters-and-model-validation.html">
-     Hyperparameters and Model Validation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-04-feature-engineering.html">
-     Feature Engineering
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-05-naive-bayes.html">
-     In Depth: Naive Bayes Classification
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-06-linear-regression.html">
-     In Depth: Linear Regression
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-07-support-vector-machines.html">
-     In-Depth: Support Vector Machines
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-08-random-forests.html">
-     In-Depth: Decision Trees and Random Forests
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-09-googleflustudy.html">
-     Forecasting and nowcasting with Google Flu Trends
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-10-future-employment.html">
-     The future of employment
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-grf.html">
-     Causal Forests
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="09-11-neural-network-intro.html">
-   第七章 神经网络与深度学习
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-13-cnn.html">
-     Convolutional Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-14-rnn.html">
-     Sequnce Modeling: Recurrent and Recursive Nets
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-12-hand-written-digits.html">
-     Recognizing Hand-Written Digits with Neural Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-15-cifar10.html">
-     使用CNN对CIFAR10图像进行分类
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="09-16-pytorch_vgg_pretrained.html">
-     VGG16预训练模型
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="10-text-mining-gov-report.html">
-   第八章 文本挖掘
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10-word2vec.html">
-     词向量模型简介
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="10-doc2vec.html">
-     Doc2Vec
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">
-     基于字典的情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-2-emotion-dict.html">
-     大连理工大学中文情感词汇
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-3-NRC-Chinese-dict.html">
-     基于NRC字典的情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-3-textblob.html">
-     利用textblob进行情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-4-sentiment-classifier.html">
-     基于机器学习的情感分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="11-5-LIWC.html">
-     LIWC: Linguistic Inquiry and Word Count  analyzer
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12-topic-models-update.html">
-     主题模型简介
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12-topic-models-with-turicreate.html">
-     使用Turicreate建立主题模型
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="13-recsys-intro.html">
-   第九章 推荐系统简介
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13-recsys-latent-factor-model.html">
-     Latent Factor Recommender System
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="13-recsys-intro-surprise.html">
-     使用Surprise构建推荐系统
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="14-millionsong.html">
-     使用Turicreate进行音乐推荐
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="14-movielens.html">
-     使用Turicreate进行电影推荐
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="15-network-science-intro.html">
-   第十章 网络科学简介
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="16-network-science-models.html">
-     网络科学模型
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="17-networkx.html">
-     使用NetworkX分析网络
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-02-network-diffusion.html">
-     Simulating Network Diffusion With NDlib
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-03-network-epidemics.html">
-     Epidemics on Networks
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     SEIR-HCD Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-ergm-siena.html">
-     Social Network Analysis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-weibo-hot-search.html">
-     微博热搜分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">
-     天涯论坛的回帖网络分析
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">
-     可视化Facebook社交网络
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="18-network-ecomplexity.html">
-     Economic Complexity and Product Complexity
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="19-visualization-with-seaborn.html">
-   第十一章 可视化
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-matplotlib-colormap.html">
-     Qualitative Colormaps in Matplotlib Visualization
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-scientific-plot.html">
-     Matplotlib的科学绘图样式
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-with-pyecharts.html">
-     使用PyEcharts进行可视化
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-plotly-express.html">
-     Plotly Express in Python
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-maps-using-folium.html">
-     使用folium做地图可视化
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-datashader.html">
-     使用Datashader可视化地理信息
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-datapane.html">
-     使用Datapane制作数据报告
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="19-visualization-pantheon.html">
-     万神殿项目（Pantheon Project）
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="01-intro2cjc.html">第一章 计算传播学简介</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02-bigdata.html">数据科学的编程工具：大数据</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="03-python-intro.html">第二章 数据科学的编程工具</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="0-jupyter-notebook.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-chatgpt.html">Using ChatGPT to Learn Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-iching.html">iching: A python package of I Ching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-recombination.html">计算思维：通过拆解和重组学习</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-slides.html">使用Jupyter制作Slides的介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-turicreate.html">Turicreate: Departure from Graphlab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0-matplotlib-chinese.html">解决Matplotlib绘图显示中文问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-UK-MPS-Scandal.html">案例：2009年英国国会议员开支丑闻</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-umbrella-of-love.html">案例：《转角遇到爱》背后的数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-who-runs-China.html">案例：Who runs China？背后的数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-gdelt.html">Gdelt Dataset: Events, Mentions, and Global Knowledge Graph</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="04-crawler-beautifulsoup.html">第三章 数据抓取</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-fact-checking.html">抓取实时辟谣数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-13chambers.html">抓取网络小说</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-wechat.html">抓取微信公众号文章内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-douban.html">使用requests + Xpath抓取豆瓣电影数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-gov-report.html">抓取历届政府工作报告</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-cppcc.html">抓取江苏省政协十年提案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-netease-music.html">抓取网易云音乐热门评论</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium.html">使用Selenium操纵浏览器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium-music-history.html">抓取网易云音乐用户的听歌记录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-selenium-people-com-search.html">使用Selenium提取人民网搜索数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-tripadvisor.html">使用Selenium抓取TripAdvisor用户评论</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-pyppeteer.html">使用Pyppeteer实现异步抓取!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-weibo.html">轻型微博爬虫</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-crawler-snscrape-twitter.html">snscrape</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="06-data-cleaning-intro.html">第四章 数据清洗</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-preprocessing.html">对大数据进行预处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-tweets.html">数据清洗之推特数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-occupy-central-news.html">对占中新闻进行数据清洗</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-music-list.html">清洗音乐列表🎵</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-data-cleaning-pandas.html">使用Pandas进行数据清洗</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="08-01-statistics-thinking.html">第五章 统计思维</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="08-02-kl-divergence.html">KL Divergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-02-linear-algebra.html">Linear algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-03-distributions.html">Distribution Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-03-probability.html">Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-04-hypothesis-inference.html">Statistical Hypothesis Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-05-gradient-descent.html">Introduction to Gradient Descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-06-regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-06-statsmodels.html">Statistical Modeling with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-07-analyzing-titanic-dataset.html">Logistic Regression of Titanic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-07-covid19-pew-survey.html">Analysing the Pew Survey Data of COVID19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-11-cfps-survey-analysis.html">中国家庭追踪调查2018</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-08-covid19-grangercausality.html">社交媒体可以预测新冠疫情吗？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-09-survival-analysis.html">Survival Analysis with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-10-dowhy-estimation-methods.html">The Book of Why</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="09-01-machine-learning-with-sklearn.html">第六章 社会科学家的机器学习</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="09-03-hyperparameters-and-model-validation.html">Hyperparameters and Model Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-04-feature-engineering.html">Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-05-naive-bayes.html">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-06-linear-regression.html">In Depth: Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-07-support-vector-machines.html">In-Depth: Support Vector Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-08-random-forests.html">In-Depth: Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-09-googleflustudy.html">Forecasting and nowcasting with Google Flu Trends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-10-future-employment.html">The future of employment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-grf.html">Causal Forests</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="09-11-neural-network-intro.html">第七章 神经网络与深度学习</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="09-13-cnn.html">Convolutional Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-14-rnn.html">Sequnce Modeling: Recurrent and Recursive Nets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-12-hand-written-digits.html">Recognizing Hand-Written Digits with Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-15-cifar10.html">使用CNN对CIFAR10图像进行分类</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-16-pytorch_vgg_pretrained.html">VGG16预训练模型</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="10-text-mining-gov-report.html">第八章 文本挖掘</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="10-word2vec.html">词向量模型简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-doc2vec.html">Doc2Vec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-1-sentiment-analysis-with-dict.html">基于字典的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-2-emotion-dict.html">大连理工大学中文情感词汇</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-3-NRC-Chinese-dict.html">基于NRC字典的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-3-textblob.html">利用textblob进行情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-4-sentiment-classifier.html">基于机器学习的情感分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-5-LIWC.html">LIWC: Linguistic Inquiry and Word Count  analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-topic-models-update.html">主题模型简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-topic-models-with-turicreate.html">使用Turicreate建立主题模型</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="13-recsys-intro.html">第九章 推荐系统简介</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="13-recsys-latent-factor-model.html">Latent Factor Recommender System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13-recsys-intro-surprise.html">使用Surprise构建推荐系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-millionsong.html">使用Turicreate进行音乐推荐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14-movielens.html">使用Turicreate进行电影推荐</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="15-network-science-intro.html">第十章 网络科学简介</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="16-network-science-models.html">网络科学模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17-networkx.html">使用NetworkX分析网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-02-network-diffusion.html">Simulating Network Diffusion With NDlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-03-network-epidemics.html">Epidemics on Networks</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">SEIR-HCD Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-ergm-siena.html">Social Network Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-weibo-hot-search.html">微博热搜分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-analysis-of-tianya-bbs.html">天涯论坛的回帖网络分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-facebook-ego-netwrok-visualization.html">可视化Facebook社交网络</a></li>
+<li class="toctree-l2"><a class="reference internal" href="18-network-ecomplexity.html">Economic Complexity and Product Complexity</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="19-visualization-with-seaborn.html">第十一章 可视化</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-matplotlib-colormap.html">Qualitative Colormaps in Matplotlib Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-scientific-plot.html">Matplotlib的科学绘图样式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-with-pyecharts.html">使用PyEcharts进行可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-plotly-express.html">Plotly Express in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-maps-using-folium.html">使用folium做地图可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-datashader.html">使用Datashader可视化地理信息</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-datapane.html">使用Datapane制作数据报告</a></li>
+<li class="toctree-l2"><a class="reference internal" href="19-visualization-pantheon.html">万神殿项目（Pantheon Project）</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/chengjun/mybook/main?urlpath=tree/18-04-seir-hcd-model.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
   
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
+  <div id="rtd-footer-container"></div>
 
-      </li>
+
+      </div>
       
-      <li>
-        <a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/18-04-seir-hcd-model.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/chengjun/mybook/blob/main/18-04-seir-hcd-model.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/chengjun/mybook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F18-04-seir-hcd-model.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/18-04-seir-hcd-model.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/chengjun/mybook"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/chengjun/mybook/issues/new?title=Issue%20on%20page%20%2F18-04-seir-hcd-model.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/18-04-seir-hcd-model.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parameters-used-in-the-model">
-   Parameters used in the model
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-without-intervention">
-   Model without intervention
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-with-intervention">
-   Model with intervention
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fitting-the-model-to-data">
-   Fitting the model to data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#calculate-for-all-countries">
-   Calculate for all countries
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#todo-ideas">
-   Todo/ideas
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#thoughts-on-compartment-models">
-   Thoughts on compartment models
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>SEIR-HCD Model</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parameters-used-in-the-model">
-   Parameters used in the model
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-without-intervention">
-   Model without intervention
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-with-intervention">
-   Model with intervention
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fitting-the-model-to-data">
-   Fitting the model to data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#calculate-for-all-countries">
-   Calculate for all countries
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#todo-ideas">
-   Todo/ideas
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#thoughts-on-compartment-models">
-   Thoughts on compartment models
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>SEIR-HCD Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters-used-in-the-model">Parameters used in the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-without-intervention">Model without intervention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-with-intervention">Model with intervention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-the-model-to-data">Fitting the model to data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-for-all-countries">Calculate for all countries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#todo-ideas">Todo/ideas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thoughts-on-compartment-models">Thoughts on compartment models</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="seir-hcd-model">
-<h1>SEIR-HCD Model<a class="headerlink" href="#seir-hcd-model" title="Permalink to this headline">#</a></h1>
+<h1>SEIR-HCD Model<a class="headerlink" href="#seir-hcd-model" title="Permalink to this heading">#</a></h1>
 <p><img alt="image.png" src="_images/network21.png" /></p>
 <p><a class="reference external" href="https://www.kaggle.com/anjum48/seir-hcd-model">https://www.kaggle.com/anjum48/seir-hcd-model</a></p>
 <p>This is a working example of a <a class="reference external" href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SEIR_model">SIER</a> model with added compartments for HCD. The letters stand for:</p>
@@ -1077,7 +599,7 @@ vector-valued function that determines the differential equations.</p></li>
 </ul>
 <p>The goal is to find y(t) approximately satisfying the differential equations, given an initial value y(t0)=y0.</p>
 <section id="parameters-used-in-the-model">
-<h2>Parameters used in the model<a class="headerlink" href="#parameters-used-in-the-model" title="Permalink to this headline">#</a></h2>
+<h2>Parameters used in the model<a class="headerlink" href="#parameters-used-in-the-model" title="Permalink to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">R_t</span></code> = reproduction number at time t. Typical 3.6* at t=0</p>
 <p><strong>Transition times</strong></p>
 <ul class="simple">
@@ -1138,7 +660,7 @@ These constants are likely to be age specific (hence the subscript a):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">SEIR_HCD_model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">R_t</span><span class="p">,</span> <span class="n">t_inc</span><span class="o">=</span><span class="mf">2.9</span><span class="p">,</span> <span class="n">t_inf</span><span class="o">=</span><span class="mf">5.2</span><span class="p">,</span> <span class="n">t_hosp</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">t_crit</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">m_a</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">c_a</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">f_a</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    :param t: Time step for solve_ivp</span>
 <span class="sd">    :param y: Previous solution or initial values</span>
 <span class="sd">    :param R_t: Reproduction number</span>
@@ -1151,7 +673,7 @@ These constants are likely to be age specific (hence the subscript a):</p>
 <span class="sd">    :param f_a: Fraction of critical cases that are fatal. Default 0.3</span>
 <span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">R_t</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">R_t</span><span class="p">):</span>
         <span class="n">reprod</span> <span class="o">=</span> <span class="n">R_t</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">reprod</span> <span class="o">=</span> <span class="n">R_t</span>
@@ -1206,7 +728,7 @@ These constants are likely to be age specific (hence the subscript a):</p>
 </div>
 </section>
 <section id="model-without-intervention">
-<h2>Model without intervention<a class="headerlink" href="#model-without-intervention" title="Permalink to this headline">#</a></h2>
+<h2>Model without intervention<a class="headerlink" href="#model-without-intervention" title="Permalink to this heading">#</a></h2>
 <p>Let’s see what the model looks like without any intervention, i.e. <code class="docutils literal notranslate"><span class="pre">R_0</span></code> is a contant value</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1236,12 +758,12 @@ These constants are likely to be age specific (hence the subscript a):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18-04-seir-hcd-model_13_0.png" src="_images/18-04-seir-hcd-model_13_0.png" />
+<img alt="_images/e70a4934b8eff7c3b9e9adfbe7fe5d0b53b08b6695446a77daade1be667c4446.png" src="_images/e70a4934b8eff7c3b9e9adfbe7fe5d0b53b08b6695446a77daade1be667c4446.png" />
 </div>
 </div>
 </section>
 <section id="model-with-intervention">
-<h2>Model with intervention<a class="headerlink" href="#model-with-intervention" title="Permalink to this headline">#</a></h2>
+<h2>Model with intervention<a class="headerlink" href="#model-with-intervention" title="Permalink to this heading">#</a></h2>
 <p>Lets assume that there is some intervention that causes the reproduction number (<code class="docutils literal notranslate"><span class="pre">R_0</span></code>) to fall to a lower value (<code class="docutils literal notranslate"><span class="pre">R_t</span></code>) at a certain time (e.g. physical distancing). Note that the actual drop will occur some time after the intervention measures are implemented.</p>
 <p>This could be modified to take any function of <code class="docutils literal notranslate"><span class="pre">R_t(t)</span></code> values to model the reproduction number as a time varying variable</p>
 <div class="cell docutils container">
@@ -1265,7 +787,7 @@ These constants are likely to be age specific (hence the subscript a):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18-04-seir-hcd-model_15_0.png" src="_images/18-04-seir-hcd-model_15_0.png" />
+<img alt="_images/8833d279810ed3518d60f8d4a2aa247ea2221567cdafbd33c4b02816ef013220.png" src="_images/8833d279810ed3518d60f8d4a2aa247ea2221567cdafbd33c4b02816ef013220.png" />
 </div>
 </div>
 <p>Let’s compare the infection rate between the two cases</p>
@@ -1292,13 +814,13 @@ These constants are likely to be age specific (hence the subscript a):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18-04-seir-hcd-model_17_0.png" src="_images/18-04-seir-hcd-model_17_0.png" />
+<img alt="_images/187fe63e8e15a0a0c53d94cf8bccb67536fed4816a531258aa11fd5071d865be.png" src="_images/187fe63e8e15a0a0c53d94cf8bccb67536fed4816a531258aa11fd5071d865be.png" />
 </div>
 </div>
 <p>You can see that after the intervention on day 45, the peak infections is lower than if there was no intervention and there are less than half as many deaths. You can see how powerful self-isolation is from this chart</p>
 </section>
 <section id="fitting-the-model-to-data">
-<h2>Fitting the model to data<a class="headerlink" href="#fitting-the-model-to-data" title="Permalink to this headline">#</a></h2>
+<h2>Fitting the model to data<a class="headerlink" href="#fitting-the-model-to-data" title="Permalink to this heading">#</a></h2>
 <p>There are certain variables that we can play with to fit the model to real data:</p>
 <ul class="simple">
 <li><p>Average incubation period, <code class="docutils literal notranslate"><span class="pre">t_inc</span></code></p></li>
@@ -1687,8 +1209,8 @@ R: 3.832, t_hosp: 0.823, t_crit: 12.281, m: 0.542, c: 0.799, f: 1.000
 R: 4.333, t_hosp: 0.502, t_crit: 3.916, m: 0.500, c: 0.351, f: 1.000
 </pre></div>
 </div>
-<img alt="_images/18-04-seir-hcd-model_34_1.png" src="_images/18-04-seir-hcd-model_34_1.png" />
-<img alt="_images/18-04-seir-hcd-model_34_2.png" src="_images/18-04-seir-hcd-model_34_2.png" />
+<img alt="_images/8bab2008832c53bd7b10aea3c1c138e665f4517a13857f753fba2e93bbd39cbc.png" src="_images/8bab2008832c53bd7b10aea3c1c138e665f4517a13857f753fba2e93bbd39cbc.png" />
+<img alt="_images/0af967144f4951327a7eef444636cffdb19c0670852e0bcc84c668dfe0c7289e.png" src="_images/0af967144f4951327a7eef444636cffdb19c0670852e0bcc84c668dfe0c7289e.png" />
 </div>
 </div>
 <p>Above you can see the model optimized on the last 14 days of data from Italy which has been weighted to put more importance on recent data</p>
@@ -1707,8 +1229,8 @@ R: 9.729, t_hosp: 0.500, t_crit: 2.000, m: 0.616, c: 0.284, f: 0.947
 R: 17.751, t_hosp: 0.541, t_crit: 2.000, m: 0.810, c: 0.477, f: 1.000
 </pre></div>
 </div>
-<img alt="_images/18-04-seir-hcd-model_36_1.png" src="_images/18-04-seir-hcd-model_36_1.png" />
-<img alt="_images/18-04-seir-hcd-model_36_2.png" src="_images/18-04-seir-hcd-model_36_2.png" />
+<img alt="_images/c45dd30bea26cab8ad85de723d305b9433f9c2e69e63143855acf1a9b4b91c08.png" src="_images/c45dd30bea26cab8ad85de723d305b9433f9c2e69e63143855acf1a9b4b91c08.png" />
+<img alt="_images/96798bdbe34bf0dc23ff769a6a8291bb6b8a0cfb951ec1610331a50df37ede48.png" src="_images/96798bdbe34bf0dc23ff769a6a8291bb6b8a0cfb951ec1610331a50df37ede48.png" />
 </div>
 </div>
 <p>An unusual feature of the Iranian data is how high the R value needs to be for the model to fit. Iran was criticised for not closing religious shrines and locking down earlier, so the virus was extremely contagious. The data also appears of have multiple inflection points</p>
@@ -1725,8 +1247,8 @@ R: 3.080, t_hosp: 3.490, t_crit: 13.857, m: 0.575, c: 0.104, f: 0.966
 R: 3.538, t_hosp: 0.830, t_crit: 11.987, m: 0.612, c: 0.060, f: 1.000
 </pre></div>
 </div>
-<img alt="_images/18-04-seir-hcd-model_38_1.png" src="_images/18-04-seir-hcd-model_38_1.png" />
-<img alt="_images/18-04-seir-hcd-model_38_2.png" src="_images/18-04-seir-hcd-model_38_2.png" />
+<img alt="_images/79adbdb4f73f7daa89bc8b8e0abddf8a7cc42ef3a9899d7a4ac62f0483f9fa52.png" src="_images/79adbdb4f73f7daa89bc8b8e0abddf8a7cc42ef3a9899d7a4ac62f0483f9fa52.png" />
+<img alt="_images/a57d0378138970c752d99bf22589454c1c20fe080c8eece2625d7ab9f6b0269b.png" src="_images/a57d0378138970c752d99bf22589454c1c20fe080c8eece2625d7ab9f6b0269b.png" />
 </div>
 </div>
 <p>South Korea is unusual due to the incredible efforts to stop the spread</p>
@@ -1743,8 +1265,8 @@ R: 2.580, t_hosp: 3.999, t_crit: 13.999, m: 0.539, c: 0.380, f: 0.489
 R: 2.858, t_hosp: 3.890, t_crit: 13.966, m: 0.505, c: 0.194, f: 0.738
 </pre></div>
 </div>
-<img alt="_images/18-04-seir-hcd-model_40_1.png" src="_images/18-04-seir-hcd-model_40_1.png" />
-<img alt="_images/18-04-seir-hcd-model_40_2.png" src="_images/18-04-seir-hcd-model_40_2.png" />
+<img alt="_images/ba912d65aa73c41526026440f322e8f6a16ffc819803741b25371fce0749f7d5.png" src="_images/ba912d65aa73c41526026440f322e8f6a16ffc819803741b25371fce0749f7d5.png" />
+<img alt="_images/08209eb875b9db7eae0c019b1b76d52e9bace2e116087d515f59a3a2e5382107.png" src="_images/08209eb875b9db7eae0c019b1b76d52e9bace2e116087d515f59a3a2e5382107.png" />
 </div>
 </div>
 <p>I’m not sure why the red line is so wiggly for Japan ¯\<em>(ツ)</em>/¯</p>
@@ -1761,8 +1283,8 @@ R: 2.136, t_hosp: 3.908, t_crit: 13.967, m: 0.500, c: 0.210, f: 0.941
 R: 2.759, t_hosp: 0.501, t_crit: 2.000, m: 0.915, c: 0.556, f: 0.999
 </pre></div>
 </div>
-<img alt="_images/18-04-seir-hcd-model_42_1.png" src="_images/18-04-seir-hcd-model_42_1.png" />
-<img alt="_images/18-04-seir-hcd-model_42_2.png" src="_images/18-04-seir-hcd-model_42_2.png" />
+<img alt="_images/24b795f9d0de9700352dc1c7594a87813c866bbd60c92b4eade3f7af3c5cb2a6.png" src="_images/24b795f9d0de9700352dc1c7594a87813c866bbd60c92b4eade3f7af3c5cb2a6.png" />
+<img alt="_images/e63e6f4fc545ab51e48d30cf32a45a3075ea3b9f57648a6ea1c1bcb6223131a9.png" src="_images/e63e6f4fc545ab51e48d30cf32a45a3075ea3b9f57648a6ea1c1bcb6223131a9.png" />
 </div>
 </div>
 <p>The plot for Hubei looks really good. In fact the data for most of the Chinese provinces fit well to compartment models</p>
@@ -1779,14 +1301,14 @@ R: 2.642, t_hosp: 4.003, t_crit: 13.992, m: 0.500, c: 0.924, f: 0.567
 R: 2.682, t_hosp: 3.890, t_crit: 13.947, m: 0.500, c: 0.977, f: 0.998
 </pre></div>
 </div>
-<img alt="_images/18-04-seir-hcd-model_44_1.png" src="_images/18-04-seir-hcd-model_44_1.png" />
-<img alt="_images/18-04-seir-hcd-model_44_2.png" src="_images/18-04-seir-hcd-model_44_2.png" />
+<img alt="_images/80e137d9eea96a60226215df63cb6c7c128a1e1b0dbc66dad813aec18b320673.png" src="_images/80e137d9eea96a60226215df63cb6c7c128a1e1b0dbc66dad813aec18b320673.png" />
+<img alt="_images/0a23107358d873b2105a3253c24b826a98c723868b9e9acd77a8e01f04e1cf78.png" src="_images/0a23107358d873b2105a3253c24b826a98c723868b9e9acd77a8e01f04e1cf78.png" />
 </div>
 </div>
 <p>Things are not looking good for the UK. Let’s hope the lockdown starts bringing the R number down soon</p>
 </section>
 <section id="calculate-for-all-countries">
-<h2>Calculate for all countries<a class="headerlink" href="#calculate-for-all-countries" title="Permalink to this headline">#</a></h2>
+<h2>Calculate for all countries<a class="headerlink" href="#calculate-for-all-countries" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Public Leaderboard</span>
@@ -1808,9 +1330,7 @@ R: 2.682, t_hosp: 3.890, t_crit: 13.947, m: 0.500, c: 0.977, f: 0.998
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "d8a007bb72bc4832abcb0190270c5752", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Afghanistan 0.12743
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "d8a007bb72bc4832abcb0190270c5752", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Afghanistan 0.12743
 Alabama 0.72514
 Alaska 0.09241
 Albania 0.51119
@@ -2269,9 +1789,7 @@ Mean validation score: 0.67788
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "49dc85cd97ab4457ac3a8c16139ff6f1", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "49dc85cd97ab4457ac3a8c16139ff6f1", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -2292,7 +1810,7 @@ Mean validation score: 0.67788
 </div>
 </section>
 <section id="todo-ideas">
-<h2>Todo/ideas<a class="headerlink" href="#todo-ideas" title="Permalink to this headline">#</a></h2>
+<h2>Todo/ideas<a class="headerlink" href="#todo-ideas" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Some of the search boundaries boundaries are dependent on each other (e.g. <code class="docutils literal notranslate"><span class="pre">t_hosp</span></code> should always be less than <code class="docutils literal notranslate"><span class="pre">t_crit</span></code>). Using <code class="docutils literal notranslate"><span class="pre">NonlinearConstraint</span></code> may solve this</p></li>
 <li><p>Time dependence of other parameters, e.g. <code class="docutils literal notranslate"><span class="pre">f</span></code> as hospitals get overwhelmed</p></li>
@@ -2302,19 +1820,13 @@ Mean validation score: 0.67788
 </ul>
 </section>
 <section id="thoughts-on-compartment-models">
-<h2>Thoughts on compartment models<a class="headerlink" href="#thoughts-on-compartment-models" title="Permalink to this headline">#</a></h2>
+<h2>Thoughts on compartment models<a class="headerlink" href="#thoughts-on-compartment-models" title="Permalink to this heading">#</a></h2>
 <p>I think compartment models are very powerful toy models and add lots of value for scenario testing, e.g. when a healthcare system might be overwhelmed, the impact of various interventions etc.. They can also be easily bootstrapped using population demographics to generate uncertainty estimates on those scenarios.</p>
 <p><img alt="image.png" src="_images/plane.png" /></p>
 <p>The hospitalization compartment in this model is tricky to work with as I had to set the lower bounds for these transition times quite low (<code class="docutils literal notranslate"><span class="pre">t_hosp</span></code>, <code class="docutils literal notranslate"><span class="pre">t_crit</span></code>). I think the reason for this is that many countries are telling people to stay away from the hospitals unless they are experiencing severe symptoms, meaning that once a patient is in a hospital, there are likely to already be very sick. This means when I optimize the transition times to go from hospitalized &gt; severe, the times are often very small.</p>
 <p>However, I think that for this particular forecasting exercise and metric, there are more accurate methods that can be used. One could also use a compartment model like this to generate features for another model.</p>
 </section>
 </section>
-
-
-<script type="application/vnd.jupyter.widget-state+json">
-{"state": {"176913bda28b484aa335bef836b7d78e": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_1b77bb55a75d4fa5a3a2cbf3721842a4", "max": 306, "min": 0, "orientation": "horizontal", "style": "IPY_MODEL_af5662d82be841d98009db0f733c37b0", "value": 306}}, "1b77bb55a75d4fa5a3a2cbf3721842a4": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "1ff30be85a6845f5900e1fafc8538c39": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "2a7646975de747eda9cf488d3c5f3716": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "317f467a108d4c7ea890aacf22b823db": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "49dc85cd97ab4457ac3a8c16139ff6f1": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_176913bda28b484aa335bef836b7d78e", "IPY_MODEL_72aa0d662442499dbdc448894d12bfac"], "layout": "IPY_MODEL_9b108a1367144e969f4b02f183f4a27b"}}, "72aa0d662442499dbdc448894d12bfac": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_d788278c812c4a5ebd037dc1ef5dca89", "placeholder": "\u200b", "style": "IPY_MODEL_2a7646975de747eda9cf488d3c5f3716", "value": " 306/306 [34:32&lt;00:00,  6.77s/it]"}}, "9b108a1367144e969f4b02f183f4a27b": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "af5662d82be841d98009db0f733c37b0": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "b7c830a331314259a824b1502eaceabd": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_cb8cc3404e9b4ab08313a295f74e63b8", "placeholder": "\u200b", "style": "IPY_MODEL_1ff30be85a6845f5900e1fafc8538c39", "value": " 306/306 [32:04&lt;00:00,  6.29s/it]"}}, "b800b56c24734526a7a5bfc5165e0025": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_d36c8da6a78341449cd75b1664a46931", "max": 306, "min": 0, "orientation": "horizontal", "style": "IPY_MODEL_317f467a108d4c7ea890aacf22b823db", "value": 306}}, "cb8cc3404e9b4ab08313a295f74e63b8": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d36c8da6a78341449cd75b1664a46931": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d788278c812c4a5ebd037dc1ef5dca89": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d8a007bb72bc4832abcb0190270c5752": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_b800b56c24734526a7a5bfc5165e0025", "IPY_MODEL_b7c830a331314259a824b1502eaceabd"], "layout": "IPY_MODEL_f7cd42c293ea487daeb73b46da7d6bdf"}}, "f7cd42c293ea487daeb73b46da7d6bdf": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}}, "version_major": 2, "version_minor": 0}
-</script>
-
 
     <script type="text/x-thebe-config">
     {
@@ -2328,7 +1840,7 @@ Mean validation score: 0.67788
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -2336,50 +1848,107 @@ Mean validation score: 0.67788
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="18-03-network-epidemics.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Epidemics on Networks</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="18-03-network-epidemics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Epidemics on Networks</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="18-network-ergm-siena.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="18-network-ergm-siena.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Social Network Analysis</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters-used-in-the-model">Parameters used in the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-without-intervention">Model without intervention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-with-intervention">Model with intervention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-the-model-to-data">Fitting the model to data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-for-all-countries">Calculate for all countries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#todo-ideas">Todo/ideas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thoughts-on-compartment-models">Thoughts on compartment models</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Cheng-Jun Wang<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Cheng-Jun Wang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
