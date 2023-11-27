@@ -262,6 +262,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="11-3-textblob.html">利用textblob进行情感分析</a></li>
 <li class="toctree-l2"><a class="reference internal" href="11-4-sentiment-classifier.html">基于机器学习的情感分析</a></li>
 <li class="toctree-l2"><a class="reference internal" href="11-5-LIWC.html">LIWC: Linguistic Inquiry and Word Count  analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-6-Chinese-moral-foundation-dict.html">Chinese Moral Foundation Dictionary 2.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12-topic-models-update.html">主题模型简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12-topic-models-with-turicreate.html">使用Turicreate建立主题模型</a></li>
 </ul>
@@ -1252,7 +1253,7 @@ quantile(num_friends, 0.90) 13
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/08c9d88a74e58a472d4b73924bbb2b5211374b46ee4421f4f8c845fa41b282ca.png" src="_images/08c9d88a74e58a472d4b73924bbb2b5211374b46ee4421f4f8c845fa41b282ca.png" />
+<img alt="_images/a5e6bba4ecaab33608e8d7e28b8f15207ed240ac56219c4f2690b9934165875c.png" src="_images/a5e6bba4ecaab33608e8d7e28b8f15207ed240ac56219c4f2690b9934165875c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1563,7 +1564,7 @@ quantile(num_friends, 0.90) 13
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4f5d5984c128311ecfd090cdedddaedde9783555829e253d473f52bb2f183efe.png" src="_images/4f5d5984c128311ecfd090cdedddaedde9783555829e253d473f52bb2f183efe.png" />
+<img alt="_images/70f80da25834011a766851a825e5a6688c0f40d73c3cc5834f68468d67a54790.png" src="_images/70f80da25834011a766851a825e5a6688c0f40d73c3cc5834f68468d67a54790.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1613,6 +1614,7 @@ Residual      34.0  0.005395  0.000159       NaN       NaN
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># https://raw.githubusercontent.com/thomas-haslwanter/statsintro_python/master/ipynb/Data/data_altman/altman_12_6.txt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data/altman_12_6.txt&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;hs&#39;</span><span class="p">,</span> <span class="s1">&#39;fetus&#39;</span><span class="p">,</span> <span class="s1">&#39;observer&#39;</span><span class="p">])</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -1687,7 +1689,7 @@ Residual      34.0  0.005395  0.000159       NaN       NaN
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d92098fc0346fae077b45fda1b549581887df5ad7be72f7e12b419aa57e515c4.png" src="_images/d92098fc0346fae077b45fda1b549581887df5ad7be72f7e12b419aa57e515c4.png" />
+<img alt="_images/c3694c2235637c85a459cefa6ff4060333e01f44a687ba5c63694df57266e7c8.png" src="_images/c3694c2235637c85a459cefa6ff4060333e01f44a687ba5c63694df57266e7c8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1866,7 +1868,7 @@ Residual              24.0    1.840000    0.076667          NaN           NaN
 <span class="n">house</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span> <span class="mi">215</span><span class="p">,</span> <span class="mi">143</span> <span class="p">],</span> <span class="p">[</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">64</span> <span class="p">]</span> <span class="p">]</span>
 <span class="n">chi2</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">ddof</span><span class="p">,</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">chi2_contingency</span><span class="p">(</span> <span class="n">house</span><span class="p">,</span> <span class="n">correction</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Test Statistic: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">p-value: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">Degrees of Freedom: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span>
-<span class="nb">print</span><span class="p">(</span> <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">chi2</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">ddof</span> <span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">chi2</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">ddof</span> <span class="p">)</span> <span class="p">)</span> 
 <span class="nb">print</span><span class="p">(</span> <span class="n">expected</span> <span class="p">)</span>
 </pre></div>
 </div>

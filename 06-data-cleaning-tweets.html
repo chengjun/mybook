@@ -260,6 +260,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="11-3-textblob.html">利用textblob进行情感分析</a></li>
 <li class="toctree-l2"><a class="reference internal" href="11-4-sentiment-classifier.html">基于机器学习的情感分析</a></li>
 <li class="toctree-l2"><a class="reference internal" href="11-5-LIWC.html">LIWC: Linguistic Inquiry and Word Count  analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-6-Chinese-moral-foundation-dict.html">Chinese Moral Foundation Dictionary 2.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12-topic-models-update.html">主题模型简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12-topic-models-with-turicreate.html">使用Turicreate建立主题模型</a></li>
 </ul>
@@ -698,7 +699,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
@@ -711,7 +712,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#df.columns #</span>
-<span class="n">df</span><span class="o">.</span><span class="n">Text</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Text&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -778,7 +779,7 @@ Name: From User, dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Microsoft YaHei&#39;</span><span class="p">]</span>  <span class="c1"># 用来正常显示中文标签</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># 用来正常显示负号, 注意[&#39;SimHei&#39;]对应这句不行.</span>
@@ -800,7 +801,7 @@ Name: From User, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6907d72f70641e95a99b4d315e6c0f950d4d0d24423c1bfcdebbeae7d30cfa73.png" src="_images/6907d72f70641e95a99b4d315e6c0f950d4d0d24423c1bfcdebbeae7d30cfa73.png" />
+<img alt="_images/bf6ff457aebd02b38a2b07d612358c91076ab7605e22ac9811566f44aa00820d.png" src="_images/bf6ff457aebd02b38a2b07d612358c91076ab7605e22ac9811566f44aa00820d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -809,15 +810,15 @@ Name: From User, dtype: object
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data_dict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
     <span class="n">tweet_dict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> 
  
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">tweet_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">tweet_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span><span class="c1">#linewidth=2)  </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">tweet_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">tweet_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span><span class="c1">#linewidth=2)  </span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;推特数&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;人数&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;人数&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span> <span class="p">)</span> 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e5698dc8c95c518601026b904cb572d935d11aff82bb211e38fe9505f190e58b.png" src="_images/e5698dc8c95c518601026b904cb572d935d11aff82bb211e38fe9505f190e58b.png" />
+<img alt="_images/2785b768e4d1acf75c9f21a7cb8b1dfe22946f60069fc2bc745407b1bb79fe73.png" src="_images/2785b768e4d1acf75c9f21a7cb8b1dfe22946f60069fc2bc745407b1bb79fe73.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -858,7 +859,7 @@ Name: From User, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2511ebf65fb90c46cb21bafde77ec054b3374fd6f7860c090f50a8d64db68a78.png" src="_images/2511ebf65fb90c46cb21bafde77ec054b3374fd6f7860c090f50a8d64db68a78.png" />
+<img alt="_images/db36e28f13f347b5ada574d90882411e82875d1fbbf3f67ea26a5776678f0b99.png" src="_images/db36e28f13f347b5ada574d90882411e82875d1fbbf3f67ea26a5776678f0b99.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1233,7 +1234,7 @@ None
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
 
 <span class="n">lines</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
-<span class="n">tweets</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
+<span class="n">tweets</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span> 
 </pre></div>
 </div>
 </div>

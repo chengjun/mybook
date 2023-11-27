@@ -260,6 +260,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="11-3-textblob.html">利用textblob进行情感分析</a></li>
 <li class="toctree-l2"><a class="reference internal" href="11-4-sentiment-classifier.html">基于机器学习的情感分析</a></li>
 <li class="toctree-l2"><a class="reference internal" href="11-5-LIWC.html">LIWC: Linguistic Inquiry and Word Count  analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-6-Chinese-moral-foundation-dict.html">Chinese Moral Foundation Dictionary 2.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12-topic-models-update.html">主题模型简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12-topic-models-with-turicreate.html">使用Turicreate建立主题模型</a></li>
 </ul>
@@ -553,29 +554,22 @@ document.write(`
 <p>Lazy Method for Reading Big File in Python?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import sys</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="c1"># import sys</span>
 
 <span class="c1"># flush print</span>
 <span class="c1"># def flushPrint(d):</span>
 <span class="c1">#     sys.stdout.write(&#39;\r&#39;)</span>
 <span class="c1">#     sys.stdout.write(str(d))</span>
 <span class="c1">#     sys.stdout.flush()</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span> 
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
-1
-2
-3
-4
-5
-6
-7
-8
-9
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
 </pre></div>
 </div>
 </div>
@@ -676,9 +670,9 @@ document.write(`
                        <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
     <span class="c1"># do sth.</span>
     <span class="n">num_lines</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">lines</span><span class="p">))</span>
-<span class="c1">#     for i in lines:</span>
-<span class="c1">#         if &#39;cops&#39; in i:</span>
-<span class="c1">#             num_cops +=1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;cops&#39;</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+            <span class="n">num_cops</span> <span class="o">+=</span><span class="mi">1</span>
     <span class="k">if</span> <span class="n">num_chunk</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">num_chunk</span><span class="p">,</span> <span class="n">num_lines</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">num_chunk</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -688,18 +682,6 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25 6602141
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_lines</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6602141
 </pre></div>
 </div>
 </div>
@@ -897,29 +879,274 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chunk</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># chatgpt告诉我这样更简单！！</span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;/Users/datalab/bigdata/cjc/ows-raw.txt&#39;</span>
+
+<span class="c1"># Specify the chunk size (number of rows to read at a time)</span>
+<span class="n">chunk_size</span> <span class="o">=</span> <span class="mi">100000</span>
+
+<span class="c1"># Create a dataframe reader object</span>
+<span class="n">chunk_reader</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>  <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> 
+                        <span class="n">iterator</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">on_bad_lines</span><span class="o">=</span><span class="s1">&#39;skip&#39;</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="n">chunk_size</span><span class="p">)</span>
+
+<span class="c1"># Initialize a variable to store the total sum</span>
+<span class="n">total_sum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">num_chunk</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># Iterate over chunks</span>
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunk_reader</span><span class="p">:</span>
+    <span class="c1"># Process the chunk as needed</span>
+    <span class="c1"># For example, calculate the sum of a specific column</span>
+    <span class="n">column_sum</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">[</span><span class="s1">&#39;Text&#39;</span><span class="p">])</span>
+    
+    <span class="c1"># Add the sum of the current chunk to the total sum</span>
+    <span class="n">total_sum</span> <span class="o">+=</span> <span class="n">column_sum</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num_chunk</span><span class="p">,</span> <span class="n">total_sum</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">num_chunk</span> <span class="o">+=</span><span class="mi">1</span>
+
+<span class="c1"># After the loop, you have processed the entire dataset in chunks</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total sum of the specified column:&quot;</span><span class="p">,</span> <span class="n">total_sum</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Twitter ID                                          153352746249101312
-Text                                                               NaN
-Profile Image URL    http://a3.twimg.com/profile_images/1647201670/...
-Day                                                         2012-01-01
-Hour                                                                 5
-Minute                                                              51
-Created At                                         2012-01-01 05:51:58
-Geo                                                                 N;
-From User                                              AngeredPopulist
-From User ID                                                 416481838
-Language                                                            en
-To User                                                            NaN
-To User ID                                                           0
-Source               &amp;lt;a href=&amp;quot;http://twitter.com/#!/downloa...
-Name: 5832333, dtype: object
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total sum of the specified column: 6602120
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chunk</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Twitter ID</th>
+      <th>Text</th>
+      <th>Profile Image URL</th>
+      <th>Day</th>
+      <th>Hour</th>
+      <th>Minute</th>
+      <th>Created At</th>
+      <th>Geo</th>
+      <th>From User</th>
+      <th>From User ID</th>
+      <th>Language</th>
+      <th>To User</th>
+      <th>To User ID</th>
+      <th>Source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6600000</th>
+      <td>170726983490211841</td>
+      <td>Stand Up Mr. US Business Man and take responsi...</td>
+      <td>http://a2.twimg.com/profile_images/1752607483/...</td>
+      <td>2012-02-18</td>
+      <td>4</td>
+      <td>30</td>
+      <td>2012-02-18 04:30:59</td>
+      <td>N;</td>
+      <td>bentley_cat</td>
+      <td>463108759</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://www.bestoftheinternets...</td>
+    </tr>
+    <tr>
+      <th>6600001</th>
+      <td>170727024841854976</td>
+      <td>RT @C0d3Fr0sty: MT( Link shortened) @Kaymee: I...</td>
+      <td>http://a2.twimg.com/profile_images/1599465487/...</td>
+      <td>2012-02-18</td>
+      <td>4</td>
+      <td>31</td>
+      <td>2012-02-18 04:31:09</td>
+      <td>N;</td>
+      <td>marylouise996S</td>
+      <td>15380166</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://www.tweetdeck.com&amp;quot...</td>
+    </tr>
+    <tr>
+      <th>6600002</th>
+      <td>170727037370253312</td>
+      <td>China had an #ows before everyone else 1989 Ti...</td>
+      <td>http://a0.twimg.com/profile_images/1302276340/...</td>
+      <td>2012-02-18</td>
+      <td>4</td>
+      <td>31</td>
+      <td>2012-02-18 04:31:12</td>
+      <td>N;</td>
+      <td>dfwlibrarian</td>
+      <td>17644162</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://janetter.net/&amp;quot; re...</td>
+    </tr>
+    <tr>
+      <th>6600003</th>
+      <td>170727054361362433</td>
+      <td>Currency, Capital and Evolution: - http://t.co...</td>
+      <td>http://a3.twimg.com/profile_images/1597982571/...</td>
+      <td>2012-02-18</td>
+      <td>4</td>
+      <td>31</td>
+      <td>2012-02-18 04:31:16</td>
+      <td>N;</td>
+      <td>OmniusManifesto</td>
+      <td>394061184</td>
+      <td>it</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://www.socialoomph.com&amp;qu...</td>
+    </tr>
+    <tr>
+      <th>6600004</th>
+      <td>170727082391900160</td>
+      <td>Our problems rise much more from Govts corrupt...</td>
+      <td>http://a0.twimg.com/profile_images/1592676372/...</td>
+      <td>2012-02-18</td>
+      <td>4</td>
+      <td>31</td>
+      <td>2012-02-18 04:31:23</td>
+      <td>N;</td>
+      <td>IndyPolitico</td>
+      <td>73935439</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://www.socialoomph.com&amp;qu...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>6602115</th>
+      <td>170811007516672000</td>
+      <td>Man's knowledge makes another leap through the...</td>
+      <td>http://a3.twimg.com/profile_images/1600926992/...</td>
+      <td>2012-02-18</td>
+      <td>10</td>
+      <td>4</td>
+      <td>2012-02-18 10:04:52</td>
+      <td>N;</td>
+      <td>darealmaozedong</td>
+      <td>395911020</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://github.com/fons/cl-twi...</td>
+    </tr>
+    <tr>
+      <th>6602116</th>
+      <td>170811073648279552</td>
+      <td>When we give any president - one man - too muc...</td>
+      <td>http://a2.twimg.com/profile_images/1603734590/...</td>
+      <td>2012-02-18</td>
+      <td>10</td>
+      <td>5</td>
+      <td>2012-02-18 10:05:08</td>
+      <td>N;</td>
+      <td>RonPaulsVoice</td>
+      <td>396995779</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://twitter.com/RonPaulsVo...</td>
+    </tr>
+    <tr>
+      <th>6602117</th>
+      <td>170811301411553281</td>
+      <td>NYC forecast Tue 2/21/12: Partly cloudy. High ...</td>
+      <td>http://a1.twimg.com/profile_images/1612658667/...</td>
+      <td>2012-02-18</td>
+      <td>10</td>
+      <td>6</td>
+      <td>2012-02-18 10:06:02</td>
+      <td>N;</td>
+      <td>OccupyWeather</td>
+      <td>400559295</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://24Ahead.com/&amp;quot; rel...</td>
+    </tr>
+    <tr>
+      <th>6602118</th>
+      <td>170811326703206400</td>
+      <td>The moral promise of a free society involves t...</td>
+      <td>http://a2.twimg.com/profile_images/1603734590/...</td>
+      <td>2012-02-18</td>
+      <td>10</td>
+      <td>6</td>
+      <td>2012-02-18 10:06:08</td>
+      <td>N;</td>
+      <td>RonPaulsVoice</td>
+      <td>396995779</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://twitter.com/RonPaulsVo...</td>
+    </tr>
+    <tr>
+      <th>6602119</th>
+      <td>170811328037007360</td>
+      <td>RT @AnonOfTheAbove: RT @Apneac MT @MelMajik9: ...</td>
+      <td>http://a3.twimg.com/profile_images/1600926992/...</td>
+      <td>2012-02-18</td>
+      <td>10</td>
+      <td>6</td>
+      <td>2012-02-18 10:06:08</td>
+      <td>N;</td>
+      <td>darealmaozedong</td>
+      <td>395911020</td>
+      <td>en</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>&amp;lt;a href=&amp;quot;http://twitterfeed.com&amp;quot; ...</td>
+    </tr>
+  </tbody>
+</table>
+<p>2120 rows × 14 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
